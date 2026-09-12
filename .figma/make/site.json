@@ -1,0 +1,10 @@
+{
+  "description": "This app empowers users to combat food insecurity by providing personalized insights, local food resources, and decision-making support tailored to cultural preferences.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
