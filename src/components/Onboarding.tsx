@@ -3,7 +3,7 @@ import type { UserProfile } from '../types';
 import { storage } from '../lib/storage';
 
 const FIES_QUESTIONS = [
-  'In the past 12 months, were you worried you would not have enough food to eat because of a lack of money or other resources?',
+  'In the past 4 weeks, were you worried you would not have enough food to eat because of a lack of money or other resources?',
   'Were you unable to eat healthy and nutritious food because of a lack of money or other resources?',
   'Did you eat only a few kinds of foods because of a lack of money or other resources?',
   'Did you have to skip a meal because there was not enough money or other resources to get food?',
@@ -38,7 +38,7 @@ const STEPS: Step[] = [
   { id: 2, title: 'About your household', subtitle: 'So we can calibrate everything to your situation' },
   { id: 3, title: 'Your food budget and time', subtitle: 'Your preferences guide every recommendation' },
   { id: 4, title: 'Cultural background and diet', subtitle: 'Tailors recipe suggestions and the cultural staples index' },
-  { id: 5, title: 'Food security experience', subtitle: 'Eight validated questions — takes 2 minutes' },
+  { id: 5, title: 'Food security experience', subtitle: 'Eight validated questions about the past 4 weeks' },
   { id: 6, title: 'Data and privacy', subtitle: 'What stays on your device and what you can choose to share' },
 ];
 
@@ -170,7 +170,7 @@ export default function Onboarding({ onComplete }: Props) {
         {step === 1 && (
           <div className="space-y-5">
             <p className="text-sm leading-relaxed">
-              This app tracks the mental load of feeding yourself and your household — a metric we call <span className="font-semibold text-primary">headspace free</span>. It's built from five axes: cost pressure, nutrition trade-offs, time and effort, cultural fit, and decision friction.
+              This app tracks the mental load of feeding yourself and your household — a metric we call <span className="font-semibold text-primary">Cognitive Load of Hunger</span>. The check-in combines the full eight-question FIES module with six cognitive load domains.
             </p>
             <p className="text-sm leading-relaxed">
               It also surfaces local food resources, batch-cook strategies, craving alternatives, and budget stress-testing — all calibrated to your actual situation.

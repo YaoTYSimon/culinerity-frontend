@@ -1,5 +1,33 @@
 import type { HeadspaceEntry } from '../types';
 
+export const CLH_WEIGHTS = { A: 0.30, B: 0.25, C: 0.12, D: 0.08, E: 0.09, F: 0.09, G: 0.07 } as const;
+
+export const CLH_BANDS = [
+  { label: 'Clear', min: 0, max: 14.9 },
+  { label: 'Background', min: 15, max: 34.9 },
+  { label: 'Strained', min: 35, max: 54.9 },
+  { label: 'Heavy', min: 55, max: 74.9 },
+  { label: 'Overloaded', min: 75, max: 100 },
+] as const;
+
+export function calculateCLHScore(fies: boolean[], domains: Record<string, number[]>): number | null {
+  if (fies.length !== 8 || Object.values(domains).some((answers) => answers.length < 2)) return null;
+  const severity = (fies.filter(Boolean).length / 8) * 100;
+  const domainScore = (answers: number[]) => (answers.reduce((sum, value) => sum + value, 0) / answers.length / 4) * 100;
+  const score = severity * CLH_WEIGHTS.A + Object.entries(CLH_WEIGHTS)
+    .filter(([domain]) => domain !== 'A')
+    .reduce((sum, [domain, weight]) => sum + domainScore(domains[domain] ?? []) * weight, 0);
+  return Math.round(score * 10) / 10;
+}
+
+export function getCLHBand(score: number): string {
+  return CLH_BANDS.find((band) => score >= band.min && score <= band.max)?.label ?? 'Overloaded';
+}
+
+export function getLegacyScore(score: number): number {
+  return Math.max(1, Math.ceil(score / 10));
+}
+
 export function calculateHeadspaceScore(inputs: {
   costPressure: number;
   nutritionTradeoffs: number;

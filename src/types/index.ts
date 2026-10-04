@@ -23,12 +23,24 @@ export interface UserProfile {
 export interface HeadspaceEntry {
   id: string;
   date: string;
+  fiesAnswers?: boolean[];
+  domainAnswers?: Record<string, number[]>;
+  calibration?: number;
+  band?: string;
   costPressure: number;
   nutritionTradeoffs: number;
   timeEffort: number;
   culturalFit: number;
   decisionFriction: number;
   score: number;
+}
+
+export type CLHDomain = 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
+
+export interface CLHResponses {
+  fies: (boolean | null)[];
+  domains: Record<CLHDomain, (number | null)[]>;
+  calibration: number;
 }
 
 export interface DecisionEntry {
