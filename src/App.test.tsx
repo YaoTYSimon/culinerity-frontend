@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 import { DOMAINS, FIES_QUESTIONS, SUPPORT_BELOW, InMemoryProfileStore, type ProfileStore } from '@culinerity/core';
 import { createServices } from './services/container';
@@ -81,7 +81,7 @@ describe('App', () => {
     openMenu('Check-in');
     expect(screen.getByRole('heading', { level: 1, name: FIES_QUESTIONS[0] })).toBeInTheDocument();
     openMenu('My week');
-    expect(screen.getByRole('heading', { level: 1, name: /my week/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /nothing in your week yet/i })).toBeInTheDocument();
     openMenu('Food support');
     expect(screen.getByRole('heading', { level: 1, name: /free food/i })).toBeInTheDocument();
     openMenu('Home');
@@ -110,7 +110,9 @@ describe('App', () => {
     expect(screen.getByRole('img', { name: /score 0 out of 100, Critical; 100 is secure, 0 is critical/i })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /free food near you/i }));
     expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
-    expect(within(screen.getByRole('region', SUPPORT)).getByText('Culinerity is not medical advice.')).toBeInTheDocument();
+    expect(screen.getByRole('region', SUPPORT)).toBeInTheDocument();
+    expect(screen.getAllByText(/not medical advice/i)).toHaveLength(1);
+    expect(screen.getByRole('contentinfo')).toHaveTextContent(/not medical advice/i);
   });
 
   it(`shows support on the number view only below ${SUPPORT_BELOW}, but keeps it in the menu`, async () => {
@@ -122,7 +124,9 @@ describe('App', () => {
     expect(screen.queryByRole('button', { name: /free food near you/i })).not.toBeInTheDocument();
     openMenu('Food support');
     expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
-    expect(within(screen.getByRole('region', SUPPORT)).getByText('Culinerity is not medical advice.')).toBeInTheDocument();
+    expect(screen.getByRole('region', SUPPORT)).toBeInTheDocument();
+    expect(screen.getAllByText(/not medical advice/i)).toHaveLength(1);
+    expect(screen.getByRole('contentinfo')).toHaveTextContent(/not medical advice/i);
   });
 
   it('persists finance changes and restores score and budget on reload', () => {
@@ -177,5 +181,44 @@ describe('add to my week', () => {
     expect(last.weekSwaps![0]).toMatchObject({ at: '2026-10-26T01:00:00.000Z' });
     expect(last.weekSwaps![0].saving).toBeGreaterThan(0);
     expect(btn.getAttribute('aria-label')).toContain(last.weekSwaps![0].name);
+  });
+});
+
+describe('my week', () => {
+  const NOW = '2026-10-26T12:00:00.000Z';
+  const full = {
+    ...SEEN,
+    score: 12,
+    suburb: 'Footscray',
+    foodBudgetWeekly: 80,
+    weekSwaps: [
+      { itemId: 'a', name: 'Falafel wrap', saving: 4.9, at: NOW },
+      { itemId: 'a', name: 'Falafel wrap', saving: 4.9, at: NOW },
+    ],
+  };
+
+  it('removal and clearing persist through the profile store', () => {
+    const store = new InMemoryProfileStore(full);
+    renderApp(store, () => NOW);
+    openMenu('My week');
+    expect(screen.getByText('Falafel wrap ×2')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Remove one Falafel wrap' }));
+    expect(store.saved[store.saved.length - 1].weekSwaps).toHaveLength(1);
+    fireEvent.click(screen.getByRole('button', { name: 'Clear week' }));
+    expect(store.saved[store.saved.length - 1].weekSwaps).toEqual([]);
+    expect(screen.getByRole('heading', { level: 1, name: /nothing in your week yet/i })).toBeInTheDocument();
+  });
+
+  it('the shared text never carries score, finances or suburb', async () => {
+    const share = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'share', { value: share, configurable: true });
+    renderApp(new InMemoryProfileStore(full), () => NOW);
+    openMenu('My week');
+    await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Share' })));
+    const text: string = share.mock.calls[0][0].text;
+    expect(text).toContain('Falafel wrap ×2');
+    expect(text).toBe('Falafel wrap ×2: $9.80\nSaved this week: $9.80\nMade with Culinerity');
+    expect(text).not.toMatch(/Footscray|score/i);
+    Object.defineProperty(navigator, 'share', { value: undefined, configurable: true });
   });
 });

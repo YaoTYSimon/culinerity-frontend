@@ -46,17 +46,17 @@ export function SupportPanel({ suburb }: { suburb?: string }) {
 
   return (
     <section aria-labelledby="support-h" className="grid gap-5">
-      <div className="-mx-4 flex items-start gap-3 overflow-x-clip px-4">
+      <div className="-mx-4 flex items-start gap-3 overflow-x-clip px-4 min-[520px]:mx-0 min-[520px]:px-0">
         <div className="grid min-w-0 flex-1 gap-3">
           <h1 id="support-h" className="font-display text-[30px] leading-tight font-bold text-balance">Free food near you.</h1>
           <p className="text-base text-pretty text-muted">Call ahead to check times.</p>
         </div>
-        <RoundPhoto src={photoUrl('welcome-pancakes')} size={150} eager className="-mr-12 mt-1" />
+        <RoundPhoto src={photoUrl('welcome-pancakes')} size={150} eager className="-mr-12 mt-1 min-[520px]:mr-0" />
       </div>
 
       {failed && (
         <div role="alert" className="grid justify-items-start gap-3">
-          <p className="text-base font-semibold text-pretty">We can't load the list just now. Please try again later.</p>
+          <p className="text-base font-semibold text-pretty">We can't load the list just now. Please try again.</p>
           <PillButton onClick={retry}>Try again</PillButton>
         </div>
       )}
@@ -82,7 +82,6 @@ export function SupportPanel({ suburb }: { suburb?: string }) {
         </ul>
       )}
       {places && places.some((p) => p.isSample) && <p className="text-xs text-muted">Sample data</p>}
-      <p className="text-sm font-medium">Culinerity is not medical advice.</p>
     </section>
   );
 }

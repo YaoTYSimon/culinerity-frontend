@@ -33,6 +33,7 @@ describe('ServicesLoader', () => {
     renderLoader(true, down);
     expect(await screen.findByText(/can't reach the swap server/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Try again' })).toBeInTheDocument();
+    expect(screen.getByText("Your cravings will load as soon as it's back.")).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'Popular cravings' })).not.toBeInTheDocument();
   });
 

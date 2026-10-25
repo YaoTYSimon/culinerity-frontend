@@ -119,7 +119,7 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
       {catalogue.status === 'unavailable' && (
         <div role="alert" className="grid justify-items-start gap-3 text-sm text-ink">
           <p className="text-base font-semibold">We can't reach the swap server right now.</p>
-          <p className="text-pretty text-muted">Try again, or turn off the backend.</p>
+          <p className="text-pretty text-muted">Your cravings will load as soon as it's back.</p>
           <PillButton onClick={catalogue.retry}>Try again</PillButton>
         </div>
       )}

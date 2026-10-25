@@ -28,7 +28,7 @@ describe('SupportPanel', () => {
 
     rerender(ui('Elsewhere'));
     expect(screen.queryByText('Carlton Pantry')).not.toBeInTheDocument();
-    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent('Loading places');
 
     reject(new Error('boom'));
     expect(await screen.findByRole('alert')).toBeInTheDocument();
@@ -43,7 +43,6 @@ describe('SupportPanel', () => {
     expect(container.querySelector('img')).toHaveAttribute('alt', '');
     expect(screen.getByText('Call ahead to check times.')).toBeInTheDocument();
     expect(screen.getByText('Sample data')).toBeInTheDocument();
-    expect(screen.getByText('Culinerity is not medical advice.')).toBeInTheDocument();
     expect(container.textContent).not.toMatch(/proof|prove/i);
   });
 
@@ -67,7 +66,7 @@ describe('SupportPanel', () => {
       if (++calls === 1) throw new Error('boom');
       return [place('a', 'Carlton Pantry')];
     });
-    expect(await screen.findByRole('alert')).toHaveTextContent("We can't load the list just now. Please try again later.");
+    expect(await screen.findByRole('alert')).toHaveTextContent("We can't load the list just now. Please try again.");
     fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
     expect(await screen.findByText('Carlton Pantry')).toBeInTheDocument();
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();

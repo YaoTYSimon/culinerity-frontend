@@ -98,7 +98,7 @@ export function Questionnaire({ onComplete, onSkip }: Props) {
       </div>
 
       <div className="mt-4 flex justify-end">
-        <RoundPhoto src={photoUrl('welcome-soup')} size={132} eager className="-mr-10" />
+        <RoundPhoto src={photoUrl('welcome-soup')} size={132} eager className="-mr-10 min-[520px]:mr-0" />
       </div>
 
       <div className="mt-3 grid gap-3">
