@@ -93,3 +93,15 @@ These resolve gaps a reviewer found. Change any of them freely.
 8. **Low scores:** show food-support options (for example food pantries and community fridges, via `FoodSupportSource`) plus a plain "this is not medical advice" note.
 9. **Location:** optional suburb or postcode, stored on-device, used only for food-support proximity. Prices are Melbourne-wide in this version.
 10. **Out of scope for now:** offline/PWA support and translations beyond English.
+
+## Update 2026-10-25: native mobile app (user decision)
+
+The user asked for a mobile app instead of a web app. This supersedes the web-UI parts of the stack and constraints above; everything about the product (score, swaps, prices, privacy, mock-first, SOLID/DRY) is unchanged.
+
+- **Platform:** Expo (React Native, TypeScript) for iPhone and Android. NativeWind (Tailwind) for styling so the Tailwind design tokens and practices carry over. **Designer's call, not confirmed by the user.**
+- **Shared logic:** the pure TypeScript layers (domain scoring and ranking, source interfaces and mocks, swap service, profile-store interface) move into a shared package used by the app; only the UI and the storage implementation are platform-specific (`AsyncStorage` replaces `localStorage`).
+- **Persistence/privacy:** answers and finances stay on the device (AsyncStorage). No location permission is requested.
+- **Backend:** unchanged (Task 12 Hono + SQLite); the app uses it through HTTP sources behind the existing interfaces, enabled by a config flag.
+- **Design:** Linear-style (restrained palette, hairlines, 8px rhythm, fast transitions, skeleton loading, haptics on key actions), native navigation (bottom tabs: Swaps, Support, Check-in), safe areas, large touch targets (44pt), dynamic text sizes, VoiceOver/TalkBack labels. Dark mode follows the system.
+- **Out of scope:** app-store submission, push notifications, accounts.
+- The web app on `rewrite/focused` stays as the working reference until the mobile app reaches parity, then is retired by the user's decision.

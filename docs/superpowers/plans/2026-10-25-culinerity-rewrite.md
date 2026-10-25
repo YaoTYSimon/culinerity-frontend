@@ -226,3 +226,18 @@ Runs after Task 11a lands. The user said the app looks amateur and asked for an 
 5. Duplicate "What are you craving?" heading and label.
 6. Popular cravings wrap ragged; use a horizontal scroll row or a tidy grid with icons/emoji-free glyphs.
 7. No score presence until the check-in is taken; show a small, friendly score chip in the header once available.
+
+## Mobile direction (user decision, replaces Task 13 above)
+
+The user asked for a mobile app instead of web. **Task 13 (web design polish) is replaced by Tasks 14–16.** Tasks 1–11 stand: they produce the shared logic and the web reference. See the design spec's "Update 2026-10-25: native mobile app".
+
+### Task 14: Shared core package
+Move `src/domain`, `src/sources` (interfaces + mocks), `src/services/swapService.ts`, `src/storage` (interface + pure helpers) into `packages/core` (npm workspace, TypeScript, Vitest), with `ProfileStore` implementations injected (no `localStorage` in core). Web app imports from the package; all existing tests still pass. Commit `refactor: extract core package`.
+
+### Task 15: Expo app scaffold and storage
+Create `apps/mobile` (Expo, TypeScript, expo-router, NativeWind). `AsyncProfileStore implements ProfileStore` (never throws; corrupt data returns `{}`), `createServices()` for mobile, theme tokens ported from `src/index.css`. Tests with `jest-expo` for the store and one smoke render. Run `npx expo export` to confirm it bundles. Commit `feat: expo app scaffold`.
+
+### Task 16: Native screens
+Bottom tabs (Swaps, Support, Check-in), Linear-style design per the spec (hairline cards, price as anchor, "saves $X" chip, skeleton loading, haptics on swap tap and check-in finish, safe areas, 44pt targets, dark mode, accessibility labels). Port Questionnaire, FinanceForm, CravingSearch/SwapResults, SupportPanel, ScoreSummary behaviour with the same tests (React Native Testing Library). Verify on the iOS Simulator or Expo web export with screenshots at iPhone sizes. Commit per screen.
+
+Task 12 (backend) is unchanged and runs before or after Task 16 at the controller's choice; the mobile app consumes it through HTTP sources behind a config flag.
