@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { appendScore, bandHeadline, SUPPORT_BELOW, type Profile } from '@culinerity/core';
+import { appendScore, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { CravingSearch } from './ui/CravingSearch';
 import { FinanceForm } from './ui/FinanceForm';
 import { Header } from './ui/Header';
 import { PhotoCredits } from './ui/PhotoCredits';
-import { Plate } from './ui/Plate';
+import { NumberScreen } from './ui/NumberScreen';
 import { Questionnaire } from './ui/Questionnaire';
 import { SupportPanel } from './ui/SupportPanel';
 import type { NavTarget, View } from './ui/views';
@@ -31,7 +31,6 @@ export default function App() {
   const go = (to: NavTarget) => setView(to === 'home' ? homeFor(profile) : to);
 
   const hasScore = typeof profile.score === 'number';
-  const needsSupport = hasScore && (profile.score as number) < SUPPORT_BELOW;
 
   return (
     <div className="min-h-full bg-surface">
@@ -69,14 +68,14 @@ export default function App() {
             </div>
           )}
 
-          {/* Stub until the number screen (Task 6). */}
           {view === 'number' && hasScore && (
-            <div className="grid gap-4">
-              <h1 className="font-display text-[30px] text-balance">{bandHeadline(profile.score as number)}</h1>
-              <Plate score={profile.score as number} className="mx-auto" />
-              {needsSupport && <SupportPanel suburb={profile.suburb} />}
-              <BudgetSection profile={profile} onChange={update} />
-            </div>
+            <NumberScreen
+              profile={profile}
+              onSeeSwaps={() => setView('swaps')}
+              onCheckIn={() => setView('checkin')}
+              onOpenSupport={() => setView('support')}
+              onChange={update}
+            />
           )}
 
           {/* Stub until the shareable week card (Task 9). */}
