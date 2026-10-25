@@ -241,3 +241,7 @@ Create `apps/mobile` (Expo, TypeScript, expo-router, NativeWind). `AsyncProfileS
 Bottom tabs (Swaps, Support, Check-in), Linear-style design per the spec (hairline cards, price as anchor, "saves $X" chip, skeleton loading, haptics on swap tap and check-in finish, safe areas, 44pt targets, dark mode, accessibility labels). Port Questionnaire, FinanceForm, CravingSearch/SwapResults, SupportPanel, ScoreSummary behaviour with the same tests (React Native Testing Library). Verify on the iOS Simulator or Expo web export with screenshots at iPhone sizes. Commit per screen.
 
 Task 12 (backend) is unchanged and runs before or after Task 16 at the controller's choice; the mobile app consumes it through HTTP sources behind a config flag.
+
+## Direction change (user): web focus again
+
+Tasks 15–16 (Expo) are **shelved** (partial work parked on `wip/mobile-expo`). **Task 13 (web design polish) is back on** and runs next, followed by Task 12 (backend with SQLite) and a final whole-branch review.

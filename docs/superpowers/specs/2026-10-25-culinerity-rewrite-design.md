@@ -105,3 +105,7 @@ The user asked for a mobile app instead of a web app. This supersedes the web-UI
 - **Design:** Linear-style (restrained palette, hairlines, 8px rhythm, fast transitions, skeleton loading, haptics on key actions), native navigation (bottom tabs: Swaps, Support, Check-in), safe areas, large touch targets (44pt), dynamic text sizes, VoiceOver/TalkBack labels. Dark mode follows the system.
 - **Out of scope:** app-store submission, push notifications, accounts.
 - The web app on `rewrite/focused` stays as the working reference until the mobile app reaches parity, then is retired by the user's decision.
+
+## Update 2026-10-25 (later): web focus again (user decision)
+
+The user said "focus on web", reversing the mobile direction above. The web app (React + Vite + Tailwind v4, at the repo root) is the product to finish. The shared `@culinerity/core` package stays (it is good architecture and keeps a future mobile app possible). The partial Expo scaffold is parked on branch `wip/mobile-expo`, not merged. Native mobile is out of scope until the user asks again.
