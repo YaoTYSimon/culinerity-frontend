@@ -16,9 +16,10 @@ export function SupportPanel({ suburb }: { suburb?: string }) {
   useEffect(() => {
     let live = true;
     setFailed(false);
+    setPlaces(null);
     support.findSupport(suburb).then(
       (p) => { if (live) setPlaces(p); },
-      () => { if (live) setFailed(true); },
+      () => { if (live) { setPlaces(null); setFailed(true); } },
     );
     return () => { live = false; };
   }, [support, suburb]);
