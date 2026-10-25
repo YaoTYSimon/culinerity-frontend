@@ -75,7 +75,7 @@ export function Questionnaire({ onComplete, onSkip }: Props) {
   const value = answered();
 
   return (
-    <section className="-mx-4 flex min-h-[calc(100svh-9rem)] flex-col overflow-x-clip px-4 text-ink" aria-label="Check-in">
+    <section className="flex min-h-[calc(100svh-9rem)] flex-col text-ink" aria-label="Check-in">
       <div className="flex items-center gap-3">
         <div
           role="progressbar"
@@ -98,7 +98,7 @@ export function Questionnaire({ onComplete, onSkip }: Props) {
       </div>
 
       <div className="mt-4 flex justify-end">
-        <RoundPhoto src={photoUrl('welcome-soup')} size={132} eager className="-mr-10 min-[520px]:mr-0" />
+        <RoundPhoto src={photoUrl('welcome-soup')} size={132} eager />
       </div>
 
       <div className="mt-3 grid gap-3">

@@ -37,8 +37,8 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
   const hasScore = typeof profile.score === 'number';
 
   return (
-    <div className="min-h-full bg-surface">
-      <div className="relative mx-auto flex min-h-full w-full max-w-[520px] flex-col bg-bg">
+    <div className="min-h-dvh bg-surface">
+      <div className="relative mx-auto flex min-h-dvh w-full max-w-[520px] flex-col bg-bg">
         <a
           href="#main"
           className="sr-only focus-visible:not-sr-only focus-visible:m-4 focus-visible:rounded-full focus-visible:bg-accent focus-visible:px-4 focus-visible:py-2 focus-visible:text-accent-ink focus-ring"
@@ -101,7 +101,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           )}
         </main>
 
-        <footer className="px-4 pb-6 text-xs text-muted">
+        <footer className="px-4 pb-6 text-[13px] text-muted">
           Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn; craving photos are credited below.
           <PhotoCredits />
         </footer>

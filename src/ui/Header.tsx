@@ -13,7 +13,7 @@ export function Header({ view, onNavigate }: Props) {
     <header className="relative">
       <div className="flex flex-wrap items-center justify-between gap-x-2 px-4 py-2">
         <p className="text-base font-extrabold tracking-tight">Culinerity</p>
-        <div className="flex items-center gap-1">
+        <div className="ml-auto flex items-center gap-1">
           <ThemeDots />
           <Menu current={view} onNavigate={onNavigate} />
         </div>

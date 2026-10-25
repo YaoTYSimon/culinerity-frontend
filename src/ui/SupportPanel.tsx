@@ -46,12 +46,12 @@ export function SupportPanel({ suburb }: { suburb?: string }) {
 
   return (
     <section aria-labelledby="support-h" className="grid gap-5">
-      <div className="-mx-4 flex items-start gap-3 overflow-x-clip px-4 min-[520px]:mx-0 min-[520px]:px-0">
+      <div className="flex items-start gap-3">
         <div className="grid min-w-0 flex-1 gap-3">
           <h1 id="support-h" className="font-display text-[30px] leading-tight font-bold text-balance">Free food near you.</h1>
           <p className="text-base text-pretty text-muted">Call ahead to check times.</p>
         </div>
-        <RoundPhoto src={photoUrl('welcome-pancakes')} size={150} eager className="-mr-12 mt-1 min-[520px]:mr-0" />
+        <RoundPhoto src={photoUrl('welcome-pancakes')} size={132} eager className="mt-1" />
       </div>
 
       {failed && (
