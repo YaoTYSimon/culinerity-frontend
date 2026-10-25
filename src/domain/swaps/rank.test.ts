@@ -39,6 +39,16 @@ describe('rankSwaps', () => {
   it('null score equals 50', () => {
     expect(rankSwaps({ ...base, score: null })).toEqual(rankSwaps({ ...base, score: 50 }));
   });
+  it('NaN score equals 50', () => {
+    expect(rankSwaps({ ...base, score: NaN })).toEqual(rankSwaps({ ...base, score: 50 }));
+  });
+  it('falls back to the dearest swap as price reference when the craving is unpriced', () => {
+    const noCravingPrice = { ...prices, craving: [] };
+    const low = rankSwaps({ ...base, prices: noCravingPrice, score: 0 });
+    expect(ids(low)).toEqual(['cheap', 'healthy', 'none']);
+    const high = rankSwaps({ ...base, prices: noCravingPrice, score: 100 });
+    expect(ids(high)).toEqual(['healthy', 'cheap', 'none']);
+  });
   it('null budget gives null withinBudget', () => {
     const r = rankSwaps({ ...base, score: 50, budgetPerServe: null });
     expect(r.every((x) => x.withinBudget === null)).toBe(true);
@@ -63,6 +73,30 @@ describe('rankSwaps', () => {
   });
   it('returns [] for no candidates', () => {
     expect(rankSwaps({ ...base, candidates: [], score: 50 })).toEqual([]);
+  });
+});
+
+import { NUTRITION } from '../../sources/mock/data';
+const mock = (id: string) => healthScore(NUTRITION.find((n) => n.itemId === id)!);
+
+describe('healthScore on mock nutrition', () => {
+  it('orders sparkling water > baked drumsticks > burger', () => {
+    expect(mock('sparkling-lemon')).toBeGreaterThan(mock('baked-drumsticks'));
+    expect(mock('baked-drumsticks')).toBeGreaterThan(mock('burger'));
+  });
+  it('soft drink is below sparkling water', () => {
+    expect(mock('soft-drink')).toBeLessThan(mock('sparkling-lemon'));
+  });
+  it('does not flatten soft drink and bubble tea to the same value', () => {
+    expect(mock('soft-drink')).not.toBe(mock('bubble-tea'));
+    expect(mock('bubble-tea')).toBeGreaterThan(0);
+    expect(mock('soft-drink')).toBeGreaterThan(0);
+  });
+  it('every mock item stays within [0,100]', () => {
+    for (const n of NUTRITION) {
+      expect(healthScore(n)).toBeGreaterThanOrEqual(0);
+      expect(healthScore(n)).toBeLessThanOrEqual(100);
+    }
   });
 });
 

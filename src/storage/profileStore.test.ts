@@ -22,6 +22,13 @@ describe('LocalProfileStore', () => {
     localStorage.setItem('culinerity.profile.v1', 'null');
     expect(new LocalProfileStore().load()).toEqual({});
   });
+  it('drops wrong-typed and unknown fields', () => {
+    localStorage.setItem(
+      'culinerity.profile.v1',
+      JSON.stringify({ foodBudgetWeekly: '60', incomeWeekly: 500, score: null, suburb: 5, scoreTakenAt: '2026-10-01', extra: 1 }),
+    );
+    expect(new LocalProfileStore().load()).toEqual({ incomeWeekly: 500, scoreTakenAt: '2026-10-01' });
+  });
   it('returns {} when getItem throws', () => {
     vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new Error('denied');

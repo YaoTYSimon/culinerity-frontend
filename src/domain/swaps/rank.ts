@@ -36,7 +36,8 @@ function cheapest(points: PricePoint[] | undefined): PricePoint | null {
  */
 export function rankSwaps(input: RankInput): RankedSwap[] {
   const { candidates, prices, nutrition, budgetPerServe } = input;
-  const w = clamp(input.score ?? 50, 0, 100) / 100;
+  const score = input.score !== null && Number.isFinite(input.score) ? input.score : 50;
+  const w = clamp(score, 0, 100) / 100;
 
   const rows = candidates.map((candidate) => {
     const id = candidate.alternative.id;
@@ -52,6 +53,8 @@ export function rankSwaps(input: RankInput): RankedSwap[] {
     };
   });
 
+  // Candidates must all share one craving (swapsFor(cravingId) guarantees this), so the
+  // first one's craving is the price reference for every swap.
   const cravingCost = candidates.length ? cheapest(prices[candidates[0].craving.id])?.pricePerServe : undefined;
   const ref = cravingCost ?? Math.max(0, ...rows.map((r) => r.cost ?? 0));
   const cheapness = (cost: number) => (ref > 0 ? clamp(100 * (1 - cost / ref), 0, 100) : 100);
