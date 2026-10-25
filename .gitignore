@@ -23,3 +23,9 @@ logs/
 
 # Local SQLite database (created by npm run seed)
 server/data/
+
+# Local files that are not project source
+.DS_Store
+Archive.zip
+crimaaaaaa.jpg
+apps/
