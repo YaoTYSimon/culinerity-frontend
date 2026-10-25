@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import App from './App';
-import { DOMAINS, SUPPORT_BELOW, InMemoryProfileStore, type ProfileStore } from '@culinerity/core';
+import { DOMAINS, FIES_QUESTIONS, SUPPORT_BELOW, InMemoryProfileStore, type ProfileStore } from '@culinerity/core';
 import { createServices } from './services/container';
 import { ServicesProvider } from './services/ServicesContext';
 import { LocalProfileStore } from './storage/localProfileStore';
@@ -14,24 +14,17 @@ function openMenu(item: string) {
   fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
   fireEvent.click(screen.getByRole('button', { name: item }));
 }
-const sectionCount = 1 + Object.keys(DOMAINS).length;
 
 function renderApp(store: ProfileStore = new InMemoryProfileStore()) {
   const services = { ...createServices(), profiles: store };
   return render(<ServicesProvider services={services}><App /></ServicesProvider>);
 }
 
-function answerSection(label: string) {
-  screen.getAllByRole('radio', { name: label }).forEach((r) => fireEvent.click(r));
-}
-
 function takeWorstQuestionnaire() {
-  answerSection('Yes');
-  for (let i = 1; i < sectionCount; i++) {
-    fireEvent.click(screen.getByRole('button', { name: /next/i }));
-    answerSection('Almost always');
+  const total = FIES_QUESTIONS.length + Object.values(DOMAINS).flat().length;
+  for (let i = 0; i < total; i++) {
+    fireEvent.click(screen.getByRole('button', { name: i < FIES_QUESTIONS.length ? 'Yes' : 'Almost always' }));
   }
-  fireEvent.click(screen.getByRole('button', { name: /see my score/i }));
 }
 
 afterEach(() => localStorage.clear());
@@ -52,7 +45,7 @@ describe('App', () => {
     const store = new InMemoryProfileStore();
     renderApp(store);
     fireEvent.click(screen.getByRole('button', { name: 'Find my number' }));
-    expect(screen.getByRole('heading', { level: 1, name: /check-in/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: FIES_QUESTIONS[0] })).toBeInTheDocument();
     expect(store.saved[store.saved.length - 1]).toMatchObject({ welcomeSeen: true });
   });
 
@@ -75,7 +68,7 @@ describe('App', () => {
   it('menu items navigate to each view', () => {
     renderApp(new InMemoryProfileStore(SEEN));
     openMenu('Check-in');
-    expect(screen.getByRole('heading', { level: 1, name: /check-in/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: FIES_QUESTIONS[0] })).toBeInTheDocument();
     openMenu('My week');
     expect(screen.getByRole('heading', { level: 1, name: /my week/i })).toBeInTheDocument();
     openMenu('Food support');

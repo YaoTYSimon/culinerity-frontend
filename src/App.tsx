@@ -59,10 +59,7 @@ export default function App() {
           )}
 
           {view === 'checkin' && (
-            <div>
-              <h1 className="sr-only">Food and money check-in</h1>
-              <Questionnaire onComplete={complete} onSkip={() => setView(homeFor(profile))} />
-            </div>
+            <Questionnaire onComplete={complete} onSkip={() => setView(homeFor(profile))} />
           )}
 
           {view === 'support' && (

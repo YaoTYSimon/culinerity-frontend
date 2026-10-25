@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { DOMAIN_LABELS, DOMAINS, FIES_QUESTIONS, FREQUENCIES, type Answers, type DomainId, computeScore } from '@culinerity/core';
+import { useEffect, useRef, useState } from 'react';
+import { DOMAINS, FIES_QUESTIONS, FREQUENCIES, type Answers, type DomainId, computeScore } from '@culinerity/core';
+import { photoUrl } from '../assets/photos';
+import { PillButton } from './PillButton';
+import { RoundPhoto } from './RoundPhoto';
 
 interface Props {
   onComplete: (score: number) => void;
@@ -7,133 +10,133 @@ interface Props {
 }
 
 const DOMAIN_IDS = Object.keys(DOMAINS) as DomainId[];
-const SECTION_NAMES = ['Food and money', ...DOMAIN_IDS.map((id) => DOMAIN_LABELS[id])];
+
+type Step =
+  | { kind: 'fies'; index: number; text: string }
+  | { kind: 'domain'; id: DomainId; index: number; text: string };
+
+/** FIES first, then each domain's items in order. Wording and scoring stay in core. */
+const STEPS: Step[] = [
+  ...FIES_QUESTIONS.map((text, index): Step => ({ kind: 'fies', index, text })),
+  ...DOMAIN_IDS.flatMap((id) => DOMAINS[id].map((text, index): Step => ({ kind: 'domain', id, index, text }))),
+];
+const TOTAL = STEPS.length;
 
 const empty = (): Answers => ({
   fies: FIES_QUESTIONS.map(() => null),
   domains: Object.fromEntries(DOMAIN_IDS.map((id) => [id, DOMAINS[id].map(() => null)])) as Answers['domains'],
 });
 
-const primaryBtn =
-  'min-h-11 rounded bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-safe:transition-opacity motion-safe:duration-150';
-const quietBtn =
-  'min-h-11 rounded bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:bg-legacy-muted focus-ring motion-colors';
-
-function Choice({
-  name, label, checked, onSelect,
-}: { name: string; label: string; checked: boolean; onSelect: () => void }) {
+function Pill({ label, selected, onSelect }: { label: string; selected: boolean; onSelect: () => void }) {
   return (
-    <label
-      className={`flex min-h-11 flex-1 cursor-pointer items-center justify-center rounded px-2 py-2 text-center text-sm font-medium motion-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring ${
-        checked ? 'bg-primary text-primary-foreground' : 'bg-field text-foreground hover:bg-legacy-muted'
-      }`}
+    <PillButton
+      variant={selected ? 'primary' : 'surface'}
+      aria-pressed={selected}
+      onClick={onSelect}
+      className="w-full"
     >
-      <input type="radio" name={name} className="sr-only" checked={checked} onChange={onSelect} aria-label={label} />
-      <span aria-hidden="true">{label}</span>
-    </label>
+      {label}
+    </PillButton>
   );
 }
 
+/** One question per screen. Answering moves on; Back keeps earlier answers selected. */
 export function Questionnaire({ onComplete, onSkip }: Props) {
   const [answers, setAnswers] = useState<Answers>(empty);
   const [step, setStep] = useState(0);
-  const [missing, setMissing] = useState<string[]>([]);
-  const last = SECTION_NAMES.length - 1;
+  const heading = useRef<HTMLHeadingElement>(null);
+  const current = STEPS[step];
 
-  const setFies = (i: number, v: boolean) => {
-    setMissing([]);
-    setAnswers((a) => ({ ...a, fies: a.fies.map((x, j) => (j === i ? v : x)) }));
-  };
-  const setDomain = (id: DomainId, i: number, v: number) => {
-    setMissing([]);
-    setAnswers((a) => ({ ...a, domains: { ...a.domains, [id]: a.domains[id].map((x, j) => (j === i ? v : x)) } }));
-  };
+  useEffect(() => {
+    heading.current?.focus({ preventScroll: true });
+  }, [step]);
 
-  function missingSections(): string[] {
-    const out: string[] = [];
-    const f = answers.fies.filter((x) => x === null).length;
-    if (f) out.push(`Part 1 of ${last + 1}: ${SECTION_NAMES[0]} (${f} unanswered)`);
-    for (const [k, id] of DOMAIN_IDS.entries()) {
-      const n = answers.domains[id].filter((x) => x === null).length;
-      if (n) out.push(`Part ${k + 2} of ${last + 1}: ${DOMAIN_LABELS[id]} (${n} unanswered)`);
-    }
-    return out;
-  }
+  const answered = (): number | boolean | null =>
+    current.kind === 'fies' ? answers.fies[current.index] : answers.domains[current.id][current.index];
 
-  function finish() {
-    const gaps = missingSections();
-    const score = computeScore(answers);
-    if (gaps.length || score === null) {
-      setMissing(gaps);
+  function commit(next: Answers) {
+    setAnswers(next);
+    if (step < TOTAL - 1) {
+      setStep(step + 1);
       return;
     }
-    setMissing([]);
-    onComplete(score);
+    const score = computeScore(next);
+    if (score !== null) onComplete(score);
   }
 
-  return (
-    <section className="w-full text-foreground" aria-labelledby="q-title">
-      <p className="mb-2 text-xs text-muted-foreground">
-        Part {step + 1} of {last + 1}
-      </p>
-      <progress
-        aria-hidden="true" value={step + 1} max={last + 1}
-        className="mb-4 block h-1 w-full appearance-none overflow-hidden rounded bg-legacy-muted [&::-moz-progress-bar]:bg-primary [&::-webkit-progress-bar]:bg-legacy-muted [&::-webkit-progress-value]:bg-primary"
-      />
-      <h2 id="q-title" className="text-2xl font-semibold text-balance">
-        {SECTION_NAMES[step]}
-      </h2>
-      <p className="mt-1 text-sm text-muted-foreground">
-        {step === 0
-          ? 'Lots of people find food hard to manage at times. Answer for the past 4 weeks, only as far as you are comfortable. Your answers stay on this device.'
-          : 'In the past 4 weeks, how often...'}
-      </p>
-      <p className="mb-4 mt-1 text-xs text-muted-foreground">Your score: 100 = secure, 0 = critical.</p>
+  const answerFies = (v: boolean) =>
+    commit({ ...answers, fies: answers.fies.map((x, j) => (current.kind === 'fies' && j === current.index ? v : x)) });
+  const answerDomain = (v: number) => {
+    if (current.kind !== 'domain') return;
+    const { id, index } = current;
+    commit({ ...answers, domains: { ...answers.domains, [id]: answers.domains[id].map((x, j) => (j === index ? v : x)) } });
+  };
 
-      <div className="grid gap-3">
-        {step === 0
-          ? FIES_QUESTIONS.map((q, i) => (
-              <fieldset key={q} className="rounded-card bg-card p-4">
-                <legend className="sr-only">{q}</legend>
-                <p className="mb-3 text-sm" aria-hidden="true">{q}</p>
-                <div className="flex gap-2">
-                  <Choice name={`fies-${i}`} label="Yes" checked={answers.fies[i] === true} onSelect={() => setFies(i, true)} />
-                  <Choice name={`fies-${i}`} label="No" checked={answers.fies[i] === false} onSelect={() => setFies(i, false)} />
-                </div>
-              </fieldset>
-            ))
-          : DOMAINS[DOMAIN_IDS[step - 1]].map((q, i) => {
-              const id = DOMAIN_IDS[step - 1];
-              return (
-                <fieldset key={q} className="rounded-card bg-card p-4">
-                  <legend className="sr-only">{q}</legend>
-                  <p className="mb-3 text-sm" aria-hidden="true">{q}</p>
-                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
-                    {FREQUENCIES.map((f, v) => (
-                      <Choice key={f} name={`${id}-${i}`} label={f} checked={answers.domains[id][i] === v} onSelect={() => setDomain(id, i, v)} />
-                    ))}
-                  </div>
-                </fieldset>
-              );
-            })}
+  const value = answered();
+
+  return (
+    <section className="-mx-4 flex min-h-[calc(100svh-9rem)] flex-col overflow-x-clip px-4 text-ink" aria-label="Check-in">
+      <div className="flex items-center gap-3" aria-hidden="true">
+        <div className="flex min-w-0 flex-1 items-center gap-[3px]">
+          {STEPS.map((s, i) => (
+            <span
+              key={`${s.kind}-${i}`}
+              className={`h-1.5 max-w-1.5 min-w-[3px] flex-1 rounded-full ${i < step ? 'bg-accent' : i === step ? 'bg-ink' : 'bg-surface'}`}
+            />
+          ))}
+        </div>
+        <p className="shrink-0 text-sm text-muted">{step + 1} of {TOTAL}</p>
+      </div>
+      <div role="status" aria-live="polite" className="sr-only">
+        Question {step + 1} of {TOTAL}: {current.text}
       </div>
 
-      {missing.length > 0 && (
-        <p role="alert" className="mt-4 rounded-card bg-accent-soft p-3 text-sm">
-          Almost there. Still to answer: {missing.join('; ')}. Use Back to find them, or skip for now.
-        </p>
-      )}
+      <div className="mt-4 flex justify-end">
+        <RoundPhoto src={photoUrl('welcome-soup')} size={132} eager className="-mr-10" />
+      </div>
 
-      <div className="mt-6 flex flex-wrap gap-2">
-        {step > 0 && (
-          <button type="button" className={quietBtn} onClick={() => setStep(step - 1)}>Back</button>
-        )}
-        {step < last ? (
-          <button type="button" className={primaryBtn} onClick={() => setStep(step + 1)}>Next</button>
+      <div className="-mt-2 grid gap-3">
+        <h1
+          ref={heading}
+          tabIndex={-1}
+          className="font-display text-[27px] leading-tight font-bold text-balance outline-none"
+        >
+          {current.text}
+        </h1>
+        <p className="text-sm text-pretty text-muted">
+          {current.kind === 'fies'
+            ? 'Answer for the past 4 weeks, only as far as you are comfortable.'
+            : 'Thinking about the past 4 weeks, how often was this true?'}
+        </p>
+      </div>
+
+      <div
+        role="group"
+        aria-label="Answers"
+        className={`mt-6 grid gap-3 ${current.kind === 'fies' ? 'grid-cols-2' : 'grid-cols-1'}`}
+      >
+        {current.kind === 'fies' ? (
+          <>
+            <Pill label="Yes" selected={value === true} onSelect={() => answerFies(true)} />
+            <Pill label="No" selected={value === false} onSelect={() => answerFies(false)} />
+          </>
         ) : (
-          <button type="button" className={primaryBtn} onClick={finish}>See my score</button>
+          FREQUENCIES.map((f, v) => (
+            <Pill key={f} label={f} selected={value === v} onSelect={() => answerDomain(v)} />
+          ))
         )}
-        <button type="button" className={`${quietBtn} ml-auto`} onClick={onSkip}>Skip for now</button>
+      </div>
+
+      <div className="mt-auto grid gap-2 pt-8">
+        <div className="flex items-center justify-between">
+          <PillButton variant="text" onClick={() => setStep(Math.max(0, step - 1))} className="-ml-3">
+            Back
+          </PillButton>
+          <PillButton variant="text" onClick={onSkip} className="-mr-3">
+            Skip for now
+          </PillButton>
+        </div>
+        <p className="text-center text-xs text-muted">Answers stay on this phone</p>
       </div>
     </section>
   );
