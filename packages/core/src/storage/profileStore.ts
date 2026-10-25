@@ -1,12 +1,11 @@
 import type { Aud, Profile } from '../domain/types';
 
+/** Persistence port. Implementations (browser or native storage, memory) are injected by the app. */
 export interface ProfileStore {
   load(): Profile;
   save(p: Profile): void;
   clear(): void;
 }
-
-const KEY = 'culinerity.profile.v1';
 
 /** Meals per week used to turn a weekly food budget into a per-serve budget. */
 const SERVES_PER_WEEK = 21;
@@ -15,7 +14,7 @@ const NUMBER_FIELDS = ['foodBudgetWeekly', 'incomeWeekly', 'score'] as const;
 const STRING_FIELDS = ['suburb', 'scoreTakenAt'] as const;
 
 /** Keep only known fields of the right type. */
-function sanitize(value: unknown): Profile {
+export function sanitizeProfile(value: unknown): Profile {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
   const v = value as Record<string, unknown>;
   const out: Profile = {};
@@ -30,33 +29,13 @@ function sanitize(value: unknown): Profile {
   return out;
 }
 
-/** localStorage-backed profile. Never throws: storage can be blocked, full or corrupt. */
-export class LocalProfileStore implements ProfileStore {
-  load(): Profile {
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (!raw) return {};
-      const parsed: unknown = JSON.parse(raw);
-      return sanitize(parsed);
-    } catch {
-      return {};
-    }
-  }
-
-  save(p: Profile): void {
-    try {
-      localStorage.setItem(KEY, JSON.stringify(p));
-    } catch {
-      // Storage unavailable or full: the profile simply isn't persisted.
-    }
-  }
-
-  clear(): void {
-    try {
-      localStorage.removeItem(KEY);
-    } catch {
-      // Nothing to do.
-    }
+/** Parse a stored JSON string into a Profile. Never throws; {} for empty/corrupt input. */
+export function parseProfile(raw: string | null | undefined): Profile {
+  if (!raw) return {};
+  try {
+    return sanitizeProfile(JSON.parse(raw));
+  } catch {
+    return {};
   }
 }
 

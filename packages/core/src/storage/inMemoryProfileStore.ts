@@ -1,8 +1,8 @@
 import type { Profile } from '../domain/types';
-import type { ProfileStore } from '../storage/profileStore';
+import type { ProfileStore } from './profileStore';
 
-/** In-memory ProfileStore for tests; `saved` records every save. */
-export class MemoryProfileStore implements ProfileStore {
+/** In-memory ProfileStore (tests, previews); `saved` records every save. */
+export class InMemoryProfileStore implements ProfileStore {
   saved: Profile[] = [];
   constructor(private profile: Profile = {}) {}
   load(): Profile { return { ...this.profile }; }

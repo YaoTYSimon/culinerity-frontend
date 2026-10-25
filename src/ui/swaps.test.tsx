@@ -1,7 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import type { PriceSource } from '../sources/interfaces';
-import type { RankedSwap } from '../domain/swaps/rank';
+import { type PriceSource, type RankedSwap } from '@culinerity/core';
 import { createServices, type Services } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { CravingSearch } from './CravingSearch';

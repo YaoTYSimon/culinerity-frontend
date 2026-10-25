@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Profile } from '../domain/types';
+import type { Profile } from '@culinerity/core';
 
 interface Props {
   value: Profile;

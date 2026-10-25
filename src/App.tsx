@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Profile } from './domain/types';
+import type { Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { CravingSearch } from './ui/CravingSearch';
 import { FinanceForm } from './ui/FinanceForm';

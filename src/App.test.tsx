@@ -1,16 +1,15 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import App from './App';
-import { DOMAINS } from './domain/scoring/questionnaire';
+import { DOMAINS, InMemoryProfileStore, type ProfileStore } from '@culinerity/core';
 import { createServices } from './services/container';
 import { ServicesProvider } from './services/ServicesContext';
-import { LocalProfileStore, type ProfileStore } from './storage/profileStore';
-import { MemoryProfileStore } from './test/memoryProfileStore';
+import { LocalProfileStore } from './storage/localProfileStore';
 
 const SUPPORT = { name: 'Free food support near you' };
 const sectionCount = 1 + Object.keys(DOMAINS).length;
 
-function renderApp(store: ProfileStore = new MemoryProfileStore()) {
+function renderApp(store: ProfileStore = new InMemoryProfileStore()) {
   const services = { ...createServices(), profiles: store };
   return render(<ServicesProvider services={services}><App /></ServicesProvider>);
 }
@@ -44,7 +43,7 @@ describe('App', () => {
   });
 
   it('worst answers save score 0 and show the support panel and disclaimer', async () => {
-    const store = new MemoryProfileStore();
+    const store = new InMemoryProfileStore();
     renderApp(store);
     takeWorstQuestionnaire();
     expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
@@ -57,7 +56,7 @@ describe('App', () => {
   });
 
   it('hides the panel from home for a score of 80 but keeps it in the menu', async () => {
-    renderApp(new MemoryProfileStore({ score: 80 }));
+    renderApp(new InMemoryProfileStore({ score: 80 }));
     expect(screen.getByText('Secure')).toBeInTheDocument();
     expect(screen.queryByRole('region', SUPPORT)).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /food support/i }));
@@ -66,7 +65,7 @@ describe('App', () => {
   });
 
   it('persists finance changes and restores score and budget on reload', () => {
-    const store = new MemoryProfileStore({ score: 55 });
+    const store = new InMemoryProfileStore({ score: 55 });
     const first = renderApp(store);
     fireEvent.change(screen.getByLabelText(/food budget/i), { target: { value: '90' } });
     expect(store.saved[store.saved.length - 1]).toMatchObject({ score: 55, foodBudgetWeekly: 90 });

@@ -1,5 +1,4 @@
-import type { RankedSwap } from '../domain/swaps/rank';
-import { healthLabel, type HealthLabel } from '../domain/swaps/healthLabel';
+import { type RankedSwap, healthLabel, type HealthLabel } from '@culinerity/core';
 
 interface Props {
   swaps: RankedSwap[];

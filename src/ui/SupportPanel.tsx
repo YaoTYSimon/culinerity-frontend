@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { SupportPlace } from '../domain/types';
+import type { SupportPlace } from '@culinerity/core';
 import { useServices } from '../services/ServicesContext';
 
 const KIND_LABEL: Record<SupportPlace['kind'], string> = {

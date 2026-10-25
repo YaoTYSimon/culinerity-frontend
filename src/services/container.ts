@@ -1,25 +1,9 @@
-import type { FoodCatalogue, FoodSupportSource, NutritionSource, PriceSource } from '../sources/interfaces';
-import { MockCatalogue } from '../sources/mock/mockCatalogue';
-import { MockFoodSupportSource } from '../sources/mock/mockFoodSupportSource';
-import { MockNutritionSource } from '../sources/mock/mockNutritionSource';
-import { MockPriceSource } from '../sources/mock/mockPriceSource';
-import { LocalProfileStore, type ProfileStore } from '../storage/profileStore';
+import { createCoreServices, type Services } from '@culinerity/core';
+import { LocalProfileStore } from '../storage/localProfileStore';
 
-export interface Services {
-  catalogue: FoodCatalogue;
-  prices: PriceSource;
-  nutrition: NutritionSource;
-  support: FoodSupportSource;
-  profiles: ProfileStore;
-}
+export type { Services };
 
-/** The only place concrete implementations are named. */
+/** Web wiring: core services plus the localStorage profile store. */
 export function createServices(): Services {
-  return {
-    catalogue: new MockCatalogue(),
-    prices: new MockPriceSource(),
-    nutrition: new MockNutritionSource(),
-    support: new MockFoodSupportSource(),
-    profiles: new LocalProfileStore(),
-  };
+  return createCoreServices(new LocalProfileStore());
 }

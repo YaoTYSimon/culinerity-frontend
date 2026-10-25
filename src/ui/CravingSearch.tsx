@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import type { FoodItem, Profile } from '../domain/types';
-import { healthScore } from '../domain/swaps/health';
-import type { RankedSwap } from '../domain/swaps/rank';
-import { swapService } from '../services/swapService';
+import { type FoodItem, type Profile, healthScore, type RankedSwap, swapService } from '@culinerity/core';
 import { useServices } from '../services/ServicesContext';
 import { SwapResults } from './SwapResults';
 

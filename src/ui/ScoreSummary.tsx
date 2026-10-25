@@ -1,4 +1,4 @@
-import { scoreBand, type ScoreBand } from '../domain/scoring/score';
+import { scoreBand, type ScoreBand } from '@culinerity/core';
 
 const BAND_TEXT: Record<ScoreBand, string> = {
   Critical: 'Things look very tight. Support is below, and the swaps lean cheap.',

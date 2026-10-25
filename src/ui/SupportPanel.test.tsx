@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import type { SupportPlace } from '../domain/types';
+import type { SupportPlace } from '@culinerity/core';
 import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { SupportPanel } from './SupportPanel';

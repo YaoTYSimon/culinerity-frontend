@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { DOMAINS } from '../domain/scoring/questionnaire';
+import { DOMAINS } from '@culinerity/core';
 import { Questionnaire } from './Questionnaire';
 
 const sectionCount = 1 + Object.keys(DOMAINS).length;

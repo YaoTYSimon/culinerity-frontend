@@ -1,13 +1,5 @@
 import { useState } from 'react';
-import {
-  DOMAIN_LABELS,
-  DOMAINS,
-  FIES_QUESTIONS,
-  FREQUENCIES,
-  type Answers,
-  type DomainId,
-} from '../domain/scoring/questionnaire';
-import { computeScore } from '../domain/scoring/score';
+import { DOMAIN_LABELS, DOMAINS, FIES_QUESTIONS, FREQUENCIES, type Answers, type DomainId, computeScore } from '@culinerity/core';
 
 interface Props {
   onComplete: (score: number) => void;

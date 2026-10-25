@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { LocalProfileStore, budgetPerServe } from './profileStore';
+import { LocalProfileStore } from './localProfileStore';
 
 beforeEach(() => localStorage.clear());
 afterEach(() => vi.restoreAllMocks());
@@ -51,14 +51,5 @@ describe('LocalProfileStore', () => {
     s.save({ score: 1 });
     s.clear();
     expect(s.load()).toEqual({});
-  });
-});
-
-describe('budgetPerServe', () => {
-  it('is weekly budget / 21', () => {
-    expect(budgetPerServe({ foodBudgetWeekly: 42 })).toBe(2);
-  });
-  it.each([0, -5, undefined, NaN])('is null for %s', (v) => {
-    expect(budgetPerServe({ foodBudgetWeekly: v })).toBeNull();
   });
 });
