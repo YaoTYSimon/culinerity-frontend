@@ -88,6 +88,7 @@ describe('App', () => {
     const footer = screen.getByRole('contentinfo');
     expect(footer).toHaveTextContent(/not medical advice/i);
     expect(footer).toHaveTextContent(/sample data/i);
+    expect(footer).toHaveTextContent('Swap ideas and the page illustration are drawn; craving photos are credited below.');
     expect(within(footer).getByText('Photo credits')).toBeInTheDocument();
     expect(footer.querySelector('details')).not.toBeNull();
   });

@@ -10,6 +10,12 @@ const nutrition = new MockNutritionSource();
 const support = new MockFoodSupportSource();
 
 describe('MockCatalogue', () => {
+  it.each(['chocolate', 'milk chocolate', 'dark chocolate', 'chocolate bar'])('finds the chocolate bar for "%s"', async (q) => {
+    const hits = await catalogue.findCravings(q);
+    expect(hits[0]?.id).toBe('chocolate');
+    expect(hits[0]?.name).toBe('Chocolate bar');
+  });
+
   it('finds cravings by name or keyword, case-insensitively', () => {
     expect(catalogue.findCravings('burger').length).toBeGreaterThan(0);
     expect(catalogue.findCravings('BURGER').length).toBeGreaterThan(0);

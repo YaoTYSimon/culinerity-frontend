@@ -139,7 +139,7 @@ export default function App() {
       </main>
 
       <footer className={`${PAGE} pb-6 text-xs text-muted-foreground`}>
-        Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn, not photographed.
+        Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas and the page illustration are drawn; craving photos are credited below.
         <PhotoCredits />
       </footer>
     </div>

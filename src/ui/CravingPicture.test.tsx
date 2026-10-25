@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
@@ -34,8 +34,10 @@ describe('popular craving tiles', () => {
     const heading = await screen.findByRole('heading', { name: /swaps? for takeaway burger/i });
     expect(heading.parentElement!.querySelector('img')).not.toBeNull();
     // swap ideas stay drawn
-    const list = within(screen.getAllByRole('list')[0]);
-    expect(list.queryAllByRole('img').length).toBe(0);
+    const list = screen.getAllByRole('list')[0];
+    expect(list.querySelectorAll('li').length).toBeGreaterThan(0);
+    expect(list.querySelectorAll('img')).toHaveLength(0);
+    expect(list.querySelectorAll('svg').length).toBeGreaterThan(0);
   });
 });
 
