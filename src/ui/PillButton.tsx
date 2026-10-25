@@ -1,8 +1,8 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { ComponentProps } from 'react';
 
 type Variant = 'primary' | 'surface' | 'text';
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ComponentProps<'button'> {
   variant?: Variant;
 }
 

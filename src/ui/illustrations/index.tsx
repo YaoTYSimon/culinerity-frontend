@@ -43,4 +43,3 @@ export function FoodIllustration({ id, className }: { id: string; className?: st
   return <Drawing className={className} />;
 }
 
-export { HeroStillLife } from './HeroStillLife';

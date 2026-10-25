@@ -128,9 +128,9 @@ export function CravingSearch({ profile }: { profile: Profile }) {
       )}
     </section>
   ) : (
-    <section aria-labelledby="popular-h" className={showGrid ? 'grid gap-2' : 'hidden gap-2 md:grid'}>
+    <section aria-labelledby="popular-h" className={showGrid ? 'grid gap-2' : 'grid gap-2'}>
       <h2 id="popular-h" className={showGrid ? 'text-base font-semibold' : 'text-xs text-muted-foreground'}>Popular cravings</h2>
-      <div className={showGrid ? 'grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5' : 'hide-scrollbar flex gap-2 overflow-x-auto'}>
+      <div className={showGrid ? 'grid grid-cols-2 gap-2' : 'hide-scrollbar flex gap-2 overflow-x-auto'}>
         {popular.map((c, i) => (
           <button key={c.id} type="button" className={showGrid ? tile : chip} onClick={() => pick(c)}>
             <CravingPicture id={c.id} eager={showGrid && i < 4} size={showGrid ? 160 : 32} className={showGrid ? 'aspect-square h-auto w-full rounded bg-background object-cover' : 'size-8 shrink-0 rounded-sm bg-background'} />
@@ -141,10 +141,10 @@ export function CravingSearch({ profile }: { profile: Profile }) {
     </section>
   );
 
-  // Renders as two grid items of the home layout (see App): the search block and the results block.
+  // Two stacked blocks in the single centred column: the search block and the results block.
   return (
-    <div className="contents">
-      <div className="order-3 grid content-start gap-4 md:col-span-5 md:col-start-8 md:row-start-2">
+    <div className="grid gap-4">
+      <div className="grid content-start gap-4">
       <form role="search" className="grid gap-2" onSubmit={submit}>
         <label htmlFor="craving-q" className="sr-only">What are you craving?</label>
         <div className="flex gap-2">
@@ -154,7 +154,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
               placeholder="Try burger or chips"
               className="min-h-12 w-full min-w-0 rounded border border-input bg-field px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus-ring"
             />
-            <kbd aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-sm bg-card px-1.5 text-xs text-muted-foreground lg:block">/</kbd>
+            <kbd aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-sm bg-card px-1.5 text-xs text-muted-foreground">/</kbd>
           </div>
           <button
             type="submit"
@@ -168,7 +168,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
       {!showGrid && popularBlock}
       </div>
 
-      <div aria-live="polite" className="order-5 grid content-start gap-3 md:order-none md:col-span-7 md:col-start-1 md:row-start-4">
+      <div aria-live="polite" className="grid content-start gap-3">
         {showGrid && popularBlock}
         {loading && (
           <>
