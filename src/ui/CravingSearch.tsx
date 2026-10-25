@@ -12,7 +12,7 @@ type Outcome =
   | { kind: 'swaps'; craving: FoodItem; swaps: RankedSwap[]; cravingHealth: number | null; cravingCost: number | null };
 
 const tile =
-  'flex min-h-11 snap-start items-center gap-2 rounded-card bg-card p-2 text-left text-sm sm:flex-col sm:p-3 sm:text-center text-foreground hover:bg-muted focus-ring motion-colors';
+  'flex min-h-11 flex-col items-stretch gap-2 rounded-card bg-card p-2 text-center text-sm text-foreground hover:bg-muted focus-ring motion-colors sm:p-3';
 const chip =
   'flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded bg-card pl-1.5 pr-3 text-sm text-foreground hover:bg-muted focus-ring motion-colors';
 
@@ -106,7 +106,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
     void run(match);
   }
 
-  // Before any search the popular cravings fill the results area as a grid of pictures; afterwards they fold into a scrolling row.
+  // Before any search the popular cravings fill the results area as a grid of pictures; afterwards they fold into a scrolling row on desktop (hidden on phones, where the search stays at hand).
   const showGrid = outcome.kind === 'none' && !loading;
   const popularBlock = popular.length === 0 ? (
     <section aria-label="Popular cravings" className="grid gap-2">
@@ -128,12 +128,12 @@ export function CravingSearch({ profile }: { profile: Profile }) {
       )}
     </section>
   ) : (
-    <section aria-labelledby="popular-h" className="grid gap-2">
+    <section aria-labelledby="popular-h" className={showGrid ? 'grid gap-2' : 'hidden gap-2 md:grid'}>
       <h2 id="popular-h" className={showGrid ? 'text-base font-semibold' : 'text-xs text-muted-foreground'}>Popular cravings</h2>
-      <div className={showGrid ? 'hide-scrollbar -mx-4 grid scroll-px-4 snap-x snap-mandatory auto-cols-[46%] grid-flow-col grid-rows-2 gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:auto-cols-auto sm:grid-flow-row sm:grid-rows-none sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-5' : 'hide-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:px-0'}>
+      <div className={showGrid ? 'grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5' : 'hide-scrollbar flex gap-2 overflow-x-auto'}>
         {popular.map((c, i) => (
           <button key={c.id} type="button" className={showGrid ? tile : chip} onClick={() => pick(c)}>
-            <CravingPicture id={c.id} eager={showGrid && i < 4} size={showGrid ? 64 : 32} className={showGrid ? 'size-11 shrink-0 rounded-sm sm:size-16' : 'size-8 shrink-0 rounded-sm bg-background'} />
+            <CravingPicture id={c.id} eager={showGrid && i < 4} size={showGrid ? 160 : 32} className={showGrid ? 'aspect-square h-auto w-full rounded bg-background object-cover' : 'size-8 shrink-0 rounded-sm bg-background'} />
             {c.name}
           </button>
         ))}
@@ -196,22 +196,20 @@ export function CravingSearch({ profile }: { profile: Profile }) {
         )}
         {!loading && outcome.kind === 'swaps' && (
           <>
-            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-              <div className="flex min-w-0 items-center gap-3">
-                {photoFor(outcome.craving.id) && <CravingPicture id={outcome.craving.id} eager size={48} className="size-12 shrink-0 rounded" />}
-              <h2 className="text-base font-semibold">
+            <div className="grid grid-cols-[auto_1fr] items-center gap-x-3">
+              {photoFor(outcome.craving.id) && <CravingPicture id={outcome.craving.id} eager size={48} className="row-span-2 size-12 shrink-0 rounded" />}
+              <h2 className="col-start-2 text-base font-semibold text-balance">
                 {outcome.swaps.length === 0
                   ? `No swaps found for ${outcome.craving.name} yet.`
                   : `${outcome.swaps.length} ${outcome.swaps.length === 1 ? 'swap' : 'swaps'} for ${outcome.craving.name}`}
               </h2>
-              </div>
               {outcome.cravingCost !== null && outcome.swaps.length > 0 && (
-                <p className="text-xs text-muted-foreground">Your craving: about ${outcome.cravingCost.toFixed(2)} per serve</p>
+                <p className="col-start-2 text-xs text-muted-foreground">Your craving: about ${outcome.cravingCost.toFixed(2)} per serve</p>
               )}
             </div>
             {outcome.swaps.length === 0 && (
               <p className="rounded-card bg-card p-4 text-sm text-pretty text-muted-foreground">
-                We do not have a cheaper or healthier idea for this one yet. Try another craving from the row above.
+                We do not have a cheaper or healthier idea for this one yet. Try another craving.
               </p>
             )}
             {outcome.swaps.length > 0 && (
