@@ -209,3 +209,20 @@ The user requires a real backend with a database. It holds **reference data only
 
 - [ ] **Step 1: Tests:** repositories against an in-memory DB seeded from `data.ts`: popular cravings count is 10, each has >=2 swaps, every swap item has prices and nutrition; `q='  '` returns `[]`; SQL-injection-style input (`"'; DROP TABLE items;--"`) returns `[]` and leaves tables intact; routes return 200 with the Task 2 shapes, `[]`/200 for unknown ids, 400 for a missing `q` parameter type, and `{error}` with no stack on a repository throw; `ingest` with `MockScraperClient` upserts without duplicating rows and marks live rows `is_sample=false`; an `ApifyScraperClient` without a token rejects with a clear message and makes no network call; `Http*` classes return empty values on rejected fetch, 500 and malformed JSON and the parsed data on 200.
 - [ ] **Step 2:** Run → FAIL. **Step 3:** implement. **Step 4:** `npm test` and `npm run build` pass; start `npm run dev:all`, `curl localhost:<port>/api/cravings/popular` returns 10 items; with `VITE_USE_BACKEND` off the app still uses mocks. **Step 5:** Commit `feat: backend with SQLite`.
+
+### Task 13: Design polish (Linear-style, engaging)
+
+Runs after Task 11a lands. The user said the app looks amateur and asked for an engaging, Linear-like feel. Done by a design-minded implementer with the user's taste skill if it is installed (read it first), otherwise the design critique below.
+
+**Files:** `src/index.css` (tokens), `src/App.tsx`, `src/ui/*` (restyle only; no behaviour or prop changes), plus tests only where markup the tests rely on changes.
+
+**Direction (Linear-like):** one confident, restrained palette (warm neutral surfaces, pomegranate as the single accent, the amber highlight used sparingly for the one primary action); tight type scale with one display font for the hero only and the sans for everything else; 4/8px spacing rhythm; 1px hairline borders and soft layered shadows instead of heavy outlines; consistent 12px card radius; crisp 120–180ms transitions (`motion-safe:`) on hover/press/focus; keyboard-first (visible focus rings, `/` focuses the craving search, Enter submits); skeleton rows while swaps load; results as a clean list with price as the visual anchor and a "saves $X vs your craving" chip; empty and error states with friendly copy. Keep phone-first at 390px and scale up (two-column layout from `md:` with the search and results on the left, check-in and budget on the right).
+
+**Critique findings to fix (from the live 390px screens):**
+1. Hero is heavy: a large dark gradient block dominates before the user reaches the core action (the craving search). Make search the hero; shrink the check-in prompt to a slim dismissible banner.
+2. Header nav buttons are full-width bordered pills that look like form buttons; use a compact segmented/tab bar with an underline or filled active state.
+3. Result cards bury the value: price is small and mono, the "saves" comparison is missing, and badges ("Sample data", "Healthier") have equal weight. Make price the anchor, add saving vs the craving, and quiet the sample-data badge into a single note per list.
+4. Budget form sits below results as three tall empty inputs; collapse into a compact "Your week" card with a single budget field first and the optional fields behind a disclosure.
+5. Duplicate "What are you craving?" heading and label.
+6. Popular cravings wrap ragged; use a horizontal scroll row or a tidy grid with icons/emoji-free glyphs.
+7. No score presence until the check-in is taken; show a small, friendly score chip in the header once available.
