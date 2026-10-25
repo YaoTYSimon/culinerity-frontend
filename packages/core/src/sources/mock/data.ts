@@ -95,10 +95,10 @@ export const POPULAR_CRAVING_IDS: string[] = [
 ];
 
 export const SUPPORT_PLACES: SupportPlace[] = [
-  { id: 'monash-caulfield-pantry', name: 'Monash Caulfield Food Pantry', kind: 'pantry', suburb: 'Caulfield', notes: 'Limited stock and opening hours; registration required. Check with the student association before visiting.', isSample: true },
-  { id: 'carnegie-community-fridge', name: 'Carnegie Community Fridge', kind: 'community-fridge', suburb: 'Carnegie', notes: 'Take what you need, leave what you can. Stock varies day to day.', isSample: true },
-  { id: 'footscray-community-meal', name: 'Footscray Community Meal', kind: 'meal', suburb: 'Footscray', notes: 'Free weekly shared meal, open to everyone. No registration.', isSample: true },
-  { id: 'clayton-pantry', name: 'Clayton Community Pantry', kind: 'pantry', suburb: 'Clayton', notes: 'Pantry staples and fresh produce when available. Ask staff about opening times.', isSample: true },
+  { id: 'monash-caulfield-pantry', name: 'Monash Caulfield Food Pantry', kind: 'pantry', suburb: 'Caulfield', notes: 'Tuesdays from 1pm. Limited stock, registration needed.', isSample: true },
+  { id: 'carnegie-community-fridge', name: 'Carnegie Community Fridge', kind: 'community-fridge', suburb: 'Carnegie', notes: 'Open every day. Take what you need, leave what you can.', isSample: true },
+  { id: 'footscray-community-meal', name: 'Footscray Community Meal', kind: 'meal', suburb: 'Footscray', notes: 'Weekly shared meal, open to everyone. No registration.', isSample: true },
+  { id: 'clayton-pantry', name: 'Clayton Community Pantry', kind: 'pantry', suburb: 'Clayton', notes: 'Weekdays, 10 to 3. Groceries and fresh produce when available.', isSample: true },
 ];
 
 /** Flattened price records derived from ITEM_RECORDS. */

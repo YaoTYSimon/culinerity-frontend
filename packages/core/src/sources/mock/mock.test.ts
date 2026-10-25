@@ -80,6 +80,15 @@ describe('MockFoodSupportSource', () => {
   it('lists the Monash Caulfield pantry first for Caulfield', async () => {
     const r = await support.findSupport('Caulfield');
     expect(r[0].name).toMatch(/Monash/);
-    expect(r[0].notes).toMatch(/registration/i);
+    expect(r[0].notes).toBe('Tuesdays from 1pm. Limited stock, registration needed.');
+  });
+  it('carries times and conditions in short notes, and never claims no proof is needed', async () => {
+    const all = await support.findSupport();
+    expect(all.map((p) => p.notes)).toEqual(expect.arrayContaining([
+      'Open every day. Take what you need, leave what you can.',
+      'Weekly shared meal, open to everyone. No registration.',
+      'Weekdays, 10 to 3. Groceries and fresh produce when available.',
+    ]));
+    expect(all.every((p) => p.notes.length <= 90 && !/proof|prove/i.test(p.notes))).toBe(true);
   });
 });

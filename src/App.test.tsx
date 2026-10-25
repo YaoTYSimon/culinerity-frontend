@@ -6,7 +6,7 @@ import { createServices } from './services/container';
 import { ServicesProvider } from './services/ServicesContext';
 import { LocalProfileStore } from './storage/localProfileStore';
 
-const SUPPORT = { name: 'Free food support near you' };
+const SUPPORT = { name: 'Free food near you.' };
 const SEEN = { welcomeSeen: true };
 const WELCOME_H1 = 'How much is food on your mind?';
 

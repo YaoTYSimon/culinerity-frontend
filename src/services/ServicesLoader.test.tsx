@@ -26,29 +26,35 @@ describe('ServicesLoader', () => {
     expect(fetchFn).not.toHaveBeenCalled();
   });
 
-  it('shows a plain message and Retry, and no empty heading, when the server is unreachable', async () => {
+  it('shows a plain message and Try again, and no empty heading, when the server is unreachable', async () => {
     const down = vi.fn(async () => {
       throw new TypeError('refused');
     });
     renderLoader(true, down);
     expect(await screen.findByText(/can't reach the swap server/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Retry' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Try again' })).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'Popular cravings' })).not.toBeInTheDocument();
   });
 
-  it('Retry recovers once the server answers', async () => {
+  it('Try again recovers once the server answers', async () => {
     let up = false;
     const fetchFn: FetchLike = async (url) => {
       if (!up) throw new TypeError('refused');
       return ok(url.endsWith('/popular') ? [burger] : []);
     };
     renderLoader(true, fetchFn);
-    fireEvent.click(await screen.findByRole('button', { name: 'Retry' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Try again' }));
     up = true;
-    fireEvent.click(await screen.findByRole('button', { name: 'Retry' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Try again' }));
     await waitFor(() => expect(screen.getByRole('heading', { name: 'Popular cravings' })).toBeInTheDocument());
     expect(screen.getByRole('button', { name: /takeaway burger/i })).toBeInTheDocument();
     expect(screen.queryByText(/can't reach/i)).not.toBeInTheDocument();
+  });
+
+  it('shows a plain skeleton with a status while the catalogue loads', () => {
+    renderLoader(true, () => new Promise(() => {}));
+    expect(screen.getByText('Loading cravings…')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Try again' })).not.toBeInTheDocument();
   });
 
   it('renders the shell before the catalogue resolves', () => {

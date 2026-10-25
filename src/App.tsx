@@ -65,10 +65,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           )}
 
           {view === 'support' && (
-            <div className="grid gap-4">
-              <h1 className="font-display text-[30px] text-balance">Free food near you.</h1>
-              <SupportPanel suburb={profile.suburb} />
-            </div>
+            <SupportPanel suburb={profile.suburb} />
           )}
 
           {view === 'number' && hasScore && (

@@ -19,7 +19,7 @@ interface Props {
 /**
  * Renders the app straight away. With mocks the services are ready at once; with the
  * backend they load in the background (the catalogue is empty until then) and the
- * cravings area shows a skeleton, or a Retry message if the server cannot be reached.
+ * cravings area shows a skeleton, or a Try again message if the server cannot be reached.
  */
 export function ServicesLoader({ useBackend, fetchFn, children }: Props) {
   const [services, setServices] = useState<Services>(() =>
