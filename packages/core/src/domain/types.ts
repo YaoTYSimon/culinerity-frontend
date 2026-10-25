@@ -1,12 +1,29 @@
 /** Australian dollars. */
 export type Aud = number;
 
+/** One completed check-in. `at` is an ISO date string. */
+export interface ScoreEntry {
+  score: number;
+  at: string;
+}
+
+/** One "added to my week" swap. `saving` is AUD per serve as computed at add time. */
+export interface WeekSwap {
+  itemId: string;
+  name: string;
+  saving: Aud;
+  at: string;
+}
+
 export interface Profile {
   foodBudgetWeekly?: Aud;
   incomeWeekly?: Aud;
   suburb?: string;
   score?: number;
   scoreTakenAt?: string;
+  welcomeSeen?: boolean;
+  scoreHistory?: ScoreEntry[];
+  weekSwaps?: WeekSwap[];
 }
 
 export interface PricePoint {

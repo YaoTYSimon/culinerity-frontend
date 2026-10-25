@@ -1,4 +1,6 @@
+import { isScoreEntry, MAX_HISTORY } from '../domain/history';
 import type { Aud, Profile } from '../domain/types';
+import { isWeekSwap, MAX_WEEK_SWAPS } from '../domain/week';
 
 /** Persistence port. Implementations (browser or native storage, memory) are injected by the app. */
 export interface ProfileStore {
@@ -26,6 +28,9 @@ export function sanitizeProfile(value: unknown): Profile {
     const x = v[k];
     if (typeof x === 'string') out[k] = x;
   }
+  if (typeof v.welcomeSeen === 'boolean') out.welcomeSeen = v.welcomeSeen;
+  if (Array.isArray(v.scoreHistory)) out.scoreHistory = v.scoreHistory.filter(isScoreEntry).slice(-MAX_HISTORY);
+  if (Array.isArray(v.weekSwaps)) out.weekSwaps = v.weekSwaps.filter(isWeekSwap).slice(-MAX_WEEK_SWAPS);
   return out;
 }
 

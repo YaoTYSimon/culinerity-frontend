@@ -20,3 +20,7 @@ export * from './sources/http/HttpFoodSupportSource';
 export * from './sources/http/HttpNutritionSource';
 export * from './sources/http/HttpPriceSource';
 export * from './services/httpContainer';
+export * from './domain/history';
+export * from './domain/week';
+export * from './domain/bands';
+export * from './theme/theme';
