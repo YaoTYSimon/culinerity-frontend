@@ -14,7 +14,7 @@ function answerAll(fies: string, freq: string) {
 }
 
 describe('Questionnaire', () => {
-  it('shows one question at a time as the single h1, with the scale note and privacy line', () => {
+  it('shows one question at a time as the single h1, with the privacy line', () => {
     render(<Questionnaire onComplete={vi.fn()} onSkip={vi.fn()} />);
     const h1s = screen.getAllByRole('heading', { level: 1 });
     expect(h1s).toHaveLength(1);
@@ -62,6 +62,16 @@ describe('Questionnaire', () => {
     pick('No');
     pick('No');
     expect(screen.getByText(`3 of ${TOTAL}`)).toBeInTheDocument();
+  });
+
+  it('has a progress bar that follows the current question', () => {
+    render(<Questionnaire onComplete={vi.fn()} onSkip={vi.fn()} />);
+    const bar = screen.getByRole('progressbar');
+    expect(bar).toHaveAttribute('aria-valuemin', '1');
+    expect(bar).toHaveAttribute('aria-valuemax', String(TOTAL));
+    expect(bar).toHaveAttribute('aria-valuenow', '1');
+    pick('No');
+    expect(bar).toHaveAttribute('aria-valuenow', '2');
   });
 
   it('Back on the first question does nothing', () => {

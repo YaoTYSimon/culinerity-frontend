@@ -49,6 +49,17 @@ describe('App', () => {
     expect(store.saved[store.saved.length - 1]).toMatchObject({ welcomeSeen: true });
   });
 
+  it('does not save a score before the last check-in answer', () => {
+    const store = new InMemoryProfileStore(SEEN);
+    renderApp(store);
+    openMenu('Check-in');
+    const total = FIES_QUESTIONS.length + Object.values(DOMAINS).flat().length;
+    for (let i = 0; i < total - 1; i++) {
+      fireEvent.click(screen.getByRole('button', { name: i < FIES_QUESTIONS.length ? 'Yes' : 'Almost always' }));
+    }
+    expect(store.saved.every((p) => p.score === undefined || p.score === null)).toBe(true);
+  });
+
   it('second launch skips the welcome and lands on the swap search', () => {
     renderApp(new InMemoryProfileStore(SEEN));
     expect(screen.queryByRole('heading', { name: WELCOME_H1 })).not.toBeInTheDocument();
@@ -87,27 +98,28 @@ describe('App', () => {
     expect(screen.queryByRole('search')).not.toBeInTheDocument();
   });
 
-  it('worst answers save score 0 and show the support panel and disclaimer', async () => {
+  it('worst answers save score 0 and offer the way to free food support', async () => {
     const store = new InMemoryProfileStore(SEEN);
     renderApp(store);
     openMenu('Check-in');
     takeWorstQuestionnaire();
-    expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
-    expect(within(screen.getByRole('region', SUPPORT)).getByText('Culinerity is not medical advice.')).toBeInTheDocument();
     const last = store.saved[store.saved.length - 1];
     expect(last.score).toBe(0);
     expect(typeof last.scoreTakenAt).toBe('string');
     expect(last.scoreHistory).toHaveLength(1);
     expect(screen.getByRole('img', { name: /score 0 out of 100, Critical; 100 is secure, 0 is critical/i })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /free food near you/i }));
+    expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
+    expect(within(screen.getByRole('region', SUPPORT)).getByText('Culinerity is not medical advice.')).toBeInTheDocument();
   });
 
   it(`shows support on the number view only below ${SUPPORT_BELOW}, but keeps it in the menu`, async () => {
     const low = renderApp(new InMemoryProfileStore({ ...SEEN, score: SUPPORT_BELOW - 1 }));
-    expect(await screen.findByRole('region', SUPPORT)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /free food near you/i })).toBeInTheDocument();
     low.unmount();
     renderApp(new InMemoryProfileStore({ ...SEEN, score: 80 }));
     expect(screen.getByRole('img', { name: /score 80 out of 100, Secure/i })).toBeInTheDocument();
-    expect(screen.queryByRole('region', SUPPORT)).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /free food near you/i })).not.toBeInTheDocument();
     openMenu('Food support');
     expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
     expect(within(screen.getByRole('region', SUPPORT)).getByText('Culinerity is not medical advice.')).toBeInTheDocument();

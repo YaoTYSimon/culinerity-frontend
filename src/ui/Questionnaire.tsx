@@ -76,16 +76,22 @@ export function Questionnaire({ onComplete, onSkip }: Props) {
 
   return (
     <section className="-mx-4 flex min-h-[calc(100svh-9rem)] flex-col overflow-x-clip px-4 text-ink" aria-label="Check-in">
-      <div className="flex items-center gap-3" aria-hidden="true">
-        <div className="flex min-w-0 flex-1 items-center gap-[3px]">
-          {STEPS.map((s, i) => (
-            <span
-              key={`${s.kind}-${i}`}
-              className={`h-1.5 max-w-1.5 min-w-[3px] flex-1 rounded-full ${i < step ? 'bg-accent' : i === step ? 'bg-ink' : 'bg-surface'}`}
-            />
-          ))}
+      <div className="flex items-center gap-3">
+        <div
+          role="progressbar"
+          aria-label="Check-in progress"
+          aria-valuemin={1}
+          aria-valuemax={TOTAL}
+          aria-valuenow={step + 1}
+          aria-valuetext={`Question ${step + 1} of ${TOTAL}`}
+          className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-surface"
+        >
+          <div
+            className="h-full rounded-full bg-accent motion-safe:transition-[width] motion-safe:duration-300"
+            style={{ width: `${((step + 1) / TOTAL) * 100}%` }}
+          />
         </div>
-        <p className="shrink-0 text-sm text-muted">{step + 1} of {TOTAL}</p>
+        <p className="shrink-0 text-sm text-muted" aria-hidden="true">{step + 1} of {TOTAL}</p>
       </div>
       <div role="status" aria-live="polite" className="sr-only">
         Question {step + 1} of {TOTAL}: {current.text}
@@ -95,7 +101,7 @@ export function Questionnaire({ onComplete, onSkip }: Props) {
         <RoundPhoto src={photoUrl('welcome-soup')} size={132} eager className="-mr-10" />
       </div>
 
-      <div className="-mt-2 grid gap-3">
+      <div className="mt-3 grid gap-3">
         <h1
           ref={heading}
           tabIndex={-1}
