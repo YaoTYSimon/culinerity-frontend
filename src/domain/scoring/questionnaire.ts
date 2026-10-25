@@ -71,3 +71,15 @@ export interface Answers {
   fies: (boolean | null)[];
   domains: Record<DomainId, (number | null)[]>;
 }
+
+/** Labels for domain answers 0-4, from backup/pre-rewrite Dashboard.tsx. */
+export const FREQUENCIES: readonly string[] = ['Never', 'Rarely', 'Sometimes', 'Often', 'Almost always'];
+
+export const DOMAIN_LABELS: Record<DomainId, string> = {
+  B: 'Mental bandwidth',
+  C: 'Cost pressure',
+  D: 'Nutrition trade-offs',
+  E: 'Time and logistics',
+  F: 'Decision friction',
+  G: 'Cultural fit and dignity',
+};

@@ -66,3 +66,18 @@ describe('scoreBand', () => {
     expect(scoreBand(score)).toBe(band);
   });
 });
+
+describe('labels', () => {
+  it('has five frequency labels from Never to Almost always', async () => {
+    const { FREQUENCIES } = await import('./questionnaire');
+    expect(FREQUENCIES).toHaveLength(5);
+    expect(FREQUENCIES[0]).toBe('Never');
+    expect(FREQUENCIES[4]).toBe('Almost always');
+  });
+
+  it('names every domain', async () => {
+    const { DOMAIN_LABELS } = await import('./questionnaire');
+    domainIds.forEach((id) => expect(DOMAIN_LABELS[id]).toBeTruthy());
+    expect(DOMAIN_LABELS.B).toBe('Mental bandwidth');
+  });
+});
