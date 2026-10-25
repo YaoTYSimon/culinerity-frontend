@@ -94,6 +94,8 @@ describe('BudgetDisclosure', () => {
     expect(mark.className).toMatch(/rounded-full/);
     expect(mark.className).toMatch(/items-center/);
     expect(mark.getAttribute('aria-hidden')).toBe('true');
+    expect(mark.querySelector('svg')!.getAttribute('class')).toMatch(/group-open:rotate-180/);
+    expect(container.querySelector('summary + div summary, details details summary')?.querySelector('[data-affordance]')).toBeFalsy();
     expect(screen.getByLabelText(/weekly food budget/i)).toBeInTheDocument();
   });
 });

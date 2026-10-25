@@ -55,14 +55,11 @@ export function FinanceForm({ value, onChange }: Props) {
         {hint('fin-budget-hint', budget)}
       </div>
       <details className="group grid gap-4" open={more} onToggle={(e) => setMore(e.currentTarget.open)}>
-        <summary className="focus-ring flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-3 rounded-full text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
+        <summary className="focus-ring flex min-h-11 w-fit cursor-pointer list-none items-center gap-2 rounded-full text-sm font-semibold text-ink underline underline-offset-4 [&::-webkit-details-marker]:hidden">
           <span>More about your week</span>
-          <span aria-hidden="true" className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-surface">
-            <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M3 8h10" />
-              <path d="M8 3v10" className="group-open:hidden" />
-            </svg>
-          </span>
+          <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4 motion-safe:transition-transform group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3.5 6l4.5 4.5L12.5 6" />
+          </svg>
         </summary>
         <div>
           <label htmlFor="fin-income" className="mb-2 block text-sm font-medium">Weekly income ($, optional)</label>

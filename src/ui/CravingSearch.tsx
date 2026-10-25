@@ -12,10 +12,7 @@ type Outcome =
   | { kind: 'swaps'; craving: FoodItem; swaps: RankedSwap[]; cravingHealth: number | null; cravingCost: number | null };
 
 const tile =
-  'flex min-h-11 flex-col items-center gap-2 rounded-2xl p-1 text-center text-sm font-semibold text-ink focus-ring motion-colors';
-const pill =
-  'flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-surface pl-1.5 pr-4 text-sm font-semibold text-ink focus-ring motion-colors';
-
+  'group flex min-h-11 flex-col items-center gap-2 text-center text-sm font-semibold text-ink outline-none';
 function isTyping(el: EventTarget | null): boolean {
   if (!(el instanceof HTMLElement)) return false;
   return el.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName);
@@ -109,7 +106,7 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
     void run(match);
   }
 
-  // Before any search the popular cravings fill the results area as a grid of round photos; afterwards they fold into a scrolling row (hidden on phones, where the search stays at hand).
+  // Popular cravings show only before a search, as a grid of round photos.
   const showGrid = outcome.kind === 'none' && !loading;
   const popularBlock = popular.length === 0 ? (
     <section aria-label="Popular cravings" className="grid gap-3">
@@ -128,21 +125,19 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
       )}
     </section>
   ) : (
-    <section aria-labelledby="popular-h" className={showGrid ? 'grid gap-3' : 'hidden gap-3 sm:grid'}>
-      <h2 id="popular-h" className={showGrid ? 'text-base font-semibold' : 'text-xs text-muted'}>Popular cravings</h2>
-      <div className={showGrid ? 'grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-5' : 'hide-scrollbar flex gap-2 overflow-x-auto'}>
+    showGrid && (
+    <section aria-labelledby="popular-h" className="grid gap-3">
+      <h2 id="popular-h" className="text-base font-semibold">Popular cravings</h2>
+      <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-5">
         {popular.map((c, i) => (
-          <button key={c.id} type="button" className={showGrid ? tile : pill} onClick={() => pick(c)}>
-            {showGrid ? (
-              <RoundPhoto itemId={c.id} size={120} eager={i < 4} className="aspect-square h-auto! w-full! max-w-[140px]" />
-            ) : (
-              <RoundPhoto itemId={c.id} size={32} />
-            )}
+          <button key={c.id} type="button" className={tile} onClick={() => pick(c)}>
+            <RoundPhoto itemId={c.id} size={120} eager={i < 4} className="aspect-square h-auto! w-full! max-w-[140px] group-focus-visible:ring-2 group-focus-visible:ring-ink group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-bg" />
             {c.name}
           </button>
         ))}
       </div>
     </section>
+    )
   );
 
   // Two stacked blocks in the single centred column: the search block and the results block.
@@ -161,11 +156,10 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
         </div>
       </form>
 
-      {!showGrid && popularBlock}
       </div>
 
       <div aria-live="polite" className="grid grid-cols-[minmax(0,1fr)] content-start gap-3">
-        {showGrid && popularBlock}
+        {popularBlock}
         {loading && (
           <>
             <p className="sr-only">Finding swaps…</p>

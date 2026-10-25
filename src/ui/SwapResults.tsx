@@ -27,7 +27,7 @@ function formatDate(iso: string): string | null {
 }
 
 export function SwapResults({ swaps, cravingHealth = null, cravingCost = null, onAddToWeek }: Props) {
-  const [added, setAdded] = useState<Set<string>>(() => new Set());
+  const [added, setAdded] = useState<Record<string, number>>({});
   const anySample = swaps.some((s) => s.price?.isSample);
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
@@ -50,7 +50,7 @@ export function SwapResults({ swaps, cravingHealth = null, cravingCost = null, o
                   {date && <span>Price seen {date}</span>}
                 </p>
                 <span role="status" className="block text-xs font-semibold empty:hidden">
-                  {added.has(alternative.id) ? 'Added to your week' : ''}
+                  {added[alternative.id] ? (added[alternative.id] > 1 ? `Added to your week (${added[alternative.id]})` : 'Added to your week') : ''}
                 </span>
               </div>
               <div className="flex shrink-0 flex-col items-end gap-2">
@@ -61,12 +61,11 @@ export function SwapResults({ swaps, cravingHealth = null, cravingCost = null, o
                 )}
                 {saving !== null && (
                   <PillButton
-                    variant="surface"
-                    className="size-11 !px-0"
+                    size="icon"
                     aria-label={`Add ${alternative.name} to my week`}
                     onClick={() => {
                       onAddToWeek?.({ itemId: alternative.id, name: alternative.name, saving });
-                      setAdded((prev) => new Set(prev).add(alternative.id));
+                      setAdded((prev) => ({ ...prev, [alternative.id]: (prev[alternative.id] ?? 0) + 1 }));
                     }}
                   >
                     <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">

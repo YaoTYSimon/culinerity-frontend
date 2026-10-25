@@ -257,4 +257,28 @@ describe('SwapResults plate rows and add to my week', () => {
     expect(fn).toHaveBeenCalledWith({ itemId: 'a', name: 'Home smash burger', saving: 4.3 });
     expect(screen.getByText('Added to your week')).toBeInTheDocument();
   });
+
+  it('a second tap announces a count', () => {
+    render(<SwapResults swaps={[swap(3.2)]} cravingCost={7.5} onAddToWeek={vi.fn()} />);
+    const btn = screen.getByRole('button', { name: 'Add Home smash burger to my week' });
+    fireEvent.click(btn);
+    fireEvent.click(btn);
+    expect(screen.getByText('Added to your week (2)')).toBeInTheDocument();
+  });
+
+  it('the Add button is the primary (accent) variant', () => {
+    render(<SwapResults swaps={[swap(3.2)]} cravingCost={7.5} />);
+    expect(screen.getByRole('button', { name: /to my week/i })).toHaveAttribute('data-variant', 'primary');
+  });
+});
+
+describe('popular cravings after a search', () => {
+  it('are removed entirely, with no horizontal strip', async () => {
+    const { container } = renderSearch();
+    expect(screen.getByText('Popular cravings')).toBeInTheDocument();
+    search('burger');
+    await screen.findAllByRole('listitem');
+    expect(screen.queryByText('Popular cravings')).not.toBeInTheDocument();
+    expect(container.querySelector('.overflow-x-auto')).toBeNull();
+  });
 });
