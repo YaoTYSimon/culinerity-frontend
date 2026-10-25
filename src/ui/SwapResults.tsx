@@ -27,7 +27,7 @@ export function SwapResults({ swaps, cravingHealth = null }: Props) {
       {swaps.map((s) => {
         const { alternative, note } = s.candidate;
         const health = healthLabel(s.health, cravingHealth);
-        const date = s.price ? formatDate(s.price.observedAt) : null;
+        const date = s.price ? (formatDate(s.price.observedAt) ?? 'date unknown') : null;
         return (
           <li key={alternative.id} className="rounded border border-border bg-card p-4">
             <div className="flex items-start justify-between gap-3">

@@ -1,7 +1,8 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import type { PriceSource } from '../sources/interfaces';
 import type { RankedSwap } from '../domain/swaps/rank';
-import { createServices } from '../services/container';
+import { createServices, type Services } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { CravingSearch } from './CravingSearch';
 import { SwapResults } from './SwapResults';
@@ -83,5 +84,85 @@ describe('SwapResults', () => {
   it('marks over budget', () => {
     render(<SwapResults swaps={[{ ...base, cost: 9, withinBudget: false }]} cravingHealth={null} />);
     expect(screen.getByText(/over budget/i)).toBeInTheDocument();
+  });
+});
+
+function deferred() {
+  let resolve!: () => void;
+  const promise = new Promise<void>((r) => { resolve = r; });
+  return { promise, resolve };
+}
+
+function gatedServices(gates: Record<string, Promise<void>>): Services {
+  const base = createServices();
+  const prices: PriceSource = {
+    async getPrices(id) {
+      await gates[id];
+      return base.prices.getPrices(id);
+    },
+  };
+  return { ...base, prices };
+}
+
+const renderWith = (services: Services) =>
+  render(
+    <ServicesProvider services={services}>
+      <CravingSearch profile={{}} />
+    </ServicesProvider>,
+  );
+
+describe('CravingSearch failure and races', () => {
+  it('shows an alert and clears loading when getSwaps rejects', async () => {
+    const base = createServices();
+    const catalogue = { ...base.catalogue, swapsFor: () => { throw new Error('boom'); },
+      findCravings: base.catalogue.findCravings.bind(base.catalogue), popularCravings: base.catalogue.popularCravings.bind(base.catalogue) };
+    renderWith({ ...base, catalogue });
+    search('burger');
+    expect(await screen.findByRole('alert')).toHaveTextContent(/something went wrong finding swaps/i);
+    expect(screen.queryByText(/finding swaps…/i)).not.toBeInTheDocument();
+  });
+
+  it('shows an alert when findCravings throws', () => {
+    const base = createServices();
+    const catalogue = { ...base.catalogue, findCravings: () => { throw new Error('boom'); },
+      swapsFor: base.catalogue.swapsFor.bind(base.catalogue), popularCravings: base.catalogue.popularCravings.bind(base.catalogue) };
+    renderWith({ ...base, catalogue });
+    search('burger');
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+  });
+
+  it('ignores a slower, older search that resolves after a newer one', async () => {
+    const slow = deferred();
+    renderWith(gatedServices({ burger: slow.promise }));
+    search('burger');
+    search('pizza');
+    expect(await screen.findByText(/swaps? for Delivery pizza/i)).toBeInTheDocument();
+    await act(async () => { slow.resolve(); await slow.promise; });
+    expect(screen.getByText(/swaps? for Delivery pizza/i)).toBeInTheDocument();
+    expect(screen.queryByText(/for Takeaway burger/i)).not.toBeInTheDocument();
+  });
+
+  it('does not warn or throw when unmounted mid-search', async () => {
+    const gate = deferred();
+    const err = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { unmount } = renderWith(gatedServices({ burger: gate.promise }));
+    search('burger');
+    unmount();
+    await act(async () => { gate.resolve(); await gate.promise; });
+    expect(err).not.toHaveBeenCalled();
+    err.mockRestore();
+  });
+});
+
+describe('SwapResults date', () => {
+  it('says date unknown for an unparseable observedAt', () => {
+    const f = { id: 'c', name: 'B', category: 'x', keywords: [] };
+    const s: RankedSwap = {
+      candidate: { craving: f, alternative: { ...f, id: 'a', name: 'A' }, note: 'n' },
+      cost: 2, health: 50, withinBudget: null,
+      price: { itemId: 'a', store: 'Aldi', pricePerServe: 2, unitLabel: 'x', observedAt: 'nonsense', isSample: false },
+    };
+    render(<SwapResults swaps={[s]} />);
+    expect(screen.getByText(/date unknown/i)).toBeInTheDocument();
   });
 });

@@ -9,6 +9,7 @@ import { SwapResults } from './SwapResults';
 type Outcome =
   | { kind: 'none' }
   | { kind: 'no-match'; text: string }
+  | { kind: 'error' }
   | { kind: 'swaps'; craving: FoodItem; swaps: RankedSwap[]; cravingHealth: number | null };
 
 const pill =
@@ -29,13 +30,19 @@ export function CravingSearch({ profile }: { profile: Profile }) {
   async function run(craving: FoodItem) {
     const id = ++latest.current;
     setLoading(true);
-    const [swaps, nutrition] = await Promise.all([
-      swapService(services).getSwaps(craving.id, profile),
-      Promise.resolve().then(() => services.nutrition.getNutrition(craving.id)).catch(() => null),
-    ]);
-    if (latest.current !== id) return;
-    setLoading(false);
-    setOutcome({ kind: 'swaps', craving, swaps, cravingHealth: nutrition ? healthScore(nutrition) : null });
+    try {
+      const [swaps, nutrition] = await Promise.all([
+        swapService(services).getSwaps(craving.id, profile),
+        Promise.resolve().then(() => services.nutrition.getNutrition(craving.id)).catch(() => null),
+      ]);
+      if (latest.current !== id) return;
+      setLoading(false);
+      setOutcome({ kind: 'swaps', craving, swaps, cravingHealth: nutrition ? healthScore(nutrition) : null });
+    } catch {
+      if (latest.current !== id) return;
+      setLoading(false);
+      setOutcome({ kind: 'error' });
+    }
   }
 
   function pick(craving: FoodItem) {
@@ -52,7 +59,15 @@ export function CravingSearch({ profile }: { profile: Profile }) {
       setOutcome({ kind: 'none' });
       return;
     }
-    const match = services.catalogue.findCravings(q)[0];
+    let match: FoodItem | undefined;
+    try {
+      match = services.catalogue.findCravings(q)[0];
+    } catch {
+      latest.current++;
+      setLoading(false);
+      setOutcome({ kind: 'error' });
+      return;
+    }
     if (!match) {
       latest.current++;
       setLoading(false);
@@ -89,6 +104,11 @@ export function CravingSearch({ profile }: { profile: Profile }) {
 
       <div aria-live="polite" className="grid gap-3">
         {loading && <p className="text-sm text-muted-foreground">Finding swaps…</p>}
+        {!loading && outcome.kind === 'error' && (
+          <p role="alert" className="rounded border border-accent p-4 text-sm">
+            Something went wrong finding swaps. Please try again.
+          </p>
+        )}
         {!loading && outcome.kind === 'no-match' && (
           <div className="rounded border border-dashed border-border p-4">
             <p className="text-sm">No exact match for “{outcome.text}”. Try a similar kind of food:</p>
