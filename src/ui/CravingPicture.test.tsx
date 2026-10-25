@@ -42,10 +42,10 @@ describe('popular craving tiles', () => {
 });
 
 describe('PhotoCredits', () => {
-  it('lists all ten credits with safe external links', () => {
+  it('lists all thirteen credits with safe external links', () => {
     const { container } = render(<PhotoCredits />);
     expect(container.querySelector('details summary')).toHaveTextContent('Photo credits');
-    expect(container.querySelectorAll('li')).toHaveLength(10);
+    expect(container.querySelectorAll('li')).toHaveLength(13);
     expect(screen.getAllByText('CC0')[0]).toHaveAttribute('href', expect.stringContaining('creativecommons.org'));
     expect(screen.queryByText(/CC BY/)).toBeNull();
     for (const a of container.querySelectorAll('a')) {
