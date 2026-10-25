@@ -1,20 +1,24 @@
-import { type RankedSwap, healthLabel, type HealthLabel } from '@culinerity/core';
+import { useState } from 'react';
+import { type RankedSwap, healthLabel } from '@culinerity/core';
 import { savingVsCraving } from './savings';
-import { FoodIllustration } from './illustrations';
+import { PillButton } from './PillButton';
+import { RoundPhoto } from './RoundPhoto';
+
+export interface WeekSwapInput {
+  itemId: string;
+  name: string;
+  saving: number;
+}
 
 interface Props {
   swaps: RankedSwap[];
   /** Health score of the craving itself, used only to pick a relative label. Null hides the indicator. */
   cravingHealth?: number | null;
-  /** Cheapest per-serve price of the craving itself, used only for the "saves" chip. Null hides it. */
+  /** Cheapest per-serve price of the craving itself, used only for the "Saves" line. Null hides it. */
   cravingCost?: number | null;
+  /** Called when a person taps "Add to my week" on a row with a positive saving. */
+  onAddToWeek?: (swap: WeekSwapInput) => void;
 }
-
-const HEALTH_STYLE: Record<HealthLabel, string> = {
-  Healthier: 'bg-success-soft text-success',
-  Similar: 'bg-legacy-muted text-muted-foreground',
-  'Less healthy': 'bg-legacy-muted text-foreground',
-};
 
 function formatDate(iso: string): string | null {
   const d = new Date(iso);
@@ -22,63 +26,62 @@ function formatDate(iso: string): string | null {
   return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 }
 
-const chip = 'inline-flex items-center whitespace-nowrap rounded-sm px-2 py-0.5 text-xs font-medium';
-
-export function SwapResults({ swaps, cravingHealth = null, cravingCost = null }: Props) {
+export function SwapResults({ swaps, cravingHealth = null, cravingCost = null, onAddToWeek }: Props) {
+  const [added, setAdded] = useState<Set<string>>(() => new Set());
   const anySample = swaps.some((s) => s.price?.isSample);
   return (
-    <div className="grid gap-2">
-      <ul className="grid gap-2">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
+      <ul className="grid grid-cols-[minmax(0,1fr)] gap-5">
         {swaps.map((s) => {
           const { alternative, note } = s.candidate;
           const health = healthLabel(s.health, cravingHealth);
           const date = s.price ? (formatDate(s.price.observedAt) ?? 'date unknown') : null;
-          const saving = savingVsCraving(cravingCost, s.cost);
+          const saving = s.price ? savingVsCraving(cravingCost, s.cost) : null;
           return (
-            <li
-              key={alternative.id}
-              className="rounded-card bg-card p-4 motion-colors hover:bg-legacy-muted"
-            >
-              <div className="grid grid-cols-[auto_1fr_auto] items-start gap-x-3 gap-y-2">
-                <div className="size-16 shrink-0 rounded bg-background p-1 sm:row-span-2 sm:size-20 sm:p-1.5">
-                  <FoodIllustration id={alternative.id} className="size-full" />
-                </div>
-                <p className="min-w-0 text-base font-semibold text-balance">{alternative.name}</p>
-                <div className="text-right sm:row-span-2">
-                  {s.cost === null || !s.price ? (
-                    <p className="text-sm text-muted-foreground">Price unavailable</p>
-                  ) : (
-                    <>
-                      <p className="text-2xl font-semibold leading-none">${s.cost.toFixed(2)}</p>
-                      <p className="mt-1 text-xs text-muted-foreground">per serve</p>
-                    </>
-                  )}
-                </div>
-                <p className="col-span-3 text-sm text-pretty text-muted-foreground sm:col-span-1 sm:col-start-2">{note}</p>
-              </div>
-              <div className="mt-3 flex flex-wrap items-center gap-2">
-                {saving !== null && (
-                  <span className={`${chip} bg-success-soft text-success`}>Saves ${saving.toFixed(2)} vs your craving</span>
-                )}
-                {health && <span className={`${chip} ${HEALTH_STYLE[health]}`}>{health}</span>}
-                {s.withinBudget !== null && (
-                  <span className={`${chip} ${s.withinBudget ? 'bg-success-soft text-success' : 'bg-accent-soft text-accent'}`}>
-                    {s.withinBudget ? 'Within budget' : 'Over budget'}
-                  </span>
-                )}
-              </div>
-              {s.price && date && (
-                <p className="mt-3 text-xs text-muted-foreground">
-                  at {s.price.store} · price seen {date}
+            <li key={alternative.id} className="flex items-center gap-3">
+              <RoundPhoto itemId={alternative.id} size={58} />
+              <div className="min-w-0 flex-1">
+                <p className="text-[15px] font-semibold leading-snug text-balance">{alternative.name}</p>
+                <p className="text-xs text-muted">{s.price ? `${s.price.store} · per serve` : note}</p>
+                {saving !== null && <p className="mt-0.5 text-sm font-semibold">Saves ${saving.toFixed(2)}</p>}
+                <p className="mt-0.5 flex flex-wrap gap-x-2 text-xs text-muted">
+                  {health && <span>{health}</span>}
+                  {s.withinBudget !== null && <span>{s.withinBudget ? 'Within budget' : 'Over budget'}</span>}
+                  {date && <span>Price seen {date}</span>}
                 </p>
-              )}
+                <span role="status" className="block text-xs font-semibold empty:hidden">
+                  {added.has(alternative.id) ? 'Added to your week' : ''}
+                </span>
+              </div>
+              <div className="flex shrink-0 flex-col items-end gap-2">
+                {s.cost === null || !s.price ? (
+                  <p className="max-w-24 text-right text-sm text-muted">Price unavailable</p>
+                ) : (
+                  <p className="text-[22px] font-extrabold leading-none tracking-tight">${s.cost.toFixed(2)}</p>
+                )}
+                {saving !== null && (
+                  <PillButton
+                    variant="surface"
+                    className="size-11 !px-0"
+                    aria-label={`Add ${alternative.name} to my week`}
+                    onClick={() => {
+                      onAddToWeek?.({ itemId: alternative.id, name: alternative.name, saving });
+                      setAdded((prev) => new Set(prev).add(alternative.id));
+                    }}
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <path d="M3 8h10M8 3v10" />
+                    </svg>
+                  </PillButton>
+                )}
+              </div>
             </li>
           );
         })}
       </ul>
       {anySample && (
-        <p className="text-xs text-muted-foreground">
-          <span className="rounded-sm bg-legacy-muted px-2 py-0.5 font-medium text-foreground">Sample data</span>
+        <p className="text-xs text-muted">
+          <span className="font-semibold text-ink">Sample data</span>
           <span className="ml-2">Prices here are examples, not live shelf prices.</span>
         </p>
       )}

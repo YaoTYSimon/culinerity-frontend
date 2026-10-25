@@ -14,7 +14,7 @@ function parseMoney(text: string): number | undefined {
 }
 
 const input =
-  'min-h-11 w-full rounded border border-input bg-field px-3 py-2.5 text-sm text-foreground focus-ring aria-[invalid=true]:border-accent';
+  'min-h-11 w-full rounded-full bg-surface px-5 py-2.5 text-sm text-ink focus-ring aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-accent';
 
 /** Text state that follows the parent value, but keeps rejected text visible while the parent value is unchanged. */
 function useSynced(external: number | string | undefined, parse: (t: string) => number | string | undefined) {
@@ -37,7 +37,7 @@ export function FinanceForm({ value, onChange }: Props) {
   const bad = (t: string) => t.trim() !== '' && parseMoney(t) === undefined;
   const hint = (id: string, t: string) =>
     bad(t) ? (
-      <p id={id} className="mt-1 text-xs text-foreground">Enter an amount of 0 or more, using numbers only.</p>
+      <p id={id} className="mt-1 px-5 text-xs text-ink">Enter an amount of 0 or more, using numbers only.</p>
     ) : null;
 
   return (
@@ -55,8 +55,14 @@ export function FinanceForm({ value, onChange }: Props) {
         {hint('fin-budget-hint', budget)}
       </div>
       <details className="group grid gap-4" open={more} onToggle={(e) => setMore(e.currentTarget.open)}>
-        <summary className="-my-1 flex min-h-11 w-fit cursor-pointer list-none items-center rounded px-1 text-sm font-medium text-primary hover:bg-legacy-muted focus-ring [&::-webkit-details-marker]:hidden">
-          More about your week
+        <summary className="focus-ring flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-3 rounded-full text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
+          <span>More about your week</span>
+          <span aria-hidden="true" className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-surface">
+            <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M3 8h10" />
+              <path d="M8 3v10" className="group-open:hidden" />
+            </svg>
+          </span>
         </summary>
         <div>
           <label htmlFor="fin-income" className="mb-2 block text-sm font-medium">Weekly income ($, optional)</label>

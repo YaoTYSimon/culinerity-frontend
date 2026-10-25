@@ -12,7 +12,7 @@ const ok = (body: unknown) => ({ ok: true, status: 200, json: async () => body }
 function renderLoader(useBackend: boolean, fetchFn?: FetchLike) {
   return render(
     <ServicesLoader useBackend={useBackend} fetchFn={fetchFn}>
-      <CravingSearch profile={{}} />
+      <CravingSearch profile={{}} onAddToWeek={() => {}} />
     </ServicesLoader>,
   );
 }

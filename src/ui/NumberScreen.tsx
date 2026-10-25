@@ -1,5 +1,5 @@
 import { bandHeadline, rankNudge, scoreBand, SUPPORT_BELOW, trendSummary, type Profile, type RankNudge } from '@culinerity/core';
-import { FinanceForm } from './FinanceForm';
+import { BudgetDisclosure } from './BudgetDisclosure';
 import { PillButton } from './PillButton';
 import { Plate } from './Plate';
 import { RoundPhoto } from './RoundPhoto';
@@ -78,15 +78,7 @@ export function NumberScreen({ profile, onSeeSwaps, onCheckIn, onOpenSupport, on
         </div>
       )}
 
-      <details className="group">
-        <summary className="focus-ring flex min-h-11 cursor-pointer items-center justify-between text-base font-semibold">
-          Your budget
-          <span aria-hidden="true" className="text-xl transition-transform group-open:rotate-180">⌄</span>
-        </summary>
-        <div className="pt-2">
-          <FinanceForm value={profile} onChange={onChange} />
-        </div>
-      </details>
+      <BudgetDisclosure value={profile} onChange={onChange} />
     </div>
   );
 }

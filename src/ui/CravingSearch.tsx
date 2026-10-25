@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { type FoodItem, type Profile, type RankedSwap, swapService } from '@culinerity/core';
-import { photoFor } from '../assets/photos';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
-import { SwapResults } from './SwapResults';
-import { CravingPicture } from './CravingPicture';
+import { SwapResults, type WeekSwapInput } from './SwapResults';
+import { PillButton } from './PillButton';
+import { RoundPhoto } from './RoundPhoto';
 
 type Outcome =
   | { kind: 'none' }
@@ -12,9 +12,9 @@ type Outcome =
   | { kind: 'swaps'; craving: FoodItem; swaps: RankedSwap[]; cravingHealth: number | null; cravingCost: number | null };
 
 const tile =
-  'flex min-h-11 flex-col items-stretch gap-2 rounded-card bg-card p-2 text-center text-sm text-foreground hover:bg-legacy-muted focus-ring motion-colors sm:p-3';
-const chip =
-  'flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded bg-card pl-1.5 pr-3 text-sm text-foreground hover:bg-legacy-muted focus-ring motion-colors';
+  'flex min-h-11 flex-col items-center gap-2 rounded-2xl p-1 text-center text-sm font-semibold text-ink focus-ring motion-colors';
+const pill =
+  'flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-surface pl-1.5 pr-4 text-sm font-semibold text-ink focus-ring motion-colors';
 
 function isTyping(el: EventTarget | null): boolean {
   if (!(el instanceof HTMLElement)) return false;
@@ -23,18 +23,21 @@ function isTyping(el: EventTarget | null): boolean {
 
 function SkeletonRows() {
   return (
-    <div aria-hidden="true" className="grid gap-2">
+    <div aria-hidden="true" className="grid gap-5">
       {[0, 1, 2].map((i) => (
-        <div key={i} className="grid h-24 gap-3 rounded-card bg-card p-4 motion-safe:animate-pulse">
-          <div className="h-4 w-1/2 rounded-sm bg-legacy-muted" />
-          <div className="h-3 w-3/4 rounded-sm bg-legacy-muted" />
+        <div key={i} className="flex items-center gap-3 motion-safe:animate-pulse">
+          <span className="size-[58px] shrink-0 rounded-full bg-surface" />
+          <div className="grid flex-1 gap-2">
+            <span className="h-3.5 w-3/5 rounded-full bg-surface" />
+            <span className="h-3 w-2/5 rounded-full bg-surface" />
+          </div>
         </div>
       ))}
     </div>
   );
 }
 
-export function CravingSearch({ profile }: { profile: Profile }) {
+export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAddToWeek: (swap: WeekSwapInput) => void }) {
   const services = useServices();
   const catalogue = useCatalogueStatus();
   const [text, setText] = useState('');
@@ -106,10 +109,10 @@ export function CravingSearch({ profile }: { profile: Profile }) {
     void run(match);
   }
 
-  // Before any search the popular cravings fill the results area as a grid of pictures; afterwards they fold into a scrolling row on desktop (hidden on phones, where the search stays at hand).
+  // Before any search the popular cravings fill the results area as a grid of round photos; afterwards they fold into a scrolling row (hidden on phones, where the search stays at hand).
   const showGrid = outcome.kind === 'none' && !loading;
   const popularBlock = popular.length === 0 ? (
-    <section aria-label="Popular cravings" className="grid gap-2">
+    <section aria-label="Popular cravings" className="grid gap-3">
       {catalogue.status === 'loading' && (
         <>
           <p className="sr-only">Loading cravings…</p>
@@ -117,23 +120,24 @@ export function CravingSearch({ profile }: { profile: Profile }) {
         </>
       )}
       {catalogue.status === 'unavailable' && (
-        <div role="alert" className="grid justify-items-start gap-3 rounded-card bg-accent-soft p-4 text-sm text-foreground">
-          <p className="text-pretty">
-            We can't reach the swap server right now. Showing nothing yet — try again, or turn off the backend.
-          </p>
-          <button type="button" onClick={catalogue.retry} className="min-h-11 rounded bg-primary px-4 text-sm font-medium text-primary-foreground hover:opacity-90 focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-            Retry
-          </button>
+        <div role="alert" className="grid justify-items-start gap-3 text-sm text-ink">
+          <p className="text-base font-semibold">We can't reach the swap server right now.</p>
+          <p className="text-pretty text-muted">Try again, or turn off the backend.</p>
+          <PillButton onClick={catalogue.retry}>Retry</PillButton>
         </div>
       )}
     </section>
   ) : (
-    <section aria-labelledby="popular-h" className={showGrid ? 'grid gap-2' : 'grid gap-2'}>
-      <h2 id="popular-h" className={showGrid ? 'text-base font-semibold' : 'text-xs text-muted-foreground'}>Popular cravings</h2>
-      <div className={showGrid ? 'grid grid-cols-2 gap-2' : 'hide-scrollbar flex gap-2 overflow-x-auto'}>
+    <section aria-labelledby="popular-h" className={showGrid ? 'grid gap-3' : 'hidden gap-3 sm:grid'}>
+      <h2 id="popular-h" className={showGrid ? 'text-base font-semibold' : 'text-xs text-muted'}>Popular cravings</h2>
+      <div className={showGrid ? 'grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-5' : 'hide-scrollbar flex gap-2 overflow-x-auto'}>
         {popular.map((c, i) => (
-          <button key={c.id} type="button" className={showGrid ? tile : chip} onClick={() => pick(c)}>
-            <CravingPicture id={c.id} eager={showGrid && i < 4} size={showGrid ? 160 : 32} className={showGrid ? 'aspect-square h-auto w-full rounded bg-background object-cover' : 'size-8 shrink-0 rounded-sm bg-background'} />
+          <button key={c.id} type="button" className={showGrid ? tile : pill} onClick={() => pick(c)}>
+            {showGrid ? (
+              <RoundPhoto itemId={c.id} size={120} eager={i < 4} className="aspect-square h-auto! w-full! max-w-[140px]" />
+            ) : (
+              <RoundPhoto itemId={c.id} size={32} />
+            )}
             {c.name}
           </button>
         ))}
@@ -143,32 +147,24 @@ export function CravingSearch({ profile }: { profile: Profile }) {
 
   // Two stacked blocks in the single centred column: the search block and the results block.
   return (
-    <div className="grid gap-4">
-      <div className="grid content-start gap-4">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
+      <div className="grid grid-cols-[minmax(0,1fr)] content-start gap-4">
       <form role="search" className="grid gap-2" onSubmit={submit}>
         <label htmlFor="craving-q" className="sr-only">What are you craving?</label>
         <div className="flex gap-2">
-          <div className="relative min-w-0 flex-1">
-            <input
-              ref={inputRef} id="craving-q" type="search" value={text} onChange={(e) => setText(e.target.value)}
-              placeholder="Try burger or chips"
-              className="min-h-12 w-full min-w-0 rounded border border-input bg-field px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus-ring"
-            />
-            <kbd aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-sm bg-card px-1.5 text-xs text-muted-foreground">/</kbd>
-          </div>
-          <button
-            type="submit"
-            className="min-h-12 shrink-0 rounded bg-primary px-5 text-sm font-medium text-primary-foreground hover:opacity-90 focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-safe:transition-opacity motion-safe:duration-150"
-          >
-            Find swaps
-          </button>
+          <input
+            ref={inputRef} id="craving-q" type="search" value={text} onChange={(e) => setText(e.target.value)}
+            placeholder="Try burger or chips"
+            className="min-h-12 w-0 min-w-0 flex-1 rounded-full bg-surface px-5 text-base text-ink placeholder:text-muted focus-ring"
+          />
+          <PillButton type="submit" className="min-h-12 shrink-0">Find swaps</PillButton>
         </div>
       </form>
 
       {!showGrid && popularBlock}
       </div>
 
-      <div aria-live="polite" className="grid content-start gap-3">
+      <div aria-live="polite" className="grid grid-cols-[minmax(0,1fr)] content-start gap-3">
         {showGrid && popularBlock}
         {loading && (
           <>
@@ -177,19 +173,20 @@ export function CravingSearch({ profile }: { profile: Profile }) {
           </>
         )}
         {!loading && outcome.kind === 'error' && (
-          <div role="alert" className="rounded-card bg-accent-soft p-4 text-sm text-foreground">
-            <p className="font-medium">That did not work.</p>
-            <p className="text-pretty">Something went wrong finding swaps. Please try again.</p>
+          <div role="alert" className="grid gap-1 text-sm">
+            <p className="text-base font-semibold">That did not work.</p>
+            <p className="text-pretty text-muted">Something went wrong finding swaps. Please try again.</p>
           </div>
         )}
         {!loading && outcome.kind === 'no-match' && (
-          <div className="rounded-card bg-card p-4">
-            <p className="text-sm">No exact match for “{outcome.text}”. Try a similar kind of food:</p>
-            <div className="mt-3 flex flex-wrap gap-2">
+          <div className="grid gap-3">
+            <p className="text-pretty text-base font-semibold">No exact match for “{outcome.text}”.</p>
+            <p className="text-sm text-muted">Try a similar kind of food:</p>
+            <div className="flex flex-wrap gap-2">
               {categories.map((c) => (
-                <button key={c.id} type="button" className={`${chip} bg-background`} onClick={() => pick(c)}>
+                <PillButton key={c.id} variant="surface" className="text-sm" onClick={() => pick(c)}>
                   {c.category}: {c.name}
-                </button>
+                </PillButton>
               ))}
             </div>
           </div>
@@ -197,23 +194,23 @@ export function CravingSearch({ profile }: { profile: Profile }) {
         {!loading && outcome.kind === 'swaps' && (
           <>
             <div className="grid grid-cols-[auto_1fr] items-center gap-x-3">
-              {photoFor(outcome.craving.id) && <CravingPicture id={outcome.craving.id} eager size={48} className="row-span-2 size-12 shrink-0 rounded" />}
-              <h2 className="col-start-2 text-base font-semibold text-balance">
+              <RoundPhoto itemId={outcome.craving.id} size={48} eager className="row-span-2" />
+              <h2 className="col-start-2 text-xl font-semibold text-balance">
                 {outcome.swaps.length === 0
                   ? `No swaps found for ${outcome.craving.name} yet.`
                   : `${outcome.swaps.length} ${outcome.swaps.length === 1 ? 'swap' : 'swaps'} for ${outcome.craving.name}`}
               </h2>
               {outcome.cravingCost !== null && outcome.swaps.length > 0 && (
-                <p className="col-start-2 text-xs text-muted-foreground">Your craving: about ${outcome.cravingCost.toFixed(2)} per serve</p>
+                <p className="col-start-2 text-xs text-muted">Your craving: about ${outcome.cravingCost.toFixed(2)} per serve</p>
               )}
             </div>
             {outcome.swaps.length === 0 && (
-              <p className="rounded-card bg-card p-4 text-sm text-pretty text-muted-foreground">
+              <p className="text-sm text-pretty text-muted">
                 We do not have a cheaper or healthier idea for this one yet. Try another craving.
               </p>
             )}
             {outcome.swaps.length > 0 && (
-              <SwapResults swaps={outcome.swaps} cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} />
+              <SwapResults swaps={outcome.swaps} cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} onAddToWeek={onAddToWeek} />
             )}
           </>
         )}

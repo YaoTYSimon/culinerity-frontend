@@ -15,9 +15,9 @@ function openMenu(item: string) {
   fireEvent.click(screen.getByRole('button', { name: item }));
 }
 
-function renderApp(store: ProfileStore = new InMemoryProfileStore()) {
+function renderApp(store: ProfileStore = new InMemoryProfileStore(), now?: () => string) {
   const services = { ...createServices(), profiles: store };
-  return render(<ServicesProvider services={services}><App /></ServicesProvider>);
+  return render(<ServicesProvider services={services}><App now={now} /></ServicesProvider>);
 }
 
 function takeWorstQuestionnaire() {
@@ -162,5 +162,20 @@ describe('App', () => {
     const links = within(screen.getByRole('contentinfo')).getAllByRole('link', { hidden: true });
     expect(links).toHaveLength(26);
     links.forEach((a) => expect(a.getAttribute('aria-label')).toMatch(/\S/));
+  });
+});
+
+describe('add to my week', () => {
+  it('persists the added swap once, with the injected time', async () => {
+    const store = new InMemoryProfileStore(SEEN);
+    renderApp(store, () => '2026-10-26T01:00:00.000Z');
+    fireEvent.click(screen.getByRole('button', { name: /takeaway burger/i }));
+    const [btn] = await screen.findAllByRole('button', { name: /^Add .* to my week$/ });
+    fireEvent.click(btn);
+    const last = store.saved[store.saved.length - 1];
+    expect(last.weekSwaps).toHaveLength(1);
+    expect(last.weekSwaps![0]).toMatchObject({ at: '2026-10-26T01:00:00.000Z' });
+    expect(last.weekSwaps![0].saving).toBeGreaterThan(0);
+    expect(btn.getAttribute('aria-label')).toContain(last.weekSwaps![0].name);
   });
 });

@@ -6,10 +6,11 @@ import { ServicesProvider } from '../services/ServicesContext';
 import { CravingSearch } from './CravingSearch';
 import { SwapResults } from './SwapResults';
 
+const onAdd = vi.fn();
 function renderSearch(profile = {}) {
   return render(
     <ServicesProvider services={createServices()}>
-      <CravingSearch profile={profile} />
+      <CravingSearch profile={profile} onAddToWeek={onAdd} />
     </ServicesProvider>,
   );
 }
@@ -106,7 +107,7 @@ function gatedServices(gates: Record<string, Promise<void>>): Services {
 const renderWith = (services: Services) =>
   render(
     <ServicesProvider services={services}>
-      <CravingSearch profile={{}} />
+      <CravingSearch profile={{}} onAddToWeek={onAdd} />
     </ServicesProvider>,
   );
 
@@ -166,7 +167,7 @@ describe('SwapResults date', () => {
   });
 });
 
-describe('SwapResults saving chip', () => {
+describe('SwapResults saving text', () => {
   const f = { id: 'c', name: 'B', category: 'x', keywords: [] };
   const swap = (cost: number): RankedSwap => ({
     candidate: { craving: f, alternative: { ...f, id: 'a', name: 'A' }, note: 'n' },
@@ -176,7 +177,7 @@ describe('SwapResults saving chip', () => {
 
   it('shows the saving against the craving price', () => {
     render(<SwapResults swaps={[swap(3.2)]} cravingCost={9.5} />);
-    expect(screen.getByText('Saves $6.30 vs your craving')).toBeInTheDocument();
+    expect(screen.getByText('Saves $6.30')).toBeInTheDocument();
   });
 
   it('never shows a zero or negative saving', () => {
@@ -215,5 +216,45 @@ describe('keyboard', () => {
     fireEvent.keyDown(document.body, { key: '/' });
     window.removeEventListener('keydown', stop, true);
     expect(input).not.toHaveFocus();
+  });
+});
+
+describe('SwapResults plate rows and add to my week', () => {
+  const f = { id: 'c', name: 'Burger', category: 'x', keywords: [] };
+  const swap = (cost: number | null, id = 'a', name = 'Home smash burger'): RankedSwap => ({
+    candidate: { craving: f, alternative: { ...f, id, name }, note: 'n' },
+    cost, health: 50, withinBudget: null,
+    price: cost === null ? null : { itemId: id, store: 'Aldi', pricePerServe: cost, unitLabel: 'x', observedAt: '2026-03-12', isSample: true },
+  });
+
+  it('shows "Saves $4.30" as plain text, not inside a background element', () => {
+    render(<SwapResults swaps={[swap(3.2)]} cravingCost={7.5} />);
+    const el = screen.getByText('Saves $4.30');
+    for (let n: HTMLElement | null = el; n && n !== document.body; n = n.parentElement) {
+      expect(n.className).not.toMatch(/(^|\s)bg-/);
+    }
+    expect(screen.getByText('Aldi · per serve')).toBeInTheDocument();
+  });
+
+  it('has no Add button for an unpriced swap or a saving of zero or less', () => {
+    render(<SwapResults swaps={[swap(null), swap(7.5, 'b', 'Same'), swap(9, 'c2', 'Dearer')]} cravingCost={7.5} />);
+    expect(screen.queryByRole('button', { name: /to my week/i })).not.toBeInTheDocument();
+    expect(screen.getByText('Price unavailable')).toBeInTheDocument();
+  });
+
+  it('has no Add button without a craving price', () => {
+    render(<SwapResults swaps={[swap(3)]} cravingCost={null} />);
+    expect(screen.queryByRole('button', { name: /to my week/i })).not.toBeInTheDocument();
+  });
+
+  it('Add calls onAddToWeek once with exact itemId, name and saving, and confirms', () => {
+    const fn = vi.fn();
+    render(<SwapResults swaps={[swap(3.2)]} cravingCost={7.5} onAddToWeek={fn} />);
+    const btn = screen.getByRole('button', { name: 'Add Home smash burger to my week' });
+    expect(screen.queryByText('Added to your week')).not.toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(fn).toHaveBeenCalledTimes(1);
+    expect(fn).toHaveBeenCalledWith({ itemId: 'a', name: 'Home smash burger', saving: 4.3 });
+    expect(screen.getByText('Added to your week')).toBeInTheDocument();
   });
 });

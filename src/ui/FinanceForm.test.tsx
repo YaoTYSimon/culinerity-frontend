@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
+import { BudgetDisclosure } from './BudgetDisclosure';
 import { FinanceForm } from './FinanceForm';
 
 describe('FinanceForm', () => {
@@ -80,5 +81,19 @@ describe('FinanceForm disclosure', () => {
   it('starts open when income or suburb are already saved', () => {
     render(<Harness start={{ suburb: 'Carlton' }} />);
     expect(details().open).toBe(true);
+  });
+});
+
+describe('BudgetDisclosure', () => {
+  it('has a labelled summary with a round affordance inside a 44px target', () => {
+    const { container } = render(<BudgetDisclosure value={{}} onChange={vi.fn()} />);
+    const summary = container.querySelector('summary')!;
+    expect(summary).toHaveTextContent('Your budget');
+    expect(summary.className).toMatch(/min-h-11/);
+    const mark = summary.querySelector('[data-affordance]')!;
+    expect(mark.className).toMatch(/rounded-full/);
+    expect(mark.className).toMatch(/items-center/);
+    expect(mark.getAttribute('aria-hidden')).toBe('true');
+    expect(screen.getByLabelText(/weekly food budget/i)).toBeInTheDocument();
   });
 });

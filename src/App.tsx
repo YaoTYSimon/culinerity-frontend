@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { appendScore, type Profile } from '@culinerity/core';
+import { addWeekSwap, appendScore, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { CravingSearch } from './ui/CravingSearch';
-import { FinanceForm } from './ui/FinanceForm';
+import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { Header } from './ui/Header';
 import { PhotoCredits } from './ui/PhotoCredits';
 import { NumberScreen } from './ui/NumberScreen';
@@ -11,7 +11,8 @@ import { SupportPanel } from './ui/SupportPanel';
 import type { NavTarget, View } from './ui/views';
 import { Welcome } from './ui/Welcome';
 
-export default function App() {
+/** `now` gives the current ISO time; injected in tests. */
+export default function App({ now = () => new Date().toISOString() }: { now?: () => string } = {}) {
   const { profiles } = useServices();
   const [profile, setProfile] = useState<Profile>(() => profiles.load());
   const [view, setView] = useState<View>(() => (profile.welcomeSeen === true ? homeFor(profile) : 'welcome'));
@@ -24,10 +25,12 @@ export default function App() {
     if (profile.welcomeSeen !== true) update({ ...profile, welcomeSeen: true });
   };
   const complete = (score: number) => {
-    const at = new Date().toISOString();
+    const at = now();
     update({ ...profile, score, scoreTakenAt: at, scoreHistory: appendScore(profile.scoreHistory, score, at) });
     setView('number');
   };
+  const addToWeek = (swap: { itemId: string; name: string; saving: number }) =>
+    update({ ...profile, weekSwaps: addWeekSwap(profile.weekSwaps, swap, now()) });
   const go = (to: NavTarget) => setView(to === 'home' ? homeFor(profile) : to);
 
   const hasScore = typeof profile.score === 'number';
@@ -87,12 +90,12 @@ export default function App() {
           )}
 
           {view === 'swaps' && (
-            <div className="grid gap-4">
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
               <h1 className="font-display text-[30px] text-balance">Cheaper, healthier swaps for what you crave</h1>
               <p className="text-base text-pretty text-muted">
                 Pick a craving and see what costs less and sits better. For anyone in Melbourne, no sign-up.
               </p>
-              <CravingSearch profile={profile} />
+              <CravingSearch profile={profile} onAddToWeek={addToWeek} />
               <BudgetSection profile={profile} onChange={update} />
             </div>
           )}
@@ -113,10 +116,5 @@ function homeFor(profile: Profile): View {
 }
 
 function BudgetSection({ profile, onChange }: { profile: Profile; onChange: (next: Profile) => void }) {
-  return (
-    <section aria-labelledby="budget-h" className="grid gap-3 rounded-card bg-card p-4">
-      <h2 id="budget-h" className="text-base font-semibold">Your budget</h2>
-      <FinanceForm value={profile} onChange={onChange} />
-    </section>
-  );
+  return <BudgetDisclosure value={profile} onChange={onChange} />;
 }
