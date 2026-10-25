@@ -1,0 +1,20 @@
+{
+  "name": "@culinerity/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts",
+    "seed": "tsx seed.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.5",
+    "better-sqlite3": "^13.0.3",
+    "hono": "^4.13.14"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "tsx": "^4.23.15"
+  }
+}
