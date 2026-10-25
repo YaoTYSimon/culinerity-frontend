@@ -1,13 +1,6 @@
-import { THEME_IDS, THEME_NAMES, type ThemeId } from '@culinerity/core';
+import { THEME_IDS, THEME_NAMES } from '@culinerity/core';
+import { THEME_TOKENS } from '../theme/tokens';
 import { useTheme } from '../theme/ThemeProvider';
-
-/** Each dot is half ground, half accent, drawn in that theme's own colours so it reads before it is chosen. */
-const SWATCH: Record<ThemeId, { bg: string; accent: string }> = {
-  tobacco: { bg: '#472913', accent: '#525e1b' },
-  sand: { bg: '#ddd6c6', accent: '#4f6238' },
-  walnut: { bg: '#2b2216', accent: '#bda38b' },
-  cream: { bg: '#f6efe6', accent: '#8f1d37' },
-};
 
 export function ThemeDots() {
   const { theme, setTheme } = useTheme();
@@ -24,11 +17,16 @@ export function ThemeDots() {
             onClick={() => setTheme(id)}
             className="focus-ring flex size-11 items-center justify-center rounded-full"
           >
-            <span
+            <svg
               aria-hidden="true"
-              className={`block size-5 rounded-full border border-muted ${selected ? 'ring-2 ring-ink ring-offset-2 ring-offset-bg' : ''}`}
-              style={{ background: `linear-gradient(135deg, ${SWATCH[id].bg} 50%, ${SWATCH[id].accent} 50%)` }}
-            />
+              viewBox="0 0 20 20"
+              className={`block size-5 rounded-full ${selected ? 'ring-2 ring-ink ring-offset-2 ring-offset-bg' : ''}`}
+            >
+              {/* Half ground, half accent, in that theme's own colours so it reads before it is chosen. */}
+              <path d="M10 0A10 10 0 0 0 10 20Z" fill={THEME_TOKENS[id].bg} />
+              <path d="M10 0A10 10 0 0 1 10 20Z" fill={THEME_TOKENS[id].accent} />
+              <circle cx="10" cy="10" r="9.5" fill="none" strokeWidth="1" className="stroke-muted" />
+            </svg>
           </button>
         );
       })}

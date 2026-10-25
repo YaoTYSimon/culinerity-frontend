@@ -45,10 +45,12 @@ export function checkThemes(css) {
     const pair = (name, fg, bg, min) => ({ name, ratio: contrastRatio(t[fg], t[bg]), min });
     result[theme] = [
       pair('ink on bg', 'ink', 'bg', TEXT),
-      pair('ink on surface', 'ink', 'surface', TEXT),
+      // The surface pill variant is a quiet secondary by design: it is told apart by its label, not its fill.
+      pair('ink on surface (surface pill label)', 'ink', 'surface', TEXT),
       pair('muted on bg', 'muted', 'bg', TEXT),
       pair('muted on surface', 'muted', 'surface', TEXT),
       pair('accent-ink on accent (button text)', 'accent-ink', 'accent', TEXT),
+      pair('accent (primary fill) on bg', 'accent', 'bg', CONTROL),
       // Focus ring, selected-dot ring and the dot outline are drawn in ink (or muted) against the ground.
       pair('ink on bg as control edge', 'ink', 'bg', CONTROL),
       pair('ink on surface as control edge', 'ink', 'surface', CONTROL),
@@ -71,9 +73,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     }
   }
   const themes = readThemes(css);
-  console.log('\ninformational (not required: a filled button is identified by its text)');
+  console.log('\ninformational');
   for (const [theme, t] of Object.entries(themes)) {
-    console.log(`  ${theme}: accent on bg ${contrastRatio(t.accent, t.bg).toFixed(2)}, surface on bg ${contrastRatio(t.surface, t.bg).toFixed(2)}`);
+    console.log(`  ${theme}: surface on bg ${contrastRatio(t.surface, t.bg).toFixed(2)}`);
   }
   process.exit(failed ? 1 : 0);
 }
