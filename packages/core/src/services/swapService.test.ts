@@ -33,3 +33,26 @@ describe('swapService.getSwaps', () => {
     expect(swaps.every((x) => x.cost === null)).toBe(true);
   });
 });
+
+describe('swapService.getSwapsWithBaseline', () => {
+  it('returns the same swaps as getSwaps plus the craving cost and health', async () => {
+    const svc = swapService(createCoreServices(new InMemoryProfileStore()));
+    const res = await svc.getSwapsWithBaseline(CRAVING, { score: 50 });
+    expect(res.swaps).toEqual(await svc.getSwaps(CRAVING, { score: 50 }));
+    expect(res.cravingCost).toBeGreaterThan(0);
+    expect(res.cravingHealth).toEqual(expect.any(Number));
+  });
+
+  it('gives null baselines for an unknown craving or failing sources', async () => {
+    const svc = swapService(createCoreServices(new InMemoryProfileStore()));
+    expect(await svc.getSwapsWithBaseline('nope', {})).toEqual({ swaps: [], cravingCost: null, cravingHealth: null });
+    const s: Services = {
+      ...createCoreServices(new InMemoryProfileStore()),
+      prices: { getPrices: () => Promise.reject(new Error('down')) },
+      nutrition: { getNutrition: () => Promise.reject(new Error('down')) },
+    };
+    const res = await swapService(s).getSwapsWithBaseline(CRAVING, {});
+    expect(res.cravingCost).toBeNull();
+    expect(res.cravingHealth).toBeNull();
+  });
+});
