@@ -31,6 +31,9 @@ export function FinanceForm({ value, onChange }: Props) {
   const [income, setIncome] = useSynced(value.incomeWeekly, parseMoney);
   const [suburb, setSuburb] = useSynced(value.suburb, (t) => (t.trim() === '' ? undefined : t));
 
+  // Open on first render when optional details already exist; after that only the person toggles it.
+  const [more, setMore] = useState(() => value.incomeWeekly !== undefined || Boolean(value.suburb));
+
   const bad = (t: string) => t.trim() !== '' && parseMoney(t) === undefined;
   const hint = (id: string, t: string) =>
     bad(t) ? (
@@ -51,7 +54,7 @@ export function FinanceForm({ value, onChange }: Props) {
         />
         {hint('fin-budget-hint', budget)}
       </div>
-      <details className="group grid gap-4" open={Boolean(value.incomeWeekly !== undefined || value.suburb) || undefined}>
+      <details className="group grid gap-4" open={more} onToggle={(e) => setMore(e.currentTarget.open)}>
         <summary className="-my-1 flex min-h-11 w-fit cursor-pointer list-none items-center rounded px-1 text-sm font-medium text-primary hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
           More about your week
         </summary>

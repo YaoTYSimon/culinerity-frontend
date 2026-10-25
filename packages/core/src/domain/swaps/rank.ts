@@ -22,7 +22,8 @@ const UNKNOWN_HEALTH = 50;
 
 const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
 
-function cheapest(points: PricePoint[] | undefined): PricePoint | null {
+/** The lowest-priced point per serve, or null when there are none. The single rule for "the price of an item". */
+export function cheapest(points: PricePoint[] | undefined): PricePoint | null {
   let best: PricePoint | null = null;
   for (const p of points ?? []) if (best === null || p.pricePerServe < best.pricePerServe) best = p;
   return best;

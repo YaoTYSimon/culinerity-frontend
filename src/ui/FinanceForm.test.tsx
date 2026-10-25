@@ -57,3 +57,28 @@ describe('FinanceForm feedback and sync', () => {
     expect(screen.getByLabelText(/suburb/i)).toHaveValue('');
   });
 });
+
+describe('FinanceForm disclosure', () => {
+  function Harness({ start = {} }: { start?: Parameters<typeof FinanceForm>[0]['value'] }) {
+    const [v, setV] = useState(start);
+    return <FinanceForm value={v} onChange={setV} />;
+  }
+  const details = () => document.querySelector('details') as HTMLDetailsElement;
+
+  it('starts closed, can be opened, typed into and closed again by the person', () => {
+    render(<Harness />);
+    expect(details().open).toBe(false);
+    fireEvent.click(screen.getByText(/more about your week/i));
+    expect(details().open).toBe(true);
+    fireEvent.change(screen.getByLabelText(/weekly income/i), { target: { value: '800' } });
+    expect(details().open).toBe(true);
+    fireEvent.click(screen.getByText(/more about your week/i));
+    expect(details().open).toBe(false);
+    expect(screen.getByLabelText(/weekly income/i)).toHaveValue('800');
+  });
+
+  it('starts open when income or suburb are already saved', () => {
+    render(<Harness start={{ suburb: 'Carlton' }} />);
+    expect(details().open).toBe(true);
+  });
+});

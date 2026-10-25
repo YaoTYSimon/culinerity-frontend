@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { type FoodItem, type Profile, healthScore, type RankedSwap, swapService } from '@culinerity/core';
+import { type FoodItem, type Profile, cheapest, healthScore, type RankedSwap, swapService } from '@culinerity/core';
 import { useServices } from '../services/ServicesContext';
 import { SwapResults } from './SwapResults';
 import { FoodIllustration } from './illustrations';
@@ -45,7 +45,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
   // Keyboard-first: "/" jumps to the search unless the person is already typing somewhere.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || isTyping(e.target)) return;
+      if (e.key !== '/' || e.defaultPrevented || e.isComposing || e.ctrlKey || e.metaKey || e.altKey || isTyping(e.target)) return;
       e.preventDefault();
       inputRef.current?.focus();
     };
@@ -66,7 +66,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
         Promise.resolve().then(() => services.nutrition.getNutrition(craving.id)).catch(() => null),
         Promise.resolve()
           .then(() => services.prices.getPrices(craving.id))
-          .then((points) => (points.length ? Math.min(...points.map((p) => p.pricePerServe)) : null))
+          .then((points) => cheapest(points)?.pricePerServe ?? null)
           .catch(() => null),
       ]);
       if (latest.current !== id) return;
@@ -137,7 +137,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
           <div className="relative min-w-0 flex-1">
             <input
               ref={inputRef} id="craving-q" type="search" value={text} onChange={(e) => setText(e.target.value)}
-              placeholder="Try burger, hot chips, bubble tea"
+              placeholder="Try burger or chips"
               className="min-h-12 w-full min-w-0 rounded border border-input bg-field px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <kbd aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-sm bg-card px-1.5 text-xs text-muted-foreground md:block">/</kbd>

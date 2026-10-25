@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { FoodItem, Nutrition, PricePoint, SwapCandidate } from '../types';
 import { healthScore } from './health';
-import { rankSwaps } from './rank';
+import { cheapest, rankSwaps } from './rank';
 
 const item = (id: string): FoodItem => ({ id, name: id, category: 'x', keywords: [] });
 const craving = item('craving');
@@ -111,5 +111,19 @@ describe('healthScore', () => {
     expect(healthScore(nut('s', { sugarG: 60, fibreG: 0 }))).toBeLessThan(
       healthScore(nut('f', { sugarG: 2, fibreG: 9 })),
     );
+  });
+});
+
+describe('cheapest', () => {
+  it('picks the lowest price per serve, and null for none', () => {
+    expect(cheapest([price('a', 5), price('a', 3.5), price('a', 4)])?.pricePerServe).toBe(3.5);
+    expect(cheapest([])).toBeNull();
+    expect(cheapest(undefined)).toBeNull();
+  });
+
+  it('is the same rule rankSwaps uses for a swap cost', () => {
+    const points = [price('a', 6), price('a', 2.5), price('a', 4)];
+    const [row] = rankSwaps({ candidates: [cand('a')], prices: { a: points }, nutrition: {}, score: null, budgetPerServe: null });
+    expect(row.cost).toBe(cheapest(points)?.pricePerServe);
   });
 });

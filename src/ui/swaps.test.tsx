@@ -204,4 +204,16 @@ describe('keyboard', () => {
     expect(other).toHaveFocus();
     other.remove();
   });
+
+  it('"/" is ignored while composing or when already handled', () => {
+    renderSearch();
+    const input = screen.getByLabelText(/what are you craving/i);
+    fireEvent.keyDown(document.body, { key: '/', isComposing: true });
+    expect(input).not.toHaveFocus();
+    const stop = (e: Event) => e.preventDefault();
+    window.addEventListener('keydown', stop, true);
+    fireEvent.keyDown(document.body, { key: '/' });
+    window.removeEventListener('keydown', stop, true);
+    expect(input).not.toHaveFocus();
+  });
 });
