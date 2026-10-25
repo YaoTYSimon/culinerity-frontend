@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { addWeekSwap, appendScore, type Profile } from '@culinerity/core';
+import { addWeekSwap, appendScore, removeOneWeekSwap, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { CravingSearch } from './ui/CravingSearch';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
@@ -9,6 +9,7 @@ import { NumberScreen } from './ui/NumberScreen';
 import { Questionnaire } from './ui/Questionnaire';
 import { SupportPanel } from './ui/SupportPanel';
 import type { NavTarget, View } from './ui/views';
+import { WeekCard } from './ui/WeekCard';
 import { Welcome } from './ui/Welcome';
 
 /** `now` gives the current ISO time; injected in tests. */
@@ -78,12 +79,14 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             />
           )}
 
-          {/* Stub until the shareable week card (Task 9). */}
           {view === 'week' && (
-            <div className="grid gap-4">
-              <h1 className="font-display text-[30px] text-balance">My week</h1>
-              <p className="text-base text-muted">Swaps you add to your week will show up here.</p>
-            </div>
+            <WeekCard
+              week={profile.weekSwaps}
+              now={now()}
+              onRemoveOne={(itemId) => update({ ...profile, weekSwaps: removeOneWeekSwap(profile.weekSwaps, itemId) })}
+              onClear={() => update({ ...profile, weekSwaps: [] })}
+              onSeeSwaps={() => setView('swaps')}
+            />
           )}
 
           {view === 'swaps' && (
