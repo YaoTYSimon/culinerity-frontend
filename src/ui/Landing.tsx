@@ -21,7 +21,7 @@ export function Landing({ onStart, onDismiss }: Props) {
         <button type="button" onClick={onStart} className={`${btn} bg-primary text-primary-foreground hover:opacity-90`}>
           Take the check-in
         </button>
-        <button type="button" onClick={onDismiss} className={`${btn} text-foreground hover:bg-muted`}>
+        <button type="button" onClick={onDismiss} className={`${btn} text-foreground hover:bg-legacy-muted`}>
           Not now
         </button>
       </div>

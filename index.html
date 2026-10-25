@@ -1,12 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="tobacco">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Culinerity</title>
     <meta name="description" content="Cheaper, healthier swaps for what you crave, for anyone in Melbourne." />
-    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#160A0E" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#472913" />
+    <script>
+      // Runs before first paint so the chosen theme never flashes. Keep ids/key in step with @culinerity/core and localThemeStore.ts.
+      (function () {
+        var themes = { tobacco: '#472913', sand: '#ddd6c6', walnut: '#2b2216', cream: '#f6efe6' };
+        try {
+          var id = localStorage.getItem('culinerity.theme.v1');
+          if (Object.prototype.hasOwnProperty.call(themes, id)) {
+            document.documentElement.dataset.theme = id;
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', themes[id]);
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

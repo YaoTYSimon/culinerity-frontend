@@ -1,46 +1,85 @@
 @import 'tailwindcss';
 
 /*
- * Direction: "Editorial greeting" (taste skill, app run), light, with the brand's pomegranate kept as the single accent.
- * Tonal panels carry the structure (no shadows at rest, no gradients); hairlines only where a control needs an edge.
- * Radii: 12 panels, 8 controls, 4 tags. Spacing on a 4px base, one 16px gutter.
+ * Four themes (spec: welcome-themes-plate-redesign). The six role variables below are the only place colour
+ * values live; @theme maps them to Tailwind names (bg-bg, bg-surface, text-ink, text-muted, bg-accent, text-accent-ink).
+ * Flat colour and tone steps only: no shadows at rest, no gradients, no hairlines.
+ * scripts/contrast.mjs reads these blocks, so keep one declaration per line in `--name: #hex;` form.
  */
+:root {
+  /* tobacco (default) */
+  --bg: #472913;
+  --surface: #5a3720;
+  --ink: #e4e0cf;
+  --muted: #cdbfa8;
+  --accent: #525e1b;
+  --accent-ink: #e4e0cf;
+}
+[data-theme='sand'] {
+  --bg: #ddd6c6;
+  --surface: #d2cab8;
+  --ink: #2a2a26;
+  --muted: #55544a;
+  --accent: #4f6238;
+  --accent-ink: #f3f0e6;
+}
+[data-theme='walnut'] {
+  --bg: #2b2216;
+  --surface: #3d3123;
+  --ink: #e4e2da;
+  --muted: #cbbfae;
+  --accent: #bda38b;
+  --accent-ink: #2b2216;
+}
+[data-theme='cream'] {
+  --bg: #f6efe6;
+  --surface: #e6d8c9;
+  --ink: #3a1f1a;
+  --muted: #5b4540;
+  --accent: #8f1d37;
+  --accent-ink: #ffffff;
+}
+
+@theme inline {
+  --font-display: 'Schibsted Grotesk', system-ui, sans-serif;
+  --font-sans: 'Schibsted Grotesk', system-ui, sans-serif;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  /* Backward-compatible aliases so screens not yet redesigned keep rendering. Remove in Task 10. */
+  --color-background: var(--bg); /* remove in Task 10 */
+  --color-foreground: var(--ink); /* remove in Task 10 */
+  --color-card: var(--surface); /* remove in Task 10 */
+  --color-card-foreground: var(--ink); /* remove in Task 10 */
+  --color-legacy-muted: var(--surface); /* old bg-muted (tonal step); renamed because `muted` is now the text colour. Remove in Task 10 */
+  --color-muted-foreground: var(--muted); /* remove in Task 10 */
+  --color-secondary: var(--surface); /* remove in Task 10 */
+  --color-secondary-foreground: var(--ink); /* remove in Task 10 */
+  --color-field: var(--bg); /* remove in Task 10 */
+  --color-primary: var(--accent); /* remove in Task 10 */
+  --color-primary-foreground: var(--accent-ink); /* remove in Task 10 */
+  --color-accent-foreground: var(--accent-ink); /* remove in Task 10 */
+  --color-accent-soft: var(--surface); /* remove in Task 10 */
+  --color-success: var(--ink); /* remove in Task 10 */
+  --color-success-foreground: var(--bg); /* remove in Task 10 */
+  --color-success-soft: var(--surface); /* remove in Task 10 */
+  --color-border: var(--surface); /* remove in Task 10 */
+  --color-input: var(--muted); /* remove in Task 10 */
+  --color-ring: var(--ink);
+
+  --radius-sm: 4px; /* remove in Task 10 */
+  --radius: 8px; /* remove in Task 10 */
+  --radius-md: 8px; /* remove in Task 10 */
+  --radius-card: 12px; /* remove in Task 10 */
+}
+
+/* Food illustration palette: flat fills in real food colours, same in every theme (drawn fallbacks keep using it). */
 @theme static {
-  --font-display: 'Gloock', Georgia, serif;
-  --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
-
-  --color-background: #FFFFFF;
-  --color-foreground: #1E1819;
-
-  /* Tonal panel: one step off the ground, a warm stone from the pomegranate world. */
-  --color-card: #F6F1EF;
-  --color-card-foreground: #1E1819;
-  /* Hover and selected step, one tone darker than a panel. */
-  --color-muted: #ECE4E1;
-  --color-muted-foreground: #62565A;
-  --color-secondary: #FBF8F7;
-  --color-secondary-foreground: #1E1819;
-  /* White inputs stay white, even on a tonal panel. */
-  --color-field: #FFFFFF;
-
-  --color-primary: #8F1D37;
-  --color-primary-foreground: #FFFFFF;
-
-  /* Warning colour in every theme, so errors and over-budget states read the same. */
-  --color-accent: #A8391A;
-  --color-accent-foreground: #FFFFFF;
-  --color-accent-soft: #FBE8E1;
-
-  --color-success: #1F6A2E;
-  --color-success-foreground: #FFFFFF;
-  --color-success-soft: #DDF1E2;
-
-  --color-border: #E7E1DF;
-  /* Form control edges need 3:1 against the surface (WCAG 1.4.11); decorative borders do not. */
-  --color-input: #857A7C;
-  --color-ring: #B3284A;
-
-  /* Food illustration palette: flat fills in real food colours, one base and (where needed) one shade per material. Same in light and dark. */
   --color-food-bun: #D9923B;
   --color-food-bun-d: #B06F22;
   --color-food-meat: #6A3B2B;
@@ -55,37 +94,6 @@
   --color-food-tea: #C98F5C;
   --color-food-blue: #7FA8BD;
   --color-food-rose: #E8A0B2;
-
-  --radius-sm: 4px;
-  --radius: 8px;
-  --radius-md: 8px;
-  --radius-card: 12px;
-}
-
-/* Dark scheme: the same roles, pomegranate-tinted darks. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #160A0E;
-    --color-foreground: #FBEDEA;
-    --color-card: #22121A;
-    --color-card-foreground: #FBEDEA;
-    --color-muted: #31202A;
-    --color-muted-foreground: #C9AEB5;
-    --color-secondary: #1C0E14;
-    --color-secondary-foreground: #FBEDEA;
-    --color-field: #160A0E;
-    --color-primary: #F08BA0;
-    --color-primary-foreground: #2A0D15;
-    --color-accent: #F08A63;
-    --color-accent-foreground: #2A0D15;
-    --color-accent-soft: #3A1F17;
-    --color-success: #8CD197;
-    --color-success-foreground: #0F2A13;
-    --color-success-soft: #1A3322;
-    --color-border: #3A2630;
-    --color-input: #A98089;
-    --color-ring: #F08BA0;
-  }
 }
 
 html, body, #root {
@@ -96,22 +104,34 @@ html, body, #root {
 body {
   font-family: var(--font-sans);
   font-size: 14px;
-  line-height: 20px;
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  line-height: 1.4;
+  background-color: var(--bg);
+  color: var(--ink);
   -webkit-font-smoothing: antialiased;
-  font-variant-numeric: tabular-nums;
 }
 
-/* Gloock only ships one weight; stop browsers faking a bold version of it. */
+/* Display: Schibsted Grotesk 800, tight tracking, sentence case. */
 .font-display {
-  font-synthesis: none;
-  font-weight: 400;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+
+/* The plate rim fills once; with reduced motion it simply shows the final state. */
+@keyframes plate-fill {
+  from {
+    stroke-dasharray: 0 100;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .plate-rim-animate {
+    animation: plate-fill 1.6s ease-out 0.3s both;
+  }
 }
 
 /* Shared interaction styles, so the focus ring and colour transitions are defined once. */
 @utility focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink;
 }
 @utility motion-colors {
   @apply motion-safe:transition-colors motion-safe:duration-150;
@@ -124,4 +144,9 @@ body {
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* Tabular figures only where numbers line up (prices, scores); on body text they widen punctuation. */
+.tabular {
+  font-variant-numeric: tabular-nums;
 }

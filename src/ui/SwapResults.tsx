@@ -12,8 +12,8 @@ interface Props {
 
 const HEALTH_STYLE: Record<HealthLabel, string> = {
   Healthier: 'bg-success-soft text-success',
-  Similar: 'bg-muted text-muted-foreground',
-  'Less healthy': 'bg-muted text-foreground',
+  Similar: 'bg-legacy-muted text-muted-foreground',
+  'Less healthy': 'bg-legacy-muted text-foreground',
 };
 
 function formatDate(iso: string): string | null {
@@ -37,7 +37,7 @@ export function SwapResults({ swaps, cravingHealth = null, cravingCost = null }:
           return (
             <li
               key={alternative.id}
-              className="rounded-card bg-card p-4 motion-colors hover:bg-muted"
+              className="rounded-card bg-card p-4 motion-colors hover:bg-legacy-muted"
             >
               <div className="grid grid-cols-[auto_1fr_auto] items-start gap-x-3 gap-y-2">
                 <div className="size-16 shrink-0 rounded bg-background p-1 sm:row-span-2 sm:size-20 sm:p-1.5">
@@ -78,7 +78,7 @@ export function SwapResults({ swaps, cravingHealth = null, cravingCost = null }:
       </ul>
       {anySample && (
         <p className="text-xs text-muted-foreground">
-          <span className="rounded-sm bg-muted px-2 py-0.5 font-medium text-foreground">Sample data</span>
+          <span className="rounded-sm bg-legacy-muted px-2 py-0.5 font-medium text-foreground">Sample data</span>
           <span className="ml-2">Prices here are examples, not live shelf prices.</span>
         </p>
       )}

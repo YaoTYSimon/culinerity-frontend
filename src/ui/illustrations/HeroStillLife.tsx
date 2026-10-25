@@ -24,7 +24,7 @@ function Pomegranate({ x, y, size }: { x: number; y: number; size: number }) {
 export function HeroStillLife({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 360 280" aria-hidden="true" focusable="false" className={`overflow-visible ${className ?? ''}`} preserveAspectRatio="xMidYMax meet">
-      <rect x="-600" y="140" width="1560" height="600" className="fill-muted" />
+      <rect x="-600" y="140" width="1560" height="600" className="fill-legacy-muted" />
       <rect x="-600" y="138" width="1560" height="3" className="fill-foreground/5" />
       {/* Back row, standing on the far edge of the table. */}
       <SpaghettiPomodoro x="-6" y="52" width="92" height="92" />

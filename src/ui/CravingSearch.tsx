@@ -12,9 +12,9 @@ type Outcome =
   | { kind: 'swaps'; craving: FoodItem; swaps: RankedSwap[]; cravingHealth: number | null; cravingCost: number | null };
 
 const tile =
-  'flex min-h-11 flex-col items-stretch gap-2 rounded-card bg-card p-2 text-center text-sm text-foreground hover:bg-muted focus-ring motion-colors sm:p-3';
+  'flex min-h-11 flex-col items-stretch gap-2 rounded-card bg-card p-2 text-center text-sm text-foreground hover:bg-legacy-muted focus-ring motion-colors sm:p-3';
 const chip =
-  'flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded bg-card pl-1.5 pr-3 text-sm text-foreground hover:bg-muted focus-ring motion-colors';
+  'flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded bg-card pl-1.5 pr-3 text-sm text-foreground hover:bg-legacy-muted focus-ring motion-colors';
 
 function isTyping(el: EventTarget | null): boolean {
   if (!(el instanceof HTMLElement)) return false;
@@ -26,8 +26,8 @@ function SkeletonRows() {
     <div aria-hidden="true" className="grid gap-2">
       {[0, 1, 2].map((i) => (
         <div key={i} className="grid h-24 gap-3 rounded-card bg-card p-4 motion-safe:animate-pulse">
-          <div className="h-4 w-1/2 rounded-sm bg-muted" />
-          <div className="h-3 w-3/4 rounded-sm bg-muted" />
+          <div className="h-4 w-1/2 rounded-sm bg-legacy-muted" />
+          <div className="h-3 w-3/4 rounded-sm bg-legacy-muted" />
         </div>
       ))}
     </div>

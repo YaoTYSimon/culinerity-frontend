@@ -19,7 +19,7 @@ export function ScoreSummary({ score, takenAt }: { score: number; takenAt?: stri
       <h2 id="score-h" className="mb-3 text-sm font-semibold">Your food security score</h2>
       <div className="flex items-center gap-4">
         <svg viewBox="0 0 120 120" className="size-20 shrink-0" role="img" aria-label={`Score ${score} out of 100, ${band}`}>
-          <circle cx="60" cy="60" r={R} fill="none" strokeWidth="8" className="stroke-muted" />
+          <circle cx="60" cy="60" r={R} fill="none" strokeWidth="8" className="stroke-legacy-muted" />
           {score > 0 && (
             <circle
               cx="60" cy="60" r={R} fill="none" strokeWidth="8" strokeLinecap="round"

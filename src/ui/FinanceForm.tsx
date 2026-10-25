@@ -55,7 +55,7 @@ export function FinanceForm({ value, onChange }: Props) {
         {hint('fin-budget-hint', budget)}
       </div>
       <details className="group grid gap-4" open={more} onToggle={(e) => setMore(e.currentTarget.open)}>
-        <summary className="-my-1 flex min-h-11 w-fit cursor-pointer list-none items-center rounded px-1 text-sm font-medium text-primary hover:bg-muted focus-ring [&::-webkit-details-marker]:hidden">
+        <summary className="-my-1 flex min-h-11 w-fit cursor-pointer list-none items-center rounded px-1 text-sm font-medium text-primary hover:bg-legacy-muted focus-ring [&::-webkit-details-marker]:hidden">
           More about your week
         </summary>
         <div>

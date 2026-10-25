@@ -39,7 +39,7 @@ export function SupportPanel({ suburb }: { suburb?: string }) {
               <div className="flex flex-wrap items-center gap-2">
                 <h3 className="text-sm font-semibold">{p.name}</h3>
                 {p.isSample && (
-                  <span className="rounded-sm bg-muted px-2 py-0.5 text-xs font-medium text-foreground">Sample data</span>
+                  <span className="rounded-sm bg-legacy-muted px-2 py-0.5 text-xs font-medium text-foreground">Sample data</span>
                 )}
               </div>
               <p className="text-sm text-muted-foreground">{KIND_LABEL[p.kind]} in {p.suburb}</p>
