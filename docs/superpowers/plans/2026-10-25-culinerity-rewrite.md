@@ -188,17 +188,24 @@ Mock data: at least 10 common cravings (e.g. burger, hot chips, bubble tea, inst
 - [ ] **Step 2:** With the dev server on `http://localhost:8443/`, use the Playwright MCP to walk three paths and screenshot each: (a) skip the questionnaire and search "burger"; (b) take the questionnaire with worst answers, check the low-score ordering and the support panel; (c) enter a budget of 0 and confirm swaps still appear with no budget markers. Check the console for errors at a phone width of 390px.
 - [ ] **Step 3:** Fix anything found, re-run Step 1, commit `chore: verify and tidy`.
 
-### Task 12: Live-prices backend (stubbed, no paid calls)
+### Task 12: Backend with a database (Hono + SQLite)
+
+The user requires a real backend with a database. It holds **reference data only** (catalogue, swaps, prices, nutrition, support places); questionnaire answers and finances stay on the user's device, per the spec. User accounts/sync are out of scope until the user asks.
 
 **Files:**
-- Create: `server/index.ts`, `server/priceRoute.ts`, `server/scraperClient.ts`, `src/sources/http/HttpPriceSource.ts`
-- Modify: `package.json` (scripts `server`, `dev:all`; deps `hono`, `@hono/node-server`, `tsx`), `vite.config.ts` (proxy `/api` to the server in dev), `src/services/container.ts`
-- Test: `server/priceRoute.test.ts`, `src/sources/http/HttpPriceSource.test.ts`
+- Create: `server/index.ts`, `server/db.ts` (opens SQLite, runs `schema.sql`), `server/schema.sql`, `server/seed.ts` (loads `src/sources/mock/data.ts` into the DB), `server/repositories.ts`, `server/routes.ts`, `server/ingest.ts`, `server/scraperClient.ts`, `src/sources/http/HttpCatalogue.ts`, `HttpPriceSource.ts`, `HttpNutritionSource.ts`, `HttpFoodSupportSource.ts`
+- Modify: `package.json` (scripts `server`, `seed`, `dev:all`; deps `hono`, `@hono/node-server`, `better-sqlite3`, `tsx`), `vite.config.ts` (proxy `/api` to the server in dev), `src/services/container.ts`, `.gitignore` (`server/data/`)
+- Test: `server/repositories.test.ts`, `server/routes.test.ts`, `server/ingest.test.ts`, `src/sources/http/http.test.ts`
 
 **Interfaces:**
-- Produces: `GET /api/prices/:itemId` returning `PricePoint[]` JSON; `interface ScraperClient { fetchPrices(itemId: string): Promise<PricePoint[]> }` with `MockScraperClient` (default) and `ApifyScraperClient` (reads `APIFY_TOKEN` from the environment, disabled when unset); `class HttpPriceSource implements PriceSource` (calls `/api/prices/:itemId`, resolves `[]` on any network or non-200 failure).
-- Consumes: `PricePoint`, `PriceSource` (Task 2).
-- Rule: the app uses `HttpPriceSource` only when `VITE_USE_LIVE_PRICES=true`; otherwise the mock source stays. The API token never reaches the browser. Live prices keep `isSample: false` and show their source and observed date. **Do not call any paid scraper or send any token anywhere while building or testing; tests use `MockScraperClient` and injected fetch stubs. A real Apify run needs the user's explicit go-ahead and their own token.** Before enabling it, check the chosen actor's terms of use.
+- Produces:
+  - Repository interfaces in `server/repositories.ts` (`CatalogueRepository`, `PriceRepository`, `NutritionRepository`, `SupportRepository`) with SQLite implementations; routes depend only on the interfaces.
+  - Tables: `items(id, name, category)`, `keywords(item_id, keyword)`, `swaps(craving_id, alternative_id, note)`, `prices(item_id, store, price_per_serve, unit_label, observed_at, is_sample)`, `nutrition(item_id, energy_kj, protein_g, fibre_g, sugar_g, sodium_mg)`, `support_places(id, name, kind, suburb, notes, is_sample)`.
+  - Routes: `GET /api/cravings?q=`, `GET /api/cravings/popular`, `GET /api/swaps/:cravingId`, `GET /api/prices/:itemId`, `GET /api/nutrition/:itemId`, `GET /api/support?suburb=`; JSON shapes equal the Task 2 types.
+  - `interface ScraperClient { fetchPrices(itemId: string): Promise<PricePoint[]> }` with `MockScraperClient` (default) and `ApifyScraperClient` (reads `APIFY_TOKEN`; disabled when unset); `ingest(client, repo, itemIds)` upserts prices with `is_sample=false` for live data.
+  - `Http*` classes implement the Task 2 interfaces (`FoodCatalogue` is synchronous today: make the plan-consistent change by adding async variants or an `HttpCatalogue` that preloads popular cravings and swaps at start-up; the builder decides and records it). Each resolves the interface's empty value on any network error, non-200 status or malformed JSON.
+- Consumes: Task 2 types/interfaces, Task 4 `data.ts` (seed source).
+- Rules: parameterised SQL only (no string-built queries); API errors return `{error}` with no stack trace; `APIFY_TOKEN` never reaches the browser or the repo; the app uses the HTTP sources only when `VITE_USE_BACKEND=true`, otherwise the mocks stay. **No paid scraper call and no token use while building or testing: tests use an in-memory SQLite DB, `MockScraperClient` and injected fetch stubs. A real Apify run needs the user's explicit go-ahead and their own token; check the actor's terms first.**
 
-- [ ] **Step 1: Tests:** `priceRoute` returns 200 and the client's prices for a known id; returns `[]` (200) for an unknown id; returns 502 with `{error}` and no stack trace when the client throws; `HttpPriceSource` returns `[]` on a rejected fetch, on 500, and on malformed JSON; returns the parsed `PricePoint[]` on 200.
-- [ ] **Step 2:** Run → FAIL. **Step 3:** implement the server, clients and `HttpPriceSource`; wire the container flag. **Step 4:** `npm test` passes, `npm run build` passes, and with the flag off the app still uses mocks. **Step 5:** Commit `feat: live-prices backend (stubbed)`.
+- [ ] **Step 1: Tests:** repositories against an in-memory DB seeded from `data.ts`: popular cravings count is 10, each has >=2 swaps, every swap item has prices and nutrition; `q='  '` returns `[]`; SQL-injection-style input (`"'; DROP TABLE items;--"`) returns `[]` and leaves tables intact; routes return 200 with the Task 2 shapes, `[]`/200 for unknown ids, 400 for a missing `q` parameter type, and `{error}` with no stack on a repository throw; `ingest` with `MockScraperClient` upserts without duplicating rows and marks live rows `is_sample=false`; an `ApifyScraperClient` without a token rejects with a clear message and makes no network call; `Http*` classes return empty values on rejected fetch, 500 and malformed JSON and the parsed data on 200.
+- [ ] **Step 2:** Run → FAIL. **Step 3:** implement. **Step 4:** `npm test` and `npm run build` pass; start `npm run dev:all`, `curl localhost:<port>/api/cravings/popular` returns 10 items; with `VITE_USE_BACKEND` off the app still uses mocks. **Step 5:** Commit `feat: backend with SQLite`.
