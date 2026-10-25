@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -34,6 +35,11 @@ export default defineConfig(({ mode }) => {
       port: parseInt(process.env.PORT || '8443'),
       strictPort: true,
       watch: { ignored: ['**/.figma/**'] },
+    },
+    test: {
+      environment: 'jsdom',
+      setupFiles: ['src/test/setup.ts'],
+      globals: true,
     },
     preview: {
       host: process.env.FIGMA_DEV_SERVER_HOST || '0.0.0.0',
