@@ -40,7 +40,7 @@ export const ITEM_RECORDS: ItemRecord[] = [
   { item: food('fried-chicken', 'Fried chicken', 'fast food', ['fried chicken', 'kfc', 'nugget', 'chicken pieces']), unitLabel: '3 pieces', prices: [['Coles', 8], ['Woolworths', 8.5], ['IGA', 9]], macros: [2700, 30, 1, 1, 1500] },
   { item: food('kebab', 'Takeaway kebab', 'takeaway', ['kebab', 'shawarma', 'doner', 'halal snack pack', 'hsp']), unitLabel: '1 kebab', prices: [['Woolworths', 11], ['Coles', 11.5], ['Market', 10]], macros: [2800, 35, 5, 8, 1600] },
   { item: food('pastry', 'Bakery pastry', 'bakery', ['pastry', 'croissant', 'danish', 'sausage roll', 'pie']), unitLabel: '1 pastry', prices: [['Coles', 3.8], ['Woolworths', 3.9], ['Market', 4.5]], macros: [1600, 5, 2, 12, 400] },
-  { item: food('soft-drink', 'Soft drink bottle', 'drink', ['soft drink', 'soda', 'coke', 'cola', 'fanta', 'sprite']), unitLabel: '600ml', prices: [['Coles', 3.8], ['Woolworths', 3.7], ['IGA', 4.2]], macros: [1050, 0, 0, 63, 25] },
+  { item: food('soft-drink', 'Soft drink', 'drink', ['soft drink', 'soda', 'coke', 'cola', 'fanta', 'sprite', 'lemonade', 'iced tea', 'fizzy']), unitLabel: '600ml', prices: [['Coles', 3.8], ['Woolworths', 3.7], ['IGA', 4.2]], macros: [1050, 0, 0, 63, 25] },
 
   // Alternatives
   { item: food('smash-burger', 'Home smash burger', 'home cooking'), unitLabel: '1 burger', prices: [['Coles', 3.8], ['Woolworths', 3.6], ['Aldi', 3.2]], macros: [2000, 28, 4, 6, 600] },
