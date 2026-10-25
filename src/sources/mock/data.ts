@@ -73,7 +73,7 @@ export const SWAP_RECORDS: Array<{ cravingId: string; alternativeId: string; not
   { cravingId: 'bubble-tea', alternativeId: 'homemade-milk-tea', note: 'Brew strong tea, add milk and a little sugar: the same comfort for under a dollar.' },
   { cravingId: 'bubble-tea', alternativeId: 'fruit-iced-tea', note: 'Cold-brew tea with fruit slices in the fridge overnight, with far less sugar.' },
   { cravingId: 'instant-noodles', alternativeId: 'egg-noodle-stirfry', note: 'Egg noodles with frozen veg and soy: ready in 10 minutes with much less sodium and more fibre.' },
-  { cravingId: 'instant-noodles', alternativeId: 'egg-fried-rice', note: 'Day-old rice has a lower glycaemic index; eggs give complete protein and any veg boosts micronutrients.' },
+  { cravingId: 'instant-noodles', alternativeId: 'egg-fried-rice', note: 'Uses leftover rice, with an egg for protein and any veg you have on hand.' },
   { cravingId: 'pizza', alternativeId: 'turkish-bread-pizza', note: 'Turkish bread, passata and cheese under the grill: pizza night in 10 minutes.' },
   { cravingId: 'pizza', alternativeId: 'spaghetti-pomodoro', note: 'A bag of pasta and a tin of tomatoes makes several serves; cooked tomatoes are rich in lycopene.' },
   { cravingId: 'chocolate', alternativeId: 'banana-pb-toast', note: 'Sweet and filling with fibre and protein; a ripe banana does the sweetening.' },

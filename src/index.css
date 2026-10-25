@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import 'tailwindcss';
 
 @theme static {
@@ -6,7 +5,7 @@
   --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
-  /* Pomegranate is the default fruit theme. Other fruits override these on <html data-fruit>. */
+  /* Pomegranate theme tokens. */
   --color-background: #FBF3F1;
   --color-foreground: #2A0D15;
 
@@ -65,69 +64,6 @@
   --radius-lg: 16px;
 }
 
-[data-fruit='kiwi'] {
-  --color-background: #F6F8EC; --color-foreground: #1E2810; --color-card: #FFFFF8; --color-card-foreground: #1E2810;
-  --color-primary: #4A6E17; --color-secondary: #E6ECD2; --color-secondary-foreground: #1E2810;
-  --color-muted: #DCE4C2; --color-muted-foreground: #626D4E; --color-border: #D3DDB4; --color-ring: #5A8A1E;
-  --color-brand: #8DBB2E; --color-highlight: #D9B23A; --color-highlight-foreground: #2B1F11; --color-highlight-ink: #806610;
-  --color-sidebar: #2B1F11; --color-sidebar-raised: #4A3720; --color-sidebar-foreground: #F4EEDF; --color-sidebar-muted: #C6B596;
-  --color-hero: #93C13A; --color-hero-hi: #EEF2B8; --color-hero-lo: #5A8A1E; --color-hero-foreground: #142006; --color-hero-muted: #3B5216;
-  --color-w2: #5A8A1E; --color-w3: #8A6239; --color-w4: #B9D45A; --color-w5: #2F3B1A; --color-w6: #C7B98A;
-}
-[data-fruit='grape'] {
-  --color-background: #F7F3FA; --color-foreground: #241030; --color-card: #FFFDFF; --color-card-foreground: #241030;
-  --color-primary: #6A2B8A; --color-secondary: #ECE3F2; --color-secondary-foreground: #241030;
-  --color-muted: #E2D5EB; --color-muted-foreground: #725E80; --color-border: #DCCBE6; --color-ring: #8E4FB5;
-  --color-brand: #8E4FB5; --color-highlight: #B5D35A; --color-highlight-foreground: #1D0B26; --color-highlight-ink: #55701A;
-  --color-sidebar: #1D0B26; --color-sidebar-raised: #33143F; --color-sidebar-foreground: #F4ECF9; --color-sidebar-muted: #BFA6CF;
-  --color-hero: #4B1D63; --color-hero-hi: #8A47AD; --color-hero-lo: #24092F; --color-hero-foreground: #F4ECF9; --color-hero-muted: #C9AEDB;
-  --color-w2: #B98AD8; --color-w3: #E07BA4; --color-w4: #7FC0A8; --color-w5: #F2C14E; --color-w6: #EAD7F5;
-}
-[data-fruit='blueberry'] {
-  --color-background: #F3F5FB; --color-foreground: #121A36; --color-card: #FDFEFF; --color-card-foreground: #121A36;
-  --color-primary: #2F4A94; --color-secondary: #E2E7F4; --color-secondary-foreground: #121A36;
-  --color-muted: #D6DDEF; --color-muted-foreground: #5C6787; --color-border: #CBD4EA; --color-ring: #4F6BC2;
-  --color-brand: #4F6BC2; --color-highlight: #F4D35E; --color-highlight-foreground: #0C1430; --color-highlight-ink: #8A6C08;
-  --color-sidebar: #0C1430; --color-sidebar-raised: #18244D; --color-sidebar-foreground: #E9EEFB; --color-sidebar-muted: #A2AED3;
-  --color-hero: #22346E; --color-hero-hi: #5470C2; --color-hero-lo: #0E1638; --color-hero-foreground: #EEF2FD; --color-hero-muted: #AFBCE3;
-  --color-w2: #8FA6EC; --color-w3: #4FB3C9; --color-w4: #F2A0BC; --color-w5: #9CCB86; --color-w6: #C6CFF2;
-}
-[data-fruit='mango'] {
-  --color-background: #FFFAEB; --color-foreground: #33240A; --color-card: #FFFDF6; --color-card-foreground: #33240A;
-  --color-primary: #9A5406; --color-secondary: #F7EDCB; --color-secondary-foreground: #33240A;
-  --color-muted: #F0E3B6; --color-muted-foreground: #7D6C48; --color-border: #EDDCA2; --color-ring: #F5A524;
-  --color-brand: #F5A524; --color-highlight: #D9435C; --color-highlight-foreground: #FFF4F0; --color-highlight-ink: #B3263F;
-  --color-sidebar: #2E1F05; --color-sidebar-raised: #4A3410; --color-sidebar-foreground: #FFF6DE; --color-sidebar-muted: #E2C78E;
-  --color-hero: #F5A524; --color-hero-hi: #FFD866; --color-hero-lo: #DB7608; --color-hero-foreground: #2B1700; --color-hero-muted: #6A4510;
-  --color-w2: #6FA83A; --color-w3: #FFE08A; --color-w4: #A4511B; --color-w5: #E9825A; --color-w6: #FFF3C4;
-}
-[data-fruit='strawberry'] {
-  --color-background: #FFF5F5; --color-foreground: #330A12; --color-card: #FFFDFD; --color-card-foreground: #330A12;
-  --color-primary: #C21F37; --color-secondary: #FBE1E2; --color-secondary-foreground: #330A12;
-  --color-muted: #F7D2D5; --color-muted-foreground: #87575F; --color-border: #F3C6C9; --color-ring: #F0475E;
-  --color-brand: #F0475E; --color-highlight: #F7D44C; --color-highlight-foreground: #3A0A12; --color-highlight-ink: #8C6E0A;
-  --color-sidebar: #2A0610; --color-sidebar-raised: #4A0C1C; --color-sidebar-foreground: #FFEDEE; --color-sidebar-muted: #E8A9B1;
-  --color-hero: #D7263D; --color-hero-hi: #FF6474; --color-hero-lo: #8E0F22; --color-hero-foreground: #FFF2F3; --color-hero-muted: #FFC6CC;
-  --color-w2: #6DBE45; --color-w3: #FFB3BC; --color-w4: #FFF0DA; --color-w5: #F07A3A; --color-w6: #7A0B1C;
-}
-[data-fruit='orange'] {
-  --color-background: #FFF7EF; --color-foreground: #351705; --color-card: #FFFDFA; --color-card-foreground: #351705;
-  --color-primary: #C2500A; --color-secondary: #FBE6D3; --color-secondary-foreground: #351705;
-  --color-muted: #F6DAC0; --color-muted-foreground: #86624A; --color-border: #F2CDAA; --color-ring: #FF8A2A;
-  --color-brand: #FF8A2A; --color-highlight: #2F8F5B; --color-highlight-foreground: #F3FFF7; --color-highlight-ink: #1F6E43;
-  --color-sidebar: #2A1405; --color-sidebar-raised: #47230A; --color-sidebar-foreground: #FFF1E4; --color-sidebar-muted: #E5B48C;
-  --color-hero: #F57C1F; --color-hero-hi: #FFB65A; --color-hero-lo: #C2500A; --color-hero-foreground: #2A1200; --color-hero-muted: #6E3510;
-  --color-w2: #FFD08A; --color-w3: #8A3A08; --color-w4: #F2E36B; --color-w5: #FFF1DE; --color-w6: #7FB6A0;
-}
-[data-fruit='apple'] {
-  --color-background: #FBF7EE; --color-foreground: #2C1209; --color-card: #FFFDF7; --color-card-foreground: #2C1209;
-  --color-primary: #A3211A; --color-secondary: #F1E8D6; --color-secondary-foreground: #2C1209;
-  --color-muted: #EADFC6; --color-muted-foreground: #76604F; --color-border: #E4D4B4; --color-ring: #D23A2C;
-  --color-brand: #D23A2C; --color-highlight: #7CB342; --color-highlight-foreground: #182808; --color-highlight-ink: #4A7A1C;
-  --color-sidebar: #2B0A06; --color-sidebar-raised: #4A140D; --color-sidebar-foreground: #FBEFE6; --color-sidebar-muted: #D8AE9E;
-  --color-hero: #B5241B; --color-hero-hi: #E5503D; --color-hero-lo: #64110B; --color-hero-foreground: #FFF3EC; --color-hero-muted: #F2B9AC;
-  --color-w2: #E8C27A; --color-w3: #E5503D; --color-w4: #8A5A33; --color-w5: #F2A65A; --color-w6: #F5E3B8;
-}
 
 html, body, #root {
   height: 100%;
