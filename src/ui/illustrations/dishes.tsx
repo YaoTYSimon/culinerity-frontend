@@ -49,7 +49,7 @@ export const BubbleTea = (p: P) => (
     <g className={f.choc}>
       {[[26, 52], [32, 53], [38, 52], [29, 48], [35, 48], [32, 44]].map(([x, y]) => <circle key={`${x}${y}`} cx={x} cy={y} r="2.700" />)}
     </g>
-    <path d="M24 28l-1.500 20" className="stroke-background/60" strokeWidth="2" strokeLinecap="round" fill="none" />
+    <path d="M24 28l-1.500 20" className="stroke-bg/60" strokeWidth="2" strokeLinecap="round" fill="none" />
   </Frame>
 );
 
@@ -162,8 +162,8 @@ export const SoftDrink = (p: P) => (
     <path d="M27 12h10v6c0 3 9 5 9 12v22a5 5 0 0 1-5 5H23a5 5 0 0 1-5-5V30c0-7 9-9 9-12z" className={f.red} />
     <path d="M18 34h28v12H18z" className={f.cream} />
     <path d="M22 40h20" className="stroke-food-red" strokeWidth="3" strokeLinecap="round" />
-    <path d="M22 22c0 4-3 6-3 10" className="stroke-background/50" strokeWidth="2" strokeLinecap="round" fill="none" />
-    <circle cx="40" cy="26" r="1.500" className="fill-background/60" /><circle cx="36" cy="30" r="1" className="fill-background/60" />
+    <path d="M22 22c0 4-3 6-3 10" className="stroke-bg/50" strokeWidth="2" strokeLinecap="round" fill="none" />
+    <circle cx="40" cy="26" r="1.500" className="fill-bg/60" /><circle cx="36" cy="30" r="1" className="fill-bg/60" />
   </Frame>
 );
 
@@ -196,7 +196,7 @@ export const ChickenSaladRoll = (p: P) => (
 export const OvenWedges = (p: P) => (
   <Frame {...p}>
     <rect x="6" y="34" width="52" height="20" rx="4" className={f.blue} />
-    <rect x="9" y="36" width="46" height="14" rx="3" className="fill-background/30" />
+    <rect x="9" y="36" width="46" height="14" rx="3" className="fill-bg/30" />
     {[[14, 38, -10], [24, 36, 6], [35, 38, -6], [45, 36, 10], [29, 42, 80]].map(([x, y, r]) => (
       <g key={`${x}${y}`} transform={`rotate(${r} ${x + 5} ${y + 4})`}>
         <path d={`M${x} ${y}q5 -7 10 0q-1 9 -5 9q-4 0 -5 -9z`} className={f.gold} />
@@ -232,8 +232,8 @@ export const HomemadeMilkTea = (p: P) => (
 export const FruitIcedTea = (p: P) => (
   <Frame {...p}>
     <Glass fill="fill-food-tea/80" level={20}>
-      <rect x="25" y="26" width="8" height="8" rx="1.500" transform="rotate(-12 29 30)" className="fill-background/70" />
-      <rect x="32" y="36" width="7" height="7" rx="1.500" transform="rotate(10 35 40)" className="fill-background/70" />
+      <rect x="25" y="26" width="8" height="8" rx="1.500" transform="rotate(-12 29 30)" className="fill-bg/70" />
+      <rect x="32" y="36" width="7" height="7" rx="1.500" transform="rotate(10 35 40)" className="fill-bg/70" />
       <circle cx="30" cy="48" r="4" className={f.red} /><circle cx="37" cy="46" r="3" className={f.rose} />
     </Glass>
     <rect x="35" y="2" width="3.500" height="26" rx="1.700" transform="rotate(10 37 15)" className={f.leaf} />
@@ -289,7 +289,7 @@ export const SpaghettiPomodoro = (p: P) => (
     </g>
     <path d="M24 30c4-6 12-6 16 0-4 4-12 4-16 0z" className={f.red} />
     <path d="M30 24c2-5 6-6 8-4-1 4-5 6-8 4zM36 27c3-3 6-3 7-1-2 3-5 3-7 1z" className={f.leaf} />
-    <g className="fill-background/80"><circle cx="20" cy="40" r="1" /><circle cx="44" cy="41" r="1" /><circle cx="32" cy="46" r="1" /></g>
+    <g className="fill-bg/80"><circle cx="20" cy="40" r="1" /><circle cx="44" cy="41" r="1" /><circle cx="32" cy="46" r="1" /></g>
   </Frame>
 );
 
@@ -318,7 +318,7 @@ export const CocoaYoghurt = (p: P) => (
 export const BakedDrumsticks = (p: P) => (
   <Frame {...p}>
     <rect x="4" y="42" width="56" height="14" rx="4" className={f.blue} />
-    <rect x="7" y="44" width="50" height="9" rx="3" className="fill-background/30" />
+    <rect x="7" y="44" width="50" height="9" rx="3" className="fill-bg/30" />
     <Drumstick x={-6} y={4} r={-8} k={0.85} />
     <Drumstick x={14} y={-2} r={10} k={0.85} />
     <path d="M50 28l5-8M53 30l6-5" className={s.leafD} strokeWidth="2" strokeLinecap="round" fill="none" />
@@ -351,9 +351,9 @@ export const FruitToastRicotta = (p: P) => (
 export const SparklingLemon = (p: P) => (
   <Frame {...p}>
     <Glass fill="fill-food-blue/35" level={18}>
-      <circle cx="28" cy="46" r="2" className="fill-background/80" /><circle cx="35" cy="38" r="1.600" className="fill-background/80" />
-      <circle cx="31" cy="28" r="1.400" className="fill-background/80" /><circle cx="37" cy="48" r="1.400" className="fill-background/80" />
-      <rect x="27" y="22" width="8" height="8" rx="1.500" transform="rotate(14 31 26)" className="fill-background/70" />
+      <circle cx="28" cy="46" r="2" className="fill-bg/80" /><circle cx="35" cy="38" r="1.600" className="fill-bg/80" />
+      <circle cx="31" cy="28" r="1.400" className="fill-bg/80" /><circle cx="37" cy="48" r="1.400" className="fill-bg/80" />
+      <rect x="27" y="22" width="8" height="8" rx="1.500" transform="rotate(14 31 26)" className="fill-bg/70" />
     </Glass>
     <circle cx="44" cy="14" r="9" className={f.gold} /><circle cx="44" cy="14" r="7" className={f.cream} />
     <path d="M44 14V8M44 14l5.500-3M44 14l5.500 3M44 14l-5.500 3M44 14l-5.500-3" className="stroke-food-gold" strokeWidth="1.200" />
@@ -364,11 +364,11 @@ export const UnsweetenedIcedTea = (p: P) => (
   <Frame {...p}>
     <Ground rx={20} />
     <path d="M45 22c12-2 12 20 0 18" className="fill-none stroke-food-blue" strokeWidth="3" strokeLinecap="round" />
-    <path d="M14 14h30l-2 42H16z" className="fill-background/60" />
+    <path d="M14 14h30l-2 42H16z" className="fill-bg/60" />
     <path d="M15 24h28l-1.600 32H16.600z" className={f.tea} />
     <path d="M14 14h30l-2 42H16z" className="fill-none stroke-food-blue" strokeWidth="1.600" />
     <path d="M12 14h34" className="stroke-food-blue" strokeWidth="3" strokeLinecap="round" />
-    <rect x="21" y="28" width="9" height="9" rx="2" transform="rotate(-8 25 32)" className="fill-background/70" />
+    <rect x="21" y="28" width="9" height="9" rx="2" transform="rotate(-8 25 32)" className="fill-bg/70" />
     <circle cx="36" cy="46" r="7" className={f.gold} /><circle cx="36" cy="46" r="5.200" className={f.cream} />
     <path d="M36 46v-5M36 46l4.500-2.500M36 46l4.500 2.500M36 46l-4.500 2.500M36 46l-4.500-2.500" className="stroke-food-gold" strokeWidth="1" />
     <path d="M24 12c1-6 6-8 9-6-1 5-5 8-9 6z" className={f.leaf} />

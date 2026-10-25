@@ -24,13 +24,15 @@ export function headlineAmount(total: Aud): string {
 }
 const cents = (n: Aud): string => `$${n.toFixed(2)}`;
 
-type Notice = { kind: 'copied' } | { kind: 'failed' } | null;
+/** `forText` ties a notice to the week it was about, so it disappears when the week changes. */
+type Notice = { kind: 'copied' | 'failed'; forText: string } | null;
 
 /** The shareable week: savings only, never the score, answers, finances, suburb or name. */
 export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props) {
   const summary = weekSummary(week, now);
-  const [notice, setNotice] = useState<Notice>(null);
+  const [stored, setNotice] = useState<Notice>(null);
   const text = shareText(summary);
+  const notice = stored?.forText === text ? stored : null;
 
   const share = async () => {
     try {
@@ -41,13 +43,13 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
       }
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(text);
-        setNotice({ kind: 'copied' });
+        setNotice({ kind: 'copied', forText: text });
         return;
       }
-      setNotice({ kind: 'failed' });
+      setNotice({ kind: 'failed', forText: text });
     } catch (e) {
       // Closing the share sheet is not a failure.
-      setNotice(e instanceof DOMException && e.name === 'AbortError' ? null : { kind: 'failed' });
+      setNotice(e instanceof DOMException && e.name === 'AbortError' ? null : { kind: 'failed', forText: text });
     }
   };
 
@@ -111,7 +113,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
           value={text}
           rows={Math.min(10, text.split('\n').length + 1)}
           onFocus={(e) => e.currentTarget.select()}
-          className="focus-ring w-full rounded-2xl bg-surface p-3 text-sm text-ink"
+          className="focus-ring w-full rounded-3xl bg-surface px-5 py-3 text-sm text-ink"
         />
       )}
     </div>

@@ -42,7 +42,7 @@ export function FinanceForm({ value, onChange }: Props) {
 
   return (
     <form className="grid gap-4" onSubmit={(e) => e.preventDefault()}>
-      <p className="text-sm text-pretty text-muted-foreground">
+      <p className="text-sm text-pretty text-muted">
         These help us suggest swaps that fit your week. Everything is optional and stays on this device.
       </p>
       <div>

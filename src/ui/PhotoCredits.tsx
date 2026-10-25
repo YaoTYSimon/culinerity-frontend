@@ -1,11 +1,11 @@
 import { PHOTO_CREDITS } from '../assets/photos';
 
-const link = 'underline underline-offset-2 hover:text-foreground focus-ring';
+const link = 'underline underline-offset-2 hover:text-ink focus-ring rounded-full';
 
 export function PhotoCredits() {
   return (
     <details className="mt-2">
-      <summary className="inline-flex min-h-11 cursor-pointer items-center focus-ring">Photo credits ({PHOTO_CREDITS.length})</summary>
+      <summary className="inline-flex min-h-11 cursor-pointer items-center rounded-full focus-ring">Photo credits ({PHOTO_CREDITS.length})</summary>
       <p className="mt-1">Photographs from Wikimedia Commons.</p>
       <ul className="mt-2 grid gap-2">
         {PHOTO_CREDITS.map((c) => (

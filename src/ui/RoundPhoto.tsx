@@ -12,12 +12,14 @@ interface Props {
   alt?: string;
   eager?: boolean;
   className?: string;
+  /** Let CSS size it (e.g. `w-full`) instead of the fixed pixel box; `size` is then only the intrinsic size. */
+  fluid?: boolean;
 }
 
 /** A photo cropped as a round plate; the drawn illustration (also masked round) when there is no photo. */
-export function RoundPhoto({ src, itemId, size, alt = '', eager = false, className = '' }: Props) {
+export function RoundPhoto({ src, itemId, size, alt = '', eager = false, className = '', fluid = false }: Props) {
   const url = src ?? (itemId ? photoFor(itemId) : undefined);
-  const box = { width: size, height: size };
+  const box = fluid ? undefined : { width: size, height: size };
   if (!url) {
     return (
       <span className={`inline-block shrink-0 overflow-hidden rounded-full bg-surface ${className}`} style={box}>

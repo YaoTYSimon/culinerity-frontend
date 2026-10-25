@@ -51,31 +51,6 @@
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
 
-  /* Backward-compatible aliases so screens not yet redesigned keep rendering. Remove in Task 10. */
-  --color-background: var(--bg); /* remove in Task 10 */
-  --color-foreground: var(--ink); /* remove in Task 10 */
-  --color-card: var(--surface); /* remove in Task 10 */
-  --color-card-foreground: var(--ink); /* remove in Task 10 */
-  --color-legacy-muted: var(--surface); /* old bg-muted (tonal step); renamed because `muted` is now the text colour. Remove in Task 10 */
-  --color-muted-foreground: var(--muted); /* remove in Task 10 */
-  --color-secondary: var(--surface); /* remove in Task 10 */
-  --color-secondary-foreground: var(--ink); /* remove in Task 10 */
-  --color-field: var(--bg); /* remove in Task 10 */
-  --color-primary: var(--accent); /* remove in Task 10 */
-  --color-primary-foreground: var(--accent-ink); /* remove in Task 10 */
-  --color-accent-foreground: var(--accent-ink); /* remove in Task 10 */
-  --color-accent-soft: var(--surface); /* remove in Task 10 */
-  --color-success: var(--ink); /* remove in Task 10 */
-  --color-success-foreground: var(--bg); /* remove in Task 10 */
-  --color-success-soft: var(--surface); /* remove in Task 10 */
-  --color-border: var(--surface); /* remove in Task 10 */
-  --color-input: var(--muted); /* remove in Task 10 */
-  --color-ring: var(--ink);
-
-  --radius-sm: 4px; /* remove in Task 10 */
-  --radius: 8px; /* remove in Task 10 */
-  --radius-md: 8px; /* remove in Task 10 */
-  --radius-card: 12px; /* remove in Task 10 */
 }
 
 /* Food illustration palette: flat fills in real food colours, same in every theme (drawn fallbacks keep using it). */
@@ -135,15 +110,6 @@ body {
 }
 @utility motion-colors {
   @apply motion-safe:transition-colors motion-safe:duration-150;
-}
-
-/* Hide scrollbars only on the horizontal scrollers (cravings carousel, nav); the page keeps its own. */
-.hide-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
 }
 
 /* Tabular figures only where numbers line up (prices, scores); on body text they widen punctuation. */

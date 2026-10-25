@@ -91,6 +91,16 @@ describe('WeekCard', () => {
     expect(screen.getByRole('status')).toHaveTextContent('Copied');
   });
 
+  it('clears the Copied notice when the week changes', async () => {
+    setNav({ share: undefined, clipboard: { writeText: vi.fn().mockResolvedValue(undefined) } });
+    const props = { now: NOW, onRemoveOne: vi.fn(), onClear: vi.fn(), onSeeSwaps: vi.fn() };
+    const { rerender } = render(<WeekCard week={WEEK} {...props} />);
+    await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Share' })));
+    expect(screen.getByRole('status')).toHaveTextContent('Copied');
+    rerender(<WeekCard week={removeOneWeekSwap(WEEK, WEEK[0].itemId)} {...props} />);
+    expect(screen.getByRole('status')).toBeEmptyDOMElement();
+  });
+
   it('never throws when sharing fails: calm message and the text to copy by hand', async () => {
     setNav({ share: vi.fn().mockRejectedValue(new DOMException('no', 'NotAllowedError')) });
     setup();

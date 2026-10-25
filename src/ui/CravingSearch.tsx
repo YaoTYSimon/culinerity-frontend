@@ -131,7 +131,7 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
       <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-5">
         {popular.map((c, i) => (
           <button key={c.id} type="button" className={tile} onClick={() => pick(c)}>
-            <RoundPhoto itemId={c.id} size={120} eager={i < 4} className="aspect-square h-auto! w-full! max-w-[140px] group-focus-visible:ring-2 group-focus-visible:ring-ink group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-bg" />
+            <RoundPhoto itemId={c.id} size={120} fluid eager={i < 4} className="aspect-square w-full max-w-[140px] group-focus-visible:ring-2 group-focus-visible:ring-ink group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-bg" />
             {c.name}
           </button>
         ))}

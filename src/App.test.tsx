@@ -76,6 +76,15 @@ describe('App', () => {
     expect(store.saved.every((p) => p.welcomeSeen !== false)).toBe(true);
   });
 
+  it('opening Welcome from the menu as a first-time visitor does not mark it seen', () => {
+    const store = new InMemoryProfileStore();
+    renderApp(store);
+    openMenu('Swaps');
+    openMenu('Welcome');
+    expect(screen.getByRole('heading', { level: 1, name: WELCOME_H1 })).toBeInTheDocument();
+    expect(store.saved.some((p) => p.welcomeSeen === true)).toBe(false);
+  });
+
   it('menu items navigate to each view', () => {
     renderApp(new InMemoryProfileStore(SEEN));
     openMenu('Check-in');
