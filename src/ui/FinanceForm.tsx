@@ -14,7 +14,7 @@ function parseMoney(text: string): number | undefined {
 }
 
 const input =
-  'min-h-11 w-full rounded border border-input bg-field px-3 py-2.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-[invalid=true]:border-accent';
+  'min-h-11 w-full rounded border border-input bg-field px-3 py-2.5 text-sm text-foreground focus-ring aria-[invalid=true]:border-accent';
 
 /** Text state that follows the parent value, but keeps rejected text visible while the parent value is unchanged. */
 function useSynced(external: number | string | undefined, parse: (t: string) => number | string | undefined) {
@@ -55,7 +55,7 @@ export function FinanceForm({ value, onChange }: Props) {
         {hint('fin-budget-hint', budget)}
       </div>
       <details className="group grid gap-4" open={more} onToggle={(e) => setMore(e.currentTarget.open)}>
-        <summary className="-my-1 flex min-h-11 w-fit cursor-pointer list-none items-center rounded px-1 text-sm font-medium text-primary hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
+        <summary className="-my-1 flex min-h-11 w-fit cursor-pointer list-none items-center rounded px-1 text-sm font-medium text-primary hover:bg-muted focus-ring [&::-webkit-details-marker]:hidden">
           More about your week
         </summary>
         <div>

@@ -37,7 +37,7 @@ export function SwapResults({ swaps, cravingHealth = null, cravingCost = null }:
           return (
             <li
               key={alternative.id}
-              className="rounded-card bg-card p-4 motion-safe:transition-colors motion-safe:duration-150 hover:bg-muted"
+              className="rounded-card bg-card p-4 motion-colors hover:bg-muted"
             >
               <div className="grid grid-cols-[auto_1fr_auto] items-start gap-x-3 gap-y-2">
                 <div className="size-16 shrink-0 rounded bg-background p-1 sm:row-span-2 sm:size-20 sm:p-1.5">

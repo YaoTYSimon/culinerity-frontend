@@ -109,10 +109,19 @@ body {
   font-weight: 400;
 }
 
-* {
+/* Shared interaction styles, so the focus ring and colour transitions are defined once. */
+@utility focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+}
+@utility motion-colors {
+  @apply motion-safe:transition-colors motion-safe:duration-150;
+}
+
+/* Hide scrollbars only on the horizontal scrollers (cravings carousel, nav); the page keeps its own. */
+.hide-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-*::-webkit-scrollbar {
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

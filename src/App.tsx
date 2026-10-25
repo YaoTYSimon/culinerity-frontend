@@ -45,7 +45,7 @@ export default function App() {
     <div className="flex min-h-full flex-col">
       <a
         href="#main"
-        className="sr-only focus-visible:not-sr-only focus-visible:m-4 focus-visible:rounded focus-visible:bg-primary focus-visible:px-3 focus-visible:py-2 focus-visible:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="sr-only focus-visible:not-sr-only focus-visible:m-4 focus-visible:rounded focus-visible:bg-primary focus-visible:px-3 focus-visible:py-2 focus-visible:text-primary-foreground focus-ring focus-visible:ring-offset-2"
       >
         Skip to main content
       </a>
@@ -64,7 +64,7 @@ export default function App() {
               <span aria-hidden="true">{`${profile.score} · ${scoreBand(profile.score as number)}`}</span>
             </span>
           )}
-          <nav aria-label="Main" className="order-3 -mx-4 w-[calc(100%+2rem)] overflow-x-auto px-4 md:order-2 md:mx-0 md:w-auto md:px-0">
+          <nav aria-label="Main" className="hide-scrollbar order-3 -mx-4 w-[calc(100%+2rem)] overflow-x-auto px-4 md:order-2 md:mx-0 md:w-auto md:px-0">
             <ul className="flex gap-4">
               {NAV.map(({ view: v, label }) => (
                 <li key={v}>
@@ -72,7 +72,7 @@ export default function App() {
                     type="button"
                     aria-current={view === v ? 'page' : undefined}
                     onClick={() => setView(v)}
-                    className="-mb-px min-h-11 whitespace-nowrap border-b-2 border-transparent px-1 text-sm font-medium text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:transition-colors motion-safe:duration-150 aria-[current=page]:border-primary aria-[current=page]:text-foreground md:min-h-12"
+                    className="-mb-px min-h-11 whitespace-nowrap border-b-2 border-transparent px-1 text-sm font-medium text-muted-foreground hover:text-foreground focus-ring motion-colors aria-[current=page]:border-primary aria-[current=page]:text-foreground md:min-h-12"
                   >
                     {label}
                   </button>

@@ -4,7 +4,7 @@ interface Props {
 }
 
 const btn =
-  'min-h-11 rounded px-2.5 text-sm md:px-4 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card motion-safe:transition-colors motion-safe:duration-150';
+  'min-h-11 rounded px-2.5 text-sm md:px-4 font-medium focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card motion-colors';
 
 /** The one gentle, optional, dismissible prompt. A slim panel, never a gate. */
 export function Landing({ onStart, onDismiss }: Props) {

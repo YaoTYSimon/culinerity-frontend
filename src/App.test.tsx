@@ -89,7 +89,16 @@ describe('App', () => {
     expect(footer).toHaveTextContent(/not medical advice/i);
     expect(footer).toHaveTextContent(/sample data/i);
     expect(footer).toHaveTextContent('Swap ideas and the page illustration are drawn; craving photos are credited below.');
-    expect(within(footer).getByText('Photo credits')).toBeInTheDocument();
-    expect(footer.querySelector('details')).not.toBeNull();
+    expect(within(footer).getByText('Photo credits (10)')).toBeInTheDocument();
+    const details = footer.querySelector('details');
+    expect(details).not.toBeNull();
+    expect(details).not.toHaveAttribute('open');
+  });
+
+  it('gives every photo credit link an accessible name', () => {
+    renderApp();
+    const links = within(screen.getByRole('contentinfo')).getAllByRole('link', { hidden: true });
+    expect(links).toHaveLength(20);
+    links.forEach((a) => expect(a.getAttribute('aria-label')).toMatch(/\S/));
   });
 });

@@ -13,3 +13,16 @@ export function useServices(): Services {
   if (!s) throw new Error('useServices must be used inside a <ServicesProvider>');
   return s;
 }
+
+export type CatalogueStatus = 'loading' | 'ready' | 'unavailable';
+export interface CatalogueState {
+  status: CatalogueStatus;
+  retry: () => void;
+}
+
+export const CatalogueStatusContext = createContext<CatalogueState>({ status: 'ready', retry: () => {} });
+
+/** Whether the craving catalogue has loaded; always "ready" outside a ServicesLoader. */
+export function useCatalogueStatus(): CatalogueState {
+  return useContext(CatalogueStatusContext);
+}

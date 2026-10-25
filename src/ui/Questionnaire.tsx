@@ -15,16 +15,16 @@ const empty = (): Answers => ({
 });
 
 const primaryBtn =
-  'min-h-11 rounded bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-safe:transition-opacity motion-safe:duration-150';
+  'min-h-11 rounded bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-safe:transition-opacity motion-safe:duration-150';
 const quietBtn =
-  'min-h-11 rounded bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:transition-colors motion-safe:duration-150';
+  'min-h-11 rounded bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:bg-muted focus-ring motion-colors';
 
 function Choice({
   name, label, checked, onSelect,
 }: { name: string; label: string; checked: boolean; onSelect: () => void }) {
   return (
     <label
-      className={`flex min-h-11 flex-1 cursor-pointer items-center justify-center rounded px-2 py-2 text-center text-sm font-medium motion-safe:transition-colors motion-safe:duration-150 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring ${
+      className={`flex min-h-11 flex-1 cursor-pointer items-center justify-center rounded px-2 py-2 text-center text-sm font-medium motion-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring ${
         checked ? 'bg-primary text-primary-foreground' : 'bg-field text-foreground hover:bg-muted'
       }`}
     >
