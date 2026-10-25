@@ -46,7 +46,7 @@ describe('PhotoCredits', () => {
     const { container } = render(<PhotoCredits />);
     expect(container.querySelector('details summary')).toHaveTextContent('Photo credits');
     expect(container.querySelectorAll('li')).toHaveLength(10);
-    expect(screen.getByText('CC BY-SA 4.0')).toHaveAttribute('href', expect.stringContaining('creativecommons.org'));
+    expect(screen.getByText('CC BY 4.0')).toHaveAttribute('href', expect.stringContaining('creativecommons.org'));
     for (const a of container.querySelectorAll('a')) {
       expect(a).toHaveAttribute('rel', 'noopener noreferrer');
       expect(a).toHaveAttribute('target', '_blank');
