@@ -4,13 +4,14 @@ import App from './App';
 import { DOMAINS } from './domain/scoring/questionnaire';
 import { createServices } from './services/container';
 import { ServicesProvider } from './services/ServicesContext';
-import { LocalProfileStore } from './storage/profileStore';
+import { LocalProfileStore, type ProfileStore } from './storage/profileStore';
 import { MemoryProfileStore } from './test/memoryProfileStore';
 
+const SUPPORT = { name: 'Free food support near you' };
 const sectionCount = 1 + Object.keys(DOMAINS).length;
 
-function renderApp(store: { load(): object; save(p: never): void; clear(): void } = new MemoryProfileStore()) {
-  const services = { ...createServices(), profiles: store as MemoryProfileStore };
+function renderApp(store: ProfileStore = new MemoryProfileStore()) {
+  const services = { ...createServices(), profiles: store };
   return render(<ServicesProvider services={services}><App /></ServicesProvider>);
 }
 
@@ -36,7 +37,7 @@ describe('App', () => {
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
     expect(screen.getByRole('search')).toBeInTheDocument();
     expect(screen.getByRole('region', { name: /optional check-in/i })).toBeInTheDocument();
-    expect(screen.queryByText('Culinerity is not medical advice.')).not.toBeInTheDocument();
+    expect(screen.queryByRole('region', SUPPORT)).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /not now/i }));
     expect(screen.queryByRole('region', { name: /optional check-in/i })).not.toBeInTheDocument();
     expect(screen.getByRole('search')).toBeInTheDocument();
@@ -47,7 +48,7 @@ describe('App', () => {
     renderApp(store);
     takeWorstQuestionnaire();
     expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
-    expect(screen.getByText('Culinerity is not medical advice.')).toBeInTheDocument();
+    expect(within(screen.getByRole('region', SUPPORT)).getByText('Culinerity is not medical advice.')).toBeInTheDocument();
     const last = store.saved[store.saved.length - 1];
     expect(last.score).toBe(0);
     expect(typeof last.scoreTakenAt).toBe('string');
@@ -58,10 +59,10 @@ describe('App', () => {
   it('hides the panel from home for a score of 80 but keeps it in the menu', async () => {
     renderApp(new MemoryProfileStore({ score: 80 }));
     expect(screen.getByText('Secure')).toBeInTheDocument();
-    expect(screen.queryByText('Culinerity is not medical advice.')).not.toBeInTheDocument();
+    expect(screen.queryByRole('region', SUPPORT)).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /food support/i }));
     expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
-    expect(screen.getByText('Culinerity is not medical advice.')).toBeInTheDocument();
+    expect(within(screen.getByRole('region', SUPPORT)).getByText('Culinerity is not medical advice.')).toBeInTheDocument();
   });
 
   it('persists finance changes and restores score and budget on reload', () => {
