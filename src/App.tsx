@@ -5,6 +5,7 @@ import { CravingSearch } from './ui/CravingSearch';
 import { FinanceForm } from './ui/FinanceForm';
 import { HeroStillLife } from './ui/illustrations';
 import { Landing } from './ui/Landing';
+import { PhotoCredits } from './ui/PhotoCredits';
 import { Questionnaire } from './ui/Questionnaire';
 import { ScoreSummary } from './ui/ScoreSummary';
 import { SupportPanel } from './ui/SupportPanel';
@@ -138,7 +139,8 @@ export default function App() {
       </main>
 
       <footer className={`${PAGE} pb-6 text-xs text-muted-foreground`}>
-        Culinerity is not medical advice. Prices and places shown are sample data. Pictures are drawn, not photographs.
+        Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn, not photographed.
+        <PhotoCredits />
       </footer>
     </div>
   );

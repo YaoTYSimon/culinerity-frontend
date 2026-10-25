@@ -82,4 +82,13 @@ describe('App', () => {
     expect(screen.getByRole('region', { name: /optional check-in/i })).toBeInTheDocument();
     expect(within(document.body).queryByText(/100 = secure/)).not.toBeInTheDocument();
   });
+
+  it('keeps the footer notes and a photo credits disclosure', () => {
+    renderApp();
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toHaveTextContent(/not medical advice/i);
+    expect(footer).toHaveTextContent(/sample data/i);
+    expect(within(footer).getByText('Photo credits')).toBeInTheDocument();
+    expect(footer.querySelector('details')).not.toBeNull();
+  });
 });

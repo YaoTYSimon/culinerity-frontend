@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { type FoodItem, type Profile, cheapest, healthScore, type RankedSwap, swapService } from '@culinerity/core';
+import { photoFor } from '../assets/photos';
 import { useServices } from '../services/ServicesContext';
 import { SwapResults } from './SwapResults';
-import { FoodIllustration } from './illustrations';
+import { CravingPicture } from './CravingPicture';
 
 type Outcome =
   | { kind: 'none' }
@@ -117,9 +118,9 @@ export function CravingSearch({ profile }: { profile: Profile }) {
     <section aria-labelledby="popular-h" className="grid gap-2">
       <h2 id="popular-h" className={showGrid ? 'text-base font-semibold' : 'text-xs text-muted-foreground'}>Popular cravings</h2>
       <div className={showGrid ? '-mx-4 grid scroll-px-4 snap-x snap-mandatory auto-cols-[46%] grid-flow-col grid-rows-2 gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:auto-cols-auto sm:grid-flow-row sm:grid-rows-none sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-5' : '-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:px-0'}>
-        {popular.map((c) => (
+        {popular.map((c, i) => (
           <button key={c.id} type="button" className={showGrid ? tile : chip} onClick={() => pick(c)}>
-            <FoodIllustration id={c.id} className={showGrid ? 'size-11 shrink-0 sm:size-16' : 'size-8 shrink-0 rounded-sm bg-background'} />
+            <CravingPicture id={c.id} eager={showGrid && i < 4} size={showGrid ? 64 : 32} className={showGrid ? 'size-11 shrink-0 rounded-sm sm:size-16' : 'size-8 shrink-0 rounded-sm bg-background'} />
             {c.name}
           </button>
         ))}
@@ -182,12 +183,15 @@ export function CravingSearch({ profile }: { profile: Profile }) {
         )}
         {!loading && outcome.kind === 'swaps' && (
           <>
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+              <div className="flex min-w-0 items-center gap-3">
+                {photoFor(outcome.craving.id) && <CravingPicture id={outcome.craving.id} eager size={48} className="size-12 shrink-0 rounded" />}
               <h2 className="text-base font-semibold">
                 {outcome.swaps.length === 0
                   ? `No swaps found for ${outcome.craving.name} yet.`
                   : `${outcome.swaps.length} ${outcome.swaps.length === 1 ? 'swap' : 'swaps'} for ${outcome.craving.name}`}
               </h2>
+              </div>
               {outcome.cravingCost !== null && outcome.swaps.length > 0 && (
                 <p className="text-xs text-muted-foreground">Your craving: about ${outcome.cravingCost.toFixed(2)} per serve</p>
               )}
