@@ -14,7 +14,7 @@ function parseMoney(text: string): number | undefined {
 }
 
 const input =
-  'min-h-11 w-full rounded border border-border bg-card px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring aria-[invalid=true]:border-destructive';
+  'min-h-11 w-full rounded border border-border bg-card px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring aria-[invalid=true]:border-accent';
 
 /** Text state that follows the parent value, but keeps rejected text visible while the parent value is unchanged. */
 function useSynced(external: number | string | undefined, parse: (t: string) => number | string | undefined) {
@@ -34,7 +34,7 @@ export function FinanceForm({ value, onChange }: Props) {
   const bad = (t: string) => t.trim() !== '' && parseMoney(t) === undefined;
   const hint = (id: string, t: string) =>
     bad(t) ? (
-      <p id={id} className="mt-1 text-xs text-destructive">Enter an amount of 0 or more, using numbers only.</p>
+      <p id={id} className="mt-1 text-xs text-foreground">Enter an amount of 0 or more, using numbers only.</p>
     ) : null;
 
   return (
