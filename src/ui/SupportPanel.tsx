@@ -48,7 +48,7 @@ export function SupportPanel({ suburb }: { suburb?: string }) {
     <section aria-labelledby="support-h" className="grid gap-5">
       <div className="flex items-start gap-3">
         <div className="grid min-w-0 flex-1 gap-3">
-          <h1 id="support-h" className="font-display text-[30px] leading-tight font-bold text-balance">Free food near you.</h1>
+          <h1 id="support-h" tabIndex={-1} className="font-display text-[30px] leading-tight font-bold text-balance outline-none">Free food near you.</h1>
           <p className="text-base text-pretty text-muted">Call ahead to check times.</p>
         </div>
         <RoundPhoto src={photoUrl('welcome-pancakes')} size={132} eager className="mt-1" />

@@ -51,7 +51,7 @@ export function NumberScreen({ profile, onSeeSwaps, onCheckIn, onOpenSupport, on
 
   return (
     <div className="grid gap-6 pb-2">
-      <h1 className="font-display text-[30px] text-balance">{bandHeadline(score)}</h1>
+      <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">{bandHeadline(score)}</h1>
       <Plate score={score} band={scoreBand(score)} animate className="mx-auto" />
       <div className="grid gap-1 text-sm text-pretty text-muted">
         <p>100 is secure, 0 is critical.</p>

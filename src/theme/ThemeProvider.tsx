@@ -1,6 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { DEFAULT_THEME, parseTheme, type ThemeId, type ThemeStore } from '@culinerity/core';
-import { LocalThemeStore } from '../storage/localThemeStore';
 
 interface ThemeContextValue {
   theme: ThemeId;
@@ -10,14 +9,13 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue>({ theme: DEFAULT_THEME, setTheme: () => {} });
 
 interface Props {
-  store?: ThemeStore;
+  store: ThemeStore;
   children: ReactNode;
 }
 
 /** Owns the chosen theme: applies it as `data-theme` on <html> (the only place themes are switched) and persists it. */
 export function ThemeProvider({ store, children }: Props) {
-  const [fallbackStore] = useState<ThemeStore>(() => new LocalThemeStore());
-  const themeStore = store ?? fallbackStore;
+  const themeStore = store;
   const [theme, setThemeState] = useState<ThemeId>(() => themeStore.load());
 
   useEffect(() => {

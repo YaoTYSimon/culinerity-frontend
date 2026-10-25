@@ -9,7 +9,7 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 - `src/ui`: React components. `src/App.tsx` is the shell and view switch (plain state, no router): `welcome`, `checkin`, `number`, `swaps`, `support`, `week`.
 - `src/theme`: `tokens.ts` (the single TypeScript source of the four theme palettes), `ThemeProvider` (sets `data-theme` on `<html>` and persists the choice).
 - `src/assets/photos`: the 13 bundled Wikimedia Commons photographs (10 cravings, 3 home-cooked welcome photos) and `credits.ts`. Drawn illustrations in `src/ui/illustrations` are the fallback for cravings without a photo.
-- `src/services`: `createServices` (the only place concrete sources and stores are wired for the web app), `loadServices` (mocks, or HTTP sources when `VITE_USE_BACKEND=true`), `ServicesContext` and `ServicesLoader` (renders the shell at once; the backend catalogue loads in the background).
+- `src/services`: `createServices` (the only place concrete sources and the profile store are wired for the web app; the theme store is the one exception, built in `src/main.tsx` and passed to the required `store` prop of `ThemeProvider`), `loadServices` (mocks, or HTTP sources when `VITE_USE_BACKEND=true`), `ServicesContext` and `ServicesLoader` (renders the shell at once; the backend catalogue loads in the background).
 - `src/storage`: `LocalProfileStore` (profile) and `LocalThemeStore` (theme), both localStorage-backed and never throwing.
 - `src/index.css`: Tailwind v4 import, the six colour roles per theme (`:root` and `[data-theme=...]`), `@theme` names (`bg`, `surface`, `ink`, `muted`, `accent`, `accent-ink`), the food-illustration palette, the plate-rim animation, and the shared `focus-ring` / `motion-colors` utilities.
 - `scripts/contrast.mjs`: `node scripts/contrast.mjs` checks WCAG contrast of every theme from `src/index.css`.
@@ -58,7 +58,7 @@ Mock-first. By default the app runs on bundled sample data (prices, nutrition, s
 
 ## Conventions
 
-- SOLID and DRY. Depend on the core interfaces (`FoodCatalogue`, `PriceSource`, `NutritionSource`, `FoodSupportSource`, `ProfileStore`); wire concrete classes only in `createServices` / `createHttpServices`.
+- SOLID and DRY. Depend on the core interfaces (`FoodCatalogue`, `PriceSource`, `NutritionSource`, `FoodSupportSource`, `ProfileStore`); wire concrete classes only in `createServices` / `createHttpServices` (and the theme store in `src/main.tsx`).
 - Keep `packages/core` platform-free. Put browser code in `src`, Node code in `server`.
 - Style with Tailwind utilities and the theme tokens; do not hard-code colours (the food-illustration palette is the one exception). Reuse `focus-ring` and `motion-colors` rather than repeating those class strings.
 - Accessibility: visible focus, 44px touch targets, plain language, respect reduced motion.

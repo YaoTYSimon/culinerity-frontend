@@ -15,7 +15,7 @@ export function Welcome({ onFindNumber, onSkip }: Props) {
   return (
     <div className="grid gap-6 pb-4 pt-2">
       <div className="grid gap-3">
-        <h1 className="font-display text-[30px] text-balance">How much is food on your mind?</h1>
+        <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">How much is food on your mind?</h1>
         <p className="text-base text-pretty text-muted">
           Two minutes, one number out of 100. 100 is secure, 0 is critical. It stays on your phone.
         </p>

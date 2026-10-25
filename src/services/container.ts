@@ -1,11 +1,11 @@
-import { createCoreServices, createHttpServices, type FetchLike, type Services } from '@culinerity/core';
+import { createCoreServices, createHttpServices, type FetchLike, type ProfileStore, type Services } from '@culinerity/core';
 import { LocalProfileStore } from '../storage/localProfileStore';
 
 export type { Services };
 
 /** Web wiring: core services plus the localStorage profile store. */
-export function createServices(): Services {
-  return createCoreServices(new LocalProfileStore());
+export function createServices(profiles: ProfileStore = new LocalProfileStore()): Services {
+  return createCoreServices(profiles);
 }
 
 /**
@@ -17,5 +17,6 @@ export async function loadServices(
   useBackend: boolean,
   fetchFn: FetchLike = (url, init) => fetch(url, init),
 ): Promise<Services> {
-  return useBackend ? createHttpServices(new LocalProfileStore(), fetchFn) : createServices();
+  const profiles = new LocalProfileStore();
+  return useBackend ? createHttpServices(profiles, fetchFn) : createCoreServices(profiles);
 }

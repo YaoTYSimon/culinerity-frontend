@@ -230,4 +230,34 @@ describe('my week', () => {
     expect(text).not.toMatch(/Footscray|score/i);
     Object.defineProperty(navigator, 'share', { value: undefined, configurable: true });
   });
+
+  it('moves focus to the new view heading when the view changes, not on first render', () => {
+    renderApp(new InMemoryProfileStore());
+    expect(document.body).toHaveFocus();
+    fireEvent.click(screen.getByRole('button', { name: 'Find my number' }));
+    expect(screen.getByRole('heading', { level: 1, name: FIES_QUESTIONS[0] })).toHaveFocus();
+  });
+
+  it('focuses the heading after navigating via the Menu', () => {
+    renderApp(new InMemoryProfileStore(SEEN));
+    openMenu('Food support');
+    expect(screen.getByRole('heading', { level: 1, name: SUPPORT.name })).toHaveFocus();
+    openMenu('Swaps');
+    expect(screen.getByRole('heading', { level: 1, name: /Cheaper, healthier swaps/ })).toHaveFocus();
+  });
+
+  it('"Skip to cheaper swaps" focuses the swaps heading', () => {
+    renderApp(new InMemoryProfileStore());
+    fireEvent.click(screen.getByRole('button', { name: 'Skip to cheaper swaps' }));
+    expect(screen.getByRole('heading', { level: 1, name: /Cheaper, healthier swaps/ })).toHaveFocus();
+  });
+
+  it('does not steal focus on re-renders within a view', () => {
+    renderApp(new InMemoryProfileStore(SEEN));
+    const search = screen.getByRole('searchbox');
+    search.focus();
+    fireEvent.change(search, { target: { value: 'pi' } });
+    expect(search).toHaveFocus();
+  });
+
 });

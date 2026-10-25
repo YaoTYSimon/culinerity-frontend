@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { addWeekSwap, appendScore, removeOneWeekSwap, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { CravingSearch } from './ui/CravingSearch';
@@ -8,15 +8,16 @@ import { PhotoCredits } from './ui/PhotoCredits';
 import { NumberScreen } from './ui/NumberScreen';
 import { Questionnaire } from './ui/Questionnaire';
 import { SupportPanel } from './ui/SupportPanel';
-import type { NavTarget, View } from './ui/views';
+import { homeFor, resolveView, type NavTarget, type View } from './ui/views';
 import { WeekCard } from './ui/WeekCard';
 import { Welcome } from './ui/Welcome';
+import { useFocusOnViewChange } from './ui/useFocusOnViewChange';
 
 /** `now` gives the current ISO time; injected in tests. */
 export default function App({ now = () => new Date().toISOString() }: { now?: () => string } = {}) {
   const { profiles } = useServices();
   const [profile, setProfile] = useState<Profile>(() => profiles.load());
-  const [view, setView] = useState<View>(() => (profile.welcomeSeen === true ? homeFor(profile) : 'welcome'));
+  const [requested, setView] = useState<View>(() => (profile.welcomeSeen === true ? homeFor(profile) : 'welcome'));
 
   const update = (next: Profile) => {
     setProfile(next);
@@ -34,7 +35,10 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
     update({ ...profile, weekSwaps: addWeekSwap(profile.weekSwaps, swap, now()) });
   const go = (to: NavTarget) => setView(to === 'home' ? homeFor(profile) : to);
 
-  const hasScore = typeof profile.score === 'number';
+  // The number screen needs a score; without one, fall back to home rather than render an empty page.
+  const view = resolveView(requested, profile);
+  const main = useRef<HTMLElement>(null);
+  useFocusOnViewChange(view, main);
 
   return (
     <div className="min-h-dvh bg-surface">
@@ -47,7 +51,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         </a>
         <Header view={view} onNavigate={go} />
 
-        <main id="main" className="flex-1 px-4 py-4">
+        <main ref={main} id="main" tabIndex={-1} className="flex-1 outline-none px-4 py-4">
           {view === 'welcome' && (
             <Welcome
               onFindNumber={() => {
@@ -69,7 +73,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             <SupportPanel suburb={profile.suburb} />
           )}
 
-          {view === 'number' && hasScore && (
+          {view === 'number' && (
             <NumberScreen
               profile={profile}
               onSeeSwaps={() => setView('swaps')}
@@ -91,12 +95,12 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
 
           {view === 'swaps' && (
             <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
-              <h1 className="font-display text-[30px] text-balance">Cheaper, healthier swaps for what you crave</h1>
+              <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">Cheaper, healthier swaps for what you crave</h1>
               <p className="text-base text-pretty text-muted">
                 Pick a craving and see what costs less and sits better. For anyone in Melbourne, no sign-up.
               </p>
               <CravingSearch profile={profile} onAddToWeek={addToWeek} />
-              <BudgetSection profile={profile} onChange={update} />
+              <BudgetDisclosure value={profile} onChange={update} />
             </div>
           )}
         </main>
@@ -108,13 +112,4 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
       </div>
     </div>
   );
-}
-
-/** Home is the number once there is a score, otherwise the swap search. */
-function homeFor(profile: Profile): View {
-  return typeof profile.score === 'number' ? 'number' : 'swaps';
-}
-
-function BudgetSection({ profile, onChange }: { profile: Profile; onChange: (next: Profile) => void }) {
-  return <BudgetDisclosure value={profile} onChange={onChange} />;
 }
