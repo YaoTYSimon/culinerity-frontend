@@ -25,4 +25,18 @@ describe('theme tokens: one source, no drift', () => {
     const { contrastRatio } = await import('../../scripts/contrast.mjs');
     for (const id of THEME_IDS) expect(contrastRatio(THEME_TOKENS[id].accent, THEME_TOKENS[id].bg), id).toBeGreaterThanOrEqual(3);
   });
+
+  it('every theme block declares color-scheme matching its ground luminance', async () => {
+    const { contrastRatio } = await import('../../scripts/contrast.mjs');
+    const css = read('src/index.css');
+    const blocks = [...css.matchAll(/(:root|\[data-theme='(\w+)'\])\s*\{([^}]*)\}/g)];
+    expect(blocks.map((b) => b[2] ?? 'tobacco').sort()).toEqual([...THEME_IDS].sort());
+    for (const b of blocks) {
+      const id = (b[2] ?? 'tobacco') as (typeof THEME_IDS)[number];
+      const declared = /color-scheme:\s*(light|dark)\s*;/.exec(b[3])?.[1];
+      // Dark ground = it contrasts more with white than with black.
+      const dark = contrastRatio('#ffffff', THEME_TOKENS[id].bg) > contrastRatio('#000000', THEME_TOKENS[id].bg);
+      expect(declared, id).toBe(dark ? 'dark' : 'light');
+    }
+  });
 });

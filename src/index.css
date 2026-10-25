@@ -8,6 +8,7 @@
  */
 :root {
   /* tobacco (default) */
+  color-scheme: dark;
   --bg: #472913;
   --surface: #5a3720;
   --ink: #e4e0cf;
@@ -16,6 +17,7 @@
   --accent-ink: #472913;
 }
 [data-theme='sand'] {
+  color-scheme: light;
   --bg: #ddd6c6;
   --surface: #d2cab8;
   --ink: #2a2a26;
@@ -24,6 +26,7 @@
   --accent-ink: #f3f0e6;
 }
 [data-theme='walnut'] {
+  color-scheme: dark;
   --bg: #2b2216;
   --surface: #3d3123;
   --ink: #e4e2da;
@@ -32,6 +35,7 @@
   --accent-ink: #2b2216;
 }
 [data-theme='cream'] {
+  color-scheme: light;
   --bg: #f6efe6;
   --surface: #e6d8c9;
   --ink: #3a1f1a;
