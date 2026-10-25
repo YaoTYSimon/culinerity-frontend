@@ -58,6 +58,5 @@ The 13 photographs (ten cravings and three home-cooked dishes on the welcome, ch
 
 - Plate redesign spec: [docs/superpowers/specs/2026-10-26-welcome-themes-plate-redesign-design.md](docs/superpowers/specs/2026-10-26-welcome-themes-plate-redesign-design.md) and plan: [docs/superpowers/plans/2026-10-26-plate-redesign.md](docs/superpowers/plans/2026-10-26-plate-redesign.md)
 - Developer notes (structure, design rules, how to add a theme): [AGENTS.md](AGENTS.md)
-
 - Design spec: [docs/superpowers/specs/2026-10-25-culinerity-rewrite-design.md](docs/superpowers/specs/2026-10-25-culinerity-rewrite-design.md)
 - Implementation plan: [docs/superpowers/plans/2026-10-25-culinerity-rewrite.md](docs/superpowers/plans/2026-10-25-culinerity-rewrite.md)

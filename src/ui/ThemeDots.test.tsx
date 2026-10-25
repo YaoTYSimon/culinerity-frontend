@@ -9,6 +9,11 @@ const setup = (initial?: 'sand') =>
   render(<ThemeProvider store={new InMemoryThemeStore(initial)}><ThemeDots /></ThemeProvider>);
 
 describe('ThemeDots', () => {
+  it('draws no hairline outline on the swatches (flat colour only)', () => {
+    setup();
+    expect(document.querySelectorAll('svg circle, svg [stroke-width]')).toHaveLength(0);
+  });
+
   it('renders four buttons named by theme, exactly one pressed', () => {
     setup();
     for (const id of THEME_IDS) expect(screen.getByRole('button', { name: THEME_NAMES[id] })).toBeInTheDocument();

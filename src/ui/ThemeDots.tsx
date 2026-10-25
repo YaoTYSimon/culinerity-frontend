@@ -25,7 +25,6 @@ export function ThemeDots() {
               {/* Half ground, half accent, in that theme's own colours so it reads before it is chosen. */}
               <path d="M10 0A10 10 0 0 0 10 20Z" fill={THEME_TOKENS[id].bg} />
               <path d="M10 0A10 10 0 0 1 10 20Z" fill={THEME_TOKENS[id].accent} />
-              <circle cx="10" cy="10" r="9.5" fill="none" strokeWidth="1" className="stroke-muted" />
             </svg>
           </button>
         );

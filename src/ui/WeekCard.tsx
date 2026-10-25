@@ -57,7 +57,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
     return (
       <div className="grid gap-4">
         <RoundPhoto src={photoUrl('welcome-soup')} size={140} eager />
-        <h1 className="font-display text-[30px] leading-tight font-bold text-balance">Nothing in your week yet.</h1>
+        <h1 tabIndex={-1} className="font-display text-[30px] leading-tight font-bold text-balance outline-none">Nothing in your week yet.</h1>
         <p className="text-base text-pretty text-muted">
           When you add a swap, it lands here, and you can share what you saved.
         </p>
@@ -71,7 +71,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-5">
       <RoundPhoto src={photoUrl('welcome-soup')} size={180} eager />
-      <h1 className="font-display text-[32px] leading-tight font-bold text-balance">
+      <h1 tabIndex={-1} className="font-display text-[32px] leading-tight font-bold text-balance outline-none">
         I saved {headlineAmount(summary.total)} on food this week.
       </h1>
 
@@ -106,6 +106,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
         {notice?.kind === 'copied' && 'Copied'}
         {notice?.kind === 'failed' && "Couldn't share. You can copy it by hand."}
       </div>
+      {/* A multi-line box cannot be rounded-full (it would become an ellipse and clip the text): a large fixed radius reads as fully round at this height. */}
       {notice?.kind === 'failed' && (
         <textarea
           readOnly
@@ -113,7 +114,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
           value={text}
           rows={Math.min(10, text.split('\n').length + 1)}
           onFocus={(e) => e.currentTarget.select()}
-          className="focus-ring w-full rounded-3xl bg-surface px-5 py-3 text-sm text-ink"
+          className="focus-ring w-full rounded-[2rem] bg-surface px-5 py-3 text-sm text-ink"
         />
       )}
     </div>
