@@ -1,9 +1,85 @@
-import { render, screen } from '@testing-library/react'
-import App from './App'
+import { fireEvent, render, screen, within } from '@testing-library/react';
+import { afterEach, describe, expect, it } from 'vitest';
+import App from './App';
+import { DOMAINS } from './domain/scoring/questionnaire';
+import { createServices } from './services/container';
+import { ServicesProvider } from './services/ServicesContext';
+import { LocalProfileStore } from './storage/profileStore';
+import { MemoryProfileStore } from './test/memoryProfileStore';
+
+const sectionCount = 1 + Object.keys(DOMAINS).length;
+
+function renderApp(store: { load(): object; save(p: never): void; clear(): void } = new MemoryProfileStore()) {
+  const services = { ...createServices(), profiles: store as MemoryProfileStore };
+  return render(<ServicesProvider services={services}><App /></ServicesProvider>);
+}
+
+function answerSection(label: string) {
+  screen.getAllByRole('radio', { name: label }).forEach((r) => fireEvent.click(r));
+}
+
+function takeWorstQuestionnaire() {
+  fireEvent.click(screen.getByRole('button', { name: /take the check-in/i }));
+  answerSection('Yes');
+  for (let i = 1; i < sectionCount; i++) {
+    fireEvent.click(screen.getByRole('button', { name: /next/i }));
+    answerSection('Almost always');
+  }
+  fireEvent.click(screen.getByRole('button', { name: /see my score/i }));
+}
+
+afterEach(() => localStorage.clear());
 
 describe('App', () => {
-  it('renders the app name', () => {
-    render(<App />)
-    expect(screen.getByText('Culinerity')).toBeInTheDocument()
-  })
-})
+  it('first launch shows the swap search and an optional, non-blocking prompt', () => {
+    renderApp();
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('search')).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /optional check-in/i })).toBeInTheDocument();
+    expect(screen.queryByText('Culinerity is not medical advice.')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /not now/i }));
+    expect(screen.queryByRole('region', { name: /optional check-in/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('search')).toBeInTheDocument();
+  });
+
+  it('worst answers save score 0 and show the support panel and disclaimer', async () => {
+    const store = new MemoryProfileStore();
+    renderApp(store);
+    takeWorstQuestionnaire();
+    expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
+    expect(screen.getByText('Culinerity is not medical advice.')).toBeInTheDocument();
+    const last = store.saved[store.saved.length - 1];
+    expect(last.score).toBe(0);
+    expect(typeof last.scoreTakenAt).toBe('string');
+    expect(screen.getByText(/100 = secure, 0 = critical/)).toBeInTheDocument();
+    expect(screen.getByText('Critical')).toBeInTheDocument();
+  });
+
+  it('hides the panel from home for a score of 80 but keeps it in the menu', async () => {
+    renderApp(new MemoryProfileStore({ score: 80 }));
+    expect(screen.getByText('Secure')).toBeInTheDocument();
+    expect(screen.queryByText('Culinerity is not medical advice.')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /food support/i }));
+    expect(await screen.findAllByText('Sample data')).not.toHaveLength(0);
+    expect(screen.getByText('Culinerity is not medical advice.')).toBeInTheDocument();
+  });
+
+  it('persists finance changes and restores score and budget on reload', () => {
+    const store = new MemoryProfileStore({ score: 55 });
+    const first = renderApp(store);
+    fireEvent.change(screen.getByLabelText(/food budget/i), { target: { value: '90' } });
+    expect(store.saved[store.saved.length - 1]).toMatchObject({ score: 55, foodBudgetWeekly: 90 });
+    first.unmount();
+    renderApp(store);
+    expect(screen.getByLabelText(/food budget/i)).toHaveValue('90');
+    expect(screen.getByText('Strained')).toBeInTheDocument();
+  });
+
+  it('corrupt stored JSON still renders the first-launch state', () => {
+    localStorage.setItem('culinerity.profile.v1', '{not json');
+    renderApp(new LocalProfileStore());
+    expect(screen.getByRole('search')).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /optional check-in/i })).toBeInTheDocument();
+    expect(within(document.body).queryByText(/100 = secure/)).not.toBeInTheDocument();
+  });
+});
