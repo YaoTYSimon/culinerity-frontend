@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { UserProfile } from '../types';
+import { usePersistentState } from '../lib/persist';
 
 interface Props {
   profile: UserProfile;
@@ -46,9 +47,9 @@ const ASSET_CATEGORIES = [
 ];
 
 export default function FoodAssets({ profile }: Props) {
-  const [filter, setFilter] = useState<AssetType>('all');
+  const [filter, setFilter] = usePersistentState<AssetType>('assets_filter', 'all');
   const [locationStatus, setLocationStatus] = useState<'idle' | 'requesting' | 'granted' | 'denied'>('idle');
-  const [searchRadius, setSearchRadius] = useState(5);
+  const [searchRadius, setSearchRadius] = usePersistentState('assets_radius', 5);
 
   function requestLocation() {
     setLocationStatus('requesting');

@@ -24,6 +24,14 @@ export function getCLHBand(score: number): string {
   return CLH_BANDS.find((band) => score >= band.min && score <= band.max)?.label ?? 'Overloaded';
 }
 
+/**
+ * Headspace free (0–100, higher is better) for any saved entry. CLH check-ins store cognitive
+ * load, where higher is worse; older slider entries already store headspace free.
+ */
+export function getFreeScore(entry: HeadspaceEntry): number {
+  return entry.domainAnswers ? Math.round(100 - entry.score) : entry.score;
+}
+
 export function getLegacyScore(score: number): number {
   return Math.max(1, Math.ceil(score / 10));
 }
@@ -48,9 +56,9 @@ export function getScoreLabel(score: number): string {
 }
 
 export function getScoreColor(score: number): string {
-  if (score >= 75) return '#2A6448';
-  if (score >= 55) return '#8C6820';
-  if (score >= 35) return '#B45615';
+  if (score >= 75) return 'var(--color-success)';
+  if (score >= 55) return 'var(--color-warning)';
+  if (score >= 35) return 'var(--color-accent)';
   return '#8B2222';
 }
 

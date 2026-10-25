@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { UserProfile } from '../types';
 import { storage } from '../lib/storage';
+import { usePersistentState, clearDraft } from '../lib/persist';
 
 const FIES_QUESTIONS = [
   'In the past 4 weeks, were you worried you would not have enough food to eat because of a lack of money or other resources?',
@@ -47,8 +48,8 @@ interface Props {
 }
 
 export default function Onboarding({ onComplete }: Props) {
-  const [step, setStep] = useState(1);
-  const [form, setForm] = useState({
+  const [step, setStep] = usePersistentState('onboarding_step', 1);
+  const [form, setForm] = usePersistentState('onboarding_form', {
     name: '',
     postcode: '',
     suburb: '',
@@ -134,6 +135,7 @@ export default function Onboarding({ onComplete }: Props) {
       createdAt: new Date().toISOString(),
     };
     storage.setProfile(profile);
+    clearDraft('onboarding_step', 'onboarding_form');
     onComplete(profile);
   }
 
@@ -406,7 +408,7 @@ export default function Onboarding({ onComplete }: Props) {
             <div className="space-y-3">
               <div className="p-4 border border-border rounded bg-card">
                 <p className="text-sm font-semibold mb-1">What stays on your device</p>
-                <p className="text-sm text-muted-foreground">Everything — your profile, weekly logs, decision entries, FIES score, and headspace inputs. None of it leaves this device unless you explicitly opt in below.</p>
+                <p className="text-sm text-muted-foreground">Everything — your profile, weekly logs, decision entries, FIES score, and Culinerity Score inputs. None of it leaves this device unless you explicitly opt in below.</p>
               </div>
               <div className="p-4 border border-border rounded bg-card">
                 <p className="text-sm font-semibold mb-1">What the policy layer receives (opt-in only)</p>

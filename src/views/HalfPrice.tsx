@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { SupermarketCycle } from '../types';
 import { storage } from '../lib/storage';
+import { usePersistentState } from '../lib/persist';
 
 const SUPERMARKETS = ['Woolworths', 'Coles', 'Aldi', 'IGA', 'Harris Farm', 'Costco', 'Other'];
 
@@ -26,7 +27,7 @@ function getSaving(cycle: SupermarketCycle): string {
 
 export default function HalfPrice() {
   const [cycles, setCycles] = useState(() => storage.getCycles());
-  const [form, setForm] = useState({
+  const [form, setForm] = usePersistentState('halfprice_form', {
     itemName: '',
     supermarket: 'Woolworths',
     regularPrice: 0,
@@ -36,7 +37,7 @@ export default function HalfPrice() {
     saleDurationDays: 7,
     estimatedFrequencyDays: 28,
   });
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = usePersistentState('halfprice_show_form', false);
 
   function add() {
     if (!form.itemName.trim() || form.regularPrice <= 0) return;

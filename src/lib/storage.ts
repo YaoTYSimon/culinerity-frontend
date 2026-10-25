@@ -8,6 +8,7 @@ import type {
   SupermarketCycle,
   BudgetScenario,
 } from '../types';
+import { clearAllDrafts } from './persist';
 
 const KEY = {
   profile: 'hf_profile',
@@ -109,5 +110,6 @@ export const storage = {
 
   clearAll: () => {
     Object.values(KEY).forEach((k) => localStorage.removeItem(k));
+    clearAllDrafts();
   },
 };

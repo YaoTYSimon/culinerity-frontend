@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { UserProfile, NavView } from './types';
 import { storage } from './lib/storage';
+import { getFreeScore } from './lib/headspace';
+import { applyFruit, DEFAULT_FRUIT, FRUIT_STORAGE_KEY, isFruitId, type FruitId } from './lib/fruits';
 import Landing from './components/Landing';
 import Onboarding from './components/Onboarding';
 import Sidebar from './components/Sidebar';
@@ -14,26 +16,29 @@ import Pantry from './views/Pantry';
 import HalfPrice from './views/HalfPrice';
 import CulturalStaples from './views/CulturalStaples';
 import PolicyDashboard from './views/PolicyDashboard';
+import { usePersistentState } from './lib/persist';
 
 type AppStage = 'landing' | 'onboarding' | 'app';
 
 export default function App() {
   const [profile, setProfile] = useState<UserProfile | null>(() => storage.getProfile());
-  const [stage, setStage] = useState<AppStage>(() =>
-    storage.getProfile()?.onboardingComplete ? 'app' : 'landing'
-  );
-  const [view, setView] = useState<NavView>('dashboard');
+  const [stage, setStage] = usePersistentState<AppStage>('stage', 'landing');
+  const [view, setView] = usePersistentState<NavView>('view', 'dashboard');
   const [headspaceScore, setHeadspaceScore] = useState<number | null>(() => {
-    const entries = storage.getHeadspace();
-    return entries[0]?.score ?? null;
+    const latest = storage.getHeadspace()[0];
+    return latest ? getFreeScore(latest) : null;
   });
+  const [storedFruit, setFruit] = usePersistentState<FruitId>(FRUIT_STORAGE_KEY, DEFAULT_FRUIT);
+  const fruit = isFruitId(storedFruit) ? storedFruit : DEFAULT_FRUIT;
+
+  useEffect(() => applyFruit(fruit), [fruit]);
 
   function handleOnboardingComplete(p: UserProfile) {
     setProfile(p);
     setStage('app');
   }
 
-  if (stage === 'landing') {
+  if (stage === 'landing' && !profile?.onboardingComplete) {
     return <Landing onGetStarted={() => setStage('onboarding')} />;
   }
 
@@ -48,13 +53,16 @@ export default function App() {
         onChange={setView}
         profileName={profile.name}
         score={headspaceScore}
+        fruit={fruit}
+        onFruitChange={setFruit}
       />
 
-      <main className="flex-1 ml-52 min-h-full overflow-y-auto">
+      <main className="flex-1 ml-60 min-h-full overflow-y-auto">
         <div className="px-8 py-8 max-w-4xl">
           {view === 'dashboard' && (
             <Dashboard
               profile={profile}
+              fruit={fruit}
               onScoreUpdate={(score) => setHeadspaceScore(score)}
             />
           )}

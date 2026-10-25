@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, ScatterChart, Scatter, ZAxis } from 'recharts';
 import type { UserProfile } from '../types';
 import { storage } from '../lib/storage';
-import { getWeeklyDecisionCount, getMonthlyDecisionCount } from '../lib/headspace';
+import { getWeeklyDecisionCount, getMonthlyDecisionCount, getFreeScore } from '../lib/headspace';
+import { usePersistentState } from '../lib/persist';
 
 interface Props {
   profile: UserProfile;
@@ -55,8 +56,8 @@ const POLICY_SCENARIOS: Record<PolicyScenario, { label: string; desc: string; he
 
 export default function PolicyDashboard({ profile }: Props) {
   const [selectedSuburb, setSelectedSuburb] = useState(SUBURB_DATA[0]);
-  const [selectedScenario, setSelectedScenario] = useState<PolicyScenario | null>(null);
-  const [view, setView] = useState<'aggregate' | 'simulator'>('aggregate');
+  const [selectedScenario, setSelectedScenario] = usePersistentState<PolicyScenario | null>('policy_scenario', null);
+  const [view, setView] = usePersistentState<'aggregate' | 'simulator'>('policy_view', 'aggregate');
 
   const decisions = storage.getDecisions();
   const headspaceEntries = storage.getHeadspace();
@@ -65,7 +66,7 @@ export default function PolicyDashboard({ profile }: Props) {
   const contributedData = profile.privacyDataSharing;
   const weeklyFriction = getWeeklyDecisionCount(decisions);
   const monthlyFriction = getMonthlyDecisionCount(decisions);
-  const latestScore = headspaceEntries[0]?.score ?? null;
+  const latestScore = headspaceEntries[0] ? getFreeScore(headspaceEntries[0]) : null;
 
   const scenario = selectedScenario ? POLICY_SCENARIOS[selectedScenario] : null;
   const projectedSuburb = scenario
@@ -134,7 +135,7 @@ export default function PolicyDashboard({ profile }: Props) {
 
           {/* Bar chart */}
           <div className="bg-card border border-border rounded p-5">
-            <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-4">Average headspace score by suburb (Melbourne example)</p>
+            <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-4">Average Culinerity Score by suburb (Melbourne example)</p>
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={SUBURB_DATA} barSize={20}>
                 <CartesianGrid vertical={false} stroke="var(--color-border)" strokeDasharray="3 3" />
@@ -154,7 +155,7 @@ export default function PolicyDashboard({ profile }: Props) {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left px-4 py-3 text-xs font-mono uppercase tracking-wider text-muted-foreground">Suburb</th>
-                  <th className="text-right px-4 py-3 text-xs font-mono uppercase tracking-wider text-muted-foreground">Headspace</th>
+                  <th className="text-right px-4 py-3 text-xs font-mono uppercase tracking-wider text-muted-foreground">Culinerity</th>
                   <th className="text-right px-4 py-3 text-xs font-mono uppercase tracking-wider text-muted-foreground">Friction/wk</th>
                   <th className="text-right px-4 py-3 text-xs font-mono uppercase tracking-wider text-muted-foreground">Diversity</th>
                 </tr>
@@ -207,7 +208,7 @@ export default function PolicyDashboard({ profile }: Props) {
             <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3">{selectedSuburb.suburb} — current state</p>
             <div className="grid grid-cols-3 gap-4 text-sm">
               <div>
-                <p className="text-muted-foreground text-xs mb-0.5">Avg headspace</p>
+                <p className="text-muted-foreground text-xs mb-0.5">Avg Culinerity Score</p>
                 <p className="text-2xl font-display font-semibold">{selectedSuburb.headspaceAvg}</p>
               </div>
               <div>
@@ -248,7 +249,7 @@ export default function PolicyDashboard({ profile }: Props) {
               <div className="bg-card p-5">
                 <div className="grid grid-cols-3 gap-4 mb-5">
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Headspace score</p>
+                    <p className="text-xs text-muted-foreground mb-1">Culinerity Score</p>
                     <p className="text-2xl font-display font-semibold">{projectedSuburb.headspaceAvg}</p>
                     <p className="text-xs text-success font-mono mt-0.5">+{scenario.headspaceGain} points</p>
                   </div>
@@ -264,7 +265,7 @@ export default function PolicyDashboard({ profile }: Props) {
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Projections based on validated FIES correlation data and headspace score modelling. In production, uses real opt-in user data from this suburb.
+                  Projections based on validated FIES correlation data and Culinerity Score modelling. In production, uses real opt-in user data from this suburb.
                 </p>
               </div>
             </div>

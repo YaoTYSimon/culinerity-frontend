@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { detectCraving, type CravingResult, type Alternative } from '../lib/cravings';
 import type { UserProfile } from '../types';
+import { usePersistentState } from '../lib/persist';
 
 interface Props {
   profile: UserProfile;
@@ -31,9 +32,9 @@ function AlternativeCard({ alt }: { alt: Alternative }) {
 }
 
 export default function CravingSwap({ profile }: Props) {
-  const [query, setQuery] = useState('');
-  const [result, setResult] = useState<CravingResult | null>(null);
-  const [activeTab, setActiveTab] = useState<'alternatives' | 'recipe'>('alternatives');
+  const [query, setQuery] = usePersistentState('craving_query', '');
+  const [result, setResult] = usePersistentState<CravingResult | null>('craving_result', null);
+  const [activeTab, setActiveTab] = usePersistentState<'alternatives' | 'recipe'>('craving_tab', 'alternatives');
   const [locationStatus, setLocationStatus] = useState<'idle' | 'requesting' | 'granted' | 'denied'>('idle');
 
   function search() {

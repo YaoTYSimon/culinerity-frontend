@@ -3,6 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContaine
 import type { DecisionEntry } from '../types';
 import { storage } from '../lib/storage';
 import { getWeeklyDecisionCount, getMonthlyDecisionCount } from '../lib/headspace';
+import { usePersistentState } from '../lib/persist';
 
 const REASONS = [
   { value: 'cost', label: 'Cost — couldn\'t afford the preferred option' },
@@ -31,13 +32,13 @@ function getWeekBuckets(decisions: DecisionEntry[]): { week: string; count: numb
 
 export default function DecisionFriction() {
   const [decisions, setDecisions] = useState(() => storage.getDecisions());
-  const [form, setForm] = useState({
+  const [form, setForm] = usePersistentState('friction_form', {
     wanted: '',
     chose: '',
     reason: 'cost' as DecisionEntry['reason'],
     mealType: 'dinner' as DecisionEntry['mealType'],
   });
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = usePersistentState('friction_open', false);
   const [saved, setSaved] = useState(false);
 
   const weeklyCount = getWeeklyDecisionCount(decisions);

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import type { UserProfile, StaplePrice } from '../types';
 import { storage } from '../lib/storage';
+import { usePersistentState } from '../lib/persist';
 
 interface Props {
   profile: UserProfile;
@@ -30,15 +31,15 @@ function getItemHistory(staples: StaplePrice[], name: string): { date: string; p
 
 export default function CulturalStaples({ profile }: Props) {
   const [staples, setStaples] = useState(() => storage.getStaples());
-  const [form, setForm] = useState({
+  const [form, setForm] = usePersistentState('staples_form', {
     name: '',
     currentPrice: 0,
     unit: '',
     store: 'Woolworths',
     community: profile.culturalBackground || 'General',
   });
-  const [showForm, setShowForm] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [showForm, setShowForm] = usePersistentState('staples_show_form', false);
+  const [selectedItem, setSelectedItem] = usePersistentState<string | null>('staples_selected', null);
 
   const presets = COMMUNITY_PRESETS[profile.culturalBackground] ?? [];
 

@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import type { UserProfile, WeeklyLog } from '../types';
 import { storage } from '../lib/storage';
+import { usePersistentState } from '../lib/persist';
 
 interface Props {
   profile: UserProfile;
@@ -29,7 +30,7 @@ export default function WeeklyBalance({ profile }: Props) {
   const thisWeek = getWeekStart();
   const existing = logs.find((l) => l.weekStart === thisWeek);
 
-  const [form, setForm] = useState({
+  const [form, setForm] = usePersistentState(`weekly_form_${thisWeek}`, {
     moneySpent: existing?.moneySpent ?? 0,
     nutritionScore: existing?.nutritionScore ?? 5,
     timeSpent: existing?.timeSpent ?? 0,
@@ -203,18 +204,18 @@ export default function WeeklyBalance({ profile }: Props) {
               <Tooltip
                 contentStyle={{ background: 'var(--color-card)', border: '1px solid var(--color-border)', borderRadius: '4px', fontSize: '12px' }}
               />
-              <Line dataKey="nutrition" name="Nutrition" stroke="#2A6448" strokeWidth={1.5} dot={false} />
-              <Line dataKey="cultural" name="Cultural fit" stroke="#1B4D5C" strokeWidth={1.5} dot={false} />
-              <Line dataKey="cost" name="Cost pressure" stroke="#B45615" strokeWidth={1.5} dot={false} strokeDasharray="4 2" />
-              <Line dataKey="time" name="Time load" stroke="#8C6820" strokeWidth={1.5} dot={false} strokeDasharray="4 2" />
+              <Line dataKey="nutrition" name="Nutrition" stroke="var(--color-success)" strokeWidth={1.5} dot={false} />
+              <Line dataKey="cultural" name="Cultural fit" stroke="var(--color-brand)" strokeWidth={1.5} dot={false} />
+              <Line dataKey="cost" name="Cost pressure" stroke="var(--color-accent)" strokeWidth={1.5} dot={false} strokeDasharray="4 2" />
+              <Line dataKey="time" name="Time load" stroke="var(--color-highlight-ink)" strokeWidth={1.5} dot={false} strokeDasharray="4 2" />
             </LineChart>
           </ResponsiveContainer>
           <div className="flex flex-wrap gap-4 mt-3">
             {[
-              { color: '#2A6448', label: 'Nutrition (higher = better)' },
-              { color: '#1B4D5C', label: 'Cultural fit (higher = better)' },
-              { color: '#B45615', label: 'Cost pressure (higher = over budget)' },
-              { color: '#8C6820', label: 'Time load (higher = more hours)' },
+              { color: 'var(--color-success)', label: 'Nutrition (higher = better)' },
+              { color: 'var(--color-brand)', label: 'Cultural fit (higher = better)' },
+              { color: 'var(--color-accent)', label: 'Cost pressure (higher = over budget)' },
+              { color: 'var(--color-highlight-ink)', label: 'Time load (higher = more hours)' },
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-3 h-0.5" style={{ background: l.color }} />

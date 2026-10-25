@@ -67,7 +67,7 @@ function PhoneMockup() {
         {/* App header */}
         <div style={{ padding: '10px 20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <p style={{ fontFamily: FONT, fontSize: 11, color: 'rgba(255,255,255,0.5)', margin: 0, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Headspace</p>
+            <p style={{ fontFamily: FONT, fontSize: 11, color: 'rgba(255,255,255,0.5)', margin: 0, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Culinerity</p>
             <p style={{ fontFamily: FONT, fontSize: 14, color: 'white', margin: '1px 0 0', fontWeight: 600 }}>Hey, Amara</p>
           </div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #4F46E5, #818CF8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontSize: 13, fontWeight: 700, color: 'white' }}>A</div>
@@ -244,7 +244,7 @@ export default function Landing({ onGetStarted }: Props) {
       {/* ── NAV ── */}
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(255,255,255,0.82)', backdropFilter: 'blur(16px)', borderBottom: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 32px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: 18, fontWeight: 800, color: C.charcoal, letterSpacing: '-0.04em' }}>Headspace</span>
+          <span style={{ fontSize: 18, fontWeight: 800, color: C.charcoal, letterSpacing: '-0.04em' }}>Culinerity</span>
           <div style={{ display: 'flex', gap: 28 }}>
             {['Features', 'How it works', 'Policy'].map(l => (
               <span key={l} style={{ fontSize: 14, color: C.muted, cursor: 'pointer' }}>{l}</span>
@@ -297,7 +297,7 @@ export default function Landing({ onGetStarted }: Props) {
               take up?
             </h1>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.62)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto 36px' }}>
-              Headspace turns the invisible weight of food insecurity into a measurable score — then gives you tools to lower it.
+              Culinerity turns the invisible weight of food insecurity into a measurable score — then gives you tools to lower it.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <button onClick={onGetStarted} style={{ fontSize: 16, fontWeight: 700, background: 'linear-gradient(135deg, #818CF8, #4F46E5)', color: C.white, border: 'none', borderRadius: 999, padding: '15px 36px', cursor: 'pointer', boxShadow: '0 8px 40px rgba(79,70,229,0.55)' }}>
@@ -355,7 +355,7 @@ export default function Landing({ onGetStarted }: Props) {
             {[
               {
                 img: IMG.spoons,
-                title: 'Headspace Score',
+                title: 'Culinerity Score',
                 desc: 'Five axes — cost, nutrition, time, cultural fit, decision friction — reduced to one empowering number: how much headspace you actually have free.',
                 tag: 'The centrepiece',
               },
@@ -368,7 +368,7 @@ export default function Landing({ onGetStarted }: Props) {
               {
                 img: IMG.riceBowl,
                 title: 'Budget Simulator',
-                desc: "Stress-test rent hikes, lost shifts, grocery inflation. See how each scenario hits your headspace score before it hits your wallet.",
+                desc: "Stress-test rent hikes, lost shifts, grocery inflation. See how each scenario hits your Culinerity Score before it hits your wallet.",
                 tag: 'What-if planning',
               },
             ].map(f => (
@@ -479,7 +479,7 @@ export default function Landing({ onGetStarted }: Props) {
           <p style={{ fontFamily: FONT, fontSize: 16, color: C.muted, maxWidth: 560, margin: '0 auto 48px', lineHeight: 1.75 }}>Currently, councils wait for annual surveys. This is live, postcode-resolution, opt-in, and anonymised — and it lets them model interventions before funding them.</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
             {[
-              { label: 'Policy dashboard', desc: 'Suburb-level headspace and friction scores, continuously updated', icon: '◎' },
+              { label: 'Policy dashboard', desc: 'Suburb-level Culinerity and friction scores, continuously updated', icon: '◎' },
               { label: 'Policy simulator', desc: 'Model meal programs vs vouchers vs market subsidies before committing', icon: '⊞' },
               { label: 'Privacy-first', desc: 'On-device by default. Sharing is opt-in, strictly anonymised, reversible', icon: '⊛' },
             ].map(c => (
@@ -513,7 +513,7 @@ export default function Landing({ onGetStarted }: Props) {
       {/* ── FOOTER ── */}
       <footer style={{ background: C.charcoal, padding: '36px 32px' }}>
         <div style={{ maxWidth: 1040, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <span style={{ fontSize: 17, fontWeight: 800, color: C.white, letterSpacing: '-0.04em' }}>Headspace</span>
+          <span style={{ fontSize: 17, fontWeight: 800, color: C.white, letterSpacing: '-0.04em' }}>Culinerity</span>
           <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)' }}>Data on-device by default · Privacy-first · Australia</span>
           <div style={{ display: 'flex', gap: 24 }}>
             {['Privacy', 'Policy layer', 'Contact'].map(l => (

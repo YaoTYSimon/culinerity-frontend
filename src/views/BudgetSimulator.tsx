@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import type { UserProfile } from '../types';
 import { storage } from '../lib/storage';
-import { calculateHeadspaceScore, simulateScenario } from '../lib/headspace';
+import { calculateHeadspaceScore, getFreeScore, simulateScenario } from '../lib/headspace';
+import { usePersistentState } from '../lib/persist';
 
 interface Props {
   profile: UserProfile;
@@ -18,8 +19,8 @@ const PRESETS: { type: ScenarioType; label: string; desc: string }[] = [
 ];
 
 export default function BudgetSimulator({ profile }: Props) {
-  const [selectedPreset, setSelectedPreset] = useState<ScenarioType | null>(null);
-  const [custom, setCustom] = useState({
+  const [selectedPreset, setSelectedPreset] = usePersistentState<ScenarioType | null>('simulator_preset', null);
+  const [custom, setCustom] = usePersistentState('simulator_custom', {
     rentChangePercent: 0,
     incomeChangeDollars: 0,
     groceryInflationPercent: 0,
@@ -27,9 +28,9 @@ export default function BudgetSimulator({ profile }: Props) {
   });
 
   const headspaceEntries = storage.getHeadspace();
-  const currentScore = headspaceEntries[0]?.score ?? calculateHeadspaceScore({
-    costPressure: 50, nutritionTradeoffs: 50, timeEffort: 50, culturalFit: 50, decisionFriction: 50,
-  });
+  const currentScore = headspaceEntries[0]
+    ? getFreeScore(headspaceEntries[0])
+    : calculateHeadspaceScore({ costPressure: 50, nutritionTradeoffs: 50, timeEffort: 50, culturalFit: 50, decisionFriction: 50 });
 
   function getScenarioInputs() {
     switch (selectedPreset) {
@@ -59,7 +60,7 @@ export default function BudgetSimulator({ profile }: Props) {
       <div className="mb-8">
         <h1 className="text-2xl font-display font-semibold">Budget Scenarios</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Stress-test what financial shocks would do to your food security and headspace score
+          Stress-test what financial shocks would do to your food security and Culinerity Score
         </p>
       </div>
 
@@ -89,10 +90,10 @@ export default function BudgetSimulator({ profile }: Props) {
 
       {/* Current headspace */}
       <div className="bg-card border border-border rounded p-4 mb-6">
-        <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Current headspace score</p>
+        <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Current Culinerity Score</p>
         <p className="text-3xl font-display font-semibold">{currentScore}<span className="text-base font-sans text-muted-foreground ml-1">/ 100</span></p>
         {headspaceEntries.length === 0 && (
-          <p className="text-xs text-muted-foreground mt-1">No snapshot logged — using mid-range estimate. Update on the Headspace page.</p>
+          <p className="text-xs text-muted-foreground mt-1">No snapshot logged — using mid-range estimate. Update on the Culinerity page.</p>
         )}
       </div>
 
@@ -160,7 +161,7 @@ export default function BudgetSimulator({ profile }: Props) {
             <div className="bg-card p-5">
               <div className="grid grid-cols-3 gap-4 mb-5">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-1">Headspace score</p>
+                  <p className="text-xs text-muted-foreground mb-1">Culinerity Score</p>
                   <p className="text-2xl font-display font-semibold">{result.projectedScore}</p>
                   <p className={`text-xs font-mono mt-0.5 ${result.scoreDelta < 0 ? 'text-accent' : 'text-success'}`}>
                     {result.scoreDelta >= 0 ? '+' : ''}{result.scoreDelta} from current

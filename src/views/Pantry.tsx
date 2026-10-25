@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { UserProfile, PantryItem } from '../types';
 import { storage } from '../lib/storage';
+import { usePersistentState } from '../lib/persist';
 
 interface Props {
   profile: UserProfile;
@@ -90,8 +91,8 @@ function suggestRecipes(items: PantryItem[], cultural: string): RecipeSuggestion
 
 export default function Pantry({ profile }: Props) {
   const [pantry, setPantry] = useState(() => storage.getPantry());
-  const [form, setForm] = useState({ name: '', quantity: '', category: CATEGORIES[0] });
-  const [showRecipes, setShowRecipes] = useState(false);
+  const [form, setForm] = usePersistentState('pantry_form', { name: '', quantity: '', category: CATEGORIES[0] });
+  const [showRecipes, setShowRecipes] = usePersistentState('pantry_show_recipes', false);
 
   function add() {
     if (!form.name.trim()) return;
