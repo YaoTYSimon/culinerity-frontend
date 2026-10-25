@@ -98,24 +98,37 @@ export default function App() {
         )}
 
         {view === 'home' && (
-          <div className="grid gap-4 md:grid-cols-12 md:grid-rows-[auto_1fr_auto]">
-            <div className="grid content-start gap-2 md:col-span-7 md:row-start-1">
-              <h1 className="font-display text-[28px] leading-9 text-balance md:text-[32px] md:leading-10">
+          <div className="grid gap-4 md:grid-cols-12 md:grid-rows-[auto_auto_1fr_auto]">
+            <div className="order-1 grid content-start gap-2 md:col-span-5 md:col-start-8 md:row-start-1">
+              <h1 className="font-display text-[28px] leading-9 text-balance md:text-2xl md:leading-8 lg:text-[32px] lg:leading-10">
                 Cheaper, healthier swaps for what you crave
               </h1>
               <p className="text-base text-pretty text-muted-foreground">
                 Pick a craving and see what costs less and sits better. For anyone in Melbourne, no sign-up.
               </p>
             </div>
-            <div className="relative overflow-hidden rounded-card bg-card md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1 md:min-h-[240px]">
-              <HeroStillLife className="h-44 w-full md:absolute md:inset-0 md:h-full" />
+            <div className="relative order-2 h-[300px] overflow-hidden rounded-card bg-card md:col-span-7 md:col-start-1 md:row-span-3 md:row-start-1 md:h-auto md:min-h-[360px]">
+              <HeroStillLife className="size-full md:absolute md:inset-0" />
             </div>
             <CravingSearch profile={profile} />
-            <div className="grid content-start gap-4 md:col-span-5 md:col-start-8 md:row-start-3">
-              {!hasScore && !promptDismissed && <Landing onStart={() => setView('checkin')} onDismiss={() => setPromptDismissed(true)} />}
-              {hasScore && <ScoreSummary score={profile.score as number} takenAt={profile.scoreTakenAt} />}
-              {needsSupport && <SupportPanel suburb={profile.suburb} />}
-              <section aria-labelledby="week-h" className="grid gap-3 rounded-card bg-card p-4">
+            {/* Below md the banner and score sit in the page flow (banner above the cravings); from md they fill the column under the search. */}
+            {!hasScore && !promptDismissed && (
+              <div className="order-4 md:order-none md:col-span-5 md:col-start-8 md:row-start-3 md:self-start">
+                <Landing onStart={() => setView('checkin')} onDismiss={() => setPromptDismissed(true)} />
+              </div>
+            )}
+            {hasScore && (
+              <div className="order-6 md:order-none md:col-span-5 md:col-start-8 md:row-start-3 md:self-start">
+                <ScoreSummary score={profile.score as number} takenAt={profile.scoreTakenAt} />
+              </div>
+            )}
+            <div className="contents md:col-span-5 md:col-start-8 md:row-start-4 md:grid md:content-start md:gap-4">
+              {needsSupport && (
+                <div className="order-6 md:order-none">
+                  <SupportPanel suburb={profile.suburb} />
+                </div>
+              )}
+              <section aria-labelledby="week-h" className="order-7 grid gap-3 rounded-card bg-card p-4 md:order-none">
                 <h2 id="week-h" className="text-base font-semibold">Your week</h2>
                 <FinanceForm value={profile} onChange={update} />
               </section>

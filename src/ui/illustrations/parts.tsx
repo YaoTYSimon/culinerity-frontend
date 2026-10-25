@@ -25,7 +25,7 @@ export function Frame({ children, ...rest }: IllustrationProps & { children: Rea
   );
 }
 
-/** Contact shadow under an object. */
+/** Soft ground contact under an object. */
 export const Ground = ({ rx = 24, cy = 56 }: { rx?: number; cy?: number }) => (
   <ellipse cx="32" cy={cy} rx={rx} ry="4" className={f.ground} />
 );

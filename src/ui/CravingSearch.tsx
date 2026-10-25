@@ -11,7 +11,7 @@ type Outcome =
   | { kind: 'swaps'; craving: FoodItem; swaps: RankedSwap[]; cravingHealth: number | null; cravingCost: number | null };
 
 const tile =
-  'flex min-h-11 items-center gap-3 rounded-card bg-card p-2 text-left text-sm sm:flex-col sm:p-3 sm:text-center text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:transition-colors motion-safe:duration-150';
+  'flex min-h-11 snap-start items-center gap-2 rounded-card bg-card p-2 text-left text-sm sm:flex-col sm:p-3 sm:text-center text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:transition-colors motion-safe:duration-150';
 const chip =
   'flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded bg-card pl-1.5 pr-3 text-sm text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:transition-colors motion-safe:duration-150';
 
@@ -116,10 +116,10 @@ export function CravingSearch({ profile }: { profile: Profile }) {
   const popularBlock = (
     <section aria-labelledby="popular-h" className="grid gap-2">
       <h2 id="popular-h" className={showGrid ? 'text-base font-semibold' : 'text-xs text-muted-foreground'}>Popular cravings</h2>
-      <div className={showGrid ? 'grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5' : '-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:px-0'}>
+      <div className={showGrid ? '-mx-4 grid scroll-px-4 snap-x snap-mandatory auto-cols-[46%] grid-flow-col grid-rows-2 gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:auto-cols-auto sm:grid-flow-row sm:grid-rows-none sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-5' : '-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:px-0'}>
         {popular.map((c) => (
           <button key={c.id} type="button" className={showGrid ? tile : chip} onClick={() => pick(c)}>
-            <FoodIllustration id={c.id} className={showGrid ? 'size-12 shrink-0 sm:size-16' : 'size-8 shrink-0 rounded-sm bg-background'} />
+            <FoodIllustration id={c.id} className={showGrid ? 'size-11 shrink-0 sm:size-16' : 'size-8 shrink-0 rounded-sm bg-background'} />
             {c.name}
           </button>
         ))}
@@ -130,7 +130,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
   // Renders as two grid items of the home layout (see App): the search block and the results block.
   return (
     <div className="contents">
-      <div className="grid content-start gap-4 md:col-span-7 md:row-start-2">
+      <div className="order-3 grid content-start gap-4 md:col-span-5 md:col-start-8 md:row-start-2">
       <form role="search" className="grid gap-2" onSubmit={submit}>
         <label htmlFor="craving-q" className="sr-only">What are you craving?</label>
         <div className="flex gap-2">
@@ -140,7 +140,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
               placeholder="Try burger or chips"
               className="min-h-12 w-full min-w-0 rounded border border-input bg-field px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
-            <kbd aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-sm bg-card px-1.5 text-xs text-muted-foreground md:block">/</kbd>
+            <kbd aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-sm bg-card px-1.5 text-xs text-muted-foreground lg:block">/</kbd>
           </div>
           <button
             type="submit"
@@ -154,7 +154,7 @@ export function CravingSearch({ profile }: { profile: Profile }) {
       {!showGrid && popularBlock}
       </div>
 
-      <div aria-live="polite" className="grid content-start gap-3 md:col-span-7 md:row-start-3">
+      <div aria-live="polite" className="order-5 grid content-start gap-3 md:order-none md:col-span-7 md:col-start-1 md:row-start-4">
         {showGrid && popularBlock}
         {loading && (
           <>

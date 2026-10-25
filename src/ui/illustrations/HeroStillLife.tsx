@@ -1,4 +1,6 @@
-import { EggFriedRice, FalafelWrap, FruitIcedTea, OvenWedges, SmashBurger, SpaghettiPomodoro } from './dishes';
+import {
+  BananaPbToast, EggFriedRice, FruitIcedTea, HomemadeMilkTea, OvenWedges, Pastry, SmashBurger, SpaghettiPomodoro,
+} from './dishes';
 import { f } from './parts';
 
 /** A pomegranate cut in half: the brand's own fruit, drawn from its seeds outward. */
@@ -22,15 +24,19 @@ function Pomegranate({ x, y, size }: { x: number; y: number; size: number }) {
 export function HeroStillLife({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 360 280" aria-hidden="true" focusable="false" className={`overflow-visible ${className ?? ''}`} preserveAspectRatio="xMidYMax meet">
-      <rect x="-600" y="196" width="1560" height="400" className="fill-muted" />
-      <rect x="-600" y="194" width="1560" height="3" className="fill-foreground/5" />
-      <Pomegranate x={62} y={168} size={70} />
-      <SpaghettiPomodoro x="18" y="22" width="84" height="84" />
-      <SmashBurger x="112" y="36" width="152" height="152" />
-      <FruitIcedTea x="276" y="30" width="80" height="100" />
-      <EggFriedRice x="96" y="176" width="96" height="96" />
-      <OvenWedges x="196" y="184" width="84" height="84" />
-      <FalafelWrap x="272" y="146" width="84" height="100" />
+      <rect x="-600" y="140" width="1560" height="600" className="fill-muted" />
+      <rect x="-600" y="138" width="1560" height="3" className="fill-foreground/5" />
+      {/* Back row, standing on the far edge of the table. */}
+      <SpaghettiPomodoro x="-6" y="52" width="92" height="92" />
+      <BananaPbToast x="74" y="46" width="92" height="92" />
+      <FruitIcedTea x="168" y="22" width="76" height="120" />
+      <HomemadeMilkTea x="238" y="52" width="88" height="88" />
+      <Pastry x="300" y="78" width="56" height="56" />
+      {/* Front row, larger and nearer. */}
+      <Pomegranate x={40} y={204} size={68} />
+      <OvenWedges x="62" y="196" width="76" height="76" />
+      <SmashBurger x="108" y="96" width="160" height="160" />
+      <EggFriedRice x="250" y="156" width="104" height="104" />
     </svg>
   );
 }

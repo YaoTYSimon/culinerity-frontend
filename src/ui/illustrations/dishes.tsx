@@ -97,11 +97,13 @@ export const Chocolate = (p: P) => (
 
 const Drumstick = ({ x = 0, y = 0, r = 0, k = 1 }: { x?: number; y?: number; r?: number; k?: number }) => (
   <g transform={`translate(${x} ${y}) rotate(${r} 32 32) scale(${k})`}>
-    <path d="M6 44c-2-4 1-6 4-5l6 2 3 6c0 4-4 5-7 3z" className={f.cream} />
-    <circle cx="9" cy="43" r="3" className={f.cream} /><circle cx="13" cy="48" r="3" className={f.cream} />
-    <path d="M14 38c-5-12 5-26 20-24s17 15 8 24-20 9-28 0z" className={f.bunD} />
-    <path d="M17 36c-3-9 4-18 15-17-6 2-9 8-6 17z" className={f.bun} />
-    <g className={f.gold}><circle cx="36" cy="22" r="1.600" /><circle cx="42" cy="29" r="1.600" /><circle cx="33" cy="33" r="1.600" /></g>
+    <path d="M25 36L9 52" className="fill-none stroke-food-cream" strokeWidth="6" strokeLinecap="round" />
+    <path d="M25 36L9 52" className="fill-none stroke-food-cream-d" strokeWidth="1.5" strokeLinecap="round" />
+    <circle cx="6.500" cy="51" r="3.800" className={f.cream} /><circle cx="10" cy="55" r="3.800" className={f.cream} />
+    <path d="M13 20C13 7 33 3 46 11c11 7 11 22 1 29-9 6-19 3-25-2-4-4-9-10-9-18z" className={f.bunD} />
+    <path d="M16 20C17 11 31 7 41 12c-9 1-14 6-16 14-3 2-7-1-9-6z" className={f.bun} />
+    <g className={f.gold}><circle cx="38" cy="22" r="1.800" /><circle cx="43" cy="31" r="1.800" /><circle cx="31" cy="33" r="1.800" /><circle cx="25" cy="16" r="1.400" /></g>
+    <path d="M22 38c4 3 11 5 17 1" className="fill-none stroke-food-meat" strokeWidth="1.500" strokeLinecap="round" opacity="0.5" />
   </g>
 );
 
@@ -115,22 +117,21 @@ export const FriedChicken = (p: P) => (
 
 const Wrap = ({ filling, ...p }: P & { filling: 'meat' | 'falafel' | 'chicken' }) => (
   <Frame {...p}>
-    <Ground rx={22} />
-    <g transform="rotate(-22 32 36)">
-      <path d="M20 22q12-6 24 0l-5 32H25z" className={f.cream} />
-      <path d="M20 22q12-6 24 0l-.6 3.600q-11.400-5.600-22.800 0z" className={f.creamD} />
-      <path d="M24.500 40h15l-1.500 14H26z" className={f.red} />
-      <path d="M24.500 40h15l-.3 2.400H24.800z" className={f.redD} />
-      <path d="M20 21q3-7 7-4 2-6 6-3 3-5 7 1 4-1 5 5-12 4-25 1z" className={f.leaf} />
-      {filling === 'falafel' ? (
-        <g className={f.bunD}><circle cx="27" cy="19" r="3.600" /><circle cx="34" cy="17" r="3.600" /><circle cx="40" cy="20" r="3.200" /></g>
-      ) : filling === 'chicken' ? (
-        <g className={f.gold}><rect x="25" y="15" width="8" height="5" rx="2.500" /><rect x="34" y="14" width="8" height="5" rx="2.500" /></g>
-      ) : (
-        <g className={f.meat}><rect x="24" y="15" width="9" height="5" rx="2.500" /><rect x="34" y="14" width="9" height="5" rx="2.500" /></g>
-      )}
-      <circle cx="30" cy="16" r="1.800" className={f.rose} /><circle cx="38" cy="15" r="1.800" className={f.rose} />
-    </g>
+    <Ground rx={20} />
+    <path d="M19 33h26l-4 22a3 3 0 0 1-3 2.500H26a3 3 0 0 1-3-2.500z" className={f.red} />
+    <path d="M19 33h26l-.8 4.500H19.800z" className={f.redD} />
+    <rect x="26" y="44" width="12" height="5" rx="2.500" className={f.cream} />
+    <path d="M16 16q16-6 32 0l-3 19H19z" className={f.cream} />
+    <path d="M24 17l5 18" className="fill-none stroke-food-cream-d" strokeWidth="1.500" strokeLinecap="round" />
+    <path d="M17 15q3-9 7-5 2-8 7-4 3-6 8-1 5-3 7 4 3 3 1 6-15 6-30 0z" className={f.leaf} />
+    {filling === 'falafel' ? (
+      <g className={f.bunD}><circle cx="25" cy="13" r="4.500" /><circle cx="34" cy="10" r="4.500" /><circle cx="42" cy="14" r="4" /></g>
+    ) : filling === 'chicken' ? (
+      <g className={f.gold}><rect x="21" y="8" width="11" height="6" rx="3" /><rect x="33" y="9" width="11" height="6" rx="3" /></g>
+    ) : (
+      <g className={f.meat}><rect x="21" y="8" width="11" height="6" rx="3" /><rect x="33" y="9" width="11" height="6" rx="3" /></g>
+    )}
+    <circle cx="30" cy="9" r="2.200" className={f.rose} /><circle cx="40" cy="8" r="2.200" className={f.rose} /><circle cx="27" cy="14" r="2" className={f.red} />
   </Frame>
 );
 
@@ -141,15 +142,16 @@ export const ChickenKebabHome = (p: P) => <Wrap filling="chicken" {...p} />;
 export const Pastry = (p: P) => (
   <Frame {...p}>
     <Ground rx={24} />
-    <ellipse cx="14" cy="40" rx="6" ry="10" transform="rotate(-48 14 40)" className={f.bunD} />
-    <ellipse cx="50" cy="40" rx="6" ry="10" transform="rotate(48 50 40)" className={f.bunD} />
-    <ellipse cx="22" cy="33" rx="8" ry="12" transform="rotate(-25 22 33)" className={f.bun} />
-    <ellipse cx="42" cy="33" rx="8" ry="12" transform="rotate(25 42 33)" className={f.bun} />
-    <ellipse cx="32" cy="30" rx="10" ry="15" className={f.gold} />
-    <g className="fill-none stroke-food-bun-d" strokeWidth="1.600" strokeLinecap="round">
-      <path d="M27 20q5 3 10 0" /><path d="M25 28q7 4 14 0" /><path d="M26 36q6 3 12 0" />
-    </g>
-    <ellipse cx="29" cy="22" rx="2" ry="4" className="fill-food-cream/50" />
+    <ellipse cx="5.8" cy="45.5" rx="8" ry="6" transform="rotate(-76 5.8 45.5)" className={f.gold} />
+    <ellipse cx="13.2" cy="32.6" rx="11" ry="8" transform="rotate(-44 13.2 32.6)" className={f.bunD} />
+    <ellipse cx="25.5" cy="25.8" rx="14" ry="10" transform="rotate(-14 25.5 25.8)" className={f.gold} />
+    <ellipse cx="38.5" cy="25.8" rx="14" ry="10" transform="rotate(14 38.5 25.8)" className={f.bunD} />
+    <ellipse cx="50.8" cy="32.6" rx="11" ry="8" transform="rotate(44 50.8 32.6)" className={f.gold} />
+    <ellipse cx="58.2" cy="45.5" rx="8" ry="6" transform="rotate(76 58.2 45.5)" className={f.bunD} />
+    <ellipse cx="13.2" cy="29.4" rx="4.0" ry="1.6" transform="rotate(-44 13.2 29.4)" className="fill-food-cream/60" />
+    <ellipse cx="25.5" cy="21.4" rx="5.5" ry="1.6" transform="rotate(-14 25.5 21.4)" className="fill-food-cream/60" />
+    <ellipse cx="38.5" cy="21.4" rx="5.5" ry="1.6" transform="rotate(14 38.5 21.4)" className="fill-food-cream/60" />
+    <ellipse cx="50.8" cy="29.4" rx="4.0" ry="1.6" transform="rotate(44 50.8 29.4)" className="fill-food-cream/60" />
   </Frame>
 );
 
