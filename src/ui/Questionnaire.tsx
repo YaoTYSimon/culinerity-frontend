@@ -48,18 +48,22 @@ export function Questionnaire({ onComplete, onSkip }: Props) {
   const [missing, setMissing] = useState<string[]>([]);
   const last = SECTION_NAMES.length - 1;
 
-  const setFies = (i: number, v: boolean) =>
+  const setFies = (i: number, v: boolean) => {
+    setMissing([]);
     setAnswers((a) => ({ ...a, fies: a.fies.map((x, j) => (j === i ? v : x)) }));
-  const setDomain = (id: DomainId, i: number, v: number) =>
+  };
+  const setDomain = (id: DomainId, i: number, v: number) => {
+    setMissing([]);
     setAnswers((a) => ({ ...a, domains: { ...a.domains, [id]: a.domains[id].map((x, j) => (j === i ? v : x)) } }));
+  };
 
   function missingSections(): string[] {
     const out: string[] = [];
     const f = answers.fies.filter((x) => x === null).length;
-    if (f) out.push(`${SECTION_NAMES[0]} (${f} unanswered)`);
-    for (const id of DOMAIN_IDS) {
+    if (f) out.push(`Part 1 of ${last + 1}: ${SECTION_NAMES[0]} (${f} unanswered)`);
+    for (const [k, id] of DOMAIN_IDS.entries()) {
       const n = answers.domains[id].filter((x) => x === null).length;
-      if (n) out.push(`${DOMAIN_LABELS[id]} (${n} unanswered)`);
+      if (n) out.push(`Part ${k + 2} of ${last + 1}: ${DOMAIN_LABELS[id]} (${n} unanswered)`);
     }
     return out;
   }

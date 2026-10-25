@@ -37,7 +37,16 @@ describe('Questionnaire', () => {
     }
     fireEvent.click(screen.getByRole('button', { name: /see my score/i }));
     expect(onComplete).not.toHaveBeenCalled();
-    expect(screen.getByRole('alert')).toHaveTextContent(/Cost pressure/);
+    expect(screen.getByRole('alert')).toHaveTextContent(/Part 3 of 7: Cost pressure \(\d+ unanswered\)/);
+  });
+
+  it('clears the alert once an answer changes', () => {
+    render(<Questionnaire onComplete={vi.fn()} onSkip={vi.fn()} />);
+    for (let i = 1; i < sectionCount; i++) fireEvent.click(screen.getByRole('button', { name: /next/i }));
+    fireEvent.click(screen.getByRole('button', { name: /see my score/i }));
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+    fireEvent.click(screen.getAllByRole('radio', { name: 'Never' })[0]);
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 
   it('skips', () => {
