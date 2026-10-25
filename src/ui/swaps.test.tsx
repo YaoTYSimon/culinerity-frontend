@@ -165,3 +165,43 @@ describe('SwapResults date', () => {
     expect(screen.getByText(/date unknown/i)).toBeInTheDocument();
   });
 });
+
+describe('SwapResults saving chip', () => {
+  const f = { id: 'c', name: 'B', category: 'x', keywords: [] };
+  const swap = (cost: number): RankedSwap => ({
+    candidate: { craving: f, alternative: { ...f, id: 'a', name: 'A' }, note: 'n' },
+    cost, health: 50, withinBudget: null,
+    price: { itemId: 'a', store: 'Aldi', pricePerServe: cost, unitLabel: 'x', observedAt: '2026-03-12', isSample: true },
+  });
+
+  it('shows the saving against the craving price', () => {
+    render(<SwapResults swaps={[swap(3.2)]} cravingCost={9.5} />);
+    expect(screen.getByText('Saves $6.30 vs your craving')).toBeInTheDocument();
+  });
+
+  it('never shows a zero or negative saving', () => {
+    render(<SwapResults swaps={[swap(9.5), swap(12)]} cravingCost={9.5} />);
+    expect(screen.queryByText(/saves/i)).not.toBeInTheDocument();
+  });
+
+  it('says Sample data once per list, not per card', () => {
+    render(<SwapResults swaps={[swap(3), swap(4)]} cravingCost={9.5} />);
+    expect(screen.getAllByText('Sample data')).toHaveLength(1);
+  });
+});
+
+describe('keyboard', () => {
+  it('"/" focuses the craving search unless already typing', () => {
+    renderSearch();
+    const input = screen.getByLabelText(/what are you craving/i);
+    fireEvent.keyDown(document.body, { key: '/' });
+    expect(input).toHaveFocus();
+    (input as HTMLInputElement).blur();
+    const other = document.createElement('input');
+    document.body.appendChild(other);
+    other.focus();
+    fireEvent.keyDown(other, { key: '/' });
+    expect(other).toHaveFocus();
+    other.remove();
+  });
+});

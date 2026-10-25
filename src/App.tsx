@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import type { Profile } from '@culinerity/core';
+import { scoreBand, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { CravingSearch } from './ui/CravingSearch';
 import { FinanceForm } from './ui/FinanceForm';
+import { HeroStillLife } from './ui/illustrations';
 import { Landing } from './ui/Landing';
 import { Questionnaire } from './ui/Questionnaire';
 import { ScoreSummary } from './ui/ScoreSummary';
@@ -13,19 +14,13 @@ type View = 'home' | 'checkin' | 'support';
 const SUPPORT_BELOW = 40;
 
 const NAV: { view: View; label: string }[] = [
-  { view: 'home', label: 'Home' },
+  { view: 'home', label: 'Swaps' },
   { view: 'support', label: 'Food support' },
   { view: 'checkin', label: 'Check-in' },
 ];
 
-function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
-  return (
-    <section aria-labelledby={id} className="grid gap-2">
-      <h2 id={id} className="text-lg font-semibold text-balance">{title}</h2>
-      {children}
-    </section>
-  );
-}
+// Layout: one centred 12-column grid (md: 7 + 5 for the hero, 8 + 4 below), a single 16px gutter.
+const PAGE = 'mx-auto w-full max-w-[1148px] px-4 md:px-6';
 
 export default function App() {
   const { profiles } = useServices();
@@ -46,71 +41,91 @@ export default function App() {
   const needsSupport = hasScore && (profile.score as number) < SUPPORT_BELOW;
 
   return (
-    <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col">
+    <div className="flex min-h-full flex-col">
       <a
         href="#main"
-        className="sr-only focus-visible:not-sr-only focus-visible:m-4 focus-visible:rounded-md focus-visible:bg-primary focus-visible:px-3 focus-visible:py-2 focus-visible:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="sr-only focus-visible:not-sr-only focus-visible:m-4 focus-visible:rounded focus-visible:bg-primary focus-visible:px-3 focus-visible:py-2 focus-visible:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         Skip to main content
       </a>
-      <header className="grid gap-2 px-4 pt-4">
-        <p className="font-display text-xl text-primary">Culinerity</p>
-        <nav aria-label="Main">
-          <ul className="grid grid-cols-3 gap-2">
-            {NAV.map(({ view: v, label }) => (
-              <li key={v} className="grid">
-                <button
-                  type="button"
-                  aria-current={view === v ? 'page' : undefined}
-                  onClick={() => setView(v)}
-                  className="min-h-11 rounded-md border border-border bg-card px-2 text-sm font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-[current=page]:border-primary aria-[current=page]:bg-primary aria-[current=page]:text-primary-foreground"
-                >
-                  {label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <header className="border-b border-border">
+        <div className={`${PAGE} flex min-h-12 flex-wrap items-center gap-x-6`}>
+          <p className="flex items-center gap-2 py-2 text-base font-semibold">
+            <span aria-hidden="true" className="size-3 rounded-full bg-primary" />
+            Culinerity
+          </p>
+          {hasScore && (
+            <span
+              role="img"
+              aria-label={`Score ${profile.score} out of 100, ${scoreBand(profile.score as number)}. 100 = secure, 0 = critical.`}
+              className="order-2 ml-auto rounded-sm bg-card px-2 py-1 text-xs font-medium md:order-3"
+            >
+              <span aria-hidden="true">{`${profile.score} · ${scoreBand(profile.score as number)}`}</span>
+            </span>
+          )}
+          <nav aria-label="Main" className="order-3 -mx-4 w-[calc(100%+2rem)] overflow-x-auto px-4 md:order-2 md:mx-0 md:w-auto md:px-0">
+            <ul className="flex gap-4">
+              {NAV.map(({ view: v, label }) => (
+                <li key={v}>
+                  <button
+                    type="button"
+                    aria-current={view === v ? 'page' : undefined}
+                    onClick={() => setView(v)}
+                    className="-mb-px min-h-11 whitespace-nowrap border-b-2 border-transparent px-1 text-sm font-medium text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:transition-colors motion-safe:duration-150 aria-[current=page]:border-primary aria-[current=page]:text-foreground md:min-h-12"
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </header>
 
-      <main id="main" className="grid flex-1 content-start gap-6 px-4 py-6">
+      <main id="main" className={`${PAGE} flex-1 py-6 md:py-8`}>
         {view === 'checkin' && (
-          <>
+          <div className="mx-auto max-w-2xl">
             <h1 className="sr-only">Food and money check-in</h1>
             <Questionnaire onComplete={complete} onSkip={() => setView('home')} />
-          </>
+          </div>
         )}
 
         {view === 'support' && (
-          <>
-            <h1 className="font-display text-[clamp(1.5rem,5vw,2rem)] text-balance">Food support</h1>
+          <div className="mx-auto grid max-w-2xl gap-4">
+            <h1 className="text-2xl font-semibold text-balance">Food support</h1>
             <SupportPanel suburb={profile.suburb} />
-          </>
+          </div>
         )}
 
         {view === 'home' && (
-          <>
-            {(hasScore || promptDismissed) && (
-              <h1 className="font-display text-[clamp(1.5rem,5vw,2rem)] text-balance">Cheaper, healthier swaps for what you crave</h1>
-            )}
-            {hasScore ? (
-              <ScoreSummary score={profile.score as number} takenAt={profile.scoreTakenAt} />
-            ) : (
-              !promptDismissed && <Landing onStart={() => setView('checkin')} onDismiss={() => setPromptDismissed(true)} />
-            )}
-            <Section id="swap-h" title="What are you craving?">
-              <CravingSearch profile={profile} />
-            </Section>
-            {needsSupport && <SupportPanel suburb={profile.suburb} />}
-            <Section id="money-h" title="Your budget">
-              <FinanceForm value={profile} onChange={update} />
-            </Section>
-          </>
+          <div className="grid gap-4 md:grid-cols-12 md:grid-rows-[auto_1fr_auto]">
+            <div className="grid content-start gap-2 md:col-span-7 md:row-start-1">
+              <h1 className="font-display text-[28px] leading-9 text-balance md:text-[32px] md:leading-10">
+                Cheaper, healthier swaps for what you crave
+              </h1>
+              <p className="text-base text-pretty text-muted-foreground">
+                Pick a craving and see what costs less and sits better. For anyone in Melbourne, no sign-up.
+              </p>
+            </div>
+            <div className="relative overflow-hidden rounded-card bg-card md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1 md:min-h-[240px]">
+              <HeroStillLife className="h-44 w-full md:absolute md:inset-0 md:h-full" />
+            </div>
+            <CravingSearch profile={profile} />
+            <div className="grid content-start gap-4 md:col-span-5 md:col-start-8 md:row-start-3">
+              {!hasScore && !promptDismissed && <Landing onStart={() => setView('checkin')} onDismiss={() => setPromptDismissed(true)} />}
+              {hasScore && <ScoreSummary score={profile.score as number} takenAt={profile.scoreTakenAt} />}
+              {needsSupport && <SupportPanel suburb={profile.suburb} />}
+              <section aria-labelledby="week-h" className="grid gap-3 rounded-card bg-card p-4">
+                <h2 id="week-h" className="text-base font-semibold">Your week</h2>
+                <FinanceForm value={profile} onChange={update} />
+              </section>
+            </div>
+          </div>
         )}
       </main>
 
-      <footer className="px-4 pb-6 text-xs text-muted-foreground">
-        Culinerity is not medical advice. Prices and places shown are sample data.
+      <footer className={`${PAGE} pb-6 text-xs text-muted-foreground`}>
+        Culinerity is not medical advice. Prices and places shown are sample data. Pictures are drawn, not photographs.
       </footer>
     </div>
   );

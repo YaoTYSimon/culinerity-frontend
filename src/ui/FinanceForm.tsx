@@ -14,7 +14,7 @@ function parseMoney(text: string): number | undefined {
 }
 
 const input =
-  'min-h-11 w-full rounded border border-input bg-card px-3 py-2.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-[invalid=true]:border-accent';
+  'min-h-11 w-full rounded border border-input bg-field px-3 py-2.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-[invalid=true]:border-accent';
 
 /** Text state that follows the parent value, but keeps rejected text visible while the parent value is unchanged. */
 function useSynced(external: number | string | undefined, parse: (t: string) => number | string | undefined) {
@@ -38,12 +38,12 @@ export function FinanceForm({ value, onChange }: Props) {
     ) : null;
 
   return (
-    <form className="mx-auto grid w-full max-w-md gap-4 px-4 py-6" onSubmit={(e) => e.preventDefault()}>
-      <p className="text-sm text-muted-foreground">
+    <form className="grid gap-4" onSubmit={(e) => e.preventDefault()}>
+      <p className="text-sm text-pretty text-muted-foreground">
         These help us suggest swaps that fit your week. Everything is optional and stays on this device.
       </p>
       <div>
-        <label htmlFor="fin-budget" className="mb-1 block text-sm font-medium">Weekly food budget ($)</label>
+        <label htmlFor="fin-budget" className="mb-2 block text-sm font-medium">Weekly food budget ($)</label>
         <input
           id="fin-budget" type="text" inputMode="decimal" className={input} value={budget}
           aria-invalid={bad(budget)} aria-describedby={bad(budget) ? 'fin-budget-hint' : undefined}
@@ -51,22 +51,27 @@ export function FinanceForm({ value, onChange }: Props) {
         />
         {hint('fin-budget-hint', budget)}
       </div>
-      <div>
-        <label htmlFor="fin-income" className="mb-1 block text-sm font-medium">Weekly income ($, optional)</label>
-        <input
-          id="fin-income" type="text" inputMode="decimal" className={input} value={income}
-          aria-invalid={bad(income)} aria-describedby={bad(income) ? 'fin-income-hint' : undefined}
-          onChange={(e) => { setIncome(e.target.value); onChange({ ...value, incomeWeekly: parseMoney(e.target.value) }); }}
-        />
-        {hint('fin-income-hint', income)}
-      </div>
-      <div>
-        <label htmlFor="fin-suburb" className="mb-1 block text-sm font-medium">Suburb (optional)</label>
-        <input
-          id="fin-suburb" type="text" autoComplete="address-level2" className={input} value={suburb}
-          onChange={(e) => { setSuburb(e.target.value); onChange({ ...value, suburb: e.target.value.trim() === '' ? undefined : e.target.value }); }}
-        />
-      </div>
+      <details className="group grid gap-4" open={Boolean(value.incomeWeekly !== undefined || value.suburb) || undefined}>
+        <summary className="-my-1 flex min-h-11 w-fit cursor-pointer list-none items-center rounded px-1 text-sm font-medium text-primary hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
+          More about your week
+        </summary>
+        <div>
+          <label htmlFor="fin-income" className="mb-2 block text-sm font-medium">Weekly income ($, optional)</label>
+          <input
+            id="fin-income" type="text" inputMode="decimal" className={input} value={income}
+            aria-invalid={bad(income)} aria-describedby={bad(income) ? 'fin-income-hint' : undefined}
+            onChange={(e) => { setIncome(e.target.value); onChange({ ...value, incomeWeekly: parseMoney(e.target.value) }); }}
+          />
+          {hint('fin-income-hint', income)}
+        </div>
+        <div>
+          <label htmlFor="fin-suburb" className="mb-2 block text-sm font-medium">Suburb (optional)</label>
+          <input
+            id="fin-suburb" type="text" autoComplete="address-level2" className={input} value={suburb}
+            onChange={(e) => { setSuburb(e.target.value); onChange({ ...value, suburb: e.target.value.trim() === '' ? undefined : e.target.value }); }}
+          />
+        </div>
+      </details>
     </form>
   );
 }
