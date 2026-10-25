@@ -47,6 +47,12 @@ export default function App() {
 
   return (
     <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col">
+      <a
+        href="#main"
+        className="sr-only focus-visible:not-sr-only focus-visible:m-4 focus-visible:rounded-md focus-visible:bg-primary focus-visible:px-3 focus-visible:py-2 focus-visible:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      >
+        Skip to main content
+      </a>
       <header className="grid gap-2 px-4 pt-4">
         <p className="font-display text-xl text-primary">Culinerity</p>
         <nav aria-label="Main">
@@ -57,7 +63,7 @@ export default function App() {
                   type="button"
                   aria-current={view === v ? 'page' : undefined}
                   onClick={() => setView(v)}
-                  className="min-h-11 rounded-md border border-border bg-card px-2 text-sm font-medium hover:bg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-[current=page]:border-primary aria-[current=page]:bg-primary aria-[current=page]:text-primary-foreground"
+                  className="min-h-11 rounded-md border border-border bg-card px-2 text-sm font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-[current=page]:border-primary aria-[current=page]:bg-primary aria-[current=page]:text-primary-foreground"
                 >
                   {label}
                 </button>
@@ -67,7 +73,7 @@ export default function App() {
         </nav>
       </header>
 
-      <main className="grid flex-1 content-start gap-6 px-4 py-6">
+      <main id="main" className="grid flex-1 content-start gap-6 px-4 py-6">
         {view === 'checkin' && (
           <>
             <h1 className="sr-only">Food and money check-in</h1>
@@ -84,12 +90,14 @@ export default function App() {
 
         {view === 'home' && (
           <>
+            {(hasScore || promptDismissed) && (
+              <h1 className="font-display text-[clamp(1.5rem,5vw,2rem)] text-balance">Cheaper, healthier swaps for what you crave</h1>
+            )}
             {hasScore ? (
               <ScoreSummary score={profile.score as number} takenAt={profile.scoreTakenAt} />
             ) : (
               !promptDismissed && <Landing onStart={() => setView('checkin')} onDismiss={() => setPromptDismissed(true)} />
             )}
-            {(hasScore || promptDismissed) && <h1 className="sr-only">Culinerity home</h1>}
             <Section id="swap-h" title="What are you craving?">
               <CravingSearch profile={profile} />
             </Section>

@@ -13,7 +13,7 @@ type Outcome =
   | { kind: 'swaps'; craving: FoodItem; swaps: RankedSwap[]; cravingHealth: number | null };
 
 const pill =
-  'min-h-11 rounded border border-border bg-card px-3 py-2 text-sm text-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring';
+  'min-h-11 rounded border border-input bg-card px-3 py-2 text-sm text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
 
 export function CravingSearch({ profile }: { profile: Profile }) {
   const services = useServices();
@@ -80,14 +80,14 @@ export function CravingSearch({ profile }: { profile: Profile }) {
   return (
     <div className="mx-auto grid w-full max-w-md gap-4 px-4 py-6">
       <form role="search" className="grid gap-2" onSubmit={submit}>
-        <label htmlFor="craving-q" className="text-sm font-medium">What are you craving?</label>
+        <label htmlFor="craving-q" className="sr-only">What are you craving?</label>
         <div className="flex gap-2">
           <input
             id="craving-q" type="search" value={text} onChange={(e) => setText(e.target.value)}
             placeholder="e.g. burger, hot chips, bubble tea"
-            className="min-h-11 w-full min-w-0 rounded border border-border bg-card px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="min-h-11 w-full min-w-0 rounded border border-input bg-card px-3 py-2.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
-          <button type="submit" className="min-h-11 shrink-0 rounded bg-primary px-4 text-sm text-primary-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+          <button type="submit" className="min-h-11 shrink-0 rounded bg-primary px-4 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             Find swaps
           </button>
         </div>

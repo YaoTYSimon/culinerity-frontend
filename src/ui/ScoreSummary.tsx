@@ -25,7 +25,7 @@ export function ScoreSummary({ score, takenAt }: { score: number; takenAt?: stri
             strokeDasharray={CIRC} strokeDashoffset={CIRC * (1 - score / 100)} transform="rotate(-90 60 60)"
             className="stroke-highlight"
           />
-          <text x="60" y="68" textAnchor="middle" fontSize="30" fontWeight="700" className="fill-hero-foreground">{score}</text>
+          <text x="60" y="68" className="fill-hero-foreground text-[30px] font-bold [text-anchor:middle]">{score}</text>
         </svg>
         <div className="grid gap-1">
           <p className="font-display text-2xl">{band}</p>

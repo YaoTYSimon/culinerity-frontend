@@ -19,7 +19,7 @@
   --color-secondary-foreground: #2A0D15;
 
   --color-muted: #EBD5D0;
-  --color-muted-foreground: #86636A;
+  --color-muted-foreground: #775259;
 
   /* Accent stays a warning colour in every theme, so errors and over-budget states read the same. */
   --color-accent: #B8431C;
@@ -32,6 +32,8 @@
   --color-warning-foreground: #FFFFFF;
 
   --color-border: #E8CBC5;
+  /* Form control edges need 3:1 against the surface (WCAG 1.4.11); decorative borders do not. */
+  --color-input: #8A6B71;
   --color-ring: #B3284A;
 
   /* Fruit-specific surfaces */
@@ -65,6 +67,31 @@
 }
 
 
+/* Dark scheme: base surface and text tokens only. Hero, sidebar and plate colours already read on dark. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1B0A0F;
+    --color-foreground: #FBEDEA;
+    --color-card: #2A1017;
+    --color-card-foreground: #FBEDEA;
+    --color-primary: #F08BA0;
+    --color-primary-foreground: #2A0D15;
+    --color-secondary: #3A171F;
+    --color-secondary-foreground: #FBEDEA;
+    --color-muted: #4A1D27;
+    --color-muted-foreground: #D3A9B0;
+    --color-accent: #F08A63;
+    --color-accent-foreground: #2A0D15;
+    --color-success: #8CD197;
+    --color-success-foreground: #0F2A13;
+    --color-warning: #E0B25A;
+    --color-warning-foreground: #2A1D05;
+    --color-border: #5A2A35;
+    --color-input: #A98089;
+    --color-ring: #F08BA0;
+  }
+}
+
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -75,7 +102,12 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
 }
 
 /* Gloock only ships one weight; stop browsers faking a bold version of it. */

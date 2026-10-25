@@ -23,16 +23,16 @@ const empty = (): Answers => ({
 });
 
 const primaryBtn =
-  'min-h-11 rounded bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring';
+  'min-h-11 rounded bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
 const quietBtn =
-  'min-h-11 rounded border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring';
+  'min-h-11 rounded border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
 
 function Choice({
   name, label, checked, onSelect,
 }: { name: string; label: string; checked: boolean; onSelect: () => void }) {
   return (
     <label
-      className={`flex min-h-11 flex-1 cursor-pointer items-center justify-center rounded border px-2 py-2 text-center text-sm font-medium transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring ${
+      className={`flex min-h-11 flex-1 cursor-pointer items-center justify-center rounded border px-2 py-2 text-center text-sm font-medium transition-colors motion-reduce:transition-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring ${
         checked ? 'border-primary bg-primary text-primary-foreground' : 'border-border bg-background hover:border-primary'
       }`}
     >
@@ -84,9 +84,10 @@ export function Questionnaire({ onComplete, onSkip }: Props) {
       <p className="mb-1 font-mono text-xs uppercase tracking-wider text-muted-foreground">
         Part {step + 1} of {last + 1}
       </p>
-      <div className="mb-4 h-1.5 rounded bg-secondary" aria-hidden="true">
-        <div className="h-full rounded bg-primary" style={{ width: `${((step + 1) / (last + 1)) * 100}%` }} />
-      </div>
+      <progress
+        aria-hidden="true" value={step + 1} max={last + 1}
+        className="mb-4 block h-1.5 w-full appearance-none overflow-hidden rounded bg-secondary [&::-moz-progress-bar]:bg-primary [&::-webkit-progress-bar]:bg-secondary [&::-webkit-progress-value]:bg-primary"
+      />
       <h2 id="q-title" className="text-lg font-semibold">
         {SECTION_NAMES[step]}
       </h2>

@@ -14,7 +14,7 @@ function parseMoney(text: string): number | undefined {
 }
 
 const input =
-  'min-h-11 w-full rounded border border-border bg-card px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring aria-[invalid=true]:border-accent';
+  'min-h-11 w-full rounded border border-input bg-card px-3 py-2.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-[invalid=true]:border-accent';
 
 /** Text state that follows the parent value, but keeps rejected text visible while the parent value is unchanged. */
 function useSynced(external: number | string | undefined, parse: (t: string) => number | string | undefined) {

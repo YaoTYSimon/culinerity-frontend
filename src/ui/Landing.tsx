@@ -4,7 +4,7 @@ interface Props {
 }
 
 const btn =
-  'min-h-11 rounded-md px-5 py-2.5 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
+  'min-h-11 rounded-md px-5 py-2.5 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hero-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-hero';
 
 /** Welcome and the one gentle, optional, dismissible prompt. Never blocks the app. */
 export function Landing({ onStart, onDismiss }: Props) {
@@ -14,7 +14,7 @@ export function Landing({ onStart, onDismiss }: Props) {
         <h1 id="landing-h" className="font-display text-[clamp(1.75rem,6vw,2.5rem)] leading-tight text-balance">
           Eat well in Melbourne, whatever your week looks like
         </h1>
-        <p className="text-pretty text-hero-muted">
+        <p className="text-pretty text-hero-foreground">
           Tell us what you are craving and we will suggest tasty swaps that fit your budget. For anyone in Melbourne, with no sign-up.
         </p>
       </div>
