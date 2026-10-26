@@ -20,3 +20,14 @@ export const THEME_TOKENS: Record<ThemeId, ThemeTokens> = {
   walnut: { bg: '#2b2216', surface: '#3d3123', ink: '#e4e2da', muted: '#cbbfae', accent: '#bda38b', 'accent-ink': '#2b2216' },
   cream: { bg: '#f6efe6', surface: '#e6d8c9', ink: '#3a1f1a', muted: '#5b4540', accent: '#8f1d37', 'accent-ink': '#ffffff' },
 };
+
+/**
+ * The avatar colour choices: each is a theme's accent (the stored `colour` stays that ThemeId), named for the
+ * colour you see rather than the theme it comes from, so the name read aloud matches the swatch.
+ */
+export const AVATAR_COLOURS: { id: ThemeId; name: string }[] = [
+  { id: 'tobacco', name: 'Olive' },
+  { id: 'sand', name: 'Moss' },
+  { id: 'walnut', name: 'Tan' },
+  { id: 'cream', name: 'Crimson' },
+];

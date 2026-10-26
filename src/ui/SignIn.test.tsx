@@ -206,16 +206,23 @@ describe('passcode profile', () => {
     await waitFor(() => expect(live()).toHaveTextContent('Too many tries. You can try again in 30 seconds.'));
     // Announced once, assertively; the per-second countdown after that is not read out again.
     expect(live()).toHaveAttribute('aria-live', 'assertive');
-    const btn = screen.getByRole('button', { name: 'Sign in' });
-    expect(btn).toBeDisabled();
+    const btn = screen.getByRole('button', { name: 'Try again in 30 s' });
+    // Readable, not the faded native disabled state, but it does nothing.
+    expect(btn).toHaveAttribute('aria-disabled', 'true');
+    expect(btn).not.toBeDisabled();
+    const calls = vi.spyOn(auth, 'signIn');
+    await userEvent.click(btn);
+    expect(calls).not.toHaveBeenCalled();
     tick(6);
+    expect(btn).toHaveTextContent('Try again in 24 s');
     expect(live()).toHaveAttribute('aria-live', 'off');
     expect(live()).toHaveTextContent('Too many tries. You can try again in 24 seconds.');
     tick(23);
     expect(live()).toHaveTextContent('Too many tries. You can try again in 1 second.');
-    expect(btn).toBeDisabled();
+    expect(btn).toHaveAttribute('aria-disabled', 'true');
     tick(1);
-    expect(btn).toBeEnabled();
+    expect(btn).not.toHaveAttribute('aria-disabled');
+    expect(btn).toHaveTextContent('Sign in');
     expect(live()).toHaveAttribute('aria-live', 'assertive');
     expect(live()).toHaveTextContent('You can try again now.');
     // a correct passcode now works

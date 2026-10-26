@@ -15,7 +15,14 @@ interface Props {
 
 const firstLetter = (s: string): string => [...s.trim()][0]?.toUpperCase() ?? '?';
 
-/** A flat coloured circle with one letter. Decorative: the name is always written in text beside it. */
+/**
+ * A flat coloured circle with one letter. Decorative: the name is always written in text beside it.
+ *
+ * Accepted contrast decision: the circle against the page ground is below 3:1 for some pairings (measured:
+ * crimson on tobacco 1.50, moss on tobacco 1.97). It is not needed to understand the screen because the
+ * letter on it is at least 5:1 against its own fill and the profile name is real text. No outline is added:
+ * the design system forbids hairlines.
+ */
 export function Avatar({ name = '', letter, colour, size, className = '' }: Props) {
   const t = THEME_TOKENS[colour];
   return (

@@ -1,9 +1,9 @@
 import { useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
-import { THEME_IDS, THEME_NAMES, validateName, validatePasscode, type ThemeId } from '@culinerity/core';
+import { THEME_IDS, validateName, validatePasscode, type ThemeId } from '@culinerity/core';
 import { supportsPasscode } from '../auth/uuid';
 import { useAuth } from '../auth/useAuth';
 import { LocalProfileStore } from '../storage/localProfileStore';
-import { THEME_TOKENS } from '../theme/tokens';
+import { AVATAR_COLOURS, THEME_TOKENS } from '../theme/tokens';
 import { Avatar } from './Avatar';
 import { FocusHeading } from './FocusHeading';
 import { INPUT_CLASS, Live } from './formParts';
@@ -90,6 +90,17 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
     }
   }
 
+  // Radio buttons: arrows move the choice (and focus) between the two options.
+  const onRadioKey = (e: KeyboardEvent<HTMLButtonElement>) => {
+    if (!['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'].includes(e.key)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const next = !useCurrent;
+    setUseCurrent(next);
+    const radios = e.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="radio"]');
+    radios?.[next ? 0 : 1]?.focus();
+  };
+
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape' && onCancel) onCancel();
   };
@@ -121,14 +132,14 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
           Avatar colour
         </p>
         <div className="flex justify-between gap-1">
-          {THEME_IDS.map((id) => {
+          {AVATAR_COLOURS.map(({ id, name: colourName }) => {
             const on = id === colour;
             return (
               <button
                 key={id}
                 type="button"
                 aria-pressed={on}
-                aria-label={THEME_NAMES[id]}
+                aria-label={colourName}
                 onClick={() => setColour(id)}
                 className="group flex min-h-11 w-16 flex-col items-center gap-1.5 outline-none"
               >
@@ -143,7 +154,7 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
                     </svg>
                   )}
                 </span>
-                <span className={`text-[13px] ${on ? 'font-extrabold' : 'font-semibold'}`}>{THEME_NAMES[id]}</span>
+                <span className={`text-[13px] ${on ? 'font-extrabold' : 'font-semibold'}`}>{colourName}</span>
               </button>
             );
           })}
@@ -213,17 +224,27 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
       )}
 
       {guestHasData && (
-        <div role="group" aria-labelledby="create-start" className="grid gap-3">
+        <div role="radiogroup" aria-labelledby="create-start" className="grid gap-3">
           <p id="create-start" className="text-base font-semibold">
             Where should this profile start?
           </p>
           <div className="grid gap-2">
-            <PillButton variant={useCurrent ? 'primary' : 'surface'} aria-pressed={useCurrent} onClick={() => setUseCurrent(true)}>
-              Start from my current data
-            </PillButton>
-            <PillButton variant={useCurrent ? 'surface' : 'primary'} aria-pressed={!useCurrent} onClick={() => setUseCurrent(false)}>
-              Start fresh
-            </PillButton>
+            {[
+              { value: true, label: 'Start from my current data' },
+              { value: false, label: 'Start fresh' },
+            ].map((o) => (
+              <PillButton
+                key={String(o.value)}
+                role="radio"
+                aria-checked={useCurrent === o.value}
+                tabIndex={useCurrent === o.value ? 0 : -1}
+                variant={useCurrent === o.value ? 'primary' : 'surface'}
+                onClick={() => setUseCurrent(o.value)}
+                onKeyDown={onRadioKey}
+              >
+                {o.label}
+              </PillButton>
+            ))}
           </div>
           <p className="px-2 text-[13px] text-pretty text-muted">
             Starting from your current data moves what is saved on this device so far into this profile.

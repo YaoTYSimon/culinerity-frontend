@@ -216,8 +216,9 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
             </div>
           </div>
           <Live mode={pause?.ticked ? 'off' : 'assertive'}>{liveText}</Live>
-          <PillButton type="submit" disabled={busy || paused} className="w-full">
-            {busy ? 'Checking…' : 'Sign in'}
+          {/* Paused: aria-disabled (not disabled) keeps it fully readable; submit() ignores it meanwhile. */}
+          <PillButton type="submit" disabled={busy} aria-disabled={paused || undefined} className="w-full">
+            {busy ? 'Checking…' : paused ? `Try again in ${pause.left} s` : 'Sign in'}
           </PillButton>
         </form>
         <div className="grid justify-items-center gap-1">

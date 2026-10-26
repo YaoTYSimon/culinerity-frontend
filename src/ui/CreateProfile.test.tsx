@@ -145,15 +145,19 @@ describe('CreateProfile', () => {
 
   it('colour choice: four round buttons with names and aria-pressed; the choice is saved', async () => {
     mount();
+    // Named for the colour you see, not the theme it comes from.
+    for (const n of ['Olive', 'Moss', 'Tan', 'Crimson']) expect(screen.getByRole('button', { name: n })).toBeVisible();
+    expect(screen.queryByRole('button', { name: /Tobacco|Sand|Walnut|Cream/ })).not.toBeInTheDocument();
+    expect(screen.getByText('Crimson')).toBeInTheDocument();
     const group = screen.getByRole('group', { name: 'Avatar colour' });
     const buttons = group.querySelectorAll('button');
     expect(buttons).toHaveLength(4);
-    const sand = screen.getByRole('button', { name: 'Sand' });
-    expect(screen.getByRole('button', { name: 'Tobacco' })).toHaveAttribute('aria-pressed', 'true');
-    expect(sand).toHaveAttribute('aria-pressed', 'false');
-    await userEvent.click(sand);
-    expect(sand).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByRole('button', { name: 'Tobacco' })).toHaveAttribute('aria-pressed', 'false');
+    const moss = screen.getByRole('button', { name: 'Moss' });
+    expect(screen.getByRole('button', { name: 'Olive' })).toHaveAttribute('aria-pressed', 'true');
+    expect(moss).toHaveAttribute('aria-pressed', 'false');
+    await userEvent.click(moss);
+    expect(moss).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Olive' })).toHaveAttribute('aria-pressed', 'false');
     for (const b of buttons) expect(b.querySelector('span')!.className).toMatch(/rounded-full/);
     await userEvent.type(name(), 'Sam');
     await create();
@@ -162,21 +166,25 @@ describe('CreateProfile', () => {
 
   it('hides the migration choice when the guest profile is empty (also with only welcomeSeen)', () => {
     mount();
-    expect(screen.queryByRole('button', { name: 'Start from my current data' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('radio', { name: 'Start from my current data' })).not.toBeInTheDocument();
     localStorage.setItem(KEYS.guestProfile, JSON.stringify({ welcomeSeen: true }));
     mount();
-    expect(screen.queryByRole('button', { name: 'Start from my current data' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('radio', { name: 'Start from my current data' })).not.toBeInTheDocument();
   });
 
   it('shows the migration choice when the guest has data; "current data" moves it, "fresh" leaves it', async () => {
     localStorage.setItem(KEYS.guestProfile, JSON.stringify({ welcomeSeen: true, score: 42 }));
     const first = mount();
-    const cur = screen.getByRole('button', { name: 'Start from my current data' });
-    const fresh = screen.getByRole('button', { name: 'Start fresh' });
-    expect(fresh).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('radiogroup', { name: 'Where should this profile start?' })).toBeInTheDocument();
+    const cur = screen.getByRole('radio', { name: 'Start from my current data' });
+    const fresh = screen.getByRole('radio', { name: 'Start fresh' });
+    expect(fresh).toHaveAttribute('aria-checked', 'true');
+    expect(fresh).toHaveAttribute('tabindex', '0');
+    expect(cur).toHaveAttribute('tabindex', '-1');
     await userEvent.click(cur);
-    expect(cur).toHaveAttribute('aria-pressed', 'true');
-    expect(fresh).toHaveAttribute('aria-pressed', 'false');
+    expect(cur).toHaveAttribute('aria-checked', 'true');
+    expect(fresh).toHaveAttribute('aria-checked', 'false');
+    expect(cur).toHaveAttribute('tabindex', '0');
     await userEvent.type(name(), 'Sam');
     await create();
     await waitFor(() => expect(auth.current?.name).toBe('Sam'));
@@ -193,6 +201,20 @@ describe('CreateProfile', () => {
     await waitFor(() => expect(auth.current?.name).toBe('Alex'));
     expect(localStorage.getItem(KEYS.guestProfile)).toContain('42');
     expect(localStorage.getItem(profileKey(auth.current!.id))).not.toContain('42');
+  });
+
+  it('radio choice supports arrow keys with roving focus', async () => {
+    localStorage.setItem(KEYS.guestProfile, JSON.stringify({ score: 42 }));
+    mount();
+    const cur = screen.getByRole('radio', { name: 'Start from my current data' });
+    const fresh = screen.getByRole('radio', { name: 'Start fresh' });
+    fresh.focus();
+    await userEvent.keyboard('{ArrowUp}');
+    expect(cur).toHaveAttribute('aria-checked', 'true');
+    expect(cur).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}');
+    expect(fresh).toHaveAttribute('aria-checked', 'true');
+    expect(fresh).toHaveFocus();
   });
 
   it('hides the passcode inputs with a notice when the browser cannot protect passcodes', async () => {
