@@ -17,7 +17,7 @@ export interface BudgetSummary {
 const PACE_TOLERANCE = 0.1;
 
 const roundCents = (n: number): number => Math.round(n * 100) / 100;
-const sumCents = (entries: SpendEntry[]): Aud => roundCents(entries.reduce((s, e) => s + e.amount, 0));
+const sumCents = (entries: SpendEntry[]): Aud => entries.reduce((s, e) => s + Math.round(e.amount * 100), 0) / 100;
 const isoDay = (d: Date): string => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
 /** Entries dated within the Monday week that contains `now`. */
@@ -34,10 +34,11 @@ function elapsedShare(now: Date): number {
   return (dayIndexMonday(now) + today) / DAYS_PER_WEEK;
 }
 
-export function budgetSummary(entries: SpendEntry[] | undefined, budget: number | undefined, now: Date): BudgetSummary {
+export function budgetSummary(entries: SpendEntry[] | undefined, rawBudget: number | undefined, now: Date): BudgetSummary {
+  const budget = typeof rawBudget === 'number' && Number.isFinite(rawBudget) ? roundCents(rawBudget) : undefined;
   const spent = sumCents(entriesThisWeek(entries, now));
   const daysLeft = DAYS_PER_WEEK - dayIndexMonday(now);
-  if (typeof budget !== 'number' || !Number.isFinite(budget) || budget <= 0) {
+  if (budget === undefined || budget <= 0) {
     return { spent, remaining: null, over: 0, percentSpent: null, daysLeft, perDayLeft: null, pace: 'no-budget' };
   }
   const remaining = Math.max(0, roundCents(budget - spent));

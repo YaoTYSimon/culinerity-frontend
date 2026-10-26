@@ -1,4 +1,3 @@
-import { isIsoDate } from '../domain/history';
 import type { SpendEntry } from '../domain/types';
 import { addLocalDays, weekStartMonday } from './week';
 
@@ -9,6 +8,18 @@ export const MAX_SPEND_NOTE = 40;
 
 const roundCents = (n: number): number => Math.round(n * 100) / 100;
 
+// Full ISO date-time (what Date#toISOString writes), with Z or an offset.
+const ISO_DATE_TIME = /^(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:\d{2})$/;
+
+function isIsoDateTime(x: unknown): x is string {
+  if (typeof x !== 'string') return false;
+  const m = ISO_DATE_TIME.exec(x);
+  if (!m || Number.isNaN(Date.parse(x))) return false;
+  const [y, mo, d] = [Number(m[1]), Number(m[2]), Number(m[3])];
+  const day = new Date(Date.UTC(y, mo - 1, d));
+  return day.getUTCFullYear() === y && day.getUTCMonth() === mo - 1 && day.getUTCDate() === d;
+}
+
 export function isSpendEntry(x: unknown): x is SpendEntry {
   if (!x || typeof x !== 'object') return false;
   const e = x as Record<string, unknown>;
@@ -17,11 +28,11 @@ export function isSpendEntry(x: unknown): x is SpendEntry {
     e.id !== '' &&
     typeof e.amount === 'number' &&
     Number.isFinite(e.amount) &&
-    e.amount > 0 &&
-    e.amount <= MAX_SPEND_AMOUNT &&
+    roundCents(e.amount) >= 0.01 &&
+    roundCents(e.amount) <= MAX_SPEND_AMOUNT &&
     (SPEND_CATEGORIES as readonly unknown[]).includes(e.category) &&
     (e.note === undefined || (typeof e.note === 'string' && e.note.length <= MAX_SPEND_NOTE)) &&
-    isIsoDate(e.at)
+    isIsoDateTime(e.at)
   );
 }
 
@@ -41,8 +52,12 @@ export function capNewest(entries: SpendEntry[]): SpendEntry[] {
     .slice(-MAX_SPEND_ENTRIES);
 }
 
-/** Drop invalid entries and keep the newest MAX_SPEND_ENTRIES (used when loading a stored profile). */
-export const sanitizeSpendEntries = (list: unknown[]): SpendEntry[] => capNewest(list.filter(isSpendEntry).map(cleanEntry));
+/** Drop invalid entries and repeated ids (first wins), then keep the newest MAX_SPEND_ENTRIES (used when loading a stored profile). */
+export function sanitizeSpendEntries(list: unknown[]): SpendEntry[] {
+  const seen = new Set<string>();
+  const valid = list.filter(isSpendEntry).filter((e) => !seen.has(e.id) && !!seen.add(e.id));
+  return capNewest(valid.map(cleanEntry));
+}
 
 /**
  * Add an entry dated now or earlier, within the current or previous Monday week.

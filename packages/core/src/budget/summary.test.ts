@@ -76,6 +76,17 @@ describe('budgetSummary', () => {
     expect(s.pace).not.toBe('over');
   });
 
+  it('rounds the budget to cents so over, remaining and pace agree', () => {
+    const now = d(2026, 10, 28, 12);
+    const at85_56 = sum(85.56, 85.555, now); // budget becomes 85.56
+    expect(at85_56).toMatchObject({ over: 0, remaining: 0, pace: 'a-bit-fast' });
+    expect(sum(85.57, 85.555, now)).toMatchObject({ over: 0.01, pace: 'over' });
+  });
+  it('sums money in whole cents (0.1 + 0.2 = 0.3)', () => {
+    const now = d(2026, 10, 28, 12);
+    expect(budgetSummary([mk(0.1, d(2026, 10, 27)), mk(0.2, d(2026, 10, 27, 1))], 10, now).spent).toBe(0.3);
+  });
+
   describe('pace (Wednesday noon: 2.5 of 7 days elapsed = 35.7%)', () => {
     const now = d(2026, 10, 28, 12);
     it('on-track within 10 points of the week', () => expect(sum(45, 100, now).pace).toBe('on-track'));

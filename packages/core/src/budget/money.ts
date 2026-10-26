@@ -6,7 +6,7 @@ export interface ParseMoneyOptions {
 }
 
 // Optional "$", then whole dollars (plain or with thousands commas), then up to two decimal digits.
-const MONEY = /^\$?\s*(\d{1,3}(?:,\d{3})+|\d+)?(?:\.(\d{1,2}))?$/;
+const MONEY = /^\$?\s*([1-9]\d{0,2}(?:,\d{3})+|\d+)?(?:\.(\d{1,2}))?$/;
 
 /**
  * Parse typed dollars ("12", "12.5", "$12.50", "1,200") into a number rounded to cents.

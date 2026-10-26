@@ -17,7 +17,7 @@ describe('parseMoney', () => {
     expect(parseMoney(text)).toBe(n);
   });
 
-  it.each(['', '   ', 'abc', '-3', '-0.5', 'NaN', 'Infinity', '1e3', '1,2,3', '12.345', '12.', '$', '1.2.3', '12 dollars', '--5'])(
+  it.each(['', '   ', 'abc', '-3', '-0.5', 'NaN', 'Infinity', '1e3', '1,2,3', '12.345', '12.', '$', '1.2.3', '12 dollars', '--5', '１２', '1_000', '0x10', '1,2000', '0,123', '1,23', ',123', '1,000,00'])(
     'rejects %j',
     (text) => {
       expect(parseMoney(text)).toBeNull();

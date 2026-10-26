@@ -17,8 +17,12 @@ describe('weekStartMonday', () => {
   it('Sunday 23:59 belongs to the week that began the previous Monday', () => {
     expect(weekStartMonday(d(2026, 11, 1, 23, 59, 59)).getTime()).toBe(d(2026, 10, 26).getTime());
   });
-  it('Monday 00:00 one second after Sunday 23:59:59 starts a new week', () => {
-    expect(weekStartMonday(d(2026, 11, 2, 0, 0, 0)).getTime()).toBe(d(2026, 11, 2).getTime());
+  it('the second after Sunday 23:59:59 is Monday 00:00 and starts a new week', () => {
+    const lastSecond = d(2026, 11, 1, 23, 59, 59);
+    expect(weekStartMonday(lastSecond).getTime()).toBe(d(2026, 10, 26).getTime());
+    const next = new Date(lastSecond.getTime() + 1000);
+    expect(next.getTime()).toBe(d(2026, 11, 2, 0, 0, 0).getTime());
+    expect(weekStartMonday(next).getTime()).toBe(d(2026, 11, 2).getTime());
   });
   it('does not mutate its input', () => {
     const now = d(2026, 10, 28, 12);

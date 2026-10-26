@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { SpendEntry } from '../domain/types';
-import { addSpend, isSpendEntry, MAX_SPEND_ENTRIES, removeSpend, restoreSpend } from './entries';
+import { addSpend, isSpendEntry, MAX_SPEND_ENTRIES, removeSpend, restoreSpend, sanitizeSpendEntries } from './entries';
 
 const d = (y: number, m: number, day: number, h = 0, min = 0, s = 0) => new Date(y, m - 1, day, h, min, s);
 const NOW = d(2026, 10, 28, 12); // Wednesday
@@ -26,6 +26,11 @@ describe('isSpendEntry', () => {
     ['negative', { ...good, amount: -1 }],
     ['NaN', { ...good, amount: NaN }],
     ['Infinity', { ...good, amount: Infinity }],
+    ['sub-cent amount', { ...good, amount: 0.004 }],
+    ['date-only at', { ...good, at: '2026-10-27' }],
+    ['numeric-string at', { ...good, at: '5' }],
+    ['non-ISO at', { ...good, at: 'Oct 27 2026' }],
+    ['impossible date', { ...good, at: '2026-02-31T10:00:00Z' }],
     ['over 10,000', { ...good, amount: 10_000.01 }],
     ['unknown category', { ...good, category: 'rent' }],
     ['note too long', { ...good, note: 'x'.repeat(41) }],
@@ -33,6 +38,12 @@ describe('isSpendEntry', () => {
     ['bad date', { ...good, at: 'nope' }],
   ])('rejects %s', (_n, v) => {
     expect(isSpendEntry(v)).toBe(false);
+  });
+  it('accepts 0.005 (rounds to a cent) and offset date-times', () => {
+    expect(isSpendEntry({ ...good, amount: 0.005 })).toBe(true);
+    expect(isSpendEntry({ ...good, amount: 10_000.004 })).toBe(true); // rounds to 10,000.00
+    expect(isSpendEntry({ ...good, at: '2026-10-27T10:00:00+11:00' })).toBe(true);
+    expect(isSpendEntry({ ...good, at: '2026-10-27T10:00:00Z' })).toBe(true);
   });
   it('accepts exactly 10,000', () => {
     expect(isSpendEntry({ ...good, amount: 10_000 })).toBe(true);
@@ -49,7 +60,7 @@ describe('addSpend', () => {
   it('treats undefined as an empty list', () => {
     expect(addSpend(undefined, mk('a', 3, NOW), NOW)).toHaveLength(1);
   });
-  it.each([0, -5, NaN, Infinity, 10_000.01])('rejects amount %d', (amount) => {
+  it.each([0, -5, NaN, Infinity, 10_000.01, 0.004])('rejects amount %d', (amount) => {
     const list = [mk('x', 1, NOW)];
     expect(addSpend(list, mk('a', amount, NOW), NOW)).toBe(list);
   });
@@ -120,8 +131,23 @@ describe('removeSpend and restoreSpend (undo)', () => {
     const old = mk('old', 5, d(2026, 9, 1));
     expect(restoreSpend([], old)).toEqual([old]);
   });
+  it('restoreSpend rejects a sub-cent entry', () => {
+    expect(restoreSpend([], mk('z', 0.004, NOW))).toEqual([]);
+  });
   it('restoreSpend ignores an entry already present or invalid', () => {
     expect(restoreSpend(list, list[0])).toEqual(list);
     expect(restoreSpend(list, { ...list[0], id: 'q', amount: -1 })).toEqual(list);
+  });
+});
+
+describe('sanitizeSpendEntries', () => {
+  it('drops sub-cent amounts and date-only or numeric-string dates', () => {
+    const ok = mk('a', 5, NOW);
+    expect(sanitizeSpendEntries([ok, { ...ok, id: 'b', amount: 0.004 }, { ...ok, id: 'c', at: '5' }, { ...ok, id: 'd', at: '2026-10-27' }])).toEqual([ok]);
+  });
+  it('keeps the first of duplicate ids', () => {
+    const first = mk('a', 5, d(2026, 10, 27));
+    const dup = { ...mk('a', 9, d(2026, 10, 28)) };
+    expect(sanitizeSpendEntries([first, dup, mk('b', 1, NOW)]).map((e) => e.amount)).toEqual([5, 1]);
   });
 });

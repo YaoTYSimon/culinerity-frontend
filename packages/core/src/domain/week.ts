@@ -58,7 +58,7 @@ export function weekSummary(week: WeekSwap[] | undefined, now: string): WeekSumm
 /** Sum of swap savings dated within the Monday week containing `now` (the tracker's "This week"). */
 export function savedThisWeek(week: WeekSwap[] | undefined, now: Date): Aud {
   const bounds = weekBounds(now);
-  return roundCents((week ?? []).filter((w) => isInWeek(w.at, bounds)).reduce((s, w) => s + w.saving, 0));
+  return (week ?? []).filter((w) => isInWeek(w.at, bounds)).reduce((s, w) => s + Math.round(w.saving * 100), 0) / 100;
 }
 
 const money = (n: Aud): string => `$${n.toFixed(2)}`;
