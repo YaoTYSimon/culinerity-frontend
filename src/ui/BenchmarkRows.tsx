@@ -7,12 +7,12 @@ interface Props {
 
 const DEFAULT_SOURCE = new StaticBenchmarkSource();
 
-/** The research gaps that matter to a food budget (the dataset's gap list is shared with the policy page). */
-const BUDGET_GAP = /food spend|food budget|healthy food basket|poverty line|student weekly/i;
+/** The rows shown by default, in this order, chosen by id; every other budget figure sits under "More figures". */
+export const HEADLINE_IDS = ['b-cpi-food-melbourne', 'b-cpi-food-australia', 'b-hes-food-share-low-income', 'b-poverty-line-single'];
 
 /** The figure exactly as sourced, split so the number can be large and its unit small. */
 export function figureParts(i: Indicator): { main: string; unit: string } {
-  if (i.display) return { main: i.display, unit: i.unit };
+  if (i.display) return { main: i.display, unit: i.unit.replace(/^%\s*/, '') };
   const v = String(i.value);
   if (i.unit.startsWith('AUD')) return { main: `$${v}`, unit: i.unit.slice('AUD'.length).trim() };
   if (i.unit.startsWith('%')) return { main: `${v}%`, unit: i.unit.slice(1).trim() };
@@ -54,19 +54,38 @@ function Row({ indicator, source, now }: { indicator: Indicator; source?: Source
 /** Sourced context for a food budget. Values, links and labels come from the dataset; nothing is typed in here. */
 export function BenchmarkRows({ now, source = DEFAULT_SOURCE }: Props) {
   const sources = source.sources();
-  const gaps = source.notFound().filter((g) => BUDGET_GAP.test(g));
+  const all = source.indicators('budget');
+  const headline = HEADLINE_IDS.flatMap((id) => all.find((i) => i.id === id) ?? []);
+  const more = all.filter((i) => !HEADLINE_IDS.includes(i.id));
+  const gaps = source.notFound('budget');
+  const rows = (list: Indicator[]) => (
+    <ul className="grid">
+      {list.map((i) => (
+        <Row key={i.id} indicator={i} source={sources.find((s) => s.id === i.sourceId)} now={now} />
+      ))}
+    </ul>
+  );
   return (
     <section aria-labelledby="compares" className="grid gap-3">
       <h2 id="compares" className="font-display text-[24px]">How this compares</h2>
       <p className="text-sm text-pretty text-muted">
         Official and published figures, shown as their sources give them. They measure different things, so they are not added together.
       </p>
-      <ul className="grid">
-        {source.indicators('budget').map((i) => (
-          <Row key={i.id} indicator={i} source={sources.find((s) => s.id === i.sourceId)} now={now} />
-        ))}
-      </ul>
+      {rows(headline)}
       <p className="text-sm text-pretty">These are lines for total income, not food budgets.</p>
+      {more.length > 0 && (
+        <details className="group">
+          <summary className="focus-ring flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-3 rounded-full text-base font-semibold [&::-webkit-details-marker]:hidden">
+            <span>More figures</span>
+            <span aria-hidden="true" className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-surface">
+              <svg viewBox="0 0 16 16" className="size-4 motion-safe:transition-transform group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3.5 6l4.5 4.5L12.5 6" />
+              </svg>
+            </span>
+          </summary>
+          {rows(more)}
+        </details>
+      )}
       {gaps.length > 0 && (
         <div className="grid gap-1">
           <h3 className="text-base font-semibold">Not found</h3>

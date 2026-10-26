@@ -27,11 +27,16 @@ interface Props {
   now: Date;
   /** Called with the whole updated profile. */
   onChange: (next: Profile) => void;
+  /** Reads the real time when an entry is saved (defaults to `now`). */
+  clock?: () => Date;
+  /** Which profile this is; changing it resets the view's own short-lived state. */
+  profileId?: string;
   onSeeSwaps?: () => void;
   onOpenWeek?: () => void;
 }
 
 const UNDO_MS = 6000;
+const ADDED_MS = 4000;
 const PAST_WEEKS = 12;
 
 const PACE_TEXT: Record<Exclude<Pace, 'no-budget'>, string> = {
@@ -83,15 +88,26 @@ function AskBudget({ onSave, onSkip }: { onSave: (n: number) => void; onSkip: ()
   );
 }
 
+/** The tracker for one profile: remounted when the profile changes, so no undo, note or skip carries over. */
+export function BudgetView({ profileId, ...props }: Props) {
+  return <BudgetViewFor key={profileId ?? 'guest'} {...props} />;
+}
+
 /** What was spent on food this week, how the week is going, and sourced context. Everything stays on this device. */
-export function BudgetView({ profile, now, onChange, onSeeSwaps, onOpenWeek }: Props) {
+function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }: Omit<Props, 'profileId'>) {
   const [adding, setAdding] = useState(false);
   const [skipped, setSkipped] = useState(false);
-  const [undo, setUndo] = useState<SpendEntry | null>(null);
+  /** Removed rows that can still be undone, latest last. */
+  const [undos, setUndos] = useState<SpendEntry[]>([]);
   const [added, setAdded] = useState('');
   const addButton = useRef<HTMLButtonElement>(null);
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  useEffect(() => () => clearTimeout(timer.current), []);
+  const heading = useRef<HTMLHeadingElement>(null);
+  const list = useRef<HTMLUListElement>(null);
+  const focusAfter = useRef<{ id: string | null } | null>(null);
+  const undoTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const addedTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => { clearTimeout(undoTimer.current); clearTimeout(addedTimer.current); }, []);
+  const current = () => clock?.() ?? now;
 
   const budget = profile.foodBudgetWeekly;
   const hasBudget = typeof budget === 'number' && budget > 0;
@@ -108,30 +124,50 @@ export function BudgetView({ profile, now, onChange, onSeeSwaps, onOpenWeek }: P
     if (wasAdding.current && !adding) addButton.current?.focus();
     wasAdding.current = adding;
   }, [adding]);
+  // After a row is removed, focus lands on a neighbouring Remove button, or the list heading.
+  useEffect(() => {
+    const pending = focusAfter.current;
+    if (!pending) return;
+    focusAfter.current = null;
+    const target = pending.id ? list.current?.querySelector<HTMLElement>(`[data-remove-id="${CSS.escape(pending.id)}"]`) : null;
+    (target ?? heading.current)?.focus();
+  }, [profile.spendEntries]);
+
   const closeForm = () => setAdding(false);
+  const startUndoTimer = () => {
+    clearTimeout(undoTimer.current);
+    undoTimer.current = setTimeout(() => setUndos([]), UNDO_MS);
+  };
   const onAdd = (entry: SpendEntry) => {
-    const next = addSpend(profile.spendEntries, entry, now);
+    const next = addSpend(profile.spendEntries, entry, current());
     if (next === profile.spendEntries) return;
     onChange({ ...profile, spendEntries: next });
     setAdded(`Added ${formatDollars(entry.amount)}.`);
-    setUndo(null);
+    clearTimeout(addedTimer.current);
+    addedTimer.current = setTimeout(() => setAdded(''), ADDED_MS);
     closeForm();
   };
   const onRemove = (entry: SpendEntry) => {
     const { entries, removed } = removeSpend(profile.spendEntries, entry.id);
     if (!removed) return;
+    const at = rows.findIndex((r) => r.id === entry.id);
+    focusAfter.current = { id: (rows[at + 1] ?? rows[at - 1])?.id ?? null };
     onChange({ ...profile, spendEntries: entries });
+    clearTimeout(addedTimer.current);
     setAdded('');
-    setUndo(removed);
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setUndo(null), UNDO_MS);
+    setUndos((u) => [...u, removed]);
+    startUndoTimer();
   };
   const onUndo = () => {
-    if (!undo) return;
-    clearTimeout(timer.current);
-    onChange({ ...profile, spendEntries: restoreSpend(profile.spendEntries, undo) });
-    setUndo(null);
+    const last = undos[undos.length - 1];
+    if (!last) return;
+    onChange({ ...profile, spendEntries: restoreSpend(profile.spendEntries, last) });
+    const rest = undos.slice(0, -1);
+    setUndos(rest);
+    if (rest.length > 0) startUndoTimer();
+    else clearTimeout(undoTimer.current);
   };
+  const undo = undos[undos.length - 1];
 
   const entryName = (e: SpendEntry) => e.note ?? categoryLabel(e.category);
 
@@ -172,14 +208,17 @@ export function BudgetView({ profile, now, onChange, onSeeSwaps, onOpenWeek }: P
         {added && <p className="text-base font-semibold">{added}</p>}
         {undo && (
           <div className="flex flex-wrap items-center gap-1">
-            <p className="text-base font-semibold">Removed {formatDollars(undo.amount)} ({entryName(undo)}).</p>
+            <p className="text-base font-semibold">
+              Removed {formatDollars(undo.amount)} ({entryName(undo)}).
+              {undos.length > 1 && ' An earlier removal can also be undone.'}
+            </p>
             <PillButton variant="text" onClick={onUndo}>Undo</PillButton>
           </div>
         )}
       </div>
 
       {adding ? (
-        <AddSpend now={now} onAdd={onAdd} onCancel={closeForm} />
+        <AddSpend now={now} clock={clock} onAdd={onAdd} onCancel={closeForm} />
       ) : (
         <div>
           <PillButton ref={addButton} onClick={() => setAdding(true)} className="min-w-32">Add</PillButton>
@@ -187,11 +226,11 @@ export function BudgetView({ profile, now, onChange, onSeeSwaps, onOpenWeek }: P
       )}
 
       <section aria-labelledby="week-list" className="grid gap-2">
-        <h2 id="week-list" className="font-display text-[24px]">Logged this week</h2>
+        <h2 id="week-list" ref={heading} tabIndex={-1} className="font-display text-[24px] outline-none">Logged this week</h2>
         {rows.length === 0 ? (
           <p className="text-base text-muted">Nothing logged yet this week.</p>
         ) : (
-          <ul aria-label="This week's spending" className="grid">
+          <ul ref={list} aria-label="This week's spending" className="grid">
             {rows.map((e) => (
               <li key={e.id} className="flex min-h-11 items-center gap-2 py-1">
                 <span className="min-w-0 flex-1">
@@ -199,7 +238,7 @@ export function BudgetView({ profile, now, onChange, onSeeSwaps, onOpenWeek }: P
                   <span className="block text-sm text-muted">{note(e)}</span>
                 </span>
                 <span className="shrink-0 text-base font-extrabold">{formatDollars(e.amount)}</span>
-                <PillButton variant="text" className="shrink-0 text-sm" aria-label={`Remove ${entryName(e)}, ${formatDollars(e.amount)}`} onClick={() => onRemove(e)}>
+                <PillButton variant="text" data-remove-id={e.id} className="shrink-0 text-sm" aria-label={`Remove ${entryName(e)}, ${formatDollars(e.amount)}`} onClick={() => onRemove(e)}>
                   Remove
                 </PillButton>
               </li>

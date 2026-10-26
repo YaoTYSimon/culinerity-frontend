@@ -10,7 +10,10 @@ const CATEGORY_LABELS: Record<Category, string> = { groceries: 'Groceries', take
 export const categoryLabel = (c: Category): string => CATEGORY_LABELS[c];
 
 interface Props {
+  /** The time the page last rendered; sets the allowed days. */
   now: Date;
+  /** Reads the real time when saving, so an entry is stamped with the moment it was saved. */
+  clock?: () => Date;
   onAdd: (entry: SpendEntry) => void;
   onCancel: () => void;
   /** Injected in tests. */
@@ -34,10 +37,15 @@ function atFor(day: string, now: Date): string {
   return new Date(y, m - 1, d, 12, 0, 0).toISOString();
 }
 
+const dayText = (day: string): string => {
+  const [y, m, d] = day.split('-').map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' });
+};
+
 const defaultId = (): string => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
 /** Amount, optional note, category and date: one short form, saved in one tap. */
-export function AddSpend({ now, onAdd, onCancel, newId = defaultId }: Props) {
+export function AddSpend({ now, clock, onAdd, onCancel, newId = defaultId }: Props) {
   const ids = useId();
   const amountRef = useRef<HTMLInputElement>(null);
   const [amount, setAmount] = useState('');
@@ -46,6 +54,7 @@ export function AddSpend({ now, onAdd, onCancel, newId = defaultId }: Props) {
   const today = localDay(now);
   const [day, setDay] = useState(today);
   const [error, setError] = useState('');
+  const [dateError, setDateError] = useState('');
 
   useEffect(() => amountRef.current?.focus(), []);
 
@@ -57,9 +66,17 @@ export function AddSpend({ now, onAdd, onCancel, newId = defaultId }: Props) {
       amountRef.current?.focus();
       return;
     }
-    const picked = day >= earliestDay(now) && day <= today ? day : today;
+    const first = earliestDay(now);
+    if (day === '') {
+      setDateError('Choose a date.');
+      return;
+    }
+    if (day < first || day > today) {
+      setDateError(`Pick a day from ${dayText(first)} to today.`);
+      return;
+    }
     const text = note.trim();
-    onAdd({ id: newId(), amount: value, category, at: atFor(picked, now), ...(text ? { note: text } : {}) });
+    onAdd({ id: newId(), amount: value, category, at: atFor(day, clock?.() ?? now), ...(text ? { note: text } : {}) });
   };
 
   const label = 'mb-2 block text-sm font-medium';
@@ -89,8 +106,10 @@ export function AddSpend({ now, onAdd, onCancel, newId = defaultId }: Props) {
         <label htmlFor={`${ids}-date`} className={label}>Date</label>
         <input
           id={`${ids}-date`} type="date" className={INPUT_CLASS} value={day} min={earliestDay(now)} max={today}
-          onChange={(e) => setDay(e.target.value || today)}
+          aria-invalid={dateError !== ''} aria-describedby={dateError ? `${ids}-date-error` : undefined}
+          onChange={(e) => { setDay(e.target.value); setDateError(''); }}
         />
+        {dateError && <p id={`${ids}-date-error`} className="mt-2 px-5 text-sm font-semibold text-ink">{dateError}</p>}
       </div>
       <div className="flex flex-wrap items-center gap-3">
         <PillButton type="submit">Save</PillButton>

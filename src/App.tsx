@@ -16,11 +16,13 @@ import { homeFor, resolveView, type NavTarget, type View } from './ui/views';
 import { WeekCard } from './ui/WeekCard';
 import { Welcome } from './ui/Welcome';
 import { useFocusOnViewChange } from './ui/useFocusOnViewChange';
+import { useNow } from './ui/useNow';
 
 /** `now` gives the current ISO time; injected in tests. */
 export default function App({ now = () => new Date().toISOString() }: { now?: () => string } = {}) {
   const { profiles } = useServices();
   const auth = useContext(AuthContext);
+  const clockNow = useNow(now);
   const [profile, setProfile] = useState<Profile>(() => profiles.load());
   // A guest making a profile from the header: shown in place of the page, so there is still one h1.
   const [creating, setCreating] = useState(false);
@@ -90,7 +92,9 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           {!creating && view === 'budget' && (
             <BudgetView
               profile={profile}
-              now={new Date(now())}
+              profileId={auth?.current?.id}
+              now={clockNow}
+              clock={() => new Date(now())}
               onChange={update}
               onSeeSwaps={() => setView('swaps')}
               onOpenWeek={() => setView('week')}

@@ -4,6 +4,7 @@ import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { useState } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { StaticBenchmarkSource, verificationLabel, type Profile, type SpendEntry } from '@culinerity/core';
+import { HEADLINE_IDS } from './BenchmarkRows';
 import { BudgetView } from './BudgetView';
 
 // Wednesday 28 October 2026, local time (Melbourne): the week began Monday 26th, 5 days left including today.
@@ -12,10 +13,11 @@ const entry = (id: string, amount: number, day: number, extra: Partial<SpendEntr
   id, amount, category: 'groceries', at: new Date(2026, 9, day, 10, 0, 0).toISOString(), ...extra,
 });
 
-function Harness({ initial, onSave }: { initial: Profile; onSave?: (p: Profile) => void }) {
+function Harness({ initial, onSave, profileId }: { initial: Profile; onSave?: (p: Profile) => void; profileId?: string }) {
   const [profile, setProfile] = useState(initial);
   return (
     <BudgetView
+      profileId={profileId}
       profile={profile}
       now={NOW}
       onChange={(p) => { setProfile(p); onSave?.(p); }}
@@ -180,14 +182,105 @@ describe('BudgetView', () => {
   });
 });
 
+describe('BudgetView review fixes', () => {
+  it('forgets undo, the added note and the skip choice when the profile changes, and its timer is cleared', () => {
+    const profile: Profile = { spendEntries: [entry('a', 20, 27, { note: 'Bread' })] };
+    const view = (id: string) => (
+      <BudgetView profileId={id} profile={profile} now={NOW} onChange={() => {}} />
+    );
+    const { rerender } = render(view('one'));
+    fireEvent.click(screen.getByRole('button', { name: 'Skip' }));
+    fireEvent.click(screen.getByRole('button', { name: /Remove Bread/ }));
+    expect(screen.getByRole('button', { name: 'Undo' })).toBeInTheDocument();
+    rerender(view('two'));
+    expect(screen.queryByRole('button', { name: 'Undo' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Save budget' })).toBeInTheDocument();
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it('moves focus to the next row after Remove, else the previous row, else the list heading', () => {
+    show({ foodBudgetWeekly: 120, spendEntries: [entry('a', 5, 27, { note: 'Apple' }), entry('b', 6, 27, { note: 'Bread' }), entry('c', 7, 28, { note: 'Cheese' })] });
+    // Newest first: Cheese, Bread, Apple.
+    fireEvent.click(screen.getByRole('button', { name: /Remove Cheese/ }));
+    expect(screen.getByRole('button', { name: /Remove Bread/ })).toHaveFocus();
+    fireEvent.click(screen.getByRole('button', { name: /Remove Apple/ }));
+    expect(screen.getByRole('button', { name: /Remove Bread/ })).toHaveFocus();
+    fireEvent.click(screen.getByRole('button', { name: /Remove Bread/ }));
+    expect(screen.getByRole('heading', { level: 2, name: 'Logged this week' })).toHaveFocus();
+  });
+
+  it('shows a calm error for a typed date outside the allowed range and adds nothing', () => {
+    const onSave = vi.fn();
+    show({ foodBudgetWeekly: 120 }, onSave);
+    fireEvent.click(screen.getByRole('button', { name: 'Add' }));
+    fireEvent.change(screen.getByLabelText(/amount/i), { target: { value: '12' } });
+    fireEvent.change(screen.getByLabelText(/date/i), { target: { value: '2026-09-01' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+    expect(screen.getByText(/Pick a day from .* to today/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/date/i)).toHaveAttribute('aria-invalid', 'true');
+    expect(onSave).not.toHaveBeenCalled();
+    fireEvent.change(screen.getByLabelText(/date/i), { target: { value: '2026-10-29' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+    expect(screen.getByText(/Pick a day from .* to today/)).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText(/date/i), { target: { value: '' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+    expect(screen.getByText(/Choose a date/)).toBeInTheDocument();
+    expect(onSave).not.toHaveBeenCalled();
+  });
+
+  it('logs an earlier day in the allowed range on that day', () => {
+    const onSave = vi.fn();
+    show({ foodBudgetWeekly: 120 }, onSave);
+    fireEvent.click(screen.getByRole('button', { name: 'Add' }));
+    fireEvent.change(screen.getByLabelText(/amount/i), { target: { value: '12' } });
+    fireEvent.change(screen.getByLabelText(/date/i), { target: { value: '2026-10-20' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+    expect(new Date(onSave.mock.lastCall?.[0].spendEntries[0].at).getDate()).toBe(20);
+  });
+
+  it('keeps the earlier undo when a second row is removed, and says so', () => {
+    show({ foodBudgetWeekly: 120, spendEntries: [entry('a', 5, 27, { note: 'Apple' }), entry('b', 6, 28, { note: 'Bread' })] });
+    fireEvent.click(screen.getByRole('button', { name: /Remove Bread/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Remove Apple/ }));
+    const status = screen.getByRole('status');
+    expect(status.textContent).toMatch(/Removed \$5 \(Apple\)/);
+    expect(status.textContent).toMatch(/earlier removal can also be undone/i);
+    fireEvent.click(within(status).getByRole('button', { name: 'Undo' }));
+    expect(screen.getByText('Apple')).toBeInTheDocument();
+    expect(screen.getByRole('status').textContent).toMatch(/Removed \$6 \(Bread\)/);
+    fireEvent.click(within(screen.getByRole('status')).getByRole('button', { name: 'Undo' }));
+    expect(screen.getByText('Bread')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Undo' })).not.toBeInTheDocument();
+  });
+
+  it('clears the "Added" note after a few seconds', () => {
+    show({ foodBudgetWeekly: 120 });
+    add('12');
+    expect(screen.getByText('Added $12.')).toBeInTheDocument();
+    act(() => { vi.advanceTimersByTime(5000); });
+    expect(screen.queryByText('Added $12.')).not.toBeInTheDocument();
+  });
+
+  it('stamps a new entry with the time of saving (the clock), not the time the page last rendered', () => {
+    const onSave = vi.fn();
+    const later = new Date(2026, 9, 28, 12, 30, 0);
+    render(<BudgetView profile={{ foodBudgetWeekly: 120 }} now={NOW} clock={() => later} onChange={onSave} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Add' }));
+    fireEvent.change(screen.getByLabelText(/amount/i), { target: { value: '9' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+    expect(onSave.mock.lastCall?.[0].spendEntries[0].at).toBe(later.toISOString());
+  });
+});
+
 describe('How this compares', () => {
   const source = new StaticBenchmarkSource();
   const rows = source.indicators('budget');
+  const section = () => screen.getByRole('region', { name: 'How this compares' });
+  const figureItems = () => within(section()).getAllByRole('listitem').filter((el) => el.querySelector('a'));
 
-  it('renders every budget indicator with its dataset value, publisher link, verification and notes', () => {
+  it('renders every budget indicator with its dataset value, publisher link and verification', () => {
     show({ foodBudgetWeekly: 120 });
-    const section = screen.getByRole('region', { name: 'How this compares' });
-    const items = within(within(section).getAllByRole('list')[0]).getAllByRole('listitem');
+    const items = figureItems();
     expect(items).toHaveLength(rows.length);
     for (const i of rows) {
       const src = source.sources().find((s) => s.id === i.sourceId)!;
@@ -195,7 +288,6 @@ describe('How this compares', () => {
       expect(item, i.id).toBeDefined();
       expect(item.textContent).toContain(i.display ?? String(i.value));
       expect(item.textContent).toContain(i.scope);
-      expect(item.textContent).toContain(i.period);
       expect(item.textContent).toContain(verificationLabel(i.verification));
       const link = within(item).getByRole('link', { name: new RegExp(src.publisher.slice(0, 20)) });
       expect(link).toHaveAttribute('href', src.url);
@@ -203,22 +295,51 @@ describe('How this compares', () => {
     }
   });
 
+  it('shows only the headline rows by default (chosen by id) and the rest under "More figures"', () => {
+    show({ foodBudgetWeekly: 120 });
+    const ids = HEADLINE_IDS.map((id) => rows.find((r) => r.id === id));
+    expect(ids.every(Boolean)).toBe(true);
+    const more = screen.getByText('More figures').closest('details') as HTMLElement;
+    const inMore = within(more).getAllByRole('listitem').filter((el) => el.querySelector('a'));
+    const headline = figureItems().filter((el) => !more.contains(el));
+    expect(headline).toHaveLength(HEADLINE_IDS.length);
+    expect(inMore).toHaveLength(rows.length - HEADLINE_IDS.length);
+    HEADLINE_IDS.forEach((id, n) => expect(headline[n]?.textContent).toContain(rows.find((r) => r.id === id)!.label));
+  });
+
+  it('reads the percentage rows with their unit text', () => {
+    show({ foodBudgetWeekly: 120 });
+    const cpi = figureItems().find((el) => el.textContent?.includes('weighted average of eight capital cities'))!;
+    expect(cpi.textContent).toContain('3%');
+    expect(cpi.textContent).toContain('change over 12 months');
+    const student = figureItems().find((el) => el.textContent?.includes('29% vs 24%'))!;
+    expect(student.textContent).not.toMatch(/%[^%]*%[^%]*%/);
+  });
+
   it('labels the 2014 basket "Older data" and not a current CPI row', () => {
     show({ foodBudgetWeekly: 120 });
-    const items = within(within(screen.getByRole('region', { name: 'How this compares' })).getAllByRole('list')[0]).getAllByRole('listitem');
-    const basket = items.find((el) => el.textContent?.includes('Summer 2014'))!;
+    const basket = figureItems().find((el) => el.textContent?.includes('Summer 2014') && el.textContent.includes('Victorian Healthy Food Basket'))!;
     expect(basket.textContent).toContain('Older data');
-    const cpi = items.find((el) => el.textContent?.includes('weighted average of eight capital cities'))!;
+    const cpi = figureItems().find((el) => el.textContent?.includes('weighted average of eight capital cities'))!;
     expect(cpi.textContent).not.toContain('Older data');
   });
 
-  it('carries the poverty-line note, the not-found gaps and the advice disclaimer', () => {
+  it('never shows research-process remarks', () => {
+    show({ foodBudgetWeekly: 120 });
+    expect(section().textContent).not.toMatch(/HTTP \d{3}|extraction|access date|could not be opened/i);
+  });
+
+  it('carries the poverty-line note, exactly the budget not-found gaps, and the disclaimer after the figures', () => {
     show({ foodBudgetWeekly: 120 });
     expect(screen.getByText('These are lines for total income, not food budgets.')).toBeInTheDocument();
-    expect(screen.getByText('Not found')).toBeInTheDocument();
-    expect(screen.getByText(/Current healthy food basket cost/)).toBeInTheDocument();
-    expect(screen.queryByText(/Foodbank Hunger Report 2025 in a source/)).not.toBeInTheDocument();
-    expect(screen.getByText('General information, not financial advice.')).toBeInTheDocument();
+    const gapsHeading = screen.getByText('Not found');
+    const gaps = within(gapsHeading.parentElement as HTMLElement).getAllByRole('listitem');
+    expect(gaps).toHaveLength(5);
+    expect(gaps.map((g) => g.textContent)).toEqual(source.notFound('budget'));
+    const more = screen.getByText('More figures').closest('details') as HTMLElement;
+    const disclaimer = screen.getByText('General information, not financial advice.');
+    expect(more.compareDocumentPosition(gapsHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(gapsHeading.compareDocumentPosition(disclaimer) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 });
 
