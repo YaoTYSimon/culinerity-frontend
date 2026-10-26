@@ -197,7 +197,7 @@ export const benchmarkData: BenchmarkData = {
       "period": "12 months to August 2026 (monthly CPI indicator)",
       "year": 2026,
       "verification": "primary",
-      "note": "A monthly indicator for the 12 months to August 2026, not the quarterly CPI.",
+      "note": "This is the monthly indicator, not the quarterly CPI release.",
       "research": "Monthly indicator, not the September quarter CPI (due 28 Oct 2026, after access date). Figure read via page extraction.",
       "sourceId": "abs-cpi-aug2026"
     },
