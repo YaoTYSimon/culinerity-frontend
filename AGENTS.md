@@ -10,6 +10,7 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 - `src/theme`: `tokens.ts` (the single TypeScript source of the four theme palettes), `ThemeProvider` (sets `data-theme` on `<html>` and persists the choice).
 - `src/assets/photos`: the 13 bundled Wikimedia Commons photographs (10 cravings, 3 home-cooked welcome photos) and `credits.ts`. Drawn illustrations in `src/ui/illustrations` are the fallback for cravings without a photo.
 - `src/services`: `createServices` (the only place concrete sources and the profile store are wired for the web app; the theme store is the one exception, built in `src/main.tsx` and passed to the required `store` prop of `ThemeProvider`), `loadServices` (mocks, or HTTP sources when `VITE_USE_BACKEND=true`), `ServicesContext` and `ServicesLoader` (renders the shell at once; the backend catalogue loads in the background).
+- `src/auth`: local profiles. `AuthProvider`/`useAuth` (state: accounts, current, `status` locked | signed-in | guest, remove notice), `Gate` (renders `SignInScreen` when locked, else the app tree keyed on the profile id so Lock/Switch discards in-memory state), `LocalAuthService` (implements core's `AuthService` on localStorage/sessionStorage and Web Crypto; never throws), `verifier.ts` (PBKDF2), `storageKeys.ts`. The service is built only in `src/main.tsx`. UI: `src/ui/SignIn.tsx`, `CreateProfile.tsx`, `ProfileMenu.tsx` (header avatar), `Avatar.tsx`. Pure helpers (name/passcode validation, rate limit, deletion confirmation) live in `packages/core/src/auth`.
 - `src/storage`: `LocalProfileStore` (profile) and `LocalThemeStore` (theme), both localStorage-backed and never throwing.
 - `src/index.css`: Tailwind v4 import, the six colour roles per theme (`:root` and `[data-theme=...]`), `@theme` names (`bg`, `surface`, `ink`, `muted`, `accent`, `accent-ink`), the food-illustration palette, the plate-rim animation, and the shared `focus-ring` / `motion-colors` utilities.
 - `scripts/contrast.mjs`: `node scripts/contrast.mjs` checks WCAG contrast of every theme from `src/index.css`.
@@ -46,9 +47,18 @@ Four themes: tobacco (default), sand, walnut, cream, switched by the dots in the
 
 To add a theme: add its id to `ThemeId` and `THEME_IDS`/`THEME_NAMES` in `packages/core/src/theme/theme.ts`; add its six values to `THEME_TOKENS` in `src/theme/tokens.ts`, a `[data-theme='id']` block in `src/index.css`, and the `themes` map (bg colour) in `index.html`; then run `npm test` and `node scripts/contrast.mjs`.
 
+## Local profiles
+
+- Optional profiles (name, avatar colour, optional 4 to 8 digit passcode) all stay on the device. Guest = no profile, using the original keys. Sign-in shows when profiles exist and nobody is signed in; "Skip for now" continues as a guest for that tab.
+- Keys: `culinerity.accounts.v1`, `culinerity.attempts.v1` (localStorage), `culinerity.session.v1` (sessionStorage), `culinerity.profile.v1` (guest) and `culinerity.profile.v1.<id>` (a profile), `culinerity.theme.v1` (global). Migration ("Start from my current data") moves the guest profile into the new one and removes the guest copy.
+- The lock is access control for casual access, not encryption: the passcode is never stored (PBKDF2-SHA-256 verifier, 210,000 iterations), stored data is plain, 5 wrong tries pause for 30 seconds (soft limit, reset by clearing storage). Never claim more than this in copy.
+- Deleting a profile needs the typed name, removes only that profile's keys, and reports anything it could not remove (`RemoveResult.remaining`); `removeNotice` carries that to the sign-in screen or guest app.
+- Every text field uses `FIELD_EDGE`/`INPUT_CLASS` (src/ui/formParts.tsx): a 2px `muted` edge, >= 3:1 on bg and surface in all themes (checked by `scripts/contrast.mjs`). Do not add inputs without it (`fieldEdge.test.ts`).
+- To reset a device while developing: `localStorage.clear(); sessionStorage.clear()`.
+
 ## Privacy rules
 
-- A person's answers (check-in, score, score history, budget, suburb, My week, theme) stay on their device in localStorage (`culinerity.profile.v1`, `culinerity.theme.v1`). Sharing the week sends nothing to us. They are never sent anywhere.
+- A person's answers (check-in, score, score history, budget, suburb, My week, theme) stay on their device in localStorage (`culinerity.profile.v1` or `culinerity.profile.v1.<id>` for a local profile, `culinerity.theme.v1`). Sharing the week sends nothing to us. They are never sent anywhere.
 - No third-party requests: no analytics, CDNs, remote fonts or embeds. Fonts are bundled via `@fontsource`.
 - The server only serves reference data and receives no profile data.
 

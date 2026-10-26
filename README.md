@@ -1,6 +1,6 @@
 # Culinerity
 
-Culinerity helps anyone in Melbourne find cheaper, healthier swaps for what they crave. Pick a craving, see what costs less and sits better, and optionally take a short, private check-in about food and money. The check-in gives one number out of 100 on a plate-shaped dial, tunes the swaps and points to free food support nearby. There is no sign-up and no account.
+Culinerity helps anyone in Melbourne find cheaper, healthier swaps for what they crave. Pick a craving, see what costs less and sits better, and optionally take a short, private check-in about food and money. The check-in gives one number out of 100 on a plate-shaped dial, tunes the swaps and points to free food support nearby. There is no sign-up and no server account: you can use it as a guest, or make a local profile on your device.
 
 ## What is in it
 
@@ -10,6 +10,7 @@ Culinerity helps anyone in Melbourne find cheaper, healthier swaps for what they
 - **Swaps**: cheaper, healthier swaps for a craving, each with an "Add to my week" button, and an optional budget.
 - **Food support**: nearby places that give out free food, with directions.
 - **My week**: the swaps you added in the last 7 days and what you saved, shareable as savings-only text.
+- **Local profiles** (optional): name, an avatar colour and an optional 4 to 8 digit passcode, kept on this device only. A round avatar button in the header opens Switch profile, Lock, Delete this profile and its data, and Sign out. Guests can make a profile from the same button and choose whether to bring their current data along.
 - **Four themes** (tobacco, sand, walnut, cream), chosen with the dots in the header and remembered on your device.
 
 Requires Node >= 22.
@@ -45,6 +46,29 @@ node scripts/contrast.mjs   # WCAG contrast of the four themes
 ## Privacy
 
 Answers to the check-in, your score and its history, budget, suburb, My week and theme stay on your device and are never sent anywhere. The app makes no third-party requests (no analytics, CDNs or remote fonts). The optional server only serves reference data.
+
+## Local profiles and the passcode lock
+
+Profiles live only in this browser's storage. They are a convenience for a shared device, not security:
+
+- The passcode is never stored. A PBKDF2-SHA-256 verifier (random salt, 210,000 iterations) is, and the passcode lock only gates the app's own screens. The saved data is **not encrypted**: anyone with access to the browser's developer tools can read it, and a 4 to 8 digit code can be guessed offline.
+- After 5 wrong passcodes there is a 30 second pause. It is tracked in storage and in memory, and clearing the site's storage resets it. Nothing is ever deleted because of wrong tries.
+- If a browser has no Web Crypto (very old or insecure contexts), only profiles without a passcode can be made.
+- A forgotten passcode cannot be reset. Anyone using the browser can delete that profile from the sign-in screen (typing its name) and start a new one.
+- Closing the tab signs you out (the signed-in id lives in `sessionStorage`). A refresh stays signed in. A fresh tab with profiles on the device asks who is eating; "Skip for now" continues as a guest. The theme is device-wide and not part of a profile.
+
+Storage keys:
+
+| Key | Where | Holds |
+| --- | --- | --- |
+| `culinerity.accounts.v1` | localStorage | names, avatar colours, passcode verifiers |
+| `culinerity.attempts.v1` | localStorage | wrong-passcode counts and pause times |
+| `culinerity.session.v1` | sessionStorage | the signed-in profile id for this tab |
+| `culinerity.profile.v1` | localStorage | the guest's data (also what "start from my current data" moves) |
+| `culinerity.profile.v1.<id>` | localStorage | one profile's data |
+| `culinerity.theme.v1` | localStorage | the theme (shared by everyone on the device) |
+
+To reset: delete a profile from the header menu or sign-in screen, or clear this site's data in the browser settings (removes everything above). In devtools: `localStorage.clear(); sessionStorage.clear()`.
 
 ## Sample data
 
