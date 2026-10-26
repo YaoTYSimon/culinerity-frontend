@@ -25,6 +25,10 @@ describe('isOlderData', () => {
     expect(isOlderData({ ...base, year: 2022 }, now)).toBe(false);
     expect(isOlderData({ ...base, year: 2021 }, now)).toBe(false);
   });
+  it('flags dated rows with no known year', () => {
+    const { year: _y, ...noYear } = { ...base, dated: true };
+    expect(isOlderData(noYear, now)).toBe(true);
+  });
   it('flags dated rows whatever the year', () => {
     expect(isOlderData({ ...base, year: 2026, dated: true }, now)).toBe(true);
   });
@@ -68,7 +72,8 @@ describe('StaticBenchmarkSource', () => {
   it('every indicator has a verification and a year; numbers are numbers', () => {
     for (const i of src.indicators()) {
       expect(['primary', 'secondary', 'press']).toContain(i.verification);
-      expect(Number.isInteger(i.year)).toBe(true);
+      if (i.dated && i.year === undefined) expect(i.id).toBe('p-foodbank-vic-monthly');
+      else expect(Number.isInteger(i.year)).toBe(true);
       expect(i.value === null || typeof i.value === 'number').toBe(true);
       if (i.value === null) expect(i.display).toBeTruthy();
     }
@@ -96,6 +101,33 @@ describe('StaticBenchmarkSource', () => {
     for (const i of all.filter((i) => /^(b-vhfb-|b-hes-)/.test(i.id) || ['b-jobseeker-shortfall', 'b-parenting-shortfall'].includes(i.id))) {
       expect(i.dated).toBe(true);
     }
+  });
+  it('does not assert a year for the undated Foodbank Victoria page', () => {
+    const row = src.indicators('policy').find((i) => i.id === 'p-foodbank-vic-monthly')!;
+    expect(row.year).toBeUndefined();
+    expect(row.dated).toBe(true);
+    expect(row.period).toBe('not stated');
+    expect(row.note).toMatch(/reference year unknown/);
+  });
+  it('words the middle-income comparison from the source', () => {
+    const row = src.indicators('policy').find((i) => i.id === 'p-hunger-middle-income-trend')!;
+    expect(row.label).toMatch(/\$33,800-\$90,999/);
+    expect(row.previous?.period).toMatch(/three years earlier/);
+  });
+  it('returns copies so callers cannot mutate shared rows', () => {
+    const a = src.indicators('budget')[0]!;
+    a.label = 'changed';
+    a.previous = { value: 1, period: 'x' };
+    expect(src.indicators('budget')[0]!.label).not.toBe('changed');
+    const area = src.areas()[0]!;
+    area.name = 'changed';
+    expect(src.areas()[0]!.name).not.toBe('changed');
+    src.caveats()[0] = 'changed';
+    expect(src.caveats()[0]).not.toBe('changed');
+    src.sources()[0]!.url = 'changed';
+    expect(src.sources()[0]!.url).not.toBe('changed');
+    src.interventions()[0]!.label = 'changed';
+    expect(src.interventions()[0]!.label).not.toBe('changed');
   });
   it('exposes caveats and the not-found list', () => {
     expect(src.caveats().length).toBeGreaterThan(0);

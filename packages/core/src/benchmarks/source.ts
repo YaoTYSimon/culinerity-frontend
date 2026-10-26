@@ -15,7 +15,12 @@ export function verificationLabel(v: Verification): string {
 
 /** True when a figure is flagged dated or its reference year is more than five years before `now`. */
 export function isOlderData(i: Indicator, now: Date): boolean {
-  return i.dated === true || now.getFullYear() - i.year > OLDER_THAN_YEARS;
+  return i.dated === true || (i.year !== undefined && now.getFullYear() - i.year > OLDER_THAN_YEARS);
+}
+
+/** Callers get their own copy, so they cannot change the shared dataset. */
+function copy<T>(v: T): T {
+  return structuredClone(v);
 }
 
 /** Reads the generated, sourced dataset. Static: no runtime requests. */
@@ -23,21 +28,21 @@ export class StaticBenchmarkSource implements BenchmarkSource {
   constructor(private readonly data: BenchmarkData = benchmarkData) {}
 
   indicators(group?: IndicatorGroup) {
-    return this.data.indicators.filter((i) => !group || i.group === group);
+    return this.data.indicators.filter((i) => !group || i.group === group).map(copy);
   }
   areas() {
-    return [...this.data.areas];
+    return copy(this.data.areas);
   }
   interventions() {
-    return [...this.data.interventions];
+    return copy(this.data.interventions);
   }
   sources() {
-    return [...this.data.sources];
+    return copy(this.data.sources);
   }
   caveats() {
-    return [...this.data.caveats];
+    return copy(this.data.caveats);
   }
   notFound() {
-    return [...this.data.notFound];
+    return copy(this.data.notFound);
   }
 }

@@ -36,7 +36,7 @@ export const benchmarkData: BenchmarkData = {
       "id": "abs-hes-2015-16",
       "publisher": "Australian Bureau of Statistics",
       "title": "Household Expenditure Survey, Australia: Summary of Results (2015-16)",
-      "url": "https://www.abs.gov.au/statistics/economy/finance/household-expenditure-survey-australia-summary-results/latest-release",
+      "url": "https://www.abs.gov.au/statistics/economy/finance/household-expenditure-survey-australia-summary-results/2015-16",
       "published": "2017-09-13",
       "licence": "ABS website content generally CC BY 4.0 (see abs-copyright)",
       "accessed": "2026-10-26"
@@ -470,7 +470,7 @@ export const benchmarkData: BenchmarkData = {
       "verification": "primary",
       "previous": {
         "value": 31,
-        "period": "about 2022 (three years earlier)"
+        "period": "three years earlier (about 2022)"
       },
       "sourceId": "foodbank-hr2025-report"
     },
@@ -682,11 +682,10 @@ export const benchmarkData: BenchmarkData = {
       "value": 140000,
       "unit": "people per month",
       "scope": "Victoria",
-      "period": "not stated (undated page)",
-      "year": 2019,
+      "period": "not stated",
       "dated": true,
       "verification": "primary",
-      "note": "The page is undated; the year reflects its reference to the 2019 report era. Also: 25% increase in people seeking food relief reported by Victorian charities; 430+ charity partners; period unclear.",
+      "note": "The page is undated (reference year unknown). Also: 25% increase in people seeking food relief reported by Victorian charities; 430+ charity partners; period unclear.",
       "sourceId": "foodbank-vic-page"
     }
   ],

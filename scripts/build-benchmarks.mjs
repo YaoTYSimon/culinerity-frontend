@@ -31,13 +31,21 @@ export function validateBenchmarks(d) {
     checkSource('indicator', i.id, i.sourceId);
     if (!GROUPS.includes(i.group)) errs.push(`indicator ${i.id} has bad group`);
     if (!VERIFICATION.includes(i.verification)) errs.push(`indicator ${i.id} has bad verification`);
-    if (!Number.isInteger(i.year)) errs.push(`indicator ${i.id} year must be a number`);
+    if (i.year === undefined) {
+      if (i.dated !== true) errs.push(`indicator ${i.id} year is required unless dated`);
+    } else if (!Number.isInteger(i.year) || i.year < 1990 || i.year > 2100) {
+      errs.push(`indicator ${i.id} year must be an integer from 1990 to 2100`);
+    }
+    if (i.display !== undefined && typeof i.display !== 'string') errs.push(`indicator ${i.id} display must be a string`);
     if (i.value === null) {
       if (!i.display) errs.push(`indicator ${i.id} has null value without display`);
     } else if (typeof i.value !== 'number' || !Number.isFinite(i.value)) {
       errs.push(`indicator ${i.id} value must be a number or null`);
     }
-    if (i.previous && typeof i.previous.value !== 'number') errs.push(`indicator ${i.id} previous.value must be a number`);
+    if (i.previous) {
+      if (typeof i.previous.value !== 'number' || !Number.isFinite(i.previous.value)) errs.push(`indicator ${i.id} previous.value must be a number`);
+      if (typeof i.previous.period !== 'string') errs.push(`indicator ${i.id} previous.period must be a string`);
+    }
   }
   for (const a of d.areas ?? []) {
     checkSource('area', a.name, a.sourceId);

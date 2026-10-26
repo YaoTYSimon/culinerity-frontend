@@ -13,8 +13,8 @@ export interface Indicator {
   unit: string;
   scope: string;
   period: string;
-  /** Reference year of the figure. */
-  year: number;
+  /** Reference year of the figure. Absent only when `dated` is true and the source gives no year. */
+  year?: number;
   dated?: boolean;
   verification: Verification;
   /** What exactly was asked or measured. */

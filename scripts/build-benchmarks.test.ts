@@ -26,6 +26,20 @@ describe('build-benchmarks', () => {
     g.indicators[0].value = '2.7';
     expect(validateBenchmarks(g).join()).toMatch(/number/);
   });
+  it('checks display, previous and year', () => {
+    const bad = (mut: (i: any) => void) => {
+      const d = data();
+      mut(d.indicators.find((i: any) => i.id === 'p-hunger-casual-trend'));
+      return validateBenchmarks(d).join();
+    };
+    expect(bad((i) => (i.display = 5))).toMatch(/display/);
+    expect(bad((i) => (i.previous.period = 5))).toMatch(/previous\.period/);
+    expect(bad((i) => (i.previous.value = '36'))).toMatch(/previous\.value/);
+    expect(bad((i) => (i.year = 1900))).toMatch(/year/);
+    expect(bad((i) => (i.year = 2200))).toMatch(/year/);
+    expect(bad((i) => delete i.year)).toMatch(/year/);
+    expect(bad((i) => { delete i.year; i.dated = true; })).toBe('');
+  });
   it('throws when building an invalid dataset', () => {
     const d = data();
     d.indicators[0].sourceId = 'nope';
