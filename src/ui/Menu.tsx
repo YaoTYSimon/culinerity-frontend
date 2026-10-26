@@ -4,6 +4,9 @@ import type { NavTarget, View } from './views';
 
 interface Props {
   current: View;
+  /** Controlled open state (the header keeps the Menu and the profile panel from being open together). */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
   onNavigate: (to: NavTarget) => void;
 }
 
@@ -17,8 +20,13 @@ const ITEMS: { to: NavTarget; label: string }[] = [
 ];
 
 /** A "Menu" button that opens a plain list of destinations. Escape closes it and focus returns to the button. */
-export function Menu({ current, onNavigate }: Props) {
-  const [open, setOpen] = useState(false);
+export function Menu({ current, onNavigate, open: controlled, onOpenChange }: Props) {
+  const [own, setOwn] = useState(false);
+  const open = controlled ?? own;
+  const setOpen = (next: boolean) => {
+    setOwn(next);
+    onOpenChange?.(next);
+  };
   const button = useRef<HTMLButtonElement>(null);
   const firstItem = useRef<HTMLButtonElement>(null);
   const listId = useId();

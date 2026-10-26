@@ -4,6 +4,7 @@ import type {
   CreateInput,
   CreateResult,
   ProfileId,
+  RemoveLeftover,
   RemoveResult,
   SignInResult,
 } from '@culinerity/core';
@@ -21,6 +22,9 @@ export interface AuthState {
   signOut(): void;
   remove(id: ProfileId, confirmName: string): Promise<RemoveResult>;
   continueAsGuest(): void;
+  /** What the last delete could not remove, kept so the sign-in screen can say so after the app unmounts. */
+  removeNotice: RemoveLeftover[] | null;
+  dismissRemoveNotice(): void;
   /** Re-read the account list and session from storage. */
   refresh(): void;
 }

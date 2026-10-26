@@ -3,6 +3,7 @@ import { addWeekSwap, appendScore, removeOneWeekSwap, type Profile } from '@culi
 import { useServices } from './services/ServicesContext';
 import { CravingSearch } from './ui/CravingSearch';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
+import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
 import { PhotoCredits } from './ui/PhotoCredits';
 import { NumberScreen } from './ui/NumberScreen';
@@ -17,6 +18,8 @@ import { useFocusOnViewChange } from './ui/useFocusOnViewChange';
 export default function App({ now = () => new Date().toISOString() }: { now?: () => string } = {}) {
   const { profiles } = useServices();
   const [profile, setProfile] = useState<Profile>(() => profiles.load());
+  // A guest making a profile from the header: shown in place of the page, so there is still one h1.
+  const [creating, setCreating] = useState(false);
   const [requested, setView] = useState<View>(() => (profile.welcomeSeen === true ? homeFor(profile) : 'welcome'));
 
   const update = (next: Profile) => {
@@ -33,7 +36,10 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
   };
   const addToWeek = (swap: { itemId: string; name: string; saving: number }) =>
     update({ ...profile, weekSwaps: addWeekSwap(profile.weekSwaps, swap, now()) });
-  const go = (to: NavTarget) => setView(to === 'home' ? homeFor(profile) : to);
+  const go = (to: NavTarget) => {
+    setCreating(false);
+    setView(to === 'home' ? homeFor(profile) : to);
+  };
 
   // The number screen needs a score; without one, fall back to home rather than render an empty page.
   const view = resolveView(requested, profile);
@@ -49,10 +55,12 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         >
           Skip to main content
         </a>
-        <Header view={view} onNavigate={go} />
+        <Header view={view} onNavigate={go} onCreateProfile={() => setCreating(true)} />
 
         <main ref={main} id="main" tabIndex={-1} className="flex-1 outline-none px-4 py-4">
-          {view === 'welcome' && (
+          {creating && <CreateProfile onDone={() => setCreating(false)} onCancel={() => setCreating(false)} />}
+
+          {!creating && view === 'welcome' && (
             <Welcome
               onFindNumber={() => {
                 markWelcomeSeen();
@@ -65,15 +73,15 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             />
           )}
 
-          {view === 'checkin' && (
+          {!creating && view === 'checkin' && (
             <Questionnaire onComplete={complete} onSkip={() => setView(homeFor(profile))} />
           )}
 
-          {view === 'support' && (
+          {!creating && view === 'support' && (
             <SupportPanel suburb={profile.suburb} />
           )}
 
-          {view === 'number' && (
+          {!creating && view === 'number' && (
             <NumberScreen
               profile={profile}
               onSeeSwaps={() => setView('swaps')}
@@ -83,7 +91,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             />
           )}
 
-          {view === 'week' && (
+          {!creating && view === 'week' && (
             <WeekCard
               week={profile.weekSwaps}
               now={now()}
@@ -93,7 +101,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             />
           )}
 
-          {view === 'swaps' && (
+          {!creating && view === 'swaps' && (
             <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
               <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">Cheaper, healthier swaps for what you crave</h1>
               <p className="text-base text-pretty text-muted">

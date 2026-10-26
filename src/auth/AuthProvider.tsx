@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
-import type { AccountRecord, AuthService, CreateInput, ProfileId } from '@culinerity/core';
+import type { AccountRecord, AuthService, CreateInput, ProfileId, RemoveLeftover } from '@culinerity/core';
 import { AuthContext, type AuthState } from './useAuth';
 
 /** An AuthService that can tell us when its data changed (LocalAuthService does, including other tabs). */
@@ -29,6 +29,7 @@ export function AuthProvider({ service, children }: Props) {
       return true;
     }
   });
+  const [removeNotice, setRemoveNotice] = useState<RemoveLeftover[] | null>(null);
   const bump = useCallback(() => setVersion((v) => v + 1), []);
 
   useEffect(() => {
@@ -108,6 +109,7 @@ export function AuthProvider({ service, children }: Props) {
       async remove(id: ProfileId, confirmName: string) {
         try {
           const r = await service.remove(id, confirmName);
+          if (!r.ok && r.remaining.length) setRemoveNotice(r.remaining);
           bump();
           return r;
         } catch {
@@ -119,9 +121,11 @@ export function AuthProvider({ service, children }: Props) {
         setGuest(true);
         bump();
       },
+      removeNotice,
+      dismissRemoveNotice: () => setRemoveNotice(null),
       refresh: bump,
     };
-  }, [service, accounts, current, status, bump]);
+  }, [service, accounts, current, status, bump, removeNotice]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
