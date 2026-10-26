@@ -30,4 +30,5 @@ Status as of 26 October 2026. "Branch" says where the work lives; nothing here h
 - **Not yet built:** the Data and policy dashboard (Task 4) and the final verification (Task 5).
 
 ## Requested, not started
+- **Cultural food and "eat what fits"** (see `docs/superpowers/specs/2026-10-27-cultural-food-design.md`): self-declared traditions, dietary rules and occasions that fit swaps, a "meals that felt like home" tracker and nearby places; all on-device and optional. Treated as a core feature.
 - **Nearby cheap and healthy options** (see `docs/superpowers/specs/2026-10-26-nearby-options-design.md`).
