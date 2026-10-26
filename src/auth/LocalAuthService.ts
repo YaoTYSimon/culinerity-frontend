@@ -11,42 +11,17 @@ import {
   type AccountRecord,
   type AttemptState,
   type AuthService,
+  type CreateFailureReason,
+  type CreateInput,
+  type CreateResult,
+  type RemoveLeftover,
+  type RemoveResult,
   type ProfileId,
   type SignInResult,
-  type ThemeId,
 } from '@culinerity/core';
 import { KEYS, profileKey } from './storageKeys';
 import { newId, supportsPasscode } from './uuid';
 import { createVerifier, isVerifier, verifyPasscode } from './verifier';
-
-export interface CreateInput {
-  name: string;
-  colour: ThemeId;
-  passcode?: string;
-  migrateGuestData?: boolean;
-}
-
-export type CreateFailure =
-  | 'invalid-name'
-  | 'invalid-passcode'
-  | 'passcode-unsupported'
-  | 'no-id'
-  | 'storage';
-
-export type CreateResult =
-  | { ok: true; account: AccountRecord }
-  | { ok: false; reason: CreateFailure; message: string };
-
-/** Thrown only by the interface-shaped `create()`; carries a calm message and never a secret. */
-export class CreateError extends Error {
-  constructor(
-    readonly reason: CreateFailure,
-    message: string,
-  ) {
-    super(message);
-    this.name = 'CreateError';
-  }
-}
 
 export interface LocalAuthOptions {
   /** Injected clock (ms). Defaults to Date.now. */
@@ -101,6 +76,7 @@ export class LocalAuthService implements AuthService {
   private readonly now: () => number;
   private readonly listeners = new Set<() => void>();
   /** Fallback when storage can't be written: the soft lock still holds for this page. */
+  private readonly queues = new Map<ProfileId, Promise<void>>();
   private readonly memoryAttempts = new Map<ProfileId, AttemptState>();
 
   constructor(opts: LocalAuthOptions = {}) {
@@ -137,23 +113,35 @@ export class LocalAuthService implements AuthService {
 
   list(): AccountRecord[] {
     try {
-      const raw = local()?.getItem(KEYS.accounts);
-      if (!raw) return [];
-      const parsed: unknown = JSON.parse(raw);
-      if (!Array.isArray(parsed)) return [];
-      const seen = new Set<string>();
-      const out: AccountRecord[] = [];
-      for (const item of parsed) {
-        const a = sanitiseAccount(item);
-        if (a && !seen.has(a.id)) {
-          seen.add(a.id);
-          out.push(a);
-        }
-      }
-      return out;
+      return this.readAccounts().valid;
     } catch {
       return [];
     }
+  }
+
+  /** Valid accounts, plus the raw entries that failed sanitising (kept so writes never erase them). */
+  private readAccounts(): { valid: AccountRecord[]; foreign: unknown[] } {
+    const raw = local()?.getItem(KEYS.accounts);
+    if (!raw) return { valid: [], foreign: [] };
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      return { valid: [], foreign: [] };
+    }
+    if (!Array.isArray(parsed)) return { valid: [], foreign: [] };
+    const seen = new Set<string>();
+    const valid: AccountRecord[] = [];
+    const foreign: unknown[] = [];
+    for (const item of parsed) {
+      const a = sanitiseAccount(item);
+      if (!a) foreign.push(item);
+      else if (!seen.has(a.id)) {
+        seen.add(a.id);
+        valid.push(a);
+      }
+    }
+    return { valid, foreign };
   }
 
   current(): AccountRecord | null {
@@ -168,7 +156,11 @@ export class LocalAuthService implements AuthService {
 
   // ---- create ----
 
-  async createAccount(input: CreateInput): Promise<CreateResult> {
+  /**
+   * Never throws. An empty-string passcode means "no passcode" (the UI should pass undefined;
+   * '' is tolerated so a blank field can't create a half-protected profile).
+   */
+  async create(input: CreateInput): Promise<CreateResult> {
     try {
       return await this.doCreate(input);
     } catch {
@@ -176,18 +168,11 @@ export class LocalAuthService implements AuthService {
     }
   }
 
-  /** AuthService-shaped create: resolves with the account, or rejects with a CreateError. Prefer createAccount. */
-  async create(input: CreateInput): Promise<AccountRecord> {
-    const r = await this.createAccount(input);
-    if (r.ok) return r.account;
-    throw new CreateError(r.reason, r.message);
-  }
-
   private async doCreate(input: CreateInput): Promise<CreateResult> {
     const name = validateName(typeof input.name === 'string' ? input.name : '');
     if (!name.ok) return fail('invalid-name', name.reason ?? 'Please enter a name.');
     const colour = THEME_IDS.find((c) => c === input.colour);
-    if (!colour) return fail('invalid-name', 'Please choose a colour.');
+    if (!colour) return fail('invalid-colour', 'Please choose a colour.');
 
     const passcode = input.passcode ? input.passcode : undefined;
     if (passcode !== undefined) {
@@ -212,13 +197,13 @@ export class LocalAuthService implements AuthService {
     const key = profileKey(id);
     const rollback = (): void => {
       this.tryRun(() => ls.removeItem(key));
-      this.tryRun(() => this.writeAccounts(this.list().filter((a) => a.id !== id)));
+      this.tryRun(() => this.updateAccounts((list) => list.filter((a) => a.id !== id)));
     };
     try {
       ls.setItem(key, data);
       if (ls.getItem(key) !== data) throw new Error('read-back mismatch');
       // Re-read the list now and merge by id, so another tab's profile is not lost.
-      this.writeAccounts([...this.list().filter((a) => a.id !== id), account]);
+      this.updateAccounts((list) => [...list.filter((a) => a.id !== id), account]);
       if (guestRaw !== null) ls.removeItem(profileKey());
     } catch {
       rollback();
@@ -230,18 +215,42 @@ export class LocalAuthService implements AuthService {
 
   // ---- sign in / out ----
 
-  async signIn(id: ProfileId, passcode?: string): Promise<SignInResult> {
+  /**
+   * Sign-ins for the same profile id are serialised: a second call waits for the first, then re-reads
+   * the attempt state, so parallel or double-submitted calls each count once and the lock engages on
+   * the 5th failure. The hash can also finish after a lock appeared (another tab), so the state is
+   * re-read afterwards and a locked profile never gets a session.
+   */
+  signIn(id: ProfileId, passcode?: string): Promise<SignInResult> {
+    const previous = this.queues.get(id) ?? Promise.resolve();
+    const run = previous.then(() => this.doSignIn(id, passcode));
+    const tail = run.then(
+      () => undefined,
+      () => undefined,
+    );
+    this.queues.set(id, tail);
+    void tail.then(() => {
+      if (this.queues.get(id) === tail) this.queues.delete(id);
+    });
+    return run;
+  }
+
+  private async doSignIn(id: ProfileId, passcode?: string): Promise<SignInResult> {
     try {
       const account = this.list().find((a) => a.id === id);
       if (!account) return { ok: false, reason: 'unknown-profile' };
       if (account.verifier) {
         if (typeof passcode !== 'string' || passcode === '') return { ok: false, reason: 'needs-passcode' };
-        const before = this.readAttempt(id);
-        if (retryInSeconds(before, this.now()) > 0) {
-          return { ok: false, reason: 'too-many-attempts', retryInSeconds: retryInSeconds(before, this.now()) };
-        }
+        const locked = (): SignInResult | null => {
+          const wait = retryInSeconds(this.readAttempt(id), this.now());
+          return wait > 0 ? { ok: false, reason: 'too-many-attempts', retryInSeconds: wait } : null;
+        };
+        const early = locked();
+        if (early) return early;
         const ok = await verifyPasscode(passcode, account.verifier);
-        // Re-read: another tab may have recorded attempts while we were hashing.
+        // The lock may have engaged while hashing (another tab): never sign in, never count again.
+        const late = locked();
+        if (late) return late;
         const after = nextAttemptState(this.readAttempt(id), ok, this.now());
         this.writeAttempt(id, after);
         if (!ok) {
@@ -251,12 +260,12 @@ export class LocalAuthService implements AuthService {
         }
       }
       const ss = session();
-      if (!ss) return { ok: false, reason: 'unknown-profile' };
+      if (!ss) return { ok: false, reason: 'storage-error' };
       ss.setItem(KEYS.session, id);
       this.emit();
       return { ok: true, account };
     } catch {
-      return { ok: false, reason: 'unknown-profile' };
+      return { ok: false, reason: 'storage-error' };
     }
   }
 
@@ -275,35 +284,57 @@ export class LocalAuthService implements AuthService {
 
   // ---- remove ----
 
-  async remove(id: ProfileId, confirmName: string): Promise<boolean> {
+  /** Attempts every deletion step even if one throws; `remaining` says what is still in storage. */
+  async remove(id: ProfileId, confirmName: string): Promise<RemoveResult> {
+    let account: AccountRecord | undefined;
     try {
-      const account = this.list().find((a) => a.id === id);
-      if (!account || typeof confirmName !== 'string' || !isDeletionConfirmed(account, confirmName)) return false;
-      const ls = local();
-      if (!ls) return false;
-      // Data first: a profile left without data is harmless; data left without a profile is not.
-      ls.removeItem(profileKey(id));
-      this.memoryAttempts.delete(id);
-      const attempts = this.readAttempts();
-      if (id in attempts) {
-        delete attempts[id];
-        ls.setItem(KEYS.attempts, JSON.stringify(attempts));
-      }
-      this.writeAccounts(this.list().filter((a) => a.id !== id));
-      if (session()?.getItem(KEYS.session) === id) session()?.removeItem(KEYS.session);
-      this.emit();
-      return true;
+      account = this.list().find((a) => a.id === id);
     } catch {
-      return false;
+      account = undefined;
     }
+    if (!account) return { ok: false, reason: 'unknown-profile', remaining: [] };
+    if (typeof confirmName !== 'string' || !isDeletionConfirmed(account, confirmName)) {
+      return { ok: false, reason: 'name-mismatch', remaining: [] };
+    }
+    const remaining: RemoveLeftover[] = [];
+    const step = (what: RemoveLeftover, fn: () => void): void => {
+      try {
+        fn();
+      } catch {
+        remaining.push(what);
+      }
+    };
+    // Data first: a profile left without data is harmless; data left without a profile is not.
+    step('data', () => {
+      const ls = local();
+      if (!ls) throw new Error('storage unavailable');
+      ls.removeItem(profileKey(id));
+    });
+    this.memoryAttempts.delete(id);
+    step('attempts', () => {
+      const all = this.readAttempts();
+      if (id in all) {
+        delete all[id];
+        local()?.setItem(KEYS.attempts, JSON.stringify(all));
+      }
+    });
+    step('account', () => this.updateAccounts((list) => list.filter((a) => a.id !== id)));
+    step('session', () => {
+      const ss = session();
+      if (ss?.getItem(KEYS.session) === id) ss.removeItem(KEYS.session);
+    });
+    this.emit();
+    return remaining.length === 0 ? { ok: true } : { ok: false, reason: 'storage-error', remaining };
   }
 
   // ---- storage helpers ----
 
-  private writeAccounts(accounts: AccountRecord[]): void {
+  /** Re-read, apply `change` to the valid accounts, and write back with malformed entries preserved. */
+  private updateAccounts(change: (list: AccountRecord[]) => AccountRecord[]): void {
     const ls = local();
     if (!ls) throw new Error('storage unavailable');
-    ls.setItem(KEYS.accounts, JSON.stringify(accounts));
+    const { valid, foreign } = this.readAccounts();
+    ls.setItem(KEYS.accounts, JSON.stringify([...change(valid), ...foreign]));
   }
 
   private readAttempts(): Record<string, AttemptState> {
@@ -349,6 +380,6 @@ export class LocalAuthService implements AuthService {
   }
 }
 
-function fail(reason: CreateFailure, message: string): CreateResult {
+function fail(reason: CreateFailureReason, message: string): CreateResult {
   return { ok: false, reason, message };
 }

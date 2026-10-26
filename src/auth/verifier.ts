@@ -14,11 +14,19 @@ function toBase64(bytes: Uint8Array): string {
   return btoa(s);
 }
 
-function fromBase64(text: string): Uint8Array<ArrayBuffer> {
-  const s = atob(text);
-  const out = new Uint8Array(new ArrayBuffer(s.length));
-  for (let i = 0; i < s.length; i++) out[i] = s.charCodeAt(i);
-  return out;
+const BASE64 = /^[A-Za-z0-9+/]*={0,2}$/;
+
+/** Strict base64 decode: null for anything malformed. */
+function fromBase64(text: string): Uint8Array<ArrayBuffer> | null {
+  if (typeof text !== 'string' || text.length % 4 !== 0 || !BASE64.test(text)) return null;
+  try {
+    const s = atob(text);
+    const out = new Uint8Array(new ArrayBuffer(s.length));
+    for (let i = 0; i < s.length; i++) out[i] = s.charCodeAt(i);
+    return out;
+  } catch {
+    return null;
+  }
 }
 
 async function derive(passcode: string, salt: Uint8Array<ArrayBuffer>, iterations: number): Promise<Uint8Array> {
@@ -53,30 +61,22 @@ export async function createVerifier(
 /** True only for the right passcode. Never throws: any error (bad data, no Web Crypto) is false. */
 export async function verifyPasscode(passcode: string, verifier: Verifier): Promise<boolean> {
   try {
-    if (typeof passcode !== 'string' || !verifier || verifier.v !== 1) return false;
-    const { iterations } = verifier;
-    if (!Number.isInteger(iterations) || iterations < 1 || iterations > MAX_ITERATIONS) return false;
-    if (typeof verifier.salt !== 'string' || typeof verifier.hash !== 'string') return false;
+    if (typeof passcode !== 'string' || !isVerifier(verifier)) return false;
     const salt = fromBase64(verifier.salt);
     const expected = fromBase64(verifier.hash);
-    if (salt.length === 0) return false;
-    return equalBytes(await derive(passcode, salt, iterations), expected);
+    if (!salt || !expected) return false;
+    return equalBytes(await derive(passcode, salt, verifier.iterations), expected);
   } catch {
     return false;
   }
 }
 
-/** Shape check for a verifier read from storage (does not check the hash). */
+/** Shape check for a verifier read from storage: version, iterations, base64, 16-byte salt, 32-byte hash. */
 export function isVerifier(x: unknown): x is Verifier {
   if (!x || typeof x !== 'object') return false;
   const v = x as Record<string, unknown>;
-  return (
-    v.v === 1 &&
-    typeof v.salt === 'string' &&
-    typeof v.hash === 'string' &&
-    typeof v.iterations === 'number' &&
-    Number.isInteger(v.iterations) &&
-    v.iterations >= 1 &&
-    v.iterations <= MAX_ITERATIONS
-  );
+  if (v.v !== 1 || typeof v.salt !== 'string' || typeof v.hash !== 'string') return false;
+  if (typeof v.iterations !== 'number' || !Number.isInteger(v.iterations)) return false;
+  if (v.iterations < 1 || v.iterations > MAX_ITERATIONS) return false;
+  return fromBase64(v.salt)?.length === SALT_BYTES && fromBase64(v.hash)?.length === HASH_BYTES;
 }

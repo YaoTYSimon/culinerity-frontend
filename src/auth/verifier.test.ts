@@ -1,6 +1,6 @@
 import { pbkdf2Sync } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { createVerifier, verifyPasscode } from './verifier';
+import { createVerifier, isVerifier, verifyPasscode } from './verifier';
 import { newId, supportsPasscode } from './uuid';
 
 const b64 = (b: Uint8Array) => btoa(String.fromCharCode(...b));
@@ -48,6 +48,19 @@ describe('verifier', () => {
     expect(await verifyPasscode('5829', { ...v, v: 2 } as never)).toBe(false);
     expect(await verifyPasscode('5829', null as never)).toBe(false);
     expect(await verifyPasscode(undefined as never, v)).toBe(false);
+  });
+});
+
+describe('isVerifier', () => {
+  it('accepts a real verifier and rejects malformed ones consistently', async () => {
+    const v = await createVerifier('5829');
+    expect(isVerifier(v)).toBe(true);
+    expect(isVerifier({ ...v, salt: 'not base64!' })).toBe(false);
+    expect(isVerifier({ ...v, salt: b64(new Uint8Array(8)) })).toBe(false);
+    expect(isVerifier({ ...v, hash: b64(new Uint8Array(16)) })).toBe(false);
+    expect(isVerifier({ ...v, hash: v.hash.slice(0, -1) })).toBe(false);
+    expect(isVerifier({ ...v, v: 2 })).toBe(false);
+    expect(isVerifier(null)).toBe(false);
   });
 });
 

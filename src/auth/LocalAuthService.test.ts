@@ -14,7 +14,7 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks());
 
 async function mk(svc: LocalAuthService, name = 'Sam', passcode?: string) {
-  const r = await svc.createAccount({ name, colour: 'sand', passcode });
+  const r = await svc.create({ name, colour: 'sand', passcode });
   if (!r.ok) throw new Error('create failed: ' + r.reason);
   return r.account;
 }
@@ -38,15 +38,18 @@ describe('create / list / signIn', () => {
   });
   it('rejects bad names and weak passcodes with typed reasons', async () => {
     const svc = make();
-    expect(await svc.createAccount({ name: '  ', colour: 'sand' })).toMatchObject({ ok: false, reason: 'invalid-name' });
-    expect(await svc.createAccount({ name: 'A', colour: 'sand', passcode: '1234' })).toMatchObject({
+    expect(await svc.create({ name: '  ', colour: 'sand' })).toMatchObject({ ok: false, reason: 'invalid-name' });
+    expect(await svc.create({ name: 'A', colour: 'sand', passcode: '1234' })).toMatchObject({
       ok: false,
       reason: 'invalid-passcode',
     });
     expect(svc.list()).toEqual([]);
   });
-  it('create() rejects (typed) instead of returning a bad account', async () => {
-    await expect(make().create({ name: '', colour: 'sand' })).rejects.toThrow();
+  it('an invalid colour has its own reason; an empty passcode means no passcode', async () => {
+    const svc = make();
+    expect(await svc.create({ name: 'A', colour: 'neon' as never })).toMatchObject({ ok: false, reason: 'invalid-colour' });
+    const r = await svc.create({ name: 'A', colour: 'sand', passcode: '' });
+    expect(r.ok && r.account.verifier).toBeUndefined();
   });
   it('wrong passcode reports tries left; right passcode resets', async () => {
     const svc = make();
@@ -101,8 +104,8 @@ describe('create / list / signIn', () => {
     Object.defineProperty(globalThis, 'crypto', { value: { getRandomValues: real.getRandomValues.bind(real), randomUUID: real.randomUUID.bind(real) }, configurable: true });
     try {
       const svc = make();
-      expect(await svc.createAccount({ name: 'A', colour: 'sand', passcode: PASS })).toMatchObject({ ok: false, reason: 'passcode-unsupported' });
-      expect((await svc.createAccount({ name: 'A', colour: 'sand' })).ok).toBe(true);
+      expect(await svc.create({ name: 'A', colour: 'sand', passcode: PASS })).toMatchObject({ ok: false, reason: 'passcode-unsupported' });
+      expect((await svc.create({ name: 'A', colour: 'sand' })).ok).toBe(true);
     } finally {
       Object.defineProperty(globalThis, 'crypto', { value: real, configurable: true });
     }
@@ -111,7 +114,7 @@ describe('create / list / signIn', () => {
     const real = globalThis.crypto;
     Object.defineProperty(globalThis, 'crypto', { value: {}, configurable: true });
     try {
-      expect(await make().createAccount({ name: 'A', colour: 'sand' })).toMatchObject({ ok: false, reason: 'no-id' });
+      expect(await make().create({ name: 'A', colour: 'sand' })).toMatchObject({ ok: false, reason: 'no-id' });
     } finally {
       Object.defineProperty(globalThis, 'crypto', { value: real, configurable: true });
     }
@@ -188,7 +191,7 @@ describe('migration', () => {
       if (k.startsWith(KEYS.guestProfile + '.')) throw new Error('quota');
       return real.call(this, k, v);
     });
-    const r = await make().createAccount({ name: 'Sam', colour: 'sand', migrateGuestData: true });
+    const r = await make().create({ name: 'Sam', colour: 'sand', migrateGuestData: true });
     expect(r).toMatchObject({ ok: false, reason: 'storage' });
     expect(JSON.parse(localStorage.getItem(KEYS.guestProfile) ?? '{}')).toEqual(guest);
     expect(make().list()).toEqual([]);
@@ -199,7 +202,7 @@ describe('migration', () => {
     vi.spyOn(Storage.prototype, 'getItem').mockImplementation(function (this: Storage, k: string) {
       return k.startsWith(KEYS.guestProfile + '.') ? '{"tampered":1}' : realGet.call(this, k);
     });
-    const r = await make().createAccount({ name: 'Sam', colour: 'sand', migrateGuestData: true });
+    const r = await make().create({ name: 'Sam', colour: 'sand', migrateGuestData: true });
     expect(r).toMatchObject({ ok: false, reason: 'storage' });
     vi.restoreAllMocks();
     expect(JSON.parse(localStorage.getItem(KEYS.guestProfile) ?? '{}')).toEqual(guest);
@@ -213,13 +216,13 @@ describe('migration', () => {
       if (k === KEYS.guestProfile) throw new Error('blocked');
       return realRemove.call(this, k);
     });
-    const r = await make().createAccount({ name: 'Sam', colour: 'sand', migrateGuestData: true });
+    const r = await make().create({ name: 'Sam', colour: 'sand', migrateGuestData: true });
     expect(r).toMatchObject({ ok: false, reason: 'storage' });
     expect(make().list()).toEqual([]);
     expect(Object.keys(localStorage).filter((k) => k.startsWith(KEYS.guestProfile + '.'))).toEqual([]);
   });
   async function mk2(svc: LocalAuthService, migrate: boolean) {
-    const r = await svc.createAccount({ name: 'Sam', colour: 'sand', migrateGuestData: migrate });
+    const r = await svc.create({ name: 'Sam', colour: 'sand', migrateGuestData: migrate });
     if (!r.ok) throw new Error(r.reason);
     return r.account;
   }
@@ -234,7 +237,7 @@ describe('remove', () => {
     localStorage.setItem(KEYS.theme, 'sand');
     await svc.signIn(a.id, '9999');
     await svc.signIn(b.id, '9999');
-    expect(await svc.remove(a.id, 'Ann')).toBe(true);
+    expect(await svc.remove(a.id, 'Ann')).toEqual({ ok: true });
     expect(svc.list().map((x) => x.id)).toEqual([b.id]);
     expect(localStorage.getItem(profileKey(a.id))).toBeNull();
     expect(localStorage.getItem(profileKey(b.id))).not.toBeNull();
@@ -246,8 +249,8 @@ describe('remove', () => {
   it('needs the exact typed name', async () => {
     const svc = make();
     const a = await mk(svc, 'Ann');
-    expect(await svc.remove(a.id, 'ann')).toBe(false);
-    expect(await svc.remove('ghost', 'Ann')).toBe(false);
+    expect(await svc.remove(a.id, 'ann')).toMatchObject({ ok: false, reason: 'name-mismatch' });
+    expect(await svc.remove('ghost', 'Ann')).toMatchObject({ ok: false, reason: 'unknown-profile' });
     expect(svc.list()).toHaveLength(1);
   });
   it('signs out when removing the current profile only', async () => {
@@ -260,6 +263,77 @@ describe('remove', () => {
     await svc.remove(a.id, 'Ann');
     expect(sessionStorage.getItem(KEYS.session)).toBeNull();
     expect(svc.current()).toBeNull();
+  });
+});
+
+describe('race and storage errors', () => {
+  it('parallel wrong passcodes count once each and the 5th locks', async () => {
+    const svc = make();
+    const a = await mk(svc, 'Sam', PASS);
+    const results = await Promise.all(Array.from({ length: 7 }, () => svc.signIn(a.id, '9999')));
+    expect(results.map((r) => (r.ok ? 'ok' : r.reason))).toEqual([
+      'wrong-passcode', 'wrong-passcode', 'wrong-passcode', 'wrong-passcode',
+      'too-many-attempts', 'too-many-attempts', 'too-many-attempts',
+    ]);
+    expect(results.slice(0, 4).map((r) => (r.ok ? -1 : r.triesLeft))).toEqual([4, 3, 2, 1]);
+    expect(results[4]).toMatchObject({ retryInSeconds: 30 });
+    expect(JSON.parse(localStorage.getItem(KEYS.attempts) ?? '{}')[a.id].failures).toBe(5);
+  });
+  it('a correct passcode that finishes hashing after the lock engaged does not sign in', async () => {
+    const svc = make();
+    const a = await mk(svc, 'Sam', PASS);
+    const orig = crypto.subtle.deriveBits.bind(crypto.subtle);
+    vi.spyOn(crypto.subtle, 'deriveBits').mockImplementationOnce(async (...args) => {
+      localStorage.setItem(KEYS.attempts, JSON.stringify({ [a.id]: { failures: 5, lockedUntil: t + 30_000 } }));
+      return orig(...args);
+    });
+    const r = await svc.signIn(a.id, PASS);
+    expect(r).toEqual({ ok: false, reason: 'too-many-attempts', retryInSeconds: 30 });
+    expect(sessionStorage.getItem(KEYS.session)).toBeNull();
+    expect(svc.current()).toBeNull();
+  });
+  it('returns storage-error when the session cannot be written', async () => {
+    const svc = make();
+    const a = await mk(svc, 'Sam');
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (this: Storage, k: string) {
+      if (k === KEYS.session) throw new Error('blocked');
+    });
+    expect(await svc.signIn(a.id)).toEqual({ ok: false, reason: 'storage-error' });
+  });
+  it('returns storage-error when sessionStorage is unavailable', async () => {
+    const svc = make();
+    const a = await mk(svc, 'Sam');
+    vi.spyOn(window, 'sessionStorage', 'get').mockImplementation(() => {
+      throw new Error('denied');
+    });
+    expect(await svc.signIn(a.id)).toEqual({ ok: false, reason: 'storage-error' });
+  });
+});
+
+describe('malformed entries and partial removal', () => {
+  it('keeps malformed raw entries across writes', async () => {
+    const weird = { id: 'zz', name: 'Old', colour: 'sand', createdAt: 'x', verifier: { v: 1, salt: 'bad', iterations: 1, hash: 'bad' } };
+    localStorage.setItem(KEYS.accounts, JSON.stringify([weird, 7]));
+    const svc = make();
+    expect(svc.list()).toEqual([]);
+    const a = await mk(svc, 'Ann');
+    await svc.remove(a.id, 'Ann');
+    expect(JSON.parse(localStorage.getItem(KEYS.accounts) ?? '[]')).toEqual([weird, 7]);
+  });
+  it('attempts every removal step and reports what remains', async () => {
+    const svc = make();
+    const a = await mk(svc, 'Ann', PASS);
+    await svc.signIn(a.id, '9999');
+    await svc.signIn(a.id, PASS);
+    const realRemove = Storage.prototype.removeItem;
+    vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(function (this: Storage, k: string) {
+      if (k === profileKey(a.id)) throw new Error('blocked');
+      return realRemove.call(this, k);
+    });
+    const r = await svc.remove(a.id, 'Ann');
+    expect(r).toEqual({ ok: false, reason: 'storage-error', remaining: ['data'] });
+    expect(svc.list()).toEqual([]);
+    expect(sessionStorage.getItem(KEYS.session)).toBeNull();
   });
 });
 
@@ -288,7 +362,7 @@ describe('secrets and failures', () => {
     const a = await mk(svc, 'Sam', '7391');
     await svc.signIn(a.id, '1111');
     await svc.signIn(a.id, '7391');
-    await svc.createAccount({ name: 'X', colour: 'sand', passcode: '1234' });
+    await svc.create({ name: 'X', colour: 'sand', passcode: '1234' });
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
       throw new Error('boom');
     });
@@ -308,12 +382,11 @@ describe('secrets and failures', () => {
     }
     expect(svc.list()).toEqual([]);
     expect(svc.current()).toBeNull();
-    expect(await svc.createAccount({ name: 'Z', colour: 'sand' })).toMatchObject({ ok: false });
-    await expect(svc.create({ name: 'Z', colour: 'sand' })).rejects.toBeInstanceOf(Error);
+    expect(await svc.create({ name: 'Z', colour: 'sand' })).toMatchObject({ ok: false });
     expect(await svc.signIn(a.id, PASS)).toMatchObject({ ok: false });
     expect(() => svc.lock()).not.toThrow();
     expect(() => svc.signOut()).not.toThrow();
-    expect(await svc.remove(a.id, 'Sam')).toBe(false);
+    expect((await svc.remove(a.id, 'Sam')).ok).toBe(false);
     const off = svc.subscribe(() => {});
     expect(() => off()).not.toThrow();
   });
