@@ -28,6 +28,7 @@ export interface LocalAuthOptions {
   now?: () => number;
 }
 
+const MAX_PASSCODE_INPUT = 64;
 const SAFE_ID = /^[A-Za-z0-9-]{1,64}$/;
 const STORAGE_MESSAGE = "We couldn't save to this browser. Check that storage is allowed and try again.";
 
@@ -120,16 +121,16 @@ export class LocalAuthService implements AuthService {
   }
 
   /** Valid accounts, plus the raw entries that failed sanitising (kept so writes never erase them). */
-  private readAccounts(): { valid: AccountRecord[]; foreign: unknown[] } {
+  private readAccounts(): { valid: AccountRecord[]; foreign: unknown[]; corrupt: boolean } {
     const raw = local()?.getItem(KEYS.accounts);
-    if (!raw) return { valid: [], foreign: [] };
+    if (!raw) return { valid: [], foreign: [], corrupt: false };
     let parsed: unknown;
     try {
       parsed = JSON.parse(raw);
     } catch {
-      return { valid: [], foreign: [] };
+      return { valid: [], foreign: [], corrupt: true };
     }
-    if (!Array.isArray(parsed)) return { valid: [], foreign: [] };
+    if (!Array.isArray(parsed)) return { valid: [], foreign: [], corrupt: true };
     const seen = new Set<string>();
     const valid: AccountRecord[] = [];
     const foreign: unknown[] = [];
@@ -141,7 +142,7 @@ export class LocalAuthService implements AuthService {
         valid.push(a);
       }
     }
-    return { valid, foreign };
+    return { valid, foreign, corrupt: false };
   }
 
   current(): AccountRecord | null {
@@ -181,6 +182,13 @@ export class LocalAuthService implements AuthService {
       }
       const p = validatePasscode(passcode);
       if (!p.ok) return fail('invalid-passcode', p.reason ?? 'Use 4 to 8 digits.');
+    }
+    try {
+      if (this.readAccounts().corrupt) {
+        return fail('accounts-corrupt', "The saved list of profiles on this device can't be read, so we haven't changed it. Clearing this site's data in your browser settings will let you start again.");
+      }
+    } catch {
+      // storage unavailable: handled below
     }
     const id = newId();
     if (!id) return fail('no-id', "This browser can't create profiles safely.");
@@ -245,6 +253,8 @@ export class LocalAuthService implements AuthService {
           const wait = retryInSeconds(this.readAttempt(id), this.now());
           return wait > 0 ? { ok: false, reason: 'too-many-attempts', retryInSeconds: wait } : null;
         };
+        // No hashing for an absurd length: it is simply not the passcode (passcodes are 4 to 8 digits).
+        if (passcode.length > MAX_PASSCODE_INPUT) return { ok: false, reason: 'wrong-passcode' };
         const early = locked();
         if (early) return early;
         const ok = await verifyPasscode(passcode, account.verifier);
@@ -333,7 +343,9 @@ export class LocalAuthService implements AuthService {
   private updateAccounts(change: (list: AccountRecord[]) => AccountRecord[]): void {
     const ls = local();
     if (!ls) throw new Error('storage unavailable');
-    const { valid, foreign } = this.readAccounts();
+    const { valid, foreign, corrupt } = this.readAccounts();
+    // An unreadable list is left exactly as it is: writing would erase whatever is in it.
+    if (corrupt) throw new Error('accounts unreadable');
     ls.setItem(KEYS.accounts, JSON.stringify([...change(valid), ...foreign]));
   }
 
@@ -363,6 +375,11 @@ export class LocalAuthService implements AuthService {
   }
 
   private writeAttempt(id: ProfileId, state: AttemptState): void {
+    // The profile may have been removed (another tab) while the passcode was being checked: leave no trace.
+    if (!this.list().some((a) => a.id === id)) {
+      this.memoryAttempts.delete(id);
+      return;
+    }
     this.memoryAttempts.set(id, state);
     this.tryRun(() => {
       const all = this.readAttempts();

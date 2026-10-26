@@ -391,3 +391,49 @@ describe('secrets and failures', () => {
     expect(() => off()).not.toThrow();
   });
 });
+
+describe('a corrupt account list is never overwritten', () => {
+  for (const raw of ['{not json', '{"a":1}', '"text"']) {
+    it(`create() refuses and leaves ${raw} untouched`, async () => {
+      localStorage.setItem(KEYS.accounts, raw);
+      const r = await make().create({ name: 'Sam', colour: 'sand' });
+      expect(r.ok).toBe(false);
+      if (!r.ok) {
+        expect(r.reason).toBe('accounts-corrupt');
+        expect(r.message).toMatch(/can't be read/i);
+      }
+      expect(localStorage.getItem(KEYS.accounts)).toBe(raw);
+      expect(Object.keys(localStorage).filter((k) => k.startsWith('culinerity.profile.v1.'))).toEqual([]);
+    });
+  }
+  it('remove() leaves it untouched too', async () => {
+    localStorage.setItem(KEYS.accounts, '{not json');
+    const r = await make().remove('abc', 'Sam');
+    expect(r.ok).toBe(false);
+    expect(localStorage.getItem(KEYS.accounts)).toBe('{not json');
+  });
+});
+
+describe('writes for a removed profile', () => {
+  it('a sign-in that finishes after the profile was removed (another tab) does not recreate its attempts entry', async () => {
+    const svc = make();
+    const a = await mk(svc, 'Sam', PASS);
+    const p = svc.signIn(a.id, '9999');
+    await new Promise((r) => setTimeout(r, 0));
+    localStorage.setItem(KEYS.accounts, '[]');
+    await p;
+    expect(localStorage.getItem(KEYS.attempts) ?? '{}').not.toContain(a.id);
+  });
+});
+
+describe('passcode length guard', () => {
+  it('a passcode over 64 characters is wrong without any hashing', async () => {
+    const svc = make();
+    const a = await mk(svc, 'Sam', PASS);
+    const spy = vi.spyOn(crypto.subtle, 'deriveBits');
+    const r = await svc.signIn(a.id, 'x'.repeat(65));
+    expect(r).toMatchObject({ ok: false, reason: 'wrong-passcode' });
+    expect(spy).not.toHaveBeenCalled();
+    expect(svc.current()).toBeNull();
+  });
+});

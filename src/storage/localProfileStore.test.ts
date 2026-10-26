@@ -53,6 +53,10 @@ describe('LocalProfileStore', () => {
     expect(s.load()).toEqual({});
   });
   it('uses culinerity.profile.v1.<id> for a suffixed store and keeps profiles apart from the guest', () => {
+    localStorage.setItem(
+      'culinerity.accounts.v1',
+      JSON.stringify(['a1', 'b2'].map((id) => ({ id, name: id, colour: 'sand', createdAt: 'x' }))),
+    );
     const guest = new LocalProfileStore();
     const a = new LocalProfileStore('.a1');
     const b = new LocalProfileStore('.b2');
@@ -77,5 +81,19 @@ describe('LocalProfileStore', () => {
     expect(s.load()).toEqual({});
     expect(() => s.save({ score: 1 })).not.toThrow();
     expect(() => s.clear()).not.toThrow();
+  });
+});
+
+describe('LocalProfileStore for a profile that was deleted (another tab)', () => {
+  const id = 'abc-123';
+  it('saves while the account exists and refuses once it is gone', () => {
+    localStorage.setItem('culinerity.accounts.v1', JSON.stringify([{ id, name: 'Sam', colour: 'sand', createdAt: 'x' }]));
+    const s = new LocalProfileStore('.' + id);
+    s.save({ suburb: 'Carlton' });
+    expect(localStorage.getItem('culinerity.profile.v1.' + id)).toContain('Carlton');
+    localStorage.removeItem('culinerity.profile.v1.' + id);
+    localStorage.setItem('culinerity.accounts.v1', '[]');
+    s.save({ suburb: 'Fitzroy' });
+    expect(localStorage.getItem('culinerity.profile.v1.' + id)).toBeNull();
   });
 });

@@ -39,7 +39,8 @@ export type CreateFailureReason =
   | 'invalid-colour'
   | 'passcode-unsupported'
   | 'no-id'
-  | 'storage';
+  | 'storage'
+  | 'accounts-corrupt';
 
 export type CreateResult =
   | { ok: true; account: AccountRecord }
