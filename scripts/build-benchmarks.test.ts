@@ -1,0 +1,34 @@
+// @vitest-environment node
+import { readFileSync } from 'node:fs';
+import { describe, expect, it } from 'vitest';
+import { buildBenchmarks, validateBenchmarks, DATA_PATH, OUT_PATH } from './build-benchmarks.mjs';
+
+const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
+
+describe('build-benchmarks', () => {
+  it('the committed generated file is up to date', () => {
+    expect(readFileSync(OUT_PATH, 'utf8')).toBe(buildBenchmarks(data()));
+  });
+  it('accepts the dataset', () => {
+    expect(validateBenchmarks(data())).toEqual([]);
+  });
+  it('rejects duplicate ids, dangling sources, http urls and string numbers', () => {
+    const d = data();
+    d.indicators.push({ ...d.indicators[0] });
+    expect(validateBenchmarks(d).join()).toMatch(/duplicate/i);
+    const e = data();
+    e.indicators[0].sourceId = 'nope';
+    expect(validateBenchmarks(e).join()).toMatch(/nope/);
+    const f = data();
+    f.sources[0].url = 'http://example.com';
+    expect(validateBenchmarks(f).join()).toMatch(/https/);
+    const g = data();
+    g.indicators[0].value = '2.7';
+    expect(validateBenchmarks(g).join()).toMatch(/number/);
+  });
+  it('throws when building an invalid dataset', () => {
+    const d = data();
+    d.indicators[0].sourceId = 'nope';
+    expect(() => buildBenchmarks(d)).toThrow();
+  });
+});
