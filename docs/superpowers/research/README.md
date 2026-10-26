@@ -10,6 +10,8 @@
   - `secondary`: read from a research paper or report that reports it
   - `press`: press report only, not checked against the study
 - `dated: true` marks figures that predate known changes; `isOlderData` also flags any figure more than five years before the current year.
+- `note` is plain, user-facing text (what the figure means, its caveats). Remarks on how a figure was found (blocked pages, extraction, what was not opened) go in `research`, which is kept here and never shown.
+- `notFound` items carry a `group` (`budget` or `policy`) so each screen lists only its own gaps.
 - String-valued figures use `value: null` plus `display`.
 - Different measures are never combined or put on one axis.
 

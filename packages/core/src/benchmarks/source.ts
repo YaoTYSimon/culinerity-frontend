@@ -42,7 +42,7 @@ export class StaticBenchmarkSource implements BenchmarkSource {
   caveats() {
     return copy(this.data.caveats);
   }
-  notFound() {
-    return copy(this.data.notFound);
+  notFound(group?: IndicatorGroup) {
+    return this.data.notFound.filter((n) => !group || n.group === group).map((n) => n.text);
   }
 }

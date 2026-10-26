@@ -154,3 +154,18 @@ describe('weeklyTotals', () => {
     expect(weeklyTotals([], d(2026, 10, 7, 12), 2).map((w) => w.weekStart)).toEqual(['2026-10-05', '2026-09-28']);
   });
 });
+
+describe('weeklyTotals as the view uses it', () => {
+  it('puts the current Monday week first and matches the summary, so slice(1) is the earlier weeks', () => {
+    const now = new Date(2026, 9, 28, 12, 0, 0);
+    const at = (d: number) => new Date(2026, 9, d, 10, 0, 0).toISOString();
+    const entries = [
+      { id: 'a', amount: 10, category: 'groceries' as const, at: at(27) },
+      { id: 'b', amount: 7, category: 'groceries' as const, at: at(21) },
+    ];
+    const totals = weeklyTotals(entries, now, 3);
+    expect(totals[0]).toEqual({ weekStart: '2026-10-26', total: budgetSummary(entries, undefined, now).spent });
+    expect(totals.slice(1).map((w) => w.weekStart)).toEqual(['2026-10-19', '2026-10-12']);
+    expect(totals[1]?.total).toBe(7);
+  });
+});

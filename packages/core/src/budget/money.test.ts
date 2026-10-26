@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseMoney } from './money';
+import { parseMoney, shareOfIncome } from './money';
 
 describe('parseMoney', () => {
   it.each([
@@ -34,5 +34,16 @@ describe('parseMoney', () => {
     expect(parseMoney('10000', { max: 10_000 })).toBe(10_000);
     expect(parseMoney('10000.01', { max: 10_000 })).toBeNull();
     expect(parseMoney('99999999')).toBe(99_999_999);
+  });
+});
+
+describe('shareOfIncome', () => {
+  it('is the percentage of income to one decimal, or null without a positive income', () => {
+    expect(shareOfIncome(63, 600)).toBe(10.5);
+    expect(shareOfIncome(0, 600)).toBe(0);
+    expect(shareOfIncome(10, 0)).toBeNull();
+    expect(shareOfIncome(10, -5)).toBeNull();
+    expect(shareOfIncome(10, undefined)).toBeNull();
+    expect(shareOfIncome(10, Number.NaN)).toBeNull();
   });
 });

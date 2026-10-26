@@ -134,4 +134,28 @@ describe('StaticBenchmarkSource', () => {
     expect(src.notFound().length).toBeGreaterThan(0);
     expect(src.caveats().join(' ')).not.toMatch(/LGA/);
   });
+  it('tags every not-found gap with a group and filters by it', () => {
+    const all = src.notFound();
+    const budget = src.notFound('budget');
+    const policy = src.notFound('policy');
+    expect(budget.length).toBeGreaterThan(0);
+    expect(policy.length).toBeGreaterThan(0);
+    expect([...budget, ...policy].sort()).toEqual([...all].sort());
+    expect(budget.join(' ')).toMatch(/healthy food basket/);
+    expect(policy.join(' ')).not.toMatch(/healthy food basket/);
+  });
+  it('keeps research-process remarks out of the user-facing notes', () => {
+    const rendered = [...src.indicators().flatMap((i) => [i.note ?? '', i.measure ?? '']), ...src.notFound()].join('\n');
+    expect(rendered).not.toMatch(/HTTP \d{3}|extraction|access date|could not be opened/i);
+  });
+  it('keeps the process remarks in a separate research note that is optional', () => {
+    const row = src.indicators('budget').find((i) => i.id === 'b-poverty-line-single')!;
+    expect(row.research).toMatch(/HTTP 403/);
+    expect(src.indicators('budget').find((i) => i.id === 'b-cpi-food-australia')!.research).toBeUndefined();
+  });
+  it('does not repeat the percent sign in a display figure and its unit', () => {
+    const row = src.indicators('budget').find((i) => i.display)!;
+    expect(row.display).toMatch(/%/);
+    expect(row.unit).not.toMatch(/^%/);
+  });
 });

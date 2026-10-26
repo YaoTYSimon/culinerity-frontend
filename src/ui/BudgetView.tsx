@@ -8,6 +8,7 @@ import {
   restoreSpend,
   addSpend,
   savedThisWeek,
+  shareOfIncome,
   weeklyTotals,
   type Pace,
   type Profile,
@@ -18,7 +19,7 @@ import { BenchmarkRows } from './BenchmarkRows';
 import { BudgetDisclosure } from './BudgetDisclosure';
 import { BudgetPlate } from './BudgetPlate';
 import { INPUT_CLASS } from './formParts';
-import { formatDollars, shareOfIncome } from './money';
+import { formatDollars } from './money';
 import { PillButton } from './PillButton';
 
 interface Props {

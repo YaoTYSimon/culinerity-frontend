@@ -20,3 +20,9 @@ export function parseMoney(text: string, opts: ParseMoneyOptions = {}): number |
   if (!Number.isFinite(n) || n > max || (n === 0 && !allowZero)) return null;
   return n;
 }
+
+/** Spending as a percentage of income to one decimal; null without a positive income. */
+export function shareOfIncome(spent: number, income: number | undefined): number | null {
+  if (typeof income !== 'number' || !Number.isFinite(income) || income <= 0) return null;
+  return Math.round((spent / income) * 1000) / 10;
+}

@@ -36,6 +36,7 @@ export function validateBenchmarks(d) {
     } else if (!Number.isInteger(i.year) || i.year < 1990 || i.year > 2100) {
       errs.push(`indicator ${i.id} year must be an integer from 1990 to 2100`);
     }
+    if (i.research !== undefined && typeof i.research !== 'string') errs.push(`indicator ${i.id} research must be a string`);
     if (i.display !== undefined && typeof i.display !== 'string') errs.push(`indicator ${i.id} display must be a string`);
     if (i.value === null) {
       if (!i.display) errs.push(`indicator ${i.id} has null value without display`);
@@ -57,8 +58,9 @@ export function validateBenchmarks(d) {
     if (!EVIDENCE.includes(v.evidence)) errs.push(`intervention ${v.id} has bad evidence`);
     if (v.costPerPersonAud !== null && typeof v.costPerPersonAud !== 'number') errs.push(`intervention ${v.id} cost must be a number or null`);
   }
-  for (const k of ['caveats', 'notFound']) {
-    if (!Array.isArray(d[k]) || d[k].some((x) => typeof x !== 'string')) errs.push(`${k} must be a list of strings`);
+  if (!Array.isArray(d.caveats) || d.caveats.some((x) => typeof x !== 'string')) errs.push('caveats must be a list of strings');
+  if (!Array.isArray(d.notFound) || d.notFound.some((n) => !n || !GROUPS.includes(n.group) || typeof n.text !== 'string' || n.text === '')) {
+    errs.push('notFound must be a list of { group, text } items with a known group');
   }
   return errs;
 }

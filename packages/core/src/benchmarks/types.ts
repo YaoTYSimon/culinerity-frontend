@@ -20,7 +20,10 @@ export interface Indicator {
   /** What exactly was asked or measured. */
   measure?: string;
   previous?: { value: number; period: string };
+  /** Plain, user-facing remark about what the figure means and its caveats. */
   note?: string;
+  /** Remarks on how the figure was found. Kept in the data, never shown. */
+  research?: string;
   sourceId: string;
 }
 
@@ -51,6 +54,12 @@ export interface Intervention {
   costPerPersonAud: number | null;
 }
 
+/** Something the research looked for and could not find, tagged by the screen it belongs to. */
+export interface NotFoundItem {
+  group: IndicatorGroup;
+  text: string;
+}
+
 export interface BenchmarkData {
   generatedAt: string;
   sources: Source[];
@@ -58,7 +67,7 @@ export interface BenchmarkData {
   areas: Area[];
   interventions: Intervention[];
   caveats: string[];
-  notFound: string[];
+  notFound: NotFoundItem[];
 }
 
 export interface BenchmarkSource {
@@ -67,5 +76,5 @@ export interface BenchmarkSource {
   interventions(): Intervention[];
   sources(): Source[];
   caveats(): string[];
-  notFound(): string[];
+  notFound(group?: IndicatorGroup): string[];
 }

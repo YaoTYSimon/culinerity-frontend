@@ -197,7 +197,8 @@ export const benchmarkData: BenchmarkData = {
       "period": "12 months to August 2026 (monthly CPI indicator)",
       "year": 2026,
       "verification": "primary",
-      "note": "Monthly indicator, not the September quarter CPI (due 28 Oct 2026, after access date). Figure read via page extraction.",
+      "note": "A monthly indicator for the 12 months to August 2026, not the quarterly CPI.",
+      "research": "Monthly indicator, not the September quarter CPI (due 28 Oct 2026, after access date). Figure read via page extraction.",
       "sourceId": "abs-cpi-aug2026"
     },
     {
@@ -210,7 +211,7 @@ export const benchmarkData: BenchmarkData = {
       "period": "12 months to August 2026",
       "year": 2026,
       "verification": "primary",
-      "note": "Same release as Melbourne figure.",
+      "note": "Same release as the Melbourne figure.",
       "sourceId": "abs-cpi-aug2026"
     },
     {
@@ -224,7 +225,8 @@ export const benchmarkData: BenchmarkData = {
       "year": 2016,
       "dated": true,
       "verification": "primary",
-      "note": "Dated (not inflation adjusted). Total spending, not food only.",
+      "note": "Not adjusted for inflation. This is spending on everything, not food only.",
+      "research": "Dated (not inflation adjusted). Total spending, not food only.",
       "sourceId": "abs-hes-2015-16"
     },
     {
@@ -238,7 +240,8 @@ export const benchmarkData: BenchmarkData = {
       "year": 2016,
       "dated": true,
       "verification": "primary",
-      "note": "Share of spending, not of income. Different quintile definition from the $632 figure. Dated.",
+      "note": "A share of spending, not of income. The lowest-income group is defined differently from the weekly spending figure above.",
+      "research": "Share of spending, not of income. Different quintile definition from the $632 figure. Dated.",
       "sourceId": "abs-hes-2015-16"
     },
     {
@@ -251,7 +254,8 @@ export const benchmarkData: BenchmarkData = {
       "period": "2022-23 (HILDA)",
       "year": 2023,
       "verification": "secondary",
-      "note": "Via ACOSS/UNSW media release reprint, not the primary report. Melbourne Institute current-quarter lines could not be opened (HTTP 403).",
+      "note": "Half of the median income before housing costs, from a media release by ACOSS and the UNSW Poverty and Inequality Partnership using 2022-23 data. Later lines may differ.",
+      "research": "Via ACOSS/UNSW media release reprint, not the primary report. Melbourne Institute current-quarter lines could not be opened (HTTP 403).",
       "sourceId": "acoss-2026-medianet"
     },
     {
@@ -264,7 +268,8 @@ export const benchmarkData: BenchmarkData = {
       "period": "2022-23 (HILDA)",
       "year": 2023,
       "verification": "secondary",
-      "note": "Same source and caveats as single adult line.",
+      "note": "Same source and measure as the single adult line.",
+      "research": "Same source and caveats as single adult line.",
       "sourceId": "acoss-2026-medianet"
     },
     {
@@ -278,7 +283,8 @@ export const benchmarkData: BenchmarkData = {
       "year": 2023,
       "dated": true,
       "verification": "secondary",
-      "note": "Predates income support increases from September 2023.",
+      "note": "Predates the increases to income support from September 2023.",
+      "research": "Predates income support increases from September 2023.",
       "sourceId": "acoss-2026-medianet"
     },
     {
@@ -292,7 +298,8 @@ export const benchmarkData: BenchmarkData = {
       "year": 2023,
       "dated": true,
       "verification": "secondary",
-      "note": "Predates September 2023 increases.",
+      "note": "Predates the increases from September 2023.",
+      "research": "Predates September 2023 increases.",
       "sourceId": "acoss-2026-medianet"
     },
     {
@@ -306,7 +313,8 @@ export const benchmarkData: BenchmarkData = {
       "year": 2012,
       "dated": true,
       "verification": "primary",
-      "note": "Dated; not inflation adjusted. Halving gives roughly 212 per week only as arithmetic, not a published figure.",
+      "note": "Not adjusted for inflation.",
+      "research": "Dated; not inflation adjusted. Halving gives roughly 212 per week only as arithmetic, not a published figure.",
       "sourceId": "palermo-2016"
     },
     {
@@ -320,7 +328,8 @@ export const benchmarkData: BenchmarkData = {
       "year": 2014,
       "dated": true,
       "verification": "primary",
-      "note": "Dated. Study states basket was about 31% of government benefit household income.",
+      "note": "Not adjusted for inflation. The study states the basket was about 31% of government benefit household income.",
+      "research": "Dated. Study states basket was about 31% of government benefit household income.",
       "sourceId": "palermo-2016"
     },
     {
@@ -334,7 +343,8 @@ export const benchmarkData: BenchmarkData = {
       "year": 2014,
       "dated": true,
       "verification": "primary",
-      "note": "Reference point for how large a healthy-food share of a very low income is; no source states a recommended food-budget share.",
+      "note": "Shows how large a healthy-food share of a very low income can be. No source gives a recommended food-budget share.",
+      "research": "Reference point for how large a healthy-food share of a very low income is; no source states a recommended food-budget share.",
       "sourceId": "palermo-2016"
     },
     {
@@ -343,12 +353,13 @@ export const benchmarkData: BenchmarkData = {
       "label": "Student living costs rise since 2021 vs economy-wide inflation (Universities Australia data)",
       "value": null,
       "display": "29% vs 24%",
-      "unit": "% cumulative rise since 2021",
+      "unit": "cumulative rise since 2021",
       "scope": "Australian university students",
       "period": "Released June 2026",
       "year": 2026,
       "verification": "press",
-      "note": "Second-hand via Monash Lens; the Universities Australia release was not opened.",
+      "note": "Reported second-hand in a Monash Lens article; we have not seen the Universities Australia release.",
+      "research": "Second-hand via Monash Lens; the Universities Australia release was not opened.",
       "sourceId": "monash-lens-2026"
     },
     {
@@ -574,7 +585,8 @@ export const benchmarkData: BenchmarkData = {
       "year": 2022,
       "verification": "secondary",
       "measure": "Ran out of food in the past 12 months and could not afford to buy more",
-      "note": "Secondary reproduction of VAHI VPHS data; the VAHI report itself was not opened. Different measure from Foodbank or ABS.",
+      "note": "A secondary reproduction of Victorian Population Health Survey data. It measures something different from the Foodbank or ABS figures.",
+      "research": "Secondary reproduction of VAHI VPHS data; the VAHI report itself was not opened. Different measure from Foodbank or ABS.",
       "sourceId": "give-where-you-live-vphs"
     },
     {
@@ -632,7 +644,8 @@ export const benchmarkData: BenchmarkData = {
       "period": "2021-2025",
       "year": 2025,
       "verification": "press",
-      "note": "Authors' own survey (DOI 10.26180/31797583), described in a Monash Lens article; the survey itself not opened.",
+      "note": "From the authors' own survey, described in a Monash Lens article.",
+      "research": "Authors' own survey (DOI 10.26180/31797583), described in a Monash Lens article; the survey itself not opened.",
       "sourceId": "monash-lens-2026"
     },
     {
@@ -646,7 +659,8 @@ export const benchmarkData: BenchmarkData = {
       "period": "Research published May 2026",
       "year": 2026,
       "verification": "press",
-      "note": "Cites DOI 10.1080/07294360.2026.2679245; no sample size given; underlying paper not opened.",
+      "note": "No sample size is given.",
+      "research": "Cites DOI 10.1080/07294360.2026.2679245; no sample size given; underlying paper not opened.",
       "sourceId": "monash-lens-2026"
     },
     {
@@ -837,15 +851,45 @@ export const benchmarkData: BenchmarkData = {
     "Source guidance on setting a food budget as a share of income was not found; do not present any rule-of-thumb as sourced."
   ],
   "notFound": [
-    "Average weekly household and per-person food spend for Melbourne from a recent Household Expenditure Survey.",
-    "Current healthy food basket cost (single adult or family of four); only Victorian 2012-2014 figures were found.",
-    "Melbourne Institute current-quarter poverty lines (the pages could not be opened).",
-    "Student weekly living costs from an official source (only provider and marketing pages were seen).",
-    "Any source-stated guidance on a food budget as a share of income.",
-    "A Victorian statewide figure from the Foodbank Hunger Report 2025 in a source we could open.",
-    "Food insecurity figures for individual Melbourne council areas (only a Barwon regional figure was found).",
-    "A 2019-to-latest national trend series from an opened primary source.",
-    "Cost per person for any intervention (food relief, vouchers, school meals, cash transfers, community meals, co-ops).",
-    "Evaluations of community fridges."
+    {
+      "group": "budget",
+      "text": "Average weekly household and per-person food spend for Melbourne from a recent Household Expenditure Survey."
+    },
+    {
+      "group": "budget",
+      "text": "Current healthy food basket cost (single adult or family of four); only Victorian 2012-2014 figures were found."
+    },
+    {
+      "group": "budget",
+      "text": "Current-quarter Melbourne Institute poverty lines (their pages were unavailable to us)."
+    },
+    {
+      "group": "budget",
+      "text": "Student weekly living costs from an official source (only provider and marketing pages were seen)."
+    },
+    {
+      "group": "budget",
+      "text": "Any source-stated guidance on a food budget as a share of income."
+    },
+    {
+      "group": "policy",
+      "text": "A Victorian statewide figure from the Foodbank Hunger Report 2025 in a source we could open."
+    },
+    {
+      "group": "policy",
+      "text": "Food insecurity figures for individual Melbourne council areas (only a Barwon regional figure was found)."
+    },
+    {
+      "group": "policy",
+      "text": "A 2019-to-latest national trend series from an opened primary source."
+    },
+    {
+      "group": "policy",
+      "text": "Cost per person for any intervention (food relief, vouchers, school meals, cash transfers, community meals, co-ops)."
+    },
+    {
+      "group": "policy",
+      "text": "Evaluations of community fridges."
+    }
   ]
 };

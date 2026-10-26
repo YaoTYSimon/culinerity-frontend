@@ -45,4 +45,15 @@ describe('build-benchmarks', () => {
     d.indicators[0].sourceId = 'nope';
     expect(() => buildBenchmarks(d)).toThrow();
   });
+  it('requires not-found items to carry a known group and text, and research to be a string', () => {
+    const d = data();
+    d.notFound.push({ group: 'nope', text: 'x' });
+    expect(validateBenchmarks(d).join()).toMatch(/notFound/);
+    const e = data();
+    e.notFound.push('a bare string');
+    expect(validateBenchmarks(e).join()).toMatch(/notFound/);
+    const f = data();
+    f.indicators[0].research = 5;
+    expect(validateBenchmarks(f).join()).toMatch(/research/);
+  });
 });
