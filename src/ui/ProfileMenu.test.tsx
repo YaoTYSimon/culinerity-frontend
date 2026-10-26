@@ -242,6 +242,95 @@ describe('ProfileMenu: delete that signs out but leaves data behind', () => {
     fireEvent.click(within(note).getByRole('button', { name: 'Dismiss' }));
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
   });
+
+  it('clears the note once a later sign-in succeeds', async () => {
+    const real = service();
+    const a = await add(real, 'Sam');
+    await add(real, 'Alex');
+    await real.signIn(a.id);
+    const failing = Object.create(real) as LocalAuthService;
+    failing.remove = async () => {
+      real.signOut();
+      return { ok: false, reason: 'storage-error', remaining: ['data'] };
+    };
+    mount(failing);
+    openPanel();
+    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
+    expect(await screen.findByRole('status')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Sign in as Alex' }));
+    await screen.findByRole('button', { name: 'Profile menu, signed in as Alex' });
+    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, signed in as Alex' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Lock' }));
+    await screen.findByRole('heading', { level: 1, name: "Who's eating today?" });
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  });
+
+  it('shows the note once in the guest app when no profiles are left, and Dismiss removes it', async () => {
+    const real = service();
+    const a = await add(real, 'Sam');
+    await real.signIn(a.id);
+    const failing = Object.create(real) as LocalAuthService;
+    failing.remove = async () => {
+      real.signOut();
+      await real.remove(a.id, 'Sam');
+      return { ok: false, reason: 'storage-error', remaining: ['data'] };
+    };
+    mount(failing);
+    openPanel();
+    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
+    const note = await screen.findByRole('status');
+    expect(note).toHaveTextContent(/saved answers/i);
+    expect(screen.getByRole('button', { name: 'Profile menu, guest' })).toBeInTheDocument();
+    fireEvent.click(within(note).getByRole('button', { name: 'Dismiss' }));
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  });
+
+  it('clears the note when a later delete succeeds', async () => {
+    const real = service();
+    const a = await add(real, 'Sam');
+    const b = await add(real, 'Alex');
+    await real.signIn(a.id);
+    let first = true;
+    const flaky = Object.create(real) as LocalAuthService;
+    flaky.remove = async (id, name) => {
+      if (first) {
+        first = false;
+        real.signOut();
+        return { ok: false, reason: 'storage-error', remaining: ['data'] };
+      }
+      return real.remove(id, name);
+    };
+    mount(flaky);
+    openPanel();
+    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
+    expect(await screen.findByRole('status')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Sign in as Alex' }));
+    await screen.findByRole('button', { name: `Profile menu, signed in as ${b.name}` });
+  });
+});
+
+describe('ProfileMenu: delete dialog isolates the page', () => {
+  it('makes the rest of the page inert while open, and restores it on close with focus back on the avatar', async () => {
+    const { s } = await signedIn();
+    mount(s);
+    const menuButton = screen.getByRole('button', { name: 'Menu' });
+    expect(menuButton.closest('[inert]')).toBeNull();
+    openPanel();
+    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    const dialog = screen.getByRole('dialog');
+    expect(menuButton.closest('[inert]')).not.toBeNull();
+    expect(screen.getByRole('main', { hidden: true }).closest('[inert]')).not.toBeNull();
+    expect(dialog.closest('[inert]')).toBeNull();
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Cancel' }));
+    expect(menuButton.closest('[inert]')).toBeNull();
+    expect(profileButton('Sam')).toHaveFocus();
+  });
 });
 
 describe('ProfileMenu: guest', () => {

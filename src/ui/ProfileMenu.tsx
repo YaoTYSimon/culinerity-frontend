@@ -1,4 +1,5 @@
 import { useContext, useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
+import { createPortal } from 'react-dom';
 import { isDeletionConfirmed, type AccountRecord } from '@culinerity/core';
 import { describeLeftovers } from '../auth/removeNotice';
 import { AuthContext, type AuthState } from '../auth/useAuth';
@@ -48,6 +49,13 @@ function ProfileMenuInner({ auth, open, onOpenChange, onCreateProfile }: Props &
     if (open) firstItem.current?.focus();
   }, [open]);
 
+  // Focus goes back to the avatar once the dialog has closed and the page is no longer inert.
+  const wasDeleting = useRef(false);
+  useEffect(() => {
+    if (wasDeleting.current && !deleting) button.current?.focus();
+    wasDeleting.current = deleting;
+  }, [deleting]);
+
   const close = () => {
     onOpenChange(false);
     button.current?.focus();
@@ -58,6 +66,7 @@ function ProfileMenuInner({ auth, open, onOpenChange, onCreateProfile }: Props &
       close();
     }
   };
+  const showChooser = () => auth.lock();
   const label = current ? `Profile menu, signed in as ${current.name}` : 'Profile menu, guest';
 
   return (
@@ -79,10 +88,11 @@ function ProfileMenuInner({ auth, open, onOpenChange, onCreateProfile }: Props &
           {current ? (
             <>
               <p className="px-4 py-2 text-base text-muted [overflow-wrap:anywhere]">Signed in as {current.name}</p>
-              <button ref={firstItem} type="button" className={ITEM} onClick={() => auth.lock()}>
+              {/* Switch profile and Lock both call lock(): the screen that follows depends on how many profiles exist (the chooser, or the one profile's sign-in). */}
+              <button ref={firstItem} type="button" className={ITEM} onClick={showChooser}>
                 Switch profile
               </button>
-              <button type="button" className={ITEM} onClick={() => auth.lock()}>
+              <button type="button" className={ITEM} onClick={showChooser}>
                 Lock
               </button>
               <button
@@ -114,7 +124,7 @@ function ProfileMenuInner({ auth, open, onOpenChange, onCreateProfile }: Props &
                 Create a profile
               </button>
               {accounts.length > 0 && (
-                <button type="button" className={ITEM} onClick={() => auth.lock()}>
+                <button type="button" className={ITEM} onClick={showChooser}>
                   Sign in
                 </button>
               )}
@@ -127,10 +137,7 @@ function ProfileMenuInner({ auth, open, onOpenChange, onCreateProfile }: Props &
         <DeleteDialog
           auth={auth}
           account={current}
-          onClose={() => {
-            setDeleting(false);
-            button.current?.focus();
-          }}
+          onClose={() => setDeleting(false)}
         />
       )}
     </div>
@@ -145,6 +152,7 @@ function DeleteDialog({ auth, account, onClose }: { auth: AuthState; account: Ac
   const busyRef = useRef(false);
   const input = useRef<HTMLInputElement>(null);
   const root = useRef<HTMLDivElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
   const inputId = useId();
 
@@ -193,8 +201,17 @@ function DeleteDialog({ auth, account, onClose }: { auth: AuthState; account: Ac
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-20 grid place-items-center overflow-y-auto bg-bg/90 p-4" onKeyDown={onKeyDown}>
+  // Everything else on the page is inert while the dialog is open (not focusable, not clickable, hidden from
+  // assistive tech). The dialog is portalled to <body>, so it is a sibling of the app and stays live.
+  useEffect(() => {
+    const host = hostRef.current;
+    const others = [...document.body.children].filter((el) => el !== host && !el.hasAttribute('inert'));
+    others.forEach((el) => el.setAttribute('inert', ''));
+    return () => others.forEach((el) => el.removeAttribute('inert'));
+  }, []);
+
+  return createPortal(
+    <div ref={hostRef} className="fixed inset-0 z-20 grid place-items-center overflow-y-auto bg-bg/90 p-4" onKeyDown={onKeyDown}>
       <div
         ref={root}
         role="dialog"
@@ -238,6 +255,7 @@ function DeleteDialog({ auth, account, onClose }: { auth: AuthState; account: Ac
           </div>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

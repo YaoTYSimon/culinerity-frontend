@@ -76,7 +76,10 @@ export function AuthProvider({ service, children }: Props) {
       async signIn(id: ProfileId, passcode?: string) {
         try {
           const r = await service.signIn(id, passcode);
-          if (r.ok) setGuest(false);
+          if (r.ok) {
+            setGuest(false);
+            setRemoveNotice(null);
+          }
           bump();
           return r;
         } catch {
@@ -110,6 +113,7 @@ export function AuthProvider({ service, children }: Props) {
         try {
           const r = await service.remove(id, confirmName);
           if (!r.ok && r.remaining.length) setRemoveNotice(r.remaining);
+          else if (r.ok) setRemoveNotice(null);
           bump();
           return r;
         } catch {

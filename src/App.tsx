@@ -1,6 +1,8 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { addWeekSwap, appendScore, removeOneWeekSwap, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
+import { RemoveNoteBanner } from './auth/RemoveNoteBanner';
+import { AuthContext } from './auth/useAuth';
 import { CravingSearch } from './ui/CravingSearch';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
@@ -17,6 +19,7 @@ import { useFocusOnViewChange } from './ui/useFocusOnViewChange';
 /** `now` gives the current ISO time; injected in tests. */
 export default function App({ now = () => new Date().toISOString() }: { now?: () => string } = {}) {
   const { profiles } = useServices();
+  const auth = useContext(AuthContext);
   const [profile, setProfile] = useState<Profile>(() => profiles.load());
   // A guest making a profile from the header: shown in place of the page, so there is still one h1.
   const [creating, setCreating] = useState(false);
@@ -56,6 +59,12 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           Skip to main content
         </a>
         <Header view={view} onNavigate={go} onCreateProfile={() => setCreating(true)} />
+        {/* A delete that left data behind and signed the person out of their last profile lands here. */}
+        {auth && auth.current === null && auth.removeNotice && (
+          <div className="px-4 pb-2">
+            <RemoveNoteBanner />
+          </div>
+        )}
 
         <main ref={main} id="main" tabIndex={-1} className="flex-1 outline-none px-4 py-4">
           {creating && <CreateProfile onDone={() => setCreating(false)} onCancel={() => setCreating(false)} />}
