@@ -71,7 +71,8 @@ describe('with accounts and no session', () => {
     mount();
     expect(screen.getByRole('heading', { level: 1, name: 'Welcome back.' })).toBeInTheDocument();
     expect(auth.status).toBe('locked');
-    expect(document.body.textContent).not.toMatch(/Secret Sam falafel|31|Sam/);
+    // Task 4: the chooser names the profile (first name only, by design); nothing else about it is reachable.
+    expect(document.body.textContent).not.toMatch(/Secret Sam falafel|31/);
     expect(screen.queryByRole('button', { name: 'Menu' })).not.toBeInTheDocument();
   });
 

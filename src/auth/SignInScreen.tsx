@@ -1,11 +1,15 @@
-/**
- * The sign-in screen slot. Task 4 replaces this placeholder with the real screen (profile chooser,
- * passcode, create, skip). It must not render any profile data beyond what the real screen shows.
- */
+import { SignIn } from '../ui/SignIn';
+
+/** The sign-in slot of the Gate: the plate shell around the real screen. It shows no profile data. */
 export function SignInScreen() {
   return (
-    <main className="mx-auto flex min-h-dvh w-full max-w-[520px] flex-col bg-bg px-4 py-6">
-      <h1 className="font-display text-3xl text-ink">Welcome back.</h1>
-    </main>
+    <div className="min-h-dvh bg-surface">
+      <div className="mx-auto flex min-h-dvh w-full max-w-[520px] flex-col bg-bg text-ink">
+        <p className="px-4 py-3 text-base font-extrabold tracking-tight">Culinerity</p>
+        <main id="main" className="flex-1 px-4 py-4">
+          <SignIn />
+        </main>
+      </div>
+    </div>
   );
 }
