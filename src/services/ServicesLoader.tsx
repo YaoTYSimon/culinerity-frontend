@@ -13,6 +13,8 @@ const EMPTY_CATALOGUE: FoodCatalogue = {
 interface Props {
   useBackend: boolean;
   fetchFn?: FetchLike;
+  /** Profile key suffix: '' for the guest, `.<id>` for a profile. Fixed for the life of the mount (key the loader on it). */
+  profileSuffix?: string;
   children: ReactNode;
 }
 
@@ -21,11 +23,11 @@ interface Props {
  * backend they load in the background (the catalogue is empty until then) and the
  * cravings area shows a skeleton, or a Try again message if the server cannot be reached.
  */
-export function ServicesLoader({ useBackend, fetchFn, children }: Props) {
+export function ServicesLoader({ useBackend, fetchFn, profileSuffix = '', children }: Props) {
+  // ONE profile store per mount, shared by the first services and the loaded ones.
+  const [profiles] = useState(() => new LocalProfileStore(profileSuffix));
   const [services, setServices] = useState<Services>(() =>
-    useBackend
-      ? { ...createCoreServices(new LocalProfileStore()), catalogue: EMPTY_CATALOGUE }
-      : createServices(),
+    useBackend ? { ...createCoreServices(profiles), catalogue: EMPTY_CATALOGUE } : createServices(profiles),
   );
   const [status, setStatus] = useState<CatalogueStatus>(useBackend ? 'loading' : 'ready');
   const run = useRef(0);
@@ -33,7 +35,7 @@ export function ServicesLoader({ useBackend, fetchFn, children }: Props) {
   const load = useCallback(() => {
     const id = ++run.current;
     setStatus('loading');
-    loadServices(true, fetchFn).then(
+    loadServices(true, fetchFn, profiles).then(
       (next) => {
         if (run.current !== id) return;
         setServices(next);
@@ -41,7 +43,7 @@ export function ServicesLoader({ useBackend, fetchFn, children }: Props) {
       },
       () => run.current === id && setStatus('unavailable'),
     );
-  }, [fetchFn]);
+  }, [fetchFn, profiles]);
 
   useEffect(() => {
     if (!useBackend) return;

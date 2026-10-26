@@ -52,4 +52,30 @@ describe('LocalProfileStore', () => {
     s.clear();
     expect(s.load()).toEqual({});
   });
+  it('uses culinerity.profile.v1.<id> for a suffixed store and keeps profiles apart from the guest', () => {
+    const guest = new LocalProfileStore();
+    const a = new LocalProfileStore('.a1');
+    const b = new LocalProfileStore('.b2');
+    guest.save({ score: 1 });
+    a.save({ score: 2 });
+    b.save({ score: 3 });
+    expect(localStorage.getItem('culinerity.profile.v1.a1')).toBe(JSON.stringify({ score: 2 }));
+    expect([guest.load().score, a.load().score, b.load().score]).toEqual([1, 2, 3]);
+    a.clear();
+    expect(a.load()).toEqual({});
+    expect(guest.load().score).toBe(1);
+    expect(b.load().score).toBe(3);
+  });
+  it('a suffixed store never throws either', () => {
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new Error('denied');
+    });
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('quota');
+    });
+    const s = new LocalProfileStore('.x');
+    expect(s.load()).toEqual({});
+    expect(() => s.save({ score: 1 })).not.toThrow();
+    expect(() => s.clear()).not.toThrow();
+  });
 });
