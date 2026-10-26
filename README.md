@@ -55,6 +55,7 @@ Profiles live only in this browser's storage. They are a convenience for a share
 - After 5 wrong passcodes there is a 30 second pause. It is tracked in storage and in memory, and clearing the site's storage resets it. Nothing is ever deleted because of wrong tries.
 - If a browser has no Web Crypto (very old or insecure contexts), only profiles without a passcode can be made.
 - A forgotten passcode cannot be reset. Anyone using the browser can delete that profile from the sign-in screen (typing its name) and start a new one.
+- Duplicating a tab copies its signed-in session (the copy starts signed in as the same profile), and two tabs open at once can under-count wrong passcodes, so the 5-try pause is a soft limit.
 - Closing the tab signs you out (the signed-in id lives in `sessionStorage`). A refresh stays signed in. A fresh tab with profiles on the device asks who is eating; "Skip for now" continues as a guest. The theme is device-wide and not part of a profile.
 
 Storage keys:
