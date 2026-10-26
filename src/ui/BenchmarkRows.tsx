@@ -44,7 +44,7 @@ export function BenchmarkRow({ indicator, source, now, figure: showFigure = true
       )}
       {earlier && <p className="text-sm text-pretty text-muted">Earlier: {earlier}.</p>}
       <p className="text-sm text-pretty text-muted">
-        {indicator.scope}. {indicator.period}.
+        {indicator.scope}. {indicator.period.charAt(0).toUpperCase() + indicator.period.slice(1)}.
         {indicator.measure ? ` ${indicator.measure}.` : ''}
       </p>
       {indicator.note && <p className="text-sm text-pretty text-muted">{indicator.note}</p>}

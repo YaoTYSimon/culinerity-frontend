@@ -843,7 +843,7 @@ export const benchmarkData: BenchmarkData = {
     "Definitions differ: Foodbank Hunger Report (33% of households, 2025, Ipsos online survey) and ABS 2023 (13.2% of households, 10-item USDA module) and VPHS (8% of Victorian adults ran out of food, 2022) measure different things and must not be plotted as one series.",
     "No 2019-to-latest trend series was obtained from an opened primary source; Foodbank 2025 report page gives only 2023-2025 comparisons.",
     "Victorian statewide figure for Hunger Report 2025 not found in an opened source; Victorian figures seen only in search snippets or secondary news (not recorded as indicators).",
-    "Melbourne Institute Poverty Lines (March/June quarter 2026) pages returned HTTP 403; poverty lines used are ACOSS/UNSW 2022-23 values from a media release reprint.",
+    "Melbourne Institute Poverty Lines (March/June quarter 2026) pages were unavailable to us; poverty lines used are ACOSS/UNSW 2022-23 values from a media release reprint.",
     "ABS HES figures are from the 2015-16 release only (newer HES results not located); healthy food basket data is Victorian 2012-2014 only; no current Melbourne basket cost found.",
     "SEIFA values are ABS SA2 areas (2021), not suburbs; SA2 boundaries differ from suburb boundaries and several suburbs split into multiple SA2s. Lower score means more disadvantage.",
     "Student weekly living cost estimates for Melbourne come only from provider/marketing pages seen in search snippets and were not opened; recorded as not found. Universities Australia survey itself was not opened.",

@@ -187,6 +187,11 @@ describe('PolicyView', () => {
     for (const i of src.indicators()) if (i.research) expect(container.textContent).not.toContain(i.research);
   });
 
+  it('uses no technical wording in the text people read', () => {
+    const { container } = show();
+    expect(container.textContent).not.toMatch(/HTTP \d{3}|extraction|could not be opened/i);
+  });
+
   it('has a print stylesheet that hides navigation and uses the light tokens', () => {
     const css = readFileSync(resolve(__dirname, '../index.css'), 'utf8');
     expect(css).toMatch(/@media print/);

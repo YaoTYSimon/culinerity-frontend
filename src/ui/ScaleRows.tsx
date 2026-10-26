@@ -13,12 +13,12 @@ export function ScaleRows({ areas }: Props) {
   return (
     <div className="grid gap-2">
       <div aria-hidden="true" className="relative mx-2 h-9 text-sm text-muted">
-        <span className="absolute left-0 top-0 -translate-x-1/2">{fmt(SEIFA_SCALE.min)}</span>
+        <span className="absolute left-0 top-0">{fmt(SEIFA_SCALE.min)}</span>
         <span className="absolute top-0 -translate-x-1/2 text-center text-ink" style={{ left: `${average}%` }}>
           Australian average
           <span className="block">{fmt(SEIFA_SCALE.average)}</span>
         </span>
-        <span className="absolute right-0 top-0 translate-x-1/2">{fmt(SEIFA_SCALE.max)}</span>
+        <span className="absolute right-0 top-0">{fmt(SEIFA_SCALE.max)}</span>
       </div>
       <ul className="grid gap-3">
         {areas.map((a) => {
