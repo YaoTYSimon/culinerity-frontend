@@ -170,6 +170,18 @@ describe('App', () => {
     expect(details).not.toHaveAttribute('open');
   });
 
+  it('opens the data and policy page from the footer link and from the Menu', () => {
+    renderApp();
+    fireEvent.click(within(screen.getByRole('contentinfo')).getByRole('button', { name: 'Data and policy' }));
+    expect(screen.getByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Swaps' }));
+    expect(screen.queryByRole('heading', { name: 'What we know about food insecurity.' })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: 'Data and policy' }));
+    expect(screen.getByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
+  });
+
   it('gives every photo credit link an accessible name', () => {
     renderApp();
     const links = within(screen.getByRole('contentinfo')).getAllByRole('link', { hidden: true });

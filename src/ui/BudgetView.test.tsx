@@ -4,7 +4,7 @@ import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { useState } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { StaticBenchmarkSource, verificationLabel, type Profile, type SpendEntry } from '@culinerity/core';
-import { HEADLINE_IDS } from './BenchmarkRows';
+import { figureParts, HEADLINE_IDS } from './BenchmarkRows';
 import { BudgetView } from './BudgetView';
 
 // Wednesday 28 October 2026, local time (Melbourne): the week began Monday 26th, 5 days left including today.
@@ -286,7 +286,7 @@ describe('How this compares', () => {
       const src = source.sources().find((s) => s.id === i.sourceId)!;
       const item = items.find((el) => el.textContent?.includes(i.label) && el.textContent.includes(i.period))!;
       expect(item, i.id).toBeDefined();
-      expect(item.textContent).toContain(i.display ?? String(i.value));
+      expect(item.textContent).toContain(figureParts(i).main.replace(/^\$/, ""));
       expect(item.textContent).toContain(i.scope);
       expect(item.textContent).toContain(verificationLabel(i.verification));
       const link = within(item).getByRole('link', { name: new RegExp(src.publisher.slice(0, 20)) });

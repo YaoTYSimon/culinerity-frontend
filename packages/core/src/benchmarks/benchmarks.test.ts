@@ -40,13 +40,16 @@ describe('isOlderData', () => {
 describe('verificationLabel', () => {
   it('uses the three plain labels', () => {
     expect(verificationLabel('primary')).toBe('Read from the source itself');
-    expect(verificationLabel('secondary')).toBe('Read from a research paper that reports it');
+    expect(verificationLabel('secondary')).toBe('Read from a published report that cites it');
     expect(verificationLabel('press')).toBe('Press report only (not checked against the study)');
   });
 });
 
 describe('StaticBenchmarkSource', () => {
   const src = new StaticBenchmarkSource();
+  it('reports when the dataset was last updated', () => {
+    expect(src.updated()).toBe('2026-10-26');
+  });
   it('filters indicators by group', () => {
     const budget = src.indicators('budget');
     expect(budget.length).toBeGreaterThan(0);

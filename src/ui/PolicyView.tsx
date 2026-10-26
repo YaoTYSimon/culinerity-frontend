@@ -1,0 +1,253 @@
+import type { ReactNode } from 'react';
+import {
+  areasByDisadvantage,
+  StaticBenchmarkSource,
+  type BenchmarkSource,
+  type Indicator,
+  type Source,
+} from '@culinerity/core';
+import { BarRows, type Bar } from './BarRows';
+import { BenchmarkRow, figureParts, POVERTY_LINE_NOTE } from './BenchmarkRows';
+import { ScaleRows } from './ScaleRows';
+import { ShareDial } from './ShareDial';
+
+interface Props {
+  now: Date;
+  source?: BenchmarkSource;
+}
+
+const DEFAULT_SOURCE = new StaticBenchmarkSource();
+
+/** Which dataset rows sit in which section, by id. Every figure itself is read from the dataset. */
+const FOODBANK_HEADLINE = 'p-hunger-national';
+const FOODBANK_MORE = ['p-hunger-households-count', 'p-hunger-severe-share'];
+const ABS_HEADLINE = 'p-abs-national-2023';
+const VICTORIA = ['p-vphs-victoria-2022', 'p-vphs-barwon-2022', 'p-foodbank-vic-monthly'];
+const FOODBANK_BARS = ['p-hunger-single-parent', 'p-hunger-disability', 'p-hunger-renters', 'p-hunger-casual-trend', 'p-hunger-middle-income-trend', 'p-hunger-high-income'];
+const ABS_BARS = ['p-abs-single-parent', 'p-abs-group-households', 'p-abs-lowest-quintile'];
+const STUDENTS = ['p-student-tas-2022', 'p-student-tas-2024', 'p-youth-one-in-five', 'p-student-hardship', 'p-abs-group-households', 'b-student-ua-living-costs'];
+const RELIEF = ['p-relief-ever-used', 'p-relief-past-year', 'p-relief-shame', 'p-vic-food-relief-budget'];
+const COST_OF_LIVING = ['b-cpi-food-melbourne', 'b-cpi-food-australia', 'b-poverty-line-single', 'b-poverty-line-couple-2kids', 'b-jobseeker-shortfall', 'b-parenting-shortfall', 'p-poverty-jobseeker'];
+
+const EVIDENCE_WORD = { strong: 'Strong', moderate: 'Moderate', mixed: 'Mixed', weak: 'Weak' } as const;
+
+const longDate = (iso: string): string => {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+};
+
+function ExternalLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="focus-ring inline-flex min-h-11 w-fit max-w-full items-center rounded-full text-sm font-semibold text-ink underline underline-offset-4"
+    >
+      <span className="min-w-0 break-words">{children}<span className="sr-only"> (opens the source in a new tab)</span></span>
+    </a>
+  );
+}
+
+function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
+  return (
+    <section aria-labelledby={id} className="grid gap-3">
+      <h2 id={id} className="font-display text-[24px]">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function Group({ title, caption, children }: { title: string; caption: ReactNode; children: ReactNode }) {
+  const id = `group-${title.replace(/\W+/g, '-').toLowerCase()}`;
+  return (
+    <div role="group" aria-labelledby={id} className="grid gap-2">
+      <h3 id={id} className="text-lg font-semibold text-balance">{title}</h3>
+      <p className="text-sm text-pretty text-muted">{caption}</p>
+      {children}
+    </div>
+  );
+}
+
+/** What the data says about food insecurity, where each figure comes from and what the evidence says helps. Read-only: no user data. */
+export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
+  const sources = source.sources();
+  const all = source.indicators();
+  const byId = (id: string) => all.find((i) => i.id === id);
+  const pick = (ids: string[]): Indicator[] => ids.flatMap((id) => byId(id) ?? []);
+  const sourceOf = (i: Indicator): Source | undefined => sources.find((s) => s.id === i.sourceId);
+  const shown: Indicator[] = [];
+  const rows = (ids: string[], opts: { skipFigure?: string } = {}) => {
+    const list = pick(ids);
+    shown.push(...list);
+    return (
+      <ul className="grid">
+        {list.map((i) => (
+          <BenchmarkRow key={i.id} indicator={i} source={sourceOf(i)} now={now} figure={i.id !== opts.skipFigure} />
+        ))}
+      </ul>
+    );
+  };
+  const dial = (id: string) => {
+    const i = byId(id);
+    if (!i || i.value === null) return null;
+    const f = figureParts(i);
+    return <ShareDial value={i.value} text={f.main} label={`${f.main} ${f.unit}`} />;
+  };
+  const bars = (ids: string[]): Bar[] =>
+    pick(ids).map((i) => {
+      shown.push(i);
+      const f = figureParts(i);
+      const details = [
+        ...(i.previous ? [`Earlier: ${figureParts({ ...i, value: i.previous.value, display: undefined }).main}, ${i.previous.period}.`] : []),
+        ...(i.note ? [i.note] : []),
+      ];
+      return { id: i.id, label: i.label, value: i.value ?? 0, text: f.main, of: f.unit, details };
+    });
+  const barSource = (id: string) => {
+    const s = byId(id) && sourceOf(byId(id)!);
+    return s ? <ExternalLink href={s.url}>{s.publisher}</ExternalLink> : null;
+  };
+
+  const areas = areasByDisadvantage(source.areas());
+  const interventions = source.interventions();
+  const noCosts = interventions.length > 0 && interventions.every((i) => i.costPerPersonAud === null);
+
+  // The page body is built first so the source list can follow what was actually shown.
+  const sectionHow = (
+    <Section id="how-many" title="How many go without">
+      <p className="text-base text-pretty">
+        Food insecurity means not having enough food, or not being sure of getting it, because of money. Surveys ask different questions in different years, so these two national measures differ and are shown apart.
+      </p>
+      <Group
+        title="Foodbank Hunger Report 2025"
+        caption="An online survey of Australian households. A different question and sample from the ABS measure below, so the two cannot be compared or added."
+      >
+        {dial(FOODBANK_HEADLINE)}
+        {rows([FOODBANK_HEADLINE, ...FOODBANK_MORE], { skipFigure: FOODBANK_HEADLINE })}
+      </Group>
+      <Group
+        title="Australian Bureau of Statistics, 2023"
+        caption="The ABS household survey, using a 10-item food insecurity module. Different from the Foodbank measure above."
+      >
+        {dial(ABS_HEADLINE)}
+        {rows([ABS_HEADLINE], { skipFigure: ABS_HEADLINE })}
+      </Group>
+      <Group title="Victoria" caption="From the Victorian Population Health Survey, which asks whether people ran out of food and could not afford more. That is a different question from the national measures.">
+        {rows(VICTORIA)}
+      </Group>
+    </Section>
+  );
+
+  const sectionWho = (
+    <Section id="who" title="Who is most affected">
+      <BarRows
+        title="Foodbank Hunger Report 2025"
+        caption={<>Share of each group of households that were food insecure, from Foodbank's online household survey. <br />{barSource(FOODBANK_BARS[0])}</>}
+        bars={bars(FOODBANK_BARS)}
+      />
+      <BarRows
+        title="Australian Bureau of Statistics, 2023"
+        caption={<>Share of each group of households that were food insecure, from the ABS household survey with the 10-item module. Not the same question as Foodbank's. <br />{barSource(ABS_BARS[0])}</>}
+        bars={bars(ABS_BARS)}
+      />
+    </Section>
+  );
+
+  const sectionStudents = (
+    <Section id="students" title="Students and young people">
+      <p className="text-sm text-pretty text-muted">Not Melbourne-specific.</p>
+      {rows(STUDENTS)}
+    </Section>
+  );
+
+  const sectionAreas = (
+    <Section id="areas" title="Melbourne areas">
+      <p className="text-sm text-pretty text-muted">
+        A selection of areas across Melbourne's west, south-east and inner suburbs, for illustration. This is not a ranking of Melbourne.
+      </p>
+      <p className="text-sm text-pretty text-muted">
+        Lower scores mean more disadvantage. The score is the ABS SEIFA Index of Relative Socio-economic Disadvantage (2021). These are ABS statistical areas (SA2), not suburbs. Decile 1 is the most disadvantaged tenth of Victoria. This measures disadvantage, not hunger.
+      </p>
+      <ScaleRows areas={areas} />
+    </Section>
+  );
+
+  const sectionHelps = (
+    <Section id="helps" title="What helps (evidence)">
+      <p className="text-sm text-pretty text-muted">
+        The evidence is thin: mostly one review of studies from high-income countries plus small Australian studies.
+        {noCosts && ' Cost per person figures were not found for any of these.'}
+      </p>
+      <ul className="grid gap-4">
+        {interventions.map((i) => {
+          const s = sources.find((x) => x.id === i.sourceId);
+          return (
+            <li key={i.id} className="grid gap-1">
+              <h3 className="text-lg font-semibold text-balance">{i.label}</h3>
+              <p className="text-base font-semibold">Evidence: {EVIDENCE_WORD[i.evidence]}</p>
+              <p className="text-base text-pretty">{i.summary}</p>
+              {s && <ExternalLink href={s.url}>{s.publisher}</ExternalLink>}
+            </li>
+          );
+        })}
+      </ul>
+      <h3 className="text-lg font-semibold">Food relief</h3>
+      {rows(RELIEF)}
+    </Section>
+  );
+
+  const sectionCost = (
+    <Section id="cost" title="Cost of living">
+      <p className="text-sm text-pretty text-muted">The same figures as the budget page, as their sources give them.</p>
+      {rows(COST_OF_LIVING)}
+      <p className="text-sm text-pretty">{POVERTY_LINE_NOTE}</p>
+    </Section>
+  );
+
+  const usedIds = new Set([...shown.map((i) => i.sourceId), ...areas.map((a) => a.sourceId), ...interventions.map((i) => i.sourceId)]);
+  const used = sources.filter((s) => usedIds.has(s.id));
+  const sectionAbout = (
+    <Section id="about" title="About this data">
+      <h3 className="text-lg font-semibold">Sources</h3>
+      <ul aria-label="Sources" className="grid gap-3">
+        {used.map((s) => (
+          <li key={s.id} className="grid gap-0.5">
+            <p className="text-base font-semibold text-pretty">{s.publisher}</p>
+            <ExternalLink href={s.url}>{s.title}</ExternalLink>
+            <p className="text-sm text-pretty text-muted">Published: {s.published}. Licence: {s.licence}. Accessed {longDate(s.accessed)}.</p>
+          </li>
+        ))}
+      </ul>
+      <h3 className="text-lg font-semibold">Things to keep in mind</h3>
+      <ul aria-label="Things to keep in mind" className="grid list-disc gap-2 pl-5 text-sm text-pretty">
+        {source.caveats().map((c) => <li key={c}>{c}</li>)}
+      </ul>
+      <h3 className="text-lg font-semibold">Not found</h3>
+      <p className="text-sm text-pretty text-muted">We looked and could not find these, so we show no number for them.</p>
+      <ul aria-label="Not found" className="grid list-disc gap-2 pl-5 text-sm text-pretty">
+        {source.notFound().map((g) => <li key={g}>{g}</li>)}
+      </ul>
+      <p className="text-sm text-muted">Last updated {longDate(source.updated())}</p>
+      <p className="text-sm text-muted">General information, not advice. Nothing on this page uses your data.</p>
+    </Section>
+  );
+
+  return (
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-8">
+      <div className="grid gap-3">
+        <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">What we know about food insecurity.</h1>
+        <p className="text-base text-pretty text-muted">
+          Figures from published research, with where each one comes from. Different surveys measure different things, so we show them side by side, never added together.
+        </p>
+      </div>
+      {sectionHow}
+      {sectionWho}
+      {sectionStudents}
+      {sectionAreas}
+      {sectionHelps}
+      {sectionCost}
+      {sectionAbout}
+    </div>
+  );
+}

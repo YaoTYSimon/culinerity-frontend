@@ -5,7 +5,7 @@ const OLDER_THAN_YEARS = 5;
 
 const VERIFICATION_LABELS: Record<Verification, string> = {
   primary: 'Read from the source itself',
-  secondary: 'Read from a research paper that reports it',
+  secondary: 'Read from a published report that cites it',
   press: 'Press report only (not checked against the study)',
 };
 
@@ -38,6 +38,9 @@ export class StaticBenchmarkSource implements BenchmarkSource {
   }
   sources() {
     return copy(this.data.sources);
+  }
+  updated() {
+    return this.data.generatedAt;
   }
   caveats() {
     return copy(this.data.caveats);

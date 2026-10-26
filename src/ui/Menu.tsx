@@ -18,6 +18,7 @@ const ITEMS: { to: NavTarget; label: string }[] = [
   { to: 'support', label: 'Food support' },
   { to: 'week', label: 'My week' },
   { to: 'welcome', label: 'Welcome' },
+  { to: 'policy', label: 'Data and policy' },
 ];
 
 /** A "Menu" button that opens a plain list of destinations. Escape closes it and focus returns to the button. */

@@ -7,7 +7,7 @@
 - No invented numbers. Change a figure only after reading its source, and record the change (value, evidence, source) in the commit message.
 - Every indicator has a `sourceId` that resolves to a source with an `https://` URL, a reference `year`, and a `verification`:
   - `primary`: read from the source itself
-  - `secondary`: read from a research paper or report that reports it
+  - `secondary`: read from a published report that cites it
   - `press`: press report only, not checked against the study
 - `dated: true` marks figures that predate known changes; `isOlderData` also flags any figure more than five years before the current year.
 - `note` is plain, user-facing text (what the figure means, its caveats). Remarks on how a figure was found (blocked pages, extraction, what was not opened) go in `research`, which is kept here and never shown.

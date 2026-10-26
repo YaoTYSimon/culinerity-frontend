@@ -120,3 +120,35 @@ body {
 .tabular {
   font-variant-numeric: tabular-nums;
 }
+
+/* Printing (the data and policy page is meant to be printed): light tokens, no navigation, bars keep their fill. */
+@media print {
+  html,
+  html[data-theme] {
+    color-scheme: light;
+    --bg: #ffffff;
+    --surface: #e4e0d6;
+    --ink: #1a1a18;
+    --muted: #444440;
+    --accent: #4f6238;
+    --accent-ink: #ffffff;
+  }
+  header,
+  footer,
+  nav,
+  [data-print-hide] {
+    display: none !important;
+  }
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  li,
+  [role='group'] > h3 {
+    break-inside: avoid;
+  }
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+}

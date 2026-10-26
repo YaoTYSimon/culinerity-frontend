@@ -76,5 +76,7 @@ export interface BenchmarkSource {
   interventions(): Intervention[];
   sources(): Source[];
   caveats(): string[];
+  /** The date the dataset was last updated, as YYYY-MM-DD. */
+  updated(): string;
   notFound(group?: IndicatorGroup): string[];
 }

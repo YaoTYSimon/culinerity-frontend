@@ -8,7 +8,9 @@ import { BudgetView } from './ui/BudgetView';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
+import { PillButton } from './ui/PillButton';
 import { PhotoCredits } from './ui/PhotoCredits';
+import { PolicyView } from './ui/PolicyView';
 import { NumberScreen } from './ui/NumberScreen';
 import { Questionnaire } from './ui/Questionnaire';
 import { SupportPanel } from './ui/SupportPanel';
@@ -101,6 +103,8 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             />
           )}
 
+          {!creating && view === 'policy' && <PolicyView now={clockNow} />}
+
           {!creating && view === 'support' && (
             <SupportPanel suburb={profile.suburb} />
           )}
@@ -141,6 +145,9 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         <footer className="px-4 pb-6 text-[13px] text-muted">
           Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn; craving photos are credited below.
           <PhotoCredits />
+          <PillButton variant="text" onClick={() => go('policy')} className="-ml-3 mt-2">
+            Data and policy
+          </PillButton>
         </footer>
       </div>
     </div>
