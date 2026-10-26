@@ -16,7 +16,7 @@ describe('validateName', () => {
   it('rejects control characters', () => {
     const r = validateName('a\u0000b');
     expect(r.ok).toBe(false);
-    expect(r.reason).toBeTruthy();
+    expect(r.reason).toBe('Please remove any hidden or control characters.');
     expect(validateName('a\tb').ok).toBe(false);
     expect(validateName('a\u007Fb').ok).toBe(false);
   });

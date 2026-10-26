@@ -22,3 +22,10 @@ export function retryInSeconds(state: AttemptState, nowMs: number): number {
   if (!isLocked(state, nowMs)) return 0;
   return Math.ceil(((state.lockedUntil as number) - nowMs) / 1000);
 }
+
+/** Tries remaining from LIVE state: 0 while locked, full once an old lock has expired. */
+export function triesLeft(state: AttemptState, nowMs: number, max: number = MAX_FAILURES): number {
+  if (isLocked(state, nowMs)) return 0;
+  if (state.lockedUntil !== undefined) return max;
+  return Math.max(0, max - state.failures);
+}

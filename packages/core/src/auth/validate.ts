@@ -11,7 +11,7 @@ export function validateName(name: string): { ok: boolean; value: string; reason
   }
   // eslint-disable-next-line no-control-regex
   if (/[\u0000-\u001F\u007F-\u009F]/.test(value)) {
-    return { ok: false, value, reason: 'Please use letters and numbers only.' };
+    return { ok: false, value, reason: 'Please remove any hidden or control characters.' };
   }
   return { ok: true, value };
 }

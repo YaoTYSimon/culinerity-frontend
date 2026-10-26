@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { nextAttemptState, retryInSeconds, type AttemptState } from './rateLimit';
+import { nextAttemptState, retryInSeconds, triesLeft, type AttemptState } from './rateLimit';
 
 const fail = (s: AttemptState, now: number) => nextAttemptState(s, false, now);
 
@@ -36,5 +36,22 @@ describe('retryInSeconds', () => {
     expect(retryInSeconds({ failures: 5, lockedUntil: 31000 }, 1000)).toBe(30);
     expect(retryInSeconds({ failures: 5, lockedUntil: 31000 }, 1001)).toBe(30);
     expect(retryInSeconds({ failures: 5, lockedUntil: 31000 }, 30001)).toBe(1);
+  });
+});
+
+describe('triesLeft', () => {
+  it('counts down from live failures', () => {
+    expect(triesLeft({ failures: 0 }, 0)).toBe(5);
+    expect(triesLeft({ failures: 3 }, 0)).toBe(2);
+  });
+  it('is 0 while locked', () => {
+    expect(triesLeft({ failures: 5, lockedUntil: 31000 }, 2000)).toBe(0);
+  });
+  it('is back to max once the lock has expired', () => {
+    expect(triesLeft({ failures: 5, lockedUntil: 31000 }, 31000)).toBe(5);
+  });
+  it('never goes below 0 and honours a custom max', () => {
+    expect(triesLeft({ failures: 9 }, 0)).toBe(0);
+    expect(triesLeft({ failures: 1 }, 0, 3)).toBe(2);
   });
 });
