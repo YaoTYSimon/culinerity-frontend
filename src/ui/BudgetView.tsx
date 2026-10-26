@@ -17,6 +17,7 @@ import {
 import { AddSpend, categoryLabel } from './AddSpend';
 import { BenchmarkRows } from './BenchmarkRows';
 import { BudgetDisclosure } from './BudgetDisclosure';
+import { Disclosure } from './Disclosure';
 import { BudgetPlate } from './BudgetPlate';
 import { INPUT_CLASS } from './formParts';
 import { formatDollars } from './money';
@@ -260,15 +261,7 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }
         </p>
       )}
 
-      <details className="group">
-        <summary className="focus-ring flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-3 rounded-full text-base font-semibold [&::-webkit-details-marker]:hidden">
-          <span>Past weeks</span>
-          <span aria-hidden="true" className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-surface">
-            <svg viewBox="0 0 16 16" className="size-4 motion-safe:transition-transform group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3.5 6l4.5 4.5L12.5 6" />
-            </svg>
-          </span>
-        </summary>
+      <Disclosure summary="Past weeks">
         {past.length === 0 ? (
           <p className="pt-2 text-base text-muted">Nothing logged in earlier weeks.</p>
         ) : (
@@ -281,7 +274,7 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }
             ))}
           </ul>
         )}
-      </details>
+      </Disclosure>
 
       {!asking && <BudgetDisclosure value={profile} onChange={onChange} />}
 

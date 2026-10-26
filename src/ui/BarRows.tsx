@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 
 export interface Bar {
   id: string;
@@ -22,7 +22,7 @@ interface Props {
 
 /** Flat, round-ended bars with the value written at the end. Each group has its own caption; bars in one group share a scale of 0 to 100. */
 export function BarRows({ title, caption, bars }: Props) {
-  const headingId = `bars-${title.replace(/\W+/g, '-').toLowerCase()}`;
+  const headingId = useId();
   return (
     <div role="group" aria-labelledby={headingId} className="grid gap-2">
       <h3 id={headingId} className="text-lg font-semibold text-balance">{title}</h3>
@@ -40,7 +40,7 @@ export function BarRows({ title, caption, bars }: Props) {
                   style={{ width: `${Math.min(100, Math.max(0, b.value))}%`, minWidth: '1rem' }}
                 />
               </div>
-              <span aria-hidden="true" data-figure className="font-display w-[4.5rem] shrink-0 text-right text-[24px]">
+              <span aria-hidden="true" data-figure className="font-display min-w-[4.5rem] shrink-0 text-right text-[24px]">
                 <span>{b.text}</span>
               </span>
             </div>

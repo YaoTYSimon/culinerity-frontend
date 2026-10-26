@@ -1,3 +1,4 @@
+import { Disclosure } from './Disclosure';
 import { isOlderData, StaticBenchmarkSource, verificationLabel, type BenchmarkSource, type Indicator, type Source } from '@culinerity/core';
 
 interface Props {
@@ -89,17 +90,9 @@ export function BenchmarkRows({ now, source = DEFAULT_SOURCE }: Props) {
       {rows(headline)}
       <p className="text-sm text-pretty">{POVERTY_LINE_NOTE}</p>
       {more.length > 0 && (
-        <details className="group">
-          <summary className="focus-ring flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-3 rounded-full text-base font-semibold [&::-webkit-details-marker]:hidden">
-            <span>More figures</span>
-            <span aria-hidden="true" className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-surface">
-              <svg viewBox="0 0 16 16" className="size-4 motion-safe:transition-transform group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3.5 6l4.5 4.5L12.5 6" />
-              </svg>
-            </span>
-          </summary>
+        <Disclosure summary="More figures">
           {rows(more)}
-        </details>
+        </Disclosure>
       )}
       {gaps.length > 0 && (
         <div className="grid gap-1">

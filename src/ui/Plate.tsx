@@ -1,4 +1,5 @@
 import { scoreBand } from '@culinerity/core';
+import { PLATE_CENTRE, PlateRim } from './PlateRim';
 
 interface Props {
   /** 0-100 where 100 is secure; null before a check-in. */
@@ -10,8 +11,6 @@ interface Props {
   className?: string;
 }
 
-const CX = 130;
-const RIM_R = 112;
 
 /** The score dial: a plate whose rim fills as the number rises. */
 export function Plate({ score, band, animate = true, className = '' }: Props) {
@@ -30,41 +29,11 @@ export function Plate({ score, band, animate = true, className = '' }: Props) {
       className={`block aspect-square w-full max-w-[260px] ${className}`}
       fontFamily="inherit"
     >
-      <circle cx={CX} cy={CX} r="126" className="fill-surface" />
-      <circle cx={CX} cy={CX} r="98" className="fill-bg" />
-      {known ? (
-        value > 0 && (
-          <circle
-            data-rim
-            cx={CX}
-            cy={CX}
-            r={RIM_R}
-            pathLength={100}
-            fill="none"
-            strokeWidth="12"
-            strokeLinecap="round"
-            strokeDasharray={`${value} 100`}
-            transform={`rotate(-90 ${CX} ${CX})`}
-            className={`stroke-ink ${animate ? 'plate-rim-animate' : ''}`}
-          />
-        )
-      ) : (
-        <circle
-          cx={CX}
-          cy={CX}
-          r={RIM_R}
-          fill="none"
-          strokeWidth="5"
-          strokeDasharray="2 12"
-          strokeLinecap="round"
-          opacity="0.5"
-          className="stroke-ink"
-        />
-      )}
-      <text x={CX} y="150" textAnchor="middle" fontWeight="800" fontSize={known ? 96 : 92} className="fill-ink">
+      <PlateRim fill={known ? value : null} animate={animate} />
+      <text x={PLATE_CENTRE} y="150" textAnchor="middle" fontWeight="800" fontSize={known ? 96 : 92} className="fill-ink">
         {known ? value : '?'}
       </text>
-      <text x={CX} y="186" textAnchor="middle" fontSize="14" className="fill-muted">
+      <text x={PLATE_CENTRE} y="186" textAnchor="middle" fontSize="14" className="fill-muted">
         {known ? `out of 100 · ${bandLabel}` : 'out of 100'}
       </text>
     </svg>

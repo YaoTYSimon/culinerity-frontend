@@ -1,5 +1,6 @@
 import type { BudgetSummary } from '@culinerity/core';
 import { formatDollars } from './money';
+import { PLATE_CENTRE, PlateRim } from './PlateRim';
 
 interface Props {
   summary: BudgetSummary;
@@ -7,8 +8,6 @@ interface Props {
   className?: string;
 }
 
-const CX = 130;
-const RIM_R = 112;
 const FULL = 100;
 
 /** Amount text shrinks as it grows so it stays inside the inner plate. */
@@ -24,31 +23,11 @@ export function BudgetPlate({ summary, budget, className = '' }: Props) {
 
   return (
     <svg role="img" aria-label={`${amount} ${word}`} viewBox="0 0 260 260" className={`block aspect-square w-full max-w-[260px] ${className}`} fontFamily="inherit">
-      <circle cx={CX} cy={CX} r="126" className="fill-surface" />
-      <circle cx={CX} cy={CX} r="98" className="fill-bg" />
-      {hasBudget ? (
-        fill > 0 && (
-          <circle
-            data-rim
-            cx={CX}
-            cy={CX}
-            r={RIM_R}
-            pathLength={FULL}
-            fill="none"
-            strokeWidth="12"
-            strokeLinecap="round"
-            strokeDasharray={`${fill} ${FULL}`}
-            transform={`rotate(-90 ${CX} ${CX})`}
-            className="stroke-ink plate-rim-animate"
-          />
-        )
-      ) : (
-        <circle cx={CX} cy={CX} r={RIM_R} fill="none" strokeWidth="5" strokeDasharray="2 12" strokeLinecap="round" opacity="0.5" className="stroke-ink" />
-      )}
-      <text x={CX} y={CX + amountSize(amount) * 0.12} textAnchor="middle" fontWeight="800" fontSize={amountSize(amount)} className="fill-ink">
+      <PlateRim fill={hasBudget ? fill : null} />
+      <text x={PLATE_CENTRE} y={PLATE_CENTRE + amountSize(amount) * 0.12} textAnchor="middle" fontWeight="800" fontSize={amountSize(amount)} className="fill-ink">
         {amount}
       </text>
-      <text x={CX} y={CX + 52} textAnchor="middle" fontSize="20" fontWeight="600" className="fill-muted">
+      <text x={PLATE_CENTRE} y={PLATE_CENTRE + 52} textAnchor="middle" fontSize="20" fontWeight="600" className="fill-muted">
         {word}
       </text>
     </svg>
