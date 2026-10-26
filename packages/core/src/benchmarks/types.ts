@@ -8,6 +8,8 @@ export interface Indicator {
   label: string;
   /** Null for string-valued rows, which carry `display` instead. */
   value: number | null;
+  /** Decimal places the source writes, so 34.0 is not shown as 34. */
+  decimals?: number;
   /** Used verbatim when present, for example "about 1 in 5". */
   display?: string;
   unit: string;

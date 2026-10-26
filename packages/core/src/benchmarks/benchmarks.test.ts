@@ -47,6 +47,11 @@ describe('verificationLabel', () => {
 
 describe('StaticBenchmarkSource', () => {
   const src = new StaticBenchmarkSource();
+  it('states the decimals the source writes for the ABS lone-parent and national CPI rows', () => {
+    const find = (id: string) => src.indicators().find((i) => i.id === id)!;
+    expect(find('p-abs-single-parent').decimals).toBe(1);
+    expect(find('b-cpi-food-australia').decimals).toBe(1);
+  });
   it('reports when the dataset was last updated', () => {
     expect(src.updated()).toBe('2026-10-26');
   });

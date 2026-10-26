@@ -12,6 +12,7 @@
 - `dated: true` marks figures that predate known changes; `isOlderData` also flags any figure more than five years before the current year.
 - `note` is plain, user-facing text (what the figure means, its caveats). Remarks on how a figure was found (blocked pages, extraction, what was not opened) go in `research`, which is kept here and never shown.
 - `notFound` items carry a `group` (`budget` or `policy`) so each screen lists only its own gaps.
+- `decimals` (optional, 0 to 4) is how many decimal places the source writes (ABS lone-parent families 34.0, CPI 3.0), so a figure is never shown with fewer digits than its source.
 - String-valued figures use `value: null` plus `display`.
 - Different measures are never combined or put on one axis.
 

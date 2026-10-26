@@ -87,7 +87,7 @@ describe('PolicyView', () => {
       expect(within(g).getByRole('link')).toHaveAttribute('rel', 'noopener noreferrer');
     }
     expect(within(groups[0]).getByRole('img', { name: '68% of single-parent households' })).toBeInTheDocument();
-    expect(within(groups[1]).getByRole('img', { name: '34% of lone-parent families with dependent children' })).toBeInTheDocument();
+    expect(within(groups[1]).getByRole('img', { name: '34.0% of lone-parent families with dependent children' })).toBeInTheDocument();
   });
 
   it('shows press-only rows only in the Students section, with the label', () => {

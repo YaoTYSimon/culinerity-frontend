@@ -38,6 +38,9 @@ export function validateBenchmarks(d) {
     }
     if (i.research !== undefined && typeof i.research !== 'string') errs.push(`indicator ${i.id} research must be a string`);
     if (i.display !== undefined && typeof i.display !== 'string') errs.push(`indicator ${i.id} display must be a string`);
+    if (i.decimals !== undefined && (!Number.isInteger(i.decimals) || i.decimals < 0 || i.decimals > 4 || typeof i.value !== 'number')) {
+      errs.push(`indicator ${i.id} decimals must be an integer from 0 to 4 on a numeric value`);
+    }
     if (i.value === null) {
       if (!i.display) errs.push(`indicator ${i.id} has null value without display`);
     } else if (typeof i.value !== 'number' || !Number.isFinite(i.value)) {

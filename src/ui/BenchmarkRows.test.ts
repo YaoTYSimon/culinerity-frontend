@@ -14,6 +14,11 @@ describe('figureParts', () => {
     expect(figureParts({ ...base, value: 424.06, unit: 'AUD per fortnight' }).main).toBe('$424.06');
     expect(figureParts({ ...base, value: 13.2, unit: '% of households' })).toEqual({ main: '13.2%', unit: 'of households' });
   });
+  it('keeps the decimals the source writes', () => {
+    expect(figureParts({ ...base, value: 34, decimals: 1, unit: '% of lone-parent families' }).main).toBe('34.0%');
+    expect(figureParts({ ...base, value: 3, decimals: 1, unit: '% change over 12 months' }).main).toBe('3.0%');
+    expect(figureParts({ ...base, value: 1226, decimals: 2, unit: 'AUD per week' }).main).toBe('$1,226.00');
+  });
   it('uses display verbatim', () => {
     expect(figureParts({ ...base, value: null, display: 'about 1 in 5', unit: 'share of 18-24 year olds' }).main).toBe('about 1 in 5');
   });

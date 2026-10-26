@@ -16,7 +16,7 @@ export const HEADLINE_IDS = ['b-cpi-food-melbourne', 'b-cpi-food-australia', 'b-
 /** The figure exactly as sourced, split so the number can be large and its unit small. */
 export function figureParts(i: Indicator): { main: string; unit: string } {
   if (i.display) return { main: i.display, unit: i.unit.replace(/^%\s*/, '') };
-  const v = typeof i.value === 'number' ? i.value.toLocaleString('en-AU', { maximumFractionDigits: 20 }) : String(i.value);
+  const v = typeof i.value === 'number' ? i.value.toLocaleString('en-AU', { minimumFractionDigits: i.decimals ?? 0, maximumFractionDigits: Math.max(i.decimals ?? 0, 20) }) : String(i.value);
   if (i.unit.startsWith('AUD')) return { main: `$${v}`, unit: i.unit.slice('AUD'.length).trim() };
   if (i.unit.startsWith('%')) return { main: `${v}%`, unit: i.unit.slice(1).trim() };
   return { main: v, unit: i.unit };

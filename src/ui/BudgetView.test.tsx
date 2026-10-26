@@ -310,7 +310,7 @@ describe('How this compares', () => {
   it('reads the percentage rows with their unit text', () => {
     show({ foodBudgetWeekly: 120 });
     const cpi = figureItems().find((el) => el.textContent?.includes('weighted average of eight capital cities'))!;
-    expect(cpi.textContent).toContain('3%');
+    expect(cpi.textContent).toContain('3.0%');
     expect(cpi.textContent).toContain('change over 12 months');
     const student = figureItems().find((el) => el.textContent?.includes('29% vs 24%'))!;
     expect(student.textContent).not.toMatch(/%[^%]*%[^%]*%/);

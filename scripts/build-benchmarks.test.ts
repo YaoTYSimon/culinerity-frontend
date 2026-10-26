@@ -33,6 +33,9 @@ describe('build-benchmarks', () => {
       return validateBenchmarks(d).join();
     };
     expect(bad((i) => (i.display = 5))).toMatch(/display/);
+    expect(bad((i) => (i.decimals = 1.5))).toMatch(/decimals/);
+    expect(bad((i) => (i.decimals = -1))).toMatch(/decimals/);
+    expect(bad((i) => (i.decimals = 1))).toBe('');
     expect(bad((i) => (i.previous.period = 5))).toMatch(/previous\.period/);
     expect(bad((i) => (i.previous.value = '36'))).toMatch(/previous\.value/);
     expect(bad((i) => (i.year = 1900))).toMatch(/year/);
