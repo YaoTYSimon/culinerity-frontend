@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Profile } from '@culinerity/core';
+import { parseMoney as parseDollars, type Profile } from '@culinerity/core';
 import { FIELD_EDGE } from './formParts';
 
 interface Props {
@@ -7,12 +7,8 @@ interface Props {
   onChange: (p: Profile) => void;
 }
 
-/** Blank, non-numeric, negative or non-finite input gives undefined, never NaN. */
-function parseMoney(text: string): number | undefined {
-  if (text.trim() === '') return undefined;
-  const n = Number(text);
-  return Number.isFinite(n) && n >= 0 ? n : undefined;
-}
+/** Blank, non-numeric, negative or non-finite input gives undefined, never NaN (zero is allowed). */
+const parseMoney = (text: string): number | undefined => parseDollars(text) ?? undefined;
 
 const input = `min-h-11 w-full rounded-full bg-surface px-5 py-2.5 text-sm text-ink focus-ring aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-accent ${FIELD_EDGE}`;
 

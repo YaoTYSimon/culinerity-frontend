@@ -2,6 +2,36 @@ import { describe, expect, it } from 'vitest';
 import { InMemoryProfileStore } from './inMemoryProfileStore';
 import { budgetPerServe, parseProfile, sanitizeProfile } from './profileStore';
 
+describe('sanitizeProfile spendEntries', () => {
+  const good = { id: 'a', amount: 12.5, category: 'groceries', at: '2026-10-27T01:00:00.000Z' };
+  it('keeps well-typed entries, with an optional short note', () => {
+    const withNote = { ...good, id: 'b', note: 'milk' };
+    expect(sanitizeProfile({ spendEntries: [good, withNote] }).spendEntries).toEqual([good, withNote]);
+  });
+  it('drops invalid entries without touching the others', () => {
+    const bad = [
+      { ...good, amount: '5' }, { ...good, amount: 0 }, { ...good, amount: -1 }, { ...good, amount: NaN },
+      { ...good, amount: 10_001 }, { ...good, category: 'rent' }, { ...good, note: 'x'.repeat(41) },
+      { ...good, at: 'nope' }, { ...good, id: '' }, null, 'x',
+    ];
+    expect(sanitizeProfile({ spendEntries: [...bad, good] }).spendEntries).toEqual([good]);
+  });
+  it('ignores a non-array spendEntries and strips unknown fields from entries', () => {
+    expect(sanitizeProfile({ spendEntries: 'x' })).toEqual({});
+    expect(sanitizeProfile({ spendEntries: [{ ...good, secret: 1 }] }).spendEntries).toEqual([good]);
+  });
+  it('keeps the newest 200 by date', () => {
+    const many = Array.from({ length: 210 }, (_v, i) => ({ ...good, id: `e${i}`, at: new Date(Date.UTC(2026, 9, 1) + i * 60_000).toISOString() }));
+    const out = sanitizeProfile({ spendEntries: many }).spendEntries!;
+    expect(out).toHaveLength(200);
+    expect(out[0].id).toBe('e10');
+    expect(out[199].id).toBe('e209');
+  });
+  it('survives a JSON round trip through parseProfile', () => {
+    expect(parseProfile(JSON.stringify({ spendEntries: [good] })).spendEntries).toEqual([good]);
+  });
+});
+
 describe('sanitizeProfile / parseProfile', () => {
   it('returns {} for non-objects and arrays', () => {
     for (const v of [null, undefined, 5, 'x', [1, 2]]) expect(sanitizeProfile(v)).toEqual({});

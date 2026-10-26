@@ -1,3 +1,4 @@
+import { sanitizeSpendEntries } from '../budget/entries';
 import { isScoreEntry, MAX_HISTORY } from '../domain/history';
 import type { Aud, Profile } from '../domain/types';
 import { isWeekSwap, MAX_WEEK_SWAPS } from '../domain/week';
@@ -31,6 +32,7 @@ export function sanitizeProfile(value: unknown): Profile {
   if (typeof v.welcomeSeen === 'boolean') out.welcomeSeen = v.welcomeSeen;
   if (Array.isArray(v.scoreHistory)) out.scoreHistory = v.scoreHistory.filter(isScoreEntry).slice(-MAX_HISTORY);
   if (Array.isArray(v.weekSwaps)) out.weekSwaps = v.weekSwaps.filter(isWeekSwap).slice(-MAX_WEEK_SWAPS);
+  if (Array.isArray(v.spendEntries)) out.spendEntries = sanitizeSpendEntries(v.spendEntries);
   return out;
 }
 

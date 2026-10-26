@@ -1,3 +1,4 @@
+import { isInWeek, weekBounds } from '../budget/week';
 import { isIsoDate } from './history';
 import type { Aud, WeekSwap } from './types';
 
@@ -52,6 +53,12 @@ export function weekSummary(week: WeekSwap[] | undefined, now: string): WeekSumm
   }
   const items = [...groups.values()].map((g) => ({ ...g, saving: roundCents(g.saving) }));
   return { total: roundCents(items.reduce((s, i) => s + i.saving, 0)), items };
+}
+
+/** Sum of swap savings dated within the Monday week containing `now` (the tracker's "This week"). */
+export function savedThisWeek(week: WeekSwap[] | undefined, now: Date): Aud {
+  const bounds = weekBounds(now);
+  return roundCents((week ?? []).filter((w) => isInWeek(w.at, bounds)).reduce((s, w) => s + w.saving, 0));
 }
 
 const money = (n: Aud): string => `$${n.toFixed(2)}`;

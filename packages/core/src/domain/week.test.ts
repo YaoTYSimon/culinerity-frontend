@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addWeekSwap, removeOneWeekSwap, shareText, weekSummary, type WeekSwap } from './week';
+import { addWeekSwap, removeOneWeekSwap, savedThisWeek, shareText, weekSummary, type WeekSwap } from './week';
 
 const NOW = '2026-10-20T12:00:00.000Z';
 const swap = (itemId: string, saving = 1.5) => ({ itemId, name: `Item ${itemId}`, saving });
@@ -80,5 +80,30 @@ describe('shareText', () => {
     const t = shareText({ total: 3, items: [{ itemId: 'a', name: 'Falafel wrap', count: 2, saving: 3 }] });
     expect(t).toContain('Falafel wrap ×2');
     expect(t).not.toContain('+');
+  });
+});
+
+describe('savedThisWeek (Monday week)', () => {
+  const at = (y: number, m: number, d: number, h = 12) => new Date(y, m - 1, d, h).toISOString();
+  const sw = (saving: number, when: string) => ({ itemId: 'i', name: 'I', saving, at: when });
+
+  it('is 0 for undefined or empty', () => {
+    expect(savedThisWeek(undefined, new Date(2026, 9, 28, 12))).toBe(0);
+    expect(savedThisWeek([], new Date(2026, 9, 28, 12))).toBe(0);
+  });
+  it('sums from Monday 00:00 local to Sunday 23:59:59, rounding to cents', () => {
+    const week = [
+      sw(1.1, new Date(2026, 9, 26, 0, 0, 0).toISOString()),
+      sw(2.2, new Date(2026, 10, 1, 23, 59, 59).toISOString()),
+      sw(9, new Date(2026, 9, 25, 23, 59, 59).toISOString()),
+      sw(9, new Date(2026, 10, 2, 0, 0, 0).toISOString()),
+    ];
+    expect(savedThisWeek(week, new Date(2026, 9, 28, 12))).toBe(3.3);
+  });
+  it('differs from the rolling weekSummary on a Tuesday', () => {
+    const tue = new Date(2026, 9, 27, 12);
+    const week = [sw(4, at(2026, 10, 23)), sw(1, at(2026, 10, 26))]; // Friday before and Monday
+    expect(weekSummary(week, tue.toISOString()).total).toBe(5);
+    expect(savedThisWeek(week, tue)).toBe(1);
   });
 });

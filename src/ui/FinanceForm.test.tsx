@@ -12,6 +12,13 @@ describe('FinanceForm', () => {
     expect(onChange).toHaveBeenLastCalledWith({ foodBudgetWeekly: undefined });
   });
 
+  it.each([['$85.50', 85.5], ['1,200', 1200], ['0', 0]])('accepts %j as %d', (text, n) => {
+    const onChange = vi.fn();
+    render(<FinanceForm value={{}} onChange={onChange} />);
+    fireEvent.change(screen.getByLabelText(/weekly food budget/i), { target: { value: text } });
+    expect(onChange).toHaveBeenLastCalledWith({ foodBudgetWeekly: n });
+  });
+
   it('passes valid numbers and suburb through', () => {
     const onChange = vi.fn();
     render(<FinanceForm value={{}} onChange={onChange} />);
