@@ -25,6 +25,10 @@ export interface AuthState {
   /** What the last delete could not remove, kept so the sign-in screen can say so after the app unmounts. */
   removeNotice: RemoveLeftover[] | null;
   dismissRemoveNotice(): void;
+  /** A one-off calm message for the sign-in screen (cleared by a successful sign-in or Dismiss). */
+  note: string | null;
+  showNote(message: string): void;
+  dismissNote(): void;
   /** Re-read the account list and session from storage. */
   refresh(): void;
 }

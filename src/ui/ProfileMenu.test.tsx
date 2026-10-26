@@ -375,6 +375,40 @@ describe('ProfileMenu: guest', () => {
   });
 });
 
+describe('ProfileMenu: migration with a failed auto sign-in', () => {
+  it('moves the person to the sign-in screen so the guest app cannot write the data back', async () => {
+    seedProfile(undefined, { welcomeSeen: true, score: 62 });
+    const real = service();
+    const failing = Object.create(real) as LocalAuthService;
+    failing.signIn = async () => ({ ok: false, reason: 'storage-error' });
+    mount(failing);
+    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, guest' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Create a profile' }));
+    fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Robin' } });
+    fireEvent.click(screen.getByRole('radio', { name: 'Start from my current data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Create profile' }));
+    expect(await screen.findByRole('heading', { level: 1, name: 'Welcome back.' })).toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent(/could not sign you in/i);
+    expect(screen.queryByRole('button', { name: /Profile menu/ })).not.toBeInTheDocument();
+    expect(localStorage.getItem(profileKey())).toBeNull();
+    expect(Object.keys(localStorage).filter((k) => k.startsWith('culinerity.profile.v1.'))).toHaveLength(1);
+  });
+
+  it('without migration the guest app stays (nothing was moved)', async () => {
+    seedProfile(undefined, { welcomeSeen: true, score: 62 });
+    const real = service();
+    const failing = Object.create(real) as LocalAuthService;
+    failing.signIn = async () => ({ ok: false, reason: 'storage-error' });
+    mount(failing);
+    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, guest' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Create a profile' }));
+    fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Robin' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Create profile' }));
+    expect(await screen.findByText(/could not sign you in/i)).toBeInTheDocument();
+    expect(localStorage.getItem(profileKey())).not.toBeNull();
+  });
+});
+
 describe('Header outside an AuthProvider', () => {
   it('shows no profile button (existing App tests render without one)', () => {
     render(

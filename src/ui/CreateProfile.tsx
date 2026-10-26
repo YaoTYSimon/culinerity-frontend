@@ -18,6 +18,8 @@ interface Props {
   readGuestProfile?: () => Record<string, unknown>;
 }
 
+const SAVED_NOT_SIGNED_IN =
+  'Your profile is saved, but we could not sign you in just now. You can choose it from the sign-in screen.';
 const NAME_HELP = 'A first name or nickname is plenty. It stays on this device.';
 const PASSCODE_HELP = "Optional. If you forget it, we can't reset it, but you can start a new profile.";
 
@@ -28,7 +30,7 @@ const hasGuestData = (p: Record<string, unknown>): boolean => Object.keys(p).som
 
 /** Name, optional passcode, avatar colour, and (only if there is guest data) where to start from. */
 export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultReadGuest }: Props) {
-  const { create, signIn } = useAuth();
+  const { create, signIn, signOut, showNote, status } = useAuth();
   const [name, setName] = useState('');
   const [passcode, setPasscode] = useState('');
   const [again, setAgain] = useState('');
@@ -64,11 +66,12 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
     setBusy(true);
     setMessage('');
     try {
+      const migrated = guestHasData && useCurrent;
       const r = await create({
         name: n.value,
         colour,
         passcode: code,
-        migrateGuestData: guestHasData && useCurrent,
+        migrateGuestData: migrated,
       });
       if (!r.ok) {
         setMessage(r.message);
@@ -80,9 +83,14 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
       const s = await signIn(r.account.id, code);
       if (s.ok) {
         onDone();
+      } else if (status === 'guest' && migrated) {
+        // The guest data now lives in the new profile. Leave the guest app (which still holds a copy in
+        // memory and would write it back to the guest key) for the sign-in screen.
+        showNote(SAVED_NOT_SIGNED_IN);
+        signOut();
       } else {
         setCreated(true);
-        setMessage('Your profile is saved, but we could not sign you in just now. You can choose it from the sign-in screen.');
+        setMessage(SAVED_NOT_SIGNED_IN);
       }
     } finally {
       busyRef.current = false;

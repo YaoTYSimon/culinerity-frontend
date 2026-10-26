@@ -30,6 +30,7 @@ export function AuthProvider({ service, children }: Props) {
     }
   });
   const [removeNotice, setRemoveNotice] = useState<RemoveLeftover[] | null>(null);
+  const [note, setNote] = useState<string | null>(null);
   const bump = useCallback(() => setVersion((v) => v + 1), []);
 
   useEffect(() => {
@@ -79,6 +80,7 @@ export function AuthProvider({ service, children }: Props) {
           if (r.ok) {
             setGuest(false);
             setRemoveNotice(null);
+            setNote(null);
           }
           bump();
           return r;
@@ -126,10 +128,13 @@ export function AuthProvider({ service, children }: Props) {
         bump();
       },
       removeNotice,
+      note,
+      showNote: setNote,
+      dismissNote: () => setNote(null),
       dismissRemoveNotice: () => setRemoveNotice(null),
       refresh: bump,
     };
-  }, [service, accounts, current, status, bump, removeNotice]);
+  }, [service, accounts, current, status, bump, removeNotice, note]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
