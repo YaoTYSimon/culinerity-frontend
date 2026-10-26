@@ -12,7 +12,7 @@ const RIM_R = 112;
 const FULL = 100;
 
 /** Amount text shrinks as it grows so it stays inside the inner plate. */
-const amountSize = (text: string): number => (text.length <= 4 ? 80 : text.length <= 6 ? 62 : text.length <= 8 ? 46 : 36);
+const amountSize = (text: string): number => (text.length <= 4 ? 80 : text.length <= 6 ? 50 : text.length <= 8 ? 42 : 34);
 
 /** The week as a plate: the rim fills with the share spent; the centre says what is left (or over, or spent). */
 export function BudgetPlate({ summary, budget, className = '' }: Props) {

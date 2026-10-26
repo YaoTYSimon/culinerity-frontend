@@ -10,20 +10,24 @@ const DEFAULT_SOURCE = new StaticBenchmarkSource();
 /** The research gaps that matter to a food budget (the dataset's gap list is shared with the policy page). */
 const BUDGET_GAP = /food spend|food budget|healthy food basket|poverty line|student weekly/i;
 
-/** The figure exactly as sourced: its own display text, else the number with its unit. */
-export function figureText(i: Indicator): string {
-  if (i.display) return i.display;
+/** The figure exactly as sourced, split so the number can be large and its unit small. */
+export function figureParts(i: Indicator): { main: string; unit: string } {
+  if (i.display) return { main: i.display, unit: i.unit };
   const v = String(i.value);
-  if (i.unit.startsWith('AUD')) return `$${v}${i.unit.slice('AUD'.length)}`;
-  if (i.unit.startsWith('%')) return `${v}${i.unit}`;
-  return `${v} ${i.unit}`;
+  if (i.unit.startsWith('AUD')) return { main: `$${v}`, unit: i.unit.slice('AUD'.length).trim() };
+  if (i.unit.startsWith('%')) return { main: `${v}%`, unit: i.unit.slice(1).trim() };
+  return { main: v, unit: i.unit };
 }
 
 function Row({ indicator, source, now }: { indicator: Indicator; source?: Source; now: Date }) {
+  const figure = figureParts(indicator);
   return (
     <li className="grid gap-1 py-3">
       <p className="text-base font-semibold text-pretty">{indicator.label}</p>
-      <p className="font-display text-[28px] break-words">{figureText(indicator)}</p>
+      <p className="break-words">
+        <span className="font-display text-[34px]">{figure.main}</span>
+        {figure.unit && <span className="block text-base font-semibold text-pretty">{figure.unit}</span>}
+      </p>
       <p className="text-sm text-pretty text-muted">
         {indicator.scope}. {indicator.period}.
         {indicator.measure ? ` ${indicator.measure}.` : ''}
