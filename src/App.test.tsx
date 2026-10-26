@@ -260,4 +260,22 @@ describe('my week', () => {
     expect(search).toHaveFocus();
   });
 
+  it('the Budget view opens from the menu, takes focus, and saves a spend through the profile store', () => {
+    const store = new InMemoryProfileStore({ ...SEEN, foodBudgetWeekly: 120 });
+    renderApp(store, () => '2026-10-28T12:00:00');
+    openMenu('Budget');
+    expect(screen.getByRole('heading', { level: 1, name: "This week's food." })).toHaveFocus();
+    fireEvent.click(screen.getByRole('button', { name: 'Add' }));
+    fireEvent.change(screen.getByLabelText(/amount/i), { target: { value: '25' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+    expect(screen.getByRole('img', { name: '$95 left' })).toBeInTheDocument();
+    expect(store.saved[store.saved.length - 1].spendEntries).toHaveLength(1);
+  });
+
+  it('the Budget view follows the swaps total to My week', () => {
+    renderApp(new InMemoryProfileStore({ ...SEEN, foodBudgetWeekly: 120, weekSwaps: [{ itemId: 'x', name: 'Soup', saving: 4, at: '2026-10-27T09:00:00' }] }), () => '2026-10-28T12:00:00');
+    openMenu('Budget');
+    fireEvent.click(screen.getByRole('button', { name: 'My week' }));
+    expect(screen.getByRole('heading', { level: 1, name: /saved/i })).toBeInTheDocument();
+  });
 });

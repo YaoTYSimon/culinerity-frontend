@@ -4,6 +4,7 @@ import { useServices } from './services/ServicesContext';
 import { RemoveNoteBanner } from './auth/RemoveNoteBanner';
 import { AuthContext } from './auth/useAuth';
 import { CravingSearch } from './ui/CravingSearch';
+import { BudgetView } from './ui/BudgetView';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
@@ -86,6 +87,16 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             <Questionnaire onComplete={complete} onSkip={() => setView(homeFor(profile))} />
           )}
 
+          {!creating && view === 'budget' && (
+            <BudgetView
+              profile={profile}
+              now={new Date(now())}
+              onChange={update}
+              onSeeSwaps={() => setView('swaps')}
+              onOpenWeek={() => setView('week')}
+            />
+          )}
+
           {!creating && view === 'support' && (
             <SupportPanel suburb={profile.suburb} />
           )}
@@ -96,6 +107,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               onSeeSwaps={() => setView('swaps')}
               onCheckIn={() => setView('checkin')}
               onOpenSupport={() => setView('support')}
+              onOpenBudget={() => setView('budget')}
               onChange={update}
             />
           )}

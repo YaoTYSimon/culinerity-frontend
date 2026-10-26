@@ -14,6 +14,7 @@ const ITEMS: { to: NavTarget; label: string }[] = [
   { to: 'home', label: 'Home' },
   { to: 'swaps', label: 'Swaps' },
   { to: 'checkin', label: 'Check-in' },
+  { to: 'budget', label: 'Budget' },
   { to: 'support', label: 'Food support' },
   { to: 'week', label: 'My week' },
   { to: 'welcome', label: 'Welcome' },

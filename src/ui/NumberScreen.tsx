@@ -10,6 +10,8 @@ interface Props {
   onSeeSwaps: () => void;
   onCheckIn: () => void;
   onOpenSupport: () => void;
+  /** Opens the weekly spending tracker. */
+  onOpenBudget?: () => void;
   /** Called with the whole updated profile when the budget changes. */
   onChange: (next: Profile) => void;
 }
@@ -44,7 +46,7 @@ function trendLine(profile: Profile): string | null {
 }
 
 /** Home once there is a score: the number, where it has been, and one clear next step. */
-export function NumberScreen({ profile, onSeeSwaps, onCheckIn, onOpenSupport, onChange }: Props) {
+export function NumberScreen({ profile, onSeeSwaps, onCheckIn, onOpenSupport, onOpenBudget, onChange }: Props) {
   const score = profile.score as number;
   const nudge = NUDGES[rankNudge(score)];
   const trend = trendLine(profile);
@@ -78,7 +80,10 @@ export function NumberScreen({ profile, onSeeSwaps, onCheckIn, onOpenSupport, on
         </div>
       )}
 
-      <BudgetDisclosure value={profile} onChange={onChange} />
+      <div className="grid justify-items-start gap-1">
+        <BudgetDisclosure value={profile} onChange={onChange} />
+        {onOpenBudget && <PillButton variant="text" className="-ml-3" onClick={onOpenBudget}>See this week's spending</PillButton>}
+      </div>
     </div>
   );
 }

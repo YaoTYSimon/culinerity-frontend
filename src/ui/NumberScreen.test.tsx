@@ -9,8 +9,8 @@ import { NumberScreen } from './NumberScreen';
 const at = (i: number) => new Date(2026, 0, 1 + i).toISOString();
 const hist = (...scores: number[]) => scores.map((score, i) => ({ score, at: at(i) }));
 
-function setup(profile: Profile, handlers: Partial<Record<'onSeeSwaps' | 'onCheckIn' | 'onOpenSupport' | 'onChange', () => void>> = {}) {
-  const props = { onSeeSwaps: vi.fn(), onCheckIn: vi.fn(), onOpenSupport: vi.fn(), onChange: vi.fn(), ...handlers };
+function setup(profile: Profile, handlers: Partial<Record<'onSeeSwaps' | 'onCheckIn' | 'onOpenSupport' | 'onOpenBudget' | 'onChange', () => void>> = {}) {
+  const props = { onSeeSwaps: vi.fn(), onCheckIn: vi.fn(), onOpenSupport: vi.fn(), onOpenBudget: vi.fn(), onChange: vi.fn(), ...handlers };
   render(<NumberScreen profile={profile} {...props} />);
   return props;
 }
@@ -66,6 +66,12 @@ describe('NumberScreen', () => {
     expect(screen.getByText(text)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: button }));
     expect(onSeeSwaps).toHaveBeenCalled();
+  });
+
+  it("links from Your budget to this week's spending", () => {
+    const { onOpenBudget } = setup({ score: 55 });
+    fireEvent.click(screen.getByRole('button', { name: "See this week's spending" }));
+    expect(onOpenBudget).toHaveBeenCalled();
   });
 
   it('Check in again opens the check-in', () => {
