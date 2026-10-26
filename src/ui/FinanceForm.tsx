@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Profile } from '@culinerity/core';
+import { FIELD_EDGE } from './formParts';
 
 interface Props {
   value: Profile;
@@ -13,8 +14,7 @@ function parseMoney(text: string): number | undefined {
   return Number.isFinite(n) && n >= 0 ? n : undefined;
 }
 
-const input =
-  'min-h-11 w-full rounded-full bg-surface px-5 py-2.5 text-sm text-ink focus-ring aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-accent';
+const input = `min-h-11 w-full rounded-full bg-surface px-5 py-2.5 text-sm text-ink focus-ring aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-accent ${FIELD_EDGE}`;
 
 /** Text state that follows the parent value, but keeps rejected text visible while the parent value is unchanged. */
 function useSynced(external: number | string | undefined, parse: (t: string) => number | string | undefined) {

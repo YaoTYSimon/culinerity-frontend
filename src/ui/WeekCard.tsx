@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { shareText, weekSummary, type Aud, type WeekSwap } from '@culinerity/core';
 import { photoUrl } from '../assets/photos';
+import { FIELD_EDGE } from './formParts';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
 
@@ -114,7 +115,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
           value={text}
           rows={Math.min(10, text.split('\n').length + 1)}
           onFocus={(e) => e.currentTarget.select()}
-          className="focus-ring w-full rounded-[2rem] bg-surface px-5 py-3 text-sm text-ink"
+          className={`focus-ring w-full rounded-[2rem] bg-surface px-5 py-3 text-sm text-ink ${FIELD_EDGE}`}
         />
       )}
     </div>

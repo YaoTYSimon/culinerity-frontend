@@ -55,6 +55,9 @@ export function checkThemes(css) {
       pair('ink on bg as control edge', 'ink', 'bg', CONTROL),
       pair('ink on surface as control edge', 'ink', 'surface', CONTROL),
       pair('muted on bg as control edge', 'muted', 'bg', CONTROL),
+      // Text fields: the 2px edge (muted) must read against the page ground AND against the surface tone (WCAG 1.4.11).
+      pair('input edge (muted) vs bg', 'muted', 'bg', CONTROL),
+      pair('input edge (muted) vs surface', 'muted', 'surface', CONTROL),
     ];
   }
   return result;

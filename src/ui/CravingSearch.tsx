@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { type FoodItem, type Profile, type RankedSwap, swapService } from '@culinerity/core';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
 import { SwapResults, type WeekSwapInput } from './SwapResults';
+import { FIELD_EDGE } from './formParts';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
 
@@ -150,7 +151,7 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
           <input
             ref={inputRef} id="craving-q" type="search" value={text} onChange={(e) => setText(e.target.value)}
             placeholder="Try burger or chips"
-            className="min-h-12 w-0 min-w-0 flex-1 rounded-full bg-surface px-5 text-base text-ink placeholder:text-muted focus-ring"
+            className={`min-h-12 w-0 min-w-0 flex-1 rounded-full bg-surface px-5 text-base text-ink placeholder:text-muted focus-ring ${FIELD_EDGE}`}
           />
           <PillButton type="submit" className="min-h-12 shrink-0">Find swaps</PillButton>
         </div>

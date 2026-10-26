@@ -224,7 +224,7 @@ function DeleteDialog({ auth, account, onClose }: { auth: AuthState; account: Ac
               onChange={(e) => setTyped(e.target.value)}
               autoComplete="off"
               spellCheck={false}
-              className={`${INPUT_CLASS} bg-bg`}
+              className={INPUT_CLASS.replace('bg-surface', 'bg-bg')}
             />
           </div>
           <Live>{message}</Live>
