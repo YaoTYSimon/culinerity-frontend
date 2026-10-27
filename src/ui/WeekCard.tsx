@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { shareText, weekSummary, type Aud, type WeekSwap } from '@culinerity/core';
 import { photoUrl } from '../assets/photos';
 import { FIELD_EDGE } from './formParts';
+import { EmptyPlate } from './illustrations/EmptyPlate';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
 
@@ -57,7 +58,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
   if (summary.items.length === 0) {
     return (
       <div className="grid gap-4">
-        <RoundPhoto src={photoUrl('welcome-soup')} size={140} eager />
+        <EmptyPlate size={112} />
         <h1 tabIndex={-1} className="font-display text-[30px] leading-tight font-bold text-balance outline-none">Nothing in your week yet.</h1>
         <p className="text-base text-pretty text-muted">
           When you add a swap, it lands here, and you can share what you saved.

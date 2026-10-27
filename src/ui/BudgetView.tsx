@@ -19,6 +19,7 @@ import { BenchmarkRows } from './BenchmarkRows';
 import { BudgetDisclosure } from './BudgetDisclosure';
 import { Disclosure } from './Disclosure';
 import { BudgetPlate } from './BudgetPlate';
+import { EmptyPlate } from './illustrations/EmptyPlate';
 import { INPUT_CLASS } from './formParts';
 import { formatDollars } from './money';
 import { PageHeader } from './PageHeader';
@@ -232,7 +233,10 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }
       <section aria-labelledby="week-list" className="grid gap-2">
         <h2 id="week-list" ref={heading} tabIndex={-1} className="font-display text-[24px] outline-none">Logged this week</h2>
         {rows.length === 0 ? (
-          <p className="text-base text-muted">Nothing logged yet this week.</p>
+          <div className="flex items-center gap-4 py-1">
+            <EmptyPlate size={72} />
+            <p className="min-w-0 text-base text-pretty text-muted">Nothing logged yet this week.</p>
+          </div>
         ) : (
           <ul ref={list} aria-label="This week's spending" className="grid">
             {rows.map((e) => (

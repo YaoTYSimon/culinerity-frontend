@@ -53,13 +53,15 @@ describe('BudgetView', () => {
     expect(screen.getByText(/About \$16\.80 a day for the rest of the week/)).toBeInTheDocument();
   });
 
-  it('heads the screen with one decorative round photo', () => {
+  it('heads the screen with one decorative round photo and draws the empty log as a plate', () => {
     const { container } = show({ foodBudgetWeekly: 120 });
     const photos = container.querySelectorAll('img');
     expect(photos).toHaveLength(1);
     expect(photos[0]).toHaveAttribute('alt', '');
     expect(photos[0]).toHaveAttribute('width');
     expect(photos[0].getAttribute('src')).toMatch(/budget-harvest/);
+    const empty = screen.getByText('Nothing logged yet this week.').parentElement!;
+    expect(empty.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('adds a spend: the row appears and the totals update, and it is saved', () => {

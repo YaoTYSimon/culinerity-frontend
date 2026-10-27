@@ -128,6 +128,9 @@ describe('WeekCard', () => {
     const props = setup([]);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Nothing in your week yet.');
     expect(screen.queryByRole('button', { name: 'Share' })).not.toBeInTheDocument();
+    // the empty state is a drawn plate, not a photo, and says nothing to a screen reader
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    expect(document.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
     fireEvent.click(screen.getByRole('button', { name: 'See swaps' }));
     expect(props.onSeeSwaps).toHaveBeenCalledTimes(1);
   });
