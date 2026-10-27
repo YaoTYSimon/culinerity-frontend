@@ -1,4 +1,5 @@
 import { Disclosure } from './Disclosure';
+import { ExternalLink } from './ExternalLink';
 import { isOlderData, StaticBenchmarkSource, verificationLabel, type BenchmarkSource, type Indicator, type Source } from '@culinerity/core';
 
 interface Props {
@@ -23,6 +24,11 @@ export function figureParts(i: Indicator): { main: string; unit: string } {
   return { main: v, unit: i.unit };
 }
 
+/** The period as a sentence: capitalised, and "Period not stated" when the source gives none. */
+export function periodText(i: Indicator): string {
+  return /^not stated/i.test(i.period) ? 'Period not stated' : i.period.charAt(0).toUpperCase() + i.period.slice(1);
+}
+
 /** The earlier figure as sourced, for example "4%, 2020". */
 export function previousText(i: Indicator): string | null {
   if (!i.previous) return null;
@@ -45,7 +51,7 @@ export function BenchmarkRow({ indicator, source, now, figure: showFigure = true
       )}
       {earlier && <p className="text-sm text-pretty text-muted">Earlier: {earlier}.</p>}
       <p className="text-sm text-pretty text-muted">
-        {indicator.scope}. {indicator.period.charAt(0).toUpperCase() + indicator.period.slice(1)}.
+        {indicator.scope}. {periodText(indicator)}.
         {indicator.measure ? ` ${indicator.measure}.` : ''}
       </p>
       {indicator.note && <p className="text-sm text-pretty text-muted">{indicator.note}</p>}
@@ -53,16 +59,7 @@ export function BenchmarkRow({ indicator, source, now, figure: showFigure = true
         {verificationLabel(indicator.verification)}
         {isOlderData(indicator, now) && <strong className="font-semibold text-ink">{' · Older data'}</strong>}
       </p>
-      {source && (
-        <a
-          href={source.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="focus-ring inline-flex min-h-11 w-fit max-w-full items-center rounded-full text-sm font-semibold text-ink underline underline-offset-4"
-        >
-          <span className="min-w-0 break-words">{source.publisher}<span className="sr-only"> (opens the source in a new tab)</span></span>
-        </a>
-      )}
+      {source && <ExternalLink href={source.url}>{source.publisher}</ExternalLink>}
     </li>
   );
 }

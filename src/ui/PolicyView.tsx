@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 import {
   areasByDisadvantage,
   StaticBenchmarkSource,
@@ -8,6 +8,9 @@ import {
 } from '@culinerity/core';
 import { BarRows, type Bar } from './BarRows';
 import { BenchmarkRow, figureParts, POVERTY_LINE_NOTE } from './BenchmarkRows';
+import { CompactRows } from './CompactRows';
+import { Disclosure } from './Disclosure';
+import { ExternalLink } from './ExternalLink';
 import { ScaleRows } from './ScaleRows';
 import { ShareDial } from './ShareDial';
 
@@ -24,10 +27,11 @@ const FOODBANK_MORE = ['p-hunger-households-count', 'p-hunger-severe-share'];
 const ABS_HEADLINE = 'p-abs-national-2023';
 const VICTORIA = ['p-vphs-victoria-2022', 'p-vphs-barwon-2022', 'p-foodbank-vic-monthly'];
 const FOODBANK_BARS = ['p-hunger-single-parent', 'p-hunger-disability', 'p-hunger-renters', 'p-hunger-casual-trend', 'p-hunger-middle-income-trend', 'p-hunger-high-income'];
-const ABS_BARS = ['p-abs-single-parent', 'p-abs-group-households', 'p-abs-lowest-quintile'];
+const ABS_BARS = ['p-abs-single-parent', 'p-abs-lowest-quintile'];
 const STUDENTS = ['p-student-tas-2022', 'p-student-tas-2024', 'p-youth-one-in-five', 'p-student-hardship', 'p-abs-group-households', 'b-student-ua-living-costs'];
 const RELIEF = ['p-relief-ever-used', 'p-relief-past-year', 'p-relief-shame', 'p-vic-food-relief-budget'];
-const COST_OF_LIVING = ['b-cpi-food-melbourne', 'b-cpi-food-australia', 'b-poverty-line-single', 'b-poverty-line-couple-2kids', 'b-jobseeker-shortfall', 'b-parenting-shortfall', 'p-poverty-jobseeker'];
+const COST_HEADLINE = ['b-cpi-food-melbourne', 'b-cpi-food-australia'];
+const COST_MORE = ['b-poverty-line-single', 'b-poverty-line-couple-2kids', 'b-jobseeker-shortfall', 'b-parenting-shortfall', 'p-poverty-jobseeker'];
 
 const EVIDENCE_WORD = { strong: 'Strong', moderate: 'Moderate', mixed: 'Mixed', weak: 'Weak' } as const;
 
@@ -35,19 +39,6 @@ const longDate = (iso: string): string => {
   const [y, m, d] = iso.split('-').map(Number);
   return new Date(y, m - 1, d).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
 };
-
-function ExternalLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="focus-ring inline-flex min-h-11 w-fit max-w-full items-center rounded-full text-sm font-semibold text-ink underline underline-offset-4"
-    >
-      <span className="min-w-0 break-words">{children}<span className="sr-only"> (opens the source in a new tab)</span></span>
-    </a>
-  );
-}
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
@@ -59,7 +50,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 }
 
 function Group({ title, caption, children }: { title: string; caption: ReactNode; children: ReactNode }) {
-  const id = `group-${title.replace(/\W+/g, '-').toLowerCase()}`;
+  const id = useId();
   return (
     <div role="group" aria-labelledby={id} className="grid gap-2">
       <h3 id={id} className="text-lg font-semibold text-balance">{title}</h3>
@@ -77,22 +68,32 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
   const pick = (ids: string[]): Indicator[] => ids.flatMap((id) => byId(id) ?? []);
   const sourceOf = (i: Indicator): Source | undefined => sources.find((s) => s.id === i.sourceId);
   const shown: Indicator[] = [];
-  const rows = (ids: string[], opts: { skipFigure?: string } = {}) => {
+  const rows = (ids: string[]) => {
     const list = pick(ids);
     shown.push(...list);
     return (
       <ul className="grid">
         {list.map((i) => (
-          <BenchmarkRow key={i.id} indicator={i} source={sourceOf(i)} now={now} figure={i.id !== opts.skipFigure} />
+          <BenchmarkRow key={i.id} indicator={i} source={sourceOf(i)} now={now} />
         ))}
       </ul>
     );
+  };
+  const compact = (ids: string[], hideFigure?: string) => {
+    const list = pick(ids);
+    shown.push(...list);
+    return <CompactRows indicators={list} sources={sources} now={now} hideFigure={hideFigure} />;
   };
   const dial = (id: string) => {
     const i = byId(id);
     if (!i || i.value === null) return null;
     const f = figureParts(i);
-    return <ShareDial value={i.value} text={f.main} label={`${f.main} ${f.unit}`} />;
+    return (
+      <div className="grid justify-items-start gap-1">
+        <ShareDial value={i.value} text={f.main} label={`${f.main} ${f.unit}`} />
+        <p className="text-base font-semibold text-pretty">{f.unit}</p>
+      </div>
+    );
   };
   const bars = (ids: string[]): Bar[] =>
     pick(ids).map((i) => {
@@ -124,17 +125,17 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
         caption="An online survey of Australian households. A different question and sample from the ABS measure below, so the two cannot be compared or added."
       >
         {dial(FOODBANK_HEADLINE)}
-        {rows([FOODBANK_HEADLINE, ...FOODBANK_MORE], { skipFigure: FOODBANK_HEADLINE })}
+        {compact([FOODBANK_HEADLINE, ...FOODBANK_MORE], FOODBANK_HEADLINE)}
       </Group>
       <Group
         title="Australian Bureau of Statistics, 2023"
         caption="The ABS household survey, using a 10-item food insecurity module. Different from the Foodbank measure above."
       >
         {dial(ABS_HEADLINE)}
-        {rows([ABS_HEADLINE], { skipFigure: ABS_HEADLINE })}
+        {compact([ABS_HEADLINE], ABS_HEADLINE)}
       </Group>
       <Group title="Victoria" caption="From the Victorian Population Health Survey, which asks whether people ran out of food and could not afford more. That is a different question from the national measures.">
-        {rows(VICTORIA)}
+        {compact(VICTORIA)}
       </Group>
     </Section>
   );
@@ -193,15 +194,20 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
         })}
       </ul>
       <h3 className="text-lg font-semibold">Food relief</h3>
-      {rows(RELIEF)}
+      {compact(RELIEF)}
     </Section>
   );
 
   const sectionCost = (
     <Section id="cost" title="Cost of living">
       <p className="text-sm text-pretty text-muted">The same figures as the budget page, as their sources give them.</p>
-      {rows(COST_OF_LIVING)}
-      <p className="text-sm text-pretty">{POVERTY_LINE_NOTE}</p>
+      {compact(COST_HEADLINE)}
+      <Disclosure summary="More cost figures">
+        <div className="grid gap-1 pt-1">
+          {compact(COST_MORE)}
+          <p className="text-sm text-pretty">{POVERTY_LINE_NOTE}</p>
+        </div>
+      </Disclosure>
     </Section>
   );
 
@@ -210,7 +216,8 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
   const sectionAbout = (
     <Section id="about" title="About this data">
       <h3 className="text-lg font-semibold">Sources</h3>
-      <ul aria-label="Sources" className="grid gap-3">
+      <Disclosure summary={`Show all ${used.length} sources`}>
+      <ul aria-label="Sources" className="grid gap-3 pt-2">
         {used.map((s) => (
           <li key={s.id} className="grid gap-0.5">
             <p className="text-base font-semibold text-pretty">{s.publisher}</p>
@@ -219,6 +226,7 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
           </li>
         ))}
       </ul>
+      </Disclosure>
       <h3 className="text-lg font-semibold">Things to keep in mind</h3>
       <ul aria-label="Things to keep in mind" className="grid list-disc gap-2 pl-5 text-sm text-pretty">
         {source.caveats().map((c) => <li key={c}>{c}</li>)}
