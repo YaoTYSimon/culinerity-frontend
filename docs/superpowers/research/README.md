@@ -21,3 +21,16 @@
 1. Edit the JSON.
 2. Run `npm run build:benchmarks`. It validates the dataset (unique ids, resolvable sources, https URLs, numeric values) and rewrites `packages/core/src/benchmarks/generated/benchmarks.generated.ts`.
 3. Commit both files. A test regenerates the file in memory and fails if the committed copy is out of date.
+
+## Places
+
+`2026-10-27-nearby-places.json` is the single source of every place on the Nearby view. It is a small starter set, not a directory: it lists only places we could check, and says so. `notFound` records places that were looked at and left out, with the reason.
+
+- Never invent a place, address, coordinate or opening hour. Every place is read from the operator's own page (or its council's) and carries a `sourceId` that resolves to a source with an `https://` URL, licence text and the date accessed.
+- `checked` is the ISO date the source was read. It must be a real date, not in the future.
+- `hours` is the source's own words, short. No `hours` without a source that states them; if the page is unclear or contradicts itself, leave `hours` out.
+- Coordinates come from the source's own map link or geodata, or from an openly licensed source (Wikidata, CC0). Record how in the source `title`. They must lie inside Greater Melbourne (lat -38.6 to -37.4, lng 144.3 to 145.8) and within about 100 m of the place. If no coordinate can be sourced openly, leave the place out and list it in `notFound`.
+- Licence: where a listing's licence is unclear or differs between publishers (for example the City of Casey "Emergency Food Relief Groups": CC BY 3 on the state portal, none on the publisher's own page, "not specified" on data.gov.au), do not bulk-import it. Enter facts only, one place at a time, from the operator's own page.
+- OpenStreetMap is not used (ODbL share-alike on a derived database). Foodbank Victoria and the Victorian Farmers' Markets Association lists are not copied.
+- Price band defaults: `free` for food-relief and community-meal, `budget` for social-supermarket and co-op, `mid` for market and grocer, `pricier` only for accredited farmers' markets.
+- Refresh: edit the JSON, run `npm run build:places` (validates and rewrites `packages/core/src/places/generated/places.generated.ts`), commit both. A test fails if the committed generated file is out of date.

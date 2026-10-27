@@ -3,6 +3,7 @@ import { HttpFoodSupportSource } from '../sources/http/HttpFoodSupportSource';
 import { HttpNutritionSource } from '../sources/http/HttpNutritionSource';
 import { HttpPriceSource } from '../sources/http/HttpPriceSource';
 import { DEFAULT_BASE_URL, type FetchLike } from '../sources/http/httpJson';
+import { StaticPlaceSource } from '../places/source';
 import type { ProfileStore } from '../storage/profileStore';
 import type { Services } from './container';
 
@@ -17,6 +18,7 @@ export async function createHttpServices(
     prices: new HttpPriceSource(fetchFn, baseUrl),
     nutrition: new HttpNutritionSource(fetchFn, baseUrl),
     support: new HttpFoodSupportSource(fetchFn, baseUrl),
+    places: new StaticPlaceSource(),
     profiles,
   };
 }
