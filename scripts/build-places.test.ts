@@ -42,7 +42,9 @@ describe('build-places', () => {
     expect(errorsFor((d) => (d.places[0].kind = 'shop'))).toMatch(/kind/);
     expect(errorsFor((d) => (d.places[0].priceBand = 'cheap'))).toMatch(/priceBand/);
     expect(errorsFor((d) => (d.places[0].fit = ['fresh', 'tasty']))).toMatch(/fit/);
-    expect(errorsFor((d) => (d.places[0].fit = []))).toMatch(/fit/);
+    expect(errorsFor((d) => (d.places[0].fit = 'fresh'))).toMatch(/fit/);
+    // An empty list means the source does not say what is sold.
+    expect(errorsFor((d) => (d.places[0].fit = []))).toBe('');
     expect(errorsFor((d) => (d.places[0].access = 'vip'))).toMatch(/access/);
     expect(errorsFor((d) => (d.places[0].verification = 'press'))).toMatch(/verification/);
   });

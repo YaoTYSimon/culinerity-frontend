@@ -17,6 +17,7 @@ const VERIFICATION = ['primary', 'secondary'];
 const LAT = [-38.6, -37.4];
 const LNG = [144.3, 145.8];
 
+// An empty `fit` is allowed: it means the source does not say what is on offer.
 const nonEmpty = (v) => typeof v === 'string' && v.trim() !== '';
 const inRange = (v, [lo, hi]) => typeof v === 'number' && Number.isFinite(v) && v >= lo && v <= hi;
 
@@ -46,7 +47,7 @@ export function validatePlaces(d, today = new Date().toISOString().slice(0, 10))
     if (!nonEmpty(p.name)) errs.push(`place ${p.id} needs a name`);
     if (!KINDS.includes(p.kind)) errs.push(`place ${p.id} has bad kind`);
     if (!BANDS.includes(p.priceBand)) errs.push(`place ${p.id} has bad priceBand`);
-    if (!Array.isArray(p.fit) || p.fit.length === 0 || p.fit.some((f) => !FITS.includes(f))) errs.push(`place ${p.id} has bad fit`);
+    if (!Array.isArray(p.fit) || p.fit.some((f) => !FITS.includes(f))) errs.push(`place ${p.id} has bad fit`);
     if (!ACCESS.includes(p.access)) errs.push(`place ${p.id} has bad access`);
     if (!VERIFICATION.includes(p.verification)) errs.push(`place ${p.id} has bad verification`);
     if (!inRange(p.lat, LAT)) errs.push(`place ${p.id} lat must be a number inside Greater Melbourne`);

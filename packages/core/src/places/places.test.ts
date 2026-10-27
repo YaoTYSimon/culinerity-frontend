@@ -9,8 +9,9 @@ const DEFAULT_BAND: Record<PlaceKind, PriceBand[]> = {
   'community-meal': ['free'],
   'social-supermarket': ['budget'],
   'co-op': ['budget'],
-  market: ['mid', 'pricier'],
-  grocer: ['mid'],
+  // Budget only where the operator's own words say affordable or discount (recorded in the source title).
+  market: ['budget', 'mid', 'pricier'],
+  grocer: ['budget', 'mid'],
 };
 
 describe('StaticPlaceSource', () => {
@@ -54,6 +55,25 @@ describe('committed places', () => {
   });
   it('never claim pricier unless a farmers market', () => {
     for (const p of placeData.places.filter((x) => x.priceBand === 'pricier')) expect(p.name).toMatch(/farmers market/i);
+  });
+});
+
+describe('starter set reaches people with the least money', () => {
+  const lowCost = placeData.places.filter((p) => p.priceBand === 'free' || p.priceBand === 'budget');
+  it('has at least ten free or low-cost places, with free ones among them', () => {
+    expect(lowCost.length).toBeGreaterThanOrEqual(10);
+    expect(placeData.places.filter((p) => p.priceBand === 'free').length).toBeGreaterThanOrEqual(3);
+  });
+  it('spans inner, west, north, south-east and east Melbourne', () => {
+    const near = (lat: number, lng: number, r: number) => (p: Place) => Math.hypot(p.lat - lat, (p.lng - lng) * 0.79) < r;
+    expect(lowCost.some(near(-37.81, 144.97, 0.03))).toBe(true); // inner
+    expect(lowCost.some((p) => p.lng < 144.85)).toBe(true); // west
+    expect(lowCost.some((p) => p.lat > -37.72 && p.lng > 144.95)).toBe(true); // north
+    expect(lowCost.some((p) => p.lat < -37.95 && p.lng > 145.15)).toBe(true); // south-east
+    expect(lowCost.some((p) => p.lat > -37.85 && p.lat < -37.78 && p.lng > 145.1)).toBe(true); // east
+  });
+  it('keeps hours out unless the place states them, and never empty', () => {
+    for (const p of placeData.places) if (p.hours !== undefined) expect(p.hours.trim()).not.toBe('');
   });
 });
 
