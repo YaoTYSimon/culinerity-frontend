@@ -40,3 +40,5 @@ export * from './budget/summary';
 export * from './places/distance';
 export * from './places/rank';
 export * from './places/centroid';
+export * from './places/location';
+export { centroidTable } from './places/generated/centroids.generated';

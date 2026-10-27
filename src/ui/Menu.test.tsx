@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Menu } from './Menu';
 
-const ITEMS = ['Home', 'Swaps', 'Check-in', 'Budget', 'Food support', 'My week', 'Welcome', 'Data and policy'];
+const ITEMS = ['Home', 'Swaps', 'Check-in', 'Budget', 'Food support', 'Nearby', 'My week', 'Welcome', 'Data and policy'];
 
 describe('Menu', () => {
   it('lists destinations in order', () => {
@@ -54,5 +54,14 @@ describe('Menu', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     expect(screen.getByRole('button', { name: 'Food support' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('button', { name: 'Swaps' })).not.toHaveAttribute('aria-current');
+  });
+
+  it('Nearby follows Food support and navigates to nearby', () => {
+    const onNavigate = vi.fn();
+    render(<Menu current="swaps" onNavigate={onNavigate} open />);
+    const labels = screen.getAllByRole('listitem').map((li) => li.textContent);
+    expect(labels.indexOf('Nearby')).toBe(labels.indexOf('Food support') + 1);
+    fireEvent.click(screen.getByRole('button', { name: 'Nearby' }));
+    expect(onNavigate).toHaveBeenCalledWith('nearby');
   });
 });

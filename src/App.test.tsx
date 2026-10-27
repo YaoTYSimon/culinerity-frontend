@@ -86,6 +86,14 @@ describe('App', () => {
     expect(store.saved.some((p) => p.welcomeSeen === true)).toBe(false);
   });
 
+  it('Nearby opens from the menu with its h1 focused', () => {
+    renderApp(new InMemoryProfileStore(SEEN));
+    openMenu('Nearby');
+    const h1 = screen.getByRole('heading', { level: 1, name: 'Close to you.' });
+    expect(h1).toBeInTheDocument();
+    expect(h1).toHaveFocus();
+  });
+
   it('menu items navigate to each view', () => {
     renderApp(new InMemoryProfileStore(SEEN));
     openMenu('Check-in');

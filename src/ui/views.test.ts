@@ -10,4 +10,9 @@ describe('resolveView', () => {
   it('leaves other views alone', () => {
     expect(resolveView('week', {})).toBe('week');
   });
+
+  it('accepts nearby with or without a score', () => {
+    expect(resolveView('nearby', {})).toBe('nearby');
+    expect(resolveView('nearby', { score: 10 })).toBe('nearby');
+  });
 });

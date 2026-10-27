@@ -11,6 +11,7 @@ import { Header } from './ui/Header';
 import { PillButton } from './ui/PillButton';
 import { PhotoCredits } from './ui/PhotoCredits';
 import { PolicyView } from './ui/PolicyView';
+import { Nearby } from './ui/Nearby';
 import { NumberScreen } from './ui/NumberScreen';
 import { Questionnaire } from './ui/Questionnaire';
 import { SupportPanel } from './ui/SupportPanel';
@@ -108,6 +109,8 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           {!creating && view === 'support' && (
             <SupportPanel suburb={profile.suburb} />
           )}
+
+          {!creating && view === 'nearby' && <Nearby score={profile.score} profileSuburb={profile.suburb} />}
 
           {!creating && view === 'number' && (
             <NumberScreen
