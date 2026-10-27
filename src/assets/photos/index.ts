@@ -12,9 +12,12 @@ export function photoFor(itemId: string): string | undefined {
 }
 
 export type WelcomePhotoName = 'welcome-curry' | 'welcome-soup' | 'welcome-pancakes';
+/** Screen headers: budget, data and policy, sign-in; `nearby-market` is bundled for the future Nearby screen. */
+export type HeaderPhotoName = 'budget-harvest' | 'policy-shared-meal' | 'signin-cups' | 'nearby-market';
+export type PhotoName = WelcomePhotoName | HeaderPhotoName;
 
-/** URL of one of the three bundled home-cooked welcome photographs. */
-export function photoUrl(name: WelcomePhotoName): string {
+/** URL of a bundled screen photograph (the three welcome photos and the four header photos). */
+export function photoUrl(name: PhotoName): string {
   return BY_ID[name];
 }
 

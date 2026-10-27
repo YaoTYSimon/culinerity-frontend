@@ -21,6 +21,7 @@ import { Disclosure } from './Disclosure';
 import { BudgetPlate } from './BudgetPlate';
 import { INPUT_CLASS } from './formParts';
 import { formatDollars } from './money';
+import { PageHeader } from './PageHeader';
 import { PillButton } from './PillButton';
 
 interface Props {
@@ -174,7 +175,9 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-6 pb-2">
-      <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">This week's food.</h1>
+      <PageHeader photo="budget-harvest">
+        <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">This week's food.</h1>
+      </PageHeader>
 
       {asking ? (
         <AskBudget onSave={(n) => onChange({ ...profile, foodBudgetWeekly: n })} onSkip={() => setSkipped(true)} />

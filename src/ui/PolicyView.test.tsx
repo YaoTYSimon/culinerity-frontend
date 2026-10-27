@@ -21,6 +21,16 @@ const SECTIONS = [
 ];
 
 describe('PolicyView', () => {
+  it('has one decorative round photo beside the heading, with its size set', () => {
+    const { container } = show();
+    const img = container.querySelector('img')!;
+    expect(img).toHaveAttribute('alt', '');
+    expect(img).toHaveAttribute('width', '80');
+    expect(img).toHaveAttribute('height', '80');
+    expect(img.getAttribute('src')).toMatch(/policy-shared-meal/);
+    expect(container.querySelectorAll('img')).toHaveLength(1);
+  });
+
   it('has one h1 and an intro sentence', () => {
     show();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import type { AccountRecord, ProfileId, RemoveResult, SignInResult } from '@culinerity/core';
 import { useAuth } from '../auth/useAuth';
 import { Avatar } from './Avatar';
+import { PageHeader } from './PageHeader';
 import { CreateProfile } from './CreateProfile';
 import { FocusHeading } from './FocusHeading';
 import { INPUT_CLASS, Live } from './formParts';
@@ -301,10 +302,10 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
     const roomy = accounts.length <= 2;
     body = (
       <div className="grid gap-6 pb-4 pt-2">
-        <div className="grid gap-3">
+        <PageHeader photo="signin-cups" size={112}>
           <FocusHeading>{accounts.length > 1 ? "Who's eating today?" : 'Welcome back.'}</FocusHeading>
           <p className="text-base text-pretty text-muted">Pick your profile to carry on.</p>
-        </div>
+        </PageHeader>
         <ul className="flex flex-wrap justify-center gap-x-4 gap-y-5">
           {shown.map((a) => (
             <li key={a.id}>

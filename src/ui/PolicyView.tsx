@@ -10,6 +10,7 @@ import { figureParts, POVERTY_LINE_NOTE } from './BenchmarkRows';
 import { CompactRows } from './CompactRows';
 import { Disclosure } from './Disclosure';
 import { ExternalLink } from './ExternalLink';
+import { PageHeader } from './PageHeader';
 import { ScaleRows } from './ScaleRows';
 import { ShareDial } from './ShareDial';
 
@@ -238,8 +239,10 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-8">
-      <div className="grid gap-3">
-        <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">What we know about food insecurity.</h1>
+      <div className="grid gap-4">
+        <PageHeader photo="policy-shared-meal" size={80}>
+          <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">What we know about food insecurity.</h1>
+        </PageHeader>
         <p className="text-base text-pretty text-muted">
           Figures from published research, with where each one comes from. Different surveys measure different things, so we show them side by side, never added together.
         </p>

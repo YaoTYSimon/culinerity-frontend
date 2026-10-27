@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
+import { PHOTO_CREDITS } from './assets/photos';
 import { DOMAINS, FIES_QUESTIONS, SUPPORT_BELOW, InMemoryProfileStore, type ProfileStore } from '@culinerity/core';
 import { createServices } from './services/container';
 import { ServicesProvider } from './services/ServicesContext';
@@ -163,8 +164,8 @@ describe('App', () => {
     const footer = screen.getByRole('contentinfo');
     expect(footer).toHaveTextContent(/not medical advice/i);
     expect(footer).toHaveTextContent(/sample data/i);
-    expect(footer).toHaveTextContent('Swap ideas are drawn; craving photos are credited below.');
-    expect(within(footer).getByText('Photo credits (13)')).toBeInTheDocument();
+    expect(footer).toHaveTextContent('Swap ideas are drawn; photos are credited below.');
+    expect(within(footer).getByText(`Photo credits (${PHOTO_CREDITS.length})`)).toBeInTheDocument();
     const details = footer.querySelector('details');
     expect(details).not.toBeNull();
     expect(details).not.toHaveAttribute('open');
@@ -185,7 +186,7 @@ describe('App', () => {
   it('gives every photo credit link an accessible name', () => {
     renderApp();
     const links = within(screen.getByRole('contentinfo')).getAllByRole('link', { hidden: true });
-    expect(links).toHaveLength(26);
+    expect(links).toHaveLength(PHOTO_CREDITS.length * 2);
     links.forEach((a) => expect(a.getAttribute('aria-label')).toMatch(/\S/));
   });
 });

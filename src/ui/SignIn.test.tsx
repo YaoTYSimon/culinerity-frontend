@@ -71,6 +71,16 @@ describe('headline and chooser', () => {
     expect(screen.getByRole('heading', { level: 1, name: "Who's eating today?" })).toBeInTheDocument();
   });
 
+  it('chooser has one decorative round photo with its size set', async () => {
+    const s = new LocalAuthService({ now });
+    await add(s, 'Sam');
+    const { container } = mount(s);
+    const img = container.querySelector('img')!;
+    expect(img).toHaveAttribute('alt', '');
+    expect(img).toHaveAttribute('width', '112');
+    expect(img.getAttribute('src')).toMatch(/signin-cups/);
+  });
+
   it('shows a named avatar button per profile, decorative circles with the name in text', async () => {
     const s = new LocalAuthService({ now });
     await add(s, 'Sam');

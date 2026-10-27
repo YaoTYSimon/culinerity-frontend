@@ -22,10 +22,18 @@ describe('photoUrl', () => {
   });
 });
 
+const HEADERS = ['budget-harvest', 'policy-shared-meal', 'signin-cups', 'nearby-market'] as const;
+
+describe('photoUrl (screen headers)', () => {
+  it('resolves the four header photos', () => {
+    for (const name of HEADERS) expect(photoUrl(name), name).toMatch(/\.jpg/);
+  });
+});
+
 describe('PHOTO_CREDITS', () => {
   it('has one complete entry per photo', () => {
-    expect(PHOTO_CREDITS).toHaveLength(13);
-    expect(PHOTO_CREDITS.map((c) => c.itemId).sort()).toEqual([...IDS, ...WELCOME].sort());
+    expect(PHOTO_CREDITS).toHaveLength(17);
+    expect(PHOTO_CREDITS.map((c) => c.itemId).sort()).toEqual([...IDS, ...WELCOME, ...HEADERS].sort());
     for (const c of PHOTO_CREDITS) {
       expect(c.title, c.itemId).toBeTruthy();
       expect(c.licence, c.itemId).toBe('CC0');

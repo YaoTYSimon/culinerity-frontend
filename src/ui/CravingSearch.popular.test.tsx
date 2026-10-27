@@ -4,6 +4,7 @@ import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { CravingSearch } from './CravingSearch';
 import { PhotoCredits } from './PhotoCredits';
+import { PHOTO_CREDITS } from '../assets/photos';
 
 describe('popular craving tiles', () => {
   it('show photos, and the result header keeps the craving photo', async () => {
@@ -23,10 +24,10 @@ describe('popular craving tiles', () => {
 });
 
 describe('PhotoCredits', () => {
-  it('lists all thirteen credits with safe external links', () => {
+  it('lists every credit with safe external links', () => {
     const { container } = render(<PhotoCredits />);
     expect(container.querySelector('details summary')).toHaveTextContent('Photo credits');
-    expect(container.querySelectorAll('li')).toHaveLength(13);
+    expect(container.querySelectorAll('li')).toHaveLength(PHOTO_CREDITS.length);
     expect(screen.getAllByText('CC0')[0]).toHaveAttribute('href', expect.stringContaining('creativecommons.org'));
     expect(screen.queryByText(/CC BY/)).toBeNull();
     for (const a of container.querySelectorAll('a')) {

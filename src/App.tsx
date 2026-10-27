@@ -143,7 +143,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         </main>
 
         <footer className="px-4 pb-6 text-[13px] text-muted">
-          Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn; craving photos are credited below.
+          Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn; photos are credited below.
           <PhotoCredits />
           <PillButton variant="text" onClick={() => go('policy')} className="-ml-3 mt-2">
             Data and policy
