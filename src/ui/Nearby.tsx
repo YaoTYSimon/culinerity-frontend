@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import {
-  centroidTable, coverage, placeData, rankPlaces, rankSentence, roundOrigin, suburbCentroid,
-  type LatLng, type Place, type PlaceFilter,
+  centroidTable, coverage, rankPlaces, rankSentence, roundOrigin, suburbCentroid,
+  type LatLng, type Place, type PlaceFilter, type PlaceSourceRecord,
 } from '@culinerity/core';
 import { photoUrl } from '../assets/photos';
 import { useLocationProvider } from '../location/LocationContext';
@@ -13,6 +13,7 @@ import { NearbyFilters } from './NearbyFilters';
 import { NearbyPlaceRow } from './NearbyPlaceRow';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
+import type { View } from './views';
 
 /** Held in memory for this view only: rounded to about 100 m, never stored or sent. */
 type Origin = LatLng & { label?: string };
@@ -31,10 +32,19 @@ const MESSAGE = {
 
 const plural = (n: number) => `${n} ${n === 1 ? 'place' : 'places'}`;
 
-export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb?: string }) {
+interface Props {
+  score?: number;
+  profileSuburb?: string;
+  /** When given, the view links to Food support (Nearby itself never decides where "elsewhere" is). */
+  onNavigate?: (view: View) => void;
+}
+
+export function Nearby({ score, profileSuburb, onNavigate }: Props) {
   const { places: source } = useServices();
   const provider = useLocationProvider();
   const [places, setPlaces] = useState<Place[] | null>(null);
+  const [sources, setSources] = useState<PlaceSourceRecord[]>([]);
+  const [used, setUsed] = useState(false);
   const [loadFailed, setLoadFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [origin, setOrigin] = useState<Origin | null>(null);
@@ -52,8 +62,8 @@ export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb
   useEffect(() => {
     let live = true;
     setLoadFailed(false);
-    source.list().then(
-      (p) => { if (live) setPlaces(p); },
+    Promise.all([source.list(), source.sources()]).then(
+      ([p, s]) => { if (live) { setPlaces(p); setSources(s); } },
       () => { if (live) setLoadFailed(true); },
     );
     return () => { live = false; };
@@ -92,6 +102,7 @@ export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb
 
   const useText = (text: string) => {
     cancel();
+    setUsed(true);
     setPhase({ kind: 'idle' });
     const found = suburbCentroid(text);
     setSuggestions(found.kind === 'suggest' ? found.options : []);
@@ -108,6 +119,9 @@ export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb
   const clear = () => {
     cancel();
     setOrigin(null);
+    setTyped('');
+    setSuggestions([]);
+    setNoMatch(false);
     setPhase({ kind: 'idle' });
     queueMicrotask(() => locateButton.current?.focus());
   };
@@ -123,10 +137,6 @@ export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb
   }, [origin, places, score, filter]);
 
   const stats = useMemo(() => (places ? coverage(places) : null), [places]);
-  const sources = useMemo(() => {
-    const ids = new Set(places?.map((p) => p.sourceId));
-    return placeData.sources.filter((s) => ids.has(s.id));
-  }, [places]);
 
   const rows = view?.rows ?? [];
   const visible = view?.paged ? rows.slice(0, shown) : rows;
@@ -146,7 +156,7 @@ export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb
       <div className="flex flex-wrap items-center gap-3">
         <PillButton ref={locateButton} aria-disabled={locating} onClick={locate}>Use my location</PillButton>
         {locating && <PillButton variant="surface" onClick={() => { cancel(); setPhase({ kind: 'idle' }); locateButton.current?.focus(); }}>Cancel</PillButton>}
-        {origin && !origin.label && <PillButton variant="text" onClick={clear}>Clear my location</PillButton>}
+        {origin && <PillButton variant="text" onClick={clear}>Clear my location</PillButton>}
       </div>
 
       <div aria-live="polite" className="empty:hidden grid justify-items-start gap-3 text-base font-semibold text-pretty">
@@ -174,6 +184,9 @@ export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb
           />
           <PillButton type="submit" variant="surface" className="shrink-0">Use this suburb</PillButton>
         </div>
+        {typed !== '' && typed === profileSuburb && !used && (
+          <p className="text-sm text-muted">Press Use this suburb to see places near it.</p>
+        )}
         <div aria-live="polite" className="empty:hidden grid gap-2 text-base text-pretty">
           {noMatch && <p className="font-semibold">We don't have that suburb yet. Try one nearby.</p>}
           {suggestions.length > 0 && (
@@ -219,7 +232,6 @@ export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb
               <p className="text-sm text-muted">Straight-line distance, not walking time. Price bands are typical for this kind of place.</p>
             </>
           )}
-          {origin.label === undefined ? null : <PillButton variant="text" onClick={clear} className="-ml-3 justify-self-start">Clear my location</PillButton>}
         </div>
       )}
 
@@ -231,6 +243,9 @@ export function Nearby({ score, profileSuburb }: { score?: number; profileSuburb
 
       <div className="grid gap-1">
         <ExternalLink href="https://findfood.foodbank.org.au/?state=vic">More help from Foodbank</ExternalLink>
+        {onNavigate && (
+          <PillButton variant="text" onClick={() => onNavigate('support')} className="-ml-3 justify-self-start">Free food and meals</PillButton>
+        )}
       </div>
 
       <Disclosure summary="Where this comes from">

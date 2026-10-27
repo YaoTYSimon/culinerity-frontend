@@ -110,7 +110,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             <SupportPanel suburb={profile.suburb} />
           )}
 
-          {!creating && view === 'nearby' && <Nearby score={profile.score} profileSuburb={profile.suburb} />}
+          {!creating && view === 'nearby' && <Nearby score={profile.score} profileSuburb={profile.suburb} onNavigate={setView} />}
 
           {!creating && view === 'number' && (
             <NumberScreen

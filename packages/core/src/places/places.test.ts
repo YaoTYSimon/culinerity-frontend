@@ -23,6 +23,15 @@ const DEFAULT_BAND: Record<PlaceKind, PriceBand[]> = {
   grocer: ['budget', 'mid'],
 };
 
+describe('PlaceSource.sources', () => {
+  it('the static source returns its own source records, and the mock returns one for its places', async () => {
+    expect(await new StaticPlaceSource().sources()).toEqual(placeData.sources);
+    const mock = new MockPlaceSource();
+    const ids = new Set((await mock.sources()).map((s) => s.id));
+    for (const p of await mock.list()) expect(ids.has(p.sourceId)).toBe(true);
+  });
+});
+
 describe('StaticPlaceSource', () => {
   it('lists every generated place', async () => {
     expect(await new StaticPlaceSource().list()).toEqual(placeData.places);

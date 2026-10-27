@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   MockPlaceSource, StaticPlaceSource, formatDistance, haversineMetres, placeData, rankSentence, roundOrigin,
@@ -9,6 +9,7 @@ import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { Nearby } from './Nearby';
 import { NearbyPlaceRow } from './NearbyPlaceRow';
+import type { View } from './views';
 
 const CBD = { lat: -37.8136, lng: 144.9631 };
 const OK: LocationResult = { ok: true, ...CBD };
@@ -20,10 +21,10 @@ const fake = (...results: LocationResult[]) => {
 const deferred = () => {
   let resolve!: (r: LocationResult) => void;
   const promise = new Promise<LocationResult>((r) => { resolve = r; });
-  return { provider: { locate: vi.fn(() => promise) }, resolve };
+  return { provider: { locate: vi.fn(() => promise) }, resolve, promise };
 };
 
-function renderNearby(provider: LocationProvider, props: { score?: number; profileSuburb?: string } = {}, source: PlaceSource = new MockPlaceSource()) {
+function renderNearby(provider: LocationProvider, props: { score?: number; profileSuburb?: string; onNavigate?: (v: View) => void } = {}, source: PlaceSource = new MockPlaceSource()) {
   const services = { ...createServices(), places: source };
   return render(
     <ServicesProvider services={services}>
@@ -39,6 +40,7 @@ const typeSuburb = (text: string) => {
   fireEvent.click(screen.getByRole('button', { name: 'Use this suburb' }));
 };
 const many = (n: number, lat = -37.81, lng = 144.96): PlaceSource => ({
+  sources: async () => [],
   list: async () => Array.from({ length: n }, (_, i): Place => ({
     id: `p${i}`, name: `Place ${String(i).padStart(2, '0')}`, kind: 'market', lat: lat + i * 0.0005, lng,
     address: '1 Test Street', suburb: 'Testville', priceBand: 'mid', priceBasis: 'typical', fit: ['fresh'],
@@ -230,18 +232,75 @@ describe('Nearby', () => {
     expect(screen.getByRole('link', { name: /More help from Foodbank/ })).toHaveAttribute('href', 'https://findfood.foodbank.org.au/?state=vic');
   });
 
-  it('"Clear my location" empties the list', async () => {
+  it('"Clear my location" empties the list and the typed field, and exists once for either origin', async () => {
     renderNearby(fake(OK));
     await press();
     expect(names()).toHaveLength(3);
+    expect(screen.getAllByRole('button', { name: 'Clear my location' })).toHaveLength(1);
     await press('Clear my location');
     expect(screen.queryByRole('list', { name: 'Places near you' })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Clear my location' })).not.toBeInTheDocument();
+
+    typeSuburb('Footscray');
+    expect(await screen.findByText('from the middle of Footscray')).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: 'Clear my location' })).toHaveLength(1);
+    await press('Clear my location');
+    expect(screen.getByLabelText('Type a suburb or postcode')).toHaveValue('');
+    expect(screen.queryByRole('list', { name: 'Places near you' })).not.toBeInTheDocument();
+  });
+
+  it('the last press wins: a stale result after Cancel and a new press is ignored', async () => {
+    const stale = deferred();
+    const fresh = deferred();
+    let n = 0;
+    const provider = { locate: vi.fn(() => (n++ === 0 ? stale : fresh).promise) };
+    renderNearby(provider);
+    await press();
+    await press('Cancel');
+    await press();
+    await act(async () => stale.resolve({ ok: true, lat: -33.8688, lng: 151.2093 }));
+    expect(screen.getByText('Finding you…')).toBeInTheDocument();
+    expect(screen.queryByRole('list', { name: 'Places near you' })).not.toBeInTheDocument();
+    await act(async () => fresh.resolve(OK));
+    expect(names()).toHaveLength(3);
+    expect(screen.queryByText(/covers Melbourne for now/)).not.toBeInTheDocument();
+  });
+
+  it('hints how to use a prefilled suburb, until it is used', async () => {
+    renderNearby(fake(OK), { profileSuburb: 'Footscray' });
+    expect(screen.getByText('Press Use this suburb to see places near it.')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Use this suburb' }));
+    expect(screen.queryByText('Press Use this suburb to see places near it.')).not.toBeInTheDocument();
+    cleanup();
+    renderNearby(fake(OK));
+    expect(screen.queryByText(/Press Use this suburb/)).not.toBeInTheDocument();
+  });
+
+  it('shows the injected source\'s own sources and licences, plus the centroid licence, none dropped', async () => {
+    renderNearby(fake(OK), {}, new MockPlaceSource());
+    expect(await screen.findByText('Test licence text')).toBeInTheDocument();
+    expect(screen.getByText('Test Publisher')).toBeInTheDocument();
+    expect(screen.getByText(/Creative Commons Attribution 4\.0/)).toBeInTheDocument();
+    const many = await new StaticPlaceSource().sources();
+    cleanup();
+    renderNearby(fake(OK), {}, new StaticPlaceSource());
+    await screen.findByText(many[0].licence);
+    many.forEach((s) => expect(screen.getByText(s.licence)).toBeInTheDocument());
+  });
+
+  it('links to Food support only when it can navigate there', async () => {
+    const onNavigate = vi.fn();
+    renderNearby(fake(OK), { onNavigate });
+    fireEvent.click(screen.getByRole('button', { name: 'Free food and meals' }));
+    expect(onNavigate).toHaveBeenCalledWith('support');
+    cleanup();
+    renderNearby(fake(OK));
+    expect(screen.queryByRole('button', { name: 'Free food and meals' })).not.toBeInTheDocument();
   });
 
   it('a failed place list offers Try again', async () => {
     let fail = true;
-    const source: PlaceSource = { list: () => (fail ? Promise.reject(new Error('x')) : new MockPlaceSource().list()) };
+    const source: PlaceSource = { sources: async () => [], list: () => (fail ? Promise.reject(new Error('x')) : new MockPlaceSource().list()) };
     renderNearby(fake(OK), {}, source);
     expect(await screen.findByRole('alert')).toBeInTheDocument();
     fail = false;

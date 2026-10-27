@@ -9,7 +9,8 @@ import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { Nearby } from './Nearby';
 
-const FORBIDDEN = /\b(fetch|XMLHttpRequest|sendBeacon|WebSocket|localStorage|sessionStorage|indexedDB)\b|document\.cookie/;
+const FORBIDDEN =
+  /\b(fetch|XMLHttpRequest|sendBeacon|WebSocket|EventSource|localStorage|sessionStorage|indexedDB|caches|BroadcastChannel|importScripts)\b|document\s*\.\s*cookie|\bimport\s*\(|\b(window|globalThis|self|top|parent|frames)\s*\[|(?<![-\w])(globalThis|self)(?![-\w])|\bnavigator\s*\[|\beval\s*\(|\bnew\s+Function\b|\bcookie\s*[:=]|(?:'|"|`)\s*(?:local|session)\s*(?:'|"|`)\s*\+|\bstorage\b\s*\[/i;
 const ROOT = resolve(__dirname, '../..');
 const walk = (dir: string): string[] =>
   readdirSync(dir).flatMap((f) => {
@@ -32,6 +33,16 @@ describe('detectors are live (not circular)', () => {
     expect(FORBIDDEN.test('window.localStorage.setItem')).toBe(true);
     expect(FORBIDDEN.test('document.cookie = x')).toBe(true);
     expect(FORBIDDEN.test('const quiet = 1')).toBe(false);
+    expect(FORBIDDEN.test("window['local' + 'Storage']")).toBe(true);
+    expect(FORBIDDEN.test('const g = globalThis; g.fetch(u)')).toBe(true);
+    expect(FORBIDDEN.test('const s = self; s.sessionStorage')).toBe(true);
+    expect(FORBIDDEN.test('const b = navigator.sendBeacon')).toBe(true);
+    expect(FORBIDDEN.test("navigator['send' + 'Beacon'](u)")).toBe(true);
+    expect(FORBIDDEN.test("await import('https://x.test/a.js')")).toBe(true);
+    expect(FORBIDDEN.test("const k = 'local' + 'Storage'")).toBe(true);
+    expect(FORBIDDEN.test('const { fetch: f } = window')).toBe(true);
+    expect(FORBIDDEN.test('eval("x")')).toBe(true);
+    expect(FORBIDDEN.test('const geo = navigator.geolocation')).toBe(false);
   });
   it('the leak check finds a stored coordinate', () => {
     localStorage.setItem('oops', JSON.stringify(RAW));
@@ -45,12 +56,13 @@ describe('static guard (spec 22)', () => {
   const files = [
     ...readdirSync(join(ROOT, 'src/ui')).filter((f) => /^Nearby.*\.tsx$/.test(f)).map((f) => join(ROOT, 'src/ui', f)),
     join(ROOT, 'src/location/LocationContext.tsx'),
+    join(ROOT, 'src/location/BrowserLocationProvider.ts'),
     ...walk(join(ROOT, 'packages/core/src/places')),
   ].filter(isSource);
 
   it('scans the real files', () => {
     const rel = files.map((f) => f.slice(ROOT.length + 1));
-    expect(rel).toEqual(expect.arrayContaining(['src/ui/Nearby.tsx', 'src/ui/NearbyFilters.tsx', 'src/ui/NearbyPlaceRow.tsx', 'src/location/LocationContext.tsx', 'packages/core/src/places/rank.ts']));
+    expect(rel).toEqual(expect.arrayContaining(['src/ui/Nearby.tsx', 'src/ui/NearbyFilters.tsx', 'src/ui/NearbyPlaceRow.tsx', 'src/location/LocationContext.tsx', 'src/location/BrowserLocationProvider.ts', 'packages/core/src/places/rank.ts']));
   });
   it.each(files.map((f) => [f.slice(ROOT.length + 1), f]))('%s mentions no network or storage API', (_n, f) => {
     const code = readFileSync(f, 'utf8');
@@ -65,6 +77,9 @@ describe('full flow (spec 23, 24)', () => {
   let xhrOpen: ReturnType<typeof vi.spyOn>;
   let beacon: ReturnType<typeof vi.fn>;
   let socket: ReturnType<typeof vi.fn>;
+  let consoles: ReturnType<typeof vi.spyOn>[];
+  let imageCtor: ReturnType<typeof vi.fn>;
+  const realImage = globalThis.Image;
   const realFetch = globalThis.fetch;
   const realSocket = globalThis.WebSocket;
 
@@ -78,10 +93,15 @@ describe('full flow (spec 23, 24)', () => {
     Object.defineProperty(navigator, 'sendBeacon', { value: beacon, configurable: true });
     socket = vi.fn();
     globalThis.WebSocket = socket as unknown as typeof WebSocket;
+    consoles = (['log', 'info', 'warn', 'error', 'debug'] as const).map((m) => vi.spyOn(console, m).mockImplementation(() => {}));
+    imageCtor = vi.fn();
+    globalThis.Image = imageCtor as unknown as typeof Image;
   });
   afterEach(() => {
     globalThis.fetch = realFetch;
     globalThis.WebSocket = realSocket;
+    globalThis.Image = realImage;
+    consoles.forEach((c) => c.mockRestore());
     xhrOpen.mockRestore();
     Object.defineProperty(navigator, 'sendBeacon', { value: undefined, configurable: true });
     localStorage.clear();
@@ -112,6 +132,14 @@ describe('full flow (spec 23, 24)', () => {
     expect(xhrOpen).not.toHaveBeenCalled();
     expect(beacon).not.toHaveBeenCalled();
     expect(socket).not.toHaveBeenCalled();
+    expect(imageCtor).not.toHaveBeenCalled();
+  });
+
+  it('logs nothing, so no coordinate reaches the console', async () => {
+    await walkFlow();
+    const logged = consoles.flatMap((c) => c.mock.calls).map((args) => args.map(String).join(' ')).join('\n');
+    expect(consoles.every((c) => c.mock.calls.length === 0)).toBe(true);
+    expect(leaks(logged, DIGITS)).toBe(false);
   });
 
   it('stores nothing: no coordinate, rounded or raw, and not the typed suburb', async () => {
@@ -171,5 +199,35 @@ describe('share text (spec 24)', () => {
     expect(withOrigin).toBe(without);
     expect(without).toBe(shareText(weekSummary(week, NOW)));
     expect(leaks(withOrigin, DIGITS)).toBe(false);
+  });
+});
+
+describe('profile stays untouched (spec 24)', () => {
+  afterEach(() => localStorage.clear());
+
+  it('typing and using a suburb leaves profile.suburb and the saved profile unchanged', async () => {
+    localStorage.clear();
+    const start = { welcomeSeen: true, suburb: 'Carlton', score: 55 };
+    const store = new InMemoryProfileStore(start);
+    const services = { ...createServices(), profiles: store };
+    render(
+      <ServicesProvider services={services}>
+        <LocationProviderContext.Provider value={provider}><App /></LocationProviderContext.Provider>
+      </ServicesProvider>,
+    );
+    const savesBefore = store.saved.length;
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Nearby' }));
+    const field = screen.getByLabelText('Type a suburb or postcode');
+    expect(field).toHaveValue('Carlton');
+    fireEvent.change(field, { target: { value: 'Footscray' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Use this suburb' }));
+    expect(await screen.findByText('from the middle of Footscray')).toBeInTheDocument();
+    await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Use my location' })); });
+    expect(store.saved.length).toBe(savesBefore);
+    expect(store.load()).toMatchObject(start);
+    expect(store.load().suburb).toBe('Carlton');
+    expect(JSON.stringify(store.load())).not.toMatch(/Footscray|144\.9|37\.8/);
+    expect(leaks(dump(localStorage) + dump(sessionStorage), [...DIGITS, 'Footscray'])).toBe(false);
   });
 });

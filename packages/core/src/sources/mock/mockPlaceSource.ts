@@ -1,10 +1,14 @@
 import type { PlaceSource } from '../../places/source';
-import type { Place } from '../../places/types';
+import type { Place, PlaceSourceRecord } from '../../places/types';
 
-const base = { address: '1 Test Street, Testville', suburb: 'Testville', access: 'open', sourceId: 'test', verification: 'primary', checked: '2026-01-01' } as const;
+const base = { address: '1 Test Street, Testville', suburb: 'Testville', access: 'open', sourceId: 'test-source', verification: 'primary', checked: '2026-01-01' } as const;
 
 /** Obviously fake places, for tests only. */
 export class MockPlaceSource implements PlaceSource {
+  async sources(): Promise<PlaceSourceRecord[]> {
+    return [{ id: 'test-source', publisher: 'Test Publisher', title: 'Test page', url: 'https://example.test/', licence: 'Test licence text', accessed: '2026-01-01' }];
+  }
+
   async list(): Promise<Place[]> {
     return [
       { ...base, id: 'test-market', name: 'Test Market', kind: 'market', lat: -37.81, lng: 144.96, priceBand: 'mid', priceBasis: 'typical', fit: ['fresh'] },
