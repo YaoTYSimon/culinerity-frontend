@@ -4,10 +4,9 @@ import {
   StaticBenchmarkSource,
   type BenchmarkSource,
   type Indicator,
-  type Source,
 } from '@culinerity/core';
 import { BarRows, type Bar } from './BarRows';
-import { BenchmarkRow, figureParts, POVERTY_LINE_NOTE } from './BenchmarkRows';
+import { figureParts, POVERTY_LINE_NOTE } from './BenchmarkRows';
 import { CompactRows } from './CompactRows';
 import { Disclosure } from './Disclosure';
 import { ExternalLink } from './ExternalLink';
@@ -66,19 +65,7 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
   const all = source.indicators();
   const byId = (id: string) => all.find((i) => i.id === id);
   const pick = (ids: string[]): Indicator[] => ids.flatMap((id) => byId(id) ?? []);
-  const sourceOf = (i: Indicator): Source | undefined => sources.find((s) => s.id === i.sourceId);
   const shown: Indicator[] = [];
-  const rows = (ids: string[]) => {
-    const list = pick(ids);
-    shown.push(...list);
-    return (
-      <ul className="grid">
-        {list.map((i) => (
-          <BenchmarkRow key={i.id} indicator={i} source={sourceOf(i)} now={now} />
-        ))}
-      </ul>
-    );
-  };
   const compact = (ids: string[], hideFigure?: string) => {
     const list = pick(ids);
     shown.push(...list);
@@ -106,7 +93,7 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
       return { id: i.id, label: i.label, value: i.value ?? 0, text: f.main, of: f.unit, details };
     });
   const barSource = (id: string) => {
-    const s = byId(id) && sourceOf(byId(id)!);
+    const s = sources.find((x) => x.id === byId(id)?.sourceId);
     return s ? <ExternalLink href={s.url}>{s.publisher}</ExternalLink> : null;
   };
 
@@ -158,7 +145,7 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
   const sectionStudents = (
     <Section id="students" title="Students and young people">
       <p className="text-sm text-pretty text-muted">Not Melbourne-specific.</p>
-      {rows(STUDENTS)}
+      {compact(STUDENTS)}
     </Section>
   );
 
@@ -188,11 +175,19 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
               <h3 className="text-lg font-semibold text-balance">{i.label}</h3>
               <p className="text-base font-semibold">Evidence: {EVIDENCE_WORD[i.evidence]}</p>
               <p className="text-base text-pretty">{i.summary}</p>
-              {s && <ExternalLink href={s.url}>{s.publisher}</ExternalLink>}
+              {s && <p className="text-sm text-muted">Source: {s.publisher}</p>}
             </li>
           );
         })}
       </ul>
+      <div className="grid gap-0">
+        <p className="text-sm text-muted">Sources for this evidence</p>
+        <div className="flex flex-wrap gap-x-4">
+          {[...new Set(interventions.map((i) => i.sourceId))].flatMap((id) => sources.find((x) => x.id === id) ?? []).map((x) => (
+            <ExternalLink key={x.id} href={x.url}>{x.publisher}</ExternalLink>
+          ))}
+        </div>
+      </div>
       <h3 className="text-lg font-semibold">Food relief</h3>
       {compact(RELIEF)}
     </Section>

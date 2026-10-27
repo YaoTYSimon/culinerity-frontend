@@ -143,6 +143,9 @@ body {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+  summary > span[aria-hidden='true'] {
+    display: none;
+  }
   li,
   [role='group'] > h3 {
     break-inside: avoid;

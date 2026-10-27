@@ -17,6 +17,8 @@ interface Props {
  */
 export function CompactRows({ indicators, sources, now, hideFigure }: Props) {
   const used = sources.filter((s) => indicators.some((i) => i.sourceId === s.id));
+  // Two sources from one publisher would read as a repeat, so they are told apart by title.
+  const samePublisher = new Set(used.map((s) => s.publisher)).size < used.length;
   return (
     <div className="grid gap-1">
       <ul className="grid">
@@ -52,7 +54,7 @@ export function CompactRows({ indicators, sources, now, hideFigure }: Props) {
         {used.length === 1 ? 'Source' : 'Sources'}
       </p>
       <div className="flex flex-wrap gap-x-4">
-        {used.map((s) => <ExternalLink key={s.id} href={s.url}>{s.publisher}</ExternalLink>)}
+        {used.map((s) => <ExternalLink key={s.id} href={s.url}>{samePublisher ? `${s.publisher}: ${s.title}` : s.publisher}</ExternalLink>)}
       </div>
     </div>
   );
