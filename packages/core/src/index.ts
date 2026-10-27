@@ -37,3 +37,5 @@ export * from './budget/money';
 export * from './budget/week';
 export * from './budget/entries';
 export * from './budget/summary';
+export * from './places/distance';
+export * from './places/rank';
