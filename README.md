@@ -9,6 +9,7 @@ Culinerity helps anyone in Melbourne find cheaper, healthier swaps for what they
 - **Your number**: the score on a dial whose rim fills once (static with reduced motion), what it means in plain words, and your earlier scores. A low score also shows a link to free food nearby.
 - **Swaps**: cheaper, healthier swaps for a craving, each with an "Add to my week" button, and an optional budget.
 - **Food support**: nearby places that give out free food, with directions.
+- **Nearby**: markets, grocers and free-food places from a small starter list, nearest first, by your location (only if you press "Use my location") or a typed suburb or postcode. See Privacy.
 - **Budget**: a plate showing what is left of your weekly food budget (weeks run Monday to Sunday), a plain pace message, spending you add, remove or undo, past weeks, what swaps saved, and "How this compares" with cited figures. The budget is optional: the tracker works on spending alone.
 - **Data and policy**: a plain-language page of sourced figures on food insecurity in Australia and Victoria (cost of living, students, Melbourne areas by disadvantage, what helps), each with its source, year and how it was checked. Open it from the Menu or the footer link.
 - **My week**: the swaps you added in the last 7 days and what you saved, shareable as savings-only text.
@@ -43,12 +44,14 @@ npm test           # core, web and server tests (time zone pinned to Australia/M
 npm run typecheck
 npm run build
 npm run build:benchmarks   # regenerate the benchmark data from the research JSON
+npm run build:places       # regenerate the Nearby places from the research JSON
+npm run build:centroids    # regenerate the suburb and postcode centroids
 node scripts/contrast.mjs   # WCAG contrast of the four themes
 ```
 
 ## Privacy
 
-Answers to the check-in, your score and its history, budget, suburb, My week and theme stay on your device and are never sent anywhere. The app makes no third-party requests (no analytics, CDNs or remote fonts). The optional server only serves reference data.
+Answers to the check-in, your score and its history, budget, suburb, My week and theme stay on your device and are never sent anywhere. The app makes no third-party requests (no analytics, CDNs or remote fonts). Nearby uses your location only if you press "Use my location": it is rounded, kept in memory while the view is open, and never stored or sent. Typed suburbs are matched on the device. The optional server only serves reference data.
 
 ## Local profiles and the passcode lock
 

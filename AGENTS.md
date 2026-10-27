@@ -25,6 +25,7 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 - `npm run build`, `npm run preview`, `npm run format` (oxfmt).
 - `npm test`: core, web and server tests (`npm run test:server` runs the server tests alone). `npm run typecheck`: root, core and server.
 - `npm run build:benchmarks`: regenerate `benchmarks.generated.ts` from `docs/superpowers/research/2026-10-26-food-security-data.json`. Tests run with `TZ=Australia/Melbourne` (set in `vitest.globalSetup.ts`, also used by core) so daylight-saving cases are deterministic; do not rely on the machine's zone.
+- `npm run build:places` / `npm run build:centroids`: regenerate the Nearby dataset and the suburb/postcode centroids from `docs/superpowers/research/` (see its README "Places" and "Centroids"); tests fail on drift.
 - `npm run seed`: create and fill the local SQLite database. `npm run server`: start the API on 8787.
 - `npm run dev:all`: server and dev server together. Use `VITE_USE_BACKEND=true npm run dev:all` to run the web app against the server.
 
@@ -35,6 +36,7 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 - **Number screen**: the score on a plate-shaped dial whose rim fills once (shows its final state under reduced motion), a plain band headline, the history of earlier scores, and a swap nudge. A score below `SUPPORT_BELOW` (40, in `packages/core/src/domain/bands.ts`) also shows a link to **Food support**.
 - **Swaps**: search or pick a popular craving; results rank cheaper, healthier swaps with an "Add to my week" button on each. A collapsed "Your budget" holds the optional weekly budget, income and suburb.
 - **Food support**: nearby free food places with a Directions link (sample data unless the server is used).
+- **Nearby**: `src/ui/Nearby*.tsx`, `src/location` (`BrowserLocationProvider`, `LocationContext`), places and ranking in `packages/core/src/places`. A starter list of sourced places, nearest first; prices are `stated` or labelled `typical`; dated notices show only while active. Use the dataset only through `PlaceSource`; never add a place without a source, licence and checked date.
 - **My week**: the swaps added in the last 7 days grouped with their savings, "Remove one", "Clear week", and Share (Web Share, else the clipboard, else text to copy by hand). The share text is savings only: never the score, answers, finances, suburb or a name.
 
 - **Budget**: set an optional weekly food budget; add, remove and undo spending; the plate shows what is left, with a pace message, past weeks and what swaps saved. Spend entries live in the profile (on device).
@@ -75,6 +77,7 @@ To add a theme: add its id to `ThemeId` and `THEME_IDS`/`THEME_NAMES` in `packag
 ## Privacy rules
 
 - A person's answers (check-in, score, score history, budget, suburb, My week, theme) stay on their device in localStorage (`culinerity.profile.v1` or `culinerity.profile.v1.<id>` for a local profile, `culinerity.theme.v1`). Sharing the week sends nothing to us. They are never sent anywhere.
+- Location (Nearby) is never stored, put in the profile, shared or sent: one `getCurrentPosition` on a button press, rounded to 3 decimals, held in React state and discarded on leaving the view. No `console.*` in `src/location` or the Nearby views (a test checks privacy).
 - No third-party requests: no analytics, CDNs, remote fonts or embeds. Fonts are bundled via `@fontsource`.
 - The server only serves reference data and receives no profile data.
 

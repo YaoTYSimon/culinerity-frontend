@@ -120,3 +120,9 @@ Checked 27 October 2026 by reading `SupportPanel`, `MockFoodSupportSource`, the 
 30. Copy states the privacy rule in one sentence: "Your location stays on this device. It is not saved or sent anywhere."
 
 31. **Ruling (price basis):** the Free and Low cost filters admit only places with `priceBasis === 'stated'` (free; free or budget). A `typical` basis is never claimed as free: those places stay under All and are labelled "Typically free" / "Typically budget" / "Typically mid" via `priceLabel(place)`; `PRICE_LABEL` stays for stated labels.
+
+### Build notes (27 October 2026)
+
+- The City of Casey list was not imported: its licence is CC BY 3 on the state portal but none ("All rights reserved") on the publisher's own page. The starter set therefore has 15 places (markets, two free meals, two relief places) and no Casey relief places.
+- Where the Community Grocer page and its own map disagree on hours, both are shown.
+- Prahran Market has a contact address only; its coordinates come from Wikidata (CC0) and were cross-checked against a nearby tram stop.

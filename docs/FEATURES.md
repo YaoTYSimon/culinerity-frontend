@@ -28,6 +28,16 @@ Status as of 27 October 2026. "Branch" says where the work lives; nothing here h
 - **Budget tracker:** Monday-week maths (DST-safe), plate showing what is left, pace message, add/remove/undo spending, past weeks, saved-with-swaps, income sentence and "How this compares" with cited figures.
 - **Data and policy dashboard:** plain-language sourced figures with dials, bars and scales, Melbourne areas by disadvantage, what helps, gaps listed, sources, and a print layout. Reached from the Menu and the footer.
 
+## `feature/visuals` (complete, unpushed)
+- **Photo headers** for budget, policy and sign-in, and **empty-state visuals**, in the plate design.
+
+## `feature/nearby` (complete, unpushed)
+- **Nearby cheap and healthy options** (spec `docs/superpowers/specs/2026-10-26-nearby-options-design.md`): markets, grocers, free meals and relief places ranked by straight-line distance, with kind and price filters, access labels ("Referral needed", "Membership"), dated notices (for example a closure) shown only while they apply, and Directions links.
+- **Starter set, not a directory.** The list is 15 places we could check against the operator's own page, mostly markets in a few Melbourne areas. The view says so and builds its coverage line from the data. It is not every place, and it has no Casey relief places yet, so the Free filter can be short.
+- **Typical vs stated prices.** A price is "stated" only when the source says so ("free", "affordable"). A market or grocer at the middle band is a "typical" estimate for that kind of place and is labelled that way; the Free filter trusts stated prices only.
+- **Privacy rule: location is never stored or sent.** A device position (only after "Use my location" is pressed) is rounded to 3 decimals, held in memory for the view, and discarded on leaving, on "Clear my location" and on unmount. Typed suburbs and postcodes are matched against a bundled table of ABS centroids with no geocoding service. Nothing is written to storage, the profile, the share text or the network.
+- **Licence decision.** The City of Casey "Emergency Food Relief Groups" list is not imported: the state portal says CC BY 3, but the publisher's own page states no licence ("All rights reserved"), so it was treated as ambiguous. OpenStreetMap is not used (ODbL would apply to our dataset). Places are entered as facts, one at a time, from operator pages. Sources and licences show in a "Where this comes from" disclosure.
+- **Refresh.** Edit `docs/superpowers/research/2026-10-27-nearby-places.json`, run `npm run build:places`, commit the JSON and `packages/core/src/places/generated/places.generated.ts`. For suburb and postcode centroids (ABS SAL and POA 2021, CC BY 4.0) follow `docs/superpowers/research/README.md`, then `npm run build:centroids`. Tests fail if a generated file is out of date. Never add a place without a source URL, licence text and checked date.
+
 ## Requested, not started
 - **Cultural food and "eat what fits"** (see `docs/superpowers/specs/2026-10-27-cultural-food-design.md`): self-declared traditions, dietary rules and occasions that fit swaps, a "meals that felt like home" tracker and nearby places; all on-device and optional. Treated as a core feature.
-- **Nearby cheap and healthy options** (see `docs/superpowers/specs/2026-10-26-nearby-options-design.md`).
