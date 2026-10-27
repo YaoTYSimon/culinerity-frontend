@@ -9,6 +9,8 @@ Culinerity helps anyone in Melbourne find cheaper, healthier swaps for what they
 - **Your number**: the score on a dial whose rim fills once (static with reduced motion), what it means in plain words, and your earlier scores. A low score also shows a link to free food nearby.
 - **Swaps**: cheaper, healthier swaps for a craving, each with an "Add to my week" button, and an optional budget.
 - **Food support**: nearby places that give out free food, with directions.
+- **Budget**: a plate showing what is left of your weekly food budget (weeks run Monday to Sunday), a plain pace message, spending you add, remove or undo, past weeks, what swaps saved, and "How this compares" with cited figures. The budget is optional: the tracker works on spending alone.
+- **Data and policy**: a plain-language page of sourced figures on food insecurity in Australia and Victoria (cost of living, students, Melbourne areas by disadvantage, what helps), each with its source, year and how it was checked. Open it from the Menu or the footer link.
 - **My week**: the swaps you added in the last 7 days and what you saved, shareable as savings-only text.
 - **Local profiles** (optional): name, an avatar colour and an optional 4 to 8 digit passcode, kept on this device only. A round avatar button in the header opens Switch profile, Lock, Delete this profile and its data, and Sign out. Guests can make a profile from the same button and choose whether to bring their current data along.
 - **Four themes** (tobacco, sand, walnut, cream), chosen with the dots in the header and remembered on your device.
@@ -37,9 +39,10 @@ If the server is down the app still opens and shows a plain message with a Retry
 ## Checks
 
 ```sh
-npm test           # core, web and server tests
+npm test           # core, web and server tests (time zone pinned to Australia/Melbourne)
 npm run typecheck
 npm run build
+npm run build:benchmarks   # regenerate the benchmark data from the research JSON
 node scripts/contrast.mjs   # WCAG contrast of the four themes
 ```
 
@@ -71,9 +74,19 @@ Storage keys:
 
 To reset: delete a profile from the header menu or sign-in screen, or clear this site's data in the browser settings (removes everything above). In devtools: `localStorage.clear(); sessionStorage.clear()`.
 
-## Sample data
+## Sample data and benchmark data
 
 Prices, nutrition figures and support places are sample data, labelled "Sample data" in the app. They are not real quotes. Culinerity is not medical advice.
+
+The benchmark figures on the Budget and Data and policy views are different: they are real published figures (19 sources, 37 indicators, 12 Melbourne areas, 6 interventions), each linked to its source. The rule is **no invented numbers**: a figure is added or changed only after reading its source. Each carries a verification label shown in the app:
+
+- **Read from the source itself**: `primary`.
+- **Read from a published report that cites it**: `secondary`.
+- **Press report only (not checked against the study)**: `press`.
+
+Figures from before known changes, or more than five years old, show "Older data". Things the research looked for and could not find are listed on the page rather than guessed.
+
+To refresh the data, edit `docs/superpowers/research/2026-10-26-food-security-data.json`, then run `npm run build:benchmarks`, which validates it and rewrites `packages/core/src/benchmarks/generated/benchmarks.generated.ts`. Commit both files. A test fails if the generated file is out of date. Full rules are in [docs/superpowers/research/README.md](docs/superpowers/research/README.md).
 
 ## Photo credits
 

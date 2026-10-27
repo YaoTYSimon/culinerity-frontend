@@ -1,6 +1,6 @@
 # Culinerity: what has been built
 
-Status as of 26 October 2026. "Branch" says where the work lives; nothing here has been pushed beyond `origin/main` (6db289d).
+Status as of 27 October 2026. "Branch" says where the work lives; nothing here has been pushed beyond `origin/main` (6db289d).
 
 ## On `main` (pushed)
 - **Food-insecurity check-in:** FIES-based questionnaire giving a 0 to 100 "cognitive load of hunger" score (100 = secure, 0 = critical).
@@ -23,11 +23,10 @@ Status as of 26 October 2026. "Branch" says where the work lives; nothing here h
 - Honest copy: a local lock, not encryption or account security. README/AGENTS document limits and how to reset.
 - Visible 2px field edges (WCAG 1.4.11) across every input; plate favicon.
 
-## `feature/budget-policy` (in progress, unpushed)
-- **Sourced benchmark dataset** (19 sources, 37 indicators, 12 Melbourne areas, 6 interventions) with a generator, freshness test, "Older data" labels and "how we read it" labels. Verified against ABS, Foodbank, VicHealth and other sources.
-- **Budget core logic:** Monday-week maths (DST-safe), pace message, spend entries with undo, saved-with-swaps, safe money parsing.
-- **Budget tracker view:** plate showing what is left, add/remove/undo spending, past weeks, income sentence, "How this compares" with cited figures. Review fixes in progress.
-- **Not yet built:** the Data and policy dashboard (Task 4) and the final verification (Task 5).
+## `feature/budget-policy` (complete, unpushed)
+- **Sourced benchmark dataset** (19 sources, 37 indicators, 12 Melbourne areas, 6 interventions) with a generator (`npm run build:benchmarks`), freshness test, "Older data" labels and verification labels. Verified against ABS, Foodbank, VicHealth and other sources. No invented numbers.
+- **Budget tracker:** Monday-week maths (DST-safe), plate showing what is left, pace message, add/remove/undo spending, past weeks, saved-with-swaps, income sentence and "How this compares" with cited figures.
+- **Data and policy dashboard:** plain-language sourced figures with dials, bars and scales, Melbourne areas by disadvantage, what helps, gaps listed, sources, and a print layout. Reached from the Menu and the footer.
 
 ## Requested, not started
 - **Cultural food and "eat what fits"** (see `docs/superpowers/specs/2026-10-27-cultural-food-design.md`): self-declared traditions, dietary rules and occasions that fit swaps, a "meals that felt like home" tracker and nearby places; all on-device and optional. Treated as a core feature.

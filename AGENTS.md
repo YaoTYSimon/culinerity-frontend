@@ -6,13 +6,16 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 
 - `packages/core` (`@culinerity/core`): platform-free TypeScript. Domain types, scoring, swap ranking, the `swapService`, source interfaces, mock and HTTP sources, and the `ProfileStore` interface. No `window`, `document`, `localStorage`, React or Node APIs (a test enforces this).
 - `server` (`@culinerity/server`): Hono + better-sqlite3 API for reference data only (cravings, swaps, prices, nutrition, support places). See `server/README.md`. Never stores anything about a person.
-- `src/ui`: React components. `src/App.tsx` is the shell and view switch (plain state, no router): `welcome`, `checkin`, `number`, `swaps`, `support`, `week`.
+- `src/ui`: React components. `src/App.tsx` is the shell and view switch (plain state, no router): `welcome`, `checkin`, `number`, `swaps`, `budget`, `support`, `week`, `policy` (the `View` type in `src/ui/views.ts`; the Menu lists them, and the footer links to `policy`).
 - `src/theme`: `tokens.ts` (the single TypeScript source of the four theme palettes), `ThemeProvider` (sets `data-theme` on `<html>` and persists the choice).
 - `src/assets/photos`: the 13 bundled Wikimedia Commons photographs (10 cravings, 3 home-cooked welcome photos) and `credits.ts`. Drawn illustrations in `src/ui/illustrations` are the fallback for cravings without a photo.
 - `src/services`: `createServices` (the only place concrete sources and the profile store are wired for the web app; the theme store is the one exception, built in `src/main.tsx` and passed to the required `store` prop of `ThemeProvider`), `loadServices` (mocks, or HTTP sources when `VITE_USE_BACKEND=true`), `ServicesContext` and `ServicesLoader` (renders the shell at once; the backend catalogue loads in the background).
 - `src/auth`: local profiles. `AuthProvider`/`useAuth` (state: accounts, current, `status` locked | signed-in | guest, remove notice), `Gate` (renders `SignInScreen` when locked, else the app tree keyed on the profile id so Lock/Switch discards in-memory state), `LocalAuthService` (implements core's `AuthService` on localStorage/sessionStorage and Web Crypto; never throws), `verifier.ts` (PBKDF2), `storageKeys.ts`. The service is built only in `src/main.tsx`. UI: `src/ui/SignIn.tsx`, `CreateProfile.tsx`, `ProfileMenu.tsx` (header avatar), `Avatar.tsx`. Pure helpers (name/passcode validation, rate limit, deletion confirmation) live in `packages/core/src/auth`.
+- `packages/core/src/budget`: pure budget logic (Monday-week maths that is DST-safe, `budgetSummary` and pace, spend entries with undo, safe money parsing). `packages/core/src/benchmarks`: the typed dataset (`types.ts`), `StaticBenchmarkSource` (`source.ts`: `isOlderData`, `verificationLabel`), Melbourne area helpers (`areas.ts`) and `generated/benchmarks.generated.ts` (do not hand-edit).
+- `src/ui` budget and policy: `BudgetView` (+ `BudgetPlate`, `AddSpend`, `BudgetDisclosure`), `PolicyView` (+ `BarRows`, `ScaleRows`, `ShareDial`, `CompactRows`), shared `BenchmarkRows` (`BenchmarkRow`, `figureParts`, `HEADLINE_IDS`: the indicator ids shown first on Budget, the rest under "More figures"), `PlateRim`, `Disclosure`.
 - `src/storage`: `LocalProfileStore` (profile) and `LocalThemeStore` (theme), both localStorage-backed and never throwing.
 - `src/index.css`: Tailwind v4 import, the six colour roles per theme (`:root` and `[data-theme=...]`), `@theme` names (`bg`, `surface`, `ink`, `muted`, `accent`, `accent-ink`), the food-illustration palette, the plate-rim animation, and the shared `focus-ring` / `motion-colors` utilities.
+- `scripts/build-benchmarks.mjs`: validates the research JSON and writes the generated dataset.
 - `scripts/contrast.mjs`: `node scripts/contrast.mjs` checks WCAG contrast of every theme from `src/index.css`.
 - `docs/superpowers/`: design specs and implementation plans (the plate redesign is `specs/2026-10-26-welcome-themes-plate-redesign-design.md`).
 
@@ -21,6 +24,7 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 - `npm run dev`: Vite on http://localhost:8443/ (host 127.0.0.1; `/api` proxies to http://127.0.0.1:8787).
 - `npm run build`, `npm run preview`, `npm run format` (oxfmt).
 - `npm test`: core, web and server tests (`npm run test:server` runs the server tests alone). `npm run typecheck`: root, core and server.
+- `npm run build:benchmarks`: regenerate `benchmarks.generated.ts` from `docs/superpowers/research/2026-10-26-food-security-data.json`. Tests run with `TZ=Australia/Melbourne` (set in `vitest.globalSetup.ts`, also used by core) so daylight-saving cases are deterministic; do not rely on the machine's zone.
 - `npm run seed`: create and fill the local SQLite database. `npm run server`: start the API on 8787.
 - `npm run dev:all`: server and dev server together. Use `VITE_USE_BACKEND=true npm run dev:all` to run the web app against the server.
 
@@ -32,6 +36,18 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 - **Swaps**: search or pick a popular craving; results rank cheaper, healthier swaps with an "Add to my week" button on each. A collapsed "Your budget" holds the optional weekly budget, income and suburb.
 - **Food support**: nearby free food places with a Directions link (sample data unless the server is used).
 - **My week**: the swaps added in the last 7 days grouped with their savings, "Remove one", "Clear week", and Share (Web Share, else the clipboard, else text to copy by hand). The share text is savings only: never the score, answers, finances, suburb or a name.
+
+- **Budget**: set an optional weekly food budget; add, remove and undo spending; the plate shows what is left, with a pace message, past weeks and what swaps saved. Spend entries live in the profile (on device).
+- **Data and policy**: sourced figures with verification labels, grouped by theme, with Melbourne areas by disadvantage and what helps. Reached from the Menu (last item) and the footer.
+
+## Benchmark data rules
+
+- **No invented numbers.** Every figure comes from `docs/superpowers/research/2026-10-26-food-security-data.json` and a source with an https URL, a year and a `verification`: `primary` (read from the source), `secondary` ("Read from a published report that cites it"), `press` ("Press report only"). Change a figure only after reading its source, and put the value, evidence and source in the commit message.
+- Refresh: edit the JSON, run `npm run build:benchmarks`, commit the JSON and the generated file. A freshness test regenerates in memory and fails if the committed file is stale. See `docs/superpowers/research/README.md`.
+- `note` is plain user-facing text and is shown. `research` records how a figure was found (blocked pages, what was not opened); it is never shown. Keep technical wording out of `note`.
+- `decimals` (0 to 4) is how many places the source writes (34.0, 3.0); `figureParts` honours it. String-valued figures use `value: null` plus `display`.
+- Different measures are never combined or plotted on one axis. Missing data is listed as `notFound` (tagged `budget` or `policy`), never filled in.
+- `isOlderData` flags `dated` figures and any more than five years old; the UI shows "Older data".
 
 ## Design rules (the plate)
 
