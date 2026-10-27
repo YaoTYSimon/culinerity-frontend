@@ -78,7 +78,7 @@ To reset: delete a profile from the header menu or sign-in screen, or clear this
 
 Prices, nutrition figures and support places are sample data, labelled "Sample data" in the app. They are not real quotes. Culinerity is not medical advice.
 
-The benchmark figures on the Budget and Data and policy views are different: they are real published figures (19 sources, 37 indicators, 12 Melbourne areas, 6 interventions), each linked to its source. The rule is **no invented numbers**: a figure is added or changed only after reading its source. Each carries a verification label shown in the app:
+The benchmark figures on the Budget and Data and policy views are different: they are real published figures (20 sources, 37 indicators, 12 Melbourne areas, 6 interventions), each linked to its source. The rule is **no invented numbers**: a figure is added or changed only after reading its source. Each carries a verification label shown in the app:
 
 - **Read from the source itself**: `primary`.
 - **Read from a published report that cites it**: `secondary`.
