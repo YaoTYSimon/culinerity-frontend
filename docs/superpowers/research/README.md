@@ -39,3 +39,11 @@
 - `fit` may be an empty list when the source does not say what is on offer. Never guess it.
 - The City of Casey "Emergency Food Relief Groups" list was re-read on 2026-10-27 and stays out: the state portal says CC BY 3 ("other", no licence text), the publisher's own page states no licence and "All rights reserved". Re-check before importing.
 - Refresh: edit the JSON, run `npm run build:places` (validates and rewrites `packages/core/src/places/generated/places.generated.ts`), commit both. A test fails if the committed generated file is out of date.
+
+## Centroids
+
+`2026-10-27-melbourne-centroids.json` is the table behind "type a suburb or postcode" on the Nearby view (no geocoding service). It holds area-weighted centroids, rounded to 3 decimals (about 100 m), of the ABS ASGS Edition 3 (2021) Suburbs and Localities (SAL) and Postal Areas (POA), GDA2020, under CC BY 4.0 (stated on the ABS digital boundary files download page, read 2026-10-27).
+
+- Suburbs are Victorian SALs and postcodes are POAs 3000-3207 and 3750-3999, kept when the centroid lies in the Greater Melbourne box (lat -38.6 to -37.4, lng 144.3 to 145.8). The box is wider than the metropolitan area, so some fringe and rural localities are included.
+- Postcode labels read "postcode 3011" (a postcode spans several suburbs, so no suburb name is claimed).
+- The national boundary files (about 160 MB) are never committed. To refresh, download `SAL_2021_AUST_GDA2020_SHP.zip` and `POA_2021_AUST_GDA2020_SHP.zip` from the ABS page into a scratch directory outside the repo, recompute centroids, update the JSON and its `source.accessed`, then run `npm run build:centroids` and commit both files. A test fails if the generated file is out of date.
