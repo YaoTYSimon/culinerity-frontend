@@ -701,7 +701,7 @@ export const benchmarkData: BenchmarkData = {
       "period": "not stated",
       "dated": true,
       "verification": "primary",
-      "note": "The page is undated (reference year unknown). Also: 25% increase in people seeking food relief reported by Victorian charities; 430+ charity partners; period unclear.",
+      "note": "The Foodbank Victoria page gives no date, so we do not know which year this figure is from. The same page reports a 25% increase in people seeking food relief at Victorian charities and more than 430 charity partners, without saying over what period.",
       "sourceId": "foodbank-vic-page"
     }
   ],
