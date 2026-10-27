@@ -374,7 +374,7 @@ export const benchmarkData: BenchmarkData = {
       "year": 2025,
       "verification": "primary",
       "note": "About 3.5 million households. Foodbank measure; not comparable with ABS 13.2%.",
-      "sourceId": "foodbank-hr2025-media"
+      "sourceId": "foodbank-hr2025-report"
     },
     {
       "id": "p-hunger-households-count",
@@ -412,7 +412,7 @@ export const benchmarkData: BenchmarkData = {
       "period": "2025",
       "year": 2025,
       "verification": "primary",
-      "sourceId": "foodbank-hr2025-media"
+      "sourceId": "foodbank-hr2025-report"
     },
     {
       "id": "p-hunger-single-parent",
@@ -424,8 +424,8 @@ export const benchmarkData: BenchmarkData = {
       "period": "2025",
       "year": 2025,
       "verification": "primary",
-      "note": "Release says nearly 7 in 10.",
-      "sourceId": "foodbank-hr2025-media"
+      "note": "Described as about 7 in 10.",
+      "sourceId": "foodbank-hr2025-report"
     },
     {
       "id": "p-hunger-disability",
@@ -438,20 +438,21 @@ export const benchmarkData: BenchmarkData = {
       "year": 2025,
       "verification": "primary",
       "note": "About three quarters of these were severely food insecure.",
-      "sourceId": "foodbank-hr2025-media"
+      "sourceId": "foodbank-hr2025-report"
     },
     {
       "id": "p-hunger-high-income",
       "group": "policy",
       "label": "Food insecurity among households earning $91,000 or more",
-      "value": 20,
-      "unit": "% of such households",
+      "value": null,
+      "display": "1 in 5",
+      "unit": "of such households",
       "scope": "Australia",
       "period": "2025",
       "year": 2025,
       "verification": "primary",
       "note": "Shows food insecurity is not confined to low incomes.",
-      "sourceId": "foodbank-hr2025-media"
+      "sourceId": "foodbank-hr2025-report"
     },
     {
       "id": "p-hunger-casual-trend",
