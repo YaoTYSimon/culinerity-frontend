@@ -3,7 +3,6 @@ import {
   centroidTable, coverage, rankPlaces, rankSentence, roundOrigin, suburbCentroid,
   type LatLng, type Place, type PlaceFilter, type PlaceSourceRecord,
 } from '@culinerity/core';
-import { photoUrl } from '../assets/photos';
 import { useLocationProvider } from '../location/LocationContext';
 import { useServices } from '../services/ServicesContext';
 import { Disclosure } from './Disclosure';
@@ -11,8 +10,8 @@ import { ExternalLink } from './ExternalLink';
 import { INPUT_CLASS } from './formParts';
 import { NearbyFilters } from './NearbyFilters';
 import { NearbyPlaceRow } from './NearbyPlaceRow';
+import { PageHeader } from './PageHeader';
 import { PillButton } from './PillButton';
-import { RoundPhoto } from './RoundPhoto';
 import type { View } from './views';
 
 /** Held in memory for this view only: rounded to about 100 m, never stored or sent. */
@@ -145,13 +144,10 @@ export function Nearby({ score, profileSuburb, onNavigate }: Props) {
 
   return (
     <section aria-labelledby="nearby-h" className="grid gap-5">
-      <div className="flex items-start gap-3">
-        <div className="grid min-w-0 flex-1 gap-3">
-          <h1 id="nearby-h" tabIndex={-1} className="font-display text-[30px] leading-tight font-bold text-balance outline-none">Close to you.</h1>
-          <p className="text-base text-pretty text-muted">Your location stays on this device. It is not saved or sent anywhere.</p>
-        </div>
-        <RoundPhoto src={photoUrl('nearby-market')} size={112} eager className="mt-1" />
-      </div>
+      <PageHeader photo="nearby-market">
+        <h1 id="nearby-h" tabIndex={-1} className="font-display text-[30px] leading-tight font-bold text-balance outline-none">Close to you.</h1>
+        <p className="text-base text-pretty text-muted">Your location stays on this device. It is not saved or sent anywhere.</p>
+      </PageHeader>
 
       <div className="flex flex-wrap items-center gap-3">
         <PillButton ref={locateButton} aria-disabled={locating} onClick={locate}>Use my location</PillButton>
@@ -223,7 +219,7 @@ export function Nearby({ score, profileSuburb, onNavigate }: Props) {
           {rows.length > 0 && (
             <>
               <p className="text-sm text-pretty">{rankSentence(score)}</p>
-              <ul aria-label="Places near you" className="grid gap-6">
+              <ul aria-label="Places near you" className="grid gap-10">
                 {visible.map((r) => <NearbyPlaceRow key={r.place.id} item={r} />)}
               </ul>
               {view?.paged && visible.length < rows.length && (
@@ -236,9 +232,11 @@ export function Nearby({ score, profileSuburb, onNavigate }: Props) {
       )}
 
       {stats && stats.count > 0 && (
-        <p className="text-sm text-pretty text-muted">
-          A starter list of {stats.count} places we could check, in {stats.suburbs.join(', ')}. It is not every place.
-        </p>
+        <Disclosure summary="About this list">
+          <p className="pb-2 text-sm text-pretty text-muted">
+            A starter list of {stats.count} places we could check, in {stats.suburbs.join(', ')}. It is not every place.
+          </p>
+        </Disclosure>
       )}
 
       <div className="grid gap-1">
