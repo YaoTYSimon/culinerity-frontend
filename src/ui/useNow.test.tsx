@@ -22,6 +22,17 @@ describe('useNow', () => {
     expect(result.current.getDate()).toBe(27);
   });
 
+  // Pace uses the time of day at the last tick, so between ticks it can be up to 15 minutes stale; it
+  // refreshes every 15 minutes, on visibility and at midnight.
+  it('is stale between ticks, then refreshes after 15 minutes', () => {
+    vi.setSystemTime(new Date(2026, 9, 26, 10, 0, 0));
+    const { result } = renderHook(() => useNow(() => new Date().toISOString()));
+    act(() => { vi.advanceTimersByTime(14 * 60_000); });
+    expect(result.current.getHours() * 60 + result.current.getMinutes()).toBe(10 * 60);
+    act(() => { vi.advanceTimersByTime(60_000); });
+    expect(result.current.getHours() * 60 + result.current.getMinutes()).toBe(10 * 60 + 15);
+  });
+
   it('cleans up its timer and listener', () => {
     const { unmount } = renderHook(() => useNow(() => new Date().toISOString()));
     unmount();
