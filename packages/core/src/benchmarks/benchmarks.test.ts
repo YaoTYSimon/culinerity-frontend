@@ -115,7 +115,7 @@ describe('StaticBenchmarkSource', () => {
     expect(row.year).toBeUndefined();
     expect(row.dated).toBe(true);
     expect(row.period).toBe('not stated');
-    expect(row.note).toMatch(/reference year unknown/);
+    expect(row.note).toMatch(/gives no date, so we do not know which year/);
   });
   it('words the middle-income comparison from the source', () => {
     const row = src.indicators('policy').find((i) => i.id === 'p-hunger-middle-income-trend')!;
