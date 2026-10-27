@@ -16,6 +16,12 @@ export const PRICE_LABEL: Record<PriceBand, string> = {
   pricier: 'Pricier',
 };
 
+/** Label for a place's price; "Typically ..." when the source does not state it. */
+export function priceLabel(p: Pick<Place, 'priceBand' | 'priceBasis'>): string {
+  const label = PRICE_LABEL[p.priceBand];
+  return p.priceBasis === 'stated' ? label : `Typically ${label.toLowerCase()}`;
+}
+
 const PRICE_ORDER: Record<PriceBand, number> = { free: 0, budget: 1, mid: 2, pricier: 3 };
 const BAND_LIMITS_M = [1000, 2000, 5000, 10_000];
 
@@ -36,8 +42,8 @@ export function rankSentence(score: number | undefined): string {
 const FILTERS: Record<PlaceFilter, (p: Place) => boolean> = {
   all: () => true,
   fresh: (p) => p.fit.includes('fresh'),
-  free: (p) => p.priceBand === 'free',
-  'low-cost': (p) => p.priceBand === 'free' || p.priceBand === 'budget',
+  free: (p) => p.priceBasis === 'stated' && p.priceBand === 'free',
+  'low-cost': (p) => p.priceBasis === 'stated' && (p.priceBand === 'free' || p.priceBand === 'budget'),
 };
 
 const distanceBand = (m: number) => {

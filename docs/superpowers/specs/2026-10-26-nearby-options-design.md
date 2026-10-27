@@ -118,3 +118,5 @@ Checked 27 October 2026 by reading `SupportPanel`, `MockFoodSupportSource`, the 
 28. `PlaceSource` joins the services container. The app default is `StaticPlaceSource` over the generated data. `MockPlaceSource` exists for tests only and uses obviously fake names ("Test Market"); it is never the container default so no fake place can reach a person. The HTTP container uses the static source (no server endpoint).
 29. The existing Food support view is unchanged; Nearby links to it ("Free food and meals") and does not duplicate its sample data (those are marked sample and are not reused as places).
 30. Copy states the privacy rule in one sentence: "Your location stays on this device. It is not saved or sent anywhere."
+
+31. **Ruling (price basis):** the Free and Low cost filters admit only places with `priceBasis === 'stated'` (free; free or budget). A `typical` basis is never claimed as free: those places stay under All and are labelled "Typically free" / "Typically budget" / "Typically mid" via `priceLabel(place)`; `PRICE_LABEL` stays for stated labels.

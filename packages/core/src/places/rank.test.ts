@@ -1,12 +1,19 @@
 import { describe, expect, it } from 'vitest';
 import type { Place, PriceBand } from './types';
-import { nudgeFor, rankPlaces, rankSentence, PRICE_LABEL } from './rank';
+import { nudgeFor, priceLabel, rankPlaces, rankSentence, PRICE_LABEL } from './rank';
 
 const origin = { lat: -37.8, lng: 144.9 };
 // ~111.2 m per 0.001 degree of latitude
 const north = (m: number) => ({ lat: origin.lat + m / 111195, lng: origin.lng });
 
-function place(id: string, m: number, priceBand: PriceBand, fresh: boolean, name = id): Place {
+function place(
+  id: string,
+  m: number,
+  priceBand: PriceBand,
+  fresh: boolean,
+  name = id,
+  priceBasis: Place['priceBasis'] = 'stated',
+): Place {
   const { lat, lng } = north(m);
   return {
     id,
@@ -17,6 +24,7 @@ function place(id: string, m: number, priceBand: PriceBand, fresh: boolean, name
     address: '1 Test St',
     suburb: 'Testville',
     priceBand,
+    priceBasis,
     fit: fresh ? ['fresh'] : ['packaged'],
     access: 'open',
     sourceId: 's',
@@ -111,6 +119,14 @@ describe('filters', () => {
   it('free', () => expect(ids(rankPlaces(list, origin, 50, 'free'))).toEqual(['free-fresh']));
   it('low-cost is free or budget', () =>
     expect(ids(rankPlaces(list, origin, 50, 'low-cost')).sort()).toEqual(['budget', 'free-fresh']));
+  it('never claims typical-basis prices as free or low cost', () => {
+    const kcnh = place('kcnh', 50, 'free', true, 'kcnh', 'typical');
+    const typicalBudget = place('tb', 60, 'budget', false, 'tb', 'typical');
+    const all = [kcnh, typicalBudget, ...list];
+    expect(ids(rankPlaces(all, origin, 50, 'free'))).toEqual(['free-fresh']);
+    expect(ids(rankPlaces(all, origin, 50, 'low-cost')).sort()).toEqual(['budget', 'free-fresh']);
+    expect(ids(rankPlaces(all, origin, 50, 'all'))).toContain('kcnh');
+  });
   it('returns true distances', () => {
     const r = rankPlaces(list, origin, 50, 'all');
     expect(r[0]!.metres).toBeGreaterThan(95);
@@ -151,5 +167,18 @@ describe('score mapping', () => {
 describe('PRICE_LABEL', () => {
   it('names each band', () => {
     expect(PRICE_LABEL).toEqual({ free: 'Free', budget: 'Budget', mid: 'Mid', pricier: 'Pricier' });
+  });
+});
+
+describe('priceLabel', () => {
+  it('uses plain labels when stated', () => {
+    expect(priceLabel(place('a', 1, 'free', true))).toBe('Free');
+    expect(priceLabel(place('a', 1, 'budget', true))).toBe('Budget');
+  });
+  it('says Typically when the source does not state the price', () => {
+    expect(priceLabel(place('a', 1, 'free', true, 'a', 'typical'))).toBe('Typically free');
+    expect(priceLabel(place('a', 1, 'budget', true, 'a', 'typical'))).toBe('Typically budget');
+    expect(priceLabel(place('a', 1, 'mid', true, 'a', 'typical'))).toBe('Typically mid');
+    expect(priceLabel(place('a', 1, 'pricier', true, 'a', 'typical'))).toBe('Typically pricier');
   });
 });
