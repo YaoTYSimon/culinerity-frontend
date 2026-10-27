@@ -238,7 +238,7 @@ describe('my week', () => {
     await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Share' })));
     const text: string = share.mock.calls[0][0].text;
     expect(text).toContain('Falafel wrap ×2');
-    expect(text).toBe('Falafel wrap ×2: $9.80\nSaved this week: $9.80\nMade with Culinerity');
+    expect(text).toBe('Falafel wrap ×2: $9.80\nSaved in the last 7 days: $9.80\nMade with Culinerity');
     expect(text).not.toMatch(/Footscray|score/i);
     Object.defineProperty(navigator, 'share', { value: undefined, configurable: true });
   });

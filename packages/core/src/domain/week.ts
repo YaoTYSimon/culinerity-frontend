@@ -69,6 +69,6 @@ export function shareText(summary: WeekSummary): string {
   const lines = shown.map((i) => `${i.name}${i.count > 1 ? ` ×${i.count}` : ''}: ${money(i.saving)}`);
   const more = summary.items.length - shown.length;
   if (more > 0) lines.push(`+${more} more`);
-  lines.push(`Saved this week: ${money(summary.total)}`, 'Made with Culinerity');
+  lines.push(`Saved in the last 7 days: ${money(summary.total)}`, 'Made with Culinerity');
   return lines.join('\n');
 }

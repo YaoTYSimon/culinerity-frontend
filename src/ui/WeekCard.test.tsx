@@ -38,7 +38,7 @@ describe('headlineAmount', () => {
 describe('WeekCard', () => {
   it('shows the headline, a grouped ×2 line and excludes 8-day-old swaps', () => {
     setup();
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('I saved $14 on food this week.');
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('I saved $14 on food in the last 7 days.');
     expect(screen.getByText('Falafel wrap ×2')).toBeInTheDocument();
     expect(screen.getByText('$9.80')).toBeInTheDocument();
     expect(screen.getByText('$4.30')).toBeInTheDocument();
@@ -78,7 +78,7 @@ describe('WeekCard', () => {
     expect(share).toHaveBeenCalledTimes(1);
     const text: string = share.mock.calls[0][0].text;
     expect(text).toContain('Falafel wrap ×2: $9.80');
-    expect(text).toContain('Saved this week: $14.10');
+    expect(text).toContain('Saved in the last 7 days: $14.10');
     expect(text).not.toMatch(/score|answer|budget|income|suburb|rent|Alex/i);
   });
 
@@ -87,7 +87,7 @@ describe('WeekCard', () => {
     setNav({ share: undefined, clipboard: { writeText } });
     setup();
     await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Share' })));
-    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('Saved this week: $14.10'));
+    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('Saved in the last 7 days: $14.10'));
     expect(screen.getByRole('status')).toHaveTextContent('Copied');
   });
 
@@ -106,7 +106,7 @@ describe('WeekCard', () => {
     setup();
     await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Share' })));
     expect(screen.getByRole('status')).toHaveTextContent("Couldn't share. You can copy it by hand.");
-    expect((screen.getByLabelText('Text to copy') as HTMLTextAreaElement).value).toContain('Saved this week');
+    expect((screen.getByLabelText('Text to copy') as HTMLTextAreaElement).value).toContain('Saved in the last 7 days');
   });
 
   it('shows the fallback when there is no share and no clipboard', async () => {

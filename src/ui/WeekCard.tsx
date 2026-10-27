@@ -73,7 +73,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
     <div className="grid grid-cols-[minmax(0,1fr)] gap-5">
       <RoundPhoto src={photoUrl('welcome-soup')} size={180} eager />
       <h1 tabIndex={-1} className="font-display text-[32px] leading-tight font-bold text-balance outline-none">
-        I saved {headlineAmount(summary.total)} on food this week.
+        I saved {headlineAmount(summary.total)} on food in the last 7 days.
       </h1>
 
       <ul className="grid gap-1">
