@@ -15,6 +15,7 @@
     "seed": "npm run seed -w @culinerity/server",
     "build:benchmarks": "node scripts/build-benchmarks.mjs",
     "build:places": "node scripts/build-places.mjs",
+    "build:centroids": "node scripts/build-centroids.mjs",
     "dev:all": "node scripts/dev-all.mjs"
   },
   "dependencies": {

@@ -39,3 +39,4 @@ export * from './budget/entries';
 export * from './budget/summary';
 export * from './places/distance';
 export * from './places/rank';
+export * from './places/centroid';

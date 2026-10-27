@@ -10,6 +10,7 @@ export const OUT_PATH = fileURLToPath(new URL('packages/core/src/places/generate
 
 const KINDS = ['market', 'grocer', 'social-supermarket', 'community-meal', 'food-relief', 'co-op'];
 const BANDS = ['free', 'budget', 'mid', 'pricier'];
+const BASIS = ['stated', 'typical'];
 const FITS = ['fresh', 'packaged', 'meals'];
 const ACCESS = ['open', 'referral', 'membership'];
 const VERIFICATION = ['primary', 'secondary'];
@@ -21,7 +22,19 @@ const LNG = [144.3, 145.8];
 const nonEmpty = (v) => typeof v === 'string' && v.trim() !== '';
 const inRange = (v, [lo, hi]) => typeof v === 'number' && Number.isFinite(v) && v >= lo && v <= hi;
 
-/** True for a real calendar date written YYYY-MM-DD that is not after `today`. */
+/** Today's calendar date in Melbourne (YYYY-MM-DD), so a place checked this morning is never "in the future". */
+export function melbourneToday(now = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Melbourne', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+}
+
+/** True for a real calendar date written YYYY-MM-DD, not after `today` when one is given. */
+function isIsoDate(s) {
+  if (typeof s !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+  const d = new Date(`${s}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s;
+}
+
+/** True for a real calendar date written YYYY-MM-DD written YYYY-MM-DD that is not after `today`. */
 function isPastIsoDate(s, today) {
   if (typeof s !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
   const d = new Date(`${s}T00:00:00Z`);
@@ -29,7 +42,7 @@ function isPastIsoDate(s, today) {
 }
 
 /** Returns a list of problems; empty when the dataset is sound. */
-export function validatePlaces(d, today = new Date().toISOString().slice(0, 10)) {
+export function validatePlaces(d, today = melbourneToday()) {
   const errs = [];
   const sourceIds = new Set();
   for (const s of d.sources ?? []) {
@@ -47,6 +60,12 @@ export function validatePlaces(d, today = new Date().toISOString().slice(0, 10))
     if (!nonEmpty(p.name)) errs.push(`place ${p.id} needs a name`);
     if (!KINDS.includes(p.kind)) errs.push(`place ${p.id} has bad kind`);
     if (!BANDS.includes(p.priceBand)) errs.push(`place ${p.id} has bad priceBand`);
+    if (!BASIS.includes(p.priceBasis)) errs.push(`place ${p.id} has bad priceBasis`);
+    if (p.note !== undefined && !nonEmpty(p.note)) errs.push(`place ${p.id} note must be non-empty when present`);
+    if (p.notices !== undefined) {
+      if (!Array.isArray(p.notices)) errs.push(`place ${p.id} notices must be a list`);
+      else if (p.notices.some((n) => !n || !nonEmpty(n.text) || !isIsoDate(n.until))) errs.push(`place ${p.id} has a bad notice (needs text and an until date YYYY-MM-DD)`);
+    }
     if (!Array.isArray(p.fit) || p.fit.some((f) => !FITS.includes(f))) errs.push(`place ${p.id} has bad fit`);
     if (!ACCESS.includes(p.access)) errs.push(`place ${p.id} has bad access`);
     if (!VERIFICATION.includes(p.verification)) errs.push(`place ${p.id} has bad verification`);

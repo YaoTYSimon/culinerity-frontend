@@ -16,7 +16,7 @@ export const placeData: PlaceData = {
     {
       "id": "dandenong-market-visit",
       "publisher": "Dandenong Market",
-      "title": "Visit: Getting Here and Opening Hours (corner of Clow Street and Cleeland Street, Dandenong VIC 3175). Coordinates: Wikidata Q28183931 (-37.98384, 145.21583), https://www.wikidata.org/wiki/Q28183931",
+      "title": "Visit: Getting Here and Opening Hours (corner of Clow Street and Cleeland Street, Dandenong VIC 3175). Notices re-read 2026-10-27: Bazaar precinct temporarily unavailable from 21 September 2026, expected to reopen in November; closed Melbourne Cup Day, Tuesday 3 November. Coordinates: Wikidata Q28183931 (-37.98384, 145.21583), https://www.wikidata.org/wiki/Q28183931",
       "url": "https://dandenongmarket.com.au/visit/",
       "licence": "Operator page, rights not stated; facts only (name, address words, days and hours). Coordinates: Wikidata, CC0 1.0",
       "accessed": "2026-10-27"
@@ -24,7 +24,7 @@ export const placeData: PlaceData = {
     {
       "id": "prahran-market-contact",
       "publisher": "Prahran Market",
-      "title": "Contact us (Suite A, Level 1, 163 Commercial Road, South Yarra VIC 3141; this is the market's contact address, no separate public street address found). Coordinates: Wikidata Q7237731 (-37.8464, 144.992), https://www.wikidata.org/wiki/Q7237731",
+      "title": "Contact us (Suite A, Level 1, 163 Commercial Road, South Yarra VIC 3141; this is the market's contact address, no separate public street address found). Hours from https://www.prahranmarket.com.au/market-trading-hours/ : the week calendar (41 dated entries, all consistent) and the contact-section line 'Open Tuesday, Thursday, Friday, Saturday from 7am and Sunday from 8am' agree. Coordinates: Wikidata Q7237731 (-37.8464, 144.992); cross-checked against Wikidata Q112825004, the Prahran Market/Commercial Rd tram stop (-37.846706, 144.992425), which is about 50 m away, so the point is within the market site. The market publishes no map link.",
       "url": "https://www.prahranmarket.com.au/contact/",
       "licence": "Operator page, rights not stated; facts only (name, address). Coordinates: Wikidata, CC0 1.0",
       "accessed": "2026-10-27"
@@ -40,8 +40,8 @@ export const placeData: PlaceData = {
     {
       "id": "community-grocer-markets",
       "publisher": "The Community Grocer",
-      "title": "Markets (addresses and times; the page says the markets supply fresh seasonal produce at affordable prices). Coordinates: the operator's own Google My Maps, embedded on that page, https://www.google.com/maps/d/viewer?mid=1m0-rh5Jdmdp1l992st0VtCfZDac_06c . The map lists different hours for Richmond (9am-12pm) and Pakenham (9am-1pm) from the page (8:30am-12:30pm), so those two show days only.",
-      "url": "https://thecommunitygrocer.org.au/markets",
+      "title": "Markets (addresses and times; the page says the markets supply fresh seasonal produce at affordable prices; thecommunitygrocer.org.au/markets redirects here). Coordinates: the operator's own Google My Maps, embedded on that page, https://www.google.com/maps/d/viewer?mid=1m0-rh5Jdmdp1l992st0VtCfZDac_06c . Re-read 2026-10-27: for Richmond and Pakenham the page (8:30am to 12:30pm) and the map (Richmond 9am to 12pm, Pakenham 9am to 1pm) still disagree, so both are shown in the hours.",
+      "url": "https://www.thecommunitygrocer.com.au/markets",
       "licence": "Operator page, rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map",
       "accessed": "2026-10-27"
     },
@@ -56,7 +56,7 @@ export const placeData: PlaceData = {
     {
       "id": "kcnh-programs",
       "publisher": "Kororoit Creek Neighbourhood House",
-      "title": "Programs (Community Pantry: eligibility, day and hours). Address from the same site's contact page: 61A Selwyn St Albion VIC 3020. Coordinates from the structured address data on that contact page (-37.7813262, 144.8133849).",
+      "title": "Programs (Community Pantry: eligibility, day and hours). Address from the same site's contact page: 61A Selwyn St Albion VIC 3020. Coordinates from the structured address data on that contact page (-37.7813262, 144.8133849). The page does not state a cost.",
       "url": "https://www.kcnh.org.au/programs",
       "licence": "Operator page, rights not stated; facts only (name, address, eligibility, schedule) and the coordinates in the operator's own page data",
       "accessed": "2026-10-27"
@@ -96,6 +96,7 @@ export const placeData: PlaceData = {
       "address": "Bounded by Peel, Franklin, Victoria and Elizabeth Streets, Melbourne",
       "suburb": "Melbourne",
       "priceBand": "mid",
+      "priceBasis": "typical",
       "fit": [
         "fresh",
         "packaged"
@@ -115,12 +116,23 @@ export const placeData: PlaceData = {
       "address": "Corner of Clow Street and Cleeland Street, Dandenong VIC 3175",
       "suburb": "Dandenong",
       "priceBand": "mid",
+      "priceBasis": "typical",
       "fit": [
         "fresh",
         "packaged"
       ],
       "access": "open",
       "hours": "Friday and Saturday 7am to 4pm; Sunday 9am to 4pm",
+      "notices": [
+        {
+          "text": "The Bazaar precinct is temporarily unavailable from 21 September 2026 and is expected to reopen in November. The rest of the market stays open.",
+          "until": "2026-11-30"
+        },
+        {
+          "text": "Closed on Melbourne Cup Day, Tuesday 3 November.",
+          "until": "2026-11-03"
+        }
+      ],
       "sourceId": "dandenong-market-visit",
       "verification": "primary",
       "checked": "2026-10-27"
@@ -134,10 +146,18 @@ export const placeData: PlaceData = {
       "address": "163 Commercial Road, South Yarra VIC 3141",
       "suburb": "South Yarra",
       "priceBand": "mid",
+      "priceBasis": "typical",
       "fit": [
         "fresh"
       ],
       "access": "open",
+      "hours": "Tuesday and Thursday 7am to 4pm; Friday and Saturday 7am to 5pm; Sunday 8am to 4pm",
+      "notices": [
+        {
+          "text": "Closed on Melbourne Cup Day, Tuesday 3 November.",
+          "until": "2026-11-03"
+        }
+      ],
       "sourceId": "prahran-market-contact",
       "verification": "primary",
       "checked": "2026-10-27"
@@ -151,6 +171,7 @@ export const placeData: PlaceData = {
       "address": "30A The Centreway, Preston VIC 3072",
       "suburb": "Preston",
       "priceBand": "mid",
+      "priceBasis": "typical",
       "fit": [
         "fresh",
         "packaged"
@@ -170,6 +191,7 @@ export const placeData: PlaceData = {
       "address": "90 Brunswick Street, Fitzroy, at Atherton Gardens Housing Estate",
       "suburb": "Fitzroy",
       "priceBand": "budget",
+      "priceBasis": "stated",
       "fit": [
         "fresh"
       ],
@@ -188,6 +210,7 @@ export const placeData: PlaceData = {
       "address": "510 Lygon Street, Carlton, at the base of the flats near the BBQ area at Carlton Housing Estate",
       "suburb": "Carlton",
       "priceBand": "budget",
+      "priceBasis": "stated",
       "fit": [
         "fresh"
       ],
@@ -206,6 +229,7 @@ export const placeData: PlaceData = {
       "address": "100 Victoria Street, Flemington, at Debney Meadows Primary School, enter via Debneys Park",
       "suburb": "Flemington",
       "priceBand": "budget",
+      "priceBasis": "stated",
       "fit": [
         "fresh"
       ],
@@ -224,11 +248,12 @@ export const placeData: PlaceData = {
       "address": "106 Elizabeth Street, Richmond, in the Community Room at the North Richmond Housing Estate",
       "suburb": "Richmond",
       "priceBand": "budget",
+      "priceBasis": "stated",
       "fit": [
         "fresh"
       ],
       "access": "open",
-      "hours": "Wednesdays",
+      "hours": "Wednesdays (page: 8:30am to 12:30pm; its map: 9am to 12pm)",
       "sourceId": "community-grocer-markets",
       "verification": "primary",
       "checked": "2026-10-27"
@@ -242,6 +267,7 @@ export const placeData: PlaceData = {
       "address": "55/57 Kookaburra Avenue, Werribee, in the foyer at Wyndham Park Community Centre",
       "suburb": "Werribee",
       "priceBand": "budget",
+      "priceBasis": "stated",
       "fit": [
         "fresh"
       ],
@@ -260,6 +286,7 @@ export const placeData: PlaceData = {
       "address": "33-35 Mowbray Crescent, Melton, at the Kurunjang Community Hub",
       "suburb": "Melton",
       "priceBand": "budget",
+      "priceBasis": "stated",
       "fit": [
         "fresh"
       ],
@@ -278,11 +305,12 @@ export const placeData: PlaceData = {
       "address": "6B Henry Street, Pakenham, on the front deck at Living & Learning Inc. Pakenham",
       "suburb": "Pakenham",
       "priceBand": "budget",
+      "priceBasis": "stated",
       "fit": [
         "fresh"
       ],
       "access": "open",
-      "hours": "Thursdays",
+      "hours": "Thursdays (page: 8:30am to 12:30pm; its map: 9am to 1pm)",
       "sourceId": "community-grocer-markets",
       "verification": "primary",
       "checked": "2026-10-27"
@@ -296,6 +324,7 @@ export const placeData: PlaceData = {
       "address": "John Hemmings Memorial Park, 61A Princes Hwy, Dandenong VIC 3175",
       "suburb": "Dandenong",
       "priceBand": "free",
+      "priceBasis": "stated",
       "fit": [
         "meals"
       ],
@@ -314,12 +343,14 @@ export const placeData: PlaceData = {
       "address": "61A Selwyn St, Albion VIC 3020",
       "suburb": "Albion",
       "priceBand": "free",
+      "priceBasis": "typical",
       "fit": [
         "packaged",
         "fresh"
       ],
       "access": "referral",
-      "hours": "Wednesdays 10am to 12pm, by appointment; Commonwealth Concession Card and an address in an eligible local suburb needed",
+      "hours": "Wednesdays 10am to 12pm, by appointment: call 0488 283 150",
+      "note": "Cost not stated on the page; ask when you call. You need a Commonwealth Concession Card (or Healthcare or Pensioner Concession Card) that lists an address in Albion, Ardeer, Sunshine, Sunshine West, Sunshine North, Deer Park, Cairnlea or Derrimut.",
       "sourceId": "kcnh-programs",
       "verification": "primary",
       "checked": "2026-10-27"
@@ -333,11 +364,13 @@ export const placeData: PlaceData = {
       "address": "French Street Hall, 47A French Street, Lalor",
       "suburb": "Lalor",
       "priceBand": "free",
+      "priceBasis": "stated",
       "fit": [
         "meals"
       ],
       "access": "open",
       "hours": "Every Thursday at 12pm",
+      "note": "Venue to confirm: the lunch page names no venue. The address shown is the house's own address (French Street Hall). Call 03 9465 6409 before you go.",
       "sourceId": "lalor-nh-lunches",
       "verification": "primary",
       "checked": "2026-10-27"
@@ -351,6 +384,7 @@ export const placeData: PlaceData = {
       "address": "The Barn, Box Hill Baptist Church, 1-5 Ellingworth Pde, Box Hill",
       "suburb": "Box Hill",
       "priceBand": "free",
+      "priceBasis": "stated",
       "fit": [],
       "access": "open",
       "hours": "Thursdays 1:30pm to 2:30pm and Saturdays 7:30am to 8:30am",

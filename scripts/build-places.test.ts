@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { readFileSync } from 'node:fs';
-import { describe, expect, it } from 'vitest';
-import { buildPlaces, validatePlaces, DATA_PATH, OUT_PATH } from './build-places.mjs';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { buildPlaces, melbourneToday, validatePlaces, DATA_PATH, OUT_PATH } from './build-places.mjs';
 
 const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
 const errorsFor = (mut: (d: any) => void) => {
@@ -59,5 +59,32 @@ describe('build-places', () => {
     const d = data();
     d.places[0].sourceId = 'nope';
     expect(() => buildPlaces(d)).toThrow();
+  });
+  it('rejects a bad priceBasis, an empty note and malformed notices', () => {
+    expect(errorsFor((d) => (d.places[0].priceBasis = 'guess'))).toMatch(/priceBasis/);
+    expect(errorsFor((d) => delete d.places[0].priceBasis)).toMatch(/priceBasis/);
+    expect(errorsFor((d) => (d.places[0].note = ' '))).toMatch(/note/);
+    expect(errorsFor((d) => (d.places[0].notices = 'closed'))).toMatch(/notices/);
+    expect(errorsFor((d) => (d.places[0].notices = [{ text: '', until: '2026-11-03' }]))).toMatch(/notice/);
+    expect(errorsFor((d) => (d.places[0].notices = [{ text: 'Closed', until: '3 Nov' }]))).toMatch(/notice/);
+    // A notice may end in the future; that is what makes it a dated notice.
+    expect(errorsFor((d) => (d.places[0].notices = [{ text: 'Closed', until: '2999-01-01' }]))).toBe('');
+  });
+});
+
+describe('melbourneToday', () => {
+  afterEach(() => vi.useRealTimers());
+  it('uses the Australia/Melbourne calendar date, not UTC', () => {
+    // 15:00 UTC on 27 Oct is 02:00 on 28 Oct in Melbourne (daylight saving).
+    expect(melbourneToday(new Date('2026-10-27T15:00:00Z'))).toBe('2026-10-28');
+    // 12 Jun 23:00 UTC is 09:00 on 13 Jun in Melbourne (standard time).
+    expect(melbourneToday(new Date('2026-06-12T23:00:00Z'))).toBe('2026-06-13');
+    expect(melbourneToday(new Date('2026-10-27T03:00:00Z'))).toBe('2026-10-27');
+  });
+  it('is the default basis for the future-date check', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-10-27T15:00:00Z'));
+    expect(errorsFor((d) => (d.places[0].checked = '2026-10-28'))).toBe('');
+    expect(errorsFor((d) => (d.places[0].checked = '2026-10-29'))).toMatch(/checked/);
   });
 });

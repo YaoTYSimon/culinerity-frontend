@@ -1,5 +1,5 @@
 import { placeData } from './generated/places.generated';
-import type { Place, PlaceData, PlaceSourceRecord } from './types';
+import type { Place, PlaceData, PlaceNotice, PlaceSourceRecord } from './types';
 
 export { placeData };
 
@@ -23,4 +23,9 @@ export function placeSourceFor(id: string, data: PlaceData = placeData): PlaceSo
 /** Feeds the generated coverage statement, so it is never typed by hand. */
 export function coverage(places: Place[]): { count: number; suburbs: string[] } {
   return { count: places.length, suburbs: [...new Set(places.map((p) => p.suburb))].sort() };
+}
+
+/** Notices that have not ended on `today` (YYYY-MM-DD); an ended notice is never shown. */
+export function activeNotices(place: Place, today: string): PlaceNotice[] {
+  return (place.notices ?? []).filter((n) => n.until >= today);
 }

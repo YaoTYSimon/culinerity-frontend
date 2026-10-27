@@ -1,15 +1,24 @@
 import { describe, expect, it } from 'vitest';
 import { placeData } from './source';
-import { StaticPlaceSource, coverage, placeSourceFor } from './source';
+import { StaticPlaceSource, activeNotices, coverage, placeSourceFor } from './source';
 import { MockPlaceSource } from '../sources/mock/mockPlaceSource';
 import type { Place, PlaceKind, PriceBand } from './types';
 
+/** The estimate used when a source states no price. */
+const TYPICAL_BAND: Record<PlaceKind, PriceBand> = {
+  'food-relief': 'free',
+  'community-meal': 'free',
+  'social-supermarket': 'budget',
+  'co-op': 'budget',
+  market: 'mid',
+  grocer: 'mid',
+};
+// Other bands are allowed only where the operator's own words say so (recorded in the source title).
 const DEFAULT_BAND: Record<PlaceKind, PriceBand[]> = {
   'food-relief': ['free'],
   'community-meal': ['free'],
   'social-supermarket': ['budget'],
   'co-op': ['budget'],
-  // Budget only where the operator's own words say affordable or discount (recorded in the source title).
   market: ['budget', 'mid', 'pricier'],
   grocer: ['budget', 'mid'],
 };
@@ -49,9 +58,46 @@ describe('coverage', () => {
   });
 });
 
+describe('activeNotices', () => {
+  const base = placeData.places[0];
+  const place = { ...base, notices: [{ text: 'Closed Cup Day', until: '2026-11-03' }, { text: 'Bazaar closed', until: '2026-11-30' }] };
+  it('returns notices that have not ended, and drops ended ones', () => {
+    expect(activeNotices(place, '2026-10-27').map((n) => n.text)).toEqual(['Closed Cup Day', 'Bazaar closed']);
+    expect(activeNotices(place, '2026-11-03').map((n) => n.text)).toEqual(['Closed Cup Day', 'Bazaar closed']);
+    expect(activeNotices(place, '2026-11-04').map((n) => n.text)).toEqual(['Bazaar closed']);
+    expect(activeNotices(place, '2026-12-01')).toEqual([]);
+    expect(activeNotices({ ...base, notices: undefined }, '2026-10-27')).toEqual([]);
+  });
+});
+
 describe('committed places', () => {
   it('keep the price band consistent with the kind', () => {
     for (const p of placeData.places) expect(DEFAULT_BAND[p.kind], p.id).toContain(p.priceBand);
+  });
+  it('mark a band as stated only where the source says it, and as typical otherwise', () => {
+    for (const p of placeData.places) {
+      expect(['stated', 'typical'], p.id).toContain(p.priceBasis);
+      // A typical band is the default for the kind, never an upgrade or a discount.
+      if (p.priceBasis === 'typical') expect(TYPICAL_BAND[p.kind], p.id).toBe(p.priceBand);
+      // A band that departs from the default needs the operator's own words.
+      if (p.priceBand !== TYPICAL_BAND[p.kind]) expect(p.priceBasis, p.id).toBe('stated');
+    }
+  });
+  it('label every market and grocer at the mid band as a typical estimate', () => {
+    const mid = placeData.places.filter((p) => (p.kind === 'market' || p.kind === 'grocer') && p.priceBand === 'mid');
+    expect(mid.length).toBeGreaterThan(0);
+    for (const p of mid) expect(p.priceBasis, p.id).toBe('typical');
+  });
+  it('say when a price is not stated by the source', () => {
+    for (const p of placeData.places.filter((x) => x.priceBasis === 'typical' && (x.priceBand === 'free' || x.priceBand === 'budget'))) {
+      expect(p.note ?? '', p.id).toMatch(/cost not stated/i);
+    }
+  });
+  it('keep dated notices short and dated', () => {
+    for (const p of placeData.places) for (const n of p.notices ?? []) {
+      expect(n.text.trim(), p.id).not.toBe('');
+      expect(n.until, p.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
   });
   it('never claim pricier unless a farmers market', () => {
     for (const p of placeData.places.filter((x) => x.priceBand === 'pricier')) expect(p.name).toMatch(/farmers market/i);
