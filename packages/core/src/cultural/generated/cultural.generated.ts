@@ -456,6 +456,42 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-ph-e1-bb-9f",
+      "publisher": "Wikipedia",
+      "title": "Ph%E1%BB%9F (article summary read): Phở is a Vietnamese soup of broth, rice noodles, herbs and meat, usually beef and sometimes chicken (phở gà). Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Ph%E1%BB%9F",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-g-e1-bb-8fi-cu-e1-bb-91n",
+      "publisher": "Wikipedia",
+      "title": "G%E1%BB%8Fi cu%E1%BB%91n (article summary read): Gỏi cuốn (rice paper rolls) is a Vietnamese dish of rice vermicelli, vegetables and usually pork or prawn wrapped in rice paper and served fresh. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/G%E1%BB%8Fi_cu%E1%BB%91n",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-bun-cha",
+      "publisher": "Wikipedia",
+      "title": "Bun cha (article summary read): Bún chả is a Vietnamese dish of grilled pork and noodles, thought to come from Hanoi, with white rice noodles and herbs. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Bun_cha",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-b-c3-a1nh-m-c3-ac",
+      "publisher": "Wikipedia",
+      "title": "B%C3%A1nh m%C3%AC (article summary read): Bánh mì is a renowned Vietnamese staple, a short baguette-style roll filled with meat and vegetables, and with tofu as one of the common fillings. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/B%C3%A1nh_m%C3%AC",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1361,6 +1397,72 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "chicken-pho",
+        "name": "Chicken noodle soup (phở gà style)",
+        "category": "home cooking",
+        "keywords": [
+          "pho",
+          "pho ga",
+          "chicken pho",
+          "noodle soup"
+        ],
+        "unitLabel": "1 big bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "beef-pho",
+        "name": "Beef noodle soup (phở bò style)",
+        "category": "home cooking",
+        "keywords": [
+          "pho",
+          "pho bo",
+          "beef pho",
+          "beef noodle soup"
+        ],
+        "unitLabel": "1 big bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-rice-paper-rolls",
+        "name": "Fresh rice paper rolls with chicken",
+        "category": "home cooking",
+        "keywords": [
+          "rice paper rolls",
+          "goi cuon",
+          "summer rolls",
+          "fresh spring rolls",
+          "salad rolls"
+        ],
+        "unitLabel": "4 rolls",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-noodle-bowl",
+        "name": "Cold rice noodle bowl with chicken and herbs",
+        "category": "home cooking",
+        "keywords": [
+          "bun",
+          "bun cha",
+          "noodle bowl",
+          "vermicelli bowl",
+          "noodle salad"
+        ],
+        "unitLabel": "1 big bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "tofu-banh-mi",
+        "name": "Tofu and salad bread roll (bánh mì style)",
+        "category": "home cooking",
+        "keywords": [
+          "banh mi",
+          "vietnamese roll",
+          "tofu roll"
+        ],
+        "unitLabel": "1 roll",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -1803,6 +1905,86 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "chicken-pho",
+        "store": "Coles",
+        "pricePerServe": 2,
+        "unitLabel": "1 big bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-pho",
+        "store": "Woolworths",
+        "pricePerServe": 2.1,
+        "unitLabel": "1 big bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "beef-pho",
+        "store": "Coles",
+        "pricePerServe": 2.4,
+        "unitLabel": "1 big bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "beef-pho",
+        "store": "Woolworths",
+        "pricePerServe": 2.5,
+        "unitLabel": "1 big bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-rice-paper-rolls",
+        "store": "Coles",
+        "pricePerServe": 2.4,
+        "unitLabel": "4 rolls",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-rice-paper-rolls",
+        "store": "Woolworths",
+        "pricePerServe": 2.5,
+        "unitLabel": "4 rolls",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-noodle-bowl",
+        "store": "Coles",
+        "pricePerServe": 3.1,
+        "unitLabel": "1 big bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-noodle-bowl",
+        "store": "Woolworths",
+        "pricePerServe": 3.2,
+        "unitLabel": "1 big bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tofu-banh-mi",
+        "store": "Coles",
+        "pricePerServe": 2.1,
+        "unitLabel": "1 roll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tofu-banh-mi",
+        "store": "Woolworths",
+        "pricePerServe": 2.2,
+        "unitLabel": "1 roll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -2053,6 +2235,46 @@ export const culturalData: CulturalData = {
         "sodiumMg": 63
       },
       {
+        "itemId": "chicken-pho",
+        "energyKj": 1209,
+        "proteinG": 23.7,
+        "fibreG": 3.5,
+        "sugarG": 3.5,
+        "sodiumMg": 51
+      },
+      {
+        "itemId": "beef-pho",
+        "energyKj": 1308,
+        "proteinG": 27.5,
+        "fibreG": 3.5,
+        "sugarG": 3.5,
+        "sodiumMg": 43
+      },
+      {
+        "itemId": "chicken-rice-paper-rolls",
+        "energyKj": 1057,
+        "proteinG": 18.3,
+        "fibreG": 3.8,
+        "sugarG": 4.1,
+        "sodiumMg": 523
+      },
+      {
+        "itemId": "chicken-noodle-bowl",
+        "energyKj": 1503,
+        "proteinG": 26.9,
+        "fibreG": 6.1,
+        "sugarG": 5.4,
+        "sodiumMg": 79
+      },
+      {
+        "itemId": "tofu-banh-mi",
+        "energyKj": 1524,
+        "proteinG": 18.3,
+        "fibreG": 4.6,
+        "sugarG": 5.4,
+        "sodiumMg": 342
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -2207,6 +2429,31 @@ export const culturalData: CulturalData = {
         "cravingId": "fried-chicken",
         "alternativeId": "tabbouleh",
         "note": "A parsley salad with a little bulgur, tomato and mint, dressed with lemon and olive oil."
+      },
+      {
+        "cravingId": "spring-rolls-fried",
+        "alternativeId": "chicken-rice-paper-rolls",
+        "note": "Rice paper wrapped around noodles, chicken and fresh herbs; nothing is fried."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "chicken-pho",
+        "note": "Chicken simmered with ginger and onion, served over rice noodles with fresh herbs."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "beef-pho",
+        "note": "Thin beef cooked in a ginger and onion broth, served over rice noodles with fresh herbs."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "chicken-noodle-bowl",
+        "note": "Cold rice noodles piled with chicken, salad, herbs and a few peanuts."
+      },
+      {
+        "cravingId": "burger",
+        "alternativeId": "tofu-banh-mi",
+        "note": "A bread roll filled with pan-fried tofu, cucumber, carrot and coriander."
       }
     ],
     "foodInfo": [
@@ -3079,6 +3326,106 @@ export const culturalData: CulturalData = {
           "certifiedMeat": true
         },
         "significance": "Considered a national dish of Lebanon and Syria."
+      },
+      {
+        "itemId": "chicken-pho",
+        "traditions": [
+          "vietnamese"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "beef-pho",
+        "traditions": [
+          "vietnamese"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "chicken-rice-paper-rolls",
+        "traditions": [
+          "vietnamese"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "chicken-noodle-bowl",
+        "traditions": [
+          "vietnamese"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "peanut"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "tofu-banh-mi",
+        "traditions": [
+          "vietnamese"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "soy"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
       },
       {
         "itemId": "butter-chicken-jar-sauce",
