@@ -47,7 +47,7 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
 - **Privacy:** nothing about food leaves the device; `src/ui/foodPrivacy.test.tsx` checks requests, storage, share text, title, URL and data attributes.
 - **Server:** two read routes, `GET /api/cravings/all` and `GET /api/food-info`, for the catalogue; no profile data is accepted.
 - **Known limits:**
-  - Halal and kosher attributes are mostly `unknown` pending a community reviewer, so those rules mostly show "Check the ingredients", never "Fits".
+  - Halal and kosher are conservative: 22 of 70 foods carry halal `yes` (plain unprocessed produce, pulses, grains and eggs only, sourced from a secondary definition page, Wikipedia "Halal"); kosher `yes` is 0; the rest are `unknown`. Those rules mostly show "Check the ingredients". A halal-authority or community review is still open. The swaps line says "Showing swaps that avoid what you told us to avoid. This is a guide, not a certification. Check labels." and never claims a match.
   - Prices are sample estimates (labelled "Sample data").
   - Only 10 traditions have catalogue foods; the starter list has more, and a person's own traditions are kept but have no foods.
   - Aboriginal and Torres Strait Islander foods are deliberately not included pending consultation with the community.

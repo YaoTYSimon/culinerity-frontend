@@ -138,6 +138,13 @@ describe('HttpCatalogue', () => {
     expect(isFoodInfo({ ...info, flags: { ...info.flags, allergens: ['wheat', null] } })).toBe(false);
     expect(isFoodInfo({ ...info, traditions: [3] })).toBe(false);
   });
+  it('isFoodInfo rejects an allergen id outside the known list', () => {
+    const info = SEED_DATA.foodInfo[0]!;
+    for (const bad of ['kiwi', 'constructor', '__proto__']) {
+      expect(isFoodInfo({ ...info, flags: { ...info.flags, allergens: ['wheat', bad] } }), bad).toBe(false);
+    }
+    expect(isFoodInfo({ ...info, flags: { ...info.flags, allergens: ['wheat', 'pine-nut'] } })).toBe(true);
+  });
   it.each(failures)('is empty on %s', async (_n, f) => {
     const c = await HttpCatalogue.load(f);
     expect(c.allCravings()).toEqual([]);

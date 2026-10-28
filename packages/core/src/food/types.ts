@@ -13,10 +13,12 @@ export const OCCASION_IDS = [
 export type OccasionId = (typeof OCCASION_IDS)[number];
 
 /** FSANZ mandatory declaration list (Standard 1.2.3, Schedule 9), tree nuts listed separately. */
-export type AllergenId =
-  | 'wheat' | 'fish' | 'crustacean' | 'mollusc' | 'egg' | 'milk' | 'lupin' | 'peanut' | 'soy' | 'sesame'
-  | 'almond' | 'brazil-nut' | 'cashew' | 'hazelnut' | 'macadamia' | 'pecan' | 'pistachio' | 'pine-nut' | 'walnut'
-  | 'barley' | 'oats' | 'rye' | 'sulphites';
+export const ALLERGEN_IDS = [
+  'wheat', 'fish', 'crustacean', 'mollusc', 'egg', 'milk', 'lupin', 'peanut', 'soy', 'sesame',
+  'almond', 'brazil-nut', 'cashew', 'hazelnut', 'macadamia', 'pecan', 'pistachio', 'pine-nut', 'walnut',
+  'barley', 'oats', 'rye', 'sulphites',
+] as const;
+export type AllergenId = (typeof ALLERGEN_IDS)[number];
 
 export interface RuleFlags {
   halal: TriState;

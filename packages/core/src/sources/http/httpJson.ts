@@ -1,4 +1,4 @@
-import type { FoodInfo } from '../../food/types';
+import { ALLERGEN_IDS, type FoodInfo } from '../../food/types';
 import type { FoodItem, Nutrition, PricePoint, SupportPlace, SwapCandidate } from '../../domain/types';
 
 /** The slice of fetch the HTTP sources use; tests inject stubs. */
@@ -70,6 +70,6 @@ export const isFoodInfo = (v: unknown): v is FoodInfo =>
   isObject(v.flags) &&
   FLAG_KEYS.every((k) => TRI.includes((v.flags as Record<string, unknown>)[k] as string)) &&
   Array.isArray(v.flags.allergens) &&
-  v.flags.allergens.every((a) => typeof a === 'string') &&
+  v.flags.allergens.every((a) => typeof a === 'string' && (ALLERGEN_IDS as readonly string[]).includes(a)) &&
   typeof v.flags.allergensKnown === 'boolean' &&
   typeof v.flags.certifiedMeat === 'boolean';

@@ -17,7 +17,7 @@ export interface SwapNote {
   certifiedMeat: 'halal' | 'kosher' | null;
 }
 
-export const RULES_LINE = 'Showing swaps that match your food rules. This is a guide, not a certification. Check labels.';
+export const RULES_LINE = 'Showing swaps that avoid what you told us to avoid. This is a guide, not a certification. Check labels.';
 export const NUTRITION_NOTE = 'Nutrition estimated from public food tables.';
 
 interface Props {
@@ -71,10 +71,11 @@ export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies 
                 <p className="text-[15px] font-semibold leading-snug text-balance">{alternative.name}</p>
                 <p className="text-xs text-muted">{s.price ? `${s.price.store} · per serve` : note}</p>
                 {food && (food.kitchen || food.fit === 'check') && (
-                  <p className="mt-0.5 flex flex-wrap gap-x-2 text-sm font-semibold">
-                    {food.kitchen && <span>Fits your kitchen</span>}
-                    {food.fit === 'check' && <span>Check the ingredients</span>}
-                  </p>
+                  <div className="mt-0.5 text-sm font-semibold">
+                    {food.kitchen && food.fit === 'check' && <p className="font-normal text-muted">Your food</p>}
+                    {food.kitchen && <p>Fits your kitchen</p>}
+                    {food.fit === 'check' && <p>Check the ingredients</p>}
+                  </div>
                 )}
                 {food?.certifiedMeat && <p className="text-sm text-muted">Use {food.certifiedMeat}-certified meat.</p>}
                 {saving !== null && <p className="mt-0.5 text-sm font-semibold">Saves ${saving.toFixed(2)}</p>}

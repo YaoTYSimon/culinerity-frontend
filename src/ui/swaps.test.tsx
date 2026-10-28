@@ -331,7 +331,18 @@ describe('SwapResults food notes', () => {
     expect(within(rowOf('Beta dish')).getByText('Check the ingredients')).toBeInTheDocument();
     expect(within(rowOf('Gamma dish')).getByText('Use kosher-certified meat.')).toBeInTheDocument();
     expect(within(rowOf('Gamma dish')).queryByText('Fits your kitchen')).toBeNull();
-    expect(screen.getByText('Showing swaps that match your food rules. This is a guide, not a certification. Check labels.')).toBeInTheDocument();
+    expect(screen.getByText('Showing swaps that avoid what you told us to avoid. This is a guide, not a certification. Check labels.')).toBeInTheDocument();
+  });
+
+  it('groups the kitchen label and the rule note under "Your food" only when both show', () => {
+    const both = { a: { fit: 'check' as const, kitchen: true, certifiedMeat: null }, b: { fit: 'check' as const, kitchen: false, certifiedMeat: null }, c2: { fit: 'fits' as const, kitchen: true, certifiedMeat: null } };
+    render(<SwapResults swaps={swaps} notes={both} rulesOn />);
+    const alpha = within(rowOf('Alpha dish'));
+    expect(alpha.getByText('Your food')).toBeInTheDocument();
+    expect(alpha.getByText('Fits your kitchen')).toBeInTheDocument();
+    expect(alpha.getByText('Check the ingredients')).toBeInTheDocument();
+    expect(within(rowOf('Beta dish')).queryByText('Your food')).toBeNull();
+    expect(within(rowOf('Gamma dish')).queryByText('Your food')).toBeNull();
   });
 
   it('shows no food text at all without notes', () => {
@@ -364,7 +375,7 @@ describe('CravingSearch with a food profile', () => {
       pickTile(new RegExp(`^${name}$`, 'i'));
       await waitFor(() => expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument());
       expect(screen.queryByText(porkName)).toBeNull();
-      expect(screen.getByText('Showing swaps that match your food rules. This is a guide, not a certification. Check labels.')).toBeInTheDocument();
+      expect(screen.getByText('Showing swaps that avoid what you told us to avoid. This is a guide, not a certification. Check labels.')).toBeInTheDocument();
       cleanup();
     }
   });
