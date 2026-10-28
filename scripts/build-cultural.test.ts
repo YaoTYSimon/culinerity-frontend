@@ -73,6 +73,16 @@ describe('build-cultural', () => {
     expect(d.notFound.join('\n')).toMatch(/Diwali 2029/);
     expect(d.notFound.join('\n')).toMatch(/Navratri/);
   });
+  it('gives every Diwali row the main day (Lakshmi Puja) only, approx, with the festival span in the note', () => {
+    const rows = data().calendar.filter((r: any) => r.occasion === 'diwali');
+    expect(rows.map((r: any) => r.start)).toEqual(['2026-11-08', '2027-10-29', '2028-10-17']);
+    for (const r of rows) {
+      expect(r.end, r.start).toBe(r.start);
+      expect(r.approx).toBe(true);
+      expect(r.note).toMatch(/main day/i);
+    }
+    expect(rows[0].note).toMatch(/Dhanteras.*6 Nov.*Bhai Dooj.*10 Nov/);
+  });
   it('melbourneToday is a YYYY-MM-DD date', () => {
     expect(melbourneToday()).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });

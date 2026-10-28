@@ -972,13 +972,13 @@ export const culturalData: CulturalData = {
     },
     {
       "occasion": "diwali",
-      "start": "2026-11-06",
-      "end": "2026-11-10",
+      "start": "2026-11-08",
+      "end": "2026-11-08",
       "approx": true,
       "method": "table",
       "sourceId": "wikipedia-diwali",
       "checked": "2026-10-28",
-      "note": "Dhanteras (6 Nov) to Bhai Dooj (10 Nov); Lakshmi Puja is 8 Nov. The festival lasts 5 or 6 days and practice varies by region."
+      "note": "Main day only (Lakshmi Puja, 8 Nov). The festival runs about five days, Dhanteras (6 Nov) to Bhai Dooj (10 Nov), and practice varies by region."
     },
     {
       "occasion": "diwali",
@@ -988,7 +988,7 @@ export const culturalData: CulturalData = {
       "method": "table",
       "sourceId": "wikipedia-diwali",
       "checked": "2026-10-28",
-      "note": "Main day only as listed; the festival runs several days around it and practice varies by region."
+      "note": "Main day only (the single date the source lists). The festival runs several days around it and practice varies by region."
     },
     {
       "occasion": "diwali",
@@ -998,7 +998,7 @@ export const culturalData: CulturalData = {
       "method": "table",
       "sourceId": "wikipedia-diwali",
       "checked": "2026-10-28",
-      "note": "Main day only as listed; the festival runs several days around it and practice varies by region."
+      "note": "Main day only (the single date the source lists). The festival runs several days around it and practice varies by region."
     },
     {
       "occasion": "lent",
