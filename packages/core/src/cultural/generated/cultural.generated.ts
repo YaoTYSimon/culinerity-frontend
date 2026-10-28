@@ -492,6 +492,51 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-philippine-adobo",
+      "publisher": "Wikipedia",
+      "title": "Philippine adobo (article summary read): Adobo is a popular Filipino dish and cooking process: meat, seafood or vegetables browned in oil, then simmered in vinegar, salt and/or soy sauce and garlic. The article says it is often considered the unofficial national dish of the Philippines. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Philippine_adobo",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-pancit",
+      "publisher": "Wikipedia",
+      "title": "Pancit (article summary read): Pancit is a general term for various traditional noodle dishes in Filipino cuisine. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Pancit",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-ginisang-monggo",
+      "publisher": "Wikipedia",
+      "title": "Ginisang monggo (article summary read): Ginisang munggo is a Filipino savoury mung bean soup made with mung beans, garlic, tomatoes, onions and vegetables. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Ginisang_monggo",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-tortang-talong",
+      "publisher": "Wikipedia",
+      "title": "Tortang talong (article summary read): Tortang talong is an eggplant omelette from Filipino cuisine, a popular breakfast and lunch meal in the Philippines. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Tortang_talong",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-arroz-caldo",
+      "publisher": "Wikipedia",
+      "title": "Arroz caldo (article summary read): Arroz caldo is a Filipino dish of rice and chicken gruel infused with ginger and garnished with toasted garlic and scallions; the article calls it a comfort food in Philippine culture. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Arroz_caldo",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1463,6 +1508,68 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "chicken-adobo-rice",
+        "name": "Chicken adobo with rice",
+        "category": "home cooking",
+        "keywords": [
+          "adobo",
+          "chicken adobo",
+          "filipino chicken"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "pancit-bihon",
+        "name": "Rice noodle stir-fry with chicken and vegetables (pancit)",
+        "category": "home cooking",
+        "keywords": [
+          "pancit",
+          "pancit bihon",
+          "noodle stir fry"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "ginisang-monggo",
+        "name": "Mung bean and vegetable stew (ginisang monggo)",
+        "category": "home cooking",
+        "keywords": [
+          "ginisang munggo",
+          "monggo",
+          "mung bean stew",
+          "mung bean soup"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "tortang-talong",
+        "name": "Eggplant omelette with rice (tortang talong)",
+        "category": "home cooking",
+        "keywords": [
+          "tortang talong",
+          "eggplant omelette",
+          "eggplant omelet"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "arroz-caldo",
+        "name": "Chicken and ginger rice porridge (arroz caldo)",
+        "category": "home cooking",
+        "keywords": [
+          "arroz caldo",
+          "chicken porridge",
+          "lugaw",
+          "rice porridge"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -1985,6 +2092,86 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "chicken-adobo-rice",
+        "store": "Coles",
+        "pricePerServe": 1.6,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-adobo-rice",
+        "store": "Woolworths",
+        "pricePerServe": 1.7,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pancit-bihon",
+        "store": "Coles",
+        "pricePerServe": 1.9,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pancit-bihon",
+        "store": "Woolworths",
+        "pricePerServe": 2,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "ginisang-monggo",
+        "store": "Coles",
+        "pricePerServe": 1.6,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "ginisang-monggo",
+        "store": "Woolworths",
+        "pricePerServe": 1.7,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tortang-talong",
+        "store": "Coles",
+        "pricePerServe": 2.3,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tortang-talong",
+        "store": "Woolworths",
+        "pricePerServe": 2.4,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "arroz-caldo",
+        "store": "Coles",
+        "pricePerServe": 1.7,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "arroz-caldo",
+        "store": "Woolworths",
+        "pricePerServe": 1.8,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -2275,6 +2462,46 @@ export const culturalData: CulturalData = {
         "sodiumMg": 342
       },
       {
+        "itemId": "chicken-adobo-rice",
+        "energyKj": 1645,
+        "proteinG": 31.2,
+        "fibreG": 1.9,
+        "sugarG": 0.5,
+        "sodiumMg": 925
+      },
+      {
+        "itemId": "pancit-bihon",
+        "energyKj": 1498,
+        "proteinG": 19.9,
+        "fibreG": 5.6,
+        "sugarG": 6.1,
+        "sodiumMg": 624
+      },
+      {
+        "itemId": "ginisang-monggo",
+        "energyKj": 1270,
+        "proteinG": 17.1,
+        "fibreG": 12,
+        "sugarG": 6.4,
+        "sodiumMg": 86
+      },
+      {
+        "itemId": "tortang-talong",
+        "energyKj": 1959,
+        "proteinG": 21.3,
+        "fibreG": 5.7,
+        "sugarG": 5.6,
+        "sodiumMg": 195
+      },
+      {
+        "itemId": "arroz-caldo",
+        "energyKj": 1761,
+        "proteinG": 27.6,
+        "fibreG": 1.9,
+        "sugarG": 0.9,
+        "sodiumMg": 145
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -2454,6 +2681,31 @@ export const culturalData: CulturalData = {
         "cravingId": "burger",
         "alternativeId": "tofu-banh-mi",
         "note": "A bread roll filled with pan-fried tofu, cucumber, carrot and coriander."
+      },
+      {
+        "cravingId": "fried-chicken",
+        "alternativeId": "chicken-adobo-rice",
+        "note": "Chicken simmered in soy sauce, vinegar and garlic and served with rice."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "pancit-bihon",
+        "note": "Rice noodles stir-fried with chicken and vegetables in one pan."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "arroz-caldo",
+        "note": "Rice cooked down to a porridge with chicken and plenty of ginger; one pot, several bowls."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "ginisang-monggo",
+        "note": "Mung beans simmered with tomato, onion and greens."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "tortang-talong",
+        "note": "Grilled eggplant dipped in egg and pan-fried: a hot savoury breakfast or lunch."
       }
     ],
     "foodInfo": [
@@ -3425,6 +3677,106 @@ export const culturalData: CulturalData = {
           ],
           "allergensKnown": false,
           "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chicken-adobo-rice",
+        "traditions": [
+          "filipino"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        },
+        "significance": "Often considered the unofficial national dish of the Philippines."
+      },
+      {
+        "itemId": "pancit-bihon",
+        "traditions": [
+          "filipino"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "ginisang-monggo",
+        "traditions": [
+          "filipino"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "tortang-talong",
+        "traditions": [
+          "filipino"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "arroz-caldo",
+        "traditions": [
+          "filipino"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
         }
       },
       {
