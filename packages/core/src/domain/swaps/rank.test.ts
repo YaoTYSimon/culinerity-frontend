@@ -127,3 +127,14 @@ describe('cheapest', () => {
     expect(row.cost).toBe(cheapest(points)?.pricePerServe);
   });
 });
+
+describe('rankSwaps value', () => {
+  it('exposes the 0-100 value for priced swaps and null for unpriced ones', () => {
+    const r = rankSwaps({ ...base, score: 10 });
+    const byId = Object.fromEntries(r.map((x) => [x.candidate.alternative.id, x.value]));
+    expect(byId.none).toBeNull();
+    expect(byId.cheap).toBeGreaterThan(byId.healthy as number);
+    expect(byId.cheap).toBeGreaterThan(0);
+    expect(byId.cheap).toBeLessThanOrEqual(100);
+  });
+});

@@ -11,7 +11,7 @@ const roundCents = (n: number): number => Math.round(n * 100) / 100;
 // Full ISO date-time (what Date#toISOString writes), with Z or an offset.
 const ISO_DATE_TIME = /^(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:\d{2})$/;
 
-function isIsoDateTime(x: unknown): x is string {
+export function isIsoDateTime(x: unknown): x is string {
   if (typeof x !== 'string') return false;
   const m = ISO_DATE_TIME.exec(x);
   if (!m || Number.isNaN(Date.parse(x))) return false;
@@ -43,14 +43,16 @@ function cleanEntry(e: SpendEntry): SpendEntry {
   return out;
 }
 
-/** Oldest first by date (stable), then keep the newest MAX_SPEND_ENTRIES. */
-export function capNewest(entries: SpendEntry[]): SpendEntry[] {
-  return entries
+/** Oldest first by date (stable), then keep the newest `max`. Shared by spend entries and cultural meals. */
+export function capNewestByAt<T extends { at: string }>(items: T[], max: number): T[] {
+  return items
     .map((e, i) => ({ e, i, t: Date.parse(e.at) }))
     .sort((a, b) => a.t - b.t || a.i - b.i)
     .map((x) => x.e)
-    .slice(-MAX_SPEND_ENTRIES);
+    .slice(-max);
 }
+
+export const capNewest = (entries: SpendEntry[]): SpendEntry[] => capNewestByAt(entries, MAX_SPEND_ENTRIES);
 
 /** Drop invalid entries and repeated ids (first wins), then keep the newest MAX_SPEND_ENTRIES (used when loading a stored profile). */
 export function sanitizeSpendEntries(list: unknown[]): SpendEntry[] {

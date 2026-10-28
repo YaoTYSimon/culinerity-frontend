@@ -56,7 +56,7 @@ describe('SwapResults', () => {
   const craving = { id: 'c', name: 'Burger', category: 'fast food', keywords: [] };
   const base: RankedSwap = {
     candidate: { craving, alternative: alt, note: 'n' },
-    price: null, cost: null, health: 70, withinBudget: null,
+    price: null, cost: null, health: 70, withinBudget: null, value: null,
   };
 
   it('says Price unavailable, never $0, when cost is null', () => {
@@ -159,7 +159,7 @@ describe('SwapResults date', () => {
     const f = { id: 'c', name: 'B', category: 'x', keywords: [] };
     const s: RankedSwap = {
       candidate: { craving: f, alternative: { ...f, id: 'a', name: 'A' }, note: 'n' },
-      cost: 2, health: 50, withinBudget: null,
+      cost: 2, health: 50, withinBudget: null, value: null,
       price: { itemId: 'a', store: 'Aldi', pricePerServe: 2, unitLabel: 'x', observedAt: 'nonsense', isSample: false },
     };
     render(<SwapResults swaps={[s]} />);
@@ -171,7 +171,7 @@ describe('SwapResults saving text', () => {
   const f = { id: 'c', name: 'B', category: 'x', keywords: [] };
   const swap = (cost: number): RankedSwap => ({
     candidate: { craving: f, alternative: { ...f, id: 'a', name: 'A' }, note: 'n' },
-    cost, health: 50, withinBudget: null,
+    cost, health: 50, withinBudget: null, value: null,
     price: { itemId: 'a', store: 'Aldi', pricePerServe: cost, unitLabel: 'x', observedAt: '2026-03-12', isSample: true },
   });
 
@@ -223,7 +223,7 @@ describe('SwapResults plate rows and add to my week', () => {
   const f = { id: 'c', name: 'Burger', category: 'x', keywords: [] };
   const swap = (cost: number | null, id = 'a', name = 'Home smash burger'): RankedSwap => ({
     candidate: { craving: f, alternative: { ...f, id, name }, note: 'n' },
-    cost, health: 50, withinBudget: null,
+    cost, health: 50, withinBudget: null, value: null,
     price: cost === null ? null : { itemId: id, store: 'Aldi', pricePerServe: cost, unitLabel: 'x', observedAt: '2026-03-12', isSample: true },
   });
 

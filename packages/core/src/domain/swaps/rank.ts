@@ -7,6 +7,8 @@ export interface RankedSwap {
   cost: Aud | null;
   health: number;
   withinBudget: boolean | null;
+  /** The 0-100 blend of cheapness and health the order is based on; null when unpriced. */
+  value: number | null;
 }
 
 export interface RankInput {
@@ -69,5 +71,5 @@ export function rankSwaps(input: RankInput): RankedSwap[] {
     if (a.value !== b.value) return a.value === -Infinity ? 1 : b.value === -Infinity ? -1 : b.value - a.value;
     return b.r.health - a.r.health || a.i - b.i;
   });
-  return valued.map((v) => v.r);
+  return valued.map((v) => ({ ...v.r, value: v.value === -Infinity ? null : v.value }));
 }

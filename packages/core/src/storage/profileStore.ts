@@ -1,6 +1,8 @@
 import { sanitizeSpendEntries } from '../budget/entries';
 import { isScoreEntry, MAX_HISTORY } from '../domain/history';
 import type { Aud, Profile } from '../domain/types';
+import { sanitizeMeals } from '../food/meals';
+import { sanitizeFoodProfile } from '../food/sanitize';
 import { isWeekSwap, MAX_WEEK_SWAPS } from '../domain/week';
 
 /** Persistence port. Implementations (browser or native storage, memory) are injected by the app. */
@@ -33,6 +35,12 @@ export function sanitizeProfile(value: unknown): Profile {
   if (Array.isArray(v.scoreHistory)) out.scoreHistory = v.scoreHistory.filter(isScoreEntry).slice(-MAX_HISTORY);
   if (Array.isArray(v.weekSwaps)) out.weekSwaps = v.weekSwaps.filter(isWeekSwap).slice(-MAX_WEEK_SWAPS);
   if (Array.isArray(v.spendEntries)) out.spendEntries = sanitizeSpendEntries(v.spendEntries);
+  const food = sanitizeFoodProfile(v.foodProfile);
+  if (food) out.foodProfile = food;
+  if (Array.isArray(v.culturalMeals)) {
+    const meals = sanitizeMeals(v.culturalMeals);
+    if (meals.length > 0) out.culturalMeals = meals;
+  }
   return out;
 }
 

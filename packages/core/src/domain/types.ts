@@ -1,3 +1,5 @@
+import type { CulturalMeal, FoodProfile } from '../food/types';
+
 /** Australian dollars. */
 export type Aud = number;
 
@@ -34,6 +36,9 @@ export interface Profile {
   scoreHistory?: ScoreEntry[];
   weekSwaps?: WeekSwap[];
   spendEntries?: SpendEntry[];
+  /** Optional, self-declared, device-only. Never sent to the server. */
+  foodProfile?: FoodProfile;
+  culturalMeals?: CulturalMeal[];
 }
 
 export interface PricePoint {

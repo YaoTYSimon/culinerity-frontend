@@ -94,3 +94,29 @@ describe('budgetPerServe', () => {
     expect(budgetPerServe({ foodBudgetWeekly: v })).toBeNull();
   });
 });
+
+describe('sanitizeProfile food fields', () => {
+  const food = { traditions: ['greek'], rules: ['halal'], allergies: ['peanuts'], occasions: ['ramadan'], dismissed: ['ramadan-2027'] };
+  const meal = { id: 'm1', at: '2026-10-27T01:00:00.000Z', tradition: 'greek' };
+  it('keeps a valid foodProfile and valid culturalMeals', () => {
+    const out = sanitizeProfile({ foodProfile: food, culturalMeals: [meal] });
+    expect(out.foodProfile).toEqual(food);
+    expect(out.culturalMeals).toEqual([meal]);
+  });
+  it('drops invalid foodProfile and culturalMeals without throwing', () => {
+    for (const bad of ['x', [], null, 7, { traditions: 'x' }, {}]) {
+      expect(sanitizeProfile({ foodProfile: bad }).foodProfile).toBeUndefined();
+    }
+    expect(sanitizeProfile({ culturalMeals: 'x' })).toEqual({});
+    expect(sanitizeProfile({ culturalMeals: [{ id: '' }, null, 3] })).toEqual({});
+  });
+  it('a profile without the food fields round-trips unchanged (existing profiles need no migration)', () => {
+    const old = { foodBudgetWeekly: 100, suburb: 'Footscray', welcomeSeen: true };
+    expect(sanitizeProfile(old)).toEqual(old);
+    expect(parseProfile(JSON.stringify(old))).toEqual(old);
+  });
+  it('survives a stored round trip', () => {
+    const p = sanitizeProfile({ foodProfile: food, culturalMeals: [meal] });
+    expect(parseProfile(JSON.stringify(p))).toEqual(p);
+  });
+});
