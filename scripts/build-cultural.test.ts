@@ -307,7 +307,22 @@ describe('generated catalogue', () => {
     expect(smash.flags.pork).toBe('unknown');
     expect(smash.flags.certifiedMeat).toBe(true);
   });
-  it('derives kosher no for chicken with yoghurt and never marks a non-listed ingredient yes', () => {
+  it('has at least five traditions with at least five foods each', () => {
+    const counts = new Map<string, number>();
+    for (const f of data().foods) for (const t of f.traditions) counts.set(t, (counts.get(t) ?? 0) + 1);
+    expect([...counts.values()].filter((n) => n >= 5).length).toBeGreaterThanOrEqual(5);
+  });
+  it('never marks halal or kosher yes for a food with an unknown ingredient (unknown never passes)', () => {
+    const d = data();
+    const table = new Map<string, any>(d.ingredients.map((i: any) => [i.id, i]));
+    for (const f of [...d.foods, ...d.cravings]) {
+      const rows = f.recipe.map((r: any) => table.get(r.ingredient));
+      const info = built().foodInfo.find((x: any) => x.itemId === f.id);
+      if (rows.some((r: any) => r.halal === 'unknown')) expect(['unknown', 'no'], `${f.id} halal`).toContain(info.flags.halal);
+      if (rows.some((r: any) => r.kosher === 'unknown')) expect(['unknown', 'no'], `${f.id} kosher`).toContain(info.flags.kosher);
+    }
+  });
+  it('derives kosher no for chicken with yoghurt', () => {
     const c = built();
     expect(c.foodInfo.find((f: any) => f.itemId === 'chicken-tomato-curry').flags.kosher).toBe('no');
   });

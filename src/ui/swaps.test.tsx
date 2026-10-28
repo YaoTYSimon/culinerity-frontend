@@ -25,7 +25,7 @@ describe('CravingSearch', () => {
     search('burger');
     expect((await screen.findAllByText('Sample data')).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('listitem').length).toBeGreaterThan(0);
-    expect(screen.queryByText(/\$0(\.00)?\b/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/\$0(\.00)?(?![.\d])/)).not.toBeInTheDocument();
   });
 
   it('shows only the picklist for whitespace input', () => {
