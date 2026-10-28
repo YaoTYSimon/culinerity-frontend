@@ -32,6 +32,10 @@ export function seedDatabase(db: Database.Database, data: SeedData = SEED_DATA):
        ON CONFLICT(item_id) DO UPDATE SET energy_kj = excluded.energy_kj, protein_g = excluded.protein_g,
          fibre_g = excluded.fibre_g, sugar_g = excluded.sugar_g, sodium_mg = excluded.sodium_mg`,
     );
+    const upsertInfo = db.prepare(
+      `INSERT INTO food_info (item_id, info) VALUES (?, ?)
+       ON CONFLICT(item_id) DO UPDATE SET info = excluded.info`,
+    );
     const upsertPlace = db.prepare(
       `INSERT INTO support_places (id, name, kind, suburb, notes, is_sample) VALUES (?, ?, ?, ?, ?, ?)
        ON CONFLICT(id) DO UPDATE SET name = excluded.name, kind = excluded.kind, suburb = excluded.suburb,
@@ -50,6 +54,7 @@ export function seedDatabase(db: Database.Database, data: SeedData = SEED_DATA):
 
     for (const p of data.prices) upsertPrice.run(p.itemId, p.store, p.pricePerServe, p.unitLabel, p.observedAt, p.isSample ? 1 : 0);
     for (const n of data.nutrition) upsertNutrition.run(n.itemId, n.energyKj, n.proteinG, n.fibreG, n.sugarG, n.sodiumMg);
+    for (const f of data.foodInfo) upsertInfo.run(f.itemId, JSON.stringify(f));
     for (const p of data.supportPlaces) upsertPlace.run(p.id, p.name, p.kind, p.suburb, p.notes, p.isSample ? 1 : 0);
   });
   run();

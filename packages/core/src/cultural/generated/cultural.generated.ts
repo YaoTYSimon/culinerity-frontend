@@ -94,6 +94,170 @@ export const culturalData: CulturalData = {
       "licence": "CC BY 4.0 (ABS website copyright statement; not re-read in this task, evidence taken from the spec ruling)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "afcd-r3",
+      "publisher": "Food Standards Australia New Zealand (FSANZ)",
+      "title": "Australian Food Composition Database (AFCD) Release 3, Nutrient profiles (per 100 g) workbook, sheet \"All solids & liquids per 100 g\": energy with dietary fibre equated (kJ), protein, total dietary fibre, total sugars and sodium read from the row of each Public Food Key (e.g. F002594). Food names also identify what each ingredient is.",
+      "url": "https://www.foodstandards.gov.au/science-data/food-nutrient-databases/afcd/data-files",
+      "licence": "Creative Commons Attribution 4.0 Australia (CC BY 4.0). Evidence: the FSANZ copyright page says \"Unless expressly noted otherwise, material presented on this website is provided under a Creative Commons Attribution 4.0 Australia (CC BY 4.0) licence ... you must attribute the work in the following manner: Food Standards Australia New Zealand\" (https://www.foodstandards.gov.au/legal-policies/copyright, read 2026-10-28). The AFCD pages (about-afcd, data-files, last updated 23 December 2025) state no separate licence and no exception, so the site-wide CC BY 4.0 is applied; a confirmation from FSANZ has not been sought.",
+      "accessed": "2026-10-28",
+      "version": "Release 3 (files dated December 2025)",
+      "attribution": "Food Standards Australia New Zealand, Australian Food Composition Database Release 3",
+      "verification": "primary"
+    },
+    {
+      "id": "fsanz-copyright",
+      "publisher": "Food Standards Australia New Zealand (FSANZ)",
+      "title": "FSANZ Copyright page: site material is CC BY 4.0 unless noted; attribution \"Food Standards Australia New Zealand\"; excludes the FSANZ logo and third-party material.",
+      "url": "https://www.foodstandards.gov.au/legal-policies/copyright",
+      "licence": "CC BY 4.0 Australia (page text read 2026-10-28)",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "usda-fdc-licence",
+      "publisher": "USDA FoodData Central",
+      "title": "FoodData Central API Guide, Licensing section: \"USDA FoodData Central data are in the public domain and they are not copyrighted. They are published under CC0 1.0 Universal (CC0 1.0). No permission is needed for their use, but we request that users list FoodData Central as the source\". Read and recorded; no FDC value is used in this dataset (AFCD covers every ingredient).",
+      "url": "https://fdc.nal.usda.gov/api-guide",
+      "licence": "CC0 1.0 Universal (public domain), page text read 2026-10-28; the older /data-licensing path now returns 404",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "kosher-au-basic-ingredients",
+      "publisher": "Kosher Australia",
+      "title": "What is Kosher? > Basic Ingredients: meat only from kosher species and slaughtered under supervision; birds include chicken and turkey; dairy is milk and its derivatives; pareve covers eggs from a kosher bird, plants and fish with fins and removable scales; shellfish and all mixtures of meat and dairy are not kosher. Facts only, no text copied.",
+      "url": "https://www.kosher.org.au/post/201601052313-Basic-Ingredients",
+      "licence": "Copyright Kosher Australia Pty Ltd (Terms of Use, read 2026-10-28: no reproduction without permission). Only the facts are used; no text is copied.",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "kosher-au-mixtures",
+      "publisher": "Kosher Australia",
+      "title": "What is Kosher? > Mixtures: meat and milk (or derivatives) may not be mixed or cooked together; meat and fish may not be mixed. Facts only.",
+      "url": "https://www.kosher.org.au/post/201601052313-Mixtures",
+      "licence": "Copyright Kosher Australia Pty Ltd; facts only, no text copied",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "kosher-au-preparation",
+      "publisher": "Kosher Australia",
+      "title": "What is Kosher? > Preparation: grape-derived drinks and cheese must be prepared by or under supervision of Jews/Rabbinic supervision (cheese, wine and grape juice stay unknown here). Facts only.",
+      "url": "https://www.kosher.org.au/post/201601052313-Preparation",
+      "licence": "Copyright Kosher Australia Pty Ltd; facts only, no text copied",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "wikipedia-halal",
+      "publisher": "Wikipedia",
+      "title": "Halal: pork is the most common example of haram food; blood and intoxicants such as alcoholic beverages are not halal; the majority of Islamic scholars consider shellfish and other seafood halal (schools of thought differ); vegetarian cuisine is halal if it does not contain alcohol. Secondary: it is a general reference, not the Halal Certification Authority.",
+      "url": "https://en.wikipedia.org/wiki/Halal",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wikipedia-vegetarianism",
+      "publisher": "Wikipedia",
+      "title": "Vegetarianism: the practice of abstaining from the consumption of meat (red meat, poultry, seafood, freshwater fish, insects and the flesh of any other animal); may also exclude by-products of slaughter. Secondary: Vegetarian Victoria and Vegetarian Society pages could not be read.",
+      "url": "https://en.wikipedia.org/wiki/Vegetarianism",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "vegan-australia-pledge",
+      "publisher": "Vegan Australia",
+      "title": "Vegan Pledge, \"Vegan diet\": a diet that consists wholly of plant foods, with no products derived from animals.",
+      "url": "https://veganaustralia.org.au/vegan-pledge/",
+      "licence": "Copyright Vegan Australia; terms not read; only the definition (a fact) is used, no text copied",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "coeliac-au-gluten-free-diet",
+      "publisher": "Coeliac Australia",
+      "title": "Gluten-free diet: gluten is found in wheat (all varieties, including spelt), rye, barley and oats (in some people); naturally gluten-free single-ingredient foods include fresh fruit and vegetables, raw unprocessed meat and poultry, eggs, nuts and seeds, legumes, natural and minimally processed dairy, fats and oils, and rice and other gluten-free grains.",
+      "url": "https://www.coeliac.org.au/s/gluten-free-diet",
+      "licence": "Copyright Coeliac Australia; terms not read; facts only, no text copied",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "fsanz-allergen-labelling",
+      "publisher": "Food Standards Australia New Zealand (FSANZ)",
+      "title": "Allergen labelling (Standard 1.2.3 and Schedule 9, in force 25 February 2024), Table 1 names: wheat, fish, crustacean, mollusc, egg, milk, lupin, peanut, soy, sesame, almond, Brazil nut, cashew, hazelnut, macadamia, pecan, pistachio, pine nut, walnut, barley, oats, rye (if gluten), sulphites (10 mg/kg or more). An ingredient not on the list has no declarable allergen from it.",
+      "url": "https://www.foodstandards.gov.au/business/labelling/allergen-labelling",
+      "licence": "CC BY 4.0 Australia (FSANZ site licence)",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "hca-faq",
+      "publisher": "Halal Certification Authority",
+      "title": "FAQ: halal means permissible; haram or non-halal means not permissible; Australian red meat is hand-slaughtered. It gives no list of ingredients, so no halal flag is taken from it. Read to try to source halal definitions.",
+      "url": "https://www.halalcertification.com.au/faq",
+      "licence": "Copyright Halal Accreditation Authority; reuse terms not read; not used for any value",
+      "accessed": "2026-10-28",
+      "verification": "primary"
+    },
+    {
+      "id": "wp-dal",
+      "publisher": "Wikipedia",
+      "title": "Dal (article summary read): Dal (dried split pulses) are a staple of South Asian cuisines and an important part of the cuisines of the Indian subcontinent. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Dal",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-chana-masala",
+      "publisher": "Wikipedia",
+      "title": "Chana masala (article summary read): Chana masala is a chickpea curry in a tomato-based sauce from the Indian subcontinent, a staple of Indian and Pakistani cuisine. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Chana_masala",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-aloo-gobi",
+      "publisher": "Wikipedia",
+      "title": "Aloo gobi (article summary read): Aloo gobi is a vegetarian potato and cauliflower dish from the Indian subcontinent, popular in Indian cuisine. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Aloo_gobi",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-chicken-curry",
+      "publisher": "Wikipedia",
+      "title": "Chicken curry (article summary read): Chicken curry is a dish of chicken stewed in an onion and tomato sauce with ginger, garlic and spices, common in the cuisine of the Indian subcontinent. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Chicken_curry",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-butter-chicken",
+      "publisher": "Wikipedia",
+      "title": "Butter chicken (article summary read): Butter chicken (murgh makhani) is chicken in a spiced tomato and butter gravy, associated with a Delhi restaurant that popularised it in the 1950s. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Butter_chicken",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-bhurji",
+      "publisher": "Wikipedia",
+      "title": "Bhurji (article summary read): The disambiguation page lists \"Egg bhurji, an Indian dish made of egg\" only; it gives no region, so the dish is tagged Indian, North and South by that line alone. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Bhurji",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -693,6 +857,743 @@ export const culturalData: CulturalData = {
       "note": "Fixed date, 25 December (Gregorian)."
     }
   ],
+  "catalogue": {
+    "items": [
+      {
+        "id": "dal-red-lentil",
+        "name": "Red lentil dal",
+        "category": "home cooking",
+        "keywords": [
+          "dal",
+          "dhal",
+          "daal",
+          "lentil curry",
+          "red lentil"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "chana-masala",
+        "name": "Chickpea curry (chana masala)",
+        "category": "home cooking",
+        "keywords": [
+          "chana masala",
+          "chickpea curry",
+          "chole",
+          "channa"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-tomato-curry",
+        "name": "Chicken and tomato curry with rice",
+        "category": "home cooking",
+        "keywords": [
+          "chicken curry",
+          "chicken tomato curry",
+          "curry and rice"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "aloo-gobi",
+        "name": "Potato and cauliflower (aloo gobi)",
+        "category": "home cooking",
+        "keywords": [
+          "aloo gobi",
+          "aloo gobhi",
+          "potato cauliflower"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "egg-bhurji",
+        "name": "Spiced scrambled eggs (egg bhurji)",
+        "category": "home cooking",
+        "keywords": [
+          "egg bhurji",
+          "anda bhurji",
+          "spiced eggs"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "butter-chicken-jar-sauce",
+        "name": "Butter chicken with rice (jar sauce)",
+        "category": "packaged meal",
+        "keywords": [
+          "butter chicken",
+          "jar sauce",
+          "butter chicken sauce",
+          "curry in a jar",
+          "murgh makhani"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "craving"
+      }
+    ],
+    "prices": [
+      {
+        "itemId": "dal-red-lentil",
+        "store": "Coles",
+        "pricePerServe": 1.3,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "dal-red-lentil",
+        "store": "Woolworths",
+        "pricePerServe": 1.4,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chana-masala",
+        "store": "Coles",
+        "pricePerServe": 1.7,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chana-masala",
+        "store": "Woolworths",
+        "pricePerServe": 1.8,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-tomato-curry",
+        "store": "Coles",
+        "pricePerServe": 2.9,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-tomato-curry",
+        "store": "Woolworths",
+        "pricePerServe": 3,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "aloo-gobi",
+        "store": "Coles",
+        "pricePerServe": 2.5,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "aloo-gobi",
+        "store": "Woolworths",
+        "pricePerServe": 2.6,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "egg-bhurji",
+        "store": "Coles",
+        "pricePerServe": 1.9,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "egg-bhurji",
+        "store": "Woolworths",
+        "pricePerServe": 2,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "butter-chicken-jar-sauce",
+        "store": "Coles",
+        "pricePerServe": 3.4,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "butter-chicken-jar-sauce",
+        "store": "Woolworths",
+        "pricePerServe": 3.5,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      }
+    ],
+    "nutrition": [
+      {
+        "itemId": "dal-red-lentil",
+        "energyKj": 1193,
+        "proteinG": 15.6,
+        "fibreG": 11.6,
+        "sugarG": 6.7,
+        "sodiumMg": 11
+      },
+      {
+        "itemId": "chana-masala",
+        "energyKj": 1403,
+        "proteinG": 14.4,
+        "fibreG": 17.6,
+        "sugarG": 8.1,
+        "sodiumMg": 22
+      },
+      {
+        "itemId": "chicken-tomato-curry",
+        "energyKj": 2279,
+        "proteinG": 34.8,
+        "fibreG": 5.5,
+        "sugarG": 8.8,
+        "sodiumMg": 127
+      },
+      {
+        "itemId": "aloo-gobi",
+        "energyKj": 1184,
+        "proteinG": 9.1,
+        "fibreG": 7.8,
+        "sugarG": 12.7,
+        "sodiumMg": 81
+      },
+      {
+        "itemId": "egg-bhurji",
+        "energyKj": 938,
+        "proteinG": 16.2,
+        "fibreG": 2.3,
+        "sugarG": 4.2,
+        "sodiumMg": 186
+      },
+      {
+        "itemId": "butter-chicken-jar-sauce",
+        "energyKj": 2149,
+        "proteinG": 36.1,
+        "fibreG": 3.4,
+        "sugarG": 5.4,
+        "sodiumMg": 756
+      }
+    ],
+    "swaps": [
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "dal-red-lentil",
+        "note": "Red lentils cook in about 20 minutes with onion, tomato and spices: a hot bowl for a dollar or two."
+      },
+      {
+        "cravingId": "butter-chicken-jar-sauce",
+        "alternativeId": "chana-masala",
+        "note": "A chickpea curry cooked in tomato and onion with ground spices; serve it with rice or flatbread."
+      },
+      {
+        "cravingId": "butter-chicken-jar-sauce",
+        "alternativeId": "chicken-tomato-curry",
+        "note": "Chicken simmered in tomato, onion and yoghurt with ground spices, served with rice."
+      },
+      {
+        "cravingId": "hot-chips",
+        "alternativeId": "aloo-gobi",
+        "note": "Potato and cauliflower cooked in a pan with onion, tomato and spices: a hot potato dish without the fryer."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "egg-bhurji",
+        "note": "Eggs scrambled with onion, tomato and chilli: a hot savoury breakfast in about 10 minutes."
+      }
+    ],
+    "foodInfo": [
+      {
+        "itemId": "smash-burger",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "chicken-salad-roll",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "oven-wedges",
+        "traditions": [],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "roast-chickpeas",
+        "traditions": [],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "homemade-milk-tea",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "fruit-iced-tea",
+        "traditions": [],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "egg-noodle-stirfry",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "egg"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "egg-fried-rice",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "turkish-bread-pizza",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "spaghetti-pomodoro",
+        "traditions": [],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "banana-pb-toast",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "peanut"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "cocoa-yoghurt",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "baked-drumsticks",
+        "traditions": [],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "falafel-wrap",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "sesame",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chicken-kebab-home",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "milk",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "oat-banana-muffin",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "fruit-toast-ricotta",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "sparkling-lemon",
+        "traditions": [],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "unsweetened-iced-tea",
+        "traditions": [],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "dal-red-lentil",
+        "traditions": [
+          "indian-north",
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chana-masala",
+        "traditions": [
+          "indian-north",
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chicken-tomato-curry",
+        "traditions": [
+          "indian-north",
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "aloo-gobi",
+        "traditions": [
+          "indian-north",
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "egg-bhurji",
+        "traditions": [
+          "indian-north",
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "butter-chicken-jar-sauce",
+        "traditions": [
+          "indian-north"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      }
+    ],
+    "cravingIds": [
+      "butter-chicken-jar-sauce"
+    ]
+  },
   "notFound": [
     "Diwali 2029 (November): not in the Wikipedia Diwali table and no other source read, so left out until read.",
     "Navratri, Vesak, Mid-Autumn Festival and Songkran: deferred, no source read.",

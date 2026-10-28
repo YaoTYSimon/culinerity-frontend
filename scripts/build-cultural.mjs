@@ -17,6 +17,52 @@ const VERIFICATION = ['primary', 'secondary'];
 
 const nonEmpty = (v) => typeof v === 'string' && v.trim() !== '';
 
+const NUTRIENT_KEYS = ['energyKj', 'proteinG', 'fibreG', 'sugarG', 'sodiumMg'];
+const STORES = ['Coles', 'Woolworths', 'Aldi', 'IGA', 'Market'];
+const TRI = ['yes', 'no', 'unknown'];
+const FAITH = [...TRI, 'certified-meat'];
+const TRI_KEYS = ['vegetarian', 'vegan', 'beef', 'pork', 'alcohol', 'gluten'];
+const FAITH_KEYS = ['halal', 'kosher'];
+const ALLERGEN_IDS = ['wheat', 'fish', 'crustacean', 'mollusc', 'egg', 'milk', 'lupin', 'peanut', 'soy', 'sesame', 'almond', 'brazil-nut', 'cashew', 'hazelnut', 'macadamia', 'pecan', 'pistachio', 'pine-nut', 'walnut', 'barley', 'oats', 'rye', 'sulphites'];
+const MIN_PRICE = 0.2;
+const MAX_PRICE = 15;
+const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/** kcal to kJ. Applied only when a source gives kcal. */
+export const KCAL_TO_KJ = 4.184;
+export const kcalToKj = (kcal) => kcal * KCAL_TO_KJ;
+
+const isNum = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0;
+const round1 = (n) => Math.round(n * 10) / 10;
+
+/** kJ per 100 g from a source row: its kJ, or its kcal converted. */
+function energyKjOf(p) {
+  if (isNum(p.energyKj)) return p.energyKj;
+  if (isNum(p.energyKcal)) return kcalToKj(p.energyKcal);
+  return undefined;
+}
+
+/**
+ * Nutrition per serve: the sum of grams / 100 x per-100g over the recipe.
+ * Integers for kJ and sodium, one decimal for the rest. `table` maps ingredient id to its row.
+ */
+export function computeNutrition(food, table) {
+  const sum = { energyKj: 0, proteinG: 0, fibreG: 0, sugarG: 0, sodiumMg: 0 };
+  for (const { ingredient, grams } of food.recipe) {
+    const p = table.get(ingredient).per100g;
+    const f = grams / 100;
+    sum.energyKj += f * energyKjOf(p);
+    for (const k of NUTRIENT_KEYS.slice(1)) sum[k] += f * p[k];
+  }
+  return {
+    energyKj: Math.round(sum.energyKj),
+    proteinG: round1(sum.proteinG),
+    fibreG: round1(sum.fibreG),
+    sugarG: round1(sum.sugarG),
+    sodiumMg: Math.round(sum.sodiumMg),
+  };
+}
+
 /** Today's calendar date in Melbourne (YYYY-MM-DD), so a row checked this morning is never "in the future". */
 export function melbourneToday(now = new Date()) {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Melbourne', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
@@ -102,7 +148,118 @@ export function validateCultural(d, today = melbourneToday()) {
   });
   if (!lastEnd || lastEnd < plusOneYear(today)) errs.push(`calendar needs refreshing: last end ${lastEnd || '(none)'} is less than 12 months after ${today}`);
 
+  errs.push(...validateCatalogue(d, sourceIds, traditionIds));
+
   if (!Array.isArray(d.notFound) || d.notFound.some((n) => !nonEmpty(n))) errs.push('notFound must be a list of non-empty strings');
+  return errs;
+}
+
+/** Problems in the ingredient table, foods, cravings and swaps. Absent sections are treated as empty. */
+function validateCatalogue(d, sourceIds, traditionIds) {
+  const errs = [];
+  const sources = new Map((d.sources ?? []).map((s) => [s.id, s]));
+  const ingredients = d.ingredients ?? [];
+  const foods = d.foods ?? [];
+  const cravings = d.cravings ?? [];
+  const swaps = d.swaps ?? [];
+  const existing = d.existing ?? { cravings: [], alternatives: [] };
+
+  const table = new Map();
+  for (const i of ingredients) {
+    const tag = `ingredient ${i.id}`;
+    if (table.has(i.id)) errs.push(`duplicate ingredient id ${i.id}`);
+    table.set(i.id, i);
+    if (typeof i.id !== 'string' || !SLUG.test(i.id)) errs.push(`${tag}: id must be a lowercase slug`);
+    if (!nonEmpty(i.name)) errs.push(`${tag}: needs a name`);
+    for (const k of TRI_KEYS) if (!TRI.includes(i[k])) errs.push(`${tag}: ${k} must be yes, no or unknown`);
+    for (const k of FAITH_KEYS) if (!FAITH.includes(i[k])) errs.push(`${tag}: ${k} must be yes, no, unknown or certified-meat`);
+    if (i.allergensPartial !== undefined && (i.allergensPartial !== true || !Array.isArray(i.allergens))) errs.push(`${tag}: allergensPartial may only be true beside a list of allergens`);
+    if (i.allergens !== 'unknown' && !(Array.isArray(i.allergens) && i.allergens.every((a) => ALLERGEN_IDS.includes(a)))) {
+      errs.push(`${tag}: allergens must be a list of known allergen ids or "unknown"`);
+    }
+    for (const k of [...TRI_KEYS, ...FAITH_KEYS, 'allergens']) {
+      if (i[k] === 'unknown') continue;
+      const sid = i.attributeSources?.[k] ?? i.attributeSourceId;
+      if (!nonEmpty(sid)) errs.push(`${tag}: ${k} has no attribute source`);
+      else if (!sourceIds.has(sid)) errs.push(`${tag}: ${k} references unknown source ${sid}`);
+    }
+    if (i.per100g !== undefined) {
+      for (const k of NUTRIENT_KEYS.slice(1)) if (!isNum(i.per100g[k])) errs.push(`${tag}: per100g.${k} missing or not a number`);
+      if (energyKjOf(i.per100g) === undefined) errs.push(`${tag}: per100g energy missing (energyKj or energyKcal)`);
+      if (isNum(i.per100g.energyKj) && isNum(i.per100g.energyKcal)) errs.push(`${tag}: per100g gives both energyKj and energyKcal`);
+    }
+  }
+
+  const itemIds = new Set([...(existing.cravings ?? []), ...(existing.alternatives ?? [])]);
+  const own = new Map();
+  const checkItem = (f, kind) => {
+    const tag = `${kind} ${f.id}`;
+    if (typeof f.id !== 'string' || !SLUG.test(f.id)) errs.push(`${tag}: id must be a lowercase slug`);
+    if (itemIds.has(f.id) || own.has(f.id)) errs.push(`duplicate item id ${f.id}`);
+    own.set(f.id, kind);
+    for (const k of ['name', 'category', 'unitLabel', 'recipeBasis', 'priceBasis']) if (!nonEmpty(f[k])) errs.push(`${tag}: needs ${k}`);
+    if (!Array.isArray(f.keywords) || f.keywords.some((k) => !nonEmpty(k))) errs.push(`${tag}: keywords must be non-empty strings`);
+    const trads = f.traditions ?? [];
+    if (kind === 'food' && trads.length === 0) errs.push(`${tag}: needs at least one tradition`);
+    for (const t of trads) if (!traditionIds.has(t)) errs.push(`${tag}: tradition ${t} does not exist`);
+    if (trads.length > 0) {
+      if (!nonEmpty(f.traditionSourceId)) errs.push(`${tag}: traditions need a traditionSourceId`);
+      else if (!sourceIds.has(f.traditionSourceId)) errs.push(`${tag}: traditionSourceId references unknown source ${f.traditionSourceId}`);
+    }
+    if (!Array.isArray(f.recipe) || f.recipe.length === 0) errs.push(`${tag}: needs a recipe`);
+    for (const r of f.recipe ?? []) {
+      const row = table.get(r.ingredient);
+      if (!row) { errs.push(`${tag}: recipe ingredient ${r.ingredient} is not in the ingredient table`); continue; }
+      if (!(typeof r.grams === 'number' && Number.isFinite(r.grams) && r.grams > 0)) errs.push(`${tag}: recipe grams for ${r.ingredient} must be above 0`);
+      if (row.per100g === undefined) errs.push(`${tag}: ingredient ${row.id} has no per100g values`);
+      const src = sources.get(row.nutritionSourceId);
+      if (!src) errs.push(`${tag}: ingredient ${row.id} has no known nutrition source (${row.nutritionSourceId})`);
+      else if (!nonEmpty(src.version) || !nonEmpty(src.attribution)) errs.push(`${tag}: nutrition source ${src.id} needs a version and attribution`);
+      if (!nonEmpty(row.nutritionCode)) errs.push(`${tag}: ingredient ${row.id} has no nutrition code`);
+    }
+    const stores = new Set();
+    for (const p of f.prices ?? []) {
+      if (!STORES.includes(p.store)) errs.push(`${tag}: unknown store ${p.store}`);
+      if (stores.has(p.store)) errs.push(`${tag}: store ${p.store} listed twice`);
+      stores.add(p.store);
+      if (!(typeof p.price === 'number' && p.price >= MIN_PRICE && p.price <= MAX_PRICE)) errs.push(`${tag}: price ${p.price} must be between ${MIN_PRICE} and ${MAX_PRICE}`);
+      else if (Math.abs(p.price * 10 - Math.round(p.price * 10)) > 1e-9) errs.push(`${tag}: price ${p.price} must be rounded to 10c`);
+    }
+    if (!stores.has('Coles') || !stores.has('Woolworths')) errs.push(`${tag}: prices need Coles and Woolworths`);
+    if (f.significance !== undefined) {
+      if (!nonEmpty(f.significance)) errs.push(`${tag}: significance must be non-empty when present`);
+      if (!nonEmpty(f.significanceSourceId)) errs.push(`${tag}: significance needs a significanceSourceId`);
+      else if (!sourceIds.has(f.significanceSourceId)) errs.push(`${tag}: significance references unknown source ${f.significanceSourceId}`);
+    }
+  };
+  for (const f of foods) checkItem(f, 'food');
+  for (const f of cravings) checkItem(f, 'craving');
+
+  const alternatives = new Set([...(existing.alternatives ?? []), ...foods.map((f) => f.id)]);
+  const cravingIds = new Set([...(existing.cravings ?? []), ...cravings.map((f) => f.id)]);
+  const pairs = new Set();
+  for (const sw of swaps) {
+    const tag = `swap ${sw.cravingId} -> ${sw.alternativeId}`;
+    if (!cravingIds.has(sw.cravingId)) errs.push(`${tag}: ${sw.cravingId} is not a craving`);
+    if (!alternatives.has(sw.alternativeId)) errs.push(`${tag}: ${sw.alternativeId} is not an alternative`);
+    if (pairs.has(tag)) errs.push(`${tag}: duplicate swap`);
+    pairs.add(tag);
+    if (!nonEmpty(sw.note)) errs.push(`${tag}: needs a note`);
+    else if (/authentic|\bpeople\b/i.test(sw.note)) errs.push(`${tag}: note must not say "authentic" or name people`);
+  }
+  for (const id of own.keys()) {
+    if (!swaps.some((sw) => sw.cravingId === id || sw.alternativeId === id)) errs.push(`${id} is in no swap`);
+  }
+
+  const covered = new Set();
+  for (const a of d.existingAlternatives ?? []) {
+    covered.add(a.itemId);
+    if (!(existing.alternatives ?? []).includes(a.itemId)) errs.push(`existingAlternatives: ${a.itemId} is not an existing alternative`);
+    if (!Array.isArray(a.ingredients) || a.ingredients.length === 0) errs.push(`existingAlternatives: ${a.itemId} needs ingredients`);
+    for (const g of a.ingredients ?? []) if (!table.has(g)) errs.push(`existingAlternatives: ${a.itemId} ingredient ${g} is not in the ingredient table`);
+  }
+  for (const id of existing.alternatives ?? []) if (!covered.has(id)) errs.push(`existing alternative ${id} has no ingredient list`);
+  if (foods.length + cravings.length > 0 && !nonEmpty(d.priceObservedAt)) errs.push('priceObservedAt is required');
   return errs;
 }
 
@@ -137,15 +294,41 @@ export function deriveFlags(ingredients, lookup = () => undefined) {
   const hasDairy = rows.some((r) => Array.isArray(r.allergens) && r.allergens.includes('milk'));
   if (hasMeat && hasDairy) kosher = 'no';
 
-  const allergensKnown = !none && rows.every((r) => Array.isArray(r.allergens));
+  const allergensKnown = !none && rows.every((r) => Array.isArray(r.allergens) && r.allergensPartial !== true);
   const allergens = [...new Set(rows.flatMap((r) => (Array.isArray(r.allergens) ? r.allergens : [])))];
   return { halal, kosher, vegetarian: flags.vegetarian, vegan: flags.vegan, beef: flags.beef, pork: flags.pork, alcohol: flags.alcohol, gluten: flags.gluten, allergens, allergensKnown, certifiedMeat };
+}
+
+/** The catalogue records the app consumes: items, sample prices, computed nutrition, swaps and derived FoodInfo. */
+export function buildCatalogue(d) {
+  const table = new Map((d.ingredients ?? []).map((i) => [i.id, i]));
+  const lookup = (id) => table.get(id);
+  const made = [...(d.foods ?? []).map((f) => ({ f, kind: 'alternative' })), ...(d.cravings ?? []).map((f) => ({ f, kind: 'craving' }))];
+  const foodInfo = (d.existingAlternatives ?? []).map((a) => ({ itemId: a.itemId, traditions: [], flags: deriveFlags(a.ingredients, lookup) }));
+  for (const { f } of made) {
+    foodInfo.push({
+      itemId: f.id,
+      traditions: [...(f.traditions ?? [])],
+      flags: deriveFlags(f.recipe.map((r) => r.ingredient), lookup),
+      ...(f.significance !== undefined ? { significance: f.significance } : {}),
+    });
+  }
+  return {
+    items: made.map(({ f, kind }) => ({ id: f.id, name: f.name, category: f.category, keywords: [...f.keywords], unitLabel: f.unitLabel, kind })),
+    prices: made.flatMap(({ f }) =>
+      f.prices.map((p) => ({ itemId: f.id, store: p.store, pricePerServe: p.price, unitLabel: f.unitLabel, observedAt: d.priceObservedAt, isSample: true })),
+    ),
+    nutrition: made.map(({ f }) => ({ itemId: f.id, ...computeNutrition(f, table) })),
+    swaps: (d.swaps ?? []).map((sw) => ({ cravingId: sw.cravingId, alternativeId: sw.alternativeId, note: sw.note })),
+    foodInfo,
+    cravingIds: (d.cravings ?? []).map((c) => c.id),
+  };
 }
 
 export function buildCultural(d) {
   const errs = validateCultural(d);
   if (errs.length) throw new Error(`Invalid cultural dataset:\n- ${errs.join('\n- ')}`);
-  const data = { generatedAt: d.generatedAt, sources: d.sources, traditions: d.traditions, occasions: d.occasions, calendar: d.calendar, notFound: d.notFound };
+  const data = { generatedAt: d.generatedAt, sources: d.sources, traditions: d.traditions, occasions: d.occasions, calendar: d.calendar, catalogue: buildCatalogue(d), notFound: d.notFound };
   return (
     '// GENERATED by scripts/build-cultural.mjs from docs/superpowers/research/2026-10-27-cultural-food.json.\n' +
     '// Generated, do not edit by hand; run `npm run build:cultural`.\n' +

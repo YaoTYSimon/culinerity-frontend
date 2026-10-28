@@ -5,9 +5,14 @@
  * SAMPLE DATA, not real observations. Prices are plausible AUD per serve for
  * Melbourne in 2026 and every price/support record carries `isSample: true`.
  * Cravings, swaps and notes are adapted from the earlier app (cravings.ts).
+ * Cultural catalogue items are merged in from the generated, sourced dataset
+ * (cultural.generated.ts): their nutrition is computed from AFCD rows, their
+ * prices are sample estimates (isSample: true).
  * Data only: matching and lookup logic lives in the mock classes.
  */
 import type { FoodItem, Nutrition, PricePoint, SupportPlace } from '../../domain/types';
+import { culturalData } from '../../cultural/source';
+import type { FoodInfo } from '../../food/types';
 
 type Store = PricePoint['store'];
 type Macros = [energyKj: number, proteinG: number, fibreG: number, sugarG: number, sodiumMg: number];
@@ -17,6 +22,8 @@ interface ItemRecord {
   unitLabel: string;
   prices: Array<[Store, number]>;
   macros: Macros;
+  /** Defaults to OBSERVED_AT. */
+  observedAt?: string;
 }
 
 const OBSERVED_AT = '2026-10-01';
@@ -28,8 +35,8 @@ const food = (id: string, name: string, category: string, keywords: string[] = [
   keywords,
 });
 
-/** Cravings and alternatives with their sample prices and nutrition. */
-export const ITEM_RECORDS: ItemRecord[] = [
+/** Hand-entered cravings and alternatives with their sample prices and nutrition. */
+const BASE_ITEM_RECORDS: ItemRecord[] = [
   // Cravings
   { item: food('burger', 'Takeaway burger', 'fast food', ['burger', 'cheeseburger', 'big mac', 'whopper', 'mcdonald']), unitLabel: '1 burger', prices: [['Coles', 7.5], ['Woolworths', 7.8], ['Market', 8.5]], macros: [2300, 25, 3, 9, 1100] },
   { item: food('hot-chips', 'Hot chips', 'fast food', ['chips', 'fries', 'hot chips', 'french fries']), unitLabel: '1 regular serve', prices: [['Coles', 4.5], ['Woolworths', 4.8], ['IGA', 5.5]], macros: [2100, 5, 5, 1, 600] },
@@ -64,8 +71,26 @@ export const ITEM_RECORDS: ItemRecord[] = [
   { item: food('unsweetened-iced-tea', 'Unsweetened iced tea', 'home cooking'), unitLabel: '1 glass', prices: [['Woolworths', 0.3], ['Coles', 0.3]], macros: [10, 0, 0, 0, 5] },
 ];
 
-/** Cheaper/healthier alternatives per craving, with the note shown to the user. */
-export const SWAP_RECORDS: Array<{ cravingId: string; alternativeId: string; note: string }> = [
+const generated = culturalData.catalogue;
+
+/** Items from the sourced cultural catalogue: prices are sample estimates, nutrition is computed from recipes. */
+const GENERATED_ITEM_RECORDS: ItemRecord[] = generated.items.map((i) => {
+  const n = generated.nutrition.find((x) => x.itemId === i.id);
+  const prices = generated.prices.filter((p) => p.itemId === i.id);
+  if (!n) throw new Error(`Generated item ${i.id} has no nutrition`);
+  return {
+    item: { id: i.id, name: i.name, category: i.category, keywords: [...i.keywords] },
+    unitLabel: i.unitLabel,
+    prices: prices.map((p): [Store, number] => [p.store, p.pricePerServe]),
+    macros: [n.energyKj, n.proteinG, n.fibreG, n.sugarG, n.sodiumMg],
+    observedAt: prices[0]?.observedAt,
+  };
+});
+
+/** Cravings and alternatives with their sample prices and nutrition. */
+export const ITEM_RECORDS: ItemRecord[] = [...BASE_ITEM_RECORDS, ...GENERATED_ITEM_RECORDS];
+
+const BASE_SWAP_RECORDS: Array<{ cravingId: string; alternativeId: string; note: string }> = [
   { cravingId: 'burger', alternativeId: 'smash-burger', note: 'Smash a mince ball in a hot pan: more protein, less sodium than a chain burger. Turkish bread rolls are a cheap bun.' },
   { cravingId: 'burger', alternativeId: 'chicken-salad-roll', note: 'Same hand-held format with lettuce and tomato adding folate and vitamin C at negligible cost.' },
   { cravingId: 'hot-chips', alternativeId: 'oven-wedges', note: 'Toss potato wedges in a little oil and bake hot: crunchy for around $1 a serve.' },
@@ -88,11 +113,23 @@ export const SWAP_RECORDS: Array<{ cravingId: string; alternativeId: string; not
   { cravingId: 'soft-drink', alternativeId: 'unsweetened-iced-tea', note: 'Brew a jug of tea and chill it: refreshing for a few cents a glass.' },
 ];
 
+/** Cheaper/healthier alternatives per craving, with the note shown to the user. */
+export const SWAP_RECORDS: Array<{ cravingId: string; alternativeId: string; note: string }> = [
+  ...BASE_SWAP_RECORDS,
+  ...generated.swaps.map((s) => ({ ...s })),
+];
+
 /** The cravings shown on the home screen, in display order. */
 export const POPULAR_CRAVING_IDS: string[] = [
   'burger', 'hot-chips', 'bubble-tea', 'instant-noodles', 'pizza',
   'chocolate', 'fried-chicken', 'kebab', 'pastry', 'soft-drink',
 ];
+
+/** Every craving: the popular ten first, then the cultural catalogue's. Search runs over these. */
+export const ALL_CRAVING_IDS: string[] = [...POPULAR_CRAVING_IDS, ...generated.cravingIds];
+
+/** Traditions and rule flags per item (existing alternatives from their ingredient lists, cultural items from recipes). */
+export const FOOD_INFO: FoodInfo[] = generated.foodInfo;
 
 export const SUPPORT_PLACES: SupportPlace[] = [
   { id: 'monash-caulfield-pantry', name: 'Monash Caulfield Food Pantry', kind: 'pantry', suburb: 'Caulfield', notes: 'Tuesdays from 1pm. Limited stock, registration needed.', isSample: true },
@@ -108,7 +145,7 @@ export const PRICES: PricePoint[] = ITEM_RECORDS.flatMap((r) =>
     store,
     pricePerServe,
     unitLabel: r.unitLabel,
-    observedAt: OBSERVED_AT,
+    observedAt: r.observedAt ?? OBSERVED_AT,
     isSample: true,
   })),
 );

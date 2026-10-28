@@ -63,6 +63,52 @@ describe('GET /api/cravings?q=', () => {
   });
 });
 
+describe('GET /api/cravings/all', () => {
+  it('returns the popular ten first, then the new cravings', async () => {
+    const { res, body } = await get(realApp(), '/api/cravings/all');
+    expect(res.status).toBe(200);
+    expect(body.map((c: { id: string }) => c.id)).toEqual(SEED_DATA.allCravingIds);
+    expect(body.slice(0, 10).map((c: { id: string }) => c.id)).toEqual(SEED_DATA.popularCravingIds);
+  });
+  it('lets search reach the new cravings but not alternatives', async () => {
+    const app = realApp();
+    expect((await get(app, '/api/cravings?q=butter%20chicken')).body.map((c: { id: string }) => c.id)).toContain('butter-chicken-jar-sauce');
+    expect((await get(app, '/api/cravings?q=smash')).body).toEqual([]);
+  });
+});
+
+describe('GET /api/food-info', () => {
+  it('returns FoodInfo for one item', async () => {
+    const { res, body } = await get(realApp(), '/api/food-info/smash-burger');
+    expect(res.status).toBe(200);
+    expect(body).toEqual(SEED_DATA.foodInfo.find((f) => f.itemId === 'smash-burger'));
+    expect(body.flags.beef).toBe('yes');
+  });
+  it('returns 200 null for an unknown item and 400 for a bad id', async () => {
+    const app = realApp();
+    expect(await get(app, '/api/food-info/nope').then((r) => [r.res.status, r.body])).toEqual([200, null]);
+    expect((await get(app, `/api/food-info/${'a'.repeat(65)}`)).res.status).toBe(400);
+  });
+  it('lists every FoodInfo', async () => {
+    const { res, body } = await get(realApp(), '/api/food-info');
+    expect(res.status).toBe(200);
+    expect(body).toHaveLength(SEED_DATA.foodInfo.length);
+  });
+});
+
+describe('no profile data reaches the server', () => {
+  it('accepts no body on any route: POST, PUT and a profile-shaped body are all 404', async () => {
+    const app = realApp();
+    const profile = JSON.stringify({ foodProfile: { traditions: ['greek'], rules: ['halal'], allergies: ['peanuts'], occasions: [], dismissed: [] } });
+    for (const path of ['/api/cravings', '/api/cravings/all', '/api/food-info', '/api/food-info/smash-burger', '/api/swaps/burger', '/api/profile']) {
+      for (const method of ['POST', 'PUT', 'PATCH']) {
+        const res = await app.request(path, { method, body: profile, headers: { 'content-type': 'application/json' } });
+        expect(res.status, `${method} ${path}`).toBe(404);
+      }
+    }
+  });
+});
+
 describe('GET /api/swaps/:cravingId', () => {
   it('returns SwapCandidates', async () => {
     const { res, body } = await get(realApp(), '/api/swaps/burger');
@@ -136,6 +182,15 @@ describe('errors', () => {
       throw new Error('sync boom');
     },
     swapsFor: async () => [],
+    allCravings: () => {
+      throw new Error('sync boom');
+    },
+    foodInfo: async () => {
+      throw new Error('secret db path /var/x leaked at server/repositories.ts:12');
+    },
+    allFoodInfo: () => {
+      throw new Error('sync boom');
+    },
   };
   const app = () => {
     const db = seededMemoryDb();
@@ -148,7 +203,7 @@ describe('errors', () => {
   };
 
   it('returns {error} with no stack or internal message when a repository throws', async () => {
-    for (const path of ['/api/cravings?q=x', '/api/cravings/popular']) {
+    for (const path of ['/api/cravings?q=x', '/api/cravings/popular', '/api/cravings/all', '/api/food-info/smash-burger', '/api/food-info']) {
       const res = await app().request(path);
       const text = await res.text();
       expect(res.status).toBe(500);

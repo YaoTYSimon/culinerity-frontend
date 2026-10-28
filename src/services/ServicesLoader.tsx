@@ -8,6 +8,8 @@ const EMPTY_CATALOGUE: FoodCatalogue = {
   findCravings: () => [],
   swapsFor: () => [],
   popularCravings: () => [],
+  allCravings: () => [],
+  foodInfo: () => undefined,
 };
 
 interface Props {

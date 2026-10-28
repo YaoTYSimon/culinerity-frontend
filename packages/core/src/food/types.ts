@@ -1,3 +1,5 @@
+import type { Nutrition, PricePoint } from '../domain/types';
+
 /** Three-state flag. `unknown` never satisfies a rule. */
 export type TriState = 'yes' | 'no' | 'unknown';
 
@@ -92,13 +94,33 @@ export interface SourceRecord {
   url: string;
   licence: string;
   accessed: string;
+  /** Release or version of a database source, e.g. "Release 3". */
+  version?: string;
+  /** Attribution wording the licence asks for, shown in the credits area. */
+  attribution?: string;
   verification: 'primary' | 'secondary';
 }
+
+/** Per-100g values exactly as read from the source row. */
+export interface Per100g {
+  energyKj: number;
+  proteinG: number;
+  fibreG: number;
+  sugarG: number;
+  sodiumMg: number;
+}
+
+export type AttributeKey = 'vegetarian' | 'vegan' | 'halal' | 'kosher' | 'beef' | 'pork' | 'alcohol' | 'gluten' | 'allergens';
 
 /** One attribute row per ingredient; the generator derives item flags from these. */
 export interface IngredientAttr {
   id: string;
   name: string;
+  /** Present only for ingredients used in a computed recipe. */
+  per100g?: Per100g;
+  nutritionSourceId?: string;
+  /** The source's own code for the food row the values were read from. */
+  nutritionCode?: string;
   vegetarian: TriState;
   vegan: TriState;
   halal: TriState | 'certified-meat';
@@ -108,8 +130,33 @@ export interface IngredientAttr {
   alcohol: TriState;
   gluten: TriState;
   allergens: AllergenId[] | 'unknown';
+  /** True when `allergens` lists only the allergens known to be present and others may be too (packaged goods). */
+  allergensPartial?: boolean;
+  /** Source for every non-`unknown` attribute unless `attributeSources` names a different one. */
   attributeSourceId?: string;
+  attributeSources?: Partial<Record<AttributeKey, string>>;
 }
+
+/** An item the catalogue adds: a food (alternative) or a craving, priced and with computed nutrition. */
+export interface CulturalItem {
+  id: string;
+  name: string;
+  category: string;
+  keywords: string[];
+  unitLabel: string;
+  kind: 'craving' | 'alternative';
+}
+
+export interface CulturalCatalogue {
+  items: CulturalItem[];
+  prices: PricePoint[];
+  nutrition: Nutrition[];
+  swaps: Array<{ cravingId: string; alternativeId: string; note: string }>;
+  foodInfo: FoodInfo[];
+  /** New craving ids, in file order (after the ten popular ones). */
+  cravingIds: string[];
+}
+
 
 export interface CulturalData {
   generatedAt: string;
@@ -117,5 +164,6 @@ export interface CulturalData {
   traditions: Tradition[];
   occasions: OccasionDef[];
   calendar: CalendarRow[];
+  catalogue: CulturalCatalogue;
   notFound: string[];
 }

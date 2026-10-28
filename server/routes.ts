@@ -29,6 +29,8 @@ export function createApp(repos: Repositories, options: AppOptions = {}): Hono {
 
   app.get('/api/cravings/popular', async (c) => c.json(await repos.catalogue.popularCravings()));
 
+  app.get('/api/cravings/all', async (c) => c.json(await repos.catalogue.allCravings()));
+
   app.get('/api/cravings', async (c) => {
     const q = single(c, 'q');
     if (q === undefined) return bad(c, 'Query parameter q is required, once.');
@@ -40,6 +42,14 @@ export function createApp(repos: Repositories, options: AppOptions = {}): Hono {
     const id = c.req.param('cravingId');
     if (!ID_PATTERN.test(id)) return bad(c, 'Invalid craving id.');
     return c.json(await repos.catalogue.swapsFor(id));
+  });
+
+  app.get('/api/food-info', async (c) => c.json(await repos.catalogue.allFoodInfo()));
+
+  app.get('/api/food-info/:itemId', async (c) => {
+    const id = c.req.param('itemId');
+    if (!ID_PATTERN.test(id)) return bad(c, 'Invalid item id.');
+    return c.json((await repos.catalogue.foodInfo(id)) ?? null);
   });
 
   app.get('/api/prices/:itemId', async (c) => {

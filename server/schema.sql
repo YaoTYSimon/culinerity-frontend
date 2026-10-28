@@ -52,5 +52,11 @@ CREATE TABLE IF NOT EXISTS support_places (
   is_sample INTEGER NOT NULL CHECK (is_sample IN (0, 1))
 );
 
+-- Traditions and rule flags per item, as JSON text (the same FoodInfo the app reads). Reference data only.
+CREATE TABLE IF NOT EXISTS food_info (
+  item_id TEXT PRIMARY KEY REFERENCES items(id) ON DELETE CASCADE,
+  info TEXT NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_swaps_craving ON swaps(craving_id);
 CREATE INDEX IF NOT EXISTS idx_prices_item ON prices(item_id);

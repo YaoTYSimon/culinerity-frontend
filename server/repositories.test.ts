@@ -16,9 +16,9 @@ const tableCount = (db: ReturnType<typeof seededMemoryDb>, t: string) =>
 describe('seeding', () => {
   it('is idempotent: running twice leaves the same rows', () => {
     const db = seededMemoryDb();
-    const before = ['items', 'keywords', 'swaps', 'prices', 'nutrition', 'support_places'].map((t) => tableCount(db, t));
+    const before = ['items', 'keywords', 'swaps', 'prices', 'nutrition', 'support_places', 'food_info'].map((t) => tableCount(db, t));
     seedDatabase(db);
-    const after = ['items', 'keywords', 'swaps', 'prices', 'nutrition', 'support_places'].map((t) => tableCount(db, t));
+    const after = ['items', 'keywords', 'swaps', 'prices', 'nutrition', 'support_places', 'food_info'].map((t) => tableCount(db, t));
     expect(after).toEqual(before);
     expect(before.every((n) => n > 0)).toBe(true);
   });
@@ -51,6 +51,17 @@ describe('SqliteCatalogueRepository', () => {
   it('finds cravings by name or keyword, case-insensitively', async () => {
     expect((await repo.findCravings('  BIG MAC ')).map((c) => c.id)).toEqual(['burger']);
     expect((await repo.findCravings('chocolate')).map((c) => c.id)).toEqual(['chocolate']);
+  });
+  it('lists all cravings: the popular ten in order, then the rest in seed order', async () => {
+    expect((await repo.allCravings()).map((c) => c.id)).toEqual(SEED_DATA.allCravingIds);
+  });
+  it('finds a new craving by keyword', async () => {
+    expect((await repo.findCravings('butter chicken')).map((c) => c.id)).toContain('butter-chicken-jar-sauce');
+  });
+  it('stores FoodInfo as JSON per item and returns it intact', async () => {
+    expect(await repo.foodInfo('smash-burger')).toEqual(SEED_DATA.foodInfo.find((f) => f.itemId === 'smash-burger'));
+    expect(await repo.foodInfo('nope')).toBeUndefined();
+    expect(await repo.allFoodInfo()).toEqual(SEED_DATA.foodInfo);
   });
   it('does not return alternatives as cravings', async () => {
     expect(await repo.findCravings('smash')).toEqual([]);

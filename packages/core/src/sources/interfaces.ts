@@ -1,3 +1,4 @@
+import type { FoodInfo } from '../food/types';
 import type { FoodItem, Nutrition, PricePoint, SupportPlace, SwapCandidate } from '../domain/types';
 
 export interface PriceSource {
@@ -15,5 +16,10 @@ export interface FoodSupportSource {
 export interface FoodCatalogue {
   findCravings(text: string): FoodItem[];
   swapsFor(cravingId: string): SwapCandidate[];
+  /** The ten popular cravings on the home screen, unchanged. */
   popularCravings(): FoodItem[];
+  /** Every craving, popular ones first; search runs over these. */
+  allCravings(): FoodItem[];
+  /** Traditions and rule flags for an item, or undefined when none are held. */
+  foodInfo(itemId: string): FoodInfo | undefined;
 }

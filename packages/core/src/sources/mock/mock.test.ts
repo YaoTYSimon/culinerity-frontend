@@ -45,6 +45,55 @@ describe('MockCatalogue', () => {
   });
 });
 
+describe('MockCatalogue cultural catalogue', () => {
+  const EXISTING_POPULAR = ['burger', 'hot-chips', 'bubble-tea', 'instant-noodles', 'pizza', 'chocolate', 'fried-chicken', 'kebab', 'pastry', 'soft-drink'];
+
+  it('finds the new butter chicken craving by search', () => {
+    expect(catalogue.findCravings('butter chicken').map((c) => c.id)).toContain('butter-chicken-jar-sauce');
+  });
+  it('keeps popular cravings exactly the existing ten, in order', () => {
+    expect(catalogue.popularCravings().map((c) => c.id)).toEqual(EXISTING_POPULAR);
+  });
+  it('allCravings lists the popular ten first, then the new cravings, each with a swap', () => {
+    const all = catalogue.allCravings();
+    expect(all.slice(0, 10).map((c) => c.id)).toEqual(EXISTING_POPULAR);
+    expect(all.length).toBeGreaterThan(10);
+    for (const c of all) expect(catalogue.swapsFor(c.id).length, c.id).toBeGreaterThan(0);
+  });
+  it('searches the ten popular cravings and the new ones, nothing else', () => {
+    expect(catalogue.findCravings('smash').length).toBe(0);
+    expect(catalogue.findCravings('burger').map((c) => c.id)).toContain('burger');
+  });
+  it('gives the smash burger beef yes and unknown ids no FoodInfo', () => {
+    expect(catalogue.foodInfo('smash-burger')?.flags.beef).toBe('yes');
+    expect(catalogue.foodInfo('nope')).toBeUndefined();
+  });
+  it('returns a copy of FoodInfo', () => {
+    const a = catalogue.foodInfo('smash-burger')!;
+    a.flags.beef = 'no';
+    expect(catalogue.foodInfo('smash-burger')?.flags.beef).toBe('yes');
+  });
+  it('every existing alternative has a FoodInfo', () => {
+    for (const c of catalogue.popularCravings()) {
+      for (const s of catalogue.swapsFor(c.id)) expect(catalogue.foodInfo(s.alternative.id), s.alternative.id).toBeDefined();
+    }
+  });
+  it('every item in the catalogue has sample prices (0.20 to 15) and nutrition', async () => {
+    const ids = new Set<string>();
+    for (const c of catalogue.allCravings()) for (const s of catalogue.swapsFor(c.id)) [s.craving.id, s.alternative.id].forEach((i) => ids.add(i));
+    for (const id of ids) {
+      expect(await nutrition.getNutrition(id), id).not.toBeNull();
+      const p = await prices.getPrices(id);
+      expect(p.length, id).toBeGreaterThan(0);
+      for (const x of p) {
+        expect(x.isSample).toBe(true);
+        expect(x.pricePerServe).toBeGreaterThanOrEqual(0.2);
+        expect(x.pricePerServe).toBeLessThanOrEqual(15);
+      }
+    }
+  });
+});
+
 describe('MockPriceSource', () => {
   it('marks every price as sample and has 2+ stores per item incl. Coles/Woolworths', async () => {
     for (const c of catalogue.popularCravings()) {

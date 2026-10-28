@@ -1,11 +1,15 @@
 import type Database from 'better-sqlite3';
-import type { FoodItem, Nutrition, PricePoint, SupportPlace, SwapCandidate } from '@culinerity/core';
+import type { FoodInfo, FoodItem, Nutrition, PricePoint, SupportPlace, SwapCandidate } from '@culinerity/core';
 
 /** Repository interfaces: routes and ingest depend on these, never on SQLite. */
 export interface CatalogueRepository {
   findCravings(text: string): Promise<FoodItem[]> | FoodItem[];
   popularCravings(): Promise<FoodItem[]> | FoodItem[];
   swapsFor(cravingId: string): Promise<SwapCandidate[]> | SwapCandidate[];
+  /** Every craving: the popular ten in order, then the rest in seed order. */
+  allCravings(): Promise<FoodItem[]> | FoodItem[];
+  foodInfo(itemId: string): Promise<FoodInfo | undefined> | FoodInfo | undefined;
+  allFoodInfo(): Promise<FoodInfo[]> | FoodInfo[];
 }
 
 export interface PriceReader {
@@ -55,6 +59,11 @@ function withKeywords(db: Database.Database, rows: ItemRow[]): FoodItem[] {
 /** Escape LIKE wildcards so user text matches literally. */
 const likeContains = (text: string) => `%${text.replace(/[\\%_]/g, (c) => `\\${c}`)}%`;
 
+/** A craving is an item that is the craving side of at least one swap. */
+const IS_CRAVING = 'id IN (SELECT craving_id FROM swaps)';
+/** Popular cravings first in display order, then the rest in seed order. */
+const CRAVING_ORDER = '(popular_rank IS NULL), popular_rank, rowid';
+
 export class SqliteCatalogueRepository implements CatalogueRepository {
   constructor(private readonly db: Database.Database) {}
 
@@ -65,13 +74,30 @@ export class SqliteCatalogueRepository implements CatalogueRepository {
     const rows = this.db
       .prepare(
         `SELECT id, name, category FROM items
-         WHERE popular_rank IS NOT NULL
+         WHERE ${IS_CRAVING}
            AND (lower(name) LIKE ? ESCAPE '\\'
                 OR EXISTS (SELECT 1 FROM keywords k WHERE k.item_id = items.id AND lower(k.keyword) LIKE ? ESCAPE '\\'))
-         ORDER BY popular_rank`,
+         ORDER BY ${CRAVING_ORDER}`,
       )
       .all(pattern, pattern) as ItemRow[];
     return withKeywords(this.db, rows);
+  }
+
+  allCravings(): FoodItem[] {
+    const rows = this.db
+      .prepare(`SELECT id, name, category FROM items WHERE ${IS_CRAVING} ORDER BY ${CRAVING_ORDER}`)
+      .all() as ItemRow[];
+    return withKeywords(this.db, rows);
+  }
+
+  foodInfo(itemId: string): FoodInfo | undefined {
+    const r = this.db.prepare('SELECT info FROM food_info WHERE item_id = ?').get(itemId) as { info: string } | undefined;
+    return r ? (JSON.parse(r.info) as FoodInfo) : undefined;
+  }
+
+  allFoodInfo(): FoodInfo[] {
+    const rows = this.db.prepare('SELECT info FROM food_info ORDER BY rowid').all() as Array<{ info: string }>;
+    return rows.map((r) => JSON.parse(r.info) as FoodInfo);
   }
 
   popularCravings(): FoodItem[] {

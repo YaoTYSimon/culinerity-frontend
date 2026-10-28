@@ -95,8 +95,38 @@ describe('HttpCatalogue', () => {
     expect(c.findCravings('   ')).toEqual([]);
     expect(c.findCravings('zzz')).toEqual([]);
   });
+  it('preloads every craving and food info, searches all cravings and serves foodInfo', async () => {
+    const butter = SEED_DATA.items.find((i) => i.id === 'butter-chicken-jar-sauce')!;
+    const info = SEED_DATA.foodInfo.find((f) => f.itemId === 'smash-burger')!;
+    const f: FetchLike = async (url) => {
+      const body = url.endsWith('/api/cravings/popular')
+        ? [burger]
+        : url.endsWith('/api/cravings/all')
+          ? [burger, butter]
+          : url.endsWith('/api/food-info')
+            ? [info]
+            : url.endsWith('/api/swaps/burger')
+              ? [swap]
+              : [];
+      return { ok: true, status: 200, json: async () => body };
+    };
+    const c = await HttpCatalogue.load(f);
+    expect(c.popularCravings()).toEqual([burger]);
+    expect(c.allCravings()).toEqual([burger, butter]);
+    expect(c.findCravings('butter chicken')).toEqual([butter]);
+    expect(c.foodInfo('smash-burger')).toEqual(info);
+    expect(c.foodInfo('nope')).toBeUndefined();
+  });
+  it('keeps popular cravings when the all-cravings and food-info requests fail', async () => {
+    const f: FetchLike = async (url) =>
+      url.endsWith('/api/cravings/all') || url.endsWith('/api/food-info') ? rejected(url) : routed(url);
+    const c = await HttpCatalogue.load(f);
+    expect(c.allCravings()).toEqual([burger]);
+    expect(c.foodInfo('smash-burger')).toBeUndefined();
+  });
   it.each(failures)('is empty on %s', async (_n, f) => {
     const c = await HttpCatalogue.load(f);
+    expect(c.allCravings()).toEqual([]);
     expect(c.popularCravings()).toEqual([]);
     expect(c.swapsFor('burger')).toEqual([]);
     expect(c.findCravings('burger')).toEqual([]);
