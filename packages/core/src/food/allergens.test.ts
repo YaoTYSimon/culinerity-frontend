@@ -34,4 +34,15 @@ describe('matchAllergies', () => {
     expect(matchAllergies([]).ids).toEqual([]);
     expect(matchAllergies(['allergy']).unmatched).toEqual(['allergy']);
   });
+  it('inherited property names are unmatched text, never a crash', () => {
+    const hostile = ['constructor', '__proto__', 'toString', 'hasOwnProperty', 'valueOf', 'Constructor', 'constructors'];
+    const r = matchAllergies(hostile);
+    expect(r.ids).toEqual([]);
+    expect(r.unmatched).toEqual(hostile);
+  });
+  it('maps oat(s), prawn(s) and tree nut(s)', () => {
+    expect(matchAllergies(['oat', 'Oats']).ids).toEqual(['oats']);
+    expect(matchAllergies(['prawn', 'Prawns']).ids).toEqual(['crustacean']);
+    expect(matchAllergies(['tree nut', 'Tree nuts', 'treenuts']).ids.sort()).toEqual([...TREE_NUTS].sort());
+  });
 });

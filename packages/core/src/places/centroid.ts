@@ -36,8 +36,8 @@ export function normaliseName(text: string): string {
 }
 
 /** Common abbreviations in typed suburbs. Not "st": St Kilda and St Albans are real names. */
-const ALIASES: Record<string, string> = { mt: 'mount', sth: 'south', nth: 'north' };
-const expandAbbreviations = (t: string) => t.split(' ').map((w) => ALIASES[w] ?? w).join(' ');
+const ALIASES = new Map([['mt', 'mount'], ['sth', 'south'], ['nth', 'north']]);
+const expandAbbreviations = (t: string) => t.split(' ').map((w) => ALIASES.get(w) ?? w).join(' ');
 
 const POSTCODE = /^\d{4}$/;
 

@@ -494,3 +494,14 @@ describe('privacy: the swaps view sends no profile text over the network', () =>
     spy.mockRestore();
   });
 });
+
+describe('text that names an inherited property', () => {
+  const HOSTILE = ['constructor', '__proto__', 'toString', 'hasOwnProperty'];
+  it('Swaps still shows swaps, and says it cannot check those words', async () => {
+    renderFood({ foodProfile: food({ traditions: HOSTILE, allergies: HOSTILE, rules: ['halal'] }) });
+    pickTile(/takeaway burger/i);
+    expect(await screen.findByText(/swaps? for/i)).toBeInTheDocument();
+    expect(screen.queryByText(/something went wrong|could not load/i)).toBeNull();
+    for (const w of HOSTILE) expect(screen.getByText(new RegExp(w.replace('_', '\\_')), { exact: false })).toBeInTheDocument();
+  });
+});

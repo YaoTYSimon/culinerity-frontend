@@ -7,7 +7,7 @@ const GLUTEN_GRAINS: AllergenId[] = ['wheat', 'barley', 'rye', 'oats'];
 const FRAMING = /\b(allerg(?:y|ies|ic)|intoleran(?:ce|t)|to|free|sensitivity)\b/g;
 
 /** Normalised (lower case, singular) phrase to the allergens it names. Plain "nut" is read cautiously: tree nuts and peanut. */
-const PHRASES: Record<string, AllergenId[]> = {
+const PHRASES = new Map<string, AllergenId[]>(Object.entries({
   peanut: ['peanut'],
   nut: [...TREE_NUTS, 'peanut'],
   'tree nut': TREE_NUTS,
@@ -24,7 +24,10 @@ const PHRASES: Record<string, AllergenId[]> = {
   shellfish: ['crustacean', 'mollusc'],
   lupin: ['lupin'],
   sulphite: ['sulphites'],
-};
+  oat: ['oats'],
+  prawn: ['crustacean'],
+  treenut: TREE_NUTS,
+}));
 
 function normalisePhrase(text: string): string {
   const base = text.toLowerCase().replace(FRAMING, ' ').replace(/\s+/g, ' ').trim();
@@ -41,7 +44,7 @@ export function matchAllergies(texts: string[]): { ids: AllergenId[]; unmatched:
   for (const raw of texts) {
     const text = raw.trim();
     if (!text) continue;
-    const found = PHRASES[normalisePhrase(text)];
+    const found = PHRASES.get(normalisePhrase(text));
     if (found) found.forEach((id) => ids.add(id));
     else unmatched.push(text);
   }

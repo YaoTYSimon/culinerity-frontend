@@ -94,3 +94,16 @@ describe('sanitizeFoodProfile', () => {
     expect(sanitizeFoodProfile(evil)).toBeUndefined();
   });
 });
+
+describe('text that names an inherited property', () => {
+  const hostile = ['constructor', '__proto__', 'toString', 'hasOwnProperty', 'valueOf'];
+  it('is kept as own text in traditions and allergies and never throws', () => {
+    const v = sanitizeFoodProfile({ ...empty, traditions: hostile, allergies: hostile, dismissed: hostile, rules: hostile, occasions: hostile });
+    expect(v?.traditions).toEqual(hostile);
+    expect(v?.allergies).toEqual(hostile);
+    expect(v?.rules).toEqual([]);
+    expect(v?.occasions).toEqual([]);
+    expect(v?.dismissed).toEqual([]);
+    expect(() => normaliseTradition('__proto__', [])).not.toThrow();
+  });
+});

@@ -245,3 +245,24 @@ describe('MyFood coming up', () => {
     expect(within(section()).getByRole('listitem')).toHaveTextContent('Ramadan');
   });
 });
+
+describe('MyFood with text that names an inherited property', () => {
+  it('adds and saves constructor and __proto__ as own words in traditions and allergies', () => {
+    const { onSave } = setup();
+    const words = ['constructor', '__proto__', 'toString', 'hasOwnProperty', 'valueOf'];
+    const add = (label: string, text: string) => {
+      const input = screen.getByLabelText(label);
+      fireEvent.change(input, { target: { value: text } });
+      fireEvent.keyDown(input, { key: 'Enter' });
+    };
+    for (const w of words) add('Add your own', w);
+    next();
+    next();
+    for (const w of words) add(/avoid/i, w);
+    next();
+    next();
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+    expect(onSave).toHaveBeenCalledTimes(1);
+    expect(onSave.mock.calls[0][0]).toMatchObject({ traditions: words, allergies: words });
+  });
+});

@@ -73,3 +73,10 @@ describe('committed table', () => {
     expect(suburbCentroid('3000')).toMatchObject({ kind: 'match' });
   });
 });
+
+describe('typed text that names an inherited property', () => {
+  it.each(['constructor', '__proto__', 'toString', 'hasOwnProperty'])('%s is just an unmatched suburb', (word) => {
+    expect(() => suburbCentroid(word, { suburbs: [], postcodes: [] } as any)).not.toThrow();
+    expect(suburbCentroid(`mt ${word}`, { suburbs: [], postcodes: [] } as any).kind).not.toBe('match');
+  });
+});
