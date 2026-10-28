@@ -411,6 +411,51 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-mujaddara",
+      "publisher": "Wikipedia",
+      "title": "Mujaddara (article summary read): Mujaddara is a dish of cooked lentils with rice or other groats, topped with sauteed onions, and is especially popular in the Levant. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Mujaddara",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-tabbouleh",
+      "publisher": "Wikipedia",
+      "title": "Tabbouleh (article summary read): Tabbouleh is a Levantine salad of finely chopped parsley, soaked bulgur, tomato, mint and onion with olive oil and lemon juice. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Tabbouleh",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-hummus",
+      "publisher": "Wikipedia",
+      "title": "Hummus (article summary read): Hummus is a Levantine dip or spread of mashed chickpeas blended with tahini, lemon juice and garlic, commonly eaten in Levantine cuisine. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Hummus",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-fattoush",
+      "publisher": "Wikipedia",
+      "title": "Fattoush (article summary read): Fattoush is a Levantine salad of toasted or fried pita with mixed greens and vegetables, a common part of meals in the Levant. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Fattoush",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-kibbeh",
+      "publisher": "Wikipedia",
+      "title": "Kibbeh (article summary read): Kibbeh is a popular dish in the Arab world and the Levant of spiced lean ground meat and bulgur wheat; the article says it is considered a national dish of Lebanon and Syria. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Kibbeh",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1256,6 +1301,66 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "mujaddara",
+        "name": "Lentils and rice with onion (mujaddara)",
+        "category": "home cooking",
+        "keywords": [
+          "mujaddara",
+          "lentils and rice",
+          "mudardara"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "tabbouleh",
+        "name": "Parsley and bulgur salad (tabbouleh)",
+        "category": "home cooking",
+        "keywords": [
+          "tabbouleh",
+          "tabouli",
+          "parsley salad"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "hummus-veg-sticks",
+        "name": "Homemade hummus with carrot and cucumber",
+        "category": "home cooking",
+        "keywords": [
+          "hummus",
+          "hommus",
+          "chickpea dip"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "fattoush",
+        "name": "Pita and vegetable salad (fattoush)",
+        "category": "home cooking",
+        "keywords": [
+          "fattoush",
+          "pita salad",
+          "bread salad"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "baked-kibbeh",
+        "name": "Baked lamb and bulgur tray (kibbeh)",
+        "category": "home cooking",
+        "keywords": [
+          "kibbeh",
+          "kubba",
+          "bulgur and lamb"
+        ],
+        "unitLabel": "1 slice",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -1618,6 +1723,86 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "mujaddara",
+        "store": "Coles",
+        "pricePerServe": 0.9,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "mujaddara",
+        "store": "Woolworths",
+        "pricePerServe": 1,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tabbouleh",
+        "store": "Coles",
+        "pricePerServe": 2.4,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tabbouleh",
+        "store": "Woolworths",
+        "pricePerServe": 2.5,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "hummus-veg-sticks",
+        "store": "Coles",
+        "pricePerServe": 1.2,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "hummus-veg-sticks",
+        "store": "Woolworths",
+        "pricePerServe": 1.3,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "fattoush",
+        "store": "Coles",
+        "pricePerServe": 2.3,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "fattoush",
+        "store": "Woolworths",
+        "pricePerServe": 2.4,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "baked-kibbeh",
+        "store": "Coles",
+        "pricePerServe": 1.9,
+        "unitLabel": "1 slice",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "baked-kibbeh",
+        "store": "Woolworths",
+        "pricePerServe": 2,
+        "unitLabel": "1 slice",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -1828,6 +2013,46 @@ export const culturalData: CulturalData = {
         "sodiumMg": 422
       },
       {
+        "itemId": "mujaddara",
+        "energyKj": 1928,
+        "proteinG": 21,
+        "fibreG": 12.4,
+        "sugarG": 5.7,
+        "sodiumMg": 17
+      },
+      {
+        "itemId": "tabbouleh",
+        "energyKj": 1104,
+        "proteinG": 6.7,
+        "fibreG": 7.9,
+        "sugarG": 5,
+        "sodiumMg": 99
+      },
+      {
+        "itemId": "hummus-veg-sticks",
+        "energyKj": 1319,
+        "proteinG": 12.1,
+        "fibreG": 14.1,
+        "sugarG": 7.3,
+        "sodiumMg": 61
+      },
+      {
+        "itemId": "fattoush",
+        "energyKj": 1115,
+        "proteinG": 7.1,
+        "fibreG": 5.4,
+        "sugarG": 7.4,
+        "sodiumMg": 276
+      },
+      {
+        "itemId": "baked-kibbeh",
+        "energyKj": 1696,
+        "proteinG": 26.3,
+        "fibreG": 5.3,
+        "sugarG": 4,
+        "sodiumMg": 63
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -1957,6 +2182,31 @@ export const culturalData: CulturalData = {
         "cravingId": "fried-chicken",
         "alternativeId": "gigantes-plaki",
         "note": "Large white beans baked in tomato with onion and garlic."
+      },
+      {
+        "cravingId": "burger",
+        "alternativeId": "baked-kibbeh",
+        "note": "Lamb and bulgur pressed into a tray and baked, then cut into slices."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "fattoush",
+        "note": "Toasted pita with cos lettuce, tomato, cucumber and radish in a lemon and olive oil dressing."
+      },
+      {
+        "cravingId": "hot-chips",
+        "alternativeId": "hummus-veg-sticks",
+        "note": "Chickpeas blended with tahini, lemon and garlic, with crunchy carrot and cucumber to dip."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "mujaddara",
+        "note": "Lentils and rice cooked together and topped with soft onion, from the pantry."
+      },
+      {
+        "cravingId": "fried-chicken",
+        "alternativeId": "tabbouleh",
+        "note": "A parsley salad with a little bulgur, tomato and mint, dressed with lemon and olive oil."
       }
     ],
     "foodInfo": [
@@ -2725,6 +2975,110 @@ export const culturalData: CulturalData = {
           "allergensKnown": false,
           "certifiedMeat": true
         }
+      },
+      {
+        "itemId": "mujaddara",
+        "traditions": [
+          "levantine"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "tabbouleh",
+        "traditions": [
+          "levantine"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "hummus-veg-sticks",
+        "traditions": [
+          "levantine"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "sesame"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "fattoush",
+        "traditions": [
+          "levantine"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "baked-kibbeh",
+        "traditions": [
+          "levantine"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        },
+        "significance": "Considered a national dish of Lebanon and Syria."
       },
       {
         "itemId": "butter-chicken-jar-sauce",
