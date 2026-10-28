@@ -86,10 +86,12 @@ describe('committed places', () => {
   it('mark a band as stated only where the source says it, and as typical otherwise', () => {
     for (const p of placeData.places) {
       expect(['stated', 'typical'], p.id).toContain(p.priceBasis);
-      // A typical band is the default for the kind, never an upgrade or a discount.
-      if (p.priceBasis === 'typical') expect(TYPICAL_BAND[p.kind], p.id).toBe(p.priceBand);
-      // A band that departs from the default needs the operator's own words.
-      if (p.priceBand !== TYPICAL_BAND[p.kind]) expect(p.priceBasis, p.id).toBe('stated');
+      // "Affordable" alone is not a stated band: it is a typical budget estimate with a note saying so.
+      const affordableOnly = p.priceBasis === 'typical' && p.priceBand === 'budget' && /described as affordable by the operator; no prices stated/i.test(p.note ?? '');
+      // A typical band is the default for the kind, never an upgrade or a discount (bar the affordable-only case).
+      if (p.priceBasis === 'typical' && !affordableOnly) expect(TYPICAL_BAND[p.kind], p.id).toBe(p.priceBand);
+      // A band that departs from the default needs the operator's own stated price.
+      if (p.priceBand !== TYPICAL_BAND[p.kind] && !affordableOnly) expect(p.priceBasis, p.id).toBe('stated');
     }
   });
   it('label every market and grocer at the mid band as a typical estimate', () => {
@@ -99,8 +101,13 @@ describe('committed places', () => {
   });
   it('say when a price is not stated by the source', () => {
     for (const p of placeData.places.filter((x) => x.priceBasis === 'typical' && (x.priceBand === 'free' || x.priceBand === 'budget'))) {
-      expect(p.note ?? '', p.id).toMatch(/cost not stated/i);
+      expect(p.note ?? '', p.id).toMatch(/cost not stated|no prices stated/i);
     }
+  });
+  it('give the Community Grocer markets a typical, not stated, budget band', () => {
+    const cg = placeData.places.filter((p) => p.id.startsWith('community-grocer-'));
+    expect(cg.length).toBe(7);
+    for (const p of cg) expect([p.priceBand, p.priceBasis], p.id).toEqual(['budget', 'typical']);
   });
   it('keep dated notices short and dated', () => {
     for (const p of placeData.places) for (const n of p.notices ?? []) {

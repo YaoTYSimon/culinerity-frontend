@@ -35,6 +35,10 @@ export function normaliseName(text: string): string {
     .trim();
 }
 
+/** Common abbreviations in typed suburbs. Not "st": St Kilda and St Albans are real names. */
+const ALIASES: Record<string, string> = { mt: 'mount', sth: 'south', nth: 'north' };
+const expandAbbreviations = (t: string) => t.split(' ').map((w) => ALIASES[w] ?? w).join(' ');
+
 const POSTCODE = /^\d{4}$/;
 
 function byPostcode(code: string, table: CentroidTable): CentroidResult {
@@ -56,7 +60,7 @@ function byName(name: string, table: CentroidTable): CentroidResult {
 /** Looks typed text up in the bundled table. Pure, never throws, no fuzzy matching. */
 export function suburbCentroid(text: string, table: CentroidTable = centroidTable): CentroidResult {
   try {
-    const t = normaliseName(text);
+    const t = expandAbbreviations(normaliseName(text));
     if (!t) return NONE;
     if (POSTCODE.test(t)) return byPostcode(t, table);
     const m = /^(.*\S)\s(\d{4})$/.exec(t);

@@ -21,6 +21,12 @@ describe('normaliseName', () => {
   });
 });
 
+describe('suburbCentroid with real data and abbreviations', () => {
+  it.each([['Mt Waverley', 'Mount Waverley'], ['Mt. Waverley', 'Mount Waverley'], ['Sth Yarra', 'South Yarra'], ['Sth. Yarra', 'South Yarra'], ['Nth Melbourne', 'North Melbourne'], ['Nth. Melbourne', 'North Melbourne'], ['St Kilda', 'St Kilda']])('%s finds %s', (t, label) => {
+    expect(suburbCentroid(t, centroidTable)).toMatchObject({ kind: 'match', label });
+  });
+});
+
 describe('suburbCentroid', () => {
   it.each(['Footscray', '  FOOTSCRAY, VIC ', 'footscray vic', 'Footscray 3011', '3011'])('matches %j', (t) => {
     const r = suburbCentroid(t, table);

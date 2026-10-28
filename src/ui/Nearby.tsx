@@ -29,6 +29,13 @@ const MESSAGE = {
   timeout: 'That took too long. Try again, or type a suburb.',
 } as const;
 
+/** A polite live region that mounts empty and is filled after mount, so the first result is announced. */
+function LiveCount({ text }: { text: string }) {
+  const [said, setSaid] = useState('');
+  useEffect(() => { setSaid(text); }, [text]);
+  return <div aria-live="polite" className="text-base font-semibold">{said}</div>;
+}
+
 const plural = (n: number) => `${n} ${n === 1 ? 'place' : 'places'}`;
 
 interface Props {
@@ -213,7 +220,7 @@ export function Nearby({ score, profileSuburb, onNavigate }: Props) {
       {places && origin && (
         <div className="grid gap-4">
           <NearbyFilters value={filter} onChange={(v) => { setFilter(v); setShown(PAGE); }} />
-          <div aria-live="polite" className="text-base font-semibold">{plural(rows.length)}</div>
+          <LiveCount text={plural(rows.length)} />
           {origin.label && <p className="text-sm text-muted">from the middle of {origin.label}</p>}
           {view?.note && <p className="text-base font-semibold text-pretty">{view.note}</p>}
           {rows.length > 0 && (

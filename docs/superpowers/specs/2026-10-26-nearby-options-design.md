@@ -126,3 +126,6 @@ Checked 27 October 2026 by reading `SupportPanel`, `MockFoodSupportSource`, the 
 - The City of Casey list was not imported: its licence is CC BY 3 on the state portal but none ("All rights reserved") on the publisher's own page. The starter set therefore has 15 places (markets, two free meals, two relief places) and no Casey relief places.
 - Where the Community Grocer page and its own map disagree on hours, both are shown.
 - Prahran Market has a contact address only; its coordinates come from Wikidata (CC0) and were cross-checked against a nearby tram stop.
+- Commit c4f7cb0 also contains the centroid feature files (history noise); squash when merging.
+- The Community Grocer markets say only "affordable prices", so they are `typical` budget with the note "Described as affordable by the operator; no prices stated."; the Low cost filter no longer lists them.
+- Typed `mt`, `sth` and `nth` expand to mount, south and north when matching suburbs; `st` is deliberately not expanded (St Kilda, St Albans).

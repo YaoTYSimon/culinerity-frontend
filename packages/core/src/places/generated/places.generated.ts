@@ -127,10 +127,6 @@ export const placeData: PlaceData = {
         {
           "text": "The Bazaar precinct is temporarily unavailable from 21 September 2026 and is expected to reopen in November. The rest of the market stays open.",
           "until": "2026-11-30"
-        },
-        {
-          "text": "Closed on Melbourne Cup Day, Tuesday 3 November.",
-          "until": "2026-11-03"
         }
       ],
       "sourceId": "dandenong-market-visit",
@@ -191,10 +187,11 @@ export const placeData: PlaceData = {
       "address": "90 Brunswick Street, Fitzroy, at Atherton Gardens Housing Estate",
       "suburb": "Fitzroy",
       "priceBand": "budget",
-      "priceBasis": "stated",
+      "priceBasis": "typical",
       "fit": [
         "fresh"
       ],
+      "note": "Described as affordable by the operator; no prices stated.",
       "access": "open",
       "hours": "Tuesdays 8:30am to 12:30pm",
       "sourceId": "community-grocer-markets",
@@ -210,10 +207,11 @@ export const placeData: PlaceData = {
       "address": "510 Lygon Street, Carlton, at the base of the flats near the BBQ area at Carlton Housing Estate",
       "suburb": "Carlton",
       "priceBand": "budget",
-      "priceBasis": "stated",
+      "priceBasis": "typical",
       "fit": [
         "fresh"
       ],
+      "note": "Described as affordable by the operator; no prices stated.",
       "access": "open",
       "hours": "Fridays 8:30am to 12:30pm",
       "sourceId": "community-grocer-markets",
@@ -229,10 +227,11 @@ export const placeData: PlaceData = {
       "address": "100 Victoria Street, Flemington, at Debney Meadows Primary School, enter via Debneys Park",
       "suburb": "Flemington",
       "priceBand": "budget",
-      "priceBasis": "stated",
+      "priceBasis": "typical",
       "fit": [
         "fresh"
       ],
+      "note": "Described as affordable by the operator; no prices stated.",
       "access": "open",
       "hours": "Saturdays 8:30am to 12:30pm",
       "sourceId": "community-grocer-markets",
@@ -248,10 +247,11 @@ export const placeData: PlaceData = {
       "address": "106 Elizabeth Street, Richmond, in the Community Room at the North Richmond Housing Estate",
       "suburb": "Richmond",
       "priceBand": "budget",
-      "priceBasis": "stated",
+      "priceBasis": "typical",
       "fit": [
         "fresh"
       ],
+      "note": "Described as affordable by the operator; no prices stated.",
       "access": "open",
       "hours": "Wednesdays (page: 8:30am to 12:30pm; its map: 9am to 12pm)",
       "sourceId": "community-grocer-markets",
@@ -267,10 +267,11 @@ export const placeData: PlaceData = {
       "address": "55/57 Kookaburra Avenue, Werribee, in the foyer at Wyndham Park Community Centre",
       "suburb": "Werribee",
       "priceBand": "budget",
-      "priceBasis": "stated",
+      "priceBasis": "typical",
       "fit": [
         "fresh"
       ],
+      "note": "Described as affordable by the operator; no prices stated.",
       "access": "open",
       "hours": "Tuesdays 8:30am to 12:30pm",
       "sourceId": "community-grocer-markets",
@@ -286,10 +287,11 @@ export const placeData: PlaceData = {
       "address": "33-35 Mowbray Crescent, Melton, at the Kurunjang Community Hub",
       "suburb": "Melton",
       "priceBand": "budget",
-      "priceBasis": "stated",
+      "priceBasis": "typical",
       "fit": [
         "fresh"
       ],
+      "note": "Described as affordable by the operator; no prices stated.",
       "access": "open",
       "hours": "Fridays 8:30am to 12:30pm",
       "sourceId": "community-grocer-markets",
@@ -305,10 +307,11 @@ export const placeData: PlaceData = {
       "address": "6B Henry Street, Pakenham, on the front deck at Living & Learning Inc. Pakenham",
       "suburb": "Pakenham",
       "priceBand": "budget",
-      "priceBasis": "stated",
+      "priceBasis": "typical",
       "fit": [
         "fresh"
       ],
+      "note": "Described as affordable by the operator; no prices stated.",
       "access": "open",
       "hours": "Thursdays (page: 8:30am to 12:30pm; its map: 9am to 1pm)",
       "sourceId": "community-grocer-markets",

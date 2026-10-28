@@ -191,6 +191,29 @@ describe('Nearby', () => {
     expect(screen.getByText('1 place')).toBeInTheDocument();
   });
 
+  it('mounts the places count region empty, then fills it so the first result is announced', async () => {
+    let mounted: Element | null = null;
+    let filledLater = false;
+    const obs = new MutationObserver((muts) => {
+      for (const m of muts) {
+        m.addedNodes.forEach((n) => {
+          if (!(n instanceof HTMLElement)) return;
+          const el = n.matches('[aria-live="polite"]') ? n : n.querySelector('.text-base.font-semibold[aria-live="polite"]');
+          if (el && el.className === 'text-base font-semibold') mounted = el;
+        });
+        // Text added into an already-mounted region (a childList change on it) is what screen readers announce.
+        if (mounted && m.target === mounted && m.addedNodes.length > 0) filledLater = true;
+      }
+    });
+    renderNearby(fake(OK));
+    obs.observe(document.body, { childList: true, subtree: true });
+    await press();
+    obs.disconnect();
+    expect(screen.getByText('3 places')).toBeInTheDocument();
+    expect(mounted).not.toBeNull();
+    expect(filledLater).toBe(true);
+  });
+
   it('an empty filter result says so', async () => {
     renderNearby(fake(OK), {}, many(3));
     await press();

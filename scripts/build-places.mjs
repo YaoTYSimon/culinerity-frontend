@@ -62,6 +62,9 @@ export function validatePlaces(d, today = melbourneToday()) {
     if (!BANDS.includes(p.priceBand)) errs.push(`place ${p.id} has bad priceBand`);
     if (!BASIS.includes(p.priceBasis)) errs.push(`place ${p.id} has bad priceBasis`);
     if (p.note !== undefined && !nonEmpty(p.note)) errs.push(`place ${p.id} note must be non-empty when present`);
+    if (p.priceBasis === 'typical' && (p.priceBand === 'free' || p.priceBand === 'budget') && !/^(cost not stated|described as affordable by the operator; no prices stated)/i.test(p.note ?? '')) {
+      errs.push(`place ${p.id} has a typical free or budget band, so its note must begin "Cost not stated" or "Described as affordable by the operator; no prices stated"`);
+    }
     if (p.notices !== undefined) {
       if (!Array.isArray(p.notices)) errs.push(`place ${p.id} notices must be a list`);
       else if (p.notices.some((n) => !n || !nonEmpty(n.text) || !isIsoDate(n.until))) errs.push(`place ${p.id} has a bad notice (needs text and an until date YYYY-MM-DD)`);
