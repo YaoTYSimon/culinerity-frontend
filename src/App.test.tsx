@@ -191,10 +191,10 @@ describe('App', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
   });
 
-  it('gives every photo and nutrition credit link an accessible name', () => {
+  it('gives every photo, nutrition and Hebcal credit link an accessible name', () => {
     renderApp();
     const links = within(screen.getByRole('contentinfo')).getAllByRole('link', { hidden: true });
-    expect(links).toHaveLength(PHOTO_CREDITS.length * 2 + 2);
+    expect(links).toHaveLength(PHOTO_CREDITS.length * 2 + 4);
     links.forEach((a) => expect(a.getAttribute('aria-label')).toMatch(/\S/));
   });
 });

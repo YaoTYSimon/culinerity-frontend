@@ -11,6 +11,7 @@ import { Header } from './ui/Header';
 import { MealsView } from './ui/MealsView';
 import { MyFood } from './ui/MyFood';
 import { PillButton } from './ui/PillButton';
+import { HebcalCredit } from './ui/HebcalCredit';
 import { NutritionCredit } from './ui/NutritionCredit';
 import { PhotoCredits } from './ui/PhotoCredits';
 import { PolicyView } from './ui/PolicyView';
@@ -222,6 +223,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn; photos are credited below.
           <PhotoCredits />
           <NutritionCredit />
+          <HebcalCredit />
           <PillButton variant="text" onClick={() => go('policy')} className="-ml-3 mt-2">
             Data and policy
           </PillButton>
