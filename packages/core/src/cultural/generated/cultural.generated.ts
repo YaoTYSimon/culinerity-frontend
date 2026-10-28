@@ -618,6 +618,60 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-sambar-28dish-29",
+      "publisher": "Wikipedia",
+      "title": "Sambar %28dish%29 (article summary read): Sambar is a lentil-based vegetable stew cooked with pigeon peas and tamarind broth; the article says it originates in South Indian cuisine. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Sambar_%28dish%29",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-upma",
+      "publisher": "Wikipedia",
+      "title": "Upma (article summary read): Upma is a thick porridge of dry-roasted semolina or coarse rice flour that originated from Southern India. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Upma",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-curd-rice",
+      "publisher": "Wikipedia",
+      "title": "Curd rice (article summary read): Curd rice (yoghurt rice) is a dish originating from India, most popular in the South Indian states of Tamil Nadu, Kerala, Karnataka, Telangana and Andhra Pradesh. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Curd_rice",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-lemon-rice",
+      "publisher": "Wikipedia",
+      "title": "Lemon rice (article summary read): Chitranna (lemon rice) is a rice-based dish widely prepared in South India, seasoned with mustard seeds, lentils, peanuts, curry leaves, chillies and lemon juice. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Lemon_rice",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-idiyappam",
+      "publisher": "Wikipedia",
+      "title": "Idiyappam (article summary read): Idiyappam is a string hopper dish of rice flour pressed into noodles and steamed, originating from southern India. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Idiyappam",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-pongal-28dish-29",
+      "publisher": "Wikipedia",
+      "title": "Pongal %28dish%29 (article summary read): Pongal is a dish of rice cooked in boiling milk, popular among Tamil people in South India and Sri Lanka and linked to the Pongal festival. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Pongal_%28dish%29",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1760,6 +1814,78 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "sambar-style-stew",
+        "name": "Lentil and vegetable stew (sambar style)",
+        "category": "home cooking",
+        "keywords": [
+          "sambar",
+          "sambhar",
+          "lentil vegetable stew"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "vegetable-upma",
+        "name": "Semolina and vegetable porridge (upma)",
+        "category": "home cooking",
+        "keywords": [
+          "upma",
+          "uppuma",
+          "semolina porridge"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "curd-rice",
+        "name": "Yoghurt rice (curd rice)",
+        "category": "home cooking",
+        "keywords": [
+          "curd rice",
+          "yoghurt rice",
+          "thayir sadam"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "lemon-rice-peanuts",
+        "name": "Lemon rice with peanuts",
+        "category": "home cooking",
+        "keywords": [
+          "lemon rice",
+          "chitranna",
+          "puliyogare"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "idiyappam-coconut",
+        "name": "Steamed rice-flour noodles with coconut (idiyappam)",
+        "category": "home cooking",
+        "keywords": [
+          "idiyappam",
+          "string hoppers",
+          "noolputtu"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "rice-mung-pongal",
+        "name": "Rice and mung bean porridge in milk (pongal style)",
+        "category": "home cooking",
+        "keywords": [
+          "pongal",
+          "ven pongal",
+          "rice porridge"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -2506,6 +2632,102 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "sambar-style-stew",
+        "store": "Coles",
+        "pricePerServe": 1.7,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "sambar-style-stew",
+        "store": "Woolworths",
+        "pricePerServe": 1.8,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "vegetable-upma",
+        "store": "Coles",
+        "pricePerServe": 0.9,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "vegetable-upma",
+        "store": "Woolworths",
+        "pricePerServe": 1,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "curd-rice",
+        "store": "Coles",
+        "pricePerServe": 0.7,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "curd-rice",
+        "store": "Woolworths",
+        "pricePerServe": 0.8,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "lemon-rice-peanuts",
+        "store": "Coles",
+        "pricePerServe": 0.7,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "lemon-rice-peanuts",
+        "store": "Woolworths",
+        "pricePerServe": 0.8,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "idiyappam-coconut",
+        "store": "Coles",
+        "pricePerServe": 0.6,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "idiyappam-coconut",
+        "store": "Woolworths",
+        "pricePerServe": 0.7,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "rice-mung-pongal",
+        "store": "Coles",
+        "pricePerServe": 0.6,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "rice-mung-pongal",
+        "store": "Woolworths",
+        "pricePerServe": 0.7,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -2908,6 +3130,54 @@ export const culturalData: CulturalData = {
         "sodiumMg": 153
       },
       {
+        "itemId": "sambar-style-stew",
+        "energyKj": 1363,
+        "proteinG": 15.4,
+        "fibreG": 13.1,
+        "sugarG": 17.3,
+        "sodiumMg": 33
+      },
+      {
+        "itemId": "vegetable-upma",
+        "energyKj": 1203,
+        "proteinG": 7.7,
+        "fibreG": 4.9,
+        "sugarG": 4.5,
+        "sodiumMg": 20
+      },
+      {
+        "itemId": "curd-rice",
+        "energyKj": 1257,
+        "proteinG": 10.5,
+        "fibreG": 1.6,
+        "sugarG": 7.2,
+        "sodiumMg": 81
+      },
+      {
+        "itemId": "lemon-rice-peanuts",
+        "energyKj": 1563,
+        "proteinG": 7.6,
+        "fibreG": 2.3,
+        "sugarG": 0.9,
+        "sodiumMg": 2
+      },
+      {
+        "itemId": "idiyappam-coconut",
+        "energyKj": 1573,
+        "proteinG": 7.3,
+        "fibreG": 3.6,
+        "sugarG": 1.1,
+        "sodiumMg": 2
+      },
+      {
+        "itemId": "rice-mung-pongal",
+        "energyKj": 1572,
+        "proteinG": 13.4,
+        "fibreG": 3.3,
+        "sugarG": 8.6,
+        "sodiumMg": 54
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -3157,6 +3427,36 @@ export const culturalData: CulturalData = {
         "cravingId": "hot-chips",
         "alternativeId": "rice-pol-sambol-egg",
         "note": "Rice with a fresh coconut, onion and chilli sambol and a boiled egg."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "sambar-style-stew",
+        "note": "Red lentils and vegetables simmered with tamarind and spices; serve with rice."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "vegetable-upma",
+        "note": "Semolina stirred into water with onion, carrot and beans: a hot breakfast in about 15 minutes."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "curd-rice",
+        "note": "Rice mixed with plain yoghurt, carrot and ginger: a cool meal with no cooking beyond the rice."
+      },
+      {
+        "cravingId": "burger",
+        "alternativeId": "lemon-rice-peanuts",
+        "note": "Rice stirred with lemon juice, turmeric, chilli and peanuts."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "idiyappam-coconut",
+        "note": "Rice flour pressed into noodles and steamed, with fresh coconut."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "rice-mung-pongal",
+        "note": "Rice and mung beans cooked soft in milk with ginger: a warm breakfast."
       }
     ],
     "foodInfo": [
@@ -4411,6 +4711,128 @@ export const culturalData: CulturalData = {
         }
       },
       {
+        "itemId": "sambar-style-stew",
+        "traditions": [
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "vegetable-upma",
+        "traditions": [
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "curd-rice",
+        "traditions": [
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "lemon-rice-peanuts",
+        "traditions": [
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "peanut"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "idiyappam-coconut",
+        "traditions": [
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "rice-mung-pongal",
+        "traditions": [
+          "indian-south"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "traditions": [
           "indian-north"
@@ -4480,8 +4902,21 @@ export const culturalData: CulturalData = {
     "Navratri, Vesak, Mid-Autumn Festival and Songkran: deferred, no source read.",
     "Australian National Imams Council moon-sighting announcements: no ANIC page found, so Ramadan and Eid rows stay approx with the sighting caveat.",
     "Greek Orthodox Archdiocese of Australia Great Lent start day: page not read; the Orthodox Great Lent rows say \"start day not confirmed\".",
-    "Kosher Australia and Halal Certification Authority definitions: not read here; no flag value depends on them until Task 2 reads them.",
     "ABS Census Community Profile (GCCSA 2GMEL) ranks beyond the top five of each list: not read; the starter list is \"chosen for variety, not ranked\".",
-    "Cross-checks for lunar rows against Wego and Awareness Days (cited in the spec): not re-read in this task, so not cited."
+    "Cross-checks for lunar rows against Wego and Awareness Days (cited in the spec): not re-read in this task, so not cited.",
+    "[catalogue] Halal Certification Authority (halalcertification.com.au) FAQ was read on 2026-10-28: it defines halal only as permissible and lists no ingredient rules, so no halal flag is taken from it. Halal flags use Wikipedia 'Halal' (secondary). A review by a halal authority is still open.",
+    "[catalogue] Kosher Australia 'What is Kosher?' (Basic Ingredients, Mixtures, Preparation) was read; its Vegetable Checking Guide and Food Guide are download or login pages and were not read, so vegetables, herbs, grains and all packaged goods stay kosher 'unknown'. Only eggs, pork, shellfish, meat and dairy mixtures are decided.",
+    "[catalogue] Vegetarian Victoria and the Vegetarian Society definition pages could not be read (host not found; 404): the vegetarian rule cites Wikipedia 'Vegetarianism' (secondary). Vegan uses the Vegan Australia pledge wording.",
+    "[catalogue] Soy sauce, stock, cheese (all kinds), bread, noodles, jar sauces and rice paper have no read source for gluten, alcohol, animal-derived additives or allergens, so their flags stay unknown. Spices, tea, cocoa and water are not on Coeliac Australia's naturally gluten-free list, so gluten stays unknown for them.",
+    "[catalogue] USDA FoodData Central licence page was read (CC0 1.0, API guide Licensing section); no FDC value is used because every ingredient was found in the AFCD. The older fdc.nal.usda.gov/data-licensing path returns 404.",
+    "[catalogue] AFCD Release 3 licence: the AFCD pages state no licence of their own; the FSANZ site-wide copyright page (CC BY 4.0 with attribution 'Food Standards Australia New Zealand') is applied. FSANZ has not been asked to confirm that it covers the downloadable workbook.",
+    "[catalogue] Prices for all cultural items are sample estimates of typical Melbourne supermarket ingredient costs rounded to 10c; no price source was read.",
+    "[catalogue] nutritionBasis 'dish-record' (copying a published dish row) is not used: every cultural item's nutrition is computed from its recipe. The AFCD has few cultural dish rows.",
+    "[catalogue] Tradition tags place each dish in a cuisine using the dish's Wikipedia article summary (secondary); they are not sourced to a community or official body and should be reviewed. Dishes whose summary does not name a region (for example congee, briam, cơm gà) were not added.",
+    "[catalogue] Significance lines exist only for jiaozi, kibbeh, chicken adobo, kuru fasulye and kiribath, each paraphrasing its Wikipedia summary; every other food has none.",
+    "[catalogue] Sri Lankan fifth dish: not added (a dhal curry has no Sri Lankan source read; hoppers need a fermented batter; pol roti has no article).",
+    "[catalogue] Not added because the recipe would not match the sourced dish or a value is missing: dosa and idli (fermented batter), tinola (fish sauce and papaya), cơm tấm (broken rice and ribs), canh chua (fish), pigeon peas for sambar (not in the AFCD; red lentils stand in and the recipe says so), giant gigantes beans (haricot beans stand in).",
+    "[catalogue] Cravings: only three new cravings were added (jar-sauce butter chicken, bought spring rolls, frozen beef lasagne) because a craving needs computed nutrition from sourced rows. 'Takeaway butter chicken', 'takeaway souvlaki', 'pho from a shop' and 'dim sum' have no AFCD dish row; the planned ten cravings are not reached.",
+    "[catalogue] Existing alternatives: the repo has 19 hand-entered alternatives (not 20); their ingredient lists come from each dish's name and note only, with names and flags, no nutrition change."
   ]
 };
