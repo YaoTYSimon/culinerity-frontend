@@ -258,6 +258,60 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-spring-roll",
+      "publisher": "Wikipedia",
+      "title": "Spring roll (article summary read): Spring rolls are appetisers or dim sum commonly found in Chinese, Vietnamese, Thai and Southeast Asian cuisines. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Spring_roll",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-stir-fried-tomato-and-scrambled-eggs",
+      "publisher": "Wikipedia",
+      "title": "Stir-fried tomato and scrambled eggs (article summary read): Stir-fried tomato and scrambled eggs is a common household dish in China, usually served as a main course. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Stir-fried_tomato_and_scrambled_eggs",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-jiaozi",
+      "publisher": "Wikipedia",
+      "title": "Jiaozi (article summary read): Jiaozi are a type of Chinese dumpling; the article says they are one of the major dishes eaten during Chinese New Year throughout northern China and eaten all year round in the northern provinces. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Jiaozi",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-choy-sum",
+      "publisher": "Wikipedia",
+      "title": "Choy sum (article summary read): Choy sum is a leafy vegetable commonly used in Chinese cuisine. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Choy_sum",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-tofu",
+      "publisher": "Wikipedia",
+      "title": "Tofu (article summary read): Tofu originated in China and is a traditional component of many East Asian and Southeast Asian cuisines. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Tofu",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-fried-rice",
+      "publisher": "Wikipedia",
+      "title": "Fried rice (article summary read): Fried rice is stir-fried cooked rice with eggs, vegetables, seafood or meat; the article says it first developed in China during the Sui dynasty and is part of East Asian, Southeast Asian and South Asian cuisines. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Fried_rice",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -923,6 +977,66 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "tomato-egg-rice",
+        "name": "Tomato and scrambled eggs with rice",
+        "category": "home cooking",
+        "keywords": [
+          "tomato egg",
+          "egg and tomato",
+          "tomato scrambled eggs"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-cabbage-dumplings",
+        "name": "Chicken and cabbage dumplings (jiaozi)",
+        "category": "home cooking",
+        "keywords": [
+          "jiaozi",
+          "dumplings",
+          "chicken dumplings",
+          "potstickers"
+        ],
+        "unitLabel": "1 serve (about 8 dumplings)",
+        "kind": "alternative"
+      },
+      {
+        "id": "choy-sum-garlic-rice",
+        "name": "Stir-fried choy sum with garlic and rice",
+        "category": "home cooking",
+        "keywords": [
+          "choy sum",
+          "chinese greens",
+          "stir fried greens"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "tofu-vegetable-stirfry",
+        "name": "Tofu and vegetable stir-fry with rice",
+        "category": "home cooking",
+        "keywords": [
+          "tofu stir fry",
+          "tofu vegetable",
+          "vegetable stir fry"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-vegetable-fried-rice",
+        "name": "Chicken and vegetable fried rice",
+        "category": "home cooking",
+        "keywords": [
+          "fried rice",
+          "chicken fried rice"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -934,6 +1048,19 @@ export const culturalData: CulturalData = {
           "murgh makhani"
         ],
         "unitLabel": "1 serve",
+        "kind": "craving"
+      },
+      {
+        "id": "spring-rolls-fried",
+        "name": "Deep-fried spring rolls (bought)",
+        "category": "packaged meal",
+        "keywords": [
+          "spring roll",
+          "spring rolls",
+          "dim sum",
+          "takeaway rolls"
+        ],
+        "unitLabel": "2 rolls",
         "kind": "craving"
       }
     ],
@@ -1019,6 +1146,86 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "tomato-egg-rice",
+        "store": "Coles",
+        "pricePerServe": 2.6,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tomato-egg-rice",
+        "store": "Woolworths",
+        "pricePerServe": 2.7,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-cabbage-dumplings",
+        "store": "Coles",
+        "pricePerServe": 1.6,
+        "unitLabel": "1 serve (about 8 dumplings)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-cabbage-dumplings",
+        "store": "Woolworths",
+        "pricePerServe": 1.7,
+        "unitLabel": "1 serve (about 8 dumplings)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "choy-sum-garlic-rice",
+        "store": "Coles",
+        "pricePerServe": 1.5,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "choy-sum-garlic-rice",
+        "store": "Woolworths",
+        "pricePerServe": 1.6,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tofu-vegetable-stirfry",
+        "store": "Coles",
+        "pricePerServe": 2.2,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tofu-vegetable-stirfry",
+        "store": "Woolworths",
+        "pricePerServe": 2.3,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-vegetable-fried-rice",
+        "store": "Coles",
+        "pricePerServe": 2,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-vegetable-fried-rice",
+        "store": "Woolworths",
+        "pricePerServe": 2.1,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -1031,6 +1238,22 @@ export const culturalData: CulturalData = {
         "store": "Woolworths",
         "pricePerServe": 3.5,
         "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spring-rolls-fried",
+        "store": "Coles",
+        "pricePerServe": 4,
+        "unitLabel": "2 rolls",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spring-rolls-fried",
+        "store": "Woolworths",
+        "pricePerServe": 4.1,
+        "unitLabel": "2 rolls",
         "observedAt": "2026-10-28",
         "isSample": true
       }
@@ -1077,12 +1300,60 @@ export const culturalData: CulturalData = {
         "sodiumMg": 186
       },
       {
+        "itemId": "tomato-egg-rice",
+        "energyKj": 2090,
+        "proteinG": 21.4,
+        "fibreG": 3,
+        "sugarG": 5.8,
+        "sodiumMg": 190
+      },
+      {
+        "itemId": "chicken-cabbage-dumplings",
+        "energyKj": 1755,
+        "proteinG": 26.4,
+        "fibreG": 3.2,
+        "sugarG": 3,
+        "sodiumMg": 49
+      },
+      {
+        "itemId": "choy-sum-garlic-rice",
+        "energyKj": 1424,
+        "proteinG": 7.2,
+        "fibreG": 5.6,
+        "sugarG": 1.3,
+        "sodiumMg": 21
+      },
+      {
+        "itemId": "tofu-vegetable-stirfry",
+        "energyKj": 2213,
+        "proteinG": 24.7,
+        "fibreG": 7.7,
+        "sugarG": 6.4,
+        "sodiumMg": 71
+      },
+      {
+        "itemId": "chicken-vegetable-fried-rice",
+        "energyKj": 1951,
+        "proteinG": 26.9,
+        "fibreG": 2.6,
+        "sugarG": 3.6,
+        "sodiumMg": 144
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
         "fibreG": 3.4,
         "sugarG": 5.4,
         "sodiumMg": 756
+      },
+      {
+        "itemId": "spring-rolls-fried",
+        "energyKj": 1047,
+        "proteinG": 7.5,
+        "fibreG": 2.8,
+        "sugarG": 4.3,
+        "sodiumMg": 501
       }
     ],
     "swaps": [
@@ -1110,6 +1381,31 @@ export const culturalData: CulturalData = {
         "cravingId": "pastry",
         "alternativeId": "egg-bhurji",
         "note": "Eggs scrambled with onion, tomato and chilli: a hot savoury breakfast in about 10 minutes."
+      },
+      {
+        "cravingId": "spring-rolls-fried",
+        "alternativeId": "chicken-cabbage-dumplings",
+        "note": "A chicken and cabbage filling wrapped in a plain flour dough and boiled or pan-fried instead of deep-fried."
+      },
+      {
+        "cravingId": "spring-rolls-fried",
+        "alternativeId": "tofu-vegetable-stirfry",
+        "note": "Tofu and vegetables stir-fried in a pan with ginger and garlic, served with rice."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "tomato-egg-rice",
+        "note": "Eggs and tomato cooked in one pan and served over rice, ready in about 15 minutes."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "chicken-vegetable-fried-rice",
+        "note": "Rice, egg, chicken and vegetables stir-fried in one pan: a hot plate from cooked rice and fridge odds and ends."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "choy-sum-garlic-rice",
+        "note": "A plate of garlicky greens with rice: a hot meal for a few dollars."
       }
     ],
     "foodInfo": [
@@ -1571,6 +1867,110 @@ export const culturalData: CulturalData = {
         }
       },
       {
+        "itemId": "tomato-egg-rice",
+        "traditions": [
+          "chinese"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chicken-cabbage-dumplings",
+        "traditions": [
+          "chinese"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        },
+        "significance": "One of the major dishes eaten during Chinese New Year throughout northern China, and eaten all year round in the northern provinces."
+      },
+      {
+        "itemId": "choy-sum-garlic-rice",
+        "traditions": [
+          "chinese"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "tofu-vegetable-stirfry",
+        "traditions": [
+          "chinese"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "soy"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chicken-vegetable-fried-rice",
+        "traditions": [
+          "chinese"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        }
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "traditions": [
           "indian-north"
@@ -1588,10 +1988,31 @@ export const culturalData: CulturalData = {
           "allergensKnown": false,
           "certifiedMeat": true
         }
+      },
+      {
+        "itemId": "spring-rolls-fried",
+        "traditions": [
+          "chinese",
+          "vietnamese"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
       }
     ],
     "cravingIds": [
-      "butter-chicken-jar-sauce"
+      "butter-chicken-jar-sauce",
+      "spring-rolls-fried"
     ]
   },
   "notFound": [
