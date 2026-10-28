@@ -2,10 +2,12 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { NUTRITION, PRICES, POPULAR_CRAVING_IDS, ITEM_RECORDS } from '../packages/core/src/sources/mock/data';
-import { buildCatalogue, buildCultural, computeNutrition, deriveFlags, kcalToKj, melbourneToday, validateCultural, DATA_PATH, OUT_PATH } from './build-cultural.mjs';
+import { buildCatalogue, buildCultural, calendarWarning, computeNutrition, deriveFlags, kcalToKj, melbourneToday, validateCultural, DATA_PATH, OUT_PATH } from './build-cultural.mjs';
 
 const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
-const errorsFor = (mut: (d: any) => void, today?: string) => {
+/** A fixed date, so no test depends on when it runs. */
+const PINNED_TODAY = '2026-10-28';
+const errorsFor = (mut: (d: any) => void, today: string = PINNED_TODAY) => {
   const d = data();
   mut(d);
   return validateCultural(d, today).join('\n');
@@ -63,6 +65,13 @@ describe('build-cultural', () => {
   it('fails freshness when the calendar ends less than 12 months after today', () => {
     expect(errorsFor(() => {}, '2028-09-20')).toMatch(/calendar needs refreshing/);
     expect(errorsFor(() => {}, '2026-10-28')).not.toMatch(/calendar needs refreshing/);
+  });
+  it('building never fails on the clock: an expired calendar is a warning, not an error', () => {
+    expect(() => buildCultural(data(), '2031-01-01')).not.toThrow();
+    expect(buildCultural(data(), '2031-01-01')).toBe(buildCultural(data(), '2026-10-28'));
+    expect(calendarWarning(data(), '2026-10-28')).toBeNull();
+    expect(calendarWarning(data(), '2028-09-20')).toMatch(/less than 12 months of calendar remain.*README/s);
+    expect(calendarWarning({ ...data(), calendar: [] }, '2026-10-28')).toMatch(/less than 12 months/);
   });
   it('rejects a computed row that differs from the algorithm', () => {
     expect(errorsFor((d) => (d.calendar.find((r: any) => r.occasion === 'easter').start = '2027-03-27'))).toMatch(/computed/i);

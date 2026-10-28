@@ -51,7 +51,7 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 
 - The dataset is `docs/superpowers/research/2026-10-27-cultural-food.json`; refresh with `npm run build:cultural` and commit both files. Never invent a nutrition value, attribute, flag or date: unknown stays `unknown` (and never passes a rule). Nutrition is AFCD Release 3 (CC BY 4.0, attribution to Food Standards Australia New Zealand); prices are sample estimates and flagged "Sample data".
 - Traditions name food styles or home-cooking styles, never people. Aboriginal and Torres Strait Islander foods are deliberately not included pending community consultation (the validator rejects them). Rule wording needs a community check.
-- The calendar is `approx` for moon-dependent occasions, and its last row must end at least 12 months after today (the freshness test fails from 2028-09-20 by design: refresh before then). One rule for festivals that span days (Diwali): the row is the main day only (Lakshmi Puja), `approx`, with the span in `note`.
+- The calendar is `approx` for moon-dependent occasions, and its last row must end at least 12 months after today (`npm run build:cultural` prints a warning from 2028-09-20 when less than 12 months remain, and exits non-zero only with `--strict`; tests pin their own date and never depend on the clock: refresh before then). One rule for festivals that span days (Diwali): the row is the main day only (Lakshmi Puja), `approx`, with the span in `note`.
 
 ## Benchmark data rules
 

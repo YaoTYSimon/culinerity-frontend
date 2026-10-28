@@ -90,7 +90,7 @@ function plusOneYear(s) {
 }
 
 /** Returns a list of problems; empty when the dataset is sound. */
-export function validateCultural(d, today = melbourneToday()) {
+export function validateCultural(d, today = melbourneToday(), { freshness = true } = {}) {
   const errs = [];
   const sourceIds = new Set();
   for (const s of d.sources ?? []) {
@@ -148,7 +148,7 @@ export function validateCultural(d, today = melbourneToday()) {
       else if (want.start !== r.start || want.end !== r.end) errs.push(`${tag}: computed range is ${want.start} to ${want.end}, row says ${r.start} to ${r.end}`);
     }
   });
-  if (!lastEnd || lastEnd < plusOneYear(today)) errs.push(`calendar needs refreshing: last end ${lastEnd || '(none)'} is less than 12 months after ${today}`);
+  if (freshness && (!lastEnd || lastEnd < plusOneYear(today))) errs.push(`calendar needs refreshing: last end ${lastEnd || '(none)'} is less than 12 months after ${today}`);
 
   errs.push(...validateCatalogue(d, sourceIds, traditionIds));
 
@@ -377,8 +377,16 @@ export function buildCatalogue(d) {
   };
 }
 
-export function buildCultural(d) {
-  const errs = validateCultural(d);
+/** A plain warning when the calendar ends less than 12 months after `today`, else null. Never throws. */
+export function calendarWarning(d, today = melbourneToday()) {
+  const lastEnd = (d.calendar ?? []).reduce((m, r) => (typeof r.end === 'string' && r.end > m ? r.end : m), '');
+  if (lastEnd && lastEnd >= plusOneYear(today)) return null;
+  return `WARNING: less than 12 months of calendar remain (last row ends ${lastEnd || '(none)'}, today is ${today}). Refresh the occasions calendar soon: see "Refreshing the cultural calendar" in docs/superpowers/research/README.md. Run with --strict to fail on this.`;
+}
+
+/** The generated file's text. Freshness is a warning (see `calendarWarning`), never a build error, so the clock cannot break a build. */
+export function buildCultural(d, today = melbourneToday()) {
+  const errs = validateCultural(d, today, { freshness: false });
   if (errs.length) throw new Error(`Invalid cultural dataset:\n- ${errs.join('\n- ')}`);
   const data = { generatedAt: d.generatedAt, sources: d.sources, traditions: d.traditions, occasions: d.occasions, calendar: d.calendar, catalogue: buildCatalogue(d), notFound: d.notFound };
   return (
@@ -390,6 +398,12 @@ export function buildCultural(d) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  writeFileSync(OUT_PATH, buildCultural(JSON.parse(readFileSync(DATA_PATH, 'utf8'))));
+  const raw = JSON.parse(readFileSync(DATA_PATH, 'utf8'));
+  writeFileSync(OUT_PATH, buildCultural(raw));
   console.log(`Wrote ${OUT_PATH}`);
+  const warning = calendarWarning(raw);
+  if (warning) {
+    console.warn(warning);
+    if (process.argv.includes('--strict')) process.exit(1);
+  }
 }

@@ -52,7 +52,7 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
   - Only 10 traditions have catalogue foods; the starter list has more, and a person's own traditions are kept but have no foods.
   - Aboriginal and Torres Strait Islander foods are deliberately not included pending consultation with the community.
   - Nearby tags for cultural food (Task 8) are deferred.
-  - The calendar ends in 2029 and the freshness test fails from 2028-09-20 by design: refresh it before then (`docs/superpowers/research/README.md`).
+  - The calendar ends in 2029 and `npm run build:cultural` prints a warning (and fails with `--strict`) from 2028-09-20, when less than 12 months of calendar remain: refresh it before then (`docs/superpowers/research/README.md`).
   - Moon-dependent dates (Ramadan, the Eids, Diwali) are approximate; Diwali rows are the main day (Lakshmi Puja) only.
   - Rule wording and one-line meanings still need a community check.
 
