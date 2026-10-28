@@ -18,10 +18,15 @@ The web app uses the sample mocks by default. To use the server, start `VITE_USE
 | --- | --- |
 | `GET /api/cravings?q=` | `FoodItem[]` matching name or keyword (`q` required, max 100 chars; blank gives `[]`) |
 | `GET /api/cravings/popular` | the 10 popular `FoodItem`s |
+| `GET /api/cravings/all` | every `FoodItem` craving, for the web app's picklist and the cultural-food matching done on the device (no parameters) |
 | `GET /api/swaps/:cravingId` | `SwapCandidate[]` (`[]` if unknown) |
+| `GET /api/food-info` | `FoodInfo[]` for every item (ingredient flags, allergens, traditions, kitchen items), read once so the device can match rules locally |
+| `GET /api/food-info/:itemId` | one `FoodInfo`, or `404 {"error": ...}` |
 | `GET /api/prices/:itemId` | `PricePoint[]` (live rows win over sample rows) |
 | `GET /api/nutrition/:itemId` | `Nutrition` or `null` |
 | `GET /api/support?suburb=` | `SupportPlace[]`, that suburb first (suburb max 80 chars) |
+
+No route reads a request body or a profile: a person's food traditions, rules, allergies and meals are matched on their device and are never sent here (a test checks that a profile-shaped body or header changes no response).
 
 Bad input gives `400 {"error": "..."}`; failures give `500 {"error": "Internal server error"}` with no stack trace.
 

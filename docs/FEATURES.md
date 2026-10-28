@@ -1,6 +1,6 @@
 # Culinerity: what has been built
 
-Status as of 27 October 2026. "Branch" says where the work lives; nothing here has been pushed beyond `origin/main` (6db289d).
+Status as of 28 October 2026. "Branch" says where the work lives; nothing here has been pushed beyond `origin/main` (6db289d).
 
 ## On `main` (pushed)
 - **Food-insecurity check-in:** FIES-based questionnaire giving a 0 to 100 "cognitive load of hunger" score (100 = secure, 0 = critical).
@@ -39,5 +39,22 @@ Status as of 27 October 2026. "Branch" says where the work lives; nothing here h
 - **Licence decision.** The City of Casey "Emergency Food Relief Groups" list is not imported: the state portal says CC BY 3, but the publisher's own page states no licence ("All rights reserved"), so it was treated as ambiguous. OpenStreetMap is not used (ODbL would apply to our dataset). Places are entered as facts, one at a time, from operator pages. Sources and licences show in a "Where this comes from" disclosure.
 - **Refresh.** Edit `docs/superpowers/research/2026-10-27-nearby-places.json`, run `npm run build:places`, commit the JSON and `packages/core/src/places/generated/places.generated.ts`. For suburb and postcode centroids (ABS SAL and POA 2021, CC BY 4.0) follow `docs/superpowers/research/README.md`, then `npm run build:centroids`. Tests fail if a generated file is out of date. Never add a place without a source URL, licence text and checked date.
 
+## `feature/cultural-food` (complete, unpushed)
+- **My food** (spec `docs/superpowers/specs/2026-10-27-cultural-food-design.md`): optional, skippable setup of food traditions (10 with catalogue items, plus the person's own words), diet rules, things to avoid and occasions, all stored on the device in the profile. Clearing is one tap with Undo.
+- **Cultural food in Swaps:** 49 sourced cultural foods and 57 swaps with nutrition from AFCD Release 3 (CC BY 4.0). Settings hide items with a chosen allergy, hide or mark "Check the ingredients" for rules (unknown never passes), lead the picklist with the person's traditions, and mark "Fits your kitchen". Without settings Swaps ranks as before (pinned by a golden test).
+- **Meals that felt like home:** a Monday-week ring and a two-tap log with optional dish and who with; this week and last; Remove, Undo, Clear. No streaks or targets.
+- **Occasions and reminders:** 13 occasions with a calendar to 2029 (Hijri by calculation, Easter by computus, Lunar New Year cross-checked with the Hong Kong Observatory, Hebcal for Jewish festivals). A quiet in-page line in Swaps and "Coming up" in My food; no push or notifications.
+- **Privacy:** nothing about food leaves the device; `src/ui/foodPrivacy.test.tsx` checks requests, storage, share text, title, URL and data attributes.
+- **Server:** two read routes, `GET /api/cravings/all` and `GET /api/food-info`, for the catalogue; no profile data is accepted.
+- **Known limits:**
+  - Halal and kosher attributes are mostly `unknown` pending a community reviewer, so those rules mostly show "Check the ingredients", never "Fits".
+  - Prices are sample estimates (labelled "Sample data").
+  - Only 10 traditions have catalogue foods; the starter list has more, and a person's own traditions are kept but have no foods.
+  - Aboriginal and Torres Strait Islander foods are deliberately not included pending consultation with the community.
+  - Nearby tags for cultural food (Task 8) are deferred.
+  - The calendar ends in 2029 and the freshness test fails from 2028-09-20 by design: refresh it before then (`docs/superpowers/research/README.md`).
+  - Moon-dependent dates (Ramadan, the Eids, Diwali) are approximate; Diwali rows are the main day (Lakshmi Puja) only.
+  - Rule wording and one-line meanings still need a community check.
+
 ## Requested, not started
-- **Cultural food and "eat what fits"** (see `docs/superpowers/specs/2026-10-27-cultural-food-design.md`): self-declared traditions, dietary rules and occasions that fit swaps, a "meals that felt like home" tracker and nearby places; all on-device and optional. Treated as a core feature.
+- **Nearby tags for cultural food** (part of the cultural food spec): deferred.

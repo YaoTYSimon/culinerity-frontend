@@ -109,6 +109,19 @@ describe('no profile data reaches the server', () => {
   });
 });
 
+describe('a profile-shaped body changes nothing on the read routes', () => {
+  it('GET with a food profile body or header returns exactly what GET without one returns', async () => {
+    const app = realApp();
+    const profile = JSON.stringify({ foodProfile: { traditions: ['greek'], rules: ['halal'], allergies: ['peanuts'], occasions: ['diwali'], dismissed: [] }, culturalMeals: [{ id: 'm', tradition: 'greek', at: '2026-10-27T01:00:00.000Z', dish: 'Zzquince dish' }] });
+    for (const path of ['/api/cravings/all', '/api/cravings/popular', '/api/food-info', '/api/food-info/smash-burger', '/api/swaps/burger']) {
+      const plain = await app.request(path);
+      const withBody = await app.request(path, { headers: { 'content-type': 'application/json', 'x-profile': profile } });
+      expect(withBody.status, path).toBe(plain.status);
+      expect(await withBody.text(), path).toBe(await plain.text());
+    }
+  });
+});
+
 describe('GET /api/swaps/:cravingId', () => {
   it('returns SwapCandidates', async () => {
     const { res, body } = await get(realApp(), '/api/swaps/burger');
