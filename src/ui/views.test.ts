@@ -15,4 +15,9 @@ describe('resolveView', () => {
     expect(resolveView('nearby', {})).toBe('nearby');
     expect(resolveView('nearby', { score: 10 })).toBe('nearby');
   });
+
+  it('accepts food and meals with or without a score', () => {
+    expect(resolveView('food', {})).toBe('food');
+    expect(resolveView('meals', { score: 10 })).toBe('meals');
+  });
 });

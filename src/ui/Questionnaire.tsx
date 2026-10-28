@@ -3,6 +3,7 @@ import { DOMAINS, FIES_QUESTIONS, FREQUENCIES, type Answers, type DomainId, comp
 import { photoUrl } from '../assets/photos';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
+import { StepProgress } from './StepProgress';
 
 interface Props {
   onComplete: (score: number) => void;
@@ -76,23 +77,7 @@ export function Questionnaire({ onComplete, onSkip }: Props) {
 
   return (
     <section className="flex min-h-[calc(100svh-9rem)] flex-col text-ink" aria-label="Check-in">
-      <div className="flex items-center gap-3">
-        <div
-          role="progressbar"
-          aria-label="Check-in progress"
-          aria-valuemin={1}
-          aria-valuemax={TOTAL}
-          aria-valuenow={step + 1}
-          aria-valuetext={`Question ${step + 1} of ${TOTAL}`}
-          className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-surface"
-        >
-          <div
-            className="h-full rounded-full bg-accent motion-safe:transition-[width] motion-safe:duration-300"
-            style={{ width: `${((step + 1) / TOTAL) * 100}%` }}
-          />
-        </div>
-        <p className="shrink-0 text-sm text-muted" aria-hidden="true">{step + 1} of {TOTAL}</p>
-      </div>
+      <StepProgress label="Check-in progress" noun="Question" step={step + 1} total={TOTAL} />
       <div role="status" aria-live="polite" className="sr-only">
         Question {step + 1} of {TOTAL}: {current.text}
       </div>

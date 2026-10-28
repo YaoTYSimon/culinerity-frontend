@@ -299,4 +299,59 @@ describe('my week', () => {
     fireEvent.click(screen.getByRole('button', { name: 'My week' }));
     expect(screen.getByRole('heading', { level: 1, name: /saved/i })).toBeInTheDocument();
   });
+
+  describe('My food', () => {
+    const next = () => fireEvent.click(screen.getByRole('button', { name: 'Next' }));
+    const stored = () => JSON.parse(localStorage.getItem('culinerity.profile.v1') ?? '{}');
+
+    it('Welcome "Tell us about your food" marks the welcome seen, opens the wizard, and Skip lands on swaps with nothing stored', () => {
+      renderApp(new LocalProfileStore());
+      fireEvent.click(screen.getByRole('button', { name: 'Tell us about your food (optional)' }));
+      expect(screen.getByRole('heading', { level: 1, name: 'Which food traditions fit you?' })).toBeInTheDocument();
+      expect(stored().welcomeSeen).toBe(true);
+      fireEvent.click(screen.getByRole('button', { name: 'Skip' }));
+      expect(screen.getByRole('search')).toBeInTheDocument();
+      expect(stored()).not.toHaveProperty('foodProfile');
+    });
+
+    it('saves Greek, Halal and Peanuts into the profile and changes nothing else', () => {
+      localStorage.setItem('culinerity.profile.v1', JSON.stringify({ ...SEEN, score: 40 }));
+      renderApp(new LocalProfileStore());
+      openMenu('My food');
+      fireEvent.click(screen.getByRole('button', { name: 'Greek' }));
+      next();
+      fireEvent.click(screen.getByRole('button', { name: /^Halal/ }));
+      next();
+      const field = screen.getByLabelText(/avoid/i);
+      fireEvent.change(field, { target: { value: 'Peanuts' } });
+      fireEvent.keyDown(field, { key: 'Enter' });
+      next();
+      next();
+      fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+      expect(stored()).toMatchObject({ welcomeSeen: true, score: 40, foodProfile: { traditions: ['greek'], rules: ['halal'], allergies: ['Peanuts'] } });
+      expect(Object.keys(stored()).sort()).toEqual(['foodProfile', 'score', 'welcomeSeen']);
+    });
+
+    it('clears food settings from the stored JSON, Undo restores, and Clear my meals does the same for meals', () => {
+      const food = { traditions: ['greek'], rules: [], allergies: [], occasions: [], dismissed: [] };
+      const meals = [{ id: 'm1', at: '2026-10-27T01:00:00.000Z', tradition: 'greek' }];
+      localStorage.setItem('culinerity.profile.v1', JSON.stringify({ ...SEEN, foodProfile: food, culturalMeals: meals }));
+      renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
+      openMenu('My food');
+      fireEvent.click(screen.getByRole('button', { name: 'Clear my food settings' }));
+      expect(stored()).not.toHaveProperty('foodProfile');
+      fireEvent.click(within(screen.getByRole('status')).getByRole('button', { name: 'Undo' }));
+      expect(stored().foodProfile.traditions).toEqual(['greek']);
+      fireEvent.click(screen.getByRole('button', { name: 'Clear my meals' }));
+      expect(stored()).not.toHaveProperty('culturalMeals');
+      fireEvent.click(within(screen.getByRole('status')).getByRole('button', { name: 'Undo' }));
+      expect(stored().culturalMeals).toHaveLength(1);
+    });
+
+    it('the Menu opens Meals that felt like home', () => {
+      renderApp(new InMemoryProfileStore(SEEN));
+      openMenu('Meals that felt like home');
+      expect(screen.getByRole('heading', { level: 1, name: 'Meals that felt like home' })).toBeInTheDocument();
+    });
+  });
 });

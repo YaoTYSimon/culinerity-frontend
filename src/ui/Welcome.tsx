@@ -6,12 +6,13 @@ import { RoundPhoto } from './RoundPhoto';
 interface Props {
   onFindNumber: () => void;
   onSkip: () => void;
+  onFood: () => void;
 }
 
 const PHOTOS = ['welcome-curry', 'welcome-soup', 'welcome-pancakes'] as const;
 
 /** Shown once to a first-time visitor. Never a gate: "Skip" goes straight to the swaps. */
-export function Welcome({ onFindNumber, onSkip }: Props) {
+export function Welcome({ onFindNumber, onSkip, onFood }: Props) {
   return (
     <div className="grid gap-6 pb-4 pt-2">
       <div className="grid gap-3">
@@ -29,6 +30,7 @@ export function Welcome({ onFindNumber, onSkip }: Props) {
       <div className="grid justify-items-center gap-2">
         <PillButton onClick={onFindNumber} className="w-full">Find my number</PillButton>
         <PillButton variant="text" onClick={onSkip}>Skip to cheaper swaps</PillButton>
+        <PillButton variant="text" onClick={onFood}>Tell us about your food (optional)</PillButton>
       </div>
     </div>
   );

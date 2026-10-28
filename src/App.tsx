@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react';
-import { addWeekSwap, appendScore, removeOneWeekSwap, type Profile } from '@culinerity/core';
+import { addWeekSwap, appendScore, removeOneWeekSwap, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { RemoveNoteBanner } from './auth/RemoveNoteBanner';
 import { AuthContext } from './auth/useAuth';
@@ -8,6 +8,7 @@ import { BudgetView } from './ui/BudgetView';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
+import { MyFood } from './ui/MyFood';
 import { PillButton } from './ui/PillButton';
 import { PhotoCredits } from './ui/PhotoCredits';
 import { PolicyView } from './ui/PolicyView';
@@ -21,6 +22,12 @@ import { Welcome } from './ui/Welcome';
 import { useFocusOnViewChange } from './ui/useFocusOnViewChange';
 import { useNow } from './ui/useNow';
 
+/** The profile with one optional field set, or with the key removed when there is nothing to keep. */
+function withOptional<K extends 'foodProfile' | 'culturalMeals'>(profile: Profile, key: K, value: Profile[K] | undefined): Profile {
+  const { [key]: _dropped, ...rest } = profile;
+  return value === undefined ? rest : { ...rest, [key]: value };
+}
+
 /** `now` gives the current ISO time; injected in tests. */
 export default function App({ now = () => new Date().toISOString() }: { now?: () => string } = {}) {
   const { profiles } = useServices();
@@ -29,6 +36,8 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
   const [profile, setProfile] = useState<Profile>(() => profiles.load());
   // A guest making a profile from the header: shown in place of the page, so there is still one h1.
   const [creating, setCreating] = useState(false);
+  // Welcome's food button opens the setup even if settings exist; any other navigation resets it.
+  const [foodWizard, setFoodWizard] = useState(false);
   const [requested, setView] = useState<View>(() => (profile.welcomeSeen === true ? homeFor(profile) : 'welcome'));
 
   const update = (next: Profile) => {
@@ -47,6 +56,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
     update({ ...profile, weekSwaps: addWeekSwap(profile.weekSwaps, swap, now()) });
   const go = (to: NavTarget) => {
     setCreating(false);
+    setFoodWizard(false);
     setView(to === 'home' ? homeFor(profile) : to);
   };
 
@@ -85,7 +95,35 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
                 markWelcomeSeen();
                 setView('swaps');
               }}
+              onFood={() => {
+                markWelcomeSeen();
+                setFoodWizard(true);
+                setView('food');
+              }}
             />
+          )}
+
+          {!creating && view === 'food' && (
+            <MyFood
+              key={auth?.current?.id ?? 'guest'}
+              value={profile.foodProfile}
+              startAtWizard={foodWizard}
+              onSave={(foodProfile: FoodProfile | undefined) => update(withOptional(profile, 'foodProfile', foodProfile))}
+              onClear={() => update(withOptional(profile, 'foodProfile', undefined))}
+              meals={profile.culturalMeals}
+              onSaveMeals={(meals: CulturalMeal[] | undefined) => update(withOptional(profile, 'culturalMeals', meals))}
+              onDone={() => {
+                setFoodWizard(false);
+                setView('swaps');
+              }}
+            />
+          )}
+
+          {!creating && view === 'meals' && (
+            <div className="grid gap-3">
+              <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">Meals that felt like home</h1>
+              <p className="text-base text-pretty text-muted">This page is on its way.</p>
+            </div>
           )}
 
           {!creating && view === 'checkin' && (
