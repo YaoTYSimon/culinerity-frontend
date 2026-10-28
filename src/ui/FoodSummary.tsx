@@ -16,11 +16,12 @@ interface Props {
   onClearFood: () => void;
   onClearMeals: () => void;
   onUndo: () => void;
+  onOpenMeals?: () => void;
   onDone: () => void;
 }
 
 /** The view once food settings exist: each section with "Change", then the clear controls. */
-export function FoodSummary({ food, hasMeals, notice, onChange, onSetUp, onClearFood, onClearMeals, onUndo, onDone }: Props) {
+export function FoodSummary({ food, hasMeals, notice, onChange, onSetUp, onClearFood, onClearMeals, onUndo, onOpenMeals, onDone }: Props) {
   return (
     <section aria-label="My food" className="grid min-w-0 gap-5 text-ink">
       <div className="grid gap-3">
@@ -54,6 +55,12 @@ export function FoodSummary({ food, hasMeals, notice, onChange, onSetUp, onClear
         {food && <PillButton variant="surface" onClick={onClearFood}>Clear my food settings</PillButton>}
         {hasMeals && <PillButton variant="surface" onClick={onClearMeals} className="mt-2">Clear my meals</PillButton>}
       </div>
+
+      {onOpenMeals && (
+        <div>
+          <PillButton variant="text" className="-ml-3" onClick={onOpenMeals}>Meals that felt like home</PillButton>
+        </div>
+      )}
 
       <p className="text-sm text-pretty text-muted">{SHARED_DEVICE_LINE}</p>
       <PillButton onClick={onDone} className="w-full">Done</PillButton>

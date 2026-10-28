@@ -348,6 +348,67 @@ describe('my week', () => {
       expect(stored().culturalMeals).toHaveLength(1);
     });
 
+    describe('Meals that felt like home', () => {
+      const PROFILE_KEY = 'culinerity.profile.v1';
+      const TODAY = () => '2026-10-28T12:00:00';
+
+      it('adding a meal changes only the culturalMeals key of the stored JSON', () => {
+        localStorage.setItem(PROFILE_KEY, JSON.stringify({ ...SEEN, score: 40, foodProfile: { traditions: ['greek'], rules: [], allergies: [], occasions: [], dismissed: [] } }));
+        renderApp(new LocalProfileStore(), TODAY);
+        const before = stored();
+        openMenu('Meals that felt like home');
+        fireEvent.click(screen.getByRole('button', { name: 'Add a meal' }));
+        fireEvent.click(screen.getByRole('button', { name: 'Greek' }));
+        const after = stored();
+        expect(Object.keys(after).sort()).toEqual([...Object.keys(before), 'culturalMeals'].sort());
+        expect({ ...after, culturalMeals: undefined }).toEqual({ ...before, culturalMeals: undefined });
+        expect(after.culturalMeals).toHaveLength(1);
+        expect(after.culturalMeals[0]).toMatchObject({ tradition: 'greek' });
+        expect(Object.keys(localStorage)).toEqual([PROFILE_KEY]);
+      });
+
+      it('drops meals older than eight weeks when the profile loads', () => {
+        const old = { id: 'old', at: '2026-07-01T10:00:00.000Z', tradition: 'greek' };
+        const fresh = { id: 'new', at: '2026-10-27T01:00:00.000Z', tradition: 'greek' };
+        localStorage.setItem(PROFILE_KEY, JSON.stringify({ ...SEEN, culturalMeals: [old, fresh] }));
+        renderApp(new LocalProfileStore(), TODAY);
+        expect(stored().culturalMeals.map((m: { id: string }) => m.id)).toEqual(['new']);
+      });
+
+      it('leaves storage untouched on load when nothing is old', () => {
+        const raw = JSON.stringify({ ...SEEN, culturalMeals: [{ id: 'new', at: '2026-10-27T01:00:00.000Z', tradition: 'greek' }] });
+        localStorage.setItem(PROFILE_KEY, raw);
+        renderApp(new LocalProfileStore(), TODAY);
+        expect(localStorage.getItem(PROFILE_KEY)).toBe(raw);
+      });
+
+      it('with no food settings the tracker offers Other and a Set up My food button that opens the setup', () => {
+        renderApp(new InMemoryProfileStore(SEEN), TODAY);
+        openMenu('Meals that felt like home');
+        fireEvent.click(screen.getByRole('button', { name: 'Add a meal' }));
+        expect(screen.getByRole('button', { name: 'Other' })).toBeInTheDocument();
+        fireEvent.click(screen.getByRole('button', { name: 'Set up My food' }));
+        expect(screen.getByRole('heading', { level: 1, name: 'Which food traditions fit you?' })).toBeInTheDocument();
+      });
+
+      it('My week and My food both link to the tracker', () => {
+        renderApp(new InMemoryProfileStore({ ...SEEN, foodProfile: { traditions: ['greek'], rules: [], allergies: [], occasions: [], dismissed: [] } }), TODAY);
+        openMenu('My week');
+        fireEvent.click(screen.getByRole('button', { name: 'Meals that felt like home' }));
+        expect(screen.getByRole('heading', { level: 1, name: 'Meals that felt like home' })).toBeInTheDocument();
+        openMenu('My food');
+        fireEvent.click(screen.getByRole('button', { name: 'Meals that felt like home' }));
+        expect(screen.getByRole('heading', { level: 1, name: 'Meals that felt like home' })).toBeInTheDocument();
+      });
+
+      it('shows the person\'s own traditions as pills', () => {
+        renderApp(new InMemoryProfileStore({ ...SEEN, foodProfile: { traditions: ['greek', "My nan's cooking"], rules: [], allergies: [], occasions: [], dismissed: [] } }), TODAY);
+        openMenu('Meals that felt like home');
+        fireEvent.click(screen.getByRole('button', { name: 'Add a meal' }));
+        expect(screen.getByRole('button', { name: "My nan's cooking" })).toBeInTheDocument();
+      });
+    });
+
     it('the Menu opens Meals that felt like home', () => {
       renderApp(new InMemoryProfileStore(SEEN));
       openMenu('Meals that felt like home');

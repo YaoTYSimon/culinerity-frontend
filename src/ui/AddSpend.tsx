@@ -25,24 +25,24 @@ const pad = (n: number): string => String(n).padStart(2, '0');
 export const localDay = (d: Date): string => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 
 /** The earliest allowed day: Monday of the previous week, local time. */
-function earliestDay(now: Date): string {
+export function earliestDay(now: Date): string {
   const sinceMonday = (now.getDay() + 6) % 7;
   return localDay(new Date(now.getFullYear(), now.getMonth(), now.getDate() - sinceMonday - 7));
 }
 
 /** Today keeps the real time; other days are logged at midday, so they can never fall in the future. */
-function atFor(day: string, now: Date): string {
+export function atFor(day: string, now: Date): string {
   if (day === localDay(now)) return now.toISOString();
   const [y, m, d] = day.split('-').map(Number);
   return new Date(y, m - 1, d, 12, 0, 0).toISOString();
 }
 
-const dayText = (day: string): string => {
+export const dayText = (day: string): string => {
   const [y, m, d] = day.split('-').map(Number);
   return new Date(y, m - 1, d).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' });
 };
 
-const defaultId = (): string => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+export const defaultId = (): string => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
 /** Amount, optional note, category and date: one short form, saved in one tap. */
 export function AddSpend({ now, clock, onAdd, onCancel, newId = defaultId }: Props) {

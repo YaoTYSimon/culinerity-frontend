@@ -171,6 +171,16 @@ describe('MyFood summary', () => {
     expect(screen.getByText('These stay with this profile on this device.')).toBeInTheDocument();
   });
 
+  it('links to the meals tracker only when it can', () => {
+    const onOpenMeals = vi.fn();
+    const { unmount } = setup({ value: FOOD, onOpenMeals });
+    fireEvent.click(screen.getByRole('button', { name: 'Meals that felt like home' }));
+    expect(onOpenMeals).toHaveBeenCalledTimes(1);
+    unmount();
+    setup({ value: FOOD });
+    expect(screen.queryByRole('button', { name: 'Meals that felt like home' })).toBeNull();
+  });
+
   it('startAtWizard opens the wizard even when a profile exists', () => {
     setup({ value: FOOD, startAtWizard: true });
     expect(h1()).toHaveTextContent(H[0]);

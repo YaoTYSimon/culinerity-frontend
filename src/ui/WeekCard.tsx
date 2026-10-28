@@ -13,6 +13,8 @@ interface Props {
   onRemoveOne: (itemId: string) => void;
   onClear: () => void;
   onSeeSwaps: () => void;
+  /** Opens the meals tracker. Nothing about meals is shown or shared here. */
+  onOpenMeals?: () => void;
 }
 
 /**
@@ -30,7 +32,12 @@ const cents = (n: Aud): string => `$${n.toFixed(2)}`;
 type Notice = { kind: 'copied' | 'failed'; forText: string } | null;
 
 /** The shareable week: savings only, never the score, answers, finances, suburb or name. */
-export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props) {
+export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps, onOpenMeals }: Props) {
+  const mealsLink = onOpenMeals && (
+    <div>
+      <PillButton variant="text" className="-ml-3" onClick={onOpenMeals}>Meals that felt like home</PillButton>
+    </div>
+  );
   const summary = weekSummary(week, now);
   const [stored, setNotice] = useState<Notice>(null);
   const text = shareText(summary);
@@ -66,6 +73,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
         <div>
           <PillButton onClick={onSeeSwaps}>See swaps</PillButton>
         </div>
+        {mealsLink}
       </div>
     );
   }
@@ -108,6 +116,7 @@ export function WeekCard({ week, now, onRemoveOne, onClear, onSeeSwaps }: Props)
         {notice?.kind === 'copied' && 'Copied'}
         {notice?.kind === 'failed' && "Couldn't share. You can copy it by hand."}
       </div>
+      {mealsLink}
       {/* A multi-line box cannot be rounded-full (it would become an ellipse and clip the text): a large fixed radius reads as fully round at this height. */}
       {notice?.kind === 'failed' && (
         <textarea

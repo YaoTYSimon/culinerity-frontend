@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react';
-import { addWeekSwap, appendScore, removeOneWeekSwap, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
+import { addWeekSwap, appendScore, removeOneWeekSwap, sanitizeMeals, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { RemoveNoteBanner } from './auth/RemoveNoteBanner';
 import { AuthContext } from './auth/useAuth';
@@ -8,6 +8,7 @@ import { BudgetView } from './ui/BudgetView';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
+import { MealsView } from './ui/MealsView';
 import { MyFood } from './ui/MyFood';
 import { PillButton } from './ui/PillButton';
 import { NutritionCredit } from './ui/NutritionCredit';
@@ -29,12 +30,25 @@ function withOptional<K extends 'foodProfile' | 'culturalMeals'>(profile: Profil
   return value === undefined ? rest : { ...rest, [key]: value };
 }
 
+/** The loaded profile with meals older than the retention period dropped, or the same object when nothing was old. */
+function pruneMeals(profile: Profile, now: Date): Profile {
+  if (!profile.culturalMeals) return profile;
+  const kept = sanitizeMeals(profile.culturalMeals, now);
+  if (kept.length === profile.culturalMeals.length) return profile;
+  return withOptional(profile, 'culturalMeals', kept.length > 0 ? kept : undefined);
+}
+
 /** `now` gives the current ISO time; injected in tests. */
 export default function App({ now = () => new Date().toISOString() }: { now?: () => string } = {}) {
   const { profiles } = useServices();
   const auth = useContext(AuthContext);
   const clockNow = useNow(now);
-  const [profile, setProfile] = useState<Profile>(() => profiles.load());
+  const [profile, setProfile] = useState<Profile>(() => {
+    const loaded = profiles.load();
+    const pruned = pruneMeals(loaded, new Date(now()));
+    if (pruned !== loaded) profiles.save(pruned);
+    return pruned;
+  });
   // A guest making a profile from the header: shown in place of the page, so there is still one h1.
   const [creating, setCreating] = useState(false);
   // Welcome's food button opens the setup even if settings exist; any other navigation resets it.
@@ -113,6 +127,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               onClear={() => update(withOptional(profile, 'foodProfile', undefined))}
               meals={profile.culturalMeals}
               onSaveMeals={(meals: CulturalMeal[] | undefined) => update(withOptional(profile, 'culturalMeals', meals))}
+              onOpenMeals={() => go('meals')}
               onDone={() => {
                 setFoodWizard(false);
                 setView('swaps');
@@ -121,10 +136,18 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           )}
 
           {!creating && view === 'meals' && (
-            <div className="grid gap-3">
-              <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">Meals that felt like home</h1>
-              <p className="text-base text-pretty text-muted">This page is on its way.</p>
-            </div>
+            <MealsView
+              key={auth?.current?.id ?? 'guest'}
+              meals={profile.culturalMeals}
+              traditions={profile.foodProfile?.traditions ?? []}
+              now={clockNow}
+              clock={() => new Date(now())}
+              onChange={(meals) => update(withOptional(profile, 'culturalMeals', meals.length > 0 ? meals : undefined))}
+              onSetUpFood={() => {
+                setFoodWizard(true);
+                setView('food');
+              }}
+            />
           )}
 
           {!creating && view === 'checkin' && (
@@ -169,6 +192,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               onRemoveOne={(itemId) => update({ ...profile, weekSwaps: removeOneWeekSwap(profile.weekSwaps, itemId) })}
               onClear={() => update({ ...profile, weekSwaps: [] })}
               onSeeSwaps={() => setView('swaps')}
+              onOpenMeals={() => setView('meals')}
             />
           )}
 

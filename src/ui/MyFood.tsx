@@ -19,12 +19,14 @@ interface Props {
   /** The saved meals, only so "Clear my meals" can offer Undo. Omit to hide that control. */
   meals?: CulturalMeal[];
   onSaveMeals?: (v: CulturalMeal[] | undefined) => void;
+  /** Shows a link to the meals tracker on the summary. */
+  onOpenMeals?: () => void;
 }
 
 type Mode = { kind: 'summary' } | { kind: 'wizard'; step: number; fromReview: boolean };
 
 /** Setup (one question per screen, like the check-in) and, once settings exist, a summary with clear controls. */
-export function MyFood({ value, onSave, onClear, onDone, startAtWizard = false, meals, onSaveMeals }: Props) {
+export function MyFood({ value, onSave, onClear, onDone, startAtWizard = false, meals, onSaveMeals, onOpenMeals }: Props) {
   const [mode, setMode] = useState<Mode>(() =>
     startAtWizard || !value ? { kind: 'wizard', step: 0, fromReview: false } : { kind: 'summary' });
   const [draft, setDraft] = useState<FoodProfile>(() => emptyDraft(value));
@@ -65,6 +67,7 @@ export function MyFood({ value, onSave, onClear, onDone, startAtWizard = false, 
           setUndo(null);
           setNotice(null);
         }}
+        onOpenMeals={onOpenMeals}
         onDone={onDone}
       />
     );
