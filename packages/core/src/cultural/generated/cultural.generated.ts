@@ -96,6 +96,24 @@ export const culturalData: CulturalData = {
       "verification": "secondary"
     },
     {
+      "id": "wp-spring-roll",
+      "publisher": "Wikipedia",
+      "title": "Spring roll (article summary read): Spring rolls are appetisers or dim sum commonly found in Chinese, Vietnamese, Thai and Southeast Asian cuisines. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Spring_roll",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-sambar-28dish-29",
+      "publisher": "Wikipedia",
+      "title": "Sambar %28dish%29 (article summary read): Sambar is a lentil-based vegetable stew cooked with pigeon peas and tamarind broth; the article says it originates in South Indian cuisine. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Sambar_%28dish%29",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
       "id": "afcd-r3",
       "publisher": "Food Standards Australia New Zealand (FSANZ)",
       "title": "Australian Food Composition Database (AFCD) Release 3, Nutrient profiles (per 100 g) workbook, sheet \"All solids & liquids per 100 g\": energy with dietary fibre equated (kJ), protein, total dietary fibre, total sugars and sodium read from the row of each Public Food Key (e.g. F002594). Food names also identify what each ingredient is.",
@@ -255,15 +273,6 @@ export const culturalData: CulturalData = {
       "publisher": "Wikipedia",
       "title": "Bhurji (article summary read): The disambiguation page lists \"Egg bhurji, an Indian dish made of egg\" only; it gives no region, so the dish is tagged Indian, North and South by that line alone. Used only to place the dish in a cuisine.",
       "url": "https://en.wikipedia.org/wiki/Bhurji",
-      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
-      "accessed": "2026-10-28",
-      "verification": "secondary"
-    },
-    {
-      "id": "wp-spring-roll",
-      "publisher": "Wikipedia",
-      "title": "Spring roll (article summary read): Spring rolls are appetisers or dim sum commonly found in Chinese, Vietnamese, Thai and Southeast Asian cuisines. Used only to place the dish in a cuisine.",
-      "url": "https://en.wikipedia.org/wiki/Spring_roll",
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
@@ -615,15 +624,6 @@ export const culturalData: CulturalData = {
       "publisher": "Wikipedia",
       "title": "Kottu (article summary read): Kottu roti is a Sri Lankan dish of chopped roti with a curry of choice, scrambled egg, onions and chillies. Used only to place the dish in a cuisine.",
       "url": "https://en.wikipedia.org/wiki/Kottu",
-      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
-      "accessed": "2026-10-28",
-      "verification": "secondary"
-    },
-    {
-      "id": "wp-sambar-28dish-29",
-      "publisher": "Wikipedia",
-      "title": "Sambar %28dish%29 (article summary read): Sambar is a lentil-based vegetable stew cooked with pigeon peas and tamarind broth; the article says it originates in South Indian cuisine. Used only to place the dish in a cuisine.",
-      "url": "https://en.wikipedia.org/wiki/Sambar_%28dish%29",
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
@@ -1814,18 +1814,6 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
-        "id": "sambar-style-stew",
-        "name": "Lentil and vegetable stew (sambar style)",
-        "category": "home cooking",
-        "keywords": [
-          "sambar",
-          "sambhar",
-          "lentil vegetable stew"
-        ],
-        "unitLabel": "1 bowl",
-        "kind": "alternative"
-      },
-      {
         "id": "vegetable-upma",
         "name": "Semolina and vegetable porridge (upma)",
         "category": "home cooking",
@@ -1897,19 +1885,6 @@ export const culturalData: CulturalData = {
           "murgh makhani"
         ],
         "unitLabel": "1 serve",
-        "kind": "craving"
-      },
-      {
-        "id": "spring-rolls-fried",
-        "name": "Deep-fried spring rolls (bought)",
-        "category": "packaged meal",
-        "keywords": [
-          "spring roll",
-          "spring rolls",
-          "dim sum",
-          "takeaway rolls"
-        ],
-        "unitLabel": "2 rolls",
         "kind": "craving"
       },
       {
@@ -2632,22 +2607,6 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
-        "itemId": "sambar-style-stew",
-        "store": "Coles",
-        "pricePerServe": 1.7,
-        "unitLabel": "1 bowl",
-        "observedAt": "2026-10-28",
-        "isSample": true
-      },
-      {
-        "itemId": "sambar-style-stew",
-        "store": "Woolworths",
-        "pricePerServe": 1.8,
-        "unitLabel": "1 bowl",
-        "observedAt": "2026-10-28",
-        "isSample": true
-      },
-      {
         "itemId": "vegetable-upma",
         "store": "Coles",
         "pricePerServe": 0.9,
@@ -2744,22 +2703,6 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
-        "itemId": "spring-rolls-fried",
-        "store": "Coles",
-        "pricePerServe": 4,
-        "unitLabel": "2 rolls",
-        "observedAt": "2026-10-28",
-        "isSample": true
-      },
-      {
-        "itemId": "spring-rolls-fried",
-        "store": "Woolworths",
-        "pricePerServe": 4.1,
-        "unitLabel": "2 rolls",
-        "observedAt": "2026-10-28",
-        "isSample": true
-      },
-      {
         "itemId": "lasagne-frozen",
         "store": "Coles",
         "pricePerServe": 4,
@@ -2783,7 +2726,8 @@ export const culturalData: CulturalData = {
         "proteinG": 15.6,
         "fibreG": 11.6,
         "sugarG": 6.7,
-        "sodiumMg": 11
+        "sodiumMg": 11,
+        "sodiumModelled": false
       },
       {
         "itemId": "chana-masala",
@@ -2791,7 +2735,8 @@ export const culturalData: CulturalData = {
         "proteinG": 14.4,
         "fibreG": 17.6,
         "sugarG": 8.1,
-        "sodiumMg": 22
+        "sodiumMg": 22,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-tomato-curry",
@@ -2799,7 +2744,8 @@ export const culturalData: CulturalData = {
         "proteinG": 34.8,
         "fibreG": 5.5,
         "sugarG": 8.8,
-        "sodiumMg": 127
+        "sodiumMg": 127,
+        "sodiumModelled": false
       },
       {
         "itemId": "aloo-gobi",
@@ -2807,7 +2753,8 @@ export const culturalData: CulturalData = {
         "proteinG": 9.1,
         "fibreG": 7.8,
         "sugarG": 12.7,
-        "sodiumMg": 81
+        "sodiumMg": 81,
+        "sodiumModelled": false
       },
       {
         "itemId": "egg-bhurji",
@@ -2815,7 +2762,8 @@ export const culturalData: CulturalData = {
         "proteinG": 16.2,
         "fibreG": 2.3,
         "sugarG": 4.2,
-        "sodiumMg": 186
+        "sodiumMg": 186,
+        "sodiumModelled": false
       },
       {
         "itemId": "tomato-egg-rice",
@@ -2823,7 +2771,8 @@ export const culturalData: CulturalData = {
         "proteinG": 21.4,
         "fibreG": 3,
         "sugarG": 5.8,
-        "sodiumMg": 190
+        "sodiumMg": 190,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-cabbage-dumplings",
@@ -2831,7 +2780,8 @@ export const culturalData: CulturalData = {
         "proteinG": 26.4,
         "fibreG": 3.2,
         "sugarG": 3,
-        "sodiumMg": 49
+        "sodiumMg": 49,
+        "sodiumModelled": false
       },
       {
         "itemId": "choy-sum-garlic-rice",
@@ -2839,7 +2789,8 @@ export const culturalData: CulturalData = {
         "proteinG": 7.2,
         "fibreG": 5.6,
         "sugarG": 1.3,
-        "sodiumMg": 21
+        "sodiumMg": 21,
+        "sodiumModelled": false
       },
       {
         "itemId": "tofu-vegetable-stirfry",
@@ -2847,7 +2798,8 @@ export const culturalData: CulturalData = {
         "proteinG": 24.7,
         "fibreG": 7.7,
         "sugarG": 6.4,
-        "sodiumMg": 71
+        "sodiumMg": 71,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-vegetable-fried-rice",
@@ -2855,7 +2807,8 @@ export const culturalData: CulturalData = {
         "proteinG": 26.9,
         "fibreG": 2.6,
         "sugarG": 3.6,
-        "sodiumMg": 144
+        "sodiumMg": 144,
+        "sodiumModelled": false
       },
       {
         "itemId": "pasta-e-fagioli",
@@ -2863,7 +2816,8 @@ export const culturalData: CulturalData = {
         "proteinG": 17.9,
         "fibreG": 15.2,
         "sugarG": 9.7,
-        "sodiumMg": 59
+        "sodiumMg": 59,
+        "sodiumModelled": false
       },
       {
         "itemId": "minestrone",
@@ -2871,7 +2825,8 @@ export const culturalData: CulturalData = {
         "proteinG": 14.4,
         "fibreG": 12.6,
         "sugarG": 12.2,
-        "sodiumMg": 66
+        "sodiumMg": 66,
+        "sodiumModelled": false
       },
       {
         "itemId": "zucchini-frittata",
@@ -2879,7 +2834,8 @@ export const culturalData: CulturalData = {
         "proteinG": 24.2,
         "fibreG": 1.9,
         "sugarG": 5.1,
-        "sodiumMg": 273
+        "sodiumMg": 273,
+        "sodiumModelled": false
       },
       {
         "itemId": "spaghetti-aglio-olio",
@@ -2887,7 +2843,8 @@ export const culturalData: CulturalData = {
         "proteinG": 12.2,
         "fibreG": 4.7,
         "sugarG": 0.2,
-        "sodiumMg": 13
+        "sodiumMg": 13,
+        "sodiumModelled": false
       },
       {
         "itemId": "penne-arrabbiata",
@@ -2895,7 +2852,8 @@ export const culturalData: CulturalData = {
         "proteinG": 13.9,
         "fibreG": 6.3,
         "sugarG": 6.2,
-        "sodiumMg": 117
+        "sodiumMg": 117,
+        "sodiumModelled": false
       },
       {
         "itemId": "greek-salad",
@@ -2903,7 +2861,8 @@ export const culturalData: CulturalData = {
         "proteinG": 8.9,
         "fibreG": 3.5,
         "sugarG": 7.1,
-        "sodiumMg": 745
+        "sodiumMg": 745,
+        "sodiumModelled": false
       },
       {
         "itemId": "fasolada",
@@ -2911,15 +2870,17 @@ export const culturalData: CulturalData = {
         "proteinG": 15.1,
         "fibreG": 15.7,
         "sugarG": 11.2,
-        "sodiumMg": 70
+        "sodiumMg": 70,
+        "sodiumModelled": false
       },
       {
         "itemId": "spanakorizo",
-        "energyKj": 1389,
-        "proteinG": 8.4,
-        "fibreG": 5,
-        "sugarG": 2.7,
-        "sodiumMg": 110
+        "energyKj": 1367,
+        "proteinG": 8.3,
+        "fibreG": 4.6,
+        "sugarG": 2.4,
+        "sodiumMg": 109,
+        "sodiumModelled": false
       },
       {
         "itemId": "gigantes-plaki",
@@ -2927,15 +2888,17 @@ export const culturalData: CulturalData = {
         "proteinG": 18.2,
         "fibreG": 17,
         "sugarG": 10.9,
-        "sodiumMg": 118
+        "sodiumMg": 118,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-souvlaki-pita",
-        "energyKj": 1505,
-        "proteinG": 34.5,
-        "fibreG": 4.1,
-        "sugarG": 7.1,
-        "sodiumMg": 422
+        "energyKj": 1488,
+        "proteinG": 34.4,
+        "fibreG": 3.8,
+        "sugarG": 6.8,
+        "sodiumMg": 422,
+        "sodiumModelled": false
       },
       {
         "itemId": "mujaddara",
@@ -2943,31 +2906,35 @@ export const culturalData: CulturalData = {
         "proteinG": 21,
         "fibreG": 12.4,
         "sugarG": 5.7,
-        "sodiumMg": 17
+        "sodiumMg": 17,
+        "sodiumModelled": false
       },
       {
         "itemId": "tabbouleh",
-        "energyKj": 1104,
-        "proteinG": 6.7,
-        "fibreG": 7.9,
-        "sugarG": 5,
-        "sodiumMg": 99
+        "energyKj": 1082,
+        "proteinG": 6.5,
+        "fibreG": 7.5,
+        "sugarG": 4.6,
+        "sodiumMg": 99,
+        "sodiumModelled": false
       },
       {
         "itemId": "hummus-veg-sticks",
-        "energyKj": 1319,
-        "proteinG": 12.1,
-        "fibreG": 14.1,
-        "sugarG": 7.3,
-        "sodiumMg": 61
+        "energyKj": 1302,
+        "proteinG": 12,
+        "fibreG": 13.8,
+        "sugarG": 7.1,
+        "sodiumMg": 61,
+        "sodiumModelled": false
       },
       {
         "itemId": "fattoush",
-        "energyKj": 1115,
-        "proteinG": 7.1,
-        "fibreG": 5.4,
-        "sugarG": 7.4,
-        "sodiumMg": 276
+        "energyKj": 1099,
+        "proteinG": 7,
+        "fibreG": 5.1,
+        "sugarG": 7.1,
+        "sodiumMg": 275,
+        "sodiumModelled": false
       },
       {
         "itemId": "baked-kibbeh",
@@ -2975,23 +2942,26 @@ export const culturalData: CulturalData = {
         "proteinG": 26.3,
         "fibreG": 5.3,
         "sugarG": 4,
-        "sodiumMg": 63
+        "sodiumMg": 63,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-pho",
-        "energyKj": 1209,
-        "proteinG": 23.7,
-        "fibreG": 3.5,
-        "sugarG": 3.5,
-        "sodiumMg": 51
+        "energyKj": 1192,
+        "proteinG": 23.6,
+        "fibreG": 3,
+        "sugarG": 3.3,
+        "sodiumMg": 51,
+        "sodiumModelled": false
       },
       {
         "itemId": "beef-pho",
-        "energyKj": 1308,
-        "proteinG": 27.5,
-        "fibreG": 3.5,
-        "sugarG": 3.5,
-        "sodiumMg": 43
+        "energyKj": 1291,
+        "proteinG": 27.4,
+        "fibreG": 3,
+        "sugarG": 3.3,
+        "sodiumMg": 43,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-rice-paper-rolls",
@@ -2999,15 +2969,17 @@ export const culturalData: CulturalData = {
         "proteinG": 18.3,
         "fibreG": 3.8,
         "sugarG": 4.1,
-        "sodiumMg": 523
+        "sodiumMg": 523,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-noodle-bowl",
-        "energyKj": 1503,
-        "proteinG": 26.9,
-        "fibreG": 6.1,
-        "sugarG": 5.4,
-        "sodiumMg": 79
+        "energyKj": 1485,
+        "proteinG": 26.7,
+        "fibreG": 5.5,
+        "sugarG": 5.2,
+        "sodiumMg": 79,
+        "sodiumModelled": false
       },
       {
         "itemId": "tofu-banh-mi",
@@ -3015,7 +2987,8 @@ export const culturalData: CulturalData = {
         "proteinG": 18.3,
         "fibreG": 4.6,
         "sugarG": 5.4,
-        "sodiumMg": 342
+        "sodiumMg": 342,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-adobo-rice",
@@ -3023,7 +2996,8 @@ export const culturalData: CulturalData = {
         "proteinG": 31.2,
         "fibreG": 1.9,
         "sugarG": 0.5,
-        "sodiumMg": 925
+        "sodiumMg": 925,
+        "sodiumModelled": false
       },
       {
         "itemId": "pancit-bihon",
@@ -3031,7 +3005,8 @@ export const culturalData: CulturalData = {
         "proteinG": 19.9,
         "fibreG": 5.6,
         "sugarG": 6.1,
-        "sodiumMg": 624
+        "sodiumMg": 624,
+        "sodiumModelled": false
       },
       {
         "itemId": "ginisang-monggo",
@@ -3039,7 +3014,8 @@ export const culturalData: CulturalData = {
         "proteinG": 17.1,
         "fibreG": 12,
         "sugarG": 6.4,
-        "sodiumMg": 86
+        "sodiumMg": 86,
+        "sodiumModelled": false
       },
       {
         "itemId": "tortang-talong",
@@ -3047,7 +3023,8 @@ export const culturalData: CulturalData = {
         "proteinG": 21.3,
         "fibreG": 5.7,
         "sugarG": 5.6,
-        "sodiumMg": 195
+        "sodiumMg": 195,
+        "sodiumModelled": false
       },
       {
         "itemId": "arroz-caldo",
@@ -3055,15 +3032,17 @@ export const culturalData: CulturalData = {
         "proteinG": 27.6,
         "fibreG": 1.9,
         "sugarG": 0.9,
-        "sodiumMg": 145
+        "sodiumMg": 145,
+        "sodiumModelled": false
       },
       {
         "itemId": "shepherds-salad",
-        "energyKj": 612,
-        "proteinG": 2.7,
-        "fibreG": 4.2,
-        "sugarG": 8.2,
-        "sodiumMg": 29
+        "energyKj": 601,
+        "proteinG": 2.6,
+        "fibreG": 4,
+        "sugarG": 8,
+        "sodiumMg": 29,
+        "sodiumModelled": false
       },
       {
         "itemId": "kuru-fasulye",
@@ -3071,7 +3050,8 @@ export const culturalData: CulturalData = {
         "proteinG": 19.4,
         "fibreG": 15.5,
         "sugarG": 7.9,
-        "sodiumMg": 11
+        "sodiumMg": 11,
+        "sodiumModelled": false
       },
       {
         "itemId": "imam-bayildi",
@@ -3079,7 +3059,8 @@ export const culturalData: CulturalData = {
         "proteinG": 4.4,
         "fibreG": 10.1,
         "sugarG": 12.6,
-        "sodiumMg": 34
+        "sodiumMg": 34,
+        "sodiumModelled": false
       },
       {
         "itemId": "karniyarik",
@@ -3087,15 +3068,17 @@ export const culturalData: CulturalData = {
         "proteinG": 24,
         "fibreG": 10,
         "sugarG": 11.5,
-        "sodiumMg": 79
+        "sodiumMg": 79,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-shish-rice",
-        "energyKj": 1663,
+        "energyKj": 1652,
         "proteinG": 32.3,
-        "fibreG": 3.1,
-        "sugarG": 5.8,
-        "sodiumMg": 111
+        "fibreG": 2.9,
+        "sugarG": 5.6,
+        "sodiumMg": 111,
+        "sodiumModelled": false
       },
       {
         "itemId": "kiribath",
@@ -3103,7 +3086,8 @@ export const culturalData: CulturalData = {
         "proteinG": 6,
         "fibreG": 0.6,
         "sugarG": 1.4,
-        "sodiumMg": 22
+        "sodiumMg": 22,
+        "sodiumModelled": false
       },
       {
         "itemId": "rice-mallung",
@@ -3111,15 +3095,17 @@ export const culturalData: CulturalData = {
         "proteinG": 8.5,
         "fibreG": 6.3,
         "sugarG": 3.9,
-        "sodiumMg": 163
+        "sodiumMg": 163,
+        "sodiumModelled": false
       },
       {
         "itemId": "rice-pol-sambol-egg",
-        "energyKj": 1785,
-        "proteinG": 14.1,
-        "fibreG": 4.2,
-        "sugarG": 2.4,
-        "sodiumMg": 95
+        "energyKj": 1773,
+        "proteinG": 14,
+        "fibreG": 3.8,
+        "sugarG": 2.3,
+        "sodiumMg": 94,
+        "sodiumModelled": false
       },
       {
         "itemId": "chicken-egg-kottu",
@@ -3127,15 +3113,8 @@ export const culturalData: CulturalData = {
         "proteinG": 33.8,
         "fibreG": 5.6,
         "sugarG": 8,
-        "sodiumMg": 153
-      },
-      {
-        "itemId": "sambar-style-stew",
-        "energyKj": 1363,
-        "proteinG": 15.4,
-        "fibreG": 13.1,
-        "sugarG": 17.3,
-        "sodiumMg": 33
+        "sodiumMg": 153,
+        "sodiumModelled": false
       },
       {
         "itemId": "vegetable-upma",
@@ -3143,7 +3122,8 @@ export const culturalData: CulturalData = {
         "proteinG": 7.7,
         "fibreG": 4.9,
         "sugarG": 4.5,
-        "sodiumMg": 20
+        "sodiumMg": 20,
+        "sodiumModelled": false
       },
       {
         "itemId": "curd-rice",
@@ -3151,15 +3131,17 @@ export const culturalData: CulturalData = {
         "proteinG": 10.5,
         "fibreG": 1.6,
         "sugarG": 7.2,
-        "sodiumMg": 81
+        "sodiumMg": 81,
+        "sodiumModelled": false
       },
       {
         "itemId": "lemon-rice-peanuts",
-        "energyKj": 1563,
-        "proteinG": 7.6,
-        "fibreG": 2.3,
-        "sugarG": 0.9,
-        "sodiumMg": 2
+        "energyKj": 1541,
+        "proteinG": 7.5,
+        "fibreG": 1.9,
+        "sugarG": 0.6,
+        "sodiumMg": 1,
+        "sodiumModelled": false
       },
       {
         "itemId": "idiyappam-coconut",
@@ -3167,7 +3149,8 @@ export const culturalData: CulturalData = {
         "proteinG": 7.3,
         "fibreG": 3.6,
         "sugarG": 1.1,
-        "sodiumMg": 2
+        "sodiumMg": 2,
+        "sodiumModelled": false
       },
       {
         "itemId": "rice-mung-pongal",
@@ -3175,7 +3158,8 @@ export const culturalData: CulturalData = {
         "proteinG": 13.4,
         "fibreG": 3.3,
         "sugarG": 8.6,
-        "sodiumMg": 54
+        "sodiumMg": 54,
+        "sodiumModelled": false
       },
       {
         "itemId": "butter-chicken-jar-sauce",
@@ -3184,14 +3168,6 @@ export const culturalData: CulturalData = {
         "fibreG": 3.4,
         "sugarG": 5.4,
         "sodiumMg": 756
-      },
-      {
-        "itemId": "spring-rolls-fried",
-        "energyKj": 1047,
-        "proteinG": 7.5,
-        "fibreG": 2.8,
-        "sugarG": 4.3,
-        "sodiumMg": 501
       },
       {
         "itemId": "lasagne-frozen",
@@ -3209,89 +3185,29 @@ export const culturalData: CulturalData = {
         "note": "Red lentils cook in about 20 minutes with onion, tomato and spices: a hot bowl for a dollar or two."
       },
       {
-        "cravingId": "butter-chicken-jar-sauce",
-        "alternativeId": "chana-masala",
-        "note": "A chickpea curry cooked in tomato and onion with ground spices; serve it with rice or flatbread."
-      },
-      {
-        "cravingId": "butter-chicken-jar-sauce",
-        "alternativeId": "chicken-tomato-curry",
-        "note": "Chicken simmered in tomato, onion and yoghurt with ground spices, served with rice."
-      },
-      {
-        "cravingId": "hot-chips",
-        "alternativeId": "aloo-gobi",
-        "note": "Potato and cauliflower cooked in a pan with onion, tomato and spices: a hot potato dish without the fryer."
-      },
-      {
-        "cravingId": "pastry",
-        "alternativeId": "egg-bhurji",
-        "note": "Eggs scrambled with onion, tomato and chilli: a hot savoury breakfast in about 10 minutes."
-      },
-      {
-        "cravingId": "spring-rolls-fried",
-        "alternativeId": "chicken-cabbage-dumplings",
-        "note": "A chicken and cabbage filling wrapped in a plain flour dough and boiled or pan-fried instead of deep-fried."
-      },
-      {
-        "cravingId": "spring-rolls-fried",
-        "alternativeId": "tofu-vegetable-stirfry",
-        "note": "Tofu and vegetables stir-fried in a pan with ginger and garlic, served with rice."
+        "cravingId": "instant-noodles",
+        "alternativeId": "ginisang-monggo",
+        "note": "Mung beans simmered with tomato, onion and greens."
       },
       {
         "cravingId": "instant-noodles",
-        "alternativeId": "tomato-egg-rice",
-        "note": "Eggs and tomato cooked in one pan and served over rice, ready in about 15 minutes."
+        "alternativeId": "vegetable-upma",
+        "note": "Semolina stirred into water with onion, carrot and beans: a hot breakfast in about 15 minutes."
       },
       {
         "cravingId": "instant-noodles",
-        "alternativeId": "chicken-vegetable-fried-rice",
-        "note": "Rice, egg, chicken and vegetables stir-fried in one pan: a hot plate from cooked rice and fridge odds and ends."
-      },
-      {
-        "cravingId": "pizza",
-        "alternativeId": "choy-sum-garlic-rice",
-        "note": "A plate of garlicky greens with rice: a hot meal for a few dollars."
-      },
-      {
-        "cravingId": "lasagne-frozen",
-        "alternativeId": "pasta-e-fagioli",
-        "note": "Pasta and beans simmered with tomato and vegetables in one pot; makes several serves."
-      },
-      {
-        "cravingId": "lasagne-frozen",
-        "alternativeId": "penne-arrabbiata",
-        "note": "Dried pasta with a quick sauce of tinned tomatoes, garlic and chilli."
+        "alternativeId": "idiyappam-coconut",
+        "note": "Rice flour pressed into noodles and steamed, with fresh coconut."
       },
       {
         "cravingId": "instant-noodles",
-        "alternativeId": "spaghetti-aglio-olio",
-        "note": "Pasta, garlic, oil and chilli: a hot bowl from the pantry in about 15 minutes."
+        "alternativeId": "hummus-veg-sticks",
+        "note": "Chickpeas blended with tahini, lemon and garlic, with crunchy carrot and cucumber to dip."
       },
       {
         "cravingId": "instant-noodles",
-        "alternativeId": "minestrone",
-        "note": "A big pot of vegetables, beans and pasta that gives several hot bowls."
-      },
-      {
-        "cravingId": "pastry",
-        "alternativeId": "zucchini-frittata",
-        "note": "Eggs and zucchini set in a pan and cut into slices, hot or cold."
-      },
-      {
-        "cravingId": "pizza",
-        "alternativeId": "penne-arrabbiata",
-        "note": "Pasta and a spicy tomato sauce from the pantry instead of a delivery order."
-      },
-      {
-        "cravingId": "kebab",
-        "alternativeId": "chicken-souvlaki-pita",
-        "note": "Chicken grilled with lemon in a pita with tomato and a yoghurt, cucumber and garlic sauce."
-      },
-      {
-        "cravingId": "instant-noodles",
-        "alternativeId": "fasolada",
-        "note": "White beans simmered with tomato and vegetables; one pot gives several hot bowls."
+        "alternativeId": "spanakorizo",
+        "note": "Rice and spinach cooked together in one pan with onion, dill and lemon."
       },
       {
         "cravingId": "burger",
@@ -3299,19 +3215,39 @@ export const culturalData: CulturalData = {
         "note": "Tomato, cucumber, onion, olives and feta with olive oil: a big plate that needs no cooking."
       },
       {
-        "cravingId": "pizza",
-        "alternativeId": "spanakorizo",
-        "note": "Rice and spinach cooked together in one pan with onion, dill and lemon."
+        "cravingId": "burger",
+        "alternativeId": "baked-kibbeh",
+        "note": "Lamb and bulgur pressed into a tray and baked, then cut into slices."
       },
       {
-        "cravingId": "fried-chicken",
+        "cravingId": "burger",
+        "alternativeId": "tofu-banh-mi",
+        "note": "A bread roll filled with pan-fried tofu, cucumber, carrot and coriander."
+      },
+      {
+        "cravingId": "burger",
+        "alternativeId": "minestrone",
+        "note": "A big pot of vegetables, beans and pasta that gives several hot bowls."
+      },
+      {
+        "cravingId": "burger",
         "alternativeId": "gigantes-plaki",
         "note": "Large white beans baked in tomato with onion and garlic."
       },
       {
         "cravingId": "burger",
-        "alternativeId": "baked-kibbeh",
-        "note": "Lamb and bulgur pressed into a tray and baked, then cut into slices."
+        "alternativeId": "shepherds-salad",
+        "note": "Tomato, cucumber, capsicum, onion and parsley with lemon and olive oil: a crunchy side."
+      },
+      {
+        "cravingId": "burger",
+        "alternativeId": "karniyarik",
+        "note": "Eggplant filled with lamb mince, onion and tomato, baked and served with rice."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "chicken-souvlaki-pita",
+        "note": "Chicken grilled with lemon in a pita with tomato and a yoghurt, cucumber and garlic sauce."
       },
       {
         "cravingId": "kebab",
@@ -3319,12 +3255,162 @@ export const culturalData: CulturalData = {
         "note": "Toasted pita with cos lettuce, tomato, cucumber and radish in a lemon and olive oil dressing."
       },
       {
-        "cravingId": "hot-chips",
-        "alternativeId": "hummus-veg-sticks",
-        "note": "Chickpeas blended with tahini, lemon and garlic, with crunchy carrot and cucumber to dip."
+        "cravingId": "kebab",
+        "alternativeId": "chicken-noodle-bowl",
+        "note": "Cold rice noodles piled with chicken, salad, herbs and a few peanuts."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "chicken-shish-rice",
+        "note": "Chicken marinated in yoghurt, garlic and lemon, grilled on skewers with capsicum and onion."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "chicken-tomato-curry",
+        "note": "Chicken simmered in tomato, onion and yoghurt with ground spices, served with rice."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "tofu-vegetable-stirfry",
+        "note": "Tofu and vegetables stir-fried in a pan with ginger and garlic, served with rice."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "chicken-rice-paper-rolls",
+        "note": "Rice paper wrapped around noodles, chicken and fresh herbs; nothing is fried."
       },
       {
         "cravingId": "pizza",
+        "alternativeId": "choy-sum-garlic-rice",
+        "note": "A plate of garlicky greens with rice: a hot meal for a few dollars."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "penne-arrabbiata",
+        "note": "Dried pasta with a quick sauce of tinned tomatoes, garlic and chilli."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "spanakorizo",
+        "note": "Rice and spinach cooked together in one pan with onion, dill and lemon."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "mujaddara",
+        "note": "Lentils and rice cooked together and topped with soft onion, from the pantry."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "aloo-gobi",
+        "note": "Potato and cauliflower cooked in a pan with onion, tomato and spices: a hot potato dish without the fryer."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "pasta-e-fagioli",
+        "note": "Pasta and beans simmered with tomato and vegetables in one pot; makes several serves."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "fasolada",
+        "note": "White beans simmered with tomato and vegetables; one pot gives several hot bowls."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "imam-bayildi",
+        "note": "Eggplant filled with onion, garlic and tomato and cooked in olive oil."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "chicken-pho",
+        "note": "Chicken simmered with ginger and onion, served over rice noodles with fresh herbs."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "beef-pho",
+        "note": "Thin beef cooked in a ginger and onion broth, served over rice noodles with fresh herbs."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "pancit-bihon",
+        "note": "Rice noodles stir-fried with chicken and vegetables in one pan."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "arroz-caldo",
+        "note": "Rice cooked down to a porridge with chicken and plenty of ginger; one pot, several bowls."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "kuru-fasulye",
+        "note": "White beans stewed with onion and tomato, with rice; one pot gives several serves."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "rice-mallung",
+        "note": "Shredded greens cooked with coconut, onion and chilli, served over rice."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "chicken-egg-kottu",
+        "note": "Chopped flatbread, chicken, egg and vegetables stir-fried together in one pan."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "curd-rice",
+        "note": "Rice mixed with plain yoghurt, carrot and ginger: a cool meal with no cooking beyond the rice."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "egg-bhurji",
+        "note": "Eggs scrambled with onion, tomato and chilli: a hot savoury breakfast in about 10 minutes."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "zucchini-frittata",
+        "note": "Eggs and zucchini set in a pan and cut into slices, hot or cold."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "kiribath",
+        "note": "Rice cooked in coconut milk until thick and cut into pieces: a filling breakfast."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "vegetable-upma",
+        "note": "Semolina stirred into water with onion, carrot and beans: a hot breakfast in about 15 minutes."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "rice-mung-pongal",
+        "note": "Rice and mung beans cooked soft in milk with ginger: a warm breakfast."
+      },
+      {
+        "cravingId": "fried-chicken",
+        "alternativeId": "chicken-adobo-rice",
+        "note": "Chicken simmered in soy sauce, vinegar and garlic and served with rice."
+      },
+      {
+        "cravingId": "fried-chicken",
+        "alternativeId": "tortang-talong",
+        "note": "Grilled eggplant dipped in egg and pan-fried: a hot savoury breakfast or lunch."
+      },
+      {
+        "cravingId": "fried-chicken",
+        "alternativeId": "tomato-egg-rice",
+        "note": "Eggs and tomato cooked in one pan and served over rice, ready in about 15 minutes."
+      },
+      {
+        "cravingId": "fried-chicken",
+        "alternativeId": "chicken-cabbage-dumplings",
+        "note": "A chicken and cabbage filling wrapped in a plain flour dough and boiled or pan-fried instead of deep-fried."
+      },
+      {
+        "cravingId": "fried-chicken",
+        "alternativeId": "spaghetti-aglio-olio",
+        "note": "Pasta, garlic, oil and chilli: a hot bowl from the pantry in about 15 minutes."
+      },
+      {
+        "cravingId": "fried-chicken",
         "alternativeId": "mujaddara",
         "note": "Lentils and rice cooked together and topped with soft onion, from the pantry."
       },
@@ -3334,94 +3420,9 @@ export const culturalData: CulturalData = {
         "note": "A parsley salad with a little bulgur, tomato and mint, dressed with lemon and olive oil."
       },
       {
-        "cravingId": "spring-rolls-fried",
-        "alternativeId": "chicken-rice-paper-rolls",
-        "note": "Rice paper wrapped around noodles, chicken and fresh herbs; nothing is fried."
-      },
-      {
-        "cravingId": "instant-noodles",
-        "alternativeId": "chicken-pho",
-        "note": "Chicken simmered with ginger and onion, served over rice noodles with fresh herbs."
-      },
-      {
-        "cravingId": "instant-noodles",
-        "alternativeId": "beef-pho",
-        "note": "Thin beef cooked in a ginger and onion broth, served over rice noodles with fresh herbs."
-      },
-      {
-        "cravingId": "kebab",
-        "alternativeId": "chicken-noodle-bowl",
-        "note": "Cold rice noodles piled with chicken, salad, herbs and a few peanuts."
-      },
-      {
-        "cravingId": "burger",
-        "alternativeId": "tofu-banh-mi",
-        "note": "A bread roll filled with pan-fried tofu, cucumber, carrot and coriander."
-      },
-      {
-        "cravingId": "fried-chicken",
-        "alternativeId": "chicken-adobo-rice",
-        "note": "Chicken simmered in soy sauce, vinegar and garlic and served with rice."
-      },
-      {
-        "cravingId": "instant-noodles",
-        "alternativeId": "pancit-bihon",
-        "note": "Rice noodles stir-fried with chicken and vegetables in one pan."
-      },
-      {
-        "cravingId": "instant-noodles",
-        "alternativeId": "arroz-caldo",
-        "note": "Rice cooked down to a porridge with chicken and plenty of ginger; one pot, several bowls."
-      },
-      {
-        "cravingId": "pizza",
-        "alternativeId": "ginisang-monggo",
-        "note": "Mung beans simmered with tomato, onion and greens."
-      },
-      {
-        "cravingId": "pastry",
-        "alternativeId": "tortang-talong",
-        "note": "Grilled eggplant dipped in egg and pan-fried: a hot savoury breakfast or lunch."
-      },
-      {
-        "cravingId": "kebab",
-        "alternativeId": "chicken-shish-rice",
-        "note": "Chicken marinated in yoghurt, garlic and lemon, grilled on skewers with capsicum and onion."
-      },
-      {
-        "cravingId": "burger",
-        "alternativeId": "karniyarik",
-        "note": "Eggplant filled with lamb mince, onion and tomato, baked and served with rice."
-      },
-      {
-        "cravingId": "pizza",
-        "alternativeId": "imam-bayildi",
-        "note": "Eggplant filled with onion, garlic and tomato and cooked in olive oil."
-      },
-      {
-        "cravingId": "instant-noodles",
-        "alternativeId": "kuru-fasulye",
-        "note": "White beans stewed with onion and tomato, with rice; one pot gives several serves."
-      },
-      {
         "cravingId": "hot-chips",
-        "alternativeId": "shepherds-salad",
-        "note": "Tomato, cucumber, capsicum, onion and parsley with lemon and olive oil: a crunchy side."
-      },
-      {
-        "cravingId": "instant-noodles",
-        "alternativeId": "chicken-egg-kottu",
-        "note": "Chopped flatbread, chicken, egg and vegetables stir-fried together in one pan."
-      },
-      {
-        "cravingId": "pastry",
-        "alternativeId": "kiribath",
-        "note": "Rice cooked in coconut milk until thick and cut into pieces: a filling breakfast."
-      },
-      {
-        "cravingId": "pizza",
-        "alternativeId": "rice-mallung",
-        "note": "Shredded greens cooked with coconut, onion and chilli, served over rice."
+        "alternativeId": "chicken-vegetable-fried-rice",
+        "note": "Rice, egg, chicken and vegetables stir-fried in one pan: a hot plate from cooked rice and fridge odds and ends."
       },
       {
         "cravingId": "hot-chips",
@@ -3429,34 +3430,39 @@ export const culturalData: CulturalData = {
         "note": "Rice with a fresh coconut, onion and chilli sambol and a boiled egg."
       },
       {
-        "cravingId": "instant-noodles",
-        "alternativeId": "sambar-style-stew",
-        "note": "Red lentils and vegetables simmered with tamarind and spices; serve with rice."
-      },
-      {
-        "cravingId": "pastry",
-        "alternativeId": "vegetable-upma",
-        "note": "Semolina stirred into water with onion, carrot and beans: a hot breakfast in about 15 minutes."
-      },
-      {
-        "cravingId": "pizza",
-        "alternativeId": "curd-rice",
-        "note": "Rice mixed with plain yoghurt, carrot and ginger: a cool meal with no cooking beyond the rice."
-      },
-      {
-        "cravingId": "burger",
+        "cravingId": "hot-chips",
         "alternativeId": "lemon-rice-peanuts",
         "note": "Rice stirred with lemon juice, turmeric, chilli and peanuts."
       },
       {
-        "cravingId": "instant-noodles",
-        "alternativeId": "idiyappam-coconut",
-        "note": "Rice flour pressed into noodles and steamed, with fresh coconut."
+        "cravingId": "hot-chips",
+        "alternativeId": "spaghetti-aglio-olio",
+        "note": "Pasta, garlic, oil and chilli: a hot bowl from the pantry in about 15 minutes."
       },
       {
-        "cravingId": "pastry",
-        "alternativeId": "rice-mung-pongal",
-        "note": "Rice and mung beans cooked soft in milk with ginger: a warm breakfast."
+        "cravingId": "butter-chicken-jar-sauce",
+        "alternativeId": "chana-masala",
+        "note": "A chickpea curry cooked in tomato and onion with ground spices; serve it with rice or flatbread."
+      },
+      {
+        "cravingId": "butter-chicken-jar-sauce",
+        "alternativeId": "chicken-vegetable-fried-rice",
+        "note": "Rice, egg, chicken and vegetables stir-fried in one pan: a hot plate from cooked rice and fridge odds and ends."
+      },
+      {
+        "cravingId": "butter-chicken-jar-sauce",
+        "alternativeId": "tomato-egg-rice",
+        "note": "Eggs and tomato cooked in one pan and served over rice, ready in about 15 minutes."
+      },
+      {
+        "cravingId": "lasagne-frozen",
+        "alternativeId": "zucchini-frittata",
+        "note": "Eggs and zucchini set in a pan and cut into slices, hot or cold."
+      },
+      {
+        "cravingId": "lasagne-frozen",
+        "alternativeId": "chicken-cabbage-dumplings",
+        "note": "A chicken and cabbage filling wrapped in a plain flour dough and boiled or pan-fried instead of deep-fried."
       }
     ],
     "foodInfo": [
@@ -3502,14 +3508,14 @@ export const culturalData: CulturalData = {
         "itemId": "oven-wedges",
         "traditions": [],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
-          "vegetarian": "yes",
-          "vegan": "yes",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
-          "gluten": "no",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
           "allergens": [],
           "allergensKnown": false,
           "certifiedMeat": false
@@ -3519,13 +3525,13 @@ export const culturalData: CulturalData = {
         "itemId": "roast-chickpeas",
         "traditions": [],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
-          "vegetarian": "yes",
-          "vegan": "yes",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "unknown",
           "allergens": [],
           "allergensKnown": false,
@@ -3540,14 +3546,14 @@ export const culturalData: CulturalData = {
           "kosher": "unknown",
           "vegetarian": "unknown",
           "vegan": "no",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "unknown",
           "allergens": [
             "milk"
           ],
-          "allergensKnown": true,
+          "allergensKnown": false,
           "certifiedMeat": false
         }
       },
@@ -3555,16 +3561,16 @@ export const culturalData: CulturalData = {
         "itemId": "fruit-iced-tea",
         "traditions": [],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
-          "vegetarian": "yes",
-          "vegan": "yes",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "unknown",
           "allergens": [],
-          "allergensKnown": true,
+          "allergensKnown": false,
           "certifiedMeat": false
         }
       },
@@ -3594,11 +3600,11 @@ export const culturalData: CulturalData = {
         "flags": {
           "halal": "unknown",
           "kosher": "unknown",
-          "vegetarian": "yes",
+          "vegetarian": "unknown",
           "vegan": "no",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "unknown",
           "allergens": [
             "egg"
@@ -3631,13 +3637,13 @@ export const culturalData: CulturalData = {
         "itemId": "spaghetti-pomodoro",
         "traditions": [],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
-          "vegetarian": "yes",
-          "vegan": "yes",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "yes",
           "allergens": [
             "wheat"
@@ -3672,16 +3678,16 @@ export const culturalData: CulturalData = {
         "flags": {
           "halal": "unknown",
           "kosher": "unknown",
-          "vegetarian": "yes",
+          "vegetarian": "unknown",
           "vegan": "no",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "unknown",
           "allergens": [
             "milk"
           ],
-          "allergensKnown": true,
+          "allergensKnown": false,
           "certifiedMeat": false
         }
       },
@@ -3689,16 +3695,16 @@ export const culturalData: CulturalData = {
         "itemId": "baked-drumsticks",
         "traditions": [],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
           "vegetarian": "no",
           "vegan": "no",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "unknown",
           "allergens": [],
-          "allergensKnown": true,
+          "allergensKnown": false,
           "certifiedMeat": true
         }
       },
@@ -3783,16 +3789,16 @@ export const culturalData: CulturalData = {
         "itemId": "sparkling-lemon",
         "traditions": [],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
-          "vegetarian": "yes",
-          "vegan": "yes",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "unknown",
           "allergens": [],
-          "allergensKnown": true,
+          "allergensKnown": false,
           "certifiedMeat": false
         }
       },
@@ -3800,16 +3806,16 @@ export const culturalData: CulturalData = {
         "itemId": "unsweetened-iced-tea",
         "traditions": [],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
-          "vegetarian": "yes",
-          "vegan": "yes",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
           "gluten": "unknown",
           "allergens": [],
-          "allergensKnown": true,
+          "allergensKnown": false,
           "certifiedMeat": false
         }
       },
@@ -3985,10 +3991,10 @@ export const culturalData: CulturalData = {
           "chinese"
         ],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
           "vegetarian": "yes",
-          "vegan": "yes",
+          "vegan": "unknown",
           "beef": "no",
           "pork": "no",
           "alcohol": "no",
@@ -4111,10 +4117,10 @@ export const culturalData: CulturalData = {
           "italian"
         ],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
           "vegetarian": "yes",
-          "vegan": "yes",
+          "vegan": "unknown",
           "beef": "no",
           "pork": "no",
           "alcohol": "no",
@@ -4191,10 +4197,10 @@ export const culturalData: CulturalData = {
           "greek"
         ],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
           "vegetarian": "yes",
-          "vegan": "yes",
+          "vegan": "unknown",
           "beef": "no",
           "pork": "no",
           "alcohol": "no",
@@ -4272,10 +4278,10 @@ export const culturalData: CulturalData = {
           "levantine"
         ],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
           "vegetarian": "yes",
-          "vegan": "yes",
+          "vegan": "unknown",
           "beef": "no",
           "pork": "no",
           "alcohol": "no",
@@ -4634,10 +4640,10 @@ export const culturalData: CulturalData = {
           "sri-lankan"
         ],
         "flags": {
-          "halal": "yes",
+          "halal": "unknown",
           "kosher": "unknown",
           "vegetarian": "yes",
-          "vegan": "yes",
+          "vegan": "unknown",
           "beef": "no",
           "pork": "no",
           "alcohol": "no",
@@ -4708,25 +4714,6 @@ export const culturalData: CulturalData = {
           ],
           "allergensKnown": true,
           "certifiedMeat": true
-        }
-      },
-      {
-        "itemId": "sambar-style-stew",
-        "traditions": [
-          "indian-south"
-        ],
-        "flags": {
-          "halal": "yes",
-          "kosher": "unknown",
-          "vegetarian": "yes",
-          "vegan": "yes",
-          "beef": "no",
-          "pork": "no",
-          "alcohol": "no",
-          "gluten": "unknown",
-          "allergens": [],
-          "allergensKnown": false,
-          "certifiedMeat": false
         }
       },
       {
@@ -4852,26 +4839,6 @@ export const culturalData: CulturalData = {
         }
       },
       {
-        "itemId": "spring-rolls-fried",
-        "traditions": [
-          "chinese",
-          "vietnamese"
-        ],
-        "flags": {
-          "halal": "unknown",
-          "kosher": "unknown",
-          "vegetarian": "unknown",
-          "vegan": "unknown",
-          "beef": "unknown",
-          "pork": "unknown",
-          "alcohol": "unknown",
-          "gluten": "unknown",
-          "allergens": [],
-          "allergensKnown": false,
-          "certifiedMeat": false
-        }
-      },
-      {
         "itemId": "lasagne-frozen",
         "traditions": [
           "italian"
@@ -4893,7 +4860,6 @@ export const culturalData: CulturalData = {
     ],
     "cravingIds": [
       "butter-chicken-jar-sauce",
-      "spring-rolls-fried",
       "lasagne-frozen"
     ]
   },
@@ -4916,7 +4882,11 @@ export const culturalData: CulturalData = {
     "[catalogue] Significance lines exist only for jiaozi, kibbeh, chicken adobo, kuru fasulye and kiribath, each paraphrasing its Wikipedia summary; every other food has none.",
     "[catalogue] Sri Lankan fifth dish: not added (a dhal curry has no Sri Lankan source read; hoppers need a fermented batter; pol roti has no article).",
     "[catalogue] Not added because the recipe would not match the sourced dish or a value is missing: dosa and idli (fermented batter), tinola (fish sauce and papaya), cơm tấm (broken rice and ribs), canh chua (fish), pigeon peas for sambar (not in the AFCD; red lentils stand in and the recipe says so), giant gigantes beans (haricot beans stand in).",
-    "[catalogue] Cravings: only three new cravings were added (jar-sauce butter chicken, bought spring rolls, frozen beef lasagne) because a craving needs computed nutrition from sourced rows. 'Takeaway butter chicken', 'takeaway souvlaki', 'pho from a shop' and 'dim sum' have no AFCD dish row; the planned ten cravings are not reached.",
+    "[catalogue] Cravings: only two new cravings were added (jar-sauce butter chicken, frozen beef lasagne) because a craving needs computed nutrition from sourced rows. Bought spring rolls was dropped in review: at the assumed 100 g serve every swap destination was worse on kJ or total sugars. 'Takeaway butter chicken', 'takeaway souvlaki', 'pho from a shop' and 'dim sum' have no AFCD dish row; the planned ten cravings are not reached.",
+    "[catalogue] Review round 1 dropped sambar-style stew (total sugars 17.3 g is more than 5 g above every meal craving it could replace) and these swaps, which were worse than their source on at least two of kJ, total sugars and cheapest price, or by more than 10% kJ or 5 g sugars: butter chicken to chicken tomato curry; spring rolls to dumplings, tofu stir-fry and rice paper rolls; instant noodles to tomato egg, chicken fried rice, minestrone, both phos, pancit, kuru fasulye, kottu, sambar; lasagne to pasta e fagioli and penne arrabbiata. Surviving foods were re-paired to cravings they beat.",
+    "[catalogue] Lemon, lime and lemon-juice are not counted in any recipe: the AFCD 'Juice, lemon' row is a recipe row that repeats the whole-lemon fibre, and squeezed citrus is seasoning.",
+    "[catalogue] Cultural home recipes add no salt, so their sodium is not modelled (sodiumModelled false): it is scored as a neutral stand-in in the health score and is never shown or compared.",
+    "[catalogue] Halal and vegan are unknown for processed or packaged ingredients (canned or tinned goods, passata, olives, coconut milk, cocoa, tamarind, tea, sparkling water, tofu, tahini, jar sauces, bread, noodles, rice paper, cheese) because no read source covers those product types; the 19 existing alternatives use guessed ingredient lists, so they can exclude but never qualify.",
     "[catalogue] Existing alternatives: the repo has 19 hand-entered alternatives (not 20); their ingredient lists come from each dish's name and note only, with names and flags, no nutrition change."
   ]
 };

@@ -15,12 +15,21 @@ const RAW_MAX = 120;
  * then linearly rescaled from [RAW_MIN, RAW_MAX] so distinct items spread across the scale
  * instead of piling up at 0.
  */
-export function healthScore(n: Nutrition): number {
+/**
+ * Sodium scored for an item whose sodium is not modelled (home recipes with no added salt). A fixed mid-range
+ * stand-in, so such an item is neither rewarded for a missing salt figure nor penalised; it is never shown.
+ */
+export const NEUTRAL_SODIUM_MG = 600;
+
+/** Nutrition plus the flag cultural recipes carry when their sodium figure is not a real estimate. */
+export type ScoredNutrition = Nutrition & { sodiumModelled?: boolean };
+
+export function healthScore(n: ScoredNutrition): number {
   const protein = clamp(n.proteinG, 0, 35);
   const fibre = clamp(n.fibreG, 0, 10) * 2.5;
   const lightness = 30 * (1 - clamp(n.energyKj, 0, 1500) / 1500);
   const sugar = clamp(n.sugarG, 0, 60) * 0.7;
-  const sodium = (clamp(n.sodiumMg, 0, 2000) / 100) * 0.8;
+  const sodium = (clamp(n.sodiumModelled === false ? NEUTRAL_SODIUM_MG : n.sodiumMg, 0, 2000) / 100) * 0.8;
   const energy = clamp(n.energyKj, 0, 3000) * 0.008;
   const raw = 60 + protein + fibre + lightness - sugar - sodium - energy;
   const scaled = ((clamp(raw, RAW_MIN, RAW_MAX) - RAW_MIN) / (RAW_MAX - RAW_MIN)) * 100;

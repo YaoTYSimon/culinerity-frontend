@@ -27,10 +27,11 @@ export function seedDatabase(db: Database.Database, data: SeedData = SEED_DATA):
          observed_at = excluded.observed_at`,
     );
     const upsertNutrition = db.prepare(
-      `INSERT INTO nutrition (item_id, energy_kj, protein_g, fibre_g, sugar_g, sodium_mg)
-       VALUES (?, ?, ?, ?, ?, ?)
+      `INSERT INTO nutrition (item_id, energy_kj, protein_g, fibre_g, sugar_g, sodium_mg, sodium_modelled)
+       VALUES (?, ?, ?, ?, ?, ?, ?)
        ON CONFLICT(item_id) DO UPDATE SET energy_kj = excluded.energy_kj, protein_g = excluded.protein_g,
-         fibre_g = excluded.fibre_g, sugar_g = excluded.sugar_g, sodium_mg = excluded.sodium_mg`,
+         fibre_g = excluded.fibre_g, sugar_g = excluded.sugar_g, sodium_mg = excluded.sodium_mg,
+         sodium_modelled = excluded.sodium_modelled`,
     );
     const upsertInfo = db.prepare(
       `INSERT INTO food_info (item_id, info) VALUES (?, ?)
@@ -53,7 +54,7 @@ export function seedDatabase(db: Database.Database, data: SeedData = SEED_DATA):
     data.popularCravingIds.forEach((id, index) => setRank.run(index + 1, id));
 
     for (const p of data.prices) upsertPrice.run(p.itemId, p.store, p.pricePerServe, p.unitLabel, p.observedAt, p.isSample ? 1 : 0);
-    for (const n of data.nutrition) upsertNutrition.run(n.itemId, n.energyKj, n.proteinG, n.fibreG, n.sugarG, n.sodiumMg);
+    for (const n of data.nutrition) upsertNutrition.run(n.itemId, n.energyKj, n.proteinG, n.fibreG, n.sugarG, n.sodiumMg, n.sodiumModelled === false ? 0 : 1);
     for (const f of data.foodInfo) upsertInfo.run(f.itemId, JSON.stringify(f));
     for (const p of data.supportPlaces) upsertPlace.run(p.id, p.name, p.kind, p.suburb, p.notes, p.isSample ? 1 : 0);
   });

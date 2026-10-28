@@ -10,6 +10,7 @@ import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
 import { MyFood } from './ui/MyFood';
 import { PillButton } from './ui/PillButton';
+import { NutritionCredit } from './ui/NutritionCredit';
 import { PhotoCredits } from './ui/PhotoCredits';
 import { PolicyView } from './ui/PolicyView';
 import { Nearby } from './ui/Nearby';
@@ -186,6 +187,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         <footer className="px-4 pb-6 text-[13px] text-muted">
           Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn; photos are credited below.
           <PhotoCredits />
+          <NutritionCredit />
           <PillButton variant="text" onClick={() => go('policy')} className="-ml-3 mt-2">
             Data and policy
           </PillButton>

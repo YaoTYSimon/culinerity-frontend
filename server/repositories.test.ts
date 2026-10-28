@@ -1,3 +1,4 @@
+import Database from 'better-sqlite3';
 import { describe, expect, it } from 'vitest';
 import { SEED_DATA } from '@culinerity/core';
 import { openDatabase } from './db';
@@ -7,6 +8,7 @@ import {
   SqlitePriceRepository,
   SqliteSupportRepository,
 } from './repositories';
+import { applySchema } from './db';
 import { seedDatabase } from './seed';
 import { seededMemoryDb } from './testDb';
 
@@ -92,6 +94,17 @@ describe('prices and nutrition', () => {
   const prices = new SqlitePriceRepository(db);
   const nutrition = new SqliteNutritionRepository(db);
 
+  it('keeps the sodiumModelled flag for cultural recipes and omits it otherwise', async () => {
+    expect(((await nutrition.getNutrition('dal-red-lentil')) as { sodiumModelled?: boolean } | null)?.sodiumModelled).toBe(false);
+    expect(await nutrition.getNutrition('burger')).not.toHaveProperty('sodiumModelled');
+  });
+  it('adds the sodium_modelled column to an older nutrition table', () => {
+    const old = new Database(':memory:');
+    old.exec('CREATE TABLE nutrition (item_id TEXT PRIMARY KEY, energy_kj REAL NOT NULL, protein_g REAL NOT NULL, fibre_g REAL NOT NULL, sugar_g REAL NOT NULL, sodium_mg REAL NOT NULL)');
+    applySchema(old);
+    const cols = (old.prepare('PRAGMA table_info(nutrition)').all() as Array<{ name: string }>).map((c) => c.name);
+    expect(cols).toContain('sodium_modelled');
+  });
   it('every swap item has prices and nutrition', async () => {
     for (const c of await catalogue.popularCravings()) {
       expect((await prices.getPrices(c.id)).length).toBeGreaterThan(0);

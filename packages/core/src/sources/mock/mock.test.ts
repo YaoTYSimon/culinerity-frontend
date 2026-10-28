@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import type { ScoredNutrition } from '../../domain/swaps/health';
 import { MockCatalogue } from './mockCatalogue';
 import { MockFoodSupportSource } from './mockFoodSupportSource';
 import { MockNutritionSource } from './mockNutritionSource';
@@ -77,6 +78,11 @@ describe('MockCatalogue cultural catalogue', () => {
     for (const c of catalogue.popularCravings()) {
       for (const s of catalogue.swapsFor(c.id)) expect(catalogue.foodInfo(s.alternative.id), s.alternative.id).toBeDefined();
     }
+  });
+  it('flags cultural home recipes as sodium not modelled and leaves other items alone', async () => {
+    expect(((await nutrition.getNutrition('dal-red-lentil')) as ScoredNutrition | null)?.sodiumModelled).toBe(false);
+    expect(((await nutrition.getNutrition('butter-chicken-jar-sauce')) as ScoredNutrition | null)?.sodiumModelled).toBeUndefined();
+    expect(((await nutrition.getNutrition('smash-burger')) as ScoredNutrition | null)?.sodiumModelled).toBeUndefined();
   });
   it('every item in the catalogue has sample prices (0.20 to 15) and nutrition', async () => {
     const ids = new Set<string>();

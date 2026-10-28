@@ -147,10 +147,13 @@ export interface CulturalItem {
   kind: 'craving' | 'alternative';
 }
 
+/** Per-serve nutrition; `sodiumModelled: false` marks a recipe with no added salt, whose sodium must not be shown or compared. */
+export type CulturalNutrition = Nutrition & { sodiumModelled?: false };
+
 export interface CulturalCatalogue {
   items: CulturalItem[];
   prices: PricePoint[];
-  nutrition: Nutrition[];
+  nutrition: CulturalNutrition[];
   swaps: Array<{ cravingId: string; alternativeId: string; note: string }>;
   foodInfo: FoodInfo[];
   /** New craving ids, in file order (after the ten popular ones). */

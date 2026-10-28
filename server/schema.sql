@@ -40,7 +40,9 @@ CREATE TABLE IF NOT EXISTS nutrition (
   protein_g REAL NOT NULL,
   fibre_g REAL NOT NULL,
   sugar_g REAL NOT NULL,
-  sodium_mg REAL NOT NULL
+  sodium_mg REAL NOT NULL,
+  -- 0 for recipes with no added salt: the sodium figure is not an estimate and is neither shown nor compared.
+  sodium_modelled INTEGER NOT NULL DEFAULT 1
 );
 
 CREATE TABLE IF NOT EXISTS support_places (

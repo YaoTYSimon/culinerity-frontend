@@ -70,5 +70,6 @@ export const isFoodInfo = (v: unknown): v is FoodInfo =>
   isObject(v.flags) &&
   FLAG_KEYS.every((k) => TRI.includes((v.flags as Record<string, unknown>)[k] as string)) &&
   Array.isArray(v.flags.allergens) &&
+  v.flags.allergens.every((a) => typeof a === 'string') &&
   typeof v.flags.allergensKnown === 'boolean' &&
   typeof v.flags.certifiedMeat === 'boolean';

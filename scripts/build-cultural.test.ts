@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { NUTRITION, PRICES, POPULAR_CRAVING_IDS, ITEM_RECORDS } from '../packages/core/src/sources/mock/data';
 import { buildCatalogue, buildCultural, computeNutrition, deriveFlags, kcalToKj, melbourneToday, validateCultural, DATA_PATH, OUT_PATH } from './build-cultural.mjs';
 
 const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
@@ -192,7 +193,7 @@ describe('computeNutrition', () => {
 describe('catalogue validation', () => {
   const food = () => ({
     id: 'test-food', name: 'Test food', category: 'home cooking', keywords: ['test'], unitLabel: '1 serve', traditions: ['greek'], traditionSourceId: 'afcd-r3',
-    recipe: [{ ingredient: 'ing-a', grams: 100 }], recipeBasis: "Author's own simple recipe for one serve.",
+    recipe: [{ ingredient: 'ing-a', grams: 100 }], recipeBasis: "Author's own simple recipe for one serve.", sodiumModelled: false,
     prices: [{ store: 'Coles', price: 2.4 }, { store: 'Woolworths', price: 2.5 }], priceBasis: 'Typical cost of the ingredients, rounded to 10c.',
   });
   const withFood = (d: any, mut: (f: any) => void = () => {}) => {
@@ -264,6 +265,85 @@ describe('catalogue validation', () => {
   });
 });
 
+describe('review fixes: swaps, words, sodium, flags', () => {
+  const errs = (mut: (d: any) => void) => errorsFor((d) => mut(d));
+  const addFood = (d: any, over: Record<string, unknown> = {}, per: Record<string, number> = {}, swapTo = 'burger') => {
+    d.ingredients.push(ing('ing-a', { per100g: per100g(per) }));
+    d.foods.push({
+      id: 'test-food', name: 'Test food', category: 'home cooking', keywords: ['t'], unitLabel: '1', traditions: ['greek'], traditionSourceId: 'afcd-r3',
+      recipe: [{ ingredient: 'ing-a', grams: 100 }], recipeBasis: 'Own recipe.', sodiumModelled: false,
+      prices: [{ store: 'Coles', price: 1 }, { store: 'Woolworths', price: 1 }], priceBasis: 'x', ...over,
+    });
+    d.swaps.push({ cravingId: swapTo, alternativeId: 'test-food', note: 'A plain note.' });
+  };
+  it('rejects a swap whose destination is worse on at least two of kJ, sugars and price', () => {
+    const b = data().existing.baseline.burger;
+    const msg = errs((d) => addFood(d, { prices: [{ store: 'Coles', price: b.price + 1 }, { store: 'Woolworths', price: b.price + 1 }] }, { energyKj: b.energyKj + 500, sugarG: 0 }));
+    expect(msg).toMatch(/test-food.*worse/i);
+  });
+  it('accepts a swap that is worse on only one of kJ, sugars and price', () => {
+    const b = data().existing.baseline.burger;
+    expect(errs((d) => addFood(d, {}, { energyKj: b.energyKj + 100, sugarG: 0 }))).toBe('');
+    expect(errs((d) => addFood(d, {}, { energyKj: b.energyKj + 500, sugarG: 0 }))).toMatch(/more than 10%/);
+    expect(errs((d) => addFood(d, {}, { energyKj: 100, sugarG: b.sugarG + 6 }))).toMatch(/more than 5 g/);
+  });
+  it('the known-bad swaps are not in the dataset', () => {
+    const pairs = data().swaps.map((s: any) => `${s.cravingId}>${s.alternativeId}`);
+    for (const bad of ['spring-rolls-fried>chicken-rice-paper-rolls', 'instant-noodles>sambar-style-stew', 'instant-noodles>chicken-egg-kottu']) expect(pairs).not.toContain(bad);
+  });
+  it('every committed swap passes the worse-on-two rule and every cultural item still has a swap', () => {
+    expect(validateCultural(data())).toEqual([]);
+  });
+  it('rejects health claims in a cultural swap note', () => {
+    for (const w of ['A healthier plate.', 'Low sodium and filling.', 'Packed with fibre, so more fibre.', 'Less salt than takeaway.']) {
+      expect(errs((d) => { addFood(d); d.swaps[d.swaps.length - 1].note = w; })).toMatch(/health claim/i);
+    }
+  });
+  it('rejects "authentic" and people-naming in a name, recipeBasis or significance', () => {
+    expect(errs((d) => addFood(d, { name: 'Authentic stew' }))).toMatch(/authentic/i);
+    expect(errs((d) => addFood(d, { recipeBasis: 'What people eat.' }))).toMatch(/people/i);
+    expect(errs((d) => addFood(d, { significance: 'Authentic festival food.', significanceSourceId: 'afcd-r3' }))).toMatch(/authentic/i);
+  });
+  it('requires sodiumModelled to be a boolean and marks every cultural food as not modelled', () => {
+    expect(errs((d) => addFood(d, { sodiumModelled: undefined }))).toMatch(/sodiumModelled/);
+    const c = buildCatalogue(data());
+    const foods = new Set(data().foods.map((f: any) => f.id));
+    for (const n of c.nutrition) expect(n.sodiumModelled === false, n.itemId).toBe(foods.has(n.itemId));
+  });
+  it('sets halal and vegan unknown for processed or packaged ingredients', () => {
+    const rows = new Map<string, any>(data().ingredients.map((i: any) => [i.id, i]));
+    const processed = ['chickpeas-canned', 'passata', 'tomatoes-tinned', 'olives', 'coconut-milk', 'cocoa', 'tamarind', 'tea', 'sparkling-water', 'butter-chicken-sauce', 'turkish-bread', 'bread-roll', 'egg-noodles', 'cheese', 'feta', 'ricotta', 'tofu-firm', 'rice-paper', 'soy-sauce', 'tahini', 'peanut-butter', 'mixed-vegetables'];
+    for (const id of processed) {
+      const r = rows.get(id);
+      if (!r) continue;
+      expect([r.halal, r.vegan], id).toEqual(['unknown', id === 'cheese' || id === 'feta' || id === 'ricotta' ? 'no' : 'unknown']);
+    }
+  });
+  it('never marks an existing alternative as fitting a dietary rule or allergy from a guessed ingredient list', () => {
+    const c = buildCatalogue(data());
+    for (const id of data().existing.alternatives) {
+      const f = c.foodInfo.find((x: any) => x.itemId === id).flags;
+      expect(f.allergensKnown, id).toBe(false);
+      for (const k of ['halal', 'kosher', 'vegetarian', 'vegan']) expect(f[k], `${id} ${k}`).not.toBe('yes');
+      for (const k of ['beef', 'pork', 'alcohol', 'gluten']) expect(f[k], `${id} ${k}`).not.toBe('no');
+    }
+  });
+  it('keeps existing ids and swap baselines equal to the hand-entered data', () => {
+    const e = data().existing;
+    expect(e.cravings).toEqual(POPULAR_CRAVING_IDS);
+    const handIds = new Set(ITEM_RECORDS.map((r) => r.item.id));
+    for (const id of [...e.cravings, ...e.alternatives]) expect(handIds.has(id), id).toBe(true);
+    for (const id of e.cravings) {
+      const n = NUTRITION.find((x) => x.itemId === id)!;
+      const price = Math.min(...PRICES.filter((p) => p.itemId === id).map((p) => p.pricePerServe));
+      expect(e.baseline[id], id).toEqual({ energyKj: n.energyKj, sugarG: n.sugarG, price });
+    }
+  });
+  it('drops lemon juice from recipes (the AFCD juice row repeats whole-lemon fibre)', () => {
+    for (const f of [...data().foods, ...data().cravings]) expect(f.recipe.map((r: any) => r.ingredient), f.id).not.toContain('lemon-juice');
+  });
+});
+
 describe('generated catalogue', () => {
   const built = () => buildCatalogue(data());
   it('has a FoodInfo for every existing alternative and every cultural item', () => {
@@ -297,7 +377,7 @@ describe('generated catalogue', () => {
     const table = new Map(d.ingredients.map((i: any) => [i.id, i]));
     const c = built();
     for (const f of [...d.foods, ...d.cravings]) {
-      expect(c.nutrition.find((n: any) => n.itemId === f.id), f.id).toEqual({ itemId: f.id, ...computeNutrition(f, table) });
+      expect(c.nutrition.find((n: any) => n.itemId === f.id), f.id).toEqual({ itemId: f.id, ...computeNutrition(f, table), ...(f.sodiumModelled === false ? { sodiumModelled: false } : {}) });
     }
   });
   it('gives the existing smash burger beef yes, and pork unknown while its bread is unknown', () => {

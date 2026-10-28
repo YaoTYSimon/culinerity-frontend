@@ -24,6 +24,8 @@ interface ItemRecord {
   macros: Macros;
   /** Defaults to OBSERVED_AT. */
   observedAt?: string;
+  /** False for cultural home recipes with no added salt: the sodium figure is not modelled. */
+  sodiumModelled?: false;
 }
 
 const OBSERVED_AT = '2026-10-01';
@@ -84,6 +86,7 @@ const GENERATED_ITEM_RECORDS: ItemRecord[] = generated.items.map((i) => {
     prices: prices.map((p): [Store, number] => [p.store, p.pricePerServe]),
     macros: [n.energyKj, n.proteinG, n.fibreG, n.sugarG, n.sodiumMg],
     observedAt: prices[0]?.observedAt,
+    ...(n.sodiumModelled === false ? { sodiumModelled: false as const } : {}),
   };
 });
 
@@ -151,8 +154,9 @@ export const PRICES: PricePoint[] = ITEM_RECORDS.flatMap((r) =>
 );
 
 /** Flattened nutrition records derived from ITEM_RECORDS. */
-export const NUTRITION: Nutrition[] = ITEM_RECORDS.map(({ item, macros: [energyKj, proteinG, fibreG, sugarG, sodiumMg] }) => ({
+export const NUTRITION: Array<Nutrition & { sodiumModelled?: false }> = ITEM_RECORDS.map(({ item, sodiumModelled, macros: [energyKj, proteinG, fibreG, sugarG, sodiumMg] }) => ({
   itemId: item.id,
+  ...(sodiumModelled === false ? { sodiumModelled } : {}),
   energyKj,
   proteinG,
   fibreG,

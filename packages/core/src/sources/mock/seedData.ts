@@ -1,5 +1,5 @@
 import type { FoodItem, Nutrition, PricePoint, SupportPlace } from '../../domain/types';
-import type { FoodInfo } from '../../food/types';
+import type { CulturalNutrition, FoodInfo } from '../../food/types';
 import { ALL_CRAVING_IDS, FOOD_INFO, ITEM_RECORDS, NUTRITION, POPULAR_CRAVING_IDS, PRICES, SUPPORT_PLACES, SWAP_RECORDS } from './data';
 
 export interface SwapRecord {
@@ -24,7 +24,7 @@ export interface SeedData {
   /** Traditions and rule flags per item. */
   foodInfo: FoodInfo[];
   prices: PricePoint[];
-  nutrition: Nutrition[];
+  nutrition: CulturalNutrition[];
   supportPlaces: SupportPlace[];
 }
 

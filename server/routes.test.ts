@@ -84,9 +84,9 @@ describe('GET /api/food-info', () => {
     expect(body).toEqual(SEED_DATA.foodInfo.find((f) => f.itemId === 'smash-burger'));
     expect(body.flags.beef).toBe('yes');
   });
-  it('returns 200 null for an unknown item and 400 for a bad id', async () => {
+  it('returns 404 {error} for an unknown item and 400 for a bad id', async () => {
     const app = realApp();
-    expect(await get(app, '/api/food-info/nope').then((r) => [r.res.status, r.body])).toEqual([200, null]);
+    expect(await get(app, '/api/food-info/nope').then((r) => [r.res.status, r.body])).toEqual([404, { error: 'No food info for that item.' }]);
     expect((await get(app, `/api/food-info/${'a'.repeat(65)}`)).res.status).toBe(400);
   });
   it('lists every FoodInfo', async () => {

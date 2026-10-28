@@ -3,7 +3,7 @@ import { HttpCatalogue } from './HttpCatalogue';
 import { HttpFoodSupportSource } from './HttpFoodSupportSource';
 import { HttpNutritionSource } from './HttpNutritionSource';
 import { HttpPriceSource } from './HttpPriceSource';
-import type { FetchLike } from './httpJson';
+import { isFoodInfo, type FetchLike } from './httpJson';
 import { SEED_DATA } from '../mock/seedData';
 
 const ok = (body: unknown): FetchLike => async () => ({ ok: true, status: 200, json: async () => body });
@@ -123,6 +123,20 @@ describe('HttpCatalogue', () => {
     const c = await HttpCatalogue.load(f);
     expect(c.allCravings()).toEqual([burger]);
     expect(c.foodInfo('smash-burger')).toBeUndefined();
+  });
+  it('when the popular request fails but all succeeds, popular stays empty and search still works', async () => {
+    const f: FetchLike = async (url) => (url.endsWith('/api/cravings/popular') ? rejected(url) : url.endsWith('/api/cravings/all') ? ok([burger])(url) : routed(url));
+    const c = await HttpCatalogue.load(f);
+    expect(c.popularCravings()).toEqual([]);
+    expect(c.allCravings()).toEqual([burger]);
+    expect(c.findCravings('burger')).toEqual([burger]);
+  });
+  it('isFoodInfo rejects non-string allergen entries and non-string traditions', () => {
+    const info = SEED_DATA.foodInfo[0]!;
+    expect(isFoodInfo(info)).toBe(true);
+    expect(isFoodInfo({ ...info, flags: { ...info.flags, allergens: [1] } })).toBe(false);
+    expect(isFoodInfo({ ...info, flags: { ...info.flags, allergens: ['wheat', null] } })).toBe(false);
+    expect(isFoodInfo({ ...info, traditions: [3] })).toBe(false);
   });
   it.each(failures)('is empty on %s', async (_n, f) => {
     const c = await HttpCatalogue.load(f);

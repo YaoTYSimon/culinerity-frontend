@@ -49,7 +49,8 @@ export function createApp(repos: Repositories, options: AppOptions = {}): Hono {
   app.get('/api/food-info/:itemId', async (c) => {
     const id = c.req.param('itemId');
     if (!ID_PATTERN.test(id)) return bad(c, 'Invalid item id.');
-    return c.json((await repos.catalogue.foodInfo(id)) ?? null);
+    const info = await repos.catalogue.foodInfo(id);
+    return info ? c.json(info) : c.json({ error: 'No food info for that item.' }, 404);
   });
 
   app.get('/api/prices/:itemId', async (c) => {

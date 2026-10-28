@@ -24,6 +24,8 @@ const FAITH = [...TRI, 'certified-meat'];
 const TRI_KEYS = ['vegetarian', 'vegan', 'beef', 'pork', 'alcohol', 'gluten'];
 const FAITH_KEYS = ['halal', 'kosher'];
 const ALLERGEN_IDS = ['wheat', 'fish', 'crustacean', 'mollusc', 'egg', 'milk', 'lupin', 'peanut', 'soy', 'sesame', 'almond', 'brazil-nut', 'cashew', 'hazelnut', 'macadamia', 'pecan', 'pistachio', 'pine-nut', 'walnut', 'barley', 'oats', 'rye', 'sulphites'];
+const FORBIDDEN_WORDS = /authentic|\bpeoples?\b/i;
+const HEALTH_CLAIM = /health|low[- ](sodium|salt|sugar|fat|kj|energy)|less (sodium|salt|sugar|fat)|more (fibre|fiber|protein)|high in|rich in|packed with|lighter|nutritio|good for you|wholesome/i;
 const MIN_PRICE = 0.2;
 const MAX_PRICE = 15;
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -154,6 +156,38 @@ export function validateCultural(d, today = melbourneToday()) {
   return errs;
 }
 
+/** kJ, total sugars and cheapest price of an item: computed for a cultural item, from `existing.baseline` otherwise. */
+function swapFigures(id, d, table) {
+  const f = [...(d.foods ?? []), ...(d.cravings ?? [])].find((x) => x.id === id);
+  if (f) {
+    try {
+      const n = computeNutrition(f, table);
+      return { energyKj: n.energyKj, sugarG: n.sugarG, price: Math.min(...f.prices.map((p) => p.price)) };
+    } catch {
+      return undefined;
+    }
+  }
+  return d.existing?.baseline?.[id];
+}
+
+/**
+ * A swap is dropped when its destination is worse than the source on at least two of kJ, total sugars and
+ * cheapest price. Sodium is left out: cultural recipes model no added salt (sodiumModelled false).
+ */
+function worseSwap(sw, tag, d, own) {
+  if (!own.has(sw.cravingId) && !own.has(sw.alternativeId)) return [];
+  const table = new Map((d.ingredients ?? []).map((i) => [i.id, i]));
+  const from = swapFigures(sw.cravingId, d, table);
+  const to = swapFigures(sw.alternativeId, d, table);
+  if (!from || !to) return [];
+  const worse = ['energyKj', 'sugarG', 'price'].filter((k) => to[k] > from[k]);
+  if (worse.length >= 2) return [`${tag}: destination is worse on ${worse.join(' and ')}`];
+  // Material guard: a single clear loss is still a bad swap (more than 10% more kJ, or more than 5 g more total sugars).
+  if (to.energyKj > from.energyKj * 1.1) return [`${tag}: destination is worse on kJ by more than 10%`];
+  if (to.sugarG > from.sugarG + 5) return [`${tag}: destination is worse on total sugars by more than 5 g`];
+  return [];
+}
+
 /** Problems in the ingredient table, foods, cravings and swaps. Absent sections are treated as empty. */
 function validateCatalogue(d, sourceIds, traditionIds) {
   const errs = [];
@@ -198,6 +232,10 @@ function validateCatalogue(d, sourceIds, traditionIds) {
     if (itemIds.has(f.id) || own.has(f.id)) errs.push(`duplicate item id ${f.id}`);
     own.set(f.id, kind);
     for (const k of ['name', 'category', 'unitLabel', 'recipeBasis', 'priceBasis']) if (!nonEmpty(f[k])) errs.push(`${tag}: needs ${k}`);
+    for (const k of ['name', 'recipeBasis', 'significance']) {
+      if (typeof f[k] === 'string' && FORBIDDEN_WORDS.test(f[k])) errs.push(`${tag}: ${k} must not say "authentic" or name people`);
+    }
+    if (typeof f.sodiumModelled !== 'boolean') errs.push(`${tag}: sodiumModelled must be true or false`);
     if (!Array.isArray(f.keywords) || f.keywords.some((k) => !nonEmpty(k))) errs.push(`${tag}: keywords must be non-empty strings`);
     const trads = f.traditions ?? [];
     if (kind === 'food' && trads.length === 0) errs.push(`${tag}: needs at least one tradition`);
@@ -245,7 +283,9 @@ function validateCatalogue(d, sourceIds, traditionIds) {
     if (pairs.has(tag)) errs.push(`${tag}: duplicate swap`);
     pairs.add(tag);
     if (!nonEmpty(sw.note)) errs.push(`${tag}: needs a note`);
-    else if (/authentic|\bpeople\b/i.test(sw.note)) errs.push(`${tag}: note must not say "authentic" or name people`);
+    else if (FORBIDDEN_WORDS.test(sw.note)) errs.push(`${tag}: note must not say "authentic" or name people`);
+    else if (HEALTH_CLAIM.test(sw.note)) errs.push(`${tag}: note makes a health claim`);
+    errs.push(...worseSwap(sw, tag, d, own));
   }
   for (const id of own.keys()) {
     if (!swaps.some((sw) => sw.cravingId === id || sw.alternativeId === id)) errs.push(`${id} is in no swap`);
@@ -299,12 +339,24 @@ export function deriveFlags(ingredients, lookup = () => undefined) {
   return { halal, kosher, vegetarian: flags.vegetarian, vegan: flags.vegan, beef: flags.beef, pork: flags.pork, alcohol: flags.alcohol, gluten: flags.gluten, allergens, allergensKnown, certifiedMeat };
 }
 
+/**
+ * The 19 hand-entered alternatives have ingredient lists guessed from each dish's name and note, not a sourced recipe.
+ * So a guessed list may exclude (a "no" for a positive rule, a "yes" for a "contains" flag) but never qualify:
+ * every would-be pass becomes unknown, and the allergen list is never complete.
+ */
+function guessedListFlags(f) {
+  const out = { ...f, allergensKnown: false };
+  for (const k of ['halal', 'kosher', 'vegetarian', 'vegan']) if (out[k] === 'yes') out[k] = 'unknown';
+  for (const k of ['beef', 'pork', 'alcohol', 'gluten']) if (out[k] === 'no') out[k] = 'unknown';
+  return out;
+}
+
 /** The catalogue records the app consumes: items, sample prices, computed nutrition, swaps and derived FoodInfo. */
 export function buildCatalogue(d) {
   const table = new Map((d.ingredients ?? []).map((i) => [i.id, i]));
   const lookup = (id) => table.get(id);
   const made = [...(d.foods ?? []).map((f) => ({ f, kind: 'alternative' })), ...(d.cravings ?? []).map((f) => ({ f, kind: 'craving' }))];
-  const foodInfo = (d.existingAlternatives ?? []).map((a) => ({ itemId: a.itemId, traditions: [], flags: deriveFlags(a.ingredients, lookup) }));
+  const foodInfo = (d.existingAlternatives ?? []).map((a) => ({ itemId: a.itemId, traditions: [], flags: guessedListFlags(deriveFlags(a.ingredients, lookup)) }));
   for (const { f } of made) {
     foodInfo.push({
       itemId: f.id,
@@ -318,7 +370,7 @@ export function buildCatalogue(d) {
     prices: made.flatMap(({ f }) =>
       f.prices.map((p) => ({ itemId: f.id, store: p.store, pricePerServe: p.price, unitLabel: f.unitLabel, observedAt: d.priceObservedAt, isSample: true })),
     ),
-    nutrition: made.map(({ f }) => ({ itemId: f.id, ...computeNutrition(f, table) })),
+    nutrition: made.map(({ f }) => ({ itemId: f.id, ...computeNutrition(f, table), ...(f.sodiumModelled === false ? { sodiumModelled: false } : {}) })),
     swaps: (d.swaps ?? []).map((sw) => ({ cravingId: sw.cravingId, alternativeId: sw.alternativeId, note: sw.note })),
     foodInfo,
     cravingIds: (d.cravings ?? []).map((c) => c.id),

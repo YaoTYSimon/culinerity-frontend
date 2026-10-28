@@ -179,9 +179,9 @@ export class SqliteNutritionRepository implements NutritionRepository {
 
   getNutrition(itemId: string): Nutrition | null {
     const r = this.db
-      .prepare('SELECT item_id, energy_kj, protein_g, fibre_g, sugar_g, sodium_mg FROM nutrition WHERE item_id = ?')
+      .prepare('SELECT item_id, energy_kj, protein_g, fibre_g, sugar_g, sodium_mg, sodium_modelled FROM nutrition WHERE item_id = ?')
       .get(itemId) as
-      | { item_id: string; energy_kj: number; protein_g: number; fibre_g: number; sugar_g: number; sodium_mg: number }
+      | { item_id: string; energy_kj: number; protein_g: number; fibre_g: number; sugar_g: number; sodium_mg: number; sodium_modelled: number }
       | undefined;
     return r
       ? {
@@ -191,6 +191,7 @@ export class SqliteNutritionRepository implements NutritionRepository {
           fibreG: r.fibre_g,
           sugarG: r.sugar_g,
           sodiumMg: r.sodium_mg,
+          ...(r.sodium_modelled === 0 ? { sodiumModelled: false as const } : {}),
         }
       : null;
   }
