@@ -366,6 +366,51 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-greek-salad",
+      "publisher": "Wikipedia",
+      "title": "Greek salad (article summary read): Greek salad (horiatiki) is a salad in Greek cuisine of tomato, cucumber, onion, feta and olives dressed with oregano and olive oil. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Greek_salad",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-fasolada",
+      "publisher": "Wikipedia",
+      "title": "Fasolada (article summary read): Fasolada is a Greek and Cypriot soup of dry white beans, olive oil and vegetables, sometimes called the \"national food of the Greeks\". Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Fasolada",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-spanakorizo",
+      "publisher": "Wikipedia",
+      "title": "Spanakorizo (article summary read): Spanakorizo is a Greek vegetarian dish of spinach and rice, a pilaf eaten hot or cold. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Spanakorizo",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-gigantes-plaki",
+      "publisher": "Wikipedia",
+      "title": "Gigantes plaki (article summary read): Gigantes plaki is a Greek dish of large white beans baked in a tomato sauce. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Gigantes_plaki",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-souvlaki",
+      "publisher": "Wikipedia",
+      "title": "Souvlaki (article summary read): Souvlaki is a Greek food of small pieces of meat grilled on a skewer, served with or inside a pita; the article says pork is the meat usually used in Greece and Cyprus. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Souvlaki",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1150,6 +1195,67 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "greek-salad",
+        "name": "Greek salad (horiatiki)",
+        "category": "home cooking",
+        "keywords": [
+          "greek salad",
+          "horiatiki",
+          "village salad"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "fasolada",
+        "name": "White bean soup (fasolada)",
+        "category": "home cooking",
+        "keywords": [
+          "fasolada",
+          "fasoulada",
+          "greek bean soup",
+          "white bean soup"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "spanakorizo",
+        "name": "Spinach rice (spanakorizo)",
+        "category": "home cooking",
+        "keywords": [
+          "spanakorizo",
+          "spinach rice"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "gigantes-plaki",
+        "name": "Baked white beans in tomato (gigantes plaki)",
+        "category": "home cooking",
+        "keywords": [
+          "gigantes",
+          "gigantes plaki",
+          "baked beans in tomato"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-souvlaki-pita",
+        "name": "Chicken souvlaki in pita with tzatziki",
+        "category": "home cooking",
+        "keywords": [
+          "souvlaki",
+          "chicken souvlaki",
+          "gyro",
+          "tzatziki"
+        ],
+        "unitLabel": "1 pita",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -1432,6 +1538,86 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "greek-salad",
+        "store": "Coles",
+        "pricePerServe": 2.6,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "greek-salad",
+        "store": "Woolworths",
+        "pricePerServe": 2.7,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "fasolada",
+        "store": "Coles",
+        "pricePerServe": 1.3,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "fasolada",
+        "store": "Woolworths",
+        "pricePerServe": 1.4,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spanakorizo",
+        "store": "Coles",
+        "pricePerServe": 1.5,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spanakorizo",
+        "store": "Woolworths",
+        "pricePerServe": 1.6,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "gigantes-plaki",
+        "store": "Coles",
+        "pricePerServe": 1.6,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "gigantes-plaki",
+        "store": "Woolworths",
+        "pricePerServe": 1.7,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-souvlaki-pita",
+        "store": "Coles",
+        "pricePerServe": 2.5,
+        "unitLabel": "1 pita",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-souvlaki-pita",
+        "store": "Woolworths",
+        "pricePerServe": 2.6,
+        "unitLabel": "1 pita",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -1602,6 +1788,46 @@ export const culturalData: CulturalData = {
         "sodiumMg": 117
       },
       {
+        "itemId": "greek-salad",
+        "energyKj": 1161,
+        "proteinG": 8.9,
+        "fibreG": 3.5,
+        "sugarG": 7.1,
+        "sodiumMg": 745
+      },
+      {
+        "itemId": "fasolada",
+        "energyKj": 1345,
+        "proteinG": 15.1,
+        "fibreG": 15.7,
+        "sugarG": 11.2,
+        "sodiumMg": 70
+      },
+      {
+        "itemId": "spanakorizo",
+        "energyKj": 1389,
+        "proteinG": 8.4,
+        "fibreG": 5,
+        "sugarG": 2.7,
+        "sodiumMg": 110
+      },
+      {
+        "itemId": "gigantes-plaki",
+        "energyKj": 1470,
+        "proteinG": 18.2,
+        "fibreG": 17,
+        "sugarG": 10.9,
+        "sodiumMg": 118
+      },
+      {
+        "itemId": "chicken-souvlaki-pita",
+        "energyKj": 1505,
+        "proteinG": 34.5,
+        "fibreG": 4.1,
+        "sugarG": 7.1,
+        "sodiumMg": 422
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -1706,6 +1932,31 @@ export const culturalData: CulturalData = {
         "cravingId": "pizza",
         "alternativeId": "penne-arrabbiata",
         "note": "Pasta and a spicy tomato sauce from the pantry instead of a delivery order."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "chicken-souvlaki-pita",
+        "note": "Chicken grilled with lemon in a pita with tomato and a yoghurt, cucumber and garlic sauce."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "fasolada",
+        "note": "White beans simmered with tomato and vegetables; one pot gives several hot bowls."
+      },
+      {
+        "cravingId": "burger",
+        "alternativeId": "greek-salad",
+        "note": "Tomato, cucumber, onion, olives and feta with olive oil: a big plate that needs no cooking."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "spanakorizo",
+        "note": "Rice and spinach cooked together in one pan with onion, dill and lemon."
+      },
+      {
+        "cravingId": "fried-chicken",
+        "alternativeId": "gigantes-plaki",
+        "note": "Large white beans baked in tomato with onion and garlic."
       }
     ],
     "foodInfo": [
@@ -2373,6 +2624,106 @@ export const culturalData: CulturalData = {
           ],
           "allergensKnown": false,
           "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "greek-salad",
+        "traditions": [
+          "greek"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "fasolada",
+        "traditions": [
+          "greek"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "spanakorizo",
+        "traditions": [
+          "greek"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "gigantes-plaki",
+        "traditions": [
+          "greek"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chicken-souvlaki-pita",
+        "traditions": [
+          "greek"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
         }
       },
       {
