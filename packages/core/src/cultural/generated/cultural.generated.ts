@@ -537,6 +537,51 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-shepherd-27s-salad",
+      "publisher": "Wikipedia",
+      "title": "Shepherd%27s salad (article summary read): Çoban salatası (shepherd's salad) is a salad that originated from Turkish cuisine, of chopped tomato, cucumber, green pepper, onion and parsley dressed with lemon juice and olive oil. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Shepherd%27s_salad",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-kuru-fasulye",
+      "publisher": "Wikipedia",
+      "title": "Kuru fasulye (article summary read): Kuru fasulye is a stewed white bean dish in Turkish cuisine; the article says it is often considered the national dish of Turkey. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Kuru_fasulye",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-imam-bayildi",
+      "publisher": "Wikipedia",
+      "title": "Imam bayildi (article summary read): İmam bayıldı is a Turkish dish of whole aubergine stuffed with onion, garlic and tomato and simmered in olive oil. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Imam_bayildi",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-karn-c4-b1yar-c4-b1k",
+      "publisher": "Wikipedia",
+      "title": "Karn%C4%B1yar%C4%B1k (article summary read): Karnıyarık is a Turkish dish of eggplant stuffed with sauteed onion, garlic, tomato, parsley and ground meat, often served with rice. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Karn%C4%B1yar%C4%B1k",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-shish-taouk",
+      "publisher": "Wikipedia",
+      "title": "Shish taouk (article summary read): Shish taouk (tavuk şiş) is a marinated chicken shish kebab of Arab, Armenian and Turkish cuisine. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Shish_taouk",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1570,6 +1615,67 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "shepherds-salad",
+        "name": "Shepherd's salad (çoban salatası)",
+        "category": "home cooking",
+        "keywords": [
+          "coban salatasi",
+          "shepherd salad",
+          "turkish salad"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "kuru-fasulye",
+        "name": "White bean stew with rice (kuru fasulye)",
+        "category": "home cooking",
+        "keywords": [
+          "kuru fasulye",
+          "turkish beans",
+          "white bean stew"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "imam-bayildi",
+        "name": "Stuffed eggplant (imam bayildi)",
+        "category": "home cooking",
+        "keywords": [
+          "imam bayildi",
+          "stuffed eggplant",
+          "stuffed aubergine"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "karniyarik",
+        "name": "Eggplant stuffed with lamb mince and rice (karniyarik)",
+        "category": "home cooking",
+        "keywords": [
+          "karniyarik",
+          "stuffed eggplant with mince",
+          "eggplant and mince"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-shish-rice",
+        "name": "Chicken skewers with rice (tavuk sis style)",
+        "category": "home cooking",
+        "keywords": [
+          "tavuk sis",
+          "shish tavuk",
+          "chicken shish",
+          "chicken skewers"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -2172,6 +2278,86 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "shepherds-salad",
+        "store": "Coles",
+        "pricePerServe": 2.4,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "shepherds-salad",
+        "store": "Woolworths",
+        "pricePerServe": 2.5,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "kuru-fasulye",
+        "store": "Coles",
+        "pricePerServe": 1.5,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "kuru-fasulye",
+        "store": "Woolworths",
+        "pricePerServe": 1.6,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "imam-bayildi",
+        "store": "Coles",
+        "pricePerServe": 2.8,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "imam-bayildi",
+        "store": "Woolworths",
+        "pricePerServe": 2.9,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "karniyarik",
+        "store": "Coles",
+        "pricePerServe": 3.4,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "karniyarik",
+        "store": "Woolworths",
+        "pricePerServe": 3.5,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-shish-rice",
+        "store": "Coles",
+        "pricePerServe": 2.5,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-shish-rice",
+        "store": "Woolworths",
+        "pricePerServe": 2.6,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -2502,6 +2688,46 @@ export const culturalData: CulturalData = {
         "sodiumMg": 145
       },
       {
+        "itemId": "shepherds-salad",
+        "energyKj": 612,
+        "proteinG": 2.7,
+        "fibreG": 4.2,
+        "sugarG": 8.2,
+        "sodiumMg": 29
+      },
+      {
+        "itemId": "kuru-fasulye",
+        "energyKj": 1933,
+        "proteinG": 19.4,
+        "fibreG": 15.5,
+        "sugarG": 7.9,
+        "sodiumMg": 11
+      },
+      {
+        "itemId": "imam-bayildi",
+        "energyKj": 955,
+        "proteinG": 4.4,
+        "fibreG": 10.1,
+        "sugarG": 12.6,
+        "sodiumMg": 34
+      },
+      {
+        "itemId": "karniyarik",
+        "energyKj": 2119,
+        "proteinG": 24,
+        "fibreG": 10,
+        "sugarG": 11.5,
+        "sodiumMg": 79
+      },
+      {
+        "itemId": "chicken-shish-rice",
+        "energyKj": 1663,
+        "proteinG": 32.3,
+        "fibreG": 3.1,
+        "sugarG": 5.8,
+        "sodiumMg": 111
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -2706,6 +2932,31 @@ export const culturalData: CulturalData = {
         "cravingId": "pastry",
         "alternativeId": "tortang-talong",
         "note": "Grilled eggplant dipped in egg and pan-fried: a hot savoury breakfast or lunch."
+      },
+      {
+        "cravingId": "kebab",
+        "alternativeId": "chicken-shish-rice",
+        "note": "Chicken marinated in yoghurt, garlic and lemon, grilled on skewers with capsicum and onion."
+      },
+      {
+        "cravingId": "burger",
+        "alternativeId": "karniyarik",
+        "note": "Eggplant filled with lamb mince, onion and tomato, baked and served with rice."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "imam-bayildi",
+        "note": "Eggplant filled with onion, garlic and tomato and cooked in olive oil."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "kuru-fasulye",
+        "note": "White beans stewed with onion and tomato, with rice; one pot gives several serves."
+      },
+      {
+        "cravingId": "hot-chips",
+        "alternativeId": "shepherds-salad",
+        "note": "Tomato, cucumber, capsicum, onion and parsley with lemon and olive oil: a crunchy side."
       }
     ],
     "foodInfo": [
@@ -3774,6 +4025,104 @@ export const culturalData: CulturalData = {
           "gluten": "no",
           "allergens": [
             "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "shepherds-salad",
+        "traditions": [
+          "turkish"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "kuru-fasulye",
+        "traditions": [
+          "turkish"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        },
+        "significance": "Often considered the national dish of Turkey."
+      },
+      {
+        "itemId": "imam-bayildi",
+        "traditions": [
+          "turkish"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "karniyarik",
+        "traditions": [
+          "turkish"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "chicken-shish-rice",
+        "traditions": [
+          "turkish"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
           ],
           "allergensKnown": true,
           "certifiedMeat": true
