@@ -14,7 +14,7 @@ describe('core stays platform-free', () => {
     const banned = /\bwindow\b|\bdocument\b|localStorage|\breact\b|node:|\bprocess\b|\brequire\(|\bBuffer\b/i;
     const self = new URL(import.meta.url).pathname;
     // Generated data is plain text, so prose may contain words the guard bans.
-    const generated = [join(self, '..', 'benchmarks', 'generated'), join(self, '..', 'places', 'generated')];
+    const generated = [join(self, '..', 'benchmarks', 'generated'), join(self, '..', 'places', 'generated'), join(self, '..', 'cultural', 'generated')];
     const offenders = files(join(self, '..'))
       .filter((f) => /\.tsx?$/.test(f) && !/\.test\.tsx?$/.test(f) && f !== self && !generated.some((g) => f.startsWith(g)))
       .filter((f) => banned.test(readFileSync(f, 'utf8')));

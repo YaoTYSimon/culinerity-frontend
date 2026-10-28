@@ -41,4 +41,6 @@ export * from './places/distance';
 export * from './places/rank';
 export * from './places/centroid';
 export * from './places/location';
+export * from './food/types';
+export * from './cultural/source';
 export { centroidTable } from './places/generated/centroids.generated';
