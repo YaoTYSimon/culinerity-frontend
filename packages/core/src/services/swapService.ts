@@ -2,6 +2,7 @@ import type { Nutrition, PricePoint, Profile } from '../domain/types';
 import { healthScore } from '../domain/swaps/health';
 import { cheapest, rankSwaps, type RankedSwap } from '../domain/swaps/rank';
 import { matchAllergies } from '../food/allergens';
+import { shownForTraditions } from '../food/coverage';
 import { rankForProfile, type ProfiledSwap } from '../food/rank';
 import { budgetPerServe } from '../storage/profileStore';
 import type { Services } from './container';
@@ -26,7 +27,11 @@ export interface SwapsWithBaseline {
 
 export function swapService(s: Services) {
   async function getSwapsWithBaseline(cravingId: string, profile: Profile): Promise<SwapsWithBaseline> {
-    const candidates = s.catalogue.swapsFor(cravingId);
+    // The food profile is read here only, on this device; nothing about it goes to a source.
+    const food = profile.foodProfile;
+    const shown = (id: string) => shownForTraditions(s.catalogue.foodInfo(id), food);
+    // Cultural items need a chosen tradition; without one the list is exactly the original catalogue's.
+    const candidates = shown(cravingId) ? s.catalogue.swapsFor(cravingId).filter((c) => shown(c.alternative.id)) : [];
     if (candidates.length === 0) {
       return { swaps: [], profiled: [], hidden: 0, unmatchedAllergies: [], cravingCost: null, cravingHealth: null };
     }
@@ -53,13 +58,11 @@ export function swapService(s: Services) {
       score: profile.score ?? null,
       budgetPerServe: budgetPerServe(profile),
     });
-    // The food profile is read here only, on this device; nothing about it goes to a source.
-    const food = profile.foodProfile;
-    const { shown, hidden } = rankForProfile(ranked, (id) => (food ? s.catalogue.foodInfo(id) : undefined), food);
+    const { shown: kept, hidden } = rankForProfile(ranked, (id) => (food ? s.catalogue.foodInfo(id) : undefined), food);
     const own = nutrition[cravingId];
     return {
-      swaps: shown.map((p) => p.swap),
-      profiled: shown,
+      swaps: kept.map((p) => p.swap),
+      profiled: kept,
       hidden,
       unmatchedAllergies: food ? matchAllergies(food.allergies).unmatched : [],
       cravingCost: cheapest(prices[cravingId])?.pricePerServe ?? null,

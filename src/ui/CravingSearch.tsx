@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { type FoodItem, type Profile, type ProfiledSwap, cravingsForTraditions, swapService, traditions, traditionsWithFoods } from '@culinerity/core';
+import { type FoodItem, type Profile, type ProfiledSwap, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
 import { SwapResults, type SwapNote, type WeekSwapInput } from './SwapResults';
 import { FIELD_EDGE } from './formParts';
@@ -159,7 +159,8 @@ export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules }: { pro
     }
     let match: FoodItem | undefined;
     try {
-      match = services.catalogue.findCravings(q)[0];
+      // Cultural cravings are found only by people who chose one of their traditions.
+      match = services.catalogue.findCravings(q).find((c) => shownForTraditions(services.catalogue.foodInfo(c.id), food));
     } catch {
       latest.current++;
       setLoading(false);

@@ -190,3 +190,9 @@ export interface CulturalMeal { id: string; at: string; tradition: string; dish?
 2. Whether to ship halal/kosher at all before a halal/kosher authority has reviewed the ingredient rules (ruled: ship with the conservative `unknown` defaults and the certified-meat line, but a human from those communities should review the rules; nothing can be marked verified without it).
 3. Replacing sample prices with real observed prices (repo-wide, still deferred).
 4. Whether to expand beyond 10 traditions with catalogue foods in release one.
+
+## Build notes
+
+- **Default experience (final review ruling):** Swaps are identical to the pre-branch output for a person who has not chosen any food tradition. Cultural catalogue items (those with `traditions` non-empty, new in this branch) appear only when the foodProfile has at least one tradition and the item is tagged with one of the chosen traditions; rules and allergies then apply on top. Original items (no traditions) stay for everyone. This holds for swaps (`swapService`), for craving search (`CravingSearch`, via `shownForTraditions` in `food/coverage.ts`) and for the nutrition footnote (shown only when a cultural item is on screen). `swapService.golden.json` is recorded from the code at 88d044a for the ten popular cravings and is asserted exactly for no foodProfile, an empty one, and rules or allergies with no tradition that exclude nothing; with rules that do exclude items, only original items may remain.
+- **Honest rules line:** "Showing swaps that avoid what you told us to avoid. This is a guide, not a certification. Check labels." Halal `yes` exists for 22 of 70 foods (plain unprocessed produce, pulses, grains and eggs, from a secondary definition page); kosher `yes` is on none; a halal-authority or community review is open.
+

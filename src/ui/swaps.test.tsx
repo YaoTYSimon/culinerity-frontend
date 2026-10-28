@@ -381,7 +381,7 @@ describe('CravingSearch with a food profile', () => {
   });
 
   it('puts an unknown-halal item last with "Check the ingredients", and a halal chicken swap says "Use halal-certified meat."', async () => {
-    renderFood({ foodProfile: food({ rules: ['halal'] }) }, porkServices());
+    renderFood({ foodProfile: food({ rules: ['halal'], traditions: ['levantine'] }) }, porkServices());
     pickTile(/takeaway burger/i);
     await screen.findAllByText('Use halal-certified meat.');
     const rows = screen.getAllByRole('listitem');
@@ -397,7 +397,8 @@ describe('CravingSearch with a food profile', () => {
     pickTile(/takeaway burger/i);
     await screen.findByText(nameOf('greek-salad'));
     expect(within(rowOf(nameOf('greek-salad'))).getByText('Fits your kitchen')).toBeInTheDocument();
-    expect(within(rowOf(nameOf('minestrone'))).queryByText('Fits your kitchen')).toBeNull();
+    expect(screen.queryByText(nameOf('minestrone'))).toBeNull();
+    expect(within(rowOf('Home smash burger')).queryByText('Fits your kitchen')).toBeNull();
     expect(screen.getAllByText('Fits your kitchen')).toHaveLength(2);
   });
 
@@ -446,8 +447,18 @@ describe('CravingSearch with a food profile', () => {
     expect(screen.queryByText(/swaps for Greek/)).toBeNull();
   });
 
-  it('shows the nutrition footnote when a cultural item shows, not for a plain craving', async () => {
+  it('shows the nutrition footnote only when a cultural item shows', async () => {
     renderFood({});
+    pickTile(/takeaway burger/i);
+    await screen.findByText(/swaps? for/i);
+    expect(screen.queryByText('Nutrition estimated from public food tables.')).toBeNull();
+    cleanup();
+    renderFood({ foodProfile: food({ rules: ['halal'] }) });
+    pickTile(/takeaway burger/i);
+    await screen.findByText(/swaps? for/i);
+    expect(screen.queryByText('Nutrition estimated from public food tables.')).toBeNull();
+    cleanup();
+    renderFood({ foodProfile: food({ traditions: ['greek'] }) });
     pickTile(/takeaway burger/i);
     expect(await screen.findByText('Nutrition estimated from public food tables.')).toBeInTheDocument();
     cleanup();
@@ -514,5 +525,26 @@ describe('text that names an inherited property', () => {
     expect(await screen.findByText(/swaps? for/i)).toBeInTheDocument();
     expect(screen.queryByText(/something went wrong|could not load/i)).toBeNull();
     for (const w of HOSTILE) expect(screen.getByText(new RegExp(w.replace('_', '\\_')), { exact: false })).toBeInTheDocument();
+  });
+});
+
+describe('default experience: no chosen tradition', () => {
+  const names = () => screen.getAllByRole('listitem').map((r) => r.querySelector('p')?.textContent);
+  it('burger shows only the original swaps, with no footnote and no kitchen label', async () => {
+    renderFood({});
+    pickTile(/takeaway burger/i);
+    await screen.findByText(/swaps? for/i);
+    expect(screen.getByRole('heading', { name: '2 swaps for Takeaway burger' })).toBeInTheDocument();
+    expect(names()).toHaveLength(2);
+    expect(screen.queryByText(/greek salad|public food tables|fits your kitchen/i)).toBeNull();
+  });
+  it('a cultural craving is not found by someone without its tradition, and is found with it', async () => {
+    renderFood({});
+    search('butter chicken');
+    expect(await screen.findByText(/No exact match/)).toBeInTheDocument();
+    cleanup();
+    renderFood({ foodProfile: food({ traditions: ['indian-north'] }) });
+    search('butter chicken');
+    expect(await screen.findByText(/swaps? for/i)).toBeInTheDocument();
   });
 });

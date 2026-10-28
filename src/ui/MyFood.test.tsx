@@ -250,7 +250,7 @@ describe('MyFood with text that names an inherited property', () => {
   it('adds and saves constructor and __proto__ as own words in traditions and allergies', () => {
     const { onSave } = setup();
     const words = ['constructor', '__proto__', 'toString', 'hasOwnProperty', 'valueOf'];
-    const add = (label: string, text: string) => {
+    const add = (label: string | RegExp, text: string) => {
       const input = screen.getByLabelText(label);
       fireEvent.change(input, { target: { value: text } });
       fireEvent.keyDown(input, { key: 'Enter' });

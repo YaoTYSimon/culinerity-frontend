@@ -71,4 +71,12 @@ describe('rankForProfile', () => {
     const infoOf = make({ a: { flags: { certifiedMeat: true } } });
     expect(rankForProfile([swap('a', 1)], infoOf, profile({ rules: ['kosher'] })).shown[0].certifiedMeat).toBe('kosher');
   });
+  it('text that names an inherited property is unmatched and never throws', () => {
+    const hostile = ['constructor', '__proto__', 'toString', 'hasOwnProperty'];
+    const infoOf = make({ a: { traditions: ['greek'] } });
+    const r = rankForProfile([swap('a', 1)], infoOf, profile({ allergies: hostile, traditions: hostile }));
+    expect(r.hidden).toBe(0);
+    expect(r.shown).toHaveLength(1);
+    expect(r.shown[0].kitchen).toBe(false);
+  });
 });

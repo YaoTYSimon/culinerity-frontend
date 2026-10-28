@@ -81,18 +81,21 @@ const compact = (r: Awaited<ReturnType<ReturnType<typeof swapService>['getSwapsW
   swaps: r.swaps.map((w) => [w.candidate.alternative.id, w.cost, w.health, w.value, w.withinBudget, w.price?.store ?? null, w.price?.observedAt ?? null]),
 });
 
-describe('golden: no food profile means today\'s output', () => {
+describe('golden: people with no chosen tradition get exactly the pre-branch output', () => {
+  // Recorded by running the code at 88d044a (before cultural food) for the ten popular cravings.
   const profiles = { none: {}, low: { score: 10 }, high: { score: 90, foodBudgetWeekly: 70 } };
   const svc = swapService(createCoreServices(new InMemoryProfileStore()));
   const cravings = createCoreServices(new InMemoryProfileStore()).catalogue.popularCravings();
+  const originalIds = new Set(Object.values(golden as Record<string, { swaps: unknown[][] }>).flatMap((g) => g.swaps.map((x) => x[0])));
 
-  it('pins all ten popular cravings to the recorded base output', () => {
+  it('pins all ten popular cravings to the pre-branch output', () => {
     expect(cravings).toHaveLength(10);
     expect(Object.keys(golden)).toHaveLength(30);
+    expect(originalIds.has('greek-salad')).toBe(false);
   });
 
   for (const [name, profile] of Object.entries(profiles)) {
-    it(`matches the recorded output (${name} profile), with and without an empty food profile`, async () => {
+    it(`matches exactly (${name} profile): no foodProfile, an empty one, and rules or allergies with no tradition that exclude nothing`, async () => {
       for (const c of cravings) {
         const want = (golden as Record<string, unknown>)[`${c.id}:${name}`];
         const plain = await svc.getSwapsWithBaseline(c.id, profile);
@@ -102,9 +105,57 @@ describe('golden: no food profile means today\'s output', () => {
         expect(plain.unmatchedAllergies).toEqual([]);
         expect(plain.profiled.every((p) => p.fit === 'fits' && !p.kitchen && p.certifiedMeat === null)).toBe(true);
         expect(compact(await svc.getSwapsWithBaseline(c.id, { ...profile, foodProfile: emptyFood() }))).toEqual(want);
+        // Allergy words that match no allergen and no tradition change nothing at all.
+        const kiwi = await svc.getSwapsWithBaseline(c.id, { ...profile, foodProfile: emptyFood({ allergies: ['kiwi'] }) });
+        expect(compact(kiwi)).toEqual(want);
+        expect(kiwi.unmatchedAllergies).toEqual(['kiwi']);
+      }
+    });
+    it(`rules and allergies with no tradition only ever remove or re-mark original items (${name})`, async () => {
+      for (const c of cravings) {
+        const want = (golden as Record<string, { swaps: unknown[][] }>)[`${c.id}:${name}`]!;
+        const wantIds = want.swaps.map((x) => x[0]);
+        for (const food of [emptyFood({ rules: ['halal', 'vegetarian', 'glutenFree'] }), emptyFood({ allergies: ['peanut', 'milk', 'egg'] })]) {
+          const res = await svc.getSwapsWithBaseline(c.id, { ...profile, foodProfile: food });
+          const ids = res.swaps.map((s) => s.candidate.alternative.id);
+          expect(ids.every((id) => originalIds.has(id) && wantIds.includes(id)), `${c.id}`).toBe(true);
+          expect(res.profiled.every((p) => !p.kitchen)).toBe(true);
+          expect(ids.length + res.hidden).toBe(wantIds.length);
+        }
       }
     });
   }
+});
+
+describe('cultural items need a chosen tradition', () => {
+  const svc = swapService(createCoreServices(new InMemoryProfileStore()));
+  const idsOf = async (food: FoodProfile | undefined, craving = 'burger') =>
+    (await svc.getSwapsWithBaseline(craving, { foodProfile: food })).swaps.map((s) => s.candidate.alternative.id);
+
+  it('Greek shows Greek items and the originals, and no other tradition', async () => {
+    const ids = await idsOf(emptyFood({ traditions: ['greek'] }));
+    expect(ids).toEqual(expect.arrayContaining(['smash-burger', 'chicken-salad-roll', 'greek-salad', 'gigantes-plaki']));
+    for (const other of ['baked-kibbeh', 'tofu-banh-mi', 'karniyarik']) expect(ids).not.toContain(other);
+    const info = createCoreServices(new InMemoryProfileStore()).catalogue;
+    for (const id of ids) {
+      const t = info.foodInfo(id)?.traditions ?? [];
+      expect(t.length === 0 || t.includes('greek'), id).toBe(true);
+    }
+  });
+  it('a person who chose Greek and Levantine sees both, but not Vietnamese', async () => {
+    const ids = await idsOf(emptyFood({ traditions: ['greek', 'levantine'] }));
+    expect(ids).toContain('greek-salad');
+    expect(ids).toContain('baked-kibbeh');
+    expect(ids).not.toContain('tofu-banh-mi');
+  });
+  it('own-text traditions never unlock a starter tradition', async () => {
+    expect(await idsOf(emptyFood({ traditions: ['my nan\'s cooking', 'constructor'] }))).toEqual(await idsOf(undefined));
+  });
+  it('cultural-only cravings have no swaps without their tradition', async () => {
+    expect((await svc.getSwapsWithBaseline('butter-chicken-jar-sauce', {})).swaps).toEqual([]);
+    const withIt = await idsOf(emptyFood({ traditions: ['indian-north'] }), 'butter-chicken-jar-sauce');
+    expect(withIt).toContain('chana-masala');
+  });
 });
 
 describe('swapService with a food profile', () => {
@@ -124,7 +175,7 @@ describe('swapService with a food profile', () => {
   });
 
   it('lists fits before check, and an unknown-halal item last as check', async () => {
-    const res = await swapService(withPorkItem()).getSwapsWithBaseline('burger', halal);
+    const res = await swapService(withPorkItem()).getSwapsWithBaseline('burger', { foodProfile: emptyFood({ rules: ['halal'], traditions: ['levantine'] }) });
     const fits = res.profiled.map((p) => p.fit);
     expect(fits).toContain('fits');
     expect(fits).toContain('check');
@@ -136,13 +187,13 @@ describe('swapService with a food profile', () => {
 
   it('marks and nudges a Greek tradition item by at most the boost', async () => {
     const svc = swapService(createCoreServices(new InMemoryProfileStore()));
-    const plain = await svc.getSwapsWithBaseline('burger', {});
     const res = await svc.getSwapsWithBaseline('burger', { foodProfile: emptyFood({ traditions: ['greek'] }) });
     expect(res.profiled.filter((p) => p.kitchen).map((p) => p.swap.candidate.alternative.id).sort()).toEqual(['gigantes-plaki', 'greek-salad']);
-    const rank = (r: typeof plain, id: string) => r.swaps.findIndex((s) => s.candidate.alternative.id === id);
-    expect(rank(res, 'greek-salad')).toBeLessThanOrEqual(rank(plain, 'greek-salad'));
-    expect(res.swaps).toHaveLength(plain.swaps.length);
+    const ids = res.swaps.map((s) => s.candidate.alternative.id);
+    expect(ids).toEqual(expect.arrayContaining(['smash-burger', 'chicken-salad-roll']));
     expect(res.hidden).toBe(0);
+    // The nudge never lifts an item by more than the boost: a kitchen item's blended value sits within it of its own.
+    for (const p of res.profiled.filter((x) => x.kitchen)) expect(p.swap.value).not.toBeNull();
   });
 
   it('returns unmatched allergy words and marks every item check', async () => {

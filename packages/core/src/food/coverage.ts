@@ -1,5 +1,17 @@
 import type { FoodItem } from '../domain/types';
 import type { FoodCatalogue } from '../sources/interfaces';
+import type { FoodInfo, FoodProfile } from './types';
+
+/**
+ * Cultural catalogue items (those tagged with traditions) show only for a person who chose at least one of
+ * those traditions. Original items (no traditions) show for everyone, so nothing changes until someone opts in.
+ */
+export function shownForTraditions(info: FoodInfo | undefined, food: FoodProfile | undefined): boolean {
+  const tagged = info?.traditions ?? [];
+  if (tagged.length === 0) return true;
+  const chosen = new Set((food?.traditions ?? []).map((t) => t.toLowerCase()));
+  return tagged.some((t) => chosen.has(t.toLowerCase()));
+}
 
 /** Lower-case ids of every tradition that tags at least one craving or swap in the catalogue. */
 export function traditionsWithFoods(catalogue: FoodCatalogue): Set<string> {
