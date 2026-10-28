@@ -312,6 +312,60 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-lasagne",
+      "publisher": "Wikipedia",
+      "title": "Lasagne (article summary read): Lasagne is a pasta dish that originates in Italian cuisine, usually baked in layers with a filling of meat, dairy, vegetables and sauces. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Lasagne",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-pasta-e-fagioli",
+      "publisher": "Wikipedia",
+      "title": "Pasta e fagioli (article summary read): Pasta e fagioli is an Italian pasta soup with several regional variants. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Pasta_e_fagioli",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-minestrone",
+      "publisher": "Wikipedia",
+      "title": "Minestrone (article summary read): Minestrone is a thick vegetable soup of Italian origin. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Minestrone",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-frittata",
+      "publisher": "Wikipedia",
+      "title": "Frittata (article summary read): Frittata is an egg-based Italian dish similar to an omelette. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Frittata",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-aglio-e-olio",
+      "publisher": "Wikipedia",
+      "title": "Aglio e olio (article summary read): Spaghetti aglio e olio is a pasta dish typical of Naples, Italy. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Aglio_e_olio",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-arrabbiata-sauce",
+      "publisher": "Wikipedia",
+      "title": "Arrabbiata sauce (article summary read): Arrabbiata is a spicy tomato, garlic and chilli sauce that originates from the Lazio region of Italy. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Arrabbiata_sauce",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1037,6 +1091,65 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "pasta-e-fagioli",
+        "name": "Pasta and white bean soup (pasta e fagioli)",
+        "category": "home cooking",
+        "keywords": [
+          "pasta e fagioli",
+          "pasta and beans",
+          "bean soup"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "minestrone",
+        "name": "Vegetable and bean soup (minestrone)",
+        "category": "home cooking",
+        "keywords": [
+          "minestrone",
+          "vegetable soup"
+        ],
+        "unitLabel": "1 bowl",
+        "kind": "alternative"
+      },
+      {
+        "id": "zucchini-frittata",
+        "name": "Zucchini frittata",
+        "category": "home cooking",
+        "keywords": [
+          "frittata",
+          "egg and zucchini",
+          "egg slice"
+        ],
+        "unitLabel": "1 slice (a third of a pan)",
+        "kind": "alternative"
+      },
+      {
+        "id": "spaghetti-aglio-olio",
+        "name": "Spaghetti with garlic, oil and chilli",
+        "category": "home cooking",
+        "keywords": [
+          "aglio e olio",
+          "garlic pasta",
+          "spaghetti garlic"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "penne-arrabbiata",
+        "name": "Penne with spicy tomato sauce (arrabbiata)",
+        "category": "home cooking",
+        "keywords": [
+          "arrabbiata",
+          "penne arrabbiata",
+          "spicy tomato pasta"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -1061,6 +1174,19 @@ export const culturalData: CulturalData = {
           "takeaway rolls"
         ],
         "unitLabel": "2 rolls",
+        "kind": "craving"
+      },
+      {
+        "id": "lasagne-frozen",
+        "name": "Frozen beef lasagne",
+        "category": "packaged meal",
+        "keywords": [
+          "lasagne",
+          "lasagna",
+          "frozen lasagne",
+          "frozen meal"
+        ],
+        "unitLabel": "1 tray (300 g)",
         "kind": "craving"
       }
     ],
@@ -1226,6 +1352,86 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "pasta-e-fagioli",
+        "store": "Coles",
+        "pricePerServe": 1.5,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pasta-e-fagioli",
+        "store": "Woolworths",
+        "pricePerServe": 1.6,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "minestrone",
+        "store": "Coles",
+        "pricePerServe": 1.8,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "minestrone",
+        "store": "Woolworths",
+        "pricePerServe": 1.9,
+        "unitLabel": "1 bowl",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "zucchini-frittata",
+        "store": "Coles",
+        "pricePerServe": 2.1,
+        "unitLabel": "1 slice (a third of a pan)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "zucchini-frittata",
+        "store": "Woolworths",
+        "pricePerServe": 2.2,
+        "unitLabel": "1 slice (a third of a pan)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spaghetti-aglio-olio",
+        "store": "Coles",
+        "pricePerServe": 0.8,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spaghetti-aglio-olio",
+        "store": "Woolworths",
+        "pricePerServe": 0.9,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "penne-arrabbiata",
+        "store": "Coles",
+        "pricePerServe": 1.3,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "penne-arrabbiata",
+        "store": "Woolworths",
+        "pricePerServe": 1.4,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -1254,6 +1460,22 @@ export const culturalData: CulturalData = {
         "store": "Woolworths",
         "pricePerServe": 4.1,
         "unitLabel": "2 rolls",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "lasagne-frozen",
+        "store": "Coles",
+        "pricePerServe": 4,
+        "unitLabel": "1 tray (300 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "lasagne-frozen",
+        "store": "Woolworths",
+        "pricePerServe": 4.1,
+        "unitLabel": "1 tray (300 g)",
         "observedAt": "2026-10-28",
         "isSample": true
       }
@@ -1340,6 +1562,46 @@ export const culturalData: CulturalData = {
         "sodiumMg": 144
       },
       {
+        "itemId": "pasta-e-fagioli",
+        "energyKj": 1723,
+        "proteinG": 17.9,
+        "fibreG": 15.2,
+        "sugarG": 9.7,
+        "sodiumMg": 59
+      },
+      {
+        "itemId": "minestrone",
+        "energyKj": 1555,
+        "proteinG": 14.4,
+        "fibreG": 12.6,
+        "sugarG": 12.2,
+        "sodiumMg": 66
+      },
+      {
+        "itemId": "zucchini-frittata",
+        "energyKj": 1378,
+        "proteinG": 24.2,
+        "fibreG": 1.9,
+        "sugarG": 5.1,
+        "sodiumMg": 273
+      },
+      {
+        "itemId": "spaghetti-aglio-olio",
+        "energyKj": 1922,
+        "proteinG": 12.2,
+        "fibreG": 4.7,
+        "sugarG": 0.2,
+        "sodiumMg": 13
+      },
+      {
+        "itemId": "penne-arrabbiata",
+        "energyKj": 1886,
+        "proteinG": 13.9,
+        "fibreG": 6.3,
+        "sugarG": 6.2,
+        "sodiumMg": 117
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -1354,6 +1616,14 @@ export const culturalData: CulturalData = {
         "fibreG": 2.8,
         "sugarG": 4.3,
         "sodiumMg": 501
+      },
+      {
+        "itemId": "lasagne-frozen",
+        "energyKj": 1716,
+        "proteinG": 19.8,
+        "fibreG": 6.3,
+        "sugarG": 4.8,
+        "sodiumMg": 870
       }
     ],
     "swaps": [
@@ -1406,6 +1676,36 @@ export const culturalData: CulturalData = {
         "cravingId": "pizza",
         "alternativeId": "choy-sum-garlic-rice",
         "note": "A plate of garlicky greens with rice: a hot meal for a few dollars."
+      },
+      {
+        "cravingId": "lasagne-frozen",
+        "alternativeId": "pasta-e-fagioli",
+        "note": "Pasta and beans simmered with tomato and vegetables in one pot; makes several serves."
+      },
+      {
+        "cravingId": "lasagne-frozen",
+        "alternativeId": "penne-arrabbiata",
+        "note": "Dried pasta with a quick sauce of tinned tomatoes, garlic and chilli."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "spaghetti-aglio-olio",
+        "note": "Pasta, garlic, oil and chilli: a hot bowl from the pantry in about 15 minutes."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "minestrone",
+        "note": "A big pot of vegetables, beans and pasta that gives several hot bowls."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "zucchini-frittata",
+        "note": "Eggs and zucchini set in a pan and cut into slices, hot or cold."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "penne-arrabbiata",
+        "note": "Pasta and a spicy tomato sauce from the pantry instead of a delivery order."
       }
     ],
     "foodInfo": [
@@ -1971,6 +2271,111 @@ export const culturalData: CulturalData = {
         }
       },
       {
+        "itemId": "pasta-e-fagioli",
+        "traditions": [
+          "italian"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "minestrone",
+        "traditions": [
+          "italian"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "zucchini-frittata",
+        "traditions": [
+          "italian"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "spaghetti-aglio-olio",
+        "traditions": [
+          "italian"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "penne-arrabbiata",
+        "traditions": [
+          "italian"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "traditions": [
           "indian-north"
@@ -2008,11 +2413,31 @@ export const culturalData: CulturalData = {
           "allergensKnown": false,
           "certifiedMeat": false
         }
+      },
+      {
+        "itemId": "lasagne-frozen",
+        "traditions": [
+          "italian"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
       }
     ],
     "cravingIds": [
       "butter-chicken-jar-sauce",
-      "spring-rolls-fried"
+      "spring-rolls-fried",
+      "lasagne-frozen"
     ]
   },
   "notFound": [
