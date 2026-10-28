@@ -219,3 +219,29 @@ describe('MyFood summary', () => {
     expect(onDone).toHaveBeenCalled();
   });
 });
+
+describe('MyFood coming up', () => {
+  const NOW = new Date(2026, 9, 28, 12);
+  const withOccasions = (occasions: FoodProfile['occasions']): FoodProfile => ({ ...FOOD, occasions });
+  const section = () => screen.getByRole('region', { name: 'Coming up' });
+  const props = { now: NOW, onSave: vi.fn(), onClear: vi.fn(), onDone: vi.fn() };
+
+  it('lists chosen occasions in date order, with the sighting caveat only on approximate ones', () => {
+    render(<MyFood value={withOccasions(['easter', 'ramadan'])} {...props} />);
+    const items = within(section()).getAllByRole('listitem').map((li) => li.textContent);
+    expect(items[0]).toBe('Ramadan: about Mon 8 Feb to Mon 8 Mar 2027.');
+    expect(items[1]).toBe('Easter: Fri 26 Mar to Mon 29 Mar 2027.');
+    expect(within(section()).getByText('Dates depend on the moon sighting.')).toBeInTheDocument();
+  });
+  it('says the evening start for Passover', () => {
+    render(<MyFood value={withOccasions(['passover'])} {...props} />);
+    expect(within(section()).getByRole('listitem')).toHaveTextContent('Passover: Thu 22 Apr to Thu 29 Apr 2027 (from the evening before).');
+    expect(within(section()).queryByText(/moon/)).not.toBeInTheDocument();
+  });
+  it('is absent with no occasions, and ignores "Not now"', () => {
+    const { rerender } = render(<MyFood value={withOccasions([])} {...props} />);
+    expect(screen.queryByRole('region', { name: 'Coming up' })).not.toBeInTheDocument();
+    rerender(<MyFood value={{ ...withOccasions(['ramadan']), dismissed: ['ramadan-2027'] }} {...props} />);
+    expect(within(section()).getByRole('listitem')).toHaveTextContent('Ramadan');
+  });
+});

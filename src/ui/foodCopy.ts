@@ -20,3 +20,14 @@ export const RULE_COPY: Record<DietRule, { label: string; meaning: string }> = {
   noAlcohol: { label: 'No alcohol', meaning: 'Leaves out dishes made with alcohol' },
   glutenFree: { label: 'Gluten-free', meaning: 'Leaves out wheat, barley, rye and oats' },
 };
+
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** "Mon 8 Feb" from a calendar day (YYYY-MM-DD), the same in every time zone. */
+export function dayLabel(iso: string): string {
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]} ${d} ${MONTHS[m - 1]}`;
+}
+
+export const MOON_CAVEAT = 'Dates depend on the moon sighting.';

@@ -11,6 +11,8 @@ import { StepProgress } from './StepProgress';
 
 interface Props {
   value: FoodProfile | undefined;
+  /** For the "Coming up" dates; the current time when omitted. */
+  now?: Date;
   onSave: (v: FoodProfile | undefined) => void;
   onClear: () => void;
   onDone: () => void;
@@ -26,7 +28,7 @@ interface Props {
 type Mode = { kind: 'summary' } | { kind: 'wizard'; step: number; fromReview: boolean };
 
 /** Setup (one question per screen, like the check-in) and, once settings exist, a summary with clear controls. */
-export function MyFood({ value, onSave, onClear, onDone, startAtWizard = false, meals, onSaveMeals, onOpenMeals }: Props) {
+export function MyFood({ value, now, onSave, onClear, onDone, startAtWizard = false, meals, onSaveMeals, onOpenMeals }: Props) {
   const [mode, setMode] = useState<Mode>(() =>
     startAtWizard || !value ? { kind: 'wizard', step: 0, fromReview: false } : { kind: 'summary' });
   const [draft, setDraft] = useState<FoodProfile>(() => emptyDraft(value));
@@ -47,6 +49,7 @@ export function MyFood({ value, onSave, onClear, onDone, startAtWizard = false, 
     return (
       <FoodSummary
         food={value}
+        now={now ?? new Date()}
         hasMeals={(meals?.length ?? 0) > 0 && onSaveMeals !== undefined}
         notice={notice}
         onChange={(section) => openWizard(SECTION_STEP[section])}

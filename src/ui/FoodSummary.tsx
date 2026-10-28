@@ -1,4 +1,5 @@
 import type { FoodProfile } from '@culinerity/core';
+import { ComingUp } from './ComingUp';
 import { SHARED_DEVICE_LINE } from './foodCopy';
 import { FoodSections, type FoodSection } from './FoodSections';
 import { FocusHeading } from './FocusHeading';
@@ -9,6 +10,7 @@ export type Notice = { kind: 'food' | 'meals' } | { kind: 'saved'; text: string 
 
 interface Props {
   food: FoodProfile | undefined;
+  now: Date;
   hasMeals: boolean;
   notice: Notice | null;
   onChange: (section: FoodSection) => void;
@@ -21,7 +23,7 @@ interface Props {
 }
 
 /** The view once food settings exist: each section with "Change", then the clear controls. */
-export function FoodSummary({ food, hasMeals, notice, onChange, onSetUp, onClearFood, onClearMeals, onUndo, onOpenMeals, onDone }: Props) {
+export function FoodSummary({ food, now, hasMeals, notice, onChange, onSetUp, onClearFood, onClearMeals, onUndo, onOpenMeals, onDone }: Props) {
   return (
     <section aria-label="My food" className="grid min-w-0 gap-5 text-ink">
       <div className="grid gap-3">
@@ -50,6 +52,8 @@ export function FoodSummary({ food, hasMeals, notice, onChange, onSetUp, onClear
           <PillButton onClick={onSetUp}>Set up my food</PillButton>
         </div>
       )}
+
+      <ComingUp food={food} now={now} />
 
       <div className="grid justify-items-start gap-1">
         {food && <PillButton variant="surface" onClick={onClearFood}>Clear my food settings</PillButton>}

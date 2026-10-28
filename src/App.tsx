@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react';
-import { addWeekSwap, appendScore, removeOneWeekSwap, sanitizeMeals, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
+import { addWeekSwap, appendScore, calendar, dismissOccasion, occasionsOn, removeOneWeekSwap, sanitizeMeals, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { RemoveNoteBanner } from './auth/RemoveNoteBanner';
 import { AuthContext } from './auth/useAuth';
@@ -15,6 +15,7 @@ import { NutritionCredit } from './ui/NutritionCredit';
 import { PhotoCredits } from './ui/PhotoCredits';
 import { PolicyView } from './ui/PolicyView';
 import { Nearby } from './ui/Nearby';
+import { OccasionLine } from './ui/OccasionLine';
 import { NumberScreen } from './ui/NumberScreen';
 import { Questionnaire } from './ui/Questionnaire';
 import { SupportPanel } from './ui/SupportPanel';
@@ -69,6 +70,8 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
   };
   const addToWeek = (swap: { itemId: string; name: string; saving: number }) =>
     update({ ...profile, weekSwaps: addWeekSwap(profile.weekSwaps, swap, now()) });
+  const food = profile.foodProfile;
+  const activeOccasion = food ? occasionsOn(calendar(), food.occasions, food.dismissed, clockNow)[0] : undefined;
   const go = (to: NavTarget) => {
     setCreating(false);
     setFoodWizard(false);
@@ -122,6 +125,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             <MyFood
               key={auth?.current?.id ?? 'guest'}
               value={profile.foodProfile}
+              now={clockNow}
               startAtWizard={foodWizard}
               onSave={(foodProfile: FoodProfile | undefined) => update(withOptional(profile, 'foodProfile', foodProfile))}
               onClear={() => update(withOptional(profile, 'foodProfile', undefined))}
@@ -202,6 +206,12 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               <p className="text-base text-pretty text-muted">
                 Pick a craving and see what costs less and sits better. For anyone in Melbourne, no sign-up.
               </p>
+              <OccasionLine
+                active={activeOccasion}
+                onSeeSwaps={() => document.getElementById('craving-q')?.focus()}
+                onBudget={() => setView('budget')}
+                onDismiss={(key) => food && update(withOptional(profile, 'foodProfile', dismissOccasion(food, key, clockNow)))}
+              />
               <CravingSearch profile={profile} onAddToWeek={addToWeek} />
               <BudgetDisclosure value={profile} onChange={update} />
             </div>

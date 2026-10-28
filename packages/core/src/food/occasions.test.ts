@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { calendar, occasionDefs } from '../cultural/source';
-import { occasionKey, occasionsOn } from './occasions';
+import { dismissOccasion, occasionKey, occasionsOn, upcomingOccasions } from './occasions';
+import type { FoodProfile } from './types';
 import type { CalendarRow } from './types';
 
 const cal = calendar();
@@ -80,5 +81,43 @@ describe('occasionsOn', () => {
   it('gathering comes from the occasion definition', () => {
     expect(occasionsOn(cal, ['christmas'], [], at('2026-12-25'))[0].gathering).toBe(true);
     expect(occasionsOn(cal, ['lent'], [], at('2027-02-10'))[0].gathering).toBe(false);
+  });
+});
+
+describe('evening starts', () => {
+  it('Passover and Rosh Hashanah begin the evening before; Hanukkah, Eid and Ramadan do not say so', () => {
+    const ev = (id: 'passover' | 'rosh-hashanah' | 'hanukkah' | 'eid-al-fitr' | 'ramadan', day: string) =>
+      occasionsOn(cal, [id], [], at(day))[0].evening;
+    expect(ev('passover', '2027-04-20')).toBe(true);
+    expect(ev('rosh-hashanah', '2027-10-01')).toBe(true);
+    expect(ev('hanukkah', '2026-12-01')).toBe(false);
+    expect(ev('eid-al-fitr', '2027-03-05')).toBe(false);
+    expect(ev('ramadan', '2027-02-05')).toBe(false);
+  });
+});
+
+describe('dismissOccasion', () => {
+  const food = (dismissed: string[]): FoodProfile => ({ traditions: [], rules: [], allergies: [], occasions: ['ramadan'], dismissed });
+  it('adds the key once', () => {
+    expect(dismissOccasion(food([]), 'ramadan-2027', at('2027-02-05')).dismissed).toEqual(['ramadan-2027']);
+    expect(dismissOccasion(food(['ramadan-2027']), 'ramadan-2027', at('2027-02-05')).dismissed).toEqual(['ramadan-2027']);
+  });
+  it('prunes keys more than a year old and caps at 20', () => {
+    expect(dismissOccasion(food(['lent-2025', 'easter-2026']), 'ramadan-2027', at('2027-02-05')).dismissed).toEqual(['easter-2026', 'ramadan-2027']);
+    const many = Array.from({ length: 25 }, (_, i) => `a${'b'.repeat(i % 3)}-2027`);
+    expect(dismissOccasion(food(many), 'z-2027', at('2027-02-05')).dismissed.length).toBeLessThanOrEqual(20);
+  });
+});
+
+describe('upcomingOccasions', () => {
+  it('lists chosen occasions from now to twelve months ahead in date order, ignoring dismissals', () => {
+    const r = upcomingOccasions(cal, ['lent', 'ramadan', 'christmas'], at('2026-10-28'));
+    expect(keys(r)).toEqual(['christmas-2026', 'ramadan-2027', 'lent-2027']);
+    expect(r[1]).toMatchObject({ approx: true, label: 'Ramadan' });
+  });
+  it('includes one under way and drops finished or too distant ones', () => {
+    expect(keys(upcomingOccasions(cal, ['ramadan'], at('2027-02-20')))).toEqual(['ramadan-2027', 'ramadan-2028']);
+    expect(keys(upcomingOccasions(cal, ['ramadan'], at('2027-03-10')))).toEqual(['ramadan-2028']);
+    expect(upcomingOccasions(cal, [], at('2026-10-28'))).toEqual([]);
   });
 });
