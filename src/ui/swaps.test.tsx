@@ -1,6 +1,6 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { type PriceSource, type RankedSwap } from '@culinerity/core';
+import { createCoreServices, createHttpServices, InMemoryProfileStore, type FetchLike, type FoodInfo, type FoodProfile, type PriceSource, type Profile, type RankedSwap } from '@culinerity/core';
 import { createServices, type Services } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { CravingSearch } from './CravingSearch';
@@ -280,5 +280,214 @@ describe('popular cravings after a search', () => {
     await screen.findAllByRole('listitem');
     expect(screen.queryByText('Popular cravings')).not.toBeInTheDocument();
     expect(container.querySelector('.overflow-x-auto')).toBeNull();
+  });
+});
+
+const food = (over: Partial<FoodProfile> = {}): FoodProfile => ({ traditions: [], rules: [], allergies: [], occasions: [], dismissed: [], ...over });
+const POPULAR = ['burger', 'hot-chips', 'bubble-tea', 'instant-noodles', 'pizza', 'chocolate', 'fried-chicken', 'kebab', 'pastry', 'soft-drink'];
+const PORK_ID = 'smash-burger';
+
+/** Mock services where `reflag` can change the flags of any item, standing in for dishes the sample data lacks. */
+function flagged(reflag: (id: string, info: FoodInfo) => FoodInfo): Services {
+  const base = createServices();
+  const catalogue = Object.create(base.catalogue) as Services['catalogue'];
+  catalogue.foodInfo = (id) => {
+    const info = base.catalogue.foodInfo(id);
+    return info ? reflag(id, info) : info;
+  };
+  return { ...base, catalogue };
+}
+const porkServices = () =>
+  flagged((id, i) => (id === PORK_ID ? { ...i, flags: { ...i.flags, halal: 'no', pork: 'yes' } } : i));
+
+function renderFood(profile: Profile, services: Services = createServices()) {
+  return render(
+    <ServicesProvider services={services}>
+      <CravingSearch profile={profile} onAddToWeek={onAdd} />
+    </ServicesProvider>,
+  );
+}
+const pickTile = (name: RegExp) => fireEvent.click(screen.getByRole('button', { name }));
+const rowOf = (name: string) => screen.getByText(name).closest('li') as HTMLElement;
+
+describe('SwapResults food notes', () => {
+  const f = { id: 'c', name: 'Burger', category: 'x', keywords: [] };
+  const swap = (id: string, name: string): RankedSwap => ({
+    candidate: { craving: f, alternative: { ...f, id, name }, note: 'n' },
+    cost: null, health: 50, withinBudget: null, value: null, price: null,
+  });
+  const swaps = [swap('a', 'Alpha dish'), swap('b', 'Beta dish'), swap('c2', 'Gamma dish')];
+  const notes = {
+    a: { fit: 'fits' as const, kitchen: true, certifiedMeat: 'halal' as const },
+    b: { fit: 'check' as const, kitchen: false, certifiedMeat: null },
+    c2: { fit: 'fits' as const, kitchen: false, certifiedMeat: 'kosher' as const },
+  };
+
+  it('shows the exact labels on the right rows and nothing on rows without a note', () => {
+    render(<SwapResults swaps={swaps} notes={notes} rulesOn />);
+    expect(within(rowOf('Alpha dish')).getByText('Fits your kitchen')).toBeInTheDocument();
+    expect(within(rowOf('Alpha dish')).getByText('Use halal-certified meat.')).toBeInTheDocument();
+    expect(within(rowOf('Beta dish')).getByText('Check the ingredients')).toBeInTheDocument();
+    expect(within(rowOf('Gamma dish')).getByText('Use kosher-certified meat.')).toBeInTheDocument();
+    expect(within(rowOf('Gamma dish')).queryByText('Fits your kitchen')).toBeNull();
+    expect(screen.getByText('Showing swaps that match your food rules. This is a guide, not a certification. Check labels.')).toBeInTheDocument();
+  });
+
+  it('shows no food text at all without notes', () => {
+    render(<SwapResults swaps={swaps} />);
+    expect(screen.queryByText(/fits your kitchen|check the ingredients|certified|food rules|public food tables/i)).toBeNull();
+  });
+
+  it('shows the unmatched allergy sentence and the nutrition footnote only when asked', () => {
+    const { rerender } = render(<SwapResults swaps={swaps} unmatchedAllergies={['kiwi']} nutritionNote />);
+    expect(screen.getByText('We could not check "kiwi". Read every label.')).toBeInTheDocument();
+    expect(screen.getByText('Nutrition estimated from public food tables.')).toBeInTheDocument();
+    rerender(<SwapResults swaps={swaps} />);
+    expect(screen.queryByText(/could not check|public food tables/)).toBeNull();
+  });
+});
+
+describe('CravingSearch with a food profile', () => {
+  it('under a halal rule, the pork item never appears for any popular craving, and the rule line shows', async () => {
+    const services = porkServices();
+    const porkName = services.catalogue.swapsFor('burger').find((s) => s.alternative.id === PORK_ID)!.alternative.name;
+    renderFood({}, services);
+    pickTile(/takeaway burger/i);
+    await screen.findByText(/swaps? for/i);
+    expect(screen.getByText(porkName)).toBeInTheDocument();
+    cleanup();
+
+    for (const id of POPULAR) {
+      renderFood({ foodProfile: food({ rules: ['halal'] }) }, services);
+      const name = services.catalogue.popularCravings().find((c) => c.id === id)!.name;
+      pickTile(new RegExp(`^${name}$`, 'i'));
+      await waitFor(() => expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument());
+      expect(screen.queryByText(porkName)).toBeNull();
+      expect(screen.getByText('Showing swaps that match your food rules. This is a guide, not a certification. Check labels.')).toBeInTheDocument();
+      cleanup();
+    }
+  });
+
+  it('puts an unknown-halal item last with "Check the ingredients", and a halal chicken swap says "Use halal-certified meat."', async () => {
+    renderFood({ foodProfile: food({ rules: ['halal'] }) }, porkServices());
+    pickTile(/takeaway burger/i);
+    await screen.findAllByText('Use halal-certified meat.');
+    const rows = screen.getAllByRole('listitem');
+    expect(within(rows[rows.length - 1]!).getByText('Check the ingredients')).toBeInTheDocument();
+    expect(within(rows[0]!).queryByText('Check the ingredients')).toBeNull();
+    expect(screen.getAllByText('Use halal-certified meat.').length).toBeGreaterThan(0);
+  });
+
+  it('labels a Greek-tagged swap "Fits your kitchen" and no other tradition', async () => {
+    const services = createServices();
+    const nameOf = (id: string) => services.catalogue.swapsFor('burger').find((s) => s.alternative.id === id)!.alternative.name;
+    renderFood({ foodProfile: food({ traditions: ['greek'] }) }, services);
+    pickTile(/takeaway burger/i);
+    await screen.findByText(nameOf('greek-salad'));
+    expect(within(rowOf(nameOf('greek-salad'))).getByText('Fits your kitchen')).toBeInTheDocument();
+    expect(within(rowOf(nameOf('minestrone'))).queryByText('Fits your kitchen')).toBeNull();
+    expect(screen.getAllByText('Fits your kitchen')).toHaveLength(2);
+  });
+
+  it('shows no food labels or rule line when there is no food profile', async () => {
+    renderFood({});
+    pickTile(/takeaway burger/i);
+    await screen.findByText(/swaps? for/i);
+    expect(screen.queryByText(/fits your kitchen|check the ingredients|certified|food rules/i)).toBeNull();
+  });
+
+  it('says only the hidden-all sentence when every swap is out', async () => {
+    const services = flagged((_id, i) => ({ ...i, flags: { ...i.flags, vegan: 'no' } }));
+    renderFood({ foodProfile: food({ rules: ['vegan'] }) }, services);
+    pickTile(/chocolate/i);
+    const msg = await screen.findByText('We do not have a swap that fits all your food rules yet. You can change them in My food.');
+    expect(msg).toBeInTheDocument();
+    expect(screen.queryAllByRole('listitem')).toHaveLength(0);
+    expect(screen.queryByText(/showing swaps that match|no swaps found|public food tables|sample data|swaps? for/i)).toBeNull();
+  });
+
+  it('says it cannot check an unmatched allergy word, and every row says check', async () => {
+    renderFood({ foodProfile: food({ allergies: ['kiwi fruit'] }) });
+    pickTile(/takeaway burger/i);
+    expect(await screen.findByText('We could not check "kiwi fruit". Read every label.')).toBeInTheDocument();
+    const rows = screen.getAllByRole('listitem');
+    expect(rows.length).toBeGreaterThan(0);
+    for (const r of rows) expect(within(r).getByText('Check the ingredients')).toBeInTheDocument();
+  });
+
+  it('never echoes the person\'s own text on swaps apart from the unmatched allergy sentence', async () => {
+    const { container } = renderFood({
+      foodProfile: food({ traditions: ['xyzzy home cooking'], rules: ['halal'], allergies: ['peanut'], dismissed: ['qwerty'] }),
+    });
+    pickTile(/takeaway burger/i);
+    await screen.findByText(/swaps? for/i);
+    const text = container.textContent ?? '';
+    expect(text).not.toMatch(/xyzzy|qwerty|peanut/i);
+    expect(screen.queryByText(/We do not have swaps for/)).toBeNull();
+  });
+
+  it('says a chosen tradition has no catalogue food yet, by its label', () => {
+    renderFood({ foodProfile: food({ traditions: ['korean', 'greek'] }) });
+    expect(screen.getByText('We do not have swaps for Korean yet, but your food rules still apply.')).toBeInTheDocument();
+    expect(screen.queryByText(/swaps for Greek/)).toBeNull();
+  });
+
+  it('shows the nutrition footnote when a cultural item shows, not for a plain craving', async () => {
+    renderFood({});
+    pickTile(/takeaway burger/i);
+    expect(await screen.findByText('Nutrition estimated from public food tables.')).toBeInTheDocument();
+    cleanup();
+    renderFood({});
+    pickTile(/chocolate/i);
+    await screen.findByText(/swaps? for/i);
+    expect(screen.queryByText('Nutrition estimated from public food tables.')).toBeNull();
+  });
+});
+
+describe('privacy: the swaps view sends no profile text over the network', () => {
+  const SECRET = 'zzquince-secret';
+  const mock = createCoreServices(new InMemoryProfileStore());
+  const body = async (url: string): Promise<unknown> => {
+    const path = url.replace(/^\/api\//, '');
+    const [head, rest = ''] = path.split('/');
+    const id = decodeURIComponent(rest);
+    if (head === 'cravings') return rest === 'popular' ? mock.catalogue.popularCravings() : mock.catalogue.allCravings();
+    if (head === 'food-info') return mock.catalogue.allCravings().flatMap((c) => [c.id, ...mock.catalogue.swapsFor(c.id).map((s) => s.alternative.id)]).flatMap((i) => mock.catalogue.foodInfo(i) ?? []);
+    if (head === 'swaps') return mock.catalogue.swapsFor(id);
+    if (head === 'prices') return mock.prices.getPrices(id);
+    if (head === 'nutrition') return mock.nutrition.getNutrition(id);
+    return [];
+  };
+  const calls: Array<[string, unknown]> = [];
+  const fetchFn: FetchLike = async (url, init) => {
+    calls.push([url, init]);
+    return { ok: true, status: 200, json: async () => body(url) };
+  };
+  const leaks = (needle: string) => calls.some((c) => JSON.stringify(c).toLowerCase().includes(needle.toLowerCase()));
+
+  it('the leak check is live', () => {
+    expect(leaks('/api/prices')).toBe(false);
+    calls.push([`/api/prices/${SECRET}`, undefined]);
+    expect(leaks(SECRET)).toBe(true);
+    calls.length = 0;
+  });
+
+  it('makes price and nutrition requests by item id only', async () => {
+    const services = await createHttpServices(new InMemoryProfileStore(), fetchFn);
+    calls.length = 0;
+    const spy = vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('no direct fetch'));
+    renderFood({
+      foodProfile: food({ traditions: [SECRET, 'greek'], rules: ['halal'], allergies: [SECRET, 'peanut'], dismissed: [SECRET] }),
+      foodBudgetWeekly: 91,
+    }, services);
+    pickTile(/takeaway burger/i);
+    await screen.findByText(/could not check/i);
+    expect(calls.length).toBeGreaterThan(0);
+    expect(calls.every(([u]) => /^\/api\/(prices|nutrition)\/[a-z0-9-]+$/.test(u))).toBe(true);
+    expect(leaks(SECRET)).toBe(false);
+    expect(leaks('peanut')).toBe(false);
+    expect(leaks('halal')).toBe(false);
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockRestore();
   });
 });

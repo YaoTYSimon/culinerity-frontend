@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
@@ -20,6 +20,34 @@ describe('popular craving tiles', () => {
     expect(list.querySelectorAll('li').length).toBeGreaterThan(0);
     expect(list.querySelectorAll('img')).toHaveLength(0);
     expect(list.querySelectorAll('svg').length).toBeGreaterThan(0);
+  });
+});
+
+describe('popular cravings and traditions', () => {
+  const names = () => screen.getAllByRole('button').map((b) => b.textContent).filter((t) => t && t !== 'Find swaps');
+  const food = (traditions: string[]) => ({ foodProfile: { traditions, rules: [], allergies: [], occasions: [], dismissed: [] } });
+  const show = (profile: object) => render(<ServicesProvider services={createServices()}><CravingSearch profile={profile} onAddToWeek={() => {}} /></ServicesProvider>);
+
+  it('are the same ten without a tradition', () => {
+    show({});
+    const plain = names();
+    expect(plain).toHaveLength(10);
+    cleanup();
+    show(food([]));
+    expect(names()).toEqual(plain);
+    cleanup();
+    show(food(['korean']));
+    expect(names()).toEqual(plain);
+  });
+
+  it('list the cravings of the person\'s traditions first, then the ten', () => {
+    show({});
+    const plain = names();
+    cleanup();
+    show(food(['indian-north', 'italian']));
+    const got = names();
+    expect(got.slice(0, 2)).toEqual(expect.arrayContaining([expect.stringMatching(/butter chicken/i), expect.stringMatching(/lasagne/i)]));
+    expect(got.slice(-10)).toEqual(plain);
   });
 });
 

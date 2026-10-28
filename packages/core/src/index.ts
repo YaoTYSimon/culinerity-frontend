@@ -45,6 +45,7 @@ export * from './food/types';
 export * from './food/allergens';
 export * from './food/rules';
 export * from './food/rank';
+export * from './food/coverage';
 export * from './food/meals';
 export * from './food/occasions';
 export * from './food/sanitize';

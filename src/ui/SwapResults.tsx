@@ -10,8 +10,26 @@ export interface WeekSwapInput {
   saving: number;
 }
 
+/** How one swap relates to the person's food setup, keyed by the swap's item id. */
+export interface SwapNote {
+  fit: 'fits' | 'check';
+  kitchen: boolean;
+  certifiedMeat: 'halal' | 'kosher' | null;
+}
+
+export const RULES_LINE = 'Showing swaps that match your food rules. This is a guide, not a certification. Check labels.';
+export const NUTRITION_NOTE = 'Nutrition estimated from public food tables.';
+
 interface Props {
   swaps: RankedSwap[];
+  /** Per-swap food notes. Absent means no food setup: nothing extra is shown. */
+  notes?: Record<string, SwapNote>;
+  /** Any food rule or allergy is on: shows the guide line. */
+  rulesOn?: boolean;
+  /** Allergy words that could not be checked, each said back once. */
+  unmatchedAllergies?: string[];
+  /** A cultural item is on show, so the nutrition source note applies. */
+  nutritionNote?: boolean;
   /** Health score of the craving itself, used only to pick a relative label. Null hides the indicator. */
   cravingHealth?: number | null;
   /** Cheapest per-serve price of the craving itself, used only for the "Saves" line. Null hides it. */
@@ -26,16 +44,25 @@ function formatDate(iso: string): string | null {
   return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 }
 
-export function SwapResults({ swaps, cravingHealth = null, cravingCost = null, onAddToWeek }: Props) {
+export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies = [], nutritionNote = false, cravingHealth = null, cravingCost = null, onAddToWeek }: Props) {
   const [added, setAdded] = useState<Record<string, number>>({});
   const anySample = swaps.some((s) => s.price?.isSample);
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
+      {(rulesOn || unmatchedAllergies.length > 0) && (
+        <div className="grid gap-1 text-pretty">
+          {rulesOn && <p className="text-sm text-muted">{RULES_LINE}</p>}
+          {unmatchedAllergies.map((a) => (
+            <p key={a} className="text-sm font-semibold">We could not check "{a}". Read every label.</p>
+          ))}
+        </div>
+      )}
       <ul className="grid grid-cols-[minmax(0,1fr)] gap-5">
         {swaps.map((s) => {
           const { alternative, note } = s.candidate;
           const health = healthLabel(s.health, cravingHealth);
           const date = s.price ? (formatDate(s.price.observedAt) ?? 'date unknown') : null;
+          const food = notes?.[alternative.id];
           const saving = s.price ? savingVsCraving(cravingCost, s.cost) : null;
           return (
             <li key={alternative.id} className="flex items-center gap-3">
@@ -43,6 +70,13 @@ export function SwapResults({ swaps, cravingHealth = null, cravingCost = null, o
               <div className="min-w-0 flex-1">
                 <p className="text-[15px] font-semibold leading-snug text-balance">{alternative.name}</p>
                 <p className="text-xs text-muted">{s.price ? `${s.price.store} · per serve` : note}</p>
+                {food && (food.kitchen || food.fit === 'check') && (
+                  <p className="mt-0.5 flex flex-wrap gap-x-2 text-xs font-semibold">
+                    {food.kitchen && <span>Fits your kitchen</span>}
+                    {food.fit === 'check' && <span>Check the ingredients</span>}
+                  </p>
+                )}
+                {food?.certifiedMeat && <p className="text-xs text-muted">Use {food.certifiedMeat}-certified meat.</p>}
                 {saving !== null && <p className="mt-0.5 text-sm font-semibold">Saves ${saving.toFixed(2)}</p>}
                 <p className="mt-0.5 flex flex-wrap gap-x-2 text-xs text-muted">
                   {health && <span>{health}</span>}
@@ -78,6 +112,7 @@ export function SwapResults({ swaps, cravingHealth = null, cravingCost = null, o
           );
         })}
       </ul>
+      {nutritionNote && <p className="text-xs text-muted">{NUTRITION_NOTE}</p>}
       {anySample && (
         <p className="text-xs text-muted">
           <span className="font-semibold text-ink">Sample data</span>

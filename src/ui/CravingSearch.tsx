@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { type FoodItem, type Profile, type RankedSwap, swapService } from '@culinerity/core';
+import { type FoodItem, type Profile, type ProfiledSwap, cravingsForTraditions, swapService, traditions, traditionsWithFoods } from '@culinerity/core';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
-import { SwapResults, type WeekSwapInput } from './SwapResults';
+import { SwapResults, type SwapNote, type WeekSwapInput } from './SwapResults';
 import { FIELD_EDGE } from './formParts';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
@@ -10,7 +10,21 @@ type Outcome =
   | { kind: 'none' }
   | { kind: 'no-match'; text: string }
   | { kind: 'error' }
-  | { kind: 'swaps'; craving: FoodItem; swaps: RankedSwap[]; cravingHealth: number | null; cravingCost: number | null };
+  | {
+      kind: 'swaps';
+      craving: FoodItem;
+      profiled: ProfiledSwap[];
+      hidden: number;
+      unmatchedAllergies: string[];
+      cultural: boolean;
+      cravingHealth: number | null;
+      cravingCost: number | null;
+    };
+
+/** At most this many cravings from the person's traditions lead the picklist. */
+const TRADITION_CRAVINGS = 6;
+export const NO_FIT_LINE = 'We do not have a swap that fits all your food rules yet. You can change them in My food.';
+const noTraditionFoods = (label: string) => `We do not have swaps for ${label} yet, but your food rules still apply.`;
 
 const tile =
   'group flex min-h-11 flex-col items-center gap-2 text-center text-sm font-semibold text-ink outline-none';
@@ -32,6 +46,44 @@ function SkeletonRows() {
         </div>
       ))}
     </div>
+  );
+}
+
+type SwapsOutcomeData = Extract<Outcome, { kind: 'swaps' }>;
+
+function SwapsOutcome({ outcome, rulesOn, onAddToWeek }: { outcome: SwapsOutcomeData; rulesOn: boolean; onAddToWeek: (swap: WeekSwapInput) => void }) {
+  const { craving, profiled, hidden } = outcome;
+  const swaps = profiled.map((p) => p.swap);
+  // Nothing fits the person's rules: say so kindly and list nothing else.
+  if (swaps.length === 0 && hidden > 0) return <p className="text-base font-semibold text-pretty">{NO_FIT_LINE}</p>;
+  const notes: Record<string, SwapNote> = Object.fromEntries(
+    profiled.map((p) => [p.swap.candidate.alternative.id, { fit: p.fit, kitchen: p.kitchen, certifiedMeat: p.certifiedMeat }]),
+  );
+  return (
+    <>
+      <div className="grid grid-cols-[auto_1fr] items-center gap-x-3">
+        <RoundPhoto itemId={craving.id} size={48} eager className="row-span-2" />
+        <h2 className="col-start-2 text-xl font-semibold text-balance">
+          {swaps.length === 0
+            ? `No swaps found for ${craving.name} yet.`
+            : `${swaps.length} ${swaps.length === 1 ? 'swap' : 'swaps'} for ${craving.name}`}
+        </h2>
+        {outcome.cravingCost !== null && swaps.length > 0 && (
+          <p className="col-start-2 text-xs text-muted">Your craving: about ${outcome.cravingCost.toFixed(2)} per serve</p>
+        )}
+      </div>
+      {swaps.length === 0 && (
+        <p className="text-sm text-pretty text-muted">
+          We do not have a cheaper or healthier idea for this one yet. Try another craving.
+        </p>
+      )}
+      {swaps.length > 0 && (
+        <SwapResults
+          swaps={swaps} notes={notes} rulesOn={rulesOn} unmatchedAllergies={outcome.unmatchedAllergies} nutritionNote={outcome.cultural}
+          cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} onAddToWeek={onAddToWeek}
+        />
+      )}
+    </>
   );
 }
 
@@ -57,6 +109,15 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
   }, []);
 
   const popular = services.catalogue.popularCravings();
+  const food = profile.foodProfile;
+  // The person's tradition cravings lead the picklist; with none it is the same ten.
+  const picklist = popular.length === 0 ? popular : [...cravingsForTraditions(services.catalogue, food?.traditions ?? [], TRADITION_CRAVINGS), ...popular];
+  // Starter traditions only (their label is ours); the person's own words are never echoed.
+  const withFoods = popular.length === 0 || !food ? null : traditionsWithFoods(services.catalogue);
+  const uncovered = withFoods
+    ? traditions().filter((t) => food!.traditions.some((c) => c.toLowerCase() === t.id) && !withFoods.has(t.id))
+    : [];
+  const rulesOn = (food?.rules.length ?? 0) > 0 || (food?.allergies.some((a) => a.trim() !== '') ?? false);
   // One craving per category, so a miss still gives broad ideas to try.
   const categories = popular.filter((c, i) => popular.findIndex((o) => o.category === c.category) === i);
 
@@ -64,10 +125,12 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
     const id = ++latest.current;
     setLoading(true);
     try {
-      const { swaps, cravingCost, cravingHealth } = await swapService(services).getSwapsWithBaseline(craving.id, profile);
+      const { profiled, hidden, unmatchedAllergies, cravingCost, cravingHealth } = await swapService(services).getSwapsWithBaseline(craving.id, profile);
       if (latest.current !== id) return;
+      const isCultural = (itemId: string) => (services.catalogue.foodInfo(itemId)?.traditions.length ?? 0) > 0;
+      const cultural = isCultural(craving.id) || profiled.some((p) => isCultural(p.swap.candidate.alternative.id));
       setLoading(false);
-      setOutcome({ kind: 'swaps', craving, swaps, cravingHealth, cravingCost });
+      setOutcome({ kind: 'swaps', craving, profiled, hidden, unmatchedAllergies, cultural, cravingHealth, cravingCost });
     } catch {
       if (latest.current !== id) return;
       setLoading(false);
@@ -130,7 +193,7 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
     <section aria-labelledby="popular-h" className="grid gap-3">
       <h2 id="popular-h" className="text-base font-semibold">Popular cravings</h2>
       <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-5">
-        {popular.map((c, i) => (
+        {picklist.map((c, i) => (
           <button key={c.id} type="button" className={tile} onClick={() => pick(c)}>
             <RoundPhoto itemId={c.id} size={120} fluid eager={i < 4} className="aspect-square w-full max-w-[140px] group-focus-visible:ring-2 group-focus-visible:ring-ink group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-bg" />
             {c.name}
@@ -160,6 +223,9 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
       </div>
 
       <div aria-live="polite" className="grid grid-cols-[minmax(0,1fr)] content-start gap-3">
+        {uncovered.map((t) => (
+          <p key={t.id} className="text-sm text-pretty text-muted">{noTraditionFoods(t.label)}</p>
+        ))}
         {popularBlock}
         {loading && (
           <>
@@ -186,29 +252,7 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
             </div>
           </div>
         )}
-        {!loading && outcome.kind === 'swaps' && (
-          <>
-            <div className="grid grid-cols-[auto_1fr] items-center gap-x-3">
-              <RoundPhoto itemId={outcome.craving.id} size={48} eager className="row-span-2" />
-              <h2 className="col-start-2 text-xl font-semibold text-balance">
-                {outcome.swaps.length === 0
-                  ? `No swaps found for ${outcome.craving.name} yet.`
-                  : `${outcome.swaps.length} ${outcome.swaps.length === 1 ? 'swap' : 'swaps'} for ${outcome.craving.name}`}
-              </h2>
-              {outcome.cravingCost !== null && outcome.swaps.length > 0 && (
-                <p className="col-start-2 text-xs text-muted">Your craving: about ${outcome.cravingCost.toFixed(2)} per serve</p>
-              )}
-            </div>
-            {outcome.swaps.length === 0 && (
-              <p className="text-sm text-pretty text-muted">
-                We do not have a cheaper or healthier idea for this one yet. Try another craving.
-              </p>
-            )}
-            {outcome.swaps.length > 0 && (
-              <SwapResults swaps={outcome.swaps} cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} onAddToWeek={onAddToWeek} />
-            )}
-          </>
-        )}
+        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} onAddToWeek={onAddToWeek} />}
       </div>
     </div>
   );
