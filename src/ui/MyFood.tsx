@@ -92,7 +92,7 @@ export function MyFood({ value, now, onSave, onClear, onDone, startAtWizard = fa
     <section aria-label="My food" className="flex min-h-[calc(100svh-9rem)] min-w-0 flex-col text-ink">
       <StepProgress label="My food progress" noun="Step" step={step + 1} total={STEP_TITLES.length} />
       {/* Remounted per step so the new h1 takes focus. */}
-      <div key={step} className="mt-6 grid min-w-0 gap-4">
+      <div key={step} className="mt-6 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4">
         <FocusHeading>{STEP_TITLES[step]}</FocusHeading>
         <p className="text-sm text-muted">{PRIVACY_LINE}</p>
         {step === 0 && <TraditionsStep {...stepProps} />}

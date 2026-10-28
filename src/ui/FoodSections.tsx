@@ -37,7 +37,7 @@ interface Props {
 export function FoodSections({ food, onChange }: Props) {
   const sections = Object.keys(HEADINGS) as FoodSection[];
   return (
-    <dl className="grid gap-4">
+    <dl className="grid grid-cols-[minmax(0,1fr)] gap-4">
       {sections.map((section) => {
         const items = food ? lines(food, section) : [];
         return (

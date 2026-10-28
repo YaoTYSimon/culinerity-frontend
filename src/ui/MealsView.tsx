@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { addMeal, culturalWeek, labelFor, removeMeal, restoreMeal, type CulturalMeal } from '@culinerity/core';
 import { AddMeal, MealDetails, withText } from './AddMeal';
-import { defaultId } from './AddSpend';
+import { defaultId, localDay } from './AddSpend';
+import { dayLabel } from './foodCopy';
 import { Disclosure } from './Disclosure';
 import { EmptyPlate } from './illustrations/EmptyPlate';
 import { PageHeader } from './PageHeader';
@@ -25,8 +26,8 @@ interface Props {
 const STATUS_MS = 6000;
 type Added = { id: string; text: string; detailed: boolean };
 
-const dayText = (iso: string): string =>
-  new Date(iso).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' });
+/** The same "Wed 4 Nov" form My food uses, in the person's own time zone. */
+const dayText = (iso: string): string => dayLabel(localDay(new Date(iso)));
 const mealName = (m: CulturalMeal): string => m.dish ?? labelFor(m.tradition);
 const mealNote = (m: CulturalMeal): string =>
   [m.dish ? labelFor(m.tradition) : null, dayText(m.at), m.with ? withText(m.with) : null].filter(Boolean).join(' · ');
@@ -77,6 +78,14 @@ export function MealsView({ meals, traditions, now, onChange, onSetUpFood, clock
     if (wasAdding.current && !adding) (detailsButton.current ?? addButton.current)?.focus();
     wasAdding.current = adding;
   }, [adding]);
+  // "Add a meal" is hidden while the details form is open, so ask for focus once it is back.
+  const refocusAdd = useRef(false);
+  useEffect(() => {
+    if (!detailing && refocusAdd.current) {
+      refocusAdd.current = false;
+      addButton.current?.focus();
+    }
+  });
   // After a row is removed, focus lands on a neighbouring Remove button, or the list heading.
   useEffect(() => {
     const pending = focusAfter.current;
@@ -107,7 +116,7 @@ export function MealsView({ meals, traditions, now, onChange, onSetUpFood, clock
     }
     setDetailing(false);
     startTimer();
-    addButton.current?.focus();
+    refocusAdd.current = true;
   };
   const onUndoAdded = () => {
     if (!added) return;
@@ -115,7 +124,7 @@ export function MealsView({ meals, traditions, now, onChange, onSetUpFood, clock
     clearTimeout(statusTimer.current);
     setAdded(null);
     setDetailing(false);
-    addButton.current?.focus();
+    refocusAdd.current = true;
   };
   const onRemove = (meal: CulturalMeal) => {
     const { meals: next, removed } = removeMeal(meals, meal.id);
@@ -173,7 +182,7 @@ export function MealsView({ meals, traditions, now, onChange, onSetUpFood, clock
         )}
       </div>
 
-      {detailing && <MealDetails onSave={onSaveDetails} onSkip={() => { setDetailing(false); startTimer(); addButton.current?.focus(); }} />}
+      {detailing && <MealDetails onSave={onSaveDetails} onSkip={() => { setDetailing(false); startTimer(); refocusAdd.current = true; }} />}
 
       {adding ? (
         <AddMeal now={now} clock={clock} traditions={traditions} onPick={onPick} onSetUpFood={onSetUpFood} onCancel={() => setAdding(false)} />

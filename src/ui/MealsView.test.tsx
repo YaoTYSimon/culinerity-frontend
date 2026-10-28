@@ -107,6 +107,24 @@ describe('MealsView', () => {
     expect(screen.getByText(/with family/)).toBeInTheDocument();
   });
 
+  it('puts focus back on Add a meal after Save details', () => {
+    show();
+    openAdd();
+    fireEvent.click(screen.getByRole('button', { name: 'Greek' }));
+    fireEvent.click(within(status()).getByRole('button', { name: 'Add details' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Save details' }));
+    expect(screen.getByRole('button', { name: 'Add a meal' })).toHaveFocus();
+  });
+
+  it('puts focus back on Add a meal after Skip on the details form', () => {
+    show();
+    openAdd();
+    fireEvent.click(screen.getByRole('button', { name: 'Vietnamese' }));
+    fireEvent.click(within(status()).getByRole('button', { name: 'Add details' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Skip' }));
+    expect(screen.getByRole('button', { name: 'Add a meal' })).toHaveFocus();
+  });
+
   it('keeps the status line while details are open, and drops it later otherwise', () => {
     show();
     openAdd();
@@ -147,7 +165,7 @@ describe('MealsView', () => {
     fireEvent.change(day, { target: { value: '2026-10-29' } });
     fireEvent.click(screen.getByRole('button', { name: 'Greek' }));
     expect(onSave).not.toHaveBeenCalled();
-    expect(screen.getByText(/Pick a day from Mon, 19 Oct to today\./)).toBeInTheDocument();
+    expect(screen.getByText(/Pick a day from Mon 19 Oct to today\./)).toBeInTheDocument();
     fireEvent.change(day, { target: { value: '2026-10-18' } });
     fireEvent.click(screen.getByRole('button', { name: 'Greek' }));
     expect(onSave).not.toHaveBeenCalled();
@@ -161,7 +179,7 @@ describe('MealsView', () => {
     fireEvent.change(screen.getByLabelText('Day'), { target: { value: '2026-10-26' } });
     fireEvent.click(screen.getByRole('button', { name: 'Greek' }));
     expect(onSave.mock.calls[0][0][0].at).toBe(new Date(2026, 9, 26, 12, 0, 0).toISOString());
-    expect(status()).toHaveTextContent('Added: Greek, Mon, 26 Oct.');
+    expect(status()).toHaveTextContent('Added: Greek, Mon 26 Oct.');
   });
 
   it('marks Monday, Wednesday and Saturday on the ring for meals on those days', () => {

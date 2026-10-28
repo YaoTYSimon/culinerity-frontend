@@ -20,7 +20,7 @@ export function ringLabel(days: boolean[]): string {
   return `Monday to Sunday: ${on.length === 0 ? 'no meals yet' : `meals on ${joinNames(on)}`}`;
 }
 
-/** Seven round dots in a ring on a plate, Monday at the top and going clockwise. Filled means a meal that day; today is outlined. */
+/** Seven round dots in a ring on a plate, Monday at the top and going clockwise. Filled means a meal that day; an empty day has a visible ring (muted against the plate, 3:1 or better); today has an extra outer ring. */
 export function WeekRing({ days, todayIndex }: Props) {
   return (
     <svg viewBox={`0 0 ${SIZE} ${SIZE}`} width="220" height="220" role="img" aria-label={ringLabel(days)} className="max-w-full">
@@ -34,7 +34,11 @@ export function WeekRing({ days, todayIndex }: Props) {
           const filled = days[i] === true;
           return (
             <g key={name}>
-              <circle data-day={i} data-filled={filled} cx={x} cy={y} r={DOT} className={filled ? 'fill-ink' : 'fill-bg'} />
+              <circle
+                data-day={i} data-filled={filled} cx={x} cy={y} r={DOT}
+                strokeWidth={filled ? 0 : 2.5}
+                className={filled ? 'fill-ink' : 'fill-bg stroke-muted'}
+              />
               {i === todayIndex && (
                 <circle data-today={i} cx={x} cy={y} r={DOT + 5} fill="none" strokeWidth="3" className="stroke-ink" />
               )}

@@ -23,7 +23,7 @@ type Outcome =
 
 /** At most this many cravings from the person's traditions lead the picklist. */
 const TRADITION_CRAVINGS = 6;
-export const NO_FIT_LINE = 'We do not have a swap that fits all your food rules yet. You can change them in My food.';
+export const NO_FIT_LINE = 'We do not have a swap that fits all your food rules yet.';
 const noTraditionFoods = (label: string) => `We do not have swaps for ${label} yet, but your food rules still apply.`;
 
 const tile =
@@ -51,11 +51,16 @@ function SkeletonRows() {
 
 type SwapsOutcomeData = Extract<Outcome, { kind: 'swaps' }>;
 
-function SwapsOutcome({ outcome, rulesOn, onAddToWeek }: { outcome: SwapsOutcomeData; rulesOn: boolean; onAddToWeek: (swap: WeekSwapInput) => void }) {
+function SwapsOutcome({ outcome, rulesOn, onAddToWeek, onChangeFoodRules }: { outcome: SwapsOutcomeData; rulesOn: boolean; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void }) {
   const { craving, profiled, hidden } = outcome;
   const swaps = profiled.map((p) => p.swap);
   // Nothing fits the person's rules: say so kindly and list nothing else.
-  if (swaps.length === 0 && hidden > 0) return <p className="text-base font-semibold text-pretty">{NO_FIT_LINE}</p>;
+  if (swaps.length === 0 && hidden > 0) return (
+      <div className="grid justify-items-start gap-1">
+        <p className="text-base font-semibold text-pretty">{NO_FIT_LINE}</p>
+        {onChangeFoodRules && <PillButton variant="text" className="-ml-3" onClick={onChangeFoodRules}>Change my food rules</PillButton>}
+      </div>
+    );
   const notes: Record<string, SwapNote> = Object.fromEntries(
     profiled.map((p) => [p.swap.candidate.alternative.id, { fit: p.fit, kitchen: p.kitchen, certifiedMeat: p.certifiedMeat }]),
   );
@@ -87,7 +92,7 @@ function SwapsOutcome({ outcome, rulesOn, onAddToWeek }: { outcome: SwapsOutcome
   );
 }
 
-export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAddToWeek: (swap: WeekSwapInput) => void }) {
+export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules }: { profile: Profile; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void }) {
   const services = useServices();
   const catalogue = useCatalogueStatus();
   const [text, setText] = useState('');
@@ -252,7 +257,7 @@ export function CravingSearch({ profile, onAddToWeek }: { profile: Profile; onAd
             </div>
           </div>
         )}
-        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} onAddToWeek={onAddToWeek} />}
+        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} onAddToWeek={onAddToWeek} onChangeFoodRules={onChangeFoodRules} />}
       </div>
     </div>
   );

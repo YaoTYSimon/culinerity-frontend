@@ -55,6 +55,9 @@ export function checkThemes(css) {
       pair('ink on bg as control edge', 'ink', 'bg', CONTROL),
       pair('ink on surface as control edge', 'ink', 'surface', CONTROL),
       pair('muted on bg as control edge', 'muted', 'bg', CONTROL),
+      // Week ring: an empty day is a bg-filled dot with a muted outline on the surface-tone plate; filled is ink on surface.
+      pair('week ring empty-day outline (muted) vs plate (surface)', 'muted', 'surface', CONTROL),
+      pair('week ring filled day (ink) vs plate (surface)', 'ink', 'surface', CONTROL),
       // Text fields: the 2px edge (muted) must read against the page ground AND against the surface tone (WCAG 1.4.11).
       pair('input edge (muted) vs bg', 'muted', 'bg', CONTROL),
       pair('input edge (muted) vs surface', 'muted', 'surface', CONTROL),

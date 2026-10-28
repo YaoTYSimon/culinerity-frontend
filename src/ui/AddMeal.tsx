@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { cleanText, labelFor, MAX_TEXT, type CulturalMeal } from '@culinerity/core';
-import { atFor, dayText, earliestDay, localDay } from './AddSpend';
+import { atFor, earliestDay, localDay } from './AddSpend';
+import { dayLabel as dayText } from './foodCopy';
 import { INPUT_CLASS } from './formParts';
 import { PillButton } from './PillButton';
 

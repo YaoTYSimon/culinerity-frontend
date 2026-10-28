@@ -25,7 +25,7 @@ interface Props {
 /** The view once food settings exist: each section with "Change", then the clear controls. */
 export function FoodSummary({ food, now, hasMeals, notice, onChange, onSetUp, onClearFood, onClearMeals, onUndo, onOpenMeals, onDone }: Props) {
   return (
-    <section aria-label="My food" className="grid min-w-0 gap-5 text-ink">
+    <section aria-label="My food" className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-5 text-ink">
       <div className="grid gap-3">
         <FocusHeading>My food</FocusHeading>
         <p className="text-base text-pretty text-muted">

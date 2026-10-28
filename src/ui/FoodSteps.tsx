@@ -123,7 +123,7 @@ export function AllergiesStep({ draft, onDraft }: StepProps) {
         hint="For example peanuts, egg or sesame."
       />
       {unmatched.length > 0 && (
-        <p className="text-sm text-pretty text-muted">
+        <p className="min-w-0 text-sm text-pretty text-muted [overflow-wrap:anywhere]">
           We do not know {unmatched.join(', ')} yet, so swaps will ask you to check the ingredients.
         </p>
       )}

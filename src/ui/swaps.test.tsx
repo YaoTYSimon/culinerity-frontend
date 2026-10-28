@@ -300,10 +300,11 @@ function flagged(reflag: (id: string, info: FoodInfo) => FoodInfo): Services {
 const porkServices = () =>
   flagged((id, i) => (id === PORK_ID ? { ...i, flags: { ...i.flags, halal: 'no', pork: 'yes' } } : i));
 
+const onChangeRules = vi.fn();
 function renderFood(profile: Profile, services: Services = createServices()) {
   return render(
     <ServicesProvider services={services}>
-      <CravingSearch profile={profile} onAddToWeek={onAdd} />
+      <CravingSearch profile={profile} onAddToWeek={onAdd} onChangeFoodRules={onChangeRules} />
     </ServicesProvider>,
   );
 }
@@ -400,8 +401,10 @@ describe('CravingSearch with a food profile', () => {
     const services = flagged((_id, i) => ({ ...i, flags: { ...i.flags, vegan: 'no' } }));
     renderFood({ foodProfile: food({ rules: ['vegan'] }) }, services);
     pickTile(/chocolate/i);
-    const msg = await screen.findByText('We do not have a swap that fits all your food rules yet. You can change them in My food.');
+    const msg = await screen.findByText('We do not have a swap that fits all your food rules yet.');
     expect(msg).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Change my food rules' }));
+    expect(onChangeRules).toHaveBeenCalledTimes(1);
     expect(screen.queryAllByRole('listitem')).toHaveLength(0);
     expect(screen.queryByText(/showing swaps that match|no swaps found|public food tables|sample data|swaps? for/i)).toBeNull();
   });

@@ -17,7 +17,7 @@ export function ComingUp({ food, now }: { food: FoodProfile | undefined; now: Da
   const items = food ? upcomingOccasions(calendar(), food.occasions, now) : [];
   if (items.length === 0) return null;
   return (
-    <section aria-labelledby="coming-up-h" className="grid min-w-0 gap-2">
+    <section aria-labelledby="coming-up-h" className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-2">
       <h2 id="coming-up-h" className="text-base font-semibold">Coming up</h2>
       <ul className="grid gap-2">
         {items.map((o) => (

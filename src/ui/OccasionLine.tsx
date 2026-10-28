@@ -20,7 +20,7 @@ export function occasionSentence(o: ActiveOccasion): string {
 export function OccasionLine({ active, onSeeSwaps, onBudget, onDismiss }: Props) {
   if (!active) return null;
   return (
-    <section aria-label="Coming up" className="grid min-w-0 gap-1 text-ink">
+    <section aria-label="Coming up" className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-1 text-ink">
       <p className="text-base text-pretty">
         {occasionSentence(active)}
         {active.approx && active.phase === 'soon' && ` ${MOON_CAVEAT}`}

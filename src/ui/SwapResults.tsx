@@ -71,12 +71,12 @@ export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies 
                 <p className="text-[15px] font-semibold leading-snug text-balance">{alternative.name}</p>
                 <p className="text-xs text-muted">{s.price ? `${s.price.store} · per serve` : note}</p>
                 {food && (food.kitchen || food.fit === 'check') && (
-                  <p className="mt-0.5 flex flex-wrap gap-x-2 text-xs font-semibold">
+                  <p className="mt-0.5 flex flex-wrap gap-x-2 text-sm font-semibold">
                     {food.kitchen && <span>Fits your kitchen</span>}
                     {food.fit === 'check' && <span>Check the ingredients</span>}
                   </p>
                 )}
-                {food?.certifiedMeat && <p className="text-xs text-muted">Use {food.certifiedMeat}-certified meat.</p>}
+                {food?.certifiedMeat && <p className="text-sm text-muted">Use {food.certifiedMeat}-certified meat.</p>}
                 {saving !== null && <p className="mt-0.5 text-sm font-semibold">Saves ${saving.toFixed(2)}</p>}
                 <p className="mt-0.5 flex flex-wrap gap-x-2 text-xs text-muted">
                   {health && <span>{health}</span>}

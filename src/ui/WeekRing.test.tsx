@@ -10,6 +10,16 @@ describe('WeekRing', () => {
     expect(screen.getByRole('img', { name: 'Monday to Sunday: meals on Monday, Wednesday and Saturday' })).toBeInTheDocument();
   });
 
+  it('gives each empty day a visible outline and leaves filled days unstroked', () => {
+    const { container } = render(<WeekRing days={days(1)} todayIndex={0} />);
+    const dot = (i: number) => container.querySelector(`[data-day="${i}"]`) as SVGElement;
+    expect(dot(1)).not.toHaveClass('stroke-muted');
+    for (const i of [0, 2, 3, 4, 5, 6]) {
+      expect(dot(i)).toHaveClass('stroke-muted');
+      expect(dot(i)).toHaveAttribute('stroke-width', '2.5');
+    }
+  });
+
   it('says one day plainly, two with "and", and "no meals yet" when empty', () => {
     const { rerender } = render(<WeekRing days={days(6)} todayIndex={0} />);
     expect(screen.getByRole('img')).toHaveAttribute('aria-label', 'Monday to Sunday: meals on Sunday');

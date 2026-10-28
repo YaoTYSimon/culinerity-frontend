@@ -212,7 +212,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
                 onBudget={() => setView('budget')}
                 onDismiss={(key) => food && update(withOptional(profile, 'foodProfile', dismissOccasion(food, key, clockNow)))}
               />
-              <CravingSearch profile={profile} onAddToWeek={addToWeek} />
+              <CravingSearch profile={profile} onAddToWeek={addToWeek} onChangeFoodRules={() => setView('food')} />
               <BudgetDisclosure value={profile} onChange={update} />
             </div>
           )}
