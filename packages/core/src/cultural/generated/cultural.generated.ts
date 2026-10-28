@@ -582,6 +582,42 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "wp-kiribath",
+      "publisher": "Wikipedia",
+      "title": "Kiribath (article summary read): Kiribath is a traditional Sri Lankan dish of rice cooked with coconut milk; the article says it is commonly served for breakfast on the first day of each month and eaten for auspicious moments in life. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Kiribath",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-mallung",
+      "publisher": "Wikipedia",
+      "title": "Mallung (article summary read): Mallung is a shredded vegetable Sri Lankan dish of lightly cooked greens with fresh coconut and spices, eaten at almost every meal. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Mallung",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-pol-sambol",
+      "publisher": "Wikipedia",
+      "title": "Pol sambol (article summary read): Pol sambol is a traditional Sri Lankan coconut relish of grated coconut, shallots, chilli and lime, served as an accompaniment with rice and curries. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Pol_sambol",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
+    },
+    {
+      "id": "wp-kottu",
+      "publisher": "Wikipedia",
+      "title": "Kottu (article summary read): Kottu roti is a Sri Lankan dish of chopped roti with a curry of choice, scrambled egg, onions and chillies. Used only to place the dish in a cuisine.",
+      "url": "https://en.wikipedia.org/wiki/Kottu",
+      "licence": "CC BY-SA 4.0 (facts only, no text copied)",
+      "accessed": "2026-10-28",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1676,6 +1712,54 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "kiribath",
+        "name": "Coconut milk rice (kiribath)",
+        "category": "home cooking",
+        "keywords": [
+          "kiribath",
+          "milk rice",
+          "coconut rice"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "rice-mallung",
+        "name": "Rice with greens and coconut (mallung)",
+        "category": "home cooking",
+        "keywords": [
+          "mallung",
+          "mallum",
+          "sri lankan greens"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "rice-pol-sambol-egg",
+        "name": "Rice with coconut sambol and boiled egg",
+        "category": "home cooking",
+        "keywords": [
+          "pol sambol",
+          "coconut sambol",
+          "coconut relish"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-egg-kottu",
+        "name": "Chopped roti with chicken, egg and vegetables (kottu)",
+        "category": "home cooking",
+        "keywords": [
+          "kottu",
+          "kothu roti",
+          "kottu roti"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -2358,6 +2442,70 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "kiribath",
+        "store": "Coles",
+        "pricePerServe": 0.8,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "kiribath",
+        "store": "Woolworths",
+        "pricePerServe": 0.9,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "rice-mallung",
+        "store": "Coles",
+        "pricePerServe": 1.3,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "rice-mallung",
+        "store": "Woolworths",
+        "pricePerServe": 1.4,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "rice-pol-sambol-egg",
+        "store": "Coles",
+        "pricePerServe": 1.2,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "rice-pol-sambol-egg",
+        "store": "Woolworths",
+        "pricePerServe": 1.3,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-egg-kottu",
+        "store": "Coles",
+        "pricePerServe": 2,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-egg-kottu",
+        "store": "Woolworths",
+        "pricePerServe": 2.1,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -2728,6 +2876,38 @@ export const culturalData: CulturalData = {
         "sodiumMg": 111
       },
       {
+        "itemId": "kiribath",
+        "energyKj": 1491,
+        "proteinG": 6,
+        "fibreG": 0.6,
+        "sugarG": 1.4,
+        "sodiumMg": 22
+      },
+      {
+        "itemId": "rice-mallung",
+        "energyKj": 1672,
+        "proteinG": 8.5,
+        "fibreG": 6.3,
+        "sugarG": 3.9,
+        "sodiumMg": 163
+      },
+      {
+        "itemId": "rice-pol-sambol-egg",
+        "energyKj": 1785,
+        "proteinG": 14.1,
+        "fibreG": 4.2,
+        "sugarG": 2.4,
+        "sodiumMg": 95
+      },
+      {
+        "itemId": "chicken-egg-kottu",
+        "energyKj": 2467,
+        "proteinG": 33.8,
+        "fibreG": 5.6,
+        "sugarG": 8,
+        "sodiumMg": 153
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -2957,6 +3137,26 @@ export const culturalData: CulturalData = {
         "cravingId": "hot-chips",
         "alternativeId": "shepherds-salad",
         "note": "Tomato, cucumber, capsicum, onion and parsley with lemon and olive oil: a crunchy side."
+      },
+      {
+        "cravingId": "instant-noodles",
+        "alternativeId": "chicken-egg-kottu",
+        "note": "Chopped flatbread, chicken, egg and vegetables stir-fried together in one pan."
+      },
+      {
+        "cravingId": "pastry",
+        "alternativeId": "kiribath",
+        "note": "Rice cooked in coconut milk until thick and cut into pieces: a filling breakfast."
+      },
+      {
+        "cravingId": "pizza",
+        "alternativeId": "rice-mallung",
+        "note": "Shredded greens cooked with coconut, onion and chilli, served over rice."
+      },
+      {
+        "cravingId": "hot-chips",
+        "alternativeId": "rice-pol-sambol-egg",
+        "note": "Rice with a fresh coconut, onion and chilli sambol and a boiled egg."
       }
     ],
     "foodInfo": [
@@ -4123,6 +4323,88 @@ export const culturalData: CulturalData = {
           "gluten": "no",
           "allergens": [
             "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "kiribath",
+        "traditions": [
+          "sri-lankan"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "significance": "Commonly served for breakfast on the first day of each month, and eaten for any auspicious moment in life."
+      },
+      {
+        "itemId": "rice-mallung",
+        "traditions": [
+          "sri-lankan"
+        ],
+        "flags": {
+          "halal": "yes",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "yes",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "rice-pol-sambol-egg",
+        "traditions": [
+          "sri-lankan"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chicken-egg-kottu",
+        "traditions": [
+          "sri-lankan"
+        ],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "egg"
           ],
           "allergensKnown": true,
           "certifiedMeat": true
