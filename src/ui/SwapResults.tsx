@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { type RankedSwap, healthLabel } from '@culinerity/core';
 import { savingVsCraving } from './savings';
+import { noBreak } from './noBreak';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
 
@@ -41,7 +42,7 @@ interface Props {
 function formatDate(iso: string): string | null {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return null;
-  return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+  return noBreak(d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }));
 }
 
 export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies = [], nutritionNote = false, cravingHealth = null, cravingCost = null, onAddToWeek }: Props) {
@@ -71,19 +72,19 @@ export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies 
                 <p className="text-[15px] font-semibold leading-snug text-balance">{alternative.name}</p>
                 <p className="text-xs text-muted">{s.price ? `${s.price.store} · per serve` : note}</p>
                 {food && (food.kitchen || food.fit === 'check') && (
-                  <div className="mt-0.5 text-sm font-semibold">
+                  <div className="mt-1.5 text-sm font-semibold">
                     {food.kitchen && food.fit === 'check' && <p className="font-normal text-muted">Your food</p>}
                     {food.kitchen && <p>Fits your kitchen</p>}
                     {food.fit === 'check' && <p>Check the ingredients</p>}
                   </div>
                 )}
-                {food?.certifiedMeat && <p className="text-sm text-muted">Use {food.certifiedMeat}-certified meat.</p>}
-                {saving !== null && <p className="mt-0.5 text-sm font-semibold">Saves ${saving.toFixed(2)}</p>}
-                <p className="mt-0.5 flex flex-wrap gap-x-2 text-xs text-muted">
+                {food?.certifiedMeat && <p className="mt-0.5 text-sm text-muted">Use {food.certifiedMeat}-certified meat.</p>}
+                {saving !== null && <p className="mt-1.5 text-sm font-semibold">Saves ${saving.toFixed(2)}</p>}
+                <p className="mt-0.5 flex flex-wrap gap-x-2 text-xs text-muted empty:hidden">
                   {health && <span>{health}</span>}
                   {s.withinBudget !== null && <span>{s.withinBudget ? 'Within budget' : 'Over budget'}</span>}
-                  {date && <span>Price seen {date}</span>}
                 </p>
+                {date && <p className="text-xs text-muted">Price seen {date}</p>}
                 <span role="status" className="block text-xs font-semibold empty:hidden">
                   {added[alternative.id] ? (added[alternative.id] > 1 ? `Added to your week (${added[alternative.id]})` : 'Added to your week') : ''}
                 </span>
