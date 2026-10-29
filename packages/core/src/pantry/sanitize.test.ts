@@ -69,6 +69,15 @@ describe('sanitizePantry', () => {
   });
 });
 
+describe('sanitizeShopping grams', () => {
+  const e = (o: Record<string, unknown> = {}) => ({ id: 's1', name: 'Rice', addedAt: '2026-10-29T01:00:00.000Z', ...o });
+  it('keeps a valid quantity and drops a bad one', () => {
+    expect(sanitizeShopping([e({ grams: 150 })])?.[0].grams).toBe(150);
+    expect(sanitizeShopping([e({ grams: -3 })])?.[0]).not.toHaveProperty('grams');
+    expect(sanitizeShopping([e({ grams: 1.5 })])?.[0]).not.toHaveProperty('grams');
+  });
+});
+
 describe('sanitizeShopping', () => {
   const e = (o: Record<string, unknown> = {}) => ({ id: 's1', name: 'Rice', addedAt: '2026-10-29T01:00:00.000Z', ...o });
   it('junk and empty are undefined', () => {

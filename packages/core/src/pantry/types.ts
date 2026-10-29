@@ -29,6 +29,8 @@ export interface ShoppingEntry {
   ingredientId?: string;
   name: string;
   recipeId?: string;
+  /** Quantity to buy, integer 1..50000; lets the list total be priced. */
+  grams?: number;
   addedAt: string;
 }
 

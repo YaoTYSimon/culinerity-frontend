@@ -60,5 +60,8 @@ export * from './pantry/sanitize';
 export * from './pantry/items';
 export * from './pantry/search';
 export * from './pantry/dates';
+export * from './pantry/match';
+export * from './pantry/safety';
+export * from './pantry/shopping';
 export { centroidTable } from './places/generated/centroids.generated';
 export * from './tradeoffs/support';

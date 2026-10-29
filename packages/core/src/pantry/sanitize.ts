@@ -95,6 +95,7 @@ function cleanEntry(x: unknown): ShoppingEntry | null {
   const out: ShoppingEntry = { id: x.id, name, addedAt: x.addedAt };
   if (isId(x.ingredientId)) out.ingredientId = x.ingredientId;
   if (isId(x.recipeId)) out.recipeId = x.recipeId;
+  if (isGrams(x.grams)) out.grams = x.grams;
   return out;
 }
 
