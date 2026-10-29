@@ -188,6 +188,32 @@ function worseSwap(sw, tag, d, own) {
   return [];
 }
 
+/** Problems in one ingredient attribute row (shared with the pantry recipes generator). */
+export function validateIngredientRow(i, sourceIds) {
+  const errs = [];
+  const tag = `ingredient ${i.id}`;
+  if (typeof i.id !== 'string' || !SLUG.test(i.id)) errs.push(`${tag}: id must be a lowercase slug`);
+  if (!nonEmpty(i.name)) errs.push(`${tag}: needs a name`);
+  for (const k of TRI_KEYS) if (!TRI.includes(i[k])) errs.push(`${tag}: ${k} must be yes, no or unknown`);
+  for (const k of FAITH_KEYS) if (!FAITH.includes(i[k])) errs.push(`${tag}: ${k} must be yes, no, unknown or certified-meat`);
+  if (i.allergensPartial !== undefined && (i.allergensPartial !== true || !Array.isArray(i.allergens))) errs.push(`${tag}: allergensPartial may only be true beside a list of allergens`);
+  if (i.allergens !== 'unknown' && !(Array.isArray(i.allergens) && i.allergens.every((a) => ALLERGEN_IDS.includes(a)))) {
+    errs.push(`${tag}: allergens must be a list of known allergen ids or "unknown"`);
+  }
+  for (const k of [...TRI_KEYS, ...FAITH_KEYS, 'allergens']) {
+    if (i[k] === 'unknown') continue;
+    const sid = i.attributeSources?.[k] ?? i.attributeSourceId;
+    if (!nonEmpty(sid)) errs.push(`${tag}: ${k} has no attribute source`);
+    else if (!sourceIds.has(sid)) errs.push(`${tag}: ${k} references unknown source ${sid}`);
+  }
+  if (i.per100g !== undefined) {
+    for (const k of NUTRIENT_KEYS.slice(1)) if (!isNum(i.per100g[k])) errs.push(`${tag}: per100g.${k} missing or not a number`);
+    if (energyKjOf(i.per100g) === undefined) errs.push(`${tag}: per100g energy missing (energyKj or energyKcal)`);
+    if (isNum(i.per100g.energyKj) && isNum(i.per100g.energyKcal)) errs.push(`${tag}: per100g gives both energyKj and energyKcal`);
+  }
+  return errs;
+}
+
 /** Problems in the ingredient table, foods, cravings and swaps. Absent sections are treated as empty. */
 function validateCatalogue(d, sourceIds, traditionIds) {
   const errs = [];
@@ -200,28 +226,9 @@ function validateCatalogue(d, sourceIds, traditionIds) {
 
   const table = new Map();
   for (const i of ingredients) {
-    const tag = `ingredient ${i.id}`;
     if (table.has(i.id)) errs.push(`duplicate ingredient id ${i.id}`);
     table.set(i.id, i);
-    if (typeof i.id !== 'string' || !SLUG.test(i.id)) errs.push(`${tag}: id must be a lowercase slug`);
-    if (!nonEmpty(i.name)) errs.push(`${tag}: needs a name`);
-    for (const k of TRI_KEYS) if (!TRI.includes(i[k])) errs.push(`${tag}: ${k} must be yes, no or unknown`);
-    for (const k of FAITH_KEYS) if (!FAITH.includes(i[k])) errs.push(`${tag}: ${k} must be yes, no, unknown or certified-meat`);
-    if (i.allergensPartial !== undefined && (i.allergensPartial !== true || !Array.isArray(i.allergens))) errs.push(`${tag}: allergensPartial may only be true beside a list of allergens`);
-    if (i.allergens !== 'unknown' && !(Array.isArray(i.allergens) && i.allergens.every((a) => ALLERGEN_IDS.includes(a)))) {
-      errs.push(`${tag}: allergens must be a list of known allergen ids or "unknown"`);
-    }
-    for (const k of [...TRI_KEYS, ...FAITH_KEYS, 'allergens']) {
-      if (i[k] === 'unknown') continue;
-      const sid = i.attributeSources?.[k] ?? i.attributeSourceId;
-      if (!nonEmpty(sid)) errs.push(`${tag}: ${k} has no attribute source`);
-      else if (!sourceIds.has(sid)) errs.push(`${tag}: ${k} references unknown source ${sid}`);
-    }
-    if (i.per100g !== undefined) {
-      for (const k of NUTRIENT_KEYS.slice(1)) if (!isNum(i.per100g[k])) errs.push(`${tag}: per100g.${k} missing or not a number`);
-      if (energyKjOf(i.per100g) === undefined) errs.push(`${tag}: per100g energy missing (energyKj or energyKcal)`);
-      if (isNum(i.per100g.energyKj) && isNum(i.per100g.energyKcal)) errs.push(`${tag}: per100g gives both energyKj and energyKcal`);
-    }
+    errs.push(...validateIngredientRow(i, sourceIds));
   }
 
   const itemIds = new Set([...(existing.cravings ?? []), ...(existing.alternatives ?? [])]);

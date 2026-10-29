@@ -1,0 +1,3413 @@
+{
+ "generatedAt": "2026-10-29",
+ "sources": [
+  {
+   "id": "afcd-r3",
+   "publisher": "Food Standards Australia New Zealand (FSANZ)",
+   "title": "Australian Food Composition Database (AFCD) Release 3, Nutrient profiles workbook (\"AFCD Release 3 - Nutrient profiles.xlsx\"), sheet \"All solids & liquids per 100 g\": energy with dietary fibre equated (kJ), protein, total dietary fibre, total sugars and sodium read from the row of each Public Food Key (e.g. F009300). Food names also identify what each ingredient is.",
+   "url": "https://www.foodstandards.gov.au/science-data/food-nutrient-databases/afcd/data-files",
+   "licence": "Creative Commons Attribution 4.0 Australia (CC BY 4.0). Evidence: the FSANZ copyright page says \"Unless expressly noted otherwise, material presented on this website is provided under a Creative Commons Attribution 4.0 Australia (CC BY 4.0) licence ... you must attribute the work in the following manner: Food Standards Australia New Zealand\" (https://www.foodstandards.gov.au/legal-policies/copyright, read 2026-10-28). The AFCD data-files page states no separate licence, so the site-wide CC BY 4.0 is applied; a confirmation from FSANZ has not been sought.",
+   "accessed": "2026-10-29",
+   "version": "Release 3 (files dated December 2025)",
+   "attribution": "Food Standards Australia New Zealand, Australian Food Composition Database Release 3",
+   "verification": "primary"
+  },
+  {
+   "id": "nsw-fa-leftovers",
+   "publisher": "NSW Food Authority",
+   "title": "Leftovers: cool and cover leftovers and put them in a fridge or freezer within 2 hours; store below 5 C; eat within 3 days; cooked rice and pasta within 2 days; freeze up to 3 months; throw away leftovers out of the fridge more than 4 hours; reheat to steaming hot (at least 60 C); never reheat rice and pasta more than once; the 2-hour/4-hour time is cumulative. Re-read 2026-10-29.",
+   "url": "https://www.foodauthority.nsw.gov.au/node/23948",
+   "licence": "See nsw-fa-copyright: copy for any purpose with the notice \"(c) State of New South Wales through the NSW Food Authority\" (www.foodauthority.nsw.gov.au); logos and branding excepted",
+   "accessed": "2026-10-29",
+   "verification": "primary"
+  },
+  {
+   "id": "nsw-fa-copyright",
+   "publisher": "NSW Food Authority",
+   "title": "Copyright page: material may be copied and used \"for any purpose on the condition that you include on all uses the copyright notice: (c) State of New South Wales through the NSW Food Authority www.foodauthority.nsw.gov.au\"; adapted material needs the \"Includes material (c) State of New South Wales ...\" notice. Re-read 2026-10-29.",
+   "url": "https://www.foodauthority.nsw.gov.au/copyright",
+   "licence": "Custom permissive licence with attribution (page text read)",
+   "accessed": "2026-10-29",
+   "verification": "primary"
+  },
+  {
+   "id": "fsanz-date-marks",
+   "publisher": "Food Standards Australia New Zealand",
+   "title": "Use-by and best-before dates (page last updated 25 February 2025): foods that must be eaten before a certain time for health or safety reasons carry a use-by date and should not be eaten after it; foods can still be eaten for a while after the best-before date as they should be safe but may have lost some quality. Re-read 2026-10-29.",
+   "url": "https://www.foodstandards.gov.au/consumer/labelling/dates",
+   "licence": "CC BY 4.0 Australia by the FSANZ site-wide statement (see afcd-r3 record)",
+   "accessed": "2026-10-29",
+   "verification": "primary"
+  },
+  {
+   "id": "nsw-fa-cooking-temps",
+   "publisher": "NSW Food Authority",
+   "title": "Cooking temperatures: cook minced meat, sausages and poultry right through to the centre; no pink should be visible and juices should run clear (colour is not always reliable, a food thermometer helps); the page also lists 74 C for chicken and turkey and 71 C for minced meat (not printed in the app). Read 2026-10-29.",
+   "url": "https://www.foodauthority.nsw.gov.au/consumer/food-safety-home/cooking-temperatures",
+   "licence": "See nsw-fa-copyright: copy for any purpose with the NSW Food Authority copyright notice",
+   "accessed": "2026-10-29",
+   "verification": "primary"
+  },
+  {
+   "id": "nsw-fa-poultry-raw-meat",
+   "publisher": "NSW Food Authority",
+   "title": "Poultry and raw meat: cook poultry, minced meats and sausages until well done, right through to the centre, no pink visible, juices clear; never wash raw chicken; keep raw meat and poultry apart from ready-to-eat food; refrigerate promptly. Read 2026-10-29.",
+   "url": "https://www.foodauthority.nsw.gov.au/consumer/special-care-foods/poultry-and-raw-meat",
+   "licence": "See nsw-fa-copyright: copy for any purpose with the NSW Food Authority copyright notice",
+   "accessed": "2026-10-29",
+   "verification": "primary"
+  }
+ ],
+ "priceBasis": "Sample estimate: typical Melbourne supermarket price per kg of the ingredient as used in the recipe, rounded to 10c; not an observed price.",
+ "extraIngredients": [
+  {
+   "id": "tuna-canned",
+   "name": "Tuna, canned",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F009300",
+   "nutritionName": "Tuna, unflavoured, canned in water, drained",
+   "per100g": {
+    "energyKj": 540.0,
+    "proteinG": 26.1,
+    "fibreG": 0.0,
+    "sugarG": 0.0,
+    "sodiumMg": 250.0
+   },
+   "vegetarian": "no",
+   "vegan": "no",
+   "halal": "unknown",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "unknown",
+   "allergens": [
+    "fish"
+   ],
+   "allergensPartial": true,
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "vegan": "vegan-australia-pledge",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3",
+    "allergens": "fsanz-allergen-labelling"
+   },
+   "basis": "Tinned tuna in water, drained; ingredient list of a given tin not known here"
+  },
+  {
+   "id": "salmon-canned",
+   "name": "Salmon, canned",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F007853",
+   "nutritionName": "Salmon, pink, canned in brine, drained",
+   "per100g": {
+    "energyKj": 579.0,
+    "proteinG": 20.7,
+    "fibreG": 0.0,
+    "sugarG": 0.0,
+    "sodiumMg": 382.0
+   },
+   "vegetarian": "no",
+   "vegan": "no",
+   "halal": "unknown",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "unknown",
+   "allergens": [
+    "fish"
+   ],
+   "allergensPartial": true,
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "vegan": "vegan-australia-pledge",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3",
+    "allergens": "fsanz-allergen-labelling"
+   },
+   "basis": "Tinned pink salmon in brine, drained; ingredient list of a given tin not known here"
+  },
+  {
+   "id": "baked-beans",
+   "name": "Baked beans, canned",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F000243",
+   "nutritionName": "Baked beans, canned in tomato sauce",
+   "per100g": {
+    "energyKj": 381.0,
+    "proteinG": 4.8,
+    "fibreG": 4.8,
+    "sugarG": 5.0,
+    "sodiumMg": 298.0
+   },
+   "vegetarian": "unknown",
+   "vegan": "unknown",
+   "halal": "unknown",
+   "kosher": "unknown",
+   "beef": "unknown",
+   "pork": "unknown",
+   "alcohol": "unknown",
+   "gluten": "unknown",
+   "allergens": "unknown",
+   "attributeSources": {},
+   "basis": "Tinned baked beans in tomato sauce; brands differ, so every flag stays unknown"
+  },
+  {
+   "id": "peas-frozen",
+   "name": "Peas, frozen",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F006538",
+   "nutritionName": "Pea, green, frozen, boiled, drained",
+   "per100g": {
+    "energyKj": 261.0,
+    "proteinG": 5.2,
+    "fibreG": 6.1,
+    "sugarG": 2.5,
+    "sodiumMg": 3.0
+   },
+   "vegetarian": "yes",
+   "vegan": "unknown",
+   "halal": "unknown",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "unknown",
+   "allergens": "unknown",
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3"
+   },
+   "basis": "Frozen green peas (AFCD row is boiled and drained; used as bought, heated through)"
+  },
+  {
+   "id": "corn-canned",
+   "name": "Corn, canned",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F003220",
+   "nutritionName": "Corn, kernels, canned in brine, drained",
+   "per100g": {
+    "energyKj": 391.0,
+    "proteinG": 2.9,
+    "fibreG": 2.7,
+    "sugarG": 3.5,
+    "sodiumMg": 170.0
+   },
+   "vegetarian": "yes",
+   "vegan": "unknown",
+   "halal": "unknown",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "unknown",
+   "allergens": "unknown",
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3"
+   },
+   "basis": "Tinned corn kernels, drained"
+  },
+  {
+   "id": "kidney-beans-canned",
+   "name": "Red kidney beans, canned",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F000448",
+   "nutritionName": "Bean, red kidney, canned, drained",
+   "per100g": {
+    "energyKj": 441.0,
+    "proteinG": 6.6,
+    "fibreG": 6.5,
+    "sugarG": 2.4,
+    "sodiumMg": 320.0
+   },
+   "vegetarian": "yes",
+   "vegan": "unknown",
+   "halal": "unknown",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "unknown",
+   "allergens": "unknown",
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3"
+   },
+   "basis": "Tinned red kidney beans, drained"
+  },
+  {
+   "id": "bread-white",
+   "name": "Bread, white",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F001463",
+   "nutritionName": "Bread, from white flour",
+   "per100g": {
+    "energyKj": 1050.0,
+    "proteinG": 9.5,
+    "fibreG": 3.2,
+    "sugarG": 3.1,
+    "sodiumMg": 439.0
+   },
+   "vegetarian": "unknown",
+   "vegan": "unknown",
+   "halal": "unknown",
+   "kosher": "unknown",
+   "beef": "unknown",
+   "pork": "unknown",
+   "alcohol": "unknown",
+   "gluten": "yes",
+   "allergens": [
+    "wheat"
+   ],
+   "allergensPartial": true,
+   "attributeSources": {
+    "gluten": "coeliac-au-gluten-free-diet",
+    "allergens": "fsanz-allergen-labelling"
+   },
+   "basis": "Sliced white bread; ingredient list not known here"
+  },
+  {
+   "id": "cheddar",
+   "name": "Cheddar cheese",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F002414",
+   "nutritionName": "Cheese, cheddar, natural, regular fat",
+   "per100g": {
+    "energyKj": 1686.0,
+    "proteinG": 24.6,
+    "fibreG": 0.0,
+    "sugarG": 0.3,
+    "sodiumMg": 686.0
+   },
+   "vegetarian": "unknown",
+   "vegan": "no",
+   "halal": "unknown",
+   "kosher": "unknown",
+   "beef": "unknown",
+   "pork": "unknown",
+   "alcohol": "unknown",
+   "gluten": "unknown",
+   "allergens": [
+    "milk"
+   ],
+   "allergensPartial": true,
+   "attributeSources": {
+    "vegan": "vegan-australia-pledge",
+    "allergens": "fsanz-allergen-labelling"
+   },
+   "basis": "Cheddar: animal rennet is possible, so most flags stay unknown"
+  },
+  {
+   "id": "sweet-potato",
+   "name": "Sweet potato",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F009035",
+   "nutritionName": "Sweet potato, orange flesh, peeled, fresh, raw",
+   "per100g": {
+    "energyKj": 273.0,
+    "proteinG": 1.4,
+    "fibreG": 2.6,
+    "sugarG": 5.8,
+    "sodiumMg": 6.0
+   },
+   "vegetarian": "yes",
+   "vegan": "yes",
+   "halal": "yes",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "no",
+   "allergens": [],
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "vegan": "vegan-australia-pledge",
+    "halal": "wikipedia-halal",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3",
+    "gluten": "coeliac-au-gluten-free-diet",
+    "allergens": "fsanz-allergen-labelling"
+   },
+   "basis": "Orange sweet potato, peeled, raw"
+  },
+  {
+   "id": "pumpkin",
+   "name": "Pumpkin",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F011004",
+   "nutritionName": "Pumpkin, kent/jap, peeled, fresh, raw",
+   "per100g": {
+    "energyKj": 114.0,
+    "proteinG": 1.0,
+    "fibreG": 1.8,
+    "sugarG": 3.8,
+    "sodiumMg": 0.0
+   },
+   "vegetarian": "yes",
+   "vegan": "yes",
+   "halal": "yes",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "no",
+   "allergens": [],
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "vegan": "vegan-australia-pledge",
+    "halal": "wikipedia-halal",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3",
+    "gluten": "coeliac-au-gluten-free-diet",
+    "allergens": "fsanz-allergen-labelling"
+   },
+   "basis": "Kent (Jap) pumpkin, peeled, raw"
+  },
+  {
+   "id": "mushroom",
+   "name": "Mushrooms",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F005946",
+   "nutritionName": "Mushroom, common, fresh, raw",
+   "per100g": {
+    "energyKj": 114.0,
+    "proteinG": 2.2,
+    "fibreG": 1.4,
+    "sugarG": 0.8,
+    "sodiumMg": 7.0
+   },
+   "vegetarian": "yes",
+   "vegan": "yes",
+   "halal": "yes",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "no",
+   "allergens": [],
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "vegan": "vegan-australia-pledge",
+    "halal": "wikipedia-halal",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3",
+    "gluten": "coeliac-au-gluten-free-diet",
+    "allergens": "fsanz-allergen-labelling"
+   },
+   "basis": "Common mushrooms, raw"
+  },
+  {
+   "id": "rolled-oats",
+   "name": "Rolled oats",
+   "nutritionSourceId": "afcd-r3",
+   "nutritionCode": "F006143",
+   "nutritionName": "Oats, rolled, uncooked",
+   "per100g": {
+    "energyKj": 1564.0,
+    "proteinG": 12.2,
+    "fibreG": 9.5,
+    "sugarG": 1.0,
+    "sodiumMg": 2.0
+   },
+   "vegetarian": "yes",
+   "vegan": "yes",
+   "halal": "yes",
+   "kosher": "unknown",
+   "beef": "no",
+   "pork": "no",
+   "alcohol": "no",
+   "gluten": "unknown",
+   "allergens": "unknown",
+   "attributeSources": {
+    "vegetarian": "wikipedia-vegetarianism",
+    "vegan": "vegan-australia-pledge",
+    "halal": "wikipedia-halal",
+    "beef": "afcd-r3",
+    "pork": "afcd-r3",
+    "alcohol": "afcd-r3"
+   },
+   "basis": "Oats: gluten unknown (Coeliac Australia: oats in some people), allergens oats only if they contain gluten; nutrition added for pantry recipes, attributes unchanged"
+  }
+ ],
+ "highRiskIngredients": [
+  "egg",
+  "milk",
+  "yoghurt",
+  "ricotta",
+  "feta",
+  "chicken-breast",
+  "chicken-thigh",
+  "chicken-drumstick",
+  "chicken-mince",
+  "beef-mince",
+  "lamb-mince",
+  "beef-strips",
+  "tuna-canned",
+  "salmon-canned"
+ ],
+ "rawCookThroughIngredients": [
+  "chicken-breast",
+  "chicken-thigh",
+  "chicken-drumstick",
+  "chicken-mince",
+  "beef-mince",
+  "lamb-mince"
+ ],
+ "aliases": {
+  "tomatoes-tinned": [
+   "tinned tomatoes",
+   "canned tomatoes",
+   "chopped tomatoes",
+   "crushed tomatoes"
+  ],
+  "chickpeas-canned": [
+   "chick peas",
+   "tinned chickpeas",
+   "canned chickpeas"
+  ],
+  "egg": [
+   "eggs"
+  ],
+  "tuna-canned": [
+   "tinned tuna",
+   "canned tuna"
+  ],
+  "salmon-canned": [
+   "tinned salmon",
+   "canned salmon"
+  ],
+  "baked-beans": [
+   "tinned baked beans",
+   "beans in tomato sauce"
+  ],
+  "peas-frozen": [
+   "frozen peas",
+   "green peas"
+  ],
+  "corn-canned": [
+   "tinned corn",
+   "sweetcorn",
+   "canned corn"
+  ],
+  "kidney-beans-canned": [
+   "red kidney beans",
+   "tinned kidney beans",
+   "canned kidney beans"
+  ],
+  "bread-white": [
+   "bread",
+   "sliced bread",
+   "toast"
+  ],
+  "cheddar": [
+   "tasty cheese",
+   "cheese slices",
+   "block cheese"
+  ],
+  "rolled-oats": [
+   "oats",
+   "porridge oats"
+  ],
+  "pasta-dry": [
+   "pasta",
+   "penne",
+   "macaroni"
+  ],
+  "spaghetti": [
+   "spaghetti pasta"
+  ],
+  "lentil-red": [
+   "red split lentils",
+   "split red lentils"
+  ],
+  "lentil-green": [
+   "brown lentils",
+   "green lentils"
+  ],
+  "flour-wheat": [
+   "plain flour",
+   "flour"
+  ],
+  "canola-oil": [
+   "vegetable oil",
+   "cooking oil"
+  ],
+  "potato": [
+   "potatoes"
+  ],
+  "tomato": [
+   "tomatoes",
+   "fresh tomatoes"
+  ],
+  "rice": [
+   "white rice",
+   "long grain rice"
+  ],
+  "milk": [
+   "full cream milk",
+   "cow milk"
+  ],
+  "capsicum-red": [
+   "red pepper"
+  ],
+  "capsicum-green": [
+   "green pepper"
+  ],
+  "zucchini": [
+   "courgette"
+  ],
+  "eggplant": [
+   "aubergine"
+  ],
+  "coriander-fresh": [
+   "cilantro"
+  ],
+  "silverbeet": [
+   "chard"
+  ],
+  "pita-bread": [
+   "pita",
+   "lebanese bread",
+   "pocket bread"
+  ],
+  "wombok": [
+   "chinese cabbage",
+   "napa cabbage"
+  ],
+  "spring-onion": [
+   "green onion",
+   "scallion",
+   "shallot"
+  ],
+  "sweet-potato": [
+   "kumara"
+  ],
+  "pumpkin": [
+   "butternut",
+   "kent pumpkin"
+  ],
+  "mushroom": [
+   "mushrooms",
+   "button mushrooms"
+  ],
+  "yoghurt": [
+   "yogurt",
+   "plain yoghurt"
+  ],
+  "beef-mince": [
+   "minced beef",
+   "ground beef"
+  ],
+  "lamb-mince": [
+   "minced lamb",
+   "ground lamb"
+  ],
+  "chicken-mince": [
+   "minced chicken"
+  ],
+  "coconut-milk": [
+   "canned coconut milk",
+   "coconut cream"
+  ],
+  "chilli-green": [
+   "green chili"
+  ]
+ },
+ "ingredientPrices": [
+  {
+   "ingredient": "baked-beans",
+   "perKg": 2.6
+  },
+  {
+   "ingredient": "banana",
+   "perKg": 3.5
+  },
+  {
+   "ingredient": "bean-sprouts",
+   "perKg": 8.0
+  },
+  {
+   "ingredient": "beef-mince",
+   "perKg": 12.0
+  },
+  {
+   "ingredient": "bread-white",
+   "perKg": 3.6
+  },
+  {
+   "ingredient": "broccoli",
+   "perKg": 6.0
+  },
+  {
+   "ingredient": "bulgur",
+   "perKg": 4.5
+  },
+  {
+   "ingredient": "cabbage-white",
+   "perKg": 2.5
+  },
+  {
+   "ingredient": "canola-oil",
+   "perKg": 4.0
+  },
+  {
+   "ingredient": "capsicum-green",
+   "perKg": 7.0
+  },
+  {
+   "ingredient": "carrot",
+   "perKg": 2.2
+  },
+  {
+   "ingredient": "cauliflower",
+   "perKg": 5.0
+  },
+  {
+   "ingredient": "celery",
+   "perKg": 5.0
+  },
+  {
+   "ingredient": "cheddar",
+   "perKg": 12.0
+  },
+  {
+   "ingredient": "chicken-breast",
+   "perKg": 10.0
+  },
+  {
+   "ingredient": "chicken-drumstick",
+   "perKg": 7.0
+  },
+  {
+   "ingredient": "chicken-thigh",
+   "perKg": 9.0
+  },
+  {
+   "ingredient": "chickpeas-canned",
+   "perKg": 4.0
+  },
+  {
+   "ingredient": "chilli-green",
+   "perKg": 20.0
+  },
+  {
+   "ingredient": "chilli-ground",
+   "perKg": 40.0
+  },
+  {
+   "ingredient": "choy-sum",
+   "perKg": 8.0
+  },
+  {
+   "ingredient": "coconut-flesh",
+   "perKg": 10.0
+  },
+  {
+   "ingredient": "coconut-milk",
+   "perKg": 4.5
+  },
+  {
+   "ingredient": "coriander-fresh",
+   "perKg": 30.0
+  },
+  {
+   "ingredient": "coriander-ground",
+   "perKg": 30.0
+  },
+  {
+   "ingredient": "corn-canned",
+   "perKg": 3.0
+  },
+  {
+   "ingredient": "cos-lettuce",
+   "perKg": 6.0
+  },
+  {
+   "ingredient": "cucumber",
+   "perKg": 5.0
+  },
+  {
+   "ingredient": "cumin",
+   "perKg": 35.0
+  },
+  {
+   "ingredient": "dill",
+   "perKg": 40.0
+  },
+  {
+   "ingredient": "egg",
+   "perKg": 7.0
+  },
+  {
+   "ingredient": "eggplant",
+   "perKg": 7.0
+  },
+  {
+   "ingredient": "feta",
+   "perKg": 18.0
+  },
+  {
+   "ingredient": "flour-wheat",
+   "perKg": 1.6
+  },
+  {
+   "ingredient": "garlic",
+   "perKg": 15.0
+  },
+  {
+   "ingredient": "ginger",
+   "perKg": 12.0
+  },
+  {
+   "ingredient": "green-beans",
+   "perKg": 9.0
+  },
+  {
+   "ingredient": "kidney-beans-canned",
+   "perKg": 4.0
+  },
+  {
+   "ingredient": "lamb-mince",
+   "perKg": 15.0
+  },
+  {
+   "ingredient": "lentil-green",
+   "perKg": 4.5
+  },
+  {
+   "ingredient": "lentil-red",
+   "perKg": 4.0
+  },
+  {
+   "ingredient": "lettuce",
+   "perKg": 6.0
+  },
+  {
+   "ingredient": "milk",
+   "perKg": 1.9
+  },
+  {
+   "ingredient": "mint",
+   "perKg": 30.0
+  },
+  {
+   "ingredient": "mushroom",
+   "perKg": 9.0
+  },
+  {
+   "ingredient": "olive-oil",
+   "perKg": 12.0
+  },
+  {
+   "ingredient": "olives",
+   "perKg": 14.0
+  },
+  {
+   "ingredient": "onion",
+   "perKg": 2.5
+  },
+  {
+   "ingredient": "paprika",
+   "perKg": 30.0
+  },
+  {
+   "ingredient": "parsley",
+   "perKg": 25.0
+  },
+  {
+   "ingredient": "pasta-dry",
+   "perKg": 2.0
+  },
+  {
+   "ingredient": "peanuts",
+   "perKg": 10.0
+  },
+  {
+   "ingredient": "peas-frozen",
+   "perKg": 3.5
+  },
+  {
+   "ingredient": "pita-bread",
+   "perKg": 6.0
+  },
+  {
+   "ingredient": "potato",
+   "perKg": 3.0
+  },
+  {
+   "ingredient": "pumpkin",
+   "perKg": 3.0
+  },
+  {
+   "ingredient": "radish",
+   "perKg": 8.0
+  },
+  {
+   "ingredient": "rice",
+   "perKg": 2.2
+  },
+  {
+   "ingredient": "rice-noodles-boiled",
+   "perKg": 5.0
+  },
+  {
+   "ingredient": "ricotta",
+   "perKg": 10.0
+  },
+  {
+   "ingredient": "rolled-oats",
+   "perKg": 2.8
+  },
+  {
+   "ingredient": "salmon-canned",
+   "perKg": 18.0
+  },
+  {
+   "ingredient": "spaghetti",
+   "perKg": 2.0
+  },
+  {
+   "ingredient": "spinach",
+   "perKg": 14.0
+  },
+  {
+   "ingredient": "spring-onion",
+   "perKg": 12.0
+  },
+  {
+   "ingredient": "tahini",
+   "perKg": 18.0
+  },
+  {
+   "ingredient": "tofu-firm",
+   "perKg": 9.0
+  },
+  {
+   "ingredient": "tomato",
+   "perKg": 6.0
+  },
+  {
+   "ingredient": "tomatoes-tinned",
+   "perKg": 2.2
+  },
+  {
+   "ingredient": "tuna-canned",
+   "perKg": 14.0
+  },
+  {
+   "ingredient": "turmeric",
+   "perKg": 40.0
+  },
+  {
+   "ingredient": "vinegar",
+   "perKg": 4.0
+  },
+  {
+   "ingredient": "wombok",
+   "perKg": 4.0
+  },
+  {
+   "ingredient": "yoghurt",
+   "perKg": 4.5
+  }
+ ],
+ "substitutions": [
+  {
+   "from": "lentil-red",
+   "to": "lentil-green",
+   "note": "Holds its shape more and takes longer to soften.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "lentil-green",
+   "to": "lentil-red",
+   "note": "Cooks faster and breaks down into a softer mix.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "chicken-thigh",
+   "to": "chicken-breast",
+   "note": "Leaner and drier, so take care not to overcook it.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "chicken-breast",
+   "to": "chicken-thigh",
+   "note": "Richer and a little fattier, with the same cooking care.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "spinach",
+   "to": "silverbeet",
+   "note": "Chop the stalks and cook them a little longer.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "silverbeet",
+   "to": "spinach",
+   "note": "Wilts faster, so add it near the end.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "spaghetti",
+   "to": "pasta-dry",
+   "note": "Any dried pasta shape works, cook as the packet says.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "pasta-dry",
+   "to": "spaghetti",
+   "note": "Long strands in place of shapes; break them if the pot is small.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "olive-oil",
+   "to": "canola-oil",
+   "note": "Milder in flavour.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "canola-oil",
+   "to": "olive-oil",
+   "note": "Fruitier in flavour.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "capsicum-red",
+   "to": "capsicum-green",
+   "note": "A little less sweet.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "cos-lettuce",
+   "to": "lettuce",
+   "note": "Softer leaves, less crunch.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "broccoli",
+   "to": "cauliflower",
+   "note": "Milder and a bit softer when cooked.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "cabbage-white",
+   "to": "wombok",
+   "note": "Cooks faster and is softer.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "wombok",
+   "to": "cabbage-white",
+   "note": "Firmer, so cook it a little longer.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "potato",
+   "to": "sweet-potato",
+   "note": "Sweeter and softer.",
+   "basis": "Author's judgement"
+  },
+  {
+   "from": "mint",
+   "to": "parsley",
+   "note": "A milder, greener flavour.",
+   "basis": "Author's judgement"
+  }
+ ],
+ "starters": [
+  "rice",
+  "egg",
+  "pasta-dry",
+  "onion",
+  "garlic",
+  "tomatoes-tinned",
+  "chickpeas-canned",
+  "lentil-red",
+  "rolled-oats",
+  "flour-wheat",
+  "potato",
+  "carrot",
+  "milk",
+  "canola-oil"
+ ],
+ "recipes": [
+  {
+   "id": "scrambled-eggs-toast",
+   "name": "Scrambled eggs on toast",
+   "blurb": "Two eggs, soft and quick, on a couple of slices of toast.",
+   "traditions": [],
+   "serves": 1,
+   "minutes": 10,
+   "ingredients": [
+    {
+     "ingredient": "egg",
+     "grams": 120
+    },
+    {
+     "ingredient": "bread-white",
+     "grams": 70
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 5
+    },
+    {
+     "ingredient": "milk",
+     "grams": 30,
+     "optional": true
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Beat the eggs in a bowl, with the splash of milk if you have it.",
+    "Warm the oil in a small pan on low heat and tip in the eggs.",
+    "Stir slowly until the eggs are just set. Do not let them brown.",
+    "Toast the bread, top with the eggs and eat straight away."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "egg-and-pea-rice",
+   "name": "Egg and pea rice",
+   "blurb": "A one-pan rice supper with soft egg and sweet peas.",
+   "traditions": [],
+   "serves": 2,
+   "minutes": 25,
+   "ingredients": [
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "egg",
+     "grams": 120
+    },
+    {
+     "ingredient": "peas-frozen",
+     "grams": 100
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says, drain well and let it steam dry.",
+    "Soften the chopped onion in the oil in a wide pan.",
+    "Push the onion aside, scramble the eggs in the gap, then stir everything together.",
+    "Add the rice and frozen peas and toss until the peas are hot right through."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "tuna-tomato-pasta",
+   "name": "Tuna and tomato pasta",
+   "blurb": "Tinned tuna in a quick tomato sauce over pasta.",
+   "traditions": [],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "pasta-dry",
+     "grams": 160
+    },
+    {
+     "ingredient": "tuna-canned",
+     "grams": 110
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 60
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the pasta in plenty of water as the packet says, then drain.",
+    "Soften the chopped onion and garlic in the oil.",
+    "Add the tomatoes and let the sauce bubble gently until thick.",
+    "Flake in the drained tuna, warm it through and toss with the pasta."
+   ],
+   "safety": [
+    "pasta",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "lentil-vegetable-soup",
+   "name": "Lentil and vegetable soup",
+   "blurb": "A big, cheap pot of red lentils with carrot and potato.",
+   "traditions": [],
+   "serves": 3,
+   "minutes": 35,
+   "ingredients": [
+    {
+     "ingredient": "lentil-red",
+     "grams": 120
+    },
+    {
+     "ingredient": "carrot",
+     "grams": 150
+    },
+    {
+     "ingredient": "onion",
+     "grams": 100
+    },
+    {
+     "ingredient": "potato",
+     "grams": 150
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Chop the onion, carrot and potato small. Soften the onion in the oil.",
+    "Add the carrot, potato, rinsed lentils and enough water to cover well.",
+    "Simmer, stirring now and then, until the lentils and vegetables are soft.",
+    "Mash a little with a spoon for a thicker soup and season to taste."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "beans-on-toast",
+   "name": "Beans on toast",
+   "blurb": "Tinned baked beans over thick toast, with cheese if you like.",
+   "traditions": [],
+   "serves": 2,
+   "minutes": 10,
+   "ingredients": [
+    {
+     "ingredient": "baked-beans",
+     "grams": 220
+    },
+    {
+     "ingredient": "bread-white",
+     "grams": 140
+    },
+    {
+     "ingredient": "cheddar",
+     "grams": 30,
+     "optional": true
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Tip the beans into a small pot and warm gently, stirring.",
+    "Toast the bread.",
+    "Spoon the beans over the toast and grate the cheese on top if using."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "banana-porridge",
+   "name": "Porridge with banana",
+   "blurb": "Creamy oats cooked in milk and topped with sliced banana.",
+   "traditions": [],
+   "serves": 2,
+   "minutes": 10,
+   "ingredients": [
+    {
+     "ingredient": "rolled-oats",
+     "grams": 80
+    },
+    {
+     "ingredient": "milk",
+     "grams": 300
+    },
+    {
+     "ingredient": "banana",
+     "grams": 120,
+     "optional": true
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Put the oats and milk in a pot over medium heat.",
+    "Stir until the porridge is thick and creamy.",
+    "Slice the banana on top and serve hot."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "chickpea-tomato-stew",
+   "name": "Chickpea and tomato stew",
+   "blurb": "Tinned chickpeas simmered in spiced tomato, ready in one pot.",
+   "traditions": [],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "chickpeas-canned",
+     "grams": 240
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion and garlic in the oil, then stir in the cumin.",
+    "Add the tomatoes and the drained chickpeas.",
+    "Simmer gently until thick, stirring now and then. Mash a few chickpeas to thicken."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "potato-pea-mash",
+   "name": "Cheesy potato and pea mash",
+   "blurb": "Creamy mash with peas folded through and a little cheese.",
+   "traditions": [],
+   "serves": 2,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "potato",
+     "grams": 400
+    },
+    {
+     "ingredient": "peas-frozen",
+     "grams": 150
+    },
+    {
+     "ingredient": "milk",
+     "grams": 50
+    },
+    {
+     "ingredient": "cheddar",
+     "grams": 40
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Peel and cut the potatoes and boil in water until a knife slides in easily.",
+    "Add the frozen peas for the last stretch of boiling, then drain.",
+    "Mash with the milk and stir in the grated cheese until melted."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "corn-fritters",
+   "name": "Corn fritters",
+   "blurb": "Pan-fried fritters from tinned corn, egg and flour.",
+   "traditions": [],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "corn-canned",
+     "grams": 200
+    },
+    {
+     "ingredient": "flour-wheat",
+     "grams": 80
+    },
+    {
+     "ingredient": "egg",
+     "grams": 60
+    },
+    {
+     "ingredient": "milk",
+     "grams": 80
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 15
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Whisk the flour, egg and milk into a thick batter, then stir in the drained corn.",
+    "Heat a little oil in a pan on medium heat.",
+    "Spoon in the batter and cook until golden underneath, then flip and cook through.",
+    "Drain on paper and serve warm."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "salmon-potato-cakes",
+   "name": "Salmon and potato cakes",
+   "blurb": "Tinned salmon and mash shaped into patties and fried.",
+   "traditions": [],
+   "serves": 3,
+   "minutes": 35,
+   "ingredients": [
+    {
+     "ingredient": "salmon-canned",
+     "grams": 210
+    },
+    {
+     "ingredient": "potato",
+     "grams": 300
+    },
+    {
+     "ingredient": "egg",
+     "grams": 60
+    },
+    {
+     "ingredient": "flour-wheat",
+     "grams": 30
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 20
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the potatoes until soft, drain and mash.",
+    "Mix with the drained salmon and the egg, then shape into patties.",
+    "Dust the patties with flour and fry in the oil until golden on both sides and hot in the middle."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "kidney-bean-rice",
+   "name": "Kidney beans and rice",
+   "blurb": "Rice and beans in a smoky tomato sauce.",
+   "traditions": [],
+   "serves": 3,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "kidney-beans-canned",
+     "grams": 240
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "capsicum-green",
+     "grams": 80
+    },
+    {
+     "ingredient": "paprika",
+     "grams": 2
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says and drain.",
+    "Soften the chopped onion and capsicum in the oil, then stir in the paprika.",
+    "Add the tomatoes and drained beans and simmer until thick.",
+    "Serve the beans over the rice."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "cheese-tomato-toastie",
+   "name": "Cheese and tomato toastie",
+   "blurb": "Melted cheddar and fresh tomato between toasted bread.",
+   "traditions": [],
+   "serves": 2,
+   "minutes": 10,
+   "ingredients": [
+    {
+     "ingredient": "bread-white",
+     "grams": 140
+    },
+    {
+     "ingredient": "cheddar",
+     "grams": 60
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 100
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Slice the tomato and grate the cheese.",
+    "Build sandwiches with the cheese and tomato inside.",
+    "Toast in a pan or sandwich press until golden and the cheese has melted."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "chana-masala",
+   "name": "Chana masala",
+   "blurb": "Tinned chickpeas in a spiced onion and tomato sauce.",
+   "traditions": [
+    "indian-north"
+   ],
+   "serves": 2,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "chickpeas-canned",
+     "grams": 240
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 100
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "ginger",
+     "grams": 5
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "coriander-ground",
+     "grams": 2
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion in the oil, then add the garlic, ginger and ground spices for a moment.",
+    "Add the tomatoes and simmer until the sauce thickens.",
+    "Stir in the drained chickpeas and simmer until hot and well coated."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "aloo-gobi",
+   "name": "Aloo gobi",
+   "blurb": "Potato and cauliflower cooked dry with ginger and cumin.",
+   "traditions": [
+    "indian-north"
+   ],
+   "serves": 3,
+   "minutes": 35,
+   "ingredients": [
+    {
+     "ingredient": "potato",
+     "grams": 250
+    },
+    {
+     "ingredient": "cauliflower",
+     "grams": 250
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "ginger",
+     "grams": 5
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 12
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Cut the potato and cauliflower into small pieces.",
+    "Soften the onion in the oil, add garlic, ginger, cumin and turmeric.",
+    "Add the vegetables and a splash of water, cover and cook on low heat, stirring often, until tender."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "palak-dal",
+   "name": "Spinach dal",
+   "blurb": "Red lentils cooked soft with spinach and cumin.",
+   "traditions": [
+    "indian-north"
+   ],
+   "serves": 2,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "lentil-red",
+     "grams": 100
+    },
+    {
+     "ingredient": "spinach",
+     "grams": 100
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Simmer the rinsed lentils with the turmeric in plenty of water until soft and thick.",
+    "In a small pan soften the onion and garlic in the oil with the cumin.",
+    "Stir the onion mix and the spinach into the lentils until the spinach wilts."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "simple-chicken-curry",
+   "name": "Simple chicken curry",
+   "blurb": "Chicken thigh simmered in a tomato and ginger sauce.",
+   "traditions": [
+    "indian-north"
+   ],
+   "serves": 3,
+   "minutes": 40,
+   "ingredients": [
+    {
+     "ingredient": "chicken-thigh",
+     "grams": 300
+    },
+    {
+     "ingredient": "onion",
+     "grams": 120
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 200
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "ginger",
+     "grams": 5
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "coriander-ground",
+     "grams": 2
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion in the oil, then add garlic, ginger and the ground spices.",
+    "Add the tomatoes and chicken pieces and simmer with the lid on, stirring now and then.",
+    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "cookThroughSourceId": "nsw-fa-cooking-temps"
+  },
+  {
+   "id": "cabbage-poriyal",
+   "name": "Cabbage and coconut stir-fry",
+   "blurb": "Shredded cabbage cooked quickly with coconut and green chilli.",
+   "traditions": [
+    "indian-south"
+   ],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "cabbage-white",
+     "grams": 250
+    },
+    {
+     "ingredient": "coconut-flesh",
+     "grams": 30
+    },
+    {
+     "ingredient": "onion",
+     "grams": 60
+    },
+    {
+     "ingredient": "chilli-green",
+     "grams": 5
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Shred the cabbage finely and chop the onion and chilli.",
+    "Soften the onion and chilli in the oil with the turmeric.",
+    "Add the cabbage and cook on high heat, stirring, until just tender, then fold in the coconut."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "tomato-rice",
+   "name": "Tomato rice",
+   "blurb": "Rice cooked with tomato, cumin and green peas.",
+   "traditions": [
+    "indian-south"
+   ],
+   "serves": 2,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "peas-frozen",
+     "grams": 80
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "chilli-green",
+     "grams": 5
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion and chilli in the oil, then stir in the cumin and turmeric.",
+    "Add the diced tomato and cook until it breaks down.",
+    "Add the rinsed rice, the peas and enough water to cook the rice, then cover and simmer until the rice is tender."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "egg-curry",
+   "name": "Egg curry",
+   "blurb": "Hard-boiled eggs in a spiced tomato sauce.",
+   "traditions": [
+    "indian-south"
+   ],
+   "serves": 2,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "egg",
+     "grams": 240
+    },
+    {
+     "ingredient": "onion",
+     "grams": 120
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 200
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "ginger",
+     "grams": 5
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "chilli-ground",
+     "grams": 1
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Hard-boil the eggs until firm all the way through, cool a little and peel.",
+    "Soften the onion in the oil, add the garlic, ginger and spices, then the tomatoes.",
+    "Simmer the sauce until thick, add the peeled eggs and heat them through."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "potato-pea-masala",
+   "name": "Potato and pea masala",
+   "blurb": "Soft spiced potato with peas, good with rice or bread.",
+   "traditions": [
+    "indian-south"
+   ],
+   "serves": 3,
+   "minutes": 35,
+   "ingredients": [
+    {
+     "ingredient": "potato",
+     "grams": 400
+    },
+    {
+     "ingredient": "peas-frozen",
+     "grams": 100
+    },
+    {
+     "ingredient": "onion",
+     "grams": 100
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "chilli-green",
+     "grams": 5
+    },
+    {
+     "ingredient": "coconut-flesh",
+     "grams": 20
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the diced potato until just soft and drain.",
+    "Soften the onion and chilli in the oil with the cumin and turmeric.",
+    "Add the potato, peas and coconut and stir until the peas are hot right through."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "tomato-egg-stir-fry",
+   "name": "Tomato and egg stir-fry",
+   "blurb": "Soft egg folded through juicy tomato, served over rice.",
+   "traditions": [
+    "chinese"
+   ],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "egg",
+     "grams": 180
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 300
+    },
+    {
+     "ingredient": "spring-onion",
+     "grams": 20
+    },
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says and keep it warm.",
+    "Beat the eggs and scramble them in half the oil until just set, then set aside.",
+    "Fry the tomato wedges in the remaining oil until saucy, then fold the egg back in with the sliced spring onion."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "tofu-choy-sum-stir-fry",
+   "name": "Tofu and choy sum stir-fry",
+   "blurb": "Golden tofu and greens with garlic and ginger over rice.",
+   "traditions": [
+    "chinese"
+   ],
+   "serves": 2,
+   "minutes": 25,
+   "ingredients": [
+    {
+     "ingredient": "tofu-firm",
+     "grams": 300
+    },
+    {
+     "ingredient": "choy-sum",
+     "grams": 200
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "ginger",
+     "grams": 5
+    },
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says.",
+    "Cube the tofu and fry in the oil until golden. Lift out.",
+    "Stir-fry the garlic, ginger and chopped choy sum until the stalks are tender, then return the tofu."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "wombok-mushroom-noodles",
+   "name": "Wombok and mushroom noodles",
+   "blurb": "Rice noodles tossed with cabbage and mushrooms.",
+   "traditions": [
+    "chinese"
+   ],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "rice-noodles-boiled",
+     "grams": 300
+    },
+    {
+     "ingredient": "wombok",
+     "grams": 250
+    },
+    {
+     "ingredient": "mushroom",
+     "grams": 100
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "ginger",
+     "grams": 5
+    },
+    {
+     "ingredient": "spring-onion",
+     "grams": 20
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Cook the rice noodles as the packet says and drain.",
+    "Stir-fry the garlic, ginger and sliced mushrooms in the oil, then add the shredded wombok.",
+    "Toss in the noodles and sliced spring onion until hot."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "chicken-broccoli-stir-fry",
+   "name": "Chicken and broccoli stir-fry",
+   "blurb": "Sliced chicken breast with broccoli, garlic and ginger over rice.",
+   "traditions": [
+    "chinese"
+   ],
+   "serves": 2,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "chicken-breast",
+     "grams": 300
+    },
+    {
+     "ingredient": "broccoli",
+     "grams": 250
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "ginger",
+     "grams": 5
+    },
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says. Slice the chicken thinly.",
+    "Stir-fry the chicken in the oil with the garlic and ginger.",
+    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear.",
+    "Add the broccoli florets and a splash of water, cover briefly, then serve over the rice."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "cookThroughSourceId": "nsw-fa-cooking-temps"
+  },
+  {
+   "id": "pasta-pomodoro",
+   "name": "Pasta with tomato and garlic",
+   "blurb": "A plain tomato sauce with garlic and olive oil.",
+   "traditions": [
+    "italian"
+   ],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "pasta-dry",
+     "grams": 160
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 300
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 8
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 10
+    },
+    {
+     "ingredient": "parsley",
+     "grams": 5,
+     "optional": true
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the pasta as the packet says and drain.",
+    "Warm the olive oil with the sliced garlic, then add the tomatoes.",
+    "Simmer gently until thick, toss through the pasta and scatter over the parsley."
+   ],
+   "safety": [
+    "pasta",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "minestrone-style-soup",
+   "name": "Minestrone-style soup",
+   "blurb": "A vegetable and bean soup with small pasta.",
+   "traditions": [
+    "italian"
+   ],
+   "serves": 3,
+   "minutes": 40,
+   "ingredients": [
+    {
+     "ingredient": "carrot",
+     "grams": 100
+    },
+    {
+     "ingredient": "celery",
+     "grams": 60
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "potato",
+     "grams": 100
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 200
+    },
+    {
+     "ingredient": "kidney-beans-canned",
+     "grams": 120
+    },
+    {
+     "ingredient": "pasta-dry",
+     "grams": 60
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Chop the onion, carrot, celery and potato small and soften in the oil.",
+    "Add the tomatoes, beans and enough water to cover, then simmer until the vegetables are soft.",
+    "Stir in the pasta and cook until tender."
+   ],
+   "safety": [
+    "pasta",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "spaghetti-spinach-ricotta",
+   "name": "Spaghetti with spinach and ricotta",
+   "blurb": "Wilted spinach and creamy ricotta tossed with spaghetti.",
+   "traditions": [
+    "italian"
+   ],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "spaghetti",
+     "grams": 160
+    },
+    {
+     "ingredient": "spinach",
+     "grams": 100
+    },
+    {
+     "ingredient": "ricotta",
+     "grams": 100
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the spaghetti as the packet says, keep a cup of the water and drain.",
+    "Warm the garlic in the olive oil, add the spinach and stir until wilted.",
+    "Toss in the spaghetti and ricotta, loosening with a splash of the pasta water."
+   ],
+   "safety": [
+    "pasta",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "beef-ragu-spaghetti",
+   "name": "Beef ragu with spaghetti",
+   "blurb": "Slow-simmered beef mince in tomato, served over spaghetti.",
+   "traditions": [
+    "italian"
+   ],
+   "serves": 2,
+   "minutes": 45,
+   "ingredients": [
+    {
+     "ingredient": "beef-mince",
+     "grams": 250
+    },
+    {
+     "ingredient": "spaghetti",
+     "grams": 160
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "carrot",
+     "grams": 80
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 300
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion, carrot and garlic in the oil.",
+    "Add the mince and brown it, breaking it up.",
+    "Cook the mince right through until no pink is left, breaking it up as it browns.",
+    "Add the tomatoes and simmer gently until thick. Boil the spaghetti as the packet says and serve."
+   ],
+   "safety": [
+    "pasta",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "cookThroughSourceId": "nsw-fa-cooking-temps"
+  },
+  {
+   "id": "village-salad",
+   "name": "Village salad",
+   "blurb": "Cucumber, tomato, olives and feta with olive oil.",
+   "traditions": [
+    "greek"
+   ],
+   "serves": 2,
+   "minutes": 10,
+   "ingredients": [
+    {
+     "ingredient": "cucumber",
+     "grams": 150
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 200
+    },
+    {
+     "ingredient": "feta",
+     "grams": 60
+    },
+    {
+     "ingredient": "olives",
+     "grams": 30
+    },
+    {
+     "ingredient": "onion",
+     "grams": 30
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "pepper"
+   ],
+   "steps": [
+    "Chop the cucumber, tomato and onion into chunks.",
+    "Toss with the olives and olive oil.",
+    "Top with the feta in a block or crumbled."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "spinach-rice",
+   "name": "Spinach rice",
+   "blurb": "Rice cooked with spinach, onion and dill.",
+   "traditions": [
+    "greek"
+   ],
+   "serves": 3,
+   "minutes": 35,
+   "ingredients": [
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "spinach",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "dill",
+     "grams": 5
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 15
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion in the olive oil.",
+    "Add the spinach and stir until it wilts, then add the rinsed rice and enough water to cook it.",
+    "Cover and simmer until the rice is tender, then stir through the dill."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "greek-lentil-soup",
+   "name": "Greek-style lentil soup",
+   "blurb": "Green lentils with carrot, tomato and garlic.",
+   "traditions": [
+    "greek"
+   ],
+   "serves": 3,
+   "minutes": 45,
+   "ingredients": [
+    {
+     "ingredient": "lentil-green",
+     "grams": 120
+    },
+    {
+     "ingredient": "carrot",
+     "grams": 100
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 100
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion, carrot and garlic in the olive oil.",
+    "Add the rinsed lentils, the tomatoes and plenty of water.",
+    "Simmer until the lentils are soft and the soup is thick."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "chicken-and-potato-tray",
+   "name": "Chicken and potato tray bake",
+   "blurb": "Chicken drumsticks roasted over potatoes and onion.",
+   "traditions": [
+    "greek"
+   ],
+   "serves": 3,
+   "minutes": 60,
+   "ingredients": [
+    {
+     "ingredient": "chicken-drumstick",
+     "grams": 700
+    },
+    {
+     "ingredient": "potato",
+     "grams": 500
+    },
+    {
+     "ingredient": "onion",
+     "grams": 100
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 8
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 15
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Heat the oven to a hot setting. Cut the potatoes into wedges and slice the onion.",
+    "Toss everything with the garlic and olive oil in a roasting tray.",
+    "Roast, turning once, until the potatoes are golden.",
+    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "cookThroughSourceId": "nsw-fa-cooking-temps"
+  },
+  {
+   "id": "hummus-pita-plate",
+   "name": "Hummus and pita plate",
+   "blurb": "Blitzed chickpea and tahini dip with warm pita and cucumber.",
+   "traditions": [
+    "levantine"
+   ],
+   "serves": 2,
+   "minutes": 10,
+   "ingredients": [
+    {
+     "ingredient": "chickpeas-canned",
+     "grams": 240
+    },
+    {
+     "ingredient": "tahini",
+     "grams": 40
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 3
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 10
+    },
+    {
+     "ingredient": "pita-bread",
+     "grams": 120
+    },
+    {
+     "ingredient": "cucumber",
+     "grams": 100
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Blend the drained chickpeas, tahini, garlic and olive oil with a splash of water until smooth.",
+    "Warm the pita.",
+    "Serve the dip with the pita and sliced cucumber."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "lentils-and-rice",
+   "name": "Lentils and rice with onions",
+   "blurb": "Green lentils and rice topped with browned onion.",
+   "traditions": [
+    "levantine"
+   ],
+   "serves": 3,
+   "minutes": 45,
+   "ingredients": [
+    {
+     "ingredient": "lentil-green",
+     "grams": 120
+    },
+    {
+     "ingredient": "rice",
+     "grams": 100
+    },
+    {
+     "ingredient": "onion",
+     "grams": 200
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 20
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Simmer the rinsed lentils in water until nearly tender.",
+    "Add the rice and cumin with enough water and cook until both are soft.",
+    "Slice the onions and fry slowly in the olive oil until deep golden, then pile on top."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "pita-salad",
+   "name": "Crunchy pita salad",
+   "blurb": "Toasted pita pieces with lettuce, cucumber and herbs.",
+   "traditions": [
+    "levantine"
+   ],
+   "serves": 2,
+   "minutes": 15,
+   "ingredients": [
+    {
+     "ingredient": "pita-bread",
+     "grams": 80
+    },
+    {
+     "ingredient": "cos-lettuce",
+     "grams": 150
+    },
+    {
+     "ingredient": "cucumber",
+     "grams": 100
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 150
+    },
+    {
+     "ingredient": "radish",
+     "grams": 40
+    },
+    {
+     "ingredient": "mint",
+     "grams": 5
+    },
+    {
+     "ingredient": "parsley",
+     "grams": 5
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 15
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Tear the pita into pieces and toast in a dry pan or oven until crisp.",
+    "Chop the lettuce, cucumber, tomato and radish and toss with the herbs and olive oil.",
+    "Add the pita just before serving."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "lamb-kofta-plate",
+   "name": "Lamb kofta plate",
+   "blurb": "Spiced lamb mince patties with yoghurt and pita.",
+   "traditions": [
+    "levantine"
+   ],
+   "serves": 2,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "lamb-mince",
+     "grams": 300
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "parsley",
+     "grams": 10
+    },
+    {
+     "ingredient": "cumin",
+     "grams": 2
+    },
+    {
+     "ingredient": "coriander-ground",
+     "grams": 2
+    },
+    {
+     "ingredient": "pita-bread",
+     "grams": 120
+    },
+    {
+     "ingredient": "yoghurt",
+     "grams": 100
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Grate the onion and mix well with the mince, chopped parsley and spices.",
+    "Shape into finger-length patties.",
+    "Cook the mince right through until no pink is left, breaking it up as it browns.",
+    "Serve with the pita and yoghurt."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "cookThroughSourceId": "nsw-fa-cooking-temps"
+  },
+  {
+   "id": "tofu-noodle-salad",
+   "name": "Tofu noodle salad bowl",
+   "blurb": "Cool rice noodles with tofu, sprouts, cucumber and herbs.",
+   "traditions": [
+    "vietnamese"
+   ],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "rice-noodles-boiled",
+     "grams": 200
+    },
+    {
+     "ingredient": "tofu-firm",
+     "grams": 150
+    },
+    {
+     "ingredient": "bean-sprouts",
+     "grams": 100
+    },
+    {
+     "ingredient": "cucumber",
+     "grams": 100
+    },
+    {
+     "ingredient": "lettuce",
+     "grams": 80
+    },
+    {
+     "ingredient": "mint",
+     "grams": 10
+    },
+    {
+     "ingredient": "coriander-fresh",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Cook the rice noodles as the packet says, rinse under cold water and drain.",
+    "Cut the tofu into strips and shred the lettuce and cucumber.",
+    "Pile everything in bowls and top with the herbs."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "chicken-cabbage-salad",
+   "name": "Chicken and cabbage salad",
+   "blurb": "Poached chicken shredded with crunchy cabbage, carrot and herbs.",
+   "traditions": [
+    "vietnamese"
+   ],
+   "serves": 2,
+   "minutes": 35,
+   "ingredients": [
+    {
+     "ingredient": "chicken-breast",
+     "grams": 250
+    },
+    {
+     "ingredient": "cabbage-white",
+     "grams": 200
+    },
+    {
+     "ingredient": "carrot",
+     "grams": 100
+    },
+    {
+     "ingredient": "onion",
+     "grams": 40
+    },
+    {
+     "ingredient": "mint",
+     "grams": 10
+    },
+    {
+     "ingredient": "coriander-fresh",
+     "grams": 10
+    },
+    {
+     "ingredient": "peanuts",
+     "grams": 20,
+     "optional": true
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Simmer the chicken breast in water until cooked right through to the centre.",
+    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear.",
+    "Cool, then shred. Slice the cabbage, carrot and onion finely.",
+    "Toss everything together with the herbs and crushed peanuts."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "cookThroughSourceId": "nsw-fa-cooking-temps"
+  },
+  {
+   "id": "tomato-tofu-rice",
+   "name": "Tofu in tomato sauce with rice",
+   "blurb": "Fried tofu simmered in a fresh tomato sauce.",
+   "traditions": [
+    "vietnamese"
+   ],
+   "serves": 2,
+   "minutes": 25,
+   "ingredients": [
+    {
+     "ingredient": "tofu-firm",
+     "grams": 250
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 300
+    },
+    {
+     "ingredient": "spring-onion",
+     "grams": 20
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 8
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says.",
+    "Cube the tofu and fry in the oil until golden.",
+    "Add the garlic and chopped tomato, simmer until saucy, then scatter over the spring onion."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "vinegar-garlic-chicken",
+   "name": "Vinegar and garlic chicken",
+   "blurb": "Chicken thigh simmered with vinegar, garlic and onion, adobo style.",
+   "traditions": [
+    "filipino"
+   ],
+   "serves": 3,
+   "minutes": 45,
+   "ingredients": [
+    {
+     "ingredient": "chicken-thigh",
+     "grams": 400
+    },
+    {
+     "ingredient": "vinegar",
+     "grams": 60
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 10
+    },
+    {
+     "ingredient": "onion",
+     "grams": 60
+    },
+    {
+     "ingredient": "rice",
+     "grams": 200
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says.",
+    "Put the chicken, vinegar, garlic, onion and a little water in a pot and simmer with the lid on.",
+    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear.",
+    "Uncover and reduce the sauce a little, then serve over the rice."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "cookThroughSourceId": "nsw-fa-cooking-temps"
+  },
+  {
+   "id": "eggplant-omelette",
+   "name": "Eggplant omelette",
+   "blurb": "Soft grilled eggplant dipped in egg and pan-fried.",
+   "traditions": [
+    "filipino"
+   ],
+   "serves": 2,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "eggplant",
+     "grams": 300
+    },
+    {
+     "ingredient": "egg",
+     "grams": 180
+    },
+    {
+     "ingredient": "onion",
+     "grams": 40
+    },
+    {
+     "ingredient": "rice",
+     "grams": 150
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 15
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says.",
+    "Grill or roast the whole eggplant until very soft, then peel and flatten.",
+    "Dip in the beaten egg with the chopped onion and fry in the oil until golden both sides."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "sauteed-cabbage-egg",
+   "name": "Sauteed cabbage, tomato and egg",
+   "blurb": "Quick-cooked cabbage and tomato with egg over rice.",
+   "traditions": [
+    "filipino"
+   ],
+   "serves": 2,
+   "minutes": 25,
+   "ingredients": [
+    {
+     "ingredient": "cabbage-white",
+     "grams": 300
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 100
+    },
+    {
+     "ingredient": "onion",
+     "grams": 60
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "egg",
+     "grams": 120
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    },
+    {
+     "ingredient": "rice",
+     "grams": 150
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Boil the rice as the packet says.",
+    "Sauté the garlic, onion and tomato in the oil, then add the shredded cabbage.",
+    "Make a gap, scramble in the eggs, and stir together until set."
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "tomato-pepper-eggs",
+   "name": "Tomato and pepper eggs",
+   "blurb": "Eggs set gently in a tomato and capsicum sauce, with bread.",
+   "traditions": [
+    "turkish"
+   ],
+   "serves": 2,
+   "minutes": 20,
+   "ingredients": [
+    {
+     "ingredient": "egg",
+     "grams": 240
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 300
+    },
+    {
+     "ingredient": "capsicum-green",
+     "grams": 100
+    },
+    {
+     "ingredient": "onion",
+     "grams": 60
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 12
+    },
+    {
+     "ingredient": "bread-white",
+     "grams": 100,
+     "optional": true
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion and capsicum in the oil.",
+    "Add the tomato and cook until saucy.",
+    "Crack in the eggs and stir gently until just set. Serve with bread."
+   ],
+   "safety": [],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "tomato-bulgur-pilaf",
+   "name": "Tomato bulgur pilaf",
+   "blurb": "Bulgur cooked in a light tomato base.",
+   "traditions": [
+    "turkish"
+   ],
+   "serves": 3,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "bulgur",
+     "grams": 150
+    },
+    {
+     "ingredient": "tomato",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "capsicum-green",
+     "grams": 80
+    },
+    {
+     "ingredient": "canola-oil",
+     "grams": 10
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Soften the chopped onion and capsicum in the oil, then add the diced tomato.",
+    "Stir in the bulgur and enough water to just cover.",
+    "Cover and cook on low until the water is absorbed, then rest and fluff."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "eggplant-chickpea-stew",
+   "name": "Eggplant and chickpea stew",
+   "blurb": "Meatless eggplant simmered in tomato with chickpeas.",
+   "traditions": [
+    "turkish"
+   ],
+   "serves": 3,
+   "minutes": 45,
+   "ingredients": [
+    {
+     "ingredient": "eggplant",
+     "grams": 400
+    },
+    {
+     "ingredient": "tomatoes-tinned",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 100
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "chickpeas-canned",
+     "grams": 240
+    },
+    {
+     "ingredient": "olive-oil",
+     "grams": 15
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Cube the eggplant and fry in the olive oil until golden.",
+    "Add the sliced onion and garlic, then the tomatoes.",
+    "Stir in the drained chickpeas and simmer until the eggplant is very soft."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "coconut-dhal",
+   "name": "Coconut dhal",
+   "blurb": "Red lentils cooked in coconut milk with turmeric.",
+   "traditions": [
+    "sri-lankan"
+   ],
+   "serves": 3,
+   "minutes": 30,
+   "ingredients": [
+    {
+     "ingredient": "lentil-red",
+     "grams": 120
+    },
+    {
+     "ingredient": "coconut-milk",
+     "grams": 200
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "chilli-green",
+     "grams": 5
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Simmer the rinsed lentils with the turmeric in water until soft.",
+    "Add the coconut milk, chopped onion, garlic and chilli.",
+    "Simmer gently until the lentils are creamy."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "green-bean-coconut-curry",
+   "name": "Green bean coconut curry",
+   "blurb": "Green beans simmered in a mild coconut sauce.",
+   "traditions": [
+    "sri-lankan"
+   ],
+   "serves": 2,
+   "minutes": 25,
+   "ingredients": [
+    {
+     "ingredient": "green-beans",
+     "grams": 300
+    },
+    {
+     "ingredient": "coconut-milk",
+     "grams": 150
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "chilli-green",
+     "grams": 5
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Trim the beans and cut into short lengths.",
+    "Put everything in a pot with a splash of water.",
+    "Simmer gently until the beans are tender and the sauce is thick."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  },
+  {
+   "id": "pumpkin-coconut-curry",
+   "name": "Pumpkin coconut curry",
+   "blurb": "Soft pumpkin cooked in coconut milk with a little chilli.",
+   "traditions": [
+    "sri-lankan"
+   ],
+   "serves": 3,
+   "minutes": 35,
+   "ingredients": [
+    {
+     "ingredient": "pumpkin",
+     "grams": 400
+    },
+    {
+     "ingredient": "coconut-milk",
+     "grams": 150
+    },
+    {
+     "ingredient": "onion",
+     "grams": 80
+    },
+    {
+     "ingredient": "garlic",
+     "grams": 5
+    },
+    {
+     "ingredient": "turmeric",
+     "grams": 1
+    },
+    {
+     "ingredient": "chilli-green",
+     "grams": 5
+    }
+   ],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "steps": [
+    "Peel the pumpkin and cut into chunks.",
+    "Put it in a pot with the onion, garlic, turmeric, chilli, coconut milk and a splash of water.",
+    "Simmer until the pumpkin is soft and the sauce is thick."
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+  }
+ ],
+ "notFound": [
+  "Soak-and-boil dried bean recipes (including dried chickpeas, haricot and kidney beans) are not shipped: no official boiling or soaking source was read. Canned beans, chickpeas and split lentils are used instead.",
+  "Raw seafood and raw fish recipes are not shipped; only fully cooked or tinned fish (tinned tuna and salmon) is used. No official source for cooking fish at home was recorded for the recipes.",
+  "NSW Food Authority \"Food risk and you: what to eat with a weakened immune system\" (PDF, https://www.foodauthority.nsw.gov.au/media/8789) downloaded but its text could not be extracted (embedded fonts), so it was not read and the pregnancy and immune-system line stays omitted.",
+  "Victorian Department of Health and Better Health Channel pages for cooking chicken and leftovers returned 404 (health.vic.gov.au/food-safety/cook-chicken, betterhealth.vic.gov.au food-safety-and-chicken); the NSW Food Authority pages are used instead and are labelled NSW.",
+  "FSANZ pages /consumer/safety/food-safety-tips and /consumer/safety/poultry returned 404 and were not read.",
+  "Curry powder (AFCD F003337) and tomato paste, soy sauce and fish sauce were not added: blends and sauces have no read source for diet flags, so recipes use single spices and leave sauces out.",
+  "Prices are sample estimates of a typical Melbourne supermarket price per kg, rounded to 10c; no price source was read. Tinned goods are priced per kg of the weight used in the recipe (drained where the nutrition row is drained).",
+  "Frozen peas use the AFCD row \"Pea, green, frozen, boiled, drained\" because the workbook has no raw frozen-pea row; the peas are only heated through in recipes.",
+  "Cooked-weight rows: rice noodles use the boiled AFCD row, so the recipe grams are cooked weight; all other grains and pasta use dry rows. Cooking changes are not modelled and salt is not counted.",
+  "Recipe wording is the author's own; no third-party recipe text was used. A food-safety or dietitian review of the recipes is still recommended.",
+  "Halal, kosher, vegan and gluten flags for packaged goods (bread, cheddar, baked beans, tinned fish, frozen peas, tinned corn and beans) stay unknown or partial as in the cultural table; no product-specific source was read."
+ ]
+}

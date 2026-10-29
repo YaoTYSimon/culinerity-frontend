@@ -20,3 +20,4 @@ export function deriveFlags(
   allergensKnown: boolean;
   certifiedMeat: boolean;
 };
+export function validateIngredientRow(row: any, sourceIds: Set<string>): string[];
