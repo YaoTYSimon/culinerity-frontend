@@ -119,6 +119,16 @@ describe('with accounts and no session', () => {
     expect(localStorage.getItem(profileKey('bbb'))).not.toContain('Secret Sam falafel');
   });
 
+  it('moves focus to the new page heading after signing in or switching', async () => {
+    seed('aaa', 'Sam', 'Secret Sam falafel', 31);
+    seed('bbb', 'Alex', 'Alex lentil bowl', 72);
+    mount();
+    await act(async () => void (await auth.signIn('aaa')));
+    expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
+    await act(async () => void (await auth.signIn('bbb')));
+    expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
+  });
+
   it('continueAsGuest shows the guest app under the unsuffixed key and exposes no profile data', () => {
     seed('aaa', 'Sam', 'Secret Sam falafel', 31);
     localStorage.setItem('culinerity.profile.v1', JSON.stringify({ welcomeSeen: true }));
