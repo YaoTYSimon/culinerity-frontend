@@ -3,6 +3,7 @@ import { isScoreEntry, MAX_HISTORY } from '../domain/history';
 import type { Aud, Profile } from '../domain/types';
 import { sanitizeMeals } from '../food/meals';
 import { sanitizeFoodProfile } from '../food/sanitize';
+import { sanitizeTradeoffs } from '../tradeoffs/entries';
 import { isWeekSwap, MAX_WEEK_SWAPS } from '../domain/week';
 
 /** Persistence port. Implementations (browser or native storage, memory) are injected by the app. */
@@ -40,6 +41,10 @@ export function sanitizeProfile(value: unknown): Profile {
   if (Array.isArray(v.culturalMeals)) {
     const meals = sanitizeMeals(v.culturalMeals);
     if (meals.length > 0) out.culturalMeals = meals;
+  }
+  if (Array.isArray(v.tradeoffs)) {
+    const tradeoffs = sanitizeTradeoffs(v.tradeoffs);
+    if (tradeoffs.length > 0) out.tradeoffs = tradeoffs;
   }
   return out;
 }

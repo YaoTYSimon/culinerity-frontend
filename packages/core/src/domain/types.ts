@@ -1,4 +1,5 @@
 import type { CulturalMeal, FoodProfile } from '../food/types';
+import type { TradeoffEntry } from '../tradeoffs/types';
 
 /** Australian dollars. */
 export type Aud = number;
@@ -39,6 +40,8 @@ export interface Profile {
   /** Optional, self-declared, device-only. Never sent to the server. */
   foodProfile?: FoodProfile;
   culturalMeals?: CulturalMeal[];
+  /** Optional, self-declared, device-only. Absent when empty. */
+  tradeoffs?: TradeoffEntry[];
 }
 
 export interface PricePoint {

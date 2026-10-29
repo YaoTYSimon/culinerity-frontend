@@ -120,3 +120,17 @@ describe('sanitizeProfile food fields', () => {
     expect(parseProfile(JSON.stringify(p))).toEqual(p);
   });
 });
+
+describe('sanitizeProfile tradeoffs', () => {
+  const t = { id: 't1', at: '2026-10-27T01:00:00.000Z', category: 'meal-skipped' };
+  it('junk and empty arrays load as absent', () => {
+    expect(sanitizeProfile({ tradeoffs: 'junk' })).toEqual({});
+    expect(sanitizeProfile({ tradeoffs: [] })).toEqual({});
+    expect(sanitizeProfile({ tradeoffs: [{ id: '' }, null, 3] })).toEqual({});
+  });
+  it('valid entries survive a save/load', () => {
+    const p = sanitizeProfile({ tradeoffs: [t] });
+    expect(p.tradeoffs).toEqual([t]);
+    expect(parseProfile(JSON.stringify(p))).toEqual(p);
+  });
+});

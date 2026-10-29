@@ -49,5 +49,8 @@ export * from './food/coverage';
 export * from './food/meals';
 export * from './food/occasions';
 export * from './food/sanitize';
+export * from './tradeoffs/types';
+export * from './tradeoffs/categories';
+export * from './tradeoffs/entries';
 export * from './cultural/source';
 export { centroidTable } from './places/generated/centroids.generated';

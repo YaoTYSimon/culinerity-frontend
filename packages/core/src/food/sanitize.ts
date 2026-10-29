@@ -7,12 +7,12 @@ export const MAX_DISMISSED = 20;
 
 const DISMISSED_KEY = /^[a-z-]+-\d{4}$/;
 
-/** NFC, control, zero-width and other invisible format characters removed, whitespace collapsed, max 40 characters. */
-export function cleanText(s: string): string {
+/** NFC, control, zero-width and other invisible format characters removed, whitespace collapsed, max 40 characters unless `max` says otherwise. */
+export function cleanText(s: string, max: number = MAX_TEXT): string {
   const flat = s.normalize('NFC').replace(/\s/g, ' ').replace(/[\p{Cc}\p{Cf}]/gu, '').replace(/ +/g, ' ').trim();
   let out = '';
   for (const ch of flat) {
-    if (out.length + ch.length > MAX_TEXT) break;
+    if (out.length + ch.length > max) break;
     out += ch;
   }
   return out.trim();
