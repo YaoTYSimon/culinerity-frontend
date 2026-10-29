@@ -159,7 +159,7 @@ export function Nearby({ score, profileSuburb, onNavigate }: Props) {
       <div className="flex flex-wrap items-center gap-3">
         <PillButton ref={locateButton} aria-disabled={locating} onClick={locate}>Use my location</PillButton>
         {locating && <PillButton variant="surface" onClick={() => { cancel(); setPhase({ kind: 'idle' }); locateButton.current?.focus(); }}>Cancel</PillButton>}
-        {origin && <PillButton variant="text" onClick={clear}>Clear my location</PillButton>}
+        {origin && <PillButton variant="text" className="-ml-3" onClick={clear}>Clear my location</PillButton>}
       </div>
 
       <div aria-live="polite" className="empty:hidden grid justify-items-start gap-3 text-base font-semibold text-pretty">

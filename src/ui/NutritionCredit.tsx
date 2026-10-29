@@ -17,7 +17,7 @@ export function NutritionCredit() {
         Food Standards Australia New Zealand, Australian Food Composition Database Release 3
       </a>
       {', '}
-      <a href={CC_BY} target="_blank" rel="noopener noreferrer" className={link} aria-label="CC BY 4.0 licence (opens in a new tab)">CC BY 4.0</a>
+      <a href={CC_BY} target="_blank" rel="noopener noreferrer" className={`${link} whitespace-nowrap`} aria-label="CC BY 4.0 licence (opens in a new tab)">CC BY 4.0</a>
       , adapted (nutrient values summed per recipe).
     </p>
   );

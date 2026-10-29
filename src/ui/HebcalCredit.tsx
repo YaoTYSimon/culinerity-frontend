@@ -1,6 +1,6 @@
 import { culturalSources } from '@culinerity/core';
 
-const link = 'underline underline-offset-2 hover:text-ink focus-ring rounded-full';
+const link = 'whitespace-nowrap underline underline-offset-2 hover:text-ink focus-ring rounded-full';
 const CC_BY = 'https://creativecommons.org/licenses/by/4.0/';
 
 /** CC BY 4.0 credit for the Jewish festival dates. The link comes from the generated source record. */
