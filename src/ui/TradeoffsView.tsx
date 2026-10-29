@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   addTradeoff, isTradeoffEntry, removeTradeoff, restoreTradeoff, tradeoffLabel, tradeoffWeeks, TRADEOFF_LABELS,
   type TradeoffCategory, type TradeoffEntry,
@@ -11,6 +11,7 @@ import { dayLabel } from './foodCopy';
 import { noBreak } from './noBreak';
 import { PageHeader } from './PageHeader';
 import { PillButton } from './PillButton';
+import { HelpDisclosure, SupportCard } from './SupportCard';
 import {
   countSentence, DISCLAIMER, EMPTY_WEEK, INTRO, REFLECTION, RETENTION, SHARED_DEVICE, STATUS_CLEARED, STATUS_REMOVED,
   STAYS_WITH_PROFILE, statusAdded, TITLE,
@@ -27,8 +28,6 @@ interface Props {
   clock?: () => Date;
   /** Injected in tests. */
   newId?: () => string;
-  /** Fills the calm support card under the status line. */
-  renderSupport?: (category: TradeoffCategory, onClose: () => void) => ReactNode;
 }
 
 const [CLEARED_BEFORE, CLEARED_AFTER] = STATUS_CLEARED.split(' Undo ');
@@ -60,7 +59,7 @@ function Rows({ label, entries, onRemove }: { label: string; entries: TradeoffEn
 }
 
 /** What we went without: a private record, added in two taps, removed with Undo. Nothing here is timed. */
-export function TradeoffsView({ entries, now, onChange, onOpenBudget, renderSupport, clock, newId = defaultId }: Props) {
+export function TradeoffsView({ entries, now, onChange, onOpenBudget, onOpenSupport, clock, newId = defaultId }: Props) {
   const [adding, setAdding] = useState(false);
   const [added, setAdded] = useState<Added | null>(null);
   const [noting, setNoting] = useState(false);
@@ -69,6 +68,7 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, renderSupp
   const addButton = useRef<HTMLButtonElement>(null);
   const noteButton = useRef<HTMLButtonElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
+  const statusLine = useRef<HTMLDivElement>(null);
   const list = useRef<HTMLDivElement>(null);
   const focusAfter = useRef<{ id: string | null } | null>(null);
   const notingRef = useRef(false);
@@ -177,7 +177,7 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, renderSupp
         {count > 0 && <p className="text-base text-pretty">{REFLECTION}</p>}
       </div>
 
-      <div role="status" aria-live="polite" className="grid justify-items-start gap-1 empty:hidden">
+      <div ref={statusLine} role="status" aria-live="polite" tabIndex={-1} className="grid justify-items-start gap-1 outline-none empty:hidden">
         {added && (
           <div className="flex flex-wrap items-center gap-x-1">
             <p className="text-base font-semibold">{added.text}</p>
@@ -197,7 +197,13 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, renderSupp
         )}
       </div>
 
-      {added && support && renderSupport?.(support, () => setSupport(null))}
+      {added && support && (
+        <SupportCard
+          category={support}
+          onOpenSupport={onOpenSupport}
+          onClose={() => { setSupport(null); statusLine.current?.focus(); }}
+        />
+      )}
 
       {noting && <NoteForm onSave={onSaveNote} onSkip={() => { setNoting(false); refocusAdd.current = true; }} />}
 
@@ -254,6 +260,8 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, renderSupp
           <PillButton variant="text" className="-ml-3" onClick={onOpenBudget}>See my food budget</PillButton>
         </div>
       )}
+
+      <HelpDisclosure onOpenSupport={onOpenSupport} />
 
       <div className="grid gap-2 text-sm text-muted">
         <p>{SHARED_DEVICE}</p>

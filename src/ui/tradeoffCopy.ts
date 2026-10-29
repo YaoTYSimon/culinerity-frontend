@@ -15,3 +15,16 @@ export const countSentence = (n: number): string =>
   `${n} ${n === 1 ? 'trade-off' : 'trade-offs'} this week: this is what keeping food on the table cost`;
 
 export const statusAdded = (label: string, dayText: string): string => `Added: ${label}, ${dayText}.`;
+
+// Support card (safe messaging): calm, and it never tells the person what to do.
+export const SUPPORT_HEADING = 'If it would help';
+export const SUPPORT_BODY = 'Plenty of people go without to get by, and help exists. None of this is reported to anyone.';
+export const SUPPORT_CLOSE = 'Close';
+export const FIND_FOOD_LINK = 'Find free food near you';
+export const FOOD_SUPPORT_BUTTON = 'See food support places';
+export const DEBT_LEAD = 'National Debt Helpline, free financial counselling:';
+export const DEBT_HOURS = '(weekdays)';
+export const LIFELINE_LEAD = 'If things feel heavy: Lifeline';
+export const LIFELINE_TAIL = ', any time. In danger, call';
+export const KIDS_LEAD = 'If your child wants someone to talk to: Kids Helpline';
+export const KIDS_LEAD_PARENT = 'Kids Helpline, for children and young people:';

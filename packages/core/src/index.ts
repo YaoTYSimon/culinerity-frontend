@@ -54,3 +54,4 @@ export * from './tradeoffs/categories';
 export * from './tradeoffs/entries';
 export * from './cultural/source';
 export { centroidTable } from './places/generated/centroids.generated';
+export * from './tradeoffs/support';

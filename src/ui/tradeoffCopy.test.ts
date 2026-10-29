@@ -12,7 +12,7 @@ const ALLOWED = [
   'None of this is reported to anyone.',
 ];
 const BANNED = /\b(fail|failed|only|deprived|neglect|report|reported|score|goal|target|streak|badge|good|bad|better|worse|should|must)\b/i;
-const FILES = ['tradeoffCopy.ts', 'TradeoffsView.tsx', 'AddTradeoff.tsx'];
+const FILES = ['tradeoffCopy.ts', 'TradeoffsView.tsx', 'AddTradeoff.tsx', 'SupportCard.tsx'];
 
 describe('trade-off wording', () => {
   it('banned words absent (apart from the allow-listed lines)', () => {
