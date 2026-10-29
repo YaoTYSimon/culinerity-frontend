@@ -134,3 +134,23 @@ describe('sanitizeProfile tradeoffs', () => {
     expect(parseProfile(JSON.stringify(p))).toEqual(p);
   });
 });
+
+describe('sanitizeProfile pantry and shoppingList', () => {
+  const pantry = { items: [{ id: 'a', name: 'Rice', ingredientId: 'rice', grams: 500, addedAt: '2026-10-29T01:00:00.000Z' }], staples: ['canola-oil'], serves: 3 };
+  const shoppingList = [{ id: 's1', name: 'Onion', recipeId: 'r1', addedAt: '2026-10-29T01:00:00.000Z' }];
+  it('an old profile without the fields leaves them absent', () => {
+    const p = sanitizeProfile({ score: 40, welcomeSeen: true });
+    expect('pantry' in p).toBe(false);
+    expect('shoppingList' in p).toBe(false);
+  });
+  it('junk loads as absent', () => {
+    expect(sanitizeProfile({ pantry: 'x', shoppingList: 7 })).toEqual({});
+    expect(sanitizeProfile({ pantry: { items: 'no' }, shoppingList: [] })).toEqual({});
+  });
+  it('valid fields survive a save/load', () => {
+    const p = sanitizeProfile({ pantry, shoppingList });
+    expect(p.pantry).toEqual(pantry);
+    expect(p.shoppingList).toEqual(shoppingList);
+    expect(parseProfile(JSON.stringify(p))).toEqual(p);
+  });
+});

@@ -179,6 +179,14 @@ describe('migration', () => {
     expect(localStorage.getItem(KEYS.guestProfile)).toBeNull();
     expect(JSON.parse(localStorage.getItem(profileKey(a.id)) ?? '{}')).toEqual({ ...guest, welcomeSeen: true });
   });
+  it('carries the pantry and shopping list over, cleaned', async () => {
+    const pantry = { items: [{ id: 'a', name: 'Rice', ingredientId: 'rice', addedAt: '2026-10-29T01:00:00.000Z' }], staples: ['canola-oil'], serves: 4 };
+    const shoppingList = [{ id: 's1', name: 'Onion', addedAt: '2026-10-29T01:00:00.000Z' }];
+    localStorage.setItem(KEYS.guestProfile, JSON.stringify({ score: 1, pantry, shoppingList }));
+    const a = await mk2(make(), true);
+    expect(JSON.parse(localStorage.getItem(profileKey(a.id)) ?? '{}')).toEqual({ score: 1, pantry, shoppingList, welcomeSeen: true });
+    expect(localStorage.getItem(KEYS.guestProfile)).toBeNull();
+  });
   it('without migrateGuestData the guest key is untouched', async () => {
     localStorage.setItem(KEYS.guestProfile, JSON.stringify(guest));
     await mk2(make(), false);

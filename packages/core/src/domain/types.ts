@@ -1,4 +1,5 @@
 import type { CulturalMeal, FoodProfile } from '../food/types';
+import type { PantryState, ShoppingEntry } from '../pantry/types';
 import type { TradeoffEntry } from '../tradeoffs/types';
 
 /** Australian dollars. */
@@ -42,6 +43,9 @@ export interface Profile {
   culturalMeals?: CulturalMeal[];
   /** Optional, self-declared, device-only. Absent when empty. */
   tradeoffs?: TradeoffEntry[];
+  /** Optional, self-declared, device-only. Absent when empty. */
+  pantry?: PantryState;
+  shoppingList?: ShoppingEntry[];
 }
 
 export interface PricePoint {

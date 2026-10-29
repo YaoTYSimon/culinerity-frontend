@@ -3,6 +3,7 @@ import { isScoreEntry, MAX_HISTORY } from '../domain/history';
 import type { Aud, Profile } from '../domain/types';
 import { sanitizeMeals } from '../food/meals';
 import { sanitizeFoodProfile } from '../food/sanitize';
+import { sanitizePantry, sanitizeShopping } from '../pantry/sanitize';
 import { sanitizeTradeoffs } from '../tradeoffs/entries';
 import { isWeekSwap, MAX_WEEK_SWAPS } from '../domain/week';
 
@@ -46,6 +47,10 @@ export function sanitizeProfile(value: unknown): Profile {
     const tradeoffs = sanitizeTradeoffs(v.tradeoffs);
     if (tradeoffs.length > 0) out.tradeoffs = tradeoffs;
   }
+  const pantry = sanitizePantry(v.pantry);
+  if (pantry) out.pantry = pantry;
+  const shoppingList = sanitizeShopping(v.shoppingList);
+  if (shoppingList) out.shoppingList = shoppingList;
   return out;
 }
 
