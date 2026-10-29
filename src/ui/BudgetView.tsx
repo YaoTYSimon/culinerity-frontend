@@ -260,7 +260,7 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }
       {saved > 0 && (
         <div className="flex flex-wrap items-center gap-x-2">
           <p className="text-base">Saved with swaps this week: {formatDollars(saved)}</p>
-          {onOpenWeek && <PillButton variant="text" onClick={onOpenWeek}>My week</PillButton>}
+          {onOpenWeek && <PillButton variant="text" className="-ml-3" onClick={onOpenWeek}>My week</PillButton>}
         </div>
       )}
 
