@@ -29,10 +29,8 @@ export function Welcome({ onFindNumber, onSkip, onFood }: Props) {
       </div>
       <div className="grid justify-items-center gap-2">
         <PillButton onClick={onFindNumber} className="w-full">Find my number</PillButton>
-        <div role="group" aria-label="Other ways to start" className="grid justify-items-center">
-          <PillButton variant="text" onClick={onSkip}>Skip to cheaper swaps</PillButton>
-          <PillButton variant="text" onClick={onFood}>Tell us about your food (optional)</PillButton>
-        </div>
+        <PillButton variant="surface" onClick={onSkip} className="w-full">Skip to cheaper swaps</PillButton>
+        <PillButton variant="text" onClick={onFood} className="mt-2">Tell us about your food (optional)</PillButton>
       </div>
     </div>
   );
