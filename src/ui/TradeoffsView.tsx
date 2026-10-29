@@ -179,13 +179,15 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, onOpenSupp
 
       <div ref={statusLine} role="status" aria-live="polite" tabIndex={-1} className="grid justify-items-start gap-1 outline-none empty:hidden">
         {added && (
-          <div className="flex flex-wrap items-center gap-x-1">
+          <>
             <p className="text-base font-semibold">{added.text}</p>
-            {!noting && all.find((e) => e.id === added.id)?.note === undefined && (
-              <PillButton ref={noteButton} variant="text" onClick={() => setNoting(true)}>Add a note</PillButton>
-            )}
-            <PillButton variant="text" onClick={onUndoAdded}>Undo</PillButton>
-          </div>
+            <div className="-ml-3 flex flex-wrap items-center gap-x-1">
+              {!noting && all.find((e) => e.id === added.id)?.note === undefined && (
+                <PillButton ref={noteButton} variant="text" onClick={() => setNoting(true)}>Add a note</PillButton>
+              )}
+              <PillButton variant="text" onClick={onUndoAdded}>Undo</PillButton>
+            </div>
+          </>
         )}
         {latest && (
           <div className="flex flex-wrap items-center gap-x-1">
