@@ -1,0 +1,389 @@
+[
+  {
+    "id": "fairwork-minwage",
+    "publisher": "Fair Work Ombudsman",
+    "title": "Minimum wages: 'As of 1 July 2026, the National Minimum Wage is $26.44 per hour or $1004.90 per week' (applies to employees not covered by an award or agreement)",
+    "url": "https://www.fairwork.gov.au/pay-and-wages/minimum-wages",
+    "licence": "Not verified (site copyright page not read); only the two figures (facts) are recorded, no text reused",
+    "accessed": "2026-10-29",
+    "usedFor": "A: reference wage for a 'lose a shift' scenario; context only, awards may be higher"
+  },
+  {
+    "id": "dss-rates-2026-09-20",
+    "publisher": "Department of Social Services (Australia)",
+    "title": "Social Security Payment Parameters, 20 September 2026 indexation (rates list PDF). JobSeeker single no dependent children: basic rate $824.90 per fortnight (previous $808.70), Energy Supplement $8.80, typical total $833.70; single with dependent children basic $883.30; partnered each $755.10; income limit single no children $1,557.17 per fortnight",
+    "url": "https://www.dss.gov.au/system/files/documents/2026-08/rates-list-20-september-2026.pdf",
+    "licence": "Not verified (licence not read); figures only",
+    "accessed": "2026-10-29",
+    "usedFor": "A: current payment rates for income-shock scenarios; text extracted from the PDF by script, figures cross-read"
+  },
+  {
+    "id": "dffh-rental-report-jun2026",
+    "publisher": "Department of Families, Fairness and Housing (Vic)",
+    "title": "Rental report, Homes Victoria Rental Report June quarter 2026: metropolitan Melbourne median weekly rent $595 (down $5 over the quarter); Metropolitan Rent Index stable over the quarter, up 4.8% over the year (2.5% to June 2025; 10-year average annual 4.3%)",
+    "url": "https://www.dffh.vic.gov.au/publications/rental-report",
+    "licence": "Page licence not read; the data.gov.au catalogue listing of the same dataset states Creative Commons Attribution",
+    "accessed": "2026-10-29",
+    "usedFor": "A: rent level and rent growth for a 'rent rises' scenario"
+  },
+  {
+    "id": "datagov-rental-vic",
+    "publisher": "Australian Government (data.gov.au catalogue)",
+    "title": "Rental Report, VIC (dataset listing: 'Licence Creative Commons Attribution')",
+    "url": "https://catalogue.data.infrastructure.gov.au/dataset/rdh-rental-report-vic",
+    "licence": "CC BY (as stated on the listing; version not stated)",
+    "accessed": "2026-10-29",
+    "usedFor": "A: licence evidence for the rental report data"
+  },
+  {
+    "id": "abs-food-insecurity-2023",
+    "publisher": "Australian Bureau of Statistics",
+    "title": "Food insecurity, 2023 (NNPAS 2023, released 5/09/2025): 13.2% of households food insecure in the last 12 months; lone-parent households with dependent children 34.0%; most disadvantaged SEIFA quintile 20.6% vs least 6.8%",
+    "url": "https://www.abs.gov.au/statistics/health/food-and-nutrition/food-insecurity/2023",
+    "licence": "ABS copyright terms (see existing dataset source abs-copyright); facts only",
+    "accessed": "2026-10-29",
+    "usedFor": "A, C: Australian prevalence context; household-level measure (not comparable to Foodbank's)"
+  },
+  {
+    "id": "foodbank-hunger-report-2026",
+    "publisher": "Foodbank Australia",
+    "title": "Foodbank Hunger Report 2026: one in three households (3.6 million) food insecure; 42% of households with part-time/casual workers vs 33% nationally; 48% of food insecure households cite embarrassment as a reason for not accessing help; cost-of-living coping table (food secure vs food insecure households, base n=5880)",
+    "url": "https://www.foodbank.org.au/hunger-report/",
+    "licence": "Copyright Foodbank (footer '(c) Foodbank 2021'); no open licence seen; figures only, no text or charts reproduced",
+    "accessed": "2026-10-29",
+    "usedFor": "A, C: coping behaviours and shame; NOTE existing app dataset holds the 2025 report, this page is the 2026 edition"
+  },
+  {
+    "id": "paloyo-2026-hilda",
+    "publisher": "Paloyo AR, Kent K, Gebremariam A, Charlton K et al. (Health Promotion International)",
+    "title": "Income, food expenditure shares, and severe food insecurity in Australia across 21 waves of HILDA (doi 10.1093/heapro/daag079). Meal skipping due to financial constraint 3.6% pooled (3.4% most recent wave); >7% at lowest income percentiles vs <1% at 95th; lowest quintile spends >30% of equivalised income on food; 5.8% reported skipping in exactly one wave, 9.1% in two or more",
+    "url": "https://doi.org/10.1093/heapro/daag079",
+    "licence": "CC BY (Europe PMC record licence field 'cc by')",
+    "accessed": "2026-10-29",
+    "usedFor": "A, C: income gradient and episodic nature of meal skipping; associational, not causal"
+  },
+  {
+    "id": "romanovich-brown-2026",
+    "publisher": "Romanovich-Brown OR et al. (Advances in Nutrition)",
+    "title": "Review of Coping Strategies to Prevent and Mitigate Food Insecurity in Households with Children (doi 10.1016/j.advnut.2026.100665). US scoping review, 25 studies, 5 themes: food acquisition, food management, financial coping, family/friend support, strategies by children",
+    "url": "https://doi.org/10.1016/j.advnut.2026.100665",
+    "licence": "CC BY (Europe PMC record licence field 'cc by')",
+    "accessed": "2026-10-29",
+    "usedFor": "C: evidence base for coping strategy categories; US-only"
+  },
+  {
+    "id": "frank-2006-heat-or-eat",
+    "publisher": "Frank DA, Neault NB, Skalicky A, Cook JT et al. (Pediatrics)",
+    "title": "Heat or eat: the Low Income Home Energy Assistance Program and nutritional and health risks among children less than 3 years of age (doi 10.1542/peds.2005-2943). Only the bibliographic record was read",
+    "url": "https://doi.org/10.1542/peds.2005-2943",
+    "licence": "Not applicable (reference only; abstract not read)",
+    "accessed": "2026-10-29",
+    "usedFor": "C: origin of the 'heat or eat' literature (US, children under 3)"
+  },
+  {
+    "id": "moneysmart-general-personal",
+    "publisher": "MoneySmart (ASIC)",
+    "title": "General and personal financial advice: general advice is a recommendation that does not consider personal circumstances; personal advice is tailored; financial information is factual; 'A licence isn't needed to provide factual information'; personal and most general advice providers must hold an AFS licence",
+    "url": "https://moneysmart.gov.au/financial-advice/general-and-personal-financial-advice",
+    "licence": "Copyright page: some material may be reproduced without permission, other material only with permission; no blanket open licence. Link only, do not copy text",
+    "accessed": "2026-10-29",
+    "usedFor": "A: general information vs advice framing for the simulator"
+  },
+  {
+    "id": "moneysmart-copyright",
+    "publisher": "MoneySmart (ASIC)",
+    "title": "Copyright page of moneysmart.gov.au",
+    "url": "https://moneysmart.gov.au/about-us/copyright",
+    "licence": "Reproduction requires permission unless the content is marked with an open licence",
+    "accessed": "2026-10-29",
+    "usedFor": "A: licence evidence"
+  },
+  {
+    "id": "asic-rep798",
+    "publisher": "Australian Securities and Investments Commission",
+    "title": "REP 798 Beware the gap: Governance arrangements in the face of AI innovation (released 29 October 2024); reviewed 23 AFS and credit licensees. Only the summary line was read",
+    "url": "https://asic.gov.au/regulatory-resources/find-a-document/reports/rep-798-beware-the-gap-governance-arrangements-in-the-face-of-ai-innovation/",
+    "licence": "Not verified",
+    "accessed": "2026-10-29",
+    "usedFor": "A: regulator view on AI governance gaps; full report NOT read"
+  },
+  {
+    "id": "industry-ai-ethics-principles",
+    "publisher": "Department of Industry, Science and Resources (Australia)",
+    "title": "Australia's 8 AI Ethics Principles (wellbeing; human-centred values; fairness; privacy protection and security; reliability and safety; transparency and explainability; contestability; accountability). Voluntary",
+    "url": "https://www.industry.gov.au/publications/australias-artificial-intelligence-ethics-framework/australias-ai-ethics-principles",
+    "licence": "Page licence statement not found in the extracted text; principle names and one-line descriptions quoted briefly",
+    "accessed": "2026-10-29",
+    "usedFor": "A: responsible-design checklist"
+  },
+  {
+    "id": "oaic-commercial-ai",
+    "publisher": "Office of the Australian Information Commissioner",
+    "title": "Guidance on privacy and the use of commercially available AI products: 'As a matter of best practice, the OAIC recommends that organisations do not enter personal information, and particularly sensitive information, into publicly available generative AI tools'",
+    "url": "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-the-use-of-commercially-available-ai-products",
+    "licence": "Not verified; one sentence quoted",
+    "accessed": "2026-10-29",
+    "usedFor": "A: privacy risk of sending financial data to third-party AI APIs"
+  },
+  {
+    "id": "arxiv-2610-23060",
+    "publisher": "Preprint (arXiv 2610.23060)",
+    "title": "Same Person, Different Advice: Auditing LLM Financial Advice with Repeated Risk-Tolerance Responses. Seven LLMs, 800 household profiles; advice swung 10 to 16 points on average when only a risk answer changed. Not peer reviewed",
+    "url": "https://arxiv.org/abs/2610.23060",
+    "licence": "Not verified (arXiv listing shows no licence field); abstract read only",
+    "accessed": "2026-10-29",
+    "usedFor": "A: evidence that LLM financial advice is unstable (US investment context, not budgeting)"
+  },
+  {
+    "id": "arxiv-2608-16909",
+    "publisher": "Preprint (arXiv 2608.16909)",
+    "title": "When Personalization Becomes Bias: Religious Framing in AI-Generated Financial Advice. 3 LLMs, 432 simulated interactions; unbiased advice in only 12-18% of cases. Not peer reviewed",
+    "url": "https://arxiv.org/abs/2608.16909",
+    "licence": "Not verified; abstract read only",
+    "accessed": "2026-10-29",
+    "usedFor": "A: evidence of bias in LLM household financial advice"
+  },
+  {
+    "id": "gh-actualbudget",
+    "publisher": "Actual Budget (GitHub)",
+    "title": "actualbudget/actual, local-first envelope budgeting app (TypeScript)",
+    "url": "https://github.com/actualbudget/actual",
+    "licence": "MIT (GitHub API licence field spdx MIT; LICENSE file not opened)",
+    "accessed": "2026-10-29",
+    "usedFor": "A: design inspiration; it is an app with sync/server, not a what-if library"
+  },
+  {
+    "id": "gh-fireflyiii",
+    "publisher": "Firefly III (GitHub)",
+    "title": "firefly-iii/firefly-iii, personal finance manager (PHP)",
+    "url": "https://github.com/firefly-iii/firefly-iii",
+    "licence": "AGPL-3.0 (GitHub API)",
+    "accessed": "2026-10-29",
+    "usedFor": "A: not reusable (copyleft, PHP); inspiration only"
+  },
+  {
+    "id": "gh-maybe",
+    "publisher": "Maybe Finance (GitHub)",
+    "title": "maybe-finance/maybe, personal finance app, archived",
+    "url": "https://github.com/maybe-finance/maybe",
+    "licence": "AGPL-3.0 (GitHub API); archived",
+    "accessed": "2026-10-29",
+    "usedFor": "A: not reusable"
+  },
+  {
+    "id": "gh-openfisca-core",
+    "publisher": "OpenFisca (GitHub)",
+    "title": "openfisca/openfisca-core, tax-benefit rules-as-code engine (Python)",
+    "url": "https://github.com/openfisca/openfisca-core",
+    "licence": "AGPL-3.0 (GitHub API)",
+    "accessed": "2026-10-29",
+    "usedFor": "A: model of transparent rules-as-code; not reusable (Python, AGPL)"
+  },
+  {
+    "id": "gh-policyengine-core",
+    "publisher": "PolicyEngine (GitHub)",
+    "title": "PolicyEngine/policyengine-core, microsimulation engine (Python)",
+    "url": "https://github.com/PolicyEngine/policyengine-core",
+    "licence": "AGPL-3.0 (GitHub API)",
+    "accessed": "2026-10-29",
+    "usedFor": "A: not reusable; no Australian model was found"
+  },
+  {
+    "id": "gh-openfisca-australia",
+    "publisher": "Br3nda / pserwylo (GitHub)",
+    "title": "Br3nda/openfisca-australia and pserwylo/OpenFisca-AustraliaVictoria, community OpenFisca Australia prototypes (latest push 2026-10-05 and 2019-01-29)",
+    "url": "https://github.com/Br3nda/openfisca-australia",
+    "licence": "AGPL-3.0 (GitHub API)",
+    "accessed": "2026-10-29",
+    "usedFor": "A: shows no maintained Australian payment model exists to reuse; contents not reviewed"
+  },
+  {
+    "id": "gh-recipe-scrapers",
+    "publisher": "hhursev (GitHub)",
+    "title": "hhursev/recipe-scrapers, Python library that scrapes recipe web pages",
+    "url": "https://github.com/hhursev/recipe-scrapers",
+    "licence": "MIT (GitHub API); the library licence does not license the scraped recipe content",
+    "accessed": "2026-10-29",
+    "usedFor": "B: NOT recommended (scraping third-party recipes)"
+  },
+  {
+    "id": "gh-ingredient-parser",
+    "publisher": "strangetom (GitHub)",
+    "title": "strangetom/ingredient-parser, Python parser for ingredient sentences",
+    "url": "https://github.com/strangetom/ingredient-parser",
+    "licence": "MIT (GitHub API)",
+    "accessed": "2026-10-29",
+    "usedFor": "B: only relevant if free-text ingredient entry is added; Python, not usable in the TS core"
+  },
+  {
+    "id": "gh-mealscout",
+    "publisher": "mk-knight23 (GitHub)",
+    "title": "mk-knight23/MK-MealScout, ingredient-first recipe finder with match scoring (1 star)",
+    "url": "https://github.com/mk-knight23/MK-MealScout",
+    "licence": "MIT (GitHub API); code not reviewed",
+    "accessed": "2026-10-29",
+    "usedFor": "B: design inspiration only; too small to depend on"
+  },
+  {
+    "id": "foodon",
+    "publisher": "FoodOn (GitHub)",
+    "title": "FoodOntology/foodon, food ontology",
+    "url": "https://github.com/FoodOntology/foodon",
+    "licence": "CC-BY-4.0 (GitHub API)",
+    "accessed": "2026-10-29",
+    "usedFor": "B: possible reference vocabulary for ingredient classes; not needed for 100 ingredients"
+  },
+  {
+    "id": "recipenlg-terms",
+    "publisher": "Poznan University of Technology via Hugging Face dataset card (mbien/recipe_nlg)",
+    "title": "RecipeNLG licensing text: 'Researcher shall use the Dataset only for non-commercial research and educational purposes.' Card metadata lists licence 'unknown'",
+    "url": "https://huggingface.co/datasets/mbien/recipe_nlg",
+    "licence": "Non-commercial research and education only (terms text read on the card)",
+    "accessed": "2026-10-29",
+    "usedFor": "B: excluded from bundling or use"
+  },
+  {
+    "id": "recipe1m-code",
+    "publisher": "MIT CSAIL (GitHub torralba-lab/im2recipe)",
+    "title": "im2recipe LICENSE is MIT but covers the code only. The Recipe1M data download page returned HTTP 403, so the data terms were NOT read",
+    "url": "https://github.com/torralba-lab/im2recipe",
+    "licence": "Code MIT (LICENSE text read); data licence NOT verified",
+    "accessed": "2026-10-29",
+    "usedFor": "B: dataset treated as unusable until terms are read"
+  },
+  {
+    "id": "foodcom-kaggle",
+    "publisher": "Kaggle (shuyangli94 Food.com Recipes and Interactions)",
+    "title": "Kaggle dataset page is JavaScript-rendered; licence could not be read",
+    "url": "https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions",
+    "licence": "NOT verified",
+    "accessed": "2026-10-29",
+    "usedFor": "B: treat as unusable (user-submitted recipe text of unknown rights)"
+  },
+  {
+    "id": "openfoodfacts-terms",
+    "publisher": "Open Food Facts",
+    "title": "Terms of use: 'The database is available under the Open Database License. Individual contents of the database are available under the Database Contents License. Products images are available under the Creative Commons Attribution ShareAlike licence'",
+    "url": "https://world.openfoodfacts.org/terms-of-use",
+    "licence": "ODbL 1.0 for the database (share-alike on derived databases), DbCL for contents, CC BY-SA for images (terms page text read)",
+    "accessed": "2026-10-29",
+    "usedFor": "B: packaged-product data; not a recipe source; ODbL share-alike would apply to a derived database"
+  },
+  {
+    "id": "wikibooks-copyrights",
+    "publisher": "Wikibooks",
+    "title": "Wikibooks:Copyrights: 'Most of Wikibooks' text is dual licensed under CC BY-SA 4.0 and the GFDL'",
+    "url": "https://en.wikibooks.org/wiki/Wikibooks:Copyrights",
+    "licence": "CC BY-SA 4.0 and GFDL (policy text read); some pages may differ",
+    "accessed": "2026-10-29",
+    "usedFor": "B: Cookbook recipes are share-alike; adaptations must carry the same licence"
+  },
+  {
+    "id": "nhs-terms",
+    "publisher": "NHS (Department of Health and Social Care, England)",
+    "title": "NHS website terms 3.3-3.5: content released under the Open Government Licence 'except where specified'; may be copied, adapted and used commercially; OGL does not cover logos, visuals, images, personal data or third-party material",
+    "url": "https://www.nhs.uk/our-policies/terms-and-conditions/",
+    "licence": "Open Government Licence (current version) for text, with the exclusions listed (terms text read)",
+    "accessed": "2026-10-29",
+    "usedFor": "B: text of NHS healthy recipes could be adapted with attribution; images excluded; UK units and ingredients; individual recipe pages not checked"
+  },
+  {
+    "id": "afcd-r3",
+    "publisher": "Food Standards Australia New Zealand",
+    "title": "Australian Food Composition Database Release 3 (already used by the app). Licence evidence copied from the app's own dataset record: FSANZ site-wide CC BY 4.0 Australia, attribution 'Food Standards Australia New Zealand'",
+    "url": "https://www.foodstandards.gov.au/science-data/food-nutrient-databases/afcd/data-files",
+    "licence": "CC BY 4.0 Australia (per app dataset record read 2026-10-28; copyright page https://www.foodstandards.gov.au/legal-policies/copyright not re-read today)",
+    "accessed": "2026-10-29",
+    "usedFor": "B: nutrition base for recipes"
+  },
+  {
+    "id": "fsanz-date-marks",
+    "publisher": "Food Standards Australia New Zealand",
+    "title": "Use-by and best-before dates (page last updated 25 February 2025): foods that must be eaten before a certain time for health or safety reasons carry a use-by date and 'should not be eaten after the use-by date'; best-before foods 'can still be eaten for a while after the best-before date as they should be safe but may have lost some quality'; canned foods with shelf life of 2 years or longer need no best-before date",
+    "url": "https://www.foodstandards.gov.au/consumer/labelling/dates",
+    "licence": "CC BY 4.0 Australia by the FSANZ site-wide statement (see afcd-r3 record); not re-read today",
+    "accessed": "2026-10-29",
+    "usedFor": "B: use-by vs best-before rules"
+  },
+  {
+    "id": "nsw-fa-leftovers",
+    "publisher": "NSW Food Authority",
+    "title": "Leftovers: refrigerate within 2 hours; store below 5 C; eat within 3 days; cooked rice and pasta within 2 days; freeze up to 3 months; throw out if out of the fridge more than 4 hours; reheat to steaming hot (at least 60 C); never reheat rice and pasta more than once; 2-hour/4-hour rule is cumulative",
+    "url": "https://www.foodauthority.nsw.gov.au/node/23948",
+    "licence": "See nsw-fa-copyright: copy for any purpose with the notice '(c) State of New South Wales through the NSW Food Authority', exceptions noted",
+    "accessed": "2026-10-29",
+    "usedFor": "B: leftover and storage rules. NSW, not Victorian: the Victorian Department of Health page was not found"
+  },
+  {
+    "id": "nsw-fa-copyright",
+    "publisher": "NSW Food Authority",
+    "title": "Copyright page: material may be copied and used 'for any purpose on the condition that you include on all uses the copyright notice', except logos and branding; adapted material needs the 'Includes material' notice",
+    "url": "https://www.foodauthority.nsw.gov.au/copyright",
+    "licence": "Custom permissive licence with attribution (page text read)",
+    "accessed": "2026-10-29",
+    "usedFor": "B: licence evidence"
+  },
+  {
+    "id": "ers-survey-tools",
+    "publisher": "USDA Economic Research Service",
+    "title": "Food Security in the U.S. - Survey Tools (updated 7/28/2026): U.S. Household Food Security Survey Module, 6-item short form, youth module, Spanish and Chinese translations; purpose: let researchers adapt and use the module",
+    "url": "https://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-u-s/survey-tools",
+    "licence": "No licence or copyright statement found on the page; US federal government work is generally not subject to copyright but this was NOT confirmed on the ERS site",
+    "accessed": "2026-10-29",
+    "usedFor": "C: item list source (HFSSM); items not copied into this note"
+  },
+  {
+    "id": "lifeline",
+    "publisher": "Lifeline Australia",
+    "title": "Lifeline: 'If life is in danger, call Triple Zero (000)'; call 13 11 14, text 0477 13 11 14, chat; available 24/7",
+    "url": "https://www.lifeline.org.au/",
+    "licence": "Contact details (facts) only",
+    "accessed": "2026-10-29",
+    "usedFor": "C: crisis support line"
+  },
+  {
+    "id": "kids-helpline",
+    "publisher": "Kids Helpline",
+    "title": "Kids Helpline: 1800 55 1800, 24/7 phone and web chat",
+    "url": "https://kidshelpline.com.au/",
+    "licence": "Contact details only",
+    "accessed": "2026-10-29",
+    "usedFor": "C: support for young people"
+  },
+  {
+    "id": "national-debt-helpline",
+    "publisher": "National Debt Helpline",
+    "title": "1800 007 007, weekdays 9:30am-4:30pm (phone), chat weekdays 9:00am-8:00pm; free financial counselling",
+    "url": "https://ndh.org.au/",
+    "licence": "Contact details only",
+    "accessed": "2026-10-29",
+    "usedFor": "A, C: help with bills and debt"
+  },
+  {
+    "id": "1800respect",
+    "publisher": "1800RESPECT",
+    "title": "National domestic, family and sexual violence counselling service: call 1800 737 732, text 0458 737 732",
+    "url": "https://www.1800respect.org.au/",
+    "licence": "Contact details only",
+    "accessed": "2026-10-29",
+    "usedFor": "C: safety line if disclosure involves violence"
+  },
+  {
+    "id": "foodbank-find-food",
+    "publisher": "Foodbank Australia (Find Food, powered by Infoxchange)",
+    "title": "Find food support: search by location; notes that food relief centres are volunteer-staffed and recommends calling ahead",
+    "url": "https://www.foodbank.org.au/find-food/",
+    "licence": "Contact and link only",
+    "accessed": "2026-10-29",
+    "usedFor": "C: food support link"
+  },
+  {
+    "id": "cultural-food-dataset",
+    "publisher": "Culinerity (local file)",
+    "title": "docs/superpowers/research/2026-10-27-cultural-food.json: 102 ingredient rows, 49 foods, 2 cravings; foods carry 'Author's own simple recipe' recipeBasis",
+    "url": "docs/superpowers/research/2026-10-27-cultural-food.json",
+    "licence": "Repository content",
+    "accessed": "2026-10-29",
+    "usedFor": "B: recipe base for pantry matching"
+  }
+]
