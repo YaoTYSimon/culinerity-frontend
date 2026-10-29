@@ -229,8 +229,12 @@ describe('MyFood coming up', () => {
   it('lists chosen occasions in date order, with the sighting caveat only on approximate ones', () => {
     render(<MyFood value={withOccasions(['easter', 'ramadan'])} {...props} />);
     const items = within(section()).getAllByRole('listitem').map((li) => li.textContent);
-    expect(items[0]).toBe('Ramadan: about Mon 8 Feb to Mon 8 Mar 2027.');
-    expect(items[1]).toBe('Easter: Fri 26 Mar to Mon 29 Mar 2027.');
+    // Each date is joined with non-breaking spaces so it never wraps mid-date on a narrow screen.
+    const nb = (t: string | null) => t?.replace(/\u00a0/g, ' ');
+    expect(nb(items[0])).toBe('Ramadan: about Mon 8 Feb to Mon 8 Mar 2027.');
+    expect(nb(items[1])).toBe('Easter: Fri 26 Mar to Mon 29 Mar 2027.');
+    expect(items[1]).toContain('Fri\u00a026\u00a0Mar');
+    expect(items[1]).toContain('Mon\u00a029\u00a0Mar\u00a02027');
     expect(within(section()).getByText('Dates depend on the moon sighting.')).toBeInTheDocument();
   });
   it('says the evening start for Passover', () => {

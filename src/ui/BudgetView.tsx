@@ -23,6 +23,7 @@ import { EmptyPlate } from './illustrations/EmptyPlate';
 import { INPUT_CLASS } from './formParts';
 import { formatDollars } from './money';
 import { PageHeader } from './PageHeader';
+import { noBreak } from './noBreak';
 import { PillButton } from './PillButton';
 
 interface Props {
@@ -48,7 +49,8 @@ const PACE_TEXT: Record<Exclude<Pace, 'no-budget'>, string> = {
   over: "You've passed this week's budget. That's okay: here are cheaper swaps.",
 };
 
-const dayText = (d: Date): string => d.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' });
+/** "Thu 29 Oct", the same shape as every other day in the app (no comma after the weekday). */
+const dayText = (d: Date): string => d.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '');
 const weekOfText = (iso: string): string => {
   const [y, m, d] = iso.split('-').map(Number);
   return `Week of ${new Date(y, m - 1, d).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`;
@@ -291,6 +293,6 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }
 }
 
 function note(e: SpendEntry): string {
-  const when = dayText(new Date(e.at));
+  const when = noBreak(dayText(new Date(e.at)));
   return e.note ? `${categoryLabel(e.category)} · ${when}` : when;
 }

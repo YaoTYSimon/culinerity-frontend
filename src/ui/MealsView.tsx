@@ -3,6 +3,7 @@ import { addMeal, culturalWeek, labelFor, removeMeal, restoreMeal, type Cultural
 import { AddMeal, MealDetails, withText } from './AddMeal';
 import { defaultId, localDay } from './AddSpend';
 import { dayLabel } from './foodCopy';
+import { noBreak } from './noBreak';
 import { Disclosure } from './Disclosure';
 import { EmptyPlate } from './illustrations/EmptyPlate';
 import { PageHeader } from './PageHeader';
@@ -30,7 +31,7 @@ type Added = { id: string; text: string; detailed: boolean };
 const dayText = (iso: string): string => dayLabel(localDay(new Date(iso)));
 const mealName = (m: CulturalMeal): string => m.dish ?? labelFor(m.tradition);
 const mealNote = (m: CulturalMeal): string =>
-  [m.dish ? labelFor(m.tradition) : null, dayText(m.at), m.with ? withText(m.with) : null].filter(Boolean).join(' · ');
+  [m.dish ? labelFor(m.tradition) : null, noBreak(dayText(m.at)), m.with ? withText(m.with) : null].filter(Boolean).join(' · ');
 
 function MealRows({ label, meals, onRemove }: { label: string; meals: CulturalMeal[]; onRemove: (m: CulturalMeal) => void }) {
   return (

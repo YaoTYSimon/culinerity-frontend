@@ -1,12 +1,14 @@
 import { calendar, upcomingOccasions, type FoodProfile, type UpcomingOccasion } from '@culinerity/core';
 import { dayLabel, MOON_CAVEAT } from './foodCopy';
+import { noBreak } from './noBreak';
 import { HebcalCredit } from './HebcalCredit';
 
 /** "about Mon 8 Feb to Mon 8 Mar 2027", "Tue 9 Mar 2027" for one day. The year is the end's. */
 function range(o: UpcomingOccasion): string {
   const about = o.approx ? 'about ' : '';
   const year = o.end.slice(0, 4);
-  return o.start === o.end ? `${about}${dayLabel(o.end)} ${year}` : `${about}${dayLabel(o.start)} to ${dayLabel(o.end)} ${year}`;
+  const day = (iso: string, y = '') => noBreak(`${dayLabel(iso)}${y}`);
+  return o.start === o.end ? `${about}${day(o.end, ` ${year}`)}` : `${about}${day(o.start)} to ${day(o.end, ` ${year}`)}`;
 }
 
 function line(o: UpcomingOccasion): string {

@@ -1,5 +1,6 @@
 import type { ActiveOccasion } from '@culinerity/core';
 import { dayLabel, MOON_CAVEAT } from './foodCopy';
+import { noBreak } from './noBreak';
 import { PillButton } from './PillButton';
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
 export function occasionSentence(o: ActiveOccasion): string {
   if (o.phase === 'now') return `${o.label} is on now.`;
   const evening = o.evening ? ' (from the evening before)' : '';
-  return `${o.label} starts ${o.approx ? 'about ' : ''}${dayLabel(o.start)}${evening}.`;
+  return `${o.label} starts ${o.approx ? 'about ' : ''}${noBreak(dayLabel(o.start))}${evening}.`;
 }
 
 /** One quiet line for the nearest chosen occasion. Plain text and text buttons: no alerts, badges or counters. */
