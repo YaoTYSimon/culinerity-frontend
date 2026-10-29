@@ -18,7 +18,7 @@
 - Retention `TRADEOFF_RETENTION_WEEKS = 8`; `MAX_TRADEOFFS = 150`; `MAX_NOTE = 140`; categories exactly the ten ids in the spec, in the spec order.
 - Count sentence exactly: "N trade-offs this week: this is what keeping food on the table cost" ("1 trade-off ..."); empty: "Nothing logged this week. Log one only if you want to." Reflection exactly: "Keeping food on the table should not cost this much." Disclaimer: "This is just a record. There is no right number. It is not a test or a score. It is not a validated measure."
 - No targets, streaks, badges, totals over time, deltas, trends, comparisons, scores, rings, dials, big numerals, red/amber/alarm styling, timers on undo, `role="alert"`, modals.
-- Helplines (verified 29 Oct 2026): Lifeline 13 11 14, Kids Helpline 1800 55 1800, National Debt Helpline 1800 007 007, Foodbank Find Food `https://www.foodbank.org.au/find-food/`. 1800RESPECT, Orange Door, Parentline Victoria, Safe Steps never appear. No wording about child protection, welfare, neglect or reporting.
+- Helplines (verified 29 Oct 2026): Lifeline 13 11 14, Kids Helpline 1800 55 1800, National Debt Helpline 1800 007 007, Foodbank Find Food `https://findfood.foodbank.org.au/`. 1800RESPECT, Orange Door, Parentline Victoria, Safe Steps never appear. No wording about child protection, welfare, neglect or reporting.
 - Plate design rules (flat colour, round pills, semantic colour names, 44px targets, `focus-ring`, `motion-colors`, `FIELD_EDGE`/`INPUT_CLASS` on inputs), one h1 ("What we went without"), plain Australian English, no emoji, no `console.*` in the feature files.
 - TDD for every behaviour; run `npm test`, `npm run typecheck`, `node scripts/contrast.mjs` before each commit that touches code.
 
@@ -116,7 +116,7 @@ git commit -m "feat: trade-off logging view with undo and week count"
 **Interfaces:**
 - Consumes: `TRADEOFF_TIER`, `SupportTier`, `ExternalLink`, `PillButton`.
 - Produces:
-  - `export interface Helpline { id: 'lifeline'|'kids-helpline'|'national-debt-helpline'; name: string; display: string; tel: string; hours: string; verifiedOn: '2026-10-29' }`; `export const HELPLINES: Record<Helpline['id'], Helpline>`; `export const FOODBANK_FIND_FOOD = 'https://www.foodbank.org.au/find-food/'`
+  - `export interface Helpline { id: 'lifeline'|'kids-helpline'|'national-debt-helpline'; name: string; display: string; tel: string; hours: string; verifiedOn: '2026-10-29' }`; `export const HELPLINES: Record<Helpline['id'], Helpline>`; `export const FOODBANK_FIND_FOOD = 'https://findfood.foodbank.org.au/'`
   - `supportFor(category: TradeoffCategory): { tier: SupportTier; helplines: Helpline['id'][]; findFood: boolean; foodSupportView: boolean }` (food: findFood+foodSupportView+lifeline; food+child: plus kids-helpline; money and health: national-debt-helpline+lifeline; none: nothing)
   - `SupportCard(props: { category: TradeoffCategory; onOpenSupport: () => void; onClose: () => void })`; renders `null` for tier `none`.
 

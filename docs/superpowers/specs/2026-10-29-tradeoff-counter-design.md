@@ -62,7 +62,7 @@ When an entry in tier `food`, `food+child`, `money` or `health` is logged (not o
 
 - Heading (h2): "If it would help"
 - Body: "Plenty of people go without to get by, and help exists. None of this is reported to anyone."
-- `food` and `food+child`: link "Find free food near you" (Foodbank Find Food, `https://www.foodbank.org.au/find-food/`, `ExternalLink`) and button "See food support places" (goes to the existing `support` view).
+- `food` and `food+child`: link "Find free food near you" (Foodbank Find Food, `https://findfood.foodbank.org.au/`, `ExternalLink`) and button "See food support places" (goes to the existing `support` view).
 - `money` and `health`: "National Debt Helpline, free financial counselling: 1800 007 007 (weekdays)" (`tel:`). The health tier shows these two lines plus the Lifeline line below, and nothing about medicine advice (not researched).
 - All tiers shown: "If things feel heavy: Lifeline 13 11 14, any time. In danger, call 000." (`tel:`).
 - `food+child` only: "If your child wants someone to talk to: Kids Helpline 1800 55 1800." (`tel:`).

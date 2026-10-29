@@ -56,5 +56,14 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
   - Moon-dependent dates (Ramadan, the Eids, Diwali) are approximate; Diwali rows are the main day (Lakshmi Puja) only.
   - Rule wording and one-line meanings still need a community check.
 
+## `feature/whatif` (in progress, unpushed)
+- **Trade-off counter** (spec `docs/superpowers/specs/2026-10-29-tradeoff-counter-design.md`): "What we went without" in the Menu, a private two-tap record of what keeping food on the table cost, with ten fixed categories, an optional 140-character note, this week and last, Remove, Undo and Clear all. No score, streak, target or comparison, and it never feeds the check-in score, bands, Budget, My week or the share text.
+- **Support card:** after a food, money, health or child category a calm card shows Lifeline, Kids Helpline, the National Debt Helpline and Foodbank Find Food (https://findfood.foodbank.org.au/), and "Need a hand?" always holds the same help. Numbers re-verified on official pages on 29 October 2026.
+- **Privacy:** on the device only, kept 8 weeks, never sent or shared; `src/ui/tradeoffPrivacy.test.tsx` checks requests, storage, share text, title, URL, data attributes and the support card.
+- **Open decisions:**
+  - A practitioner review of the category wording, the reflection line ("Keeping food on the table should not cost this much.") and the support card.
+  - The optional printable summary: designed, not built, pending a decision, because it is the only piece that moves this data onto paper.
+  - Retention: 8 weeks is a proposal, not a confirmed choice.
+
 ## Requested, not started
 - **Nearby tags for cultural food** (part of the cultural food spec): deferred.
