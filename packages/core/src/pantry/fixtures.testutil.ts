@@ -15,7 +15,7 @@ export function recipe(id: string, ingredients: Array<string | RecipeIngredient>
     id, name: id, blurb: 'b', traditions: [], serves: 2, minutes: 20,
     ingredients: ingredients.map((i) => (typeof i === 'string' ? { ingredient: i, grams: 100 } : i)),
     seasonings: [], steps: ['a', 'b'], safety: [], basis: 'x',
-    nutrition: { perServe: { energyKj: 0, proteinG: 0, fibreG: 0, sugarsG: 0, sodiumMg: 0 } as Recipe['nutrition']['perServe'], sodiumModelled: false },
+    nutrition: { perServe: { energyKj: 0, proteinG: 0, fibreG: 0, sugarG: 0, sodiumMg: 0 }, sodiumModelled: false },
     info, ...o,
   };
 }
