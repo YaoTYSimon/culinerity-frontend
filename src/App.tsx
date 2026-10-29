@@ -9,6 +9,7 @@ import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
 import { MealsView } from './ui/MealsView';
+import { PantryView } from './ui/PantryView';
 import { TradeoffsView } from './ui/TradeoffsView';
 import { MyFood } from './ui/MyFood';
 import { PillButton } from './ui/PillButton';
@@ -165,6 +166,17 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
                 setView('food');
               }}
             />
+          )}
+
+          {!creating && view === 'pantry' && (
+            <PantryView key={auth?.current?.id ?? 'guest'} profile={profile} onProfile={update} now={clockNow} onNavigate={go} />
+          )}
+
+          {!creating && view === 'cook' && (
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
+              <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">Cook with what you have</h1>
+              <p className="text-base text-pretty text-muted">Recipe ideas from your pantry are on their way.</p>
+            </div>
           )}
 
           {!creating && view === 'tradeoffs' && (

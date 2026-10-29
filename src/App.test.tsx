@@ -437,6 +437,30 @@ describe('my week', () => {
       });
     });
 
+    describe('My pantry', () => {
+      const PROFILE_KEY = 'culinerity.profile.v1';
+      const TODAY = () => '2026-10-29T12:00:00';
+
+      it('adding an item changes only the pantry key of the stored JSON and touches nothing else in storage', () => {
+        localStorage.setItem(PROFILE_KEY, JSON.stringify({ ...SEEN, score: 40 }));
+        renderApp(new LocalProfileStore(), TODAY);
+        const before = stored();
+        openMenu('My pantry');
+        expect(screen.getByRole('heading', { level: 1, name: 'My pantry' })).toHaveFocus();
+        fireEvent.click(screen.getByRole('button', { name: 'Onion' }));
+        const after = stored();
+        expect(Object.keys(after).sort()).toEqual([...Object.keys(before), 'pantry'].sort());
+        expect(after.pantry.items).toMatchObject([{ ingredientId: 'onion' }]);
+        expect(Object.keys(localStorage)).toEqual([PROFILE_KEY]);
+      });
+
+      it('"Cook with what you have" opens its own screen', () => {
+        renderApp(new InMemoryProfileStore(SEEN), TODAY);
+        openMenu('Cook with what you have');
+        expect(screen.getByRole('heading', { level: 1, name: 'Cook with what you have' })).toBeInTheDocument();
+      });
+    });
+
     it('the Menu opens Meals that felt like home', () => {
       renderApp(new InMemoryProfileStore(SEEN));
       openMenu('Meals that felt like home');

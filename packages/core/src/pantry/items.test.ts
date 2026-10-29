@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addItem, clearPantry, parseGrams, removeItem, setServes, setStaple } from './items';
+import { addItem, clearPantry, parseGrams, removeItem, setServes, setStaple, updateItem } from './items';
 import { PANTRY_CAP, type PantryState } from './types';
 
 const NOW = new Date(2026, 9, 29, 10, 0, 0);
@@ -112,5 +112,30 @@ describe('parseGrams', () => {
   ])('%s -> %s', (t, g) => expect(parseGrams(t)).toBe(g));
   it.each(['0', '-5', 'NaN', '1e9', '', 'abc', '60000', '51kg', '0.2', 'Infinity', '1,5kg'])('rejects %s', (t) => {
     expect(parseGrams(t)).toBeNull();
+  });
+});
+
+describe('updateItem', () => {
+  const base: PantryState = {
+    ...empty,
+    items: [{ id: 'a', ingredientId: 'rice', name: 'Rice', grams: 500, dateKind: 'use-by', date: '2026-11-02', addedAt: NOW.toISOString() }],
+  };
+  it('sets and clears the quantity', () => {
+    expect(updateItem(base, 'a', { grams: 1500 }, NOW).state.items[0].grams).toBe(1500);
+    expect('grams' in updateItem(base, 'a', { grams: null }, NOW).state.items[0]).toBe(false);
+  });
+  it('sets and clears the date', () => {
+    const set = updateItem(base, 'a', { date: { kind: 'best-before', day: '2026-12-01' } }, NOW).state.items[0];
+    expect(set).toMatchObject({ dateKind: 'best-before', date: '2026-12-01' });
+    const cleared = updateItem(base, 'a', { date: null }, NOW).state.items[0];
+    expect('date' in cleared || 'dateKind' in cleared).toBe(false);
+  });
+  it('rejects a bad quantity or date and keeps the old state', () => {
+    expect(updateItem(base, 'a', { grams: 0 }, NOW)).toEqual({ state: base, error: 'bad-grams' });
+    expect(updateItem(base, 'a', { date: { kind: 'use-by', day: '2026-02-30' } }, NOW)).toEqual({ state: base, error: 'bad-date' });
+    expect(updateItem(base, 'a', { date: { kind: 'use-by', day: '2040-01-01' } }, NOW).error).toBe('bad-date');
+  });
+  it('leaves state alone for an unknown id and keeps position', () => {
+    expect(updateItem(base, 'zzz', { grams: 5 }, NOW).state).toBe(base);
   });
 });

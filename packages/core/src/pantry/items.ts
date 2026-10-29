@@ -76,3 +76,28 @@ export function setServes(state: PantryState, n: number): PantryState {
   const serves = Math.min(MAX_SERVES, Math.max(MIN_SERVES, Math.round(n)));
   return isServes(serves) ? { ...state, serves } : state;
 }
+
+/** A change to one item: `null` clears the quantity or the date; an absent key leaves it alone. */
+export interface ItemEdit {
+  grams?: number | null;
+  date?: { kind: DateKind; day: string } | null;
+}
+
+/** Change an item's quantity and/or date in place (position kept). Invalid input returns the same state. */
+export function updateItem(state: PantryState, id: string, edit: ItemEdit, now: Date): { state: PantryState; error?: AddItemError } {
+  const item = state.items.find((i) => i.id === id);
+  if (!item) return { state };
+  if (typeof edit.grams === 'number' && !isGrams(edit.grams)) return { state, error: 'bad-grams' };
+  if (edit.date && !validDate({ name: item.name, dateKind: edit.date.kind, date: edit.date.day }, now)) return { state, error: 'bad-date' };
+  const next: PantryItem = { ...item };
+  if (edit.grams === null) delete next.grams;
+  else if (edit.grams !== undefined) next.grams = edit.grams;
+  if (edit.date === null) {
+    delete next.dateKind;
+    delete next.date;
+  } else if (edit.date) {
+    next.dateKind = edit.date.kind;
+    next.date = edit.date.day;
+  }
+  return { state: { ...state, items: state.items.map((i) => (i === item ? next : i)) } };
+}
