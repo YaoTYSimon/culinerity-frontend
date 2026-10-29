@@ -80,9 +80,9 @@ export function NumberScreen({ profile, onSeeSwaps, onCheckIn, onOpenSupport, on
         </div>
       )}
 
-      <div className="grid justify-items-start gap-1">
+      <div className="grid gap-1">
         <BudgetDisclosure value={profile} onChange={onChange} />
-        {onOpenBudget && <PillButton variant="text" className="-ml-3" onClick={onOpenBudget}>See this week's spending</PillButton>}
+        {onOpenBudget && <PillButton variant="text" className="-ml-3 justify-self-start" onClick={onOpenBudget}>See this week's spending</PillButton>}
       </div>
     </div>
   );
