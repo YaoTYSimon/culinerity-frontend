@@ -1,15 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  addItem, listTotalCents, pantryIngredients, recipesData, removeEntry, removeItem, sanitizePantry, setStaple, STARTER_IDS, updateItem,
-  type ItemEdit, type PantryItem, type PantryState, type Profile, type ShoppingEntry, clearList, clearPantry, DEFAULT_SERVES,
+  addItem, pantryIngredients, removeItem, setStaple, STARTER_IDS, updateItem,
+  type ItemEdit, type PantryItem, type PantryState, type Profile, type ShoppingEntry, clearPantry, DEFAULT_SERVES,
 } from '@culinerity/core';
 import { defaultId } from './AddSpend';
 import { FocusHeading } from './FocusHeading';
 import { ADD_ERRORS, EMPTY_PANTRY, INTRO, SHARED_DEVICE, STAPLE_IDS, STAPLES_HINT, STAPLES_LABEL } from './pantryCopy';
 import { PantryAdd } from './PantryAdd';
 import { PantryList } from './PantryList';
-import { PantryShopping } from './PantryShopping';
+import { withPantry, withShopping } from './pantryProfile';
 import { PillButton } from './PillButton';
+import { ShoppingList } from './ShoppingList';
+import { UndoStatus } from './UndoStatus';
 import type { NavTarget } from './views';
 
 interface Props {
@@ -24,17 +26,6 @@ interface Props {
 
 const EMPTY: PantryState = { items: [], staples: [], serves: DEFAULT_SERVES };
 
-/** The profile with its pantry set (the key is dropped when there is nothing to keep). */
-function withPantry(profile: Profile, state: PantryState): Profile {
-  const { pantry: _dropped, ...rest } = profile;
-  const clean = sanitizePantry(state);
-  return clean ? { ...rest, pantry: clean } : rest;
-}
-function withShopping(profile: Profile, list: ShoppingEntry[]): Profile {
-  const { shoppingList: _dropped, ...rest } = profile;
-  return list.length > 0 ? { ...rest, shoppingList: list } : rest;
-}
-
 type Message = { text: string; restore: ((p: Profile) => Profile) | null };
 
 /** My pantry: what the person has, in two taps or a few words. Everything stays on this device. */
@@ -44,7 +35,6 @@ export function PantryView({ profile, onProfile, now, onNavigate, newId = defaul
   const ingredients = useMemo(() => pantryIngredients(), []);
   const known = useMemo(() => new Set(ingredients.map((i) => i.id)), [ingredients]);
   const highRisk = useMemo(() => new Set(ingredients.filter((i) => i.highRisk).map((i) => i.id)), [ingredients]);
-  const prices = useMemo(() => new Map(recipesData.prices.map((p) => [p.ingredient, p.perKg])), []);
   const starters = STARTER_IDS.filter((id) => known.has(id));
   const staples = STAPLE_IDS.filter((id) => known.has(id));
   const nameOf = (id: string) => ingredients.find((i) => i.id === id)?.name ?? id;
@@ -120,14 +110,7 @@ export function PantryView({ profile, onProfile, now, onNavigate, newId = defaul
       <PantryAdd ingredients={ingredients} starters={starters} isOn={(id) => pantry.items.some((i) => i.ingredientId === id)} onAdd={add} onToggleStarter={toggleStarter} />
       <p className="text-sm text-pretty text-muted">{SHARED_DEVICE}</p>
 
-      <div role="status" aria-live="polite" className="empty:hidden">
-        {message && (
-          <div className="flex flex-wrap items-center gap-x-1">
-            <p className="text-base font-semibold">{message.text}</p>
-            {message.restore && <PillButton variant="text" onClick={undo}>Undo</PillButton>}
-          </div>
-        )}
-      </div>
+      <UndoStatus text={message?.text ?? null} onUndo={message?.restore ? undo : null} />
 
       <section aria-labelledby="pantry-list" className="grid gap-2">
         <h2 id="pantry-list" ref={listHeading} tabIndex={-1} className="font-display text-[24px] outline-none">Your pantry</h2>
@@ -160,16 +143,7 @@ export function PantryView({ profile, onProfile, now, onNavigate, newId = defaul
         </div>
       </section>
 
-      {shopping.length > 0 && (
-        <PantryShopping
-          list={shopping}
-          totalCents={listTotalCents(shopping, prices)}
-          onRemove={(e) => changeShopping(removeEntry(shopping, e.id).list, `Removed ${e.name} from the list.`)}
-          onClear={() => changeShopping(clearList(shopping).list, 'Your list is cleared.')}
-          onSwaps={() => onNavigate('swaps')}
-          onBudget={() => onNavigate('budget')}
-        />
-      )}
+      {shopping.length > 0 && <ShoppingList list={shopping} onChange={changeShopping} onNavigate={onNavigate} />}
     </div>
   );
 }

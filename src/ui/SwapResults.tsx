@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { type RankedSwap, healthLabel } from '@culinerity/core';
 import { savingVsCraving } from './savings';
 import { noBreak } from './noBreak';
+import { FoodFitNotes } from './FoodFitNotes';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
 
@@ -71,14 +72,7 @@ export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies 
               <div className="min-w-0 flex-1">
                 <p className="text-[15px] font-semibold leading-snug text-balance">{alternative.name}</p>
                 <p className="text-xs text-muted">{s.price ? `${s.price.store} · per serve` : note}</p>
-                {food && (food.kitchen || food.fit === 'check') && (
-                  <div className="mt-1.5 text-sm font-semibold">
-                    {food.kitchen && food.fit === 'check' && <p className="font-normal text-muted">Your food</p>}
-                    {food.kitchen && <p>Fits your kitchen</p>}
-                    {food.fit === 'check' && <p>Check the ingredients</p>}
-                  </div>
-                )}
-                {food?.certifiedMeat && <p className="mt-0.5 text-sm text-muted">Use {food.certifiedMeat}-certified meat.</p>}
+                {food && <FoodFitNotes note={food} />}
                 {saving !== null && <p className="mt-1.5 text-sm font-semibold">Saves ${saving.toFixed(2)}</p>}
                 <p className="mt-0.5 flex flex-wrap gap-x-2 text-xs text-muted empty:hidden">
                   {health && <span>{health}</span>}

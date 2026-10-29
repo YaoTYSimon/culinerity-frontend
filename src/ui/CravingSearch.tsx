@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { type FoodItem, type Profile, type ProfiledSwap, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
+import { hasFoodRules } from './cookNotes';
 import { SwapResults, type SwapNote, type WeekSwapInput } from './SwapResults';
 import { FIELD_EDGE } from './formParts';
 import { PillButton } from './PillButton';
@@ -122,7 +123,7 @@ export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules }: { pro
   const uncovered = withFoods
     ? traditions().filter((t) => food!.traditions.some((c) => c.toLowerCase() === t.id) && !withFoods.has(t.id))
     : [];
-  const rulesOn = (food?.rules.length ?? 0) > 0 || (food?.allergies.some((a) => a.trim() !== '') ?? false);
+  const rulesOn = hasFoodRules(food);
   // One craving per category, so a miss still gives broad ideas to try.
   const categories = popular.filter((c, i) => popular.findIndex((o) => o.category === c.category) === i);
 
