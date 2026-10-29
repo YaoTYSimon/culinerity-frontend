@@ -56,6 +56,13 @@ describe('Menu', () => {
     expect(screen.getByRole('button', { name: 'Swaps' })).not.toHaveAttribute('aria-current');
   });
 
+  it('marks Home on the number screen, which is what Home opens once there is a score', () => {
+    render(<Menu current="number" onNavigate={() => {}} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    expect(screen.getByRole('button', { name: 'Home' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('button', { name: 'Swaps' })).not.toHaveAttribute('aria-current');
+  });
+
   it('Nearby follows Food support and navigates to nearby', () => {
     const onNavigate = vi.fn();
     render(<Menu current="swaps" onNavigate={onNavigate} open />);

@@ -71,7 +71,7 @@ export function Menu({ current, onNavigate, open: controlled, onOpenChange }: Pr
                 <button
                   ref={i === 0 ? firstItem : undefined}
                   type="button"
-                  aria-current={to === current ? 'page' : undefined}
+                  aria-current={to === current || (to === 'home' && current === 'number') ? 'page' : undefined}
                   onClick={() => {
                     onNavigate(to);
                     close();
