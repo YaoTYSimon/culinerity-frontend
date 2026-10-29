@@ -6,7 +6,7 @@ import { DATA_PATH, OUT_PATH, buildRecipes, mergedIngredients, recipeCostPerServ
 
 const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
 const cultural = () => JSON.parse(readFileSync(CULTURAL_PATH, 'utf8'));
-const TODAY = '2026-10-29';
+const TODAY = '2026-10-30';
 const errorsFor = (mut: (d: any) => void) => {
   const d = data();
   mut(d);
@@ -64,6 +64,24 @@ describe('build-recipes validator', () => {
   it('rejects a raw poultry or mince recipe without cookThroughSourceId', () => {
     expect(errorsFor((d) => delete d.recipes.find((r: any) => r.cookThroughSourceId).cookThroughSourceId)).toMatch(/cookThroughSourceId/);
     expect(errorsFor((d) => (d.recipes.find((r: any) => r.cookThroughSourceId).cookThroughSourceId = 'nope'))).toMatch(/nope/);
+  });
+  it('rejects raw poultry or mince whose cook step has no thermometer wording, right temperature or source', () => {
+    const meat = (d: any, id: string) => d.recipes.find((r: any) => r.ingredients.some((i: any) => i.ingredient === id));
+    const replaceTemp = (r: any, text: string) => (r.steps = r.steps.map((x: string) => (/thermometer/i.test(x) ? text : x)));
+    expect(errorsFor((d) => replaceTemp(meat(d, 'chicken-thigh'), 'Cook until no pink is left and the juices run clear.'))).toMatch(/thermometer/);
+    expect(errorsFor((d) => replaceTemp(meat(d, 'chicken-thigh'), 'Use a food thermometer in the thickest part; it should read 71°C.'))).toMatch(/74/);
+    expect(errorsFor((d) => replaceTemp(meat(d, 'beef-mince'), 'Use a food thermometer in the thickest part; it should read 74°C.'))).toMatch(/71/);
+    expect(errorsFor((d) => delete meat(d, 'lamb-mince').safetySourceId)).toMatch(/safetySourceId/);
+    expect(errorsFor((d) => (meat(d, 'chicken-breast').safetySourceId = 'nope'))).toMatch(/nope/);
+  });
+  it('rejects colour as the only doneness test for raw poultry or mince', () => {
+    const chicken = (d: any) => d.recipes.find((r: any) => r.ingredients.some((i: any) => i.ingredient === 'chicken-thigh'));
+    expect(errorsFor((d) => chicken(d).steps.push('Cook until no pink is left.'))).toMatch(/secondary/);
+  });
+  it('rejects a recipe with egg that has no firm-egg step or egg source', () => {
+    const egg = (d: any) => d.recipes.find((r: any) => r.id === 'egg-curry');
+    expect(errorsFor((d) => (egg(d).steps = egg(d).steps.map((x: string) => x.replace(/firm/g, 'ready'))))).toMatch(/firm/);
+    expect(errorsFor((d) => delete egg(d).safetySourceId)).toMatch(/egg/);
   });
   it('rejects a recipe dearer than $4.00 a serve', () => {
     expect(errorsFor((d) => (d.ingredientPrices.find((p: any) => p.ingredient === 'beef-mince').perKg = 15))).not.toMatch(/\$4/);

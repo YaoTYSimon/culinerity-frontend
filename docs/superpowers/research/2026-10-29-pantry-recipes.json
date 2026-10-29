@@ -42,10 +42,10 @@
   {
    "id": "nsw-fa-cooking-temps",
    "publisher": "NSW Food Authority",
-   "title": "Cooking temperatures: cook minced meat, sausages and poultry right through to the centre; no pink should be visible and juices should run clear (colour is not always reliable, a food thermometer helps); the page also lists 74 C for chicken and turkey and 71 C for minced meat (not printed in the app). Read 2026-10-29.",
+   "title": "Cooking temperatures (re-read 2026-10-30): cook minced meat, sausages and poultry right through to the centre; the page says what counts as pink or clear juices differs from person to person and colour is not always a reliable indicator, and advises a food thermometer. Safe temperatures table: minced meat and sausages 71 C; chicken and turkey (whole, thighs, wings, legs, breasts) 74 C; fish 63 C; leftovers 60 C. Poultry: probe in the inner thigh near the breast, not touching bone; ground meats and poultry dishes: thickest area.",
    "url": "https://www.foodauthority.nsw.gov.au/consumer/food-safety-home/cooking-temperatures",
    "licence": "See nsw-fa-copyright: copy for any purpose with the NSW Food Authority copyright notice",
-   "accessed": "2026-10-29",
+   "accessed": "2026-10-30",
    "verification": "primary"
   },
   {
@@ -55,6 +55,15 @@
    "url": "https://www.foodauthority.nsw.gov.au/consumer/special-care-foods/poultry-and-raw-meat",
    "licence": "See nsw-fa-copyright: copy for any purpose with the NSW Food Authority copyright notice",
    "accessed": "2026-10-29",
+   "verification": "primary"
+  },
+  {
+   "id": "nsw-fa-eggs",
+   "publisher": "NSW Food Authority",
+   "title": "Eggs, enjoy safely (and the higher-risk dishes page): cook eggs until the white is completely firm and the yolk has started to thicken; people at greater risk (children under 2, pregnant women, people over 70, weakened immune system) should not eat raw or lightly cooked eggs. Read 2026-10-30.",
+   "url": "https://www.foodauthority.nsw.gov.au/consumer/food-extra-care/eggs-enjoy-safely",
+   "licence": "See nsw-fa-copyright: copy for any purpose with the NSW Food Authority copyright notice",
+   "accessed": "2026-10-30",
    "verification": "primary"
   }
  ],
@@ -1078,11 +1087,12 @@
    "steps": [
     "Beat the eggs in a bowl, with the splash of milk if you have it.",
     "Warm the oil in a small pan on low heat and tip in the eggs.",
-    "Stir slowly until the eggs are just set. Do not let them brown.",
+    "Stir slowly until the whites are completely firm and the yolk has started to thicken. Do not let them brown.",
     "Toast the bread, top with the eggs and eat straight away."
    ],
    "safety": [],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "egg-and-pea-rice",
@@ -1120,14 +1130,15 @@
    "steps": [
     "Boil the rice as the packet says, drain well and let it steam dry.",
     "Soften the chopped onion in the oil in a wide pan.",
-    "Push the onion aside, scramble the eggs in the gap, then stir everything together.",
+    "Push the onion aside and scramble the eggs in the gap until the whites are completely firm, then stir everything together.",
     "Add the rice and frozen peas and toss until the peas are hot right through."
    ],
    "safety": [
     "rice",
     "leftovers"
    ],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "tuna-tomato-pasta",
@@ -1412,13 +1423,14 @@
    "steps": [
     "Whisk the flour, egg and milk into a thick batter, then stir in the drained corn.",
     "Heat a little oil in a pan on medium heat.",
-    "Spoon in the batter and cook until golden underneath, then flip and cook through.",
+    "Spoon in the batter, cook until golden underneath, then flip and cook until the middle is completely firm.",
     "Drain on paper and serve warm."
    ],
    "safety": [
     "leftovers"
    ],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "salmon-potato-cakes",
@@ -1456,12 +1468,13 @@
    "steps": [
     "Boil the potatoes until soft, drain and mash.",
     "Mix with the drained salmon and the egg, then shape into patties.",
-    "Dust the patties with flour and fry in the oil until golden on both sides and hot in the middle."
+    "Dust the patties with flour and fry in the oil until golden on both sides, hot and completely firm in the middle."
    ],
    "safety": [
     "leftovers"
    ],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "kidney-bean-rice",
@@ -1774,13 +1787,14 @@
    "steps": [
     "Soften the chopped onion in the oil, then add garlic, ginger and the ground spices.",
     "Add the tomatoes and chicken pieces and simmer with the lid on, stirring now and then.",
-    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear."
+    "Check with a food thermometer in the thickest part, not touching bone. Chicken needs 74°C. No pink or clear juices is only a second sign."
    ],
    "safety": [
     "leftovers"
    ],
    "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
-   "cookThroughSourceId": "nsw-fa-cooking-temps"
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps"
   },
   {
    "id": "cabbage-poriyal",
@@ -1939,14 +1953,15 @@
     "pepper"
    ],
    "steps": [
-    "Hard-boil the eggs until firm all the way through, cool a little and peel.",
+    "Hard-boil the eggs until the whites and yolks are completely firm, cool a little and peel.",
     "Soften the onion in the oil, add the garlic, ginger and spices, then the tomatoes.",
     "Simmer the sauce until thick, add the peeled eggs and heat them through."
    ],
    "safety": [
     "leftovers"
    ],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "potato-pea-masala",
@@ -2042,14 +2057,15 @@
    ],
    "steps": [
     "Boil the rice as the packet says and keep it warm.",
-    "Beat the eggs and scramble them in half the oil until just set, then set aside.",
+    "Beat the eggs and scramble them in half the oil until the whites are completely firm, then set aside.",
     "Fry the tomato wedges in the remaining oil until saucy, then fold the egg back in with the sliced spring onion."
    ],
    "safety": [
     "rice",
     "leftovers"
    ],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "tofu-choy-sum-stir-fry",
@@ -2194,7 +2210,7 @@
    "steps": [
     "Boil the rice as the packet says. Slice the chicken thinly.",
     "Stir-fry the chicken in the oil with the garlic and ginger.",
-    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear.",
+    "Check with a food thermometer in the thickest part, not touching bone. Chicken needs 74°C. No pink or clear juices is only a second sign.",
     "Add the broccoli florets and a splash of water, cover briefly, then serve over the rice."
    ],
    "safety": [
@@ -2202,7 +2218,8 @@
     "leftovers"
    ],
    "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
-   "cookThroughSourceId": "nsw-fa-cooking-temps"
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps"
   },
   {
    "id": "pasta-pomodoro",
@@ -2401,7 +2418,7 @@
    "steps": [
     "Soften the chopped onion, carrot and garlic in the oil.",
     "Add the mince and brown it, breaking it up.",
-    "Cook the mince right through until no pink is left, breaking it up as it browns.",
+    "Check with a food thermometer in the thickest part. Minced meat needs 71°C. No pink inside is only a second sign.",
     "Add the tomatoes and simmer gently until thick. Boil the spaghetti as the packet says and serve."
    ],
    "safety": [
@@ -2409,7 +2426,8 @@
     "leftovers"
    ],
    "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
-   "cookThroughSourceId": "nsw-fa-cooking-temps"
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps"
   },
   {
    "id": "village-salad",
@@ -2591,13 +2609,14 @@
     "Heat the oven to a hot setting. Cut the potatoes into wedges and slice the onion.",
     "Toss everything with the garlic and olive oil in a roasting tray.",
     "Roast, turning once, until the potatoes are golden.",
-    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear."
+    "Check with a food thermometer in the thickest part, not touching bone. Chicken needs 74°C. No pink or clear juices is only a second sign."
    ],
    "safety": [
     "leftovers"
    ],
    "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
-   "cookThroughSourceId": "nsw-fa-cooking-temps"
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps"
   },
   {
    "id": "hummus-pita-plate",
@@ -2793,14 +2812,15 @@
    "steps": [
     "Grate the onion and mix well with the mince, chopped parsley and spices.",
     "Shape into finger-length patties.",
-    "Cook the mince right through until no pink is left, breaking it up as it browns.",
+    "Check with a food thermometer in the thickest part. Minced meat needs 71°C. No pink inside is only a second sign.",
     "Serve with the pita and yoghurt."
    ],
    "safety": [
     "leftovers"
    ],
    "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
-   "cookThroughSourceId": "nsw-fa-cooking-temps"
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps"
   },
   {
    "id": "tofu-noodle-salad",
@@ -2899,7 +2919,7 @@
    ],
    "steps": [
     "Simmer the chicken breast in water until cooked right through to the centre.",
-    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear.",
+    "Check with a food thermometer in the thickest part, not touching bone. Chicken needs 74°C. No pink or clear juices is only a second sign.",
     "Cool, then shred. Slice the cabbage, carrot and onion finely.",
     "Toss everything together with the herbs and crushed peanuts."
    ],
@@ -2907,7 +2927,8 @@
     "leftovers"
    ],
    "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
-   "cookThroughSourceId": "nsw-fa-cooking-temps"
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps"
   },
   {
    "id": "tomato-tofu-rice",
@@ -2997,7 +3018,7 @@
    "steps": [
     "Boil the rice as the packet says.",
     "Put the chicken, vinegar, garlic, onion and a little water in a pot and simmer with the lid on.",
-    "Cook the chicken right through to the centre. No pink should be left and the juices should run clear.",
+    "Check with a food thermometer in the thickest part, not touching bone. Chicken needs 74°C. No pink or clear juices is only a second sign.",
     "Uncover and reduce the sauce a little, then serve over the rice."
    ],
    "safety": [
@@ -3005,7 +3026,8 @@
     "leftovers"
    ],
    "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
-   "cookThroughSourceId": "nsw-fa-cooking-temps"
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps"
   },
   {
    "id": "eggplant-omelette",
@@ -3045,13 +3067,14 @@
    "steps": [
     "Boil the rice as the packet says.",
     "Grill or roast the whole eggplant until very soft, then peel and flatten.",
-    "Dip in the beaten egg with the chopped onion and fry in the oil until golden both sides."
+    "Dip in the beaten egg with the chopped onion and fry in the oil until golden both sides and the egg is completely firm."
    ],
    "safety": [
     "rice",
     "leftovers"
    ],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "sauteed-cabbage-egg",
@@ -3099,13 +3122,14 @@
    "steps": [
     "Boil the rice as the packet says.",
     "Sauté the garlic, onion and tomato in the oil, then add the shredded cabbage.",
-    "Make a gap, scramble in the eggs, and stir together until set."
+    "Make a gap, scramble in the eggs, and stir together until the whites are completely firm."
    ],
    "safety": [
     "rice",
     "leftovers"
    ],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "tomato-pepper-eggs",
@@ -3150,10 +3174,11 @@
    "steps": [
     "Soften the chopped onion and capsicum in the oil.",
     "Add the tomato and cook until saucy.",
-    "Crack in the eggs and stir gently until just set. Serve with bread."
+    "Crack in the eggs and stir gently until the whites are completely firm and the yolks have started to thicken. Serve with bread."
    ],
    "safety": [],
-   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
+   "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled.",
+   "safetySourceId": "nsw-fa-eggs"
   },
   {
    "id": "tomato-bulgur-pilaf",
@@ -3408,6 +3433,16 @@
   "Frozen peas use the AFCD row \"Pea, green, frozen, boiled, drained\" because the workbook has no raw frozen-pea row; the peas are only heated through in recipes.",
   "Cooked-weight rows: rice noodles use the boiled AFCD row, so the recipe grams are cooked weight; all other grains and pasta use dry rows. Cooking changes are not modelled and salt is not counted.",
   "Recipe wording is the author's own; no third-party recipe text was used. A food-safety or dietitian review of the recipes is still recommended.",
-  "Halal, kosher, vegan and gluten flags for packaged goods (bread, cheddar, baked beans, tinned fish, frozen peas, tinned corn and beans) stay unknown or partial as in the cultural table; no product-specific source was read."
- ]
+  "Halal, kosher, vegan and gluten flags for packaged goods (bread, cheddar, baked beans, tinned fish, frozen peas, tinned corn and beans) stay unknown or partial as in the cultural table; no product-specific source was read.",
+  "chicken-mince has no stated figure on the NSW cooking-temperatures table (it lists chicken cuts at 74 C and minced meat at 71 C); the higher 74 C is required for it. No recipe uses chicken mince yet."
+ ],
+ "eggSourceId": "nsw-fa-eggs",
+ "cookTargetsC": {
+  "chicken-breast": 74,
+  "chicken-thigh": 74,
+  "chicken-drumstick": 74,
+  "chicken-mince": 74,
+  "beef-mince": 71,
+  "lamb-mince": 71
+ }
 }

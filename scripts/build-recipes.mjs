@@ -137,10 +137,25 @@ export function validateRecipes(d, cultural, today = melbourneToday()) {
       errs.push(`${tag}: a temperature or number of minutes in a step needs a safetySourceId`);
     }
     if (r.safetySourceId !== undefined && !knownSrc(r.safetySourceId)) errs.push(`${tag}: safetySourceId ${r.safetySourceId} is unknown`);
-    if (rows.some((i) => raw.has(i.ingredient))) {
+    const rawRows = rows.filter((i) => raw.has(i.ingredient));
+    if (rawRows.length > 0) {
       if (!nonEmpty(r.cookThroughSourceId)) errs.push(`${tag}: raw poultry or mince needs a cookThroughSourceId`);
       else if (!knownSrc(r.cookThroughSourceId)) errs.push(`${tag}: cookThroughSourceId ${r.cookThroughSourceId} is unknown`);
-      if (!steps.some((s) => /no pink/i.test(s))) errs.push(`${tag}: a cook-through step ("no pink") is required`);
+      if (!nonEmpty(r.safetySourceId)) errs.push(`${tag}: raw poultry or mince needs a safetySourceId on its thermometer step`);
+      const targets = new Set(rawRows.map((i) => d.cookTargetsC?.[i.ingredient]));
+      for (const t of targets) {
+        if (!Number.isInteger(t)) errs.push(`${tag}: a cook target (cookTargetsC) is missing for its raw meat`);
+        else if (!steps.some((s) => /thermometer/i.test(s) && new RegExp(`\\b${t}\\s*°\\s*C`).test(s))) {
+          errs.push(`${tag}: needs a food thermometer step stating ${t}°C for its raw meat`);
+        }
+      }
+    }
+    for (const s of steps) {
+      if (/\bpink\b|juices|colour|color/i.test(s) && !/(only )?(a )?second(ary)? sign/i.test(s)) errs.push(`${tag}: colour may only be a secondary sign beside the thermometer step`);
+    }
+    if (rows.some((i) => i.ingredient === 'egg')) {
+      if (!steps.some((s) => /firm/i.test(s))) errs.push(`${tag}: a recipe with egg needs a step saying the egg is cooked until completely firm`);
+      if (r.safetySourceId !== d.eggSourceId) errs.push(`${tag}: a recipe with egg needs the egg source (safetySourceId ${d.eggSourceId})`);
     }
     if (rows.every((i) => prices.has(i.ingredient)) && recipeCostPerServe(r, prices) > MAX_COST_PER_SERVE) {
       errs.push(`${tag}: sample cost per serve is above $4.00`);
