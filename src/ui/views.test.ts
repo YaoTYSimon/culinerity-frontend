@@ -20,4 +20,9 @@ describe('resolveView', () => {
     expect(resolveView('food', {})).toBe('food');
     expect(resolveView('meals', { score: 10 })).toBe('meals');
   });
+
+  it('accepts tradeoffs with or without a score', () => {
+    expect(resolveView('tradeoffs', {})).toBe('tradeoffs');
+    expect(resolveView('tradeoffs', { score: 10 })).toBe('tradeoffs');
+  });
 });

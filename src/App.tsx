@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react';
-import { addWeekSwap, appendScore, calendar, dismissOccasion, occasionsOn, removeOneWeekSwap, sanitizeMeals, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
+import { addWeekSwap, appendScore, calendar, dismissOccasion, occasionsOn, removeOneWeekSwap, sanitizeMeals, sanitizeTradeoffs, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { RemoveNoteBanner } from './auth/RemoveNoteBanner';
 import { AuthContext } from './auth/useAuth';
@@ -9,6 +9,7 @@ import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
 import { MealsView } from './ui/MealsView';
+import { TradeoffsView } from './ui/TradeoffsView';
 import { MyFood } from './ui/MyFood';
 import { PillButton } from './ui/PillButton';
 import { HebcalCredit } from './ui/HebcalCredit';
@@ -27,17 +28,28 @@ import { useFocusOnViewChange } from './ui/useFocusOnViewChange';
 import { useNow } from './ui/useNow';
 
 /** The profile with one optional field set, or with the key removed when there is nothing to keep. */
-function withOptional<K extends 'foodProfile' | 'culturalMeals'>(profile: Profile, key: K, value: Profile[K] | undefined): Profile {
+function withOptional<K extends 'foodProfile' | 'culturalMeals' | 'tradeoffs'>(profile: Profile, key: K, value: Profile[K] | undefined): Profile {
   const { [key]: _dropped, ...rest } = profile;
   return value === undefined ? rest : { ...rest, [key]: value };
 }
 
-/** The loaded profile with meals older than the retention period dropped, or the same object when nothing was old. */
+/** The loaded profile with entries older than the retention period dropped, or the same object when nothing was old. */
+function prune(profile: Profile, now: Date): Profile {
+  return pruneTradeoffs(pruneMeals(profile, now), now);
+}
+
 function pruneMeals(profile: Profile, now: Date): Profile {
   if (!profile.culturalMeals) return profile;
   const kept = sanitizeMeals(profile.culturalMeals, now);
   if (kept.length === profile.culturalMeals.length) return profile;
   return withOptional(profile, 'culturalMeals', kept.length > 0 ? kept : undefined);
+}
+
+function pruneTradeoffs(profile: Profile, now: Date): Profile {
+  if (!profile.tradeoffs) return profile;
+  const kept = sanitizeTradeoffs(profile.tradeoffs, now);
+  if (kept.length === profile.tradeoffs.length) return profile;
+  return withOptional(profile, 'tradeoffs', kept.length > 0 ? kept : undefined);
 }
 
 /** `now` gives the current ISO time; injected in tests. */
@@ -47,7 +59,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
   const clockNow = useNow(now);
   const [profile, setProfile] = useState<Profile>(() => {
     const loaded = profiles.load();
-    const pruned = pruneMeals(loaded, new Date(now()));
+    const pruned = prune(loaded, new Date(now()));
     if (pruned !== loaded) profiles.save(pruned);
     return pruned;
   });
@@ -152,6 +164,18 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
                 setFoodWizard(true);
                 setView('food');
               }}
+            />
+          )}
+
+          {!creating && view === 'tradeoffs' && (
+            <TradeoffsView
+              key={auth?.current?.id ?? 'guest'}
+              entries={profile.tradeoffs}
+              now={clockNow}
+              clock={() => new Date(now())}
+              onChange={(next) => update(withOptional(profile, 'tradeoffs', next.length > 0 ? next : undefined))}
+              onOpenBudget={() => go('budget')}
+              onOpenSupport={() => go('support')}
             />
           )}
 

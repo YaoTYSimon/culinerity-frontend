@@ -348,6 +348,34 @@ describe('my week', () => {
       expect(stored().culturalMeals).toHaveLength(1);
     });
 
+    describe('Trade-offs', () => {
+      it('Menu opens Trade-offs and saving writes only the profile key', () => {
+        const KEY = 'culinerity.profile.v1';
+        localStorage.setItem(KEY, JSON.stringify({ ...SEEN, score: 40 }));
+        renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
+        const before = stored();
+        openMenu('Trade-offs');
+        expect(screen.getByRole('heading', { level: 1, name: 'What we went without' })).toBeInTheDocument();
+        fireEvent.click(screen.getByRole('button', { name: 'Add a trade-off' }));
+        fireEvent.click(screen.getByRole('button', { name: 'Went without something nice for myself' }));
+        const after = stored();
+        expect(Object.keys(after).sort()).toEqual([...Object.keys(before), 'tradeoffs'].sort());
+        expect(after.tradeoffs).toHaveLength(1);
+        expect(after.tradeoffs[0]).toMatchObject({ category: 'self-treat' });
+        expect(Object.keys(localStorage)).toEqual([KEY]);
+        fireEvent.click(screen.getByRole('button', { name: 'Clear all my trade-offs' }));
+        expect(stored()).not.toHaveProperty('tradeoffs');
+      });
+
+      it('drops trade-offs older than eight weeks when the profile loads', () => {
+        const old = { id: 'old', at: '2026-07-01T10:00:00.000Z', category: 'self-treat' };
+        const fresh = { id: 'new', at: '2026-10-27T01:00:00.000Z', category: 'self-treat' };
+        localStorage.setItem('culinerity.profile.v1', JSON.stringify({ ...SEEN, tradeoffs: [old, fresh] }));
+        renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
+        expect(stored().tradeoffs.map((t: { id: string }) => t.id)).toEqual(['new']);
+      });
+    });
+
     describe('Meals that felt like home', () => {
       const PROFILE_KEY = 'culinerity.profile.v1';
       const TODAY = () => '2026-10-28T12:00:00';
