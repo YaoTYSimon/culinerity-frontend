@@ -46,6 +46,7 @@ npm run build
 npm run build:benchmarks   # regenerate the benchmark data from the research JSON
 npm run build:places       # regenerate the Nearby places from the research JSON
 npm run build:centroids    # regenerate the suburb and postcode centroids
+npm run build:recipes       # regenerate the pantry recipes from the research JSON
 node scripts/contrast.mjs   # WCAG contrast of the four themes
 ```
 

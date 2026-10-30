@@ -65,5 +65,14 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
   - The optional printable summary: designed, not built, pending a decision, because it is the only piece that moves this data onto paper.
   - Retention: 8 weeks is a proposal, not a confirmed choice.
 
+- **Pantry recipes** (spec `docs/superpowers/specs/2026-10-29-pantry-recipes-design.md`): "My pantry" and "Cook with what you have" in the Menu. Add what you have (starters, search, or free text kept as a note), with optional quantity and use-by, best-before, cooked or opened dates and "Things I always have". Cook lists 48 recipes by what you can make now, what needs one more thing, and a few more, with 17 substitutions, what uses an item due soon, and a sample price for what is missing. Recipes that break your food rules or allergies are hidden. The recipe page scales grams to serves, shows NSW Food Authority food-safety lines (chicken and mince always have a thermometer step) and per-serve nutrition (AFCD Release 3), and adds missing things to a shopping list with a sample total. Out-of-date items are set aside and never offered; leftovers are never recipe inputs.
+- **Privacy:** pantry and shopping list stay on the device, never sent or shared; `src/ui/pantryPrivacy.test.tsx` checks requests, storage, share text, title, URL, data attributes and logs.
+- **Data:** `docs/superpowers/research/2026-10-29-pantry-recipes.json` generates `packages/core/src/recipes/generated/recipes.generated.ts` with `npm run build:recipes`. Prices are sample estimates (typical Melbourne supermarket price per kg, rounded to 10c). Not shipped: soak-and-boil dried beans, raw seafood and fish, curry blends and sauces without a read source.
+- **Open decisions (pantry recipes):**
+  - The food-safety guidance is NSW Food Authority, labelled as NSW; the Victorian Department of Health and Better Health Channel pages returned 404. Keep the NSW wording, or find the Victorian page first.
+  - A food-safety or dietitian review of the recipes and the cost-per-serve estimates before launch.
+  - The pregnancy and weakened-immune-system line is left out: the NSW PDF could not be read (embedded fonts). It is added only once the text is read.
+  - Whether to also adapt NHS (Open Government Licence) recipe text; not in release one.
+
 ## Requested, not started
 - **Nearby tags for cultural food** (part of the cultural food spec): deferred.
