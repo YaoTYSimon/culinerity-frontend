@@ -16,9 +16,16 @@ const COOK_THROUGH = [
   'Do not wash raw chicken, and keep raw meat away from food that is eaten without cooking.',
 ];
 
+/** From the NSW Food Authority eggs page (source: nsw-fa-eggs). */
+const EGG = [
+  'Cook eggs until the white is completely firm and the yolk has started to thicken.',
+  'Children under 2, pregnant women, people over 70 and people with a weakened immune system should not eat raw or lightly cooked eggs.',
+];
+
 /** The fixed food-safety lines for a recipe, in the app's own words. Empty when none apply. */
 export function safetyLines(recipe: Recipe): string[] {
   const lines: string[] = recipe.cookThroughSourceId ? [...COOK_THROUGH] : [];
+  if (recipe.ingredients.some((i) => i.ingredient === 'egg')) lines.push(...EGG);
   if (recipe.safety.length > 0) {
     lines.push(...LEFTOVERS);
     if (recipe.safety.includes('rice') || recipe.safety.includes('pasta')) lines.push(RICE_PASTA);

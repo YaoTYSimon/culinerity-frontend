@@ -5755,7 +5755,7 @@ export const recipesData: RecipesData = {
         "pepper"
       ],
       "steps": [
-        "Boil the rice as the packet says and keep it warm.",
+        "Boil the rice as the packet says. Serve it straight away and cool and refrigerate any extra promptly.",
         "Beat the eggs and scramble them in half the oil until the whites are completely firm, then set aside.",
         "Fry the tomato wedges in the remaining oil until saucy, then fold the egg back in with the sliced spring onion."
       ],
@@ -6966,6 +6966,7 @@ export const recipesData: RecipesData = {
       "steps": [
         "Grate the onion and mix well with the mince, chopped parsley and spices.",
         "Shape into finger-length patties.",
+        "Fry or grill the patties, turning once, until browned all over.",
         "Check with a food thermometer in the thickest part. Minced meat needs 71°C. No pink inside is only a second sign.",
         "Serve with the pita and yoghurt."
       ],
@@ -7053,6 +7054,7 @@ export const recipesData: RecipesData = {
       ],
       "steps": [
         "Cook the rice noodles as the packet says, rinse under cold water and drain.",
+        "Pour boiling water over the bean sprouts, leave a minute, then drain and rinse under cold water.",
         "Cut the tofu into strips and shred the lettuce and cucumber.",
         "Pile everything in bowls and top with the herbs."
       ],

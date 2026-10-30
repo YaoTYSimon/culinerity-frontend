@@ -8,6 +8,9 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const EAT_BY_DAYS = 3;
 const EAT_BY_DAYS_RICE_PASTA = 2;
 const RICE_OR_PASTA = /rice|pasta|spaghetti|noodle/i;
+/** Words that make a free-text item high risk, matching the ingredient table's highRisk set (egg, dairy, poultry, mince, meat, fish, rice). */
+const HIGH_RISK_WORDS = /\b(chicken|mince|beef|lamb|pork|fish|tuna|salmon|prawns?|eggs?|milk|yoghurt|yogurt|ricotta|feta|cream|cooked rice)\b/i;
+const isHighRisk = (item: PantryItem, highRisk: boolean): boolean => highRisk || (item.ingredientId === undefined && HIGH_RISK_WORDS.test(item.name));
 
 export const PAST_USE_BY = "Past its use-by date. It shouldn't be eaten.";
 export const PAST_BEST_BEFORE_CHECK = 'Past its best-before. Check it looks and smells right.';
@@ -79,12 +82,13 @@ function countdown(prefix: string, left: number, date: string): DateStatus {
 export function dateStatus(item: PantryItem, now: Date, highRisk: boolean): DateStatus {
   if (!item.dateKind || !item.date || !isIsoDay(item.date)) return { status: 'none', label: '', usable: true };
   const left = daysFromToday(item.date, now);
+  const risky = isHighRisk(item, highRisk);
   switch (item.dateKind) {
     case 'use-by':
       return left < 0 ? { status: 'past', label: PAST_USE_BY, usable: false } : countdown('Use by', left, item.date);
     case 'best-before':
       if (left >= 0) return countdown('Best before', left, item.date);
-      return highRisk
+      return risky
         ? { status: 'past', label: "Past its best-before. It shouldn't be eaten.", usable: false }
         : { status: 'check-look', label: PAST_BEST_BEFORE_CHECK, usable: true };
     case 'cooked': {
@@ -95,6 +99,7 @@ export function dateStatus(item: PantryItem, now: Date, highRisk: boolean): Date
     }
     case 'opened': {
       const ago = -left;
+      if (risky && ago > eatByDays(item)) return { status: 'past', label: PAST_GUIDE, usable: false };
       const label = ago <= 0 ? 'Opened today' : ago === 1 ? 'Opened yesterday' : `Opened ${plural(ago, 'day')} ago`;
       return { status: 'ok', label, usable: true };
     }

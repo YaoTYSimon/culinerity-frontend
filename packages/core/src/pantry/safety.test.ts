@@ -32,4 +32,11 @@ describe('safetyLines', () => {
     expect(t).toMatch(/food thermometer/i);
     expect(t).not.toMatch(/°|\d\s*C\b|degrees/i);
   });
+  it('a recipe with egg gets the egg lines even with no other safety tags, in plain words', () => {
+    const t = safetyLines(recipe('r', ['egg', 'bread-white'], { safetySourceId: 'nsw-fa-eggs' })).join(' ');
+    expect(t).toMatch(/completely firm/);
+    expect(t).toMatch(/pregnant/);
+    expect(t).toMatch(/raw or lightly cooked/);
+    expect(t).not.toMatch(/°|\d\s*C\b|degrees/i);
+  });
 });

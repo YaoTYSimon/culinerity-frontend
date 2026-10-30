@@ -39,9 +39,26 @@ describe('dateStatus', () => {
     expect(dateStatus(it_('best-before', '2026-12-01'), NOW, true)).toMatchObject({ status: 'ok', usable: true });
   });
   it('opened shows days ago and gives no verdict', () => {
-    expect(dateStatus(it_('opened', '2026-10-24'), NOW, true)).toMatchObject({ status: 'ok', usable: true, label: 'Opened 5 days ago' });
+    expect(dateStatus(it_('opened', '2026-10-24'), NOW, false)).toMatchObject({ status: 'ok', usable: true, label: 'Opened 5 days ago' });
     expect(dateStatus(it_('opened', '2026-10-29'), NOW, false).label).toBe('Opened today');
     expect(dateStatus(it_('opened', '2026-10-28'), NOW, false).label).toBe('Opened yesterday');
+  });
+  it('opened high-risk items expire on the leftovers guide: 3 days, rice and pasta 2', () => {
+    expect(dateStatus(it_('opened', '2026-10-24'), NOW, true)).toMatchObject({ status: 'past', usable: false, label: 'Past the guide. Best to throw it out.' });
+    expect(dateStatus(it_('opened', '2026-10-26'), NOW, true)).toMatchObject({ usable: true, label: 'Opened 3 days ago' });
+    expect(dateStatus(it_('opened', '2026-10-25'), NOW, true).usable).toBe(false);
+    expect(dateStatus(it_('opened', '2026-10-26', { name: 'Cooked rice' }), NOW, true).usable).toBe(false);
+  });
+  it('free-text items with high-risk words are treated as high risk', () => {
+    for (const name of ['chicken schnitzel', 'Beef Mince', 'fish fingers', 'free range eggs', 'Milk', 'cooked rice', 'Tuna']) {
+      const r = dateStatus(it_('best-before', '2026-10-26', { name }), NOW, false);
+      expect(r, name).toMatchObject({ status: 'past', usable: false });
+    }
+    expect(dateStatus(it_('opened', '2026-10-20', { name: 'chicken stock' }), NOW, false).usable).toBe(false);
+  });
+  it('free-text items without those words still only check-look; matched ingredients are not guessed from the name', () => {
+    expect(dateStatus(it_('best-before', '2026-10-26', { name: 'Crackers' }), NOW, false)).toMatchObject({ status: 'check-look', usable: true });
+    expect(dateStatus(it_('best-before', '2026-10-26', { name: 'peanut butter', ingredientId: 'peanut-butter' }), NOW, false).status).toBe('check-look');
   });
   it('cooked follows the eat-by guide', () => {
     expect(dateStatus(it_('cooked', '2026-10-27', { name: 'Stew' }), NOW, false)).toMatchObject({ status: 'soon', usable: true });

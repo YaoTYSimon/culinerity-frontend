@@ -16,6 +16,7 @@ const SAFETY_TAGS = ['rice', 'pasta', 'leftovers'];
 const SEASONINGS = ['salt', 'pepper'];
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const FIGURE_IN_STEP = /°\s*C|º\s*C|\b\d+\s*(minutes?|mins?)\b/i;
+const HEAT_STEP = /\b(fry|fried|grill|grilled|barbecue|bbq|simmer|roast|bake|sear|brown|poach|braise|saut[eé])/i;
 const FLAG_KEYS = ['halal', 'kosher', 'vegetarian', 'vegan', 'beef', 'pork', 'alcohol', 'gluten'];
 
 const nonEmpty = (v) => typeof v === 'string' && v.trim() !== '';
@@ -148,6 +149,10 @@ export function validateRecipes(d, cultural, today = melbourneToday()) {
         else if (!steps.some((s) => /thermometer/i.test(s) && new RegExp(`\\b${t}\\s*°\\s*C`).test(s))) {
           errs.push(`${tag}: needs a food thermometer step stating ${t}°C for its raw meat`);
         }
+      }
+      const check = steps.findIndex((s) => /thermometer/i.test(s));
+      if (check >= 0 && !steps.slice(0, check).some((s) => HEAT_STEP.test(s))) {
+        errs.push(`${tag}: needs a heat step (fry, grill, simmer, roast, bake) before the thermometer step`);
       }
     }
     for (const s of steps) {

@@ -74,6 +74,13 @@ describe('build-recipes validator', () => {
     expect(errorsFor((d) => delete meat(d, 'lamb-mince').safetySourceId)).toMatch(/safetySourceId/);
     expect(errorsFor((d) => (meat(d, 'chicken-breast').safetySourceId = 'nope'))).toMatch(/nope/);
   });
+  it('rejects raw poultry or mince whose thermometer step has no heat step before it', () => {
+    const kofta = (d: any) => d.recipes.find((r: any) => r.id === 'lamb-kofta-plate');
+    expect(errorsFor((d) => (kofta(d).steps = ['Mix the mince with the onion and spices.', 'Shape into patties.', ...kofta(d).steps.filter((x: string) => /thermometer/i.test(x))]))).toMatch(/heat step.*before/);
+    const chicken = (d: any) => d.recipes.find((r: any) => r.id === 'chicken-broccoli-stir-fry');
+    expect(errorsFor((d) => (chicken(d).steps = chicken(d).steps.filter((x: string) => !/Stir-fry/.test(x))))).toMatch(/heat step.*before/);
+    expect(errorsFor((d) => (kofta(d).steps = ['Mix and shape the patties.', 'Grill or fry the patties until browned.', ...kofta(d).steps.filter((x: string) => /thermometer/i.test(x))]))).toBe('');
+  });
   it('rejects colour as the only doneness test for raw poultry or mince', () => {
     const chicken = (d: any) => d.recipes.find((r: any) => r.ingredients.some((i: any) => i.ingredient === 'chicken-thigh'));
     expect(errorsFor((d) => chicken(d).steps.push('Cook until no pink is left.'))).toMatch(/secondary/);
