@@ -154,3 +154,34 @@ describe('sanitizeProfile pantry and shoppingList', () => {
     expect(parseProfile(JSON.stringify(p))).toEqual(p);
   });
 });
+
+describe('sanitizeProfile what-if fields', () => {
+  const sc = { kind: 'rent-change', direction: 'up', by: { mode: 'percent', bp: 1000 } };
+  const saved = { id: 'w1', name: 'Rent up 10%', scenario: sc, savedAt: '2026-10-29T01:00:00.000Z' };
+  it('keeps housingWeekly and otherFixedWeekly in dollars', () => {
+    expect(sanitizeProfile({ housingWeekly: 450, otherFixedWeekly: 60 })).toEqual({ housingWeekly: 450, otherFixedWeekly: 60 });
+    expect(sanitizeProfile({ housingWeekly: 0, otherFixedWeekly: 10_000 })).toEqual({ housingWeekly: 0, otherFixedWeekly: 10_000 });
+  });
+  it('rounds to cents', () => {
+    expect(sanitizeProfile({ housingWeekly: 450.126 }).housingWeekly).toBe(450.13);
+  });
+  it('drops negative, NaN, huge and string values', () => {
+    expect(sanitizeProfile({ housingWeekly: -1, otherFixedWeekly: NaN })).toEqual({});
+    expect(sanitizeProfile({ housingWeekly: 1e9, otherFixedWeekly: '60' })).toEqual({});
+    expect(sanitizeProfile({ housingWeekly: 10_000.01 })).toEqual({});
+  });
+  it('keeps valid whatIfScenarios and drops the field if none are valid', () => {
+    expect(sanitizeProfile({ whatIfScenarios: [saved, { id: 'x' }] }).whatIfScenarios).toEqual([saved]);
+    expect(sanitizeProfile({ whatIfScenarios: [{ id: 'x' }, null] })).toEqual({});
+    expect(sanitizeProfile({ whatIfScenarios: 'no' })).toEqual({});
+    expect(sanitizeProfile({ whatIfScenarios: [] })).toEqual({});
+  });
+  it('an old profile leaves the fields absent', () => {
+    const p = sanitizeProfile({ score: 40 });
+    expect('housingWeekly' in p || 'otherFixedWeekly' in p || 'whatIfScenarios' in p).toBe(false);
+  });
+  it('survives parseProfile', () => {
+    const p = sanitizeProfile({ housingWeekly: 450, otherFixedWeekly: 60, whatIfScenarios: [saved] });
+    expect(parseProfile(JSON.stringify(p))).toEqual(p);
+  });
+});

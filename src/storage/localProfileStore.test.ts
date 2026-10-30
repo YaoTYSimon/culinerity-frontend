@@ -11,6 +11,17 @@ describe('LocalProfileStore', () => {
     expect(s.load()).toEqual({ foodBudgetWeekly: 60, suburb: 'Carnegie', score: 40 });
     expect(localStorage.getItem('culinerity.profile.v1')).not.toBeNull();
   });
+  it('round-trips the what-if fields', () => {
+    const s = new LocalProfileStore();
+    const profile = {
+      incomeWeekly: 900,
+      housingWeekly: 450,
+      otherFixedWeekly: 60,
+      whatIfScenarios: [{ id: 'w1', name: 'Rent up 10%', scenario: { kind: 'rent-change' as const, direction: 'up' as const, by: { mode: 'percent' as const, bp: 1000 } }, savedAt: '2026-10-29T01:00:00.000Z' }],
+    };
+    s.save(profile);
+    expect(s.load()).toEqual(profile);
+  });
   it('returns {} when nothing is stored', () => {
     expect(new LocalProfileStore().load()).toEqual({});
   });

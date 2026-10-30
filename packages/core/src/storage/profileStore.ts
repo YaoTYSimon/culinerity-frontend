@@ -5,6 +5,9 @@ import { sanitizeMeals } from '../food/meals';
 import { sanitizeFoodProfile } from '../food/sanitize';
 import { sanitizePantry, sanitizeShopping } from '../pantry/sanitize';
 import { sanitizeTradeoffs } from '../tradeoffs/entries';
+import { LIMITS } from '../whatif/scenario';
+import { sanitizeWhatIfs } from '../whatif/saved';
+import { toCents } from '../whatif/units';
 import { isWeekSwap, MAX_WEEK_SWAPS } from '../domain/week';
 
 /** Persistence port. Implementations (browser or native storage, memory) are injected by the app. */
@@ -18,6 +21,11 @@ export interface ProfileStore {
 const SERVES_PER_WEEK = 21;
 
 const NUMBER_FIELDS = ['foodBudgetWeekly', 'incomeWeekly', 'score'] as const;
+/** Dollar fields with a cap (dollars). Accepted from 0 to the cap and rounded to a cent. */
+const CAPPED_DOLLAR_FIELDS = [
+  ['housingWeekly', LIMITS.housing / 100],
+  ['otherFixedWeekly', LIMITS.otherFixed / 100],
+] as const;
 const STRING_FIELDS = ['suburb', 'scoreTakenAt'] as const;
 
 /** Keep only known fields of the right type. */
@@ -28,6 +36,10 @@ export function sanitizeProfile(value: unknown): Profile {
   for (const k of NUMBER_FIELDS) {
     const x = v[k];
     if (typeof x === 'number' && Number.isFinite(x)) out[k] = x;
+  }
+  for (const [k, cap] of CAPPED_DOLLAR_FIELDS) {
+    const x = v[k];
+    if (typeof x === 'number' && Number.isFinite(x) && x >= 0 && x <= cap) out[k] = toCents(x) / 100;
   }
   for (const k of STRING_FIELDS) {
     const x = v[k];
@@ -51,6 +63,10 @@ export function sanitizeProfile(value: unknown): Profile {
   if (pantry) out.pantry = pantry;
   const shoppingList = sanitizeShopping(v.shoppingList);
   if (shoppingList) out.shoppingList = shoppingList;
+  if (Array.isArray(v.whatIfScenarios)) {
+    const scenarios = sanitizeWhatIfs(v.whatIfScenarios);
+    if (scenarios.length > 0) out.whatIfScenarios = scenarios;
+  }
   return out;
 }
 

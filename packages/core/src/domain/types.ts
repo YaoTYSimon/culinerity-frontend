@@ -1,6 +1,7 @@
 import type { CulturalMeal, FoodProfile } from '../food/types';
 import type { PantryState, ShoppingEntry } from '../pantry/types';
 import type { TradeoffEntry } from '../tradeoffs/types';
+import type { SavedWhatIf } from '../whatif/saved';
 
 /** Australian dollars. */
 export type Aud = number;
@@ -31,6 +32,10 @@ export interface SpendEntry {
 export interface Profile {
   foodBudgetWeekly?: Aud;
   incomeWeekly?: Aud;
+  /** Rent or housing, dollars a week. Optional, device-only. */
+  housingWeekly?: Aud;
+  /** Other regular costs, dollars a week. Optional, device-only. */
+  otherFixedWeekly?: Aud;
   suburb?: string;
   score?: number;
   scoreTakenAt?: string;
@@ -46,6 +51,8 @@ export interface Profile {
   /** Optional, self-declared, device-only. Absent when empty. */
   pantry?: PantryState;
   shoppingList?: ShoppingEntry[];
+  /** Saved what-if changes (inputs only). Optional, device-only. Absent when empty. */
+  whatIfScenarios?: SavedWhatIf[];
 }
 
 export interface PricePoint {
