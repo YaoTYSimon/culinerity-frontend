@@ -184,6 +184,33 @@ export const benchmarkData: BenchmarkData = {
       "published": "2019-07",
       "licence": "not stated (DOI 10.1111/hsc.12737)",
       "accessed": "2026-10-26"
+    },
+    {
+      "id": "fairwork-minwage",
+      "publisher": "Fair Work Ombudsman",
+      "title": "Minimum wages: National Minimum Wage",
+      "url": "https://www.fairwork.gov.au/pay-and-wages/minimum-wages",
+      "published": "not stated",
+      "licence": "Not verified (site copyright page not read); only the two figures (facts) are recorded, no text reused",
+      "accessed": "2026-10-29"
+    },
+    {
+      "id": "dss-rates-2026-09-20",
+      "publisher": "Department of Social Services (Australia)",
+      "title": "Social Security Payment Parameters, 20 September 2026 indexation (rates list PDF)",
+      "url": "https://www.dss.gov.au/system/files/documents/2026-08/rates-list-20-september-2026.pdf",
+      "published": "not stated",
+      "licence": "Not verified (licence not read); figures only",
+      "accessed": "2026-10-29"
+    },
+    {
+      "id": "dffh-rental-report-jun2026",
+      "publisher": "Department of Families, Fairness and Housing (Vic)",
+      "title": "Rental report: Homes Victoria Rental Report, June quarter 2026 statistics",
+      "url": "https://www.dffh.vic.gov.au/publications/rental-report",
+      "published": "not stated",
+      "licence": "Creative Commons Attribution per the data.gov.au listing of the same dataset (https://catalogue.data.infrastructure.gov.au/dataset/rdh-rental-report-vic); the DFFH page's own licence was not read",
+      "accessed": "2026-10-29"
     }
   ],
   "indicators": [
@@ -704,6 +731,146 @@ export const benchmarkData: BenchmarkData = {
       "verification": "primary",
       "note": "The Foodbank Victoria page gives no date, so we do not know which year this figure is from. The same page reports a 25% increase in people seeking food relief at Victorian charities and more than 430 charity partners, without saying over what period.",
       "sourceId": "foodbank-vic-page"
+    },
+    {
+      "id": "w-min-wage-hour",
+      "group": "whatif",
+      "label": "National Minimum Wage, per hour",
+      "value": 26.44,
+      "decimals": 2,
+      "unit": "AUD per hour",
+      "scope": "Australia, employees not covered by an award or registered agreement",
+      "period": "From 1 July 2026",
+      "year": 2026,
+      "verification": "primary",
+      "note": "Awards and agreements may pay more than this. Use it as a reference only; your own pay rate is what counts.",
+      "research": "Fair Work Ombudsman page re-read 2026-10-29: 'As of 1 July 2026, the National Minimum Wage is $26.44 per hour or $1004.90 per week.' The page says it applies to employees not covered by an award or registered agreement and is reviewed each year (Annual wage review); most changes begin on the first full pay period on or after 1 July. refreshAfter is a reminder, not a claim.",
+      "refreshAfter": "2027-07-01",
+      "sourceId": "fairwork-minwage"
+    },
+    {
+      "id": "w-min-wage-week",
+      "group": "whatif",
+      "label": "National Minimum Wage, per week",
+      "value": 1004.9,
+      "decimals": 2,
+      "unit": "AUD per week",
+      "scope": "Australia, employees not covered by an award or registered agreement",
+      "period": "From 1 July 2026",
+      "year": 2026,
+      "verification": "primary",
+      "note": "Awards and agreements may pay more than this. This is a weekly amount before tax.",
+      "research": "Fair Work Ombudsman page re-read 2026-10-29: 'As of 1 July 2026, the National Minimum Wage is $26.44 per hour or $1004.90 per week.' The page says it applies to employees not covered by an award or registered agreement and is reviewed each year (Annual wage review); most changes begin on the first full pay period on or after 1 July. refreshAfter is a reminder, not a claim.",
+      "refreshAfter": "2027-07-01",
+      "sourceId": "fairwork-minwage"
+    },
+    {
+      "id": "w-jobseeker-single",
+      "group": "whatif",
+      "label": "JobSeeker Payment basic rate, single, no dependent children",
+      "value": 824.9,
+      "decimals": 2,
+      "unit": "AUD per fortnight",
+      "scope": "Australia, single, no dependent children",
+      "period": "From 20 September 2026",
+      "year": 2026,
+      "verification": "primary",
+      "previous": {
+        "value": 808.7,
+        "period": "before 20 September 2026"
+      },
+      "note": "Basic rate only. The Energy Supplement is listed separately. Rates change twice a year.",
+      "research": "DSS rates list PDF (text extracted with macOS PDFKit) re-read 2026-10-29: 'Component (per fortnight) Previous Amount / 20 Sep 2026'. Services Australia (servicesaustralia.gov.au/how-much-jobseeker-payment-you-can-get) states 'We update rates on 20 March and 20 September each year', so the next update is expected 20 March 2027; refreshAfter is the day after, a reminder not a claim. Services Australia page not added as a source row; used only to confirm cadence.",
+      "refreshAfter": "2027-03-21",
+      "sourceId": "dss-rates-2026-09-20"
+    },
+    {
+      "id": "w-jobseeker-energy",
+      "group": "whatif",
+      "label": "JobSeeker Energy Supplement, single, no dependent children",
+      "value": 8.8,
+      "decimals": 2,
+      "unit": "AUD per fortnight",
+      "scope": "Australia, single, no dependent children",
+      "period": "From 20 September 2026",
+      "year": 2026,
+      "verification": "primary",
+      "note": "Paid on top of the basic rate. It did not change in the 20 September 2026 update.",
+      "research": "DSS rates list PDF (text extracted with macOS PDFKit) re-read 2026-10-29: 'Component (per fortnight) Previous Amount / 20 Sep 2026'. Services Australia (servicesaustralia.gov.au/how-much-jobseeker-payment-you-can-get) states 'We update rates on 20 March and 20 September each year', so the next update is expected 20 March 2027; refreshAfter is the day after, a reminder not a claim. Services Australia page not added as a source row; used only to confirm cadence.",
+      "refreshAfter": "2027-03-21",
+      "sourceId": "dss-rates-2026-09-20"
+    },
+    {
+      "id": "w-jobseeker-single-kids",
+      "group": "whatif",
+      "label": "JobSeeker Payment basic rate, single, with dependent children",
+      "value": 883.3,
+      "decimals": 2,
+      "unit": "AUD per fortnight",
+      "scope": "Australia, single, with dependent children",
+      "period": "From 20 September 2026",
+      "year": 2026,
+      "verification": "primary",
+      "previous": {
+        "value": 866,
+        "period": "before 20 September 2026"
+      },
+      "note": "Basic rate only. The Energy Supplement for this group is listed separately by the department.",
+      "research": "DSS rates list PDF (text extracted with macOS PDFKit) re-read 2026-10-29: 'Component (per fortnight) Previous Amount / 20 Sep 2026'. Services Australia (servicesaustralia.gov.au/how-much-jobseeker-payment-you-can-get) states 'We update rates on 20 March and 20 September each year', so the next update is expected 20 March 2027; refreshAfter is the day after, a reminder not a claim. Services Australia page not added as a source row; used only to confirm cadence.",
+      "refreshAfter": "2027-03-21",
+      "sourceId": "dss-rates-2026-09-20"
+    },
+    {
+      "id": "w-jobseeker-partnered",
+      "group": "whatif",
+      "label": "JobSeeker Payment basic rate, partnered, each",
+      "value": 755.1,
+      "decimals": 2,
+      "unit": "AUD per fortnight each",
+      "scope": "Australia, partnered, rate for each partner",
+      "period": "From 20 September 2026",
+      "year": 2026,
+      "verification": "primary",
+      "previous": {
+        "value": 740.3,
+        "period": "before 20 September 2026"
+      },
+      "note": "Basic rate for each partner. The Energy Supplement is listed separately.",
+      "research": "DSS rates list PDF (text extracted with macOS PDFKit) re-read 2026-10-29: 'Component (per fortnight) Previous Amount / 20 Sep 2026'. Services Australia (servicesaustralia.gov.au/how-much-jobseeker-payment-you-can-get) states 'We update rates on 20 March and 20 September each year', so the next update is expected 20 March 2027; refreshAfter is the day after, a reminder not a claim. Services Australia page not added as a source row; used only to confirm cadence.",
+      "refreshAfter": "2027-03-21",
+      "sourceId": "dss-rates-2026-09-20"
+    },
+    {
+      "id": "w-rent-melb-median",
+      "group": "whatif",
+      "label": "Median weekly rent, metropolitan Melbourne",
+      "value": 595,
+      "decimals": 0,
+      "unit": "AUD per week",
+      "scope": "Metropolitan Melbourne, all new rental lettings",
+      "period": "June quarter 2026",
+      "year": 2026,
+      "verification": "primary",
+      "note": "A median across all new lettings, so your own rent is the better number to use. It fell $5 over the quarter.",
+      "research": "DFFH rental report page re-read 2026-10-29: 'median weekly rent decreased by $5 over the quarter in metropolitan Melbourne (to $595 per week)'; table row Melbourne $595, rent index 327.5, quarterly 0.0%, annual 4.8%; 'Median weekly rent is based on all new rental lettings for the quarter'. The report is a quarterly series (time series June quarter 2000 to June quarter 2026). The page does not state a release date for the September quarter report; December 2026 is an assumption, refreshAfter 2026-12-31 is a reminder, not a claim.",
+      "refreshAfter": "2026-12-31",
+      "sourceId": "dffh-rental-report-jun2026"
+    },
+    {
+      "id": "w-rent-index-year",
+      "group": "whatif",
+      "label": "Metropolitan Rent Index, change over the year",
+      "value": 4.8,
+      "decimals": 1,
+      "unit": "%",
+      "scope": "Metropolitan Melbourne, rent index",
+      "period": "Year to June 2026",
+      "year": 2026,
+      "verification": "primary",
+      "note": "Up 4.8% over the year to June 2026, compared with 2.5% over the year to June 2025. The ten-year average is 4.3% a year. The index was steady over the June quarter.",
+      "research": "DFFH rental report page re-read 2026-10-29: 'median weekly rent decreased by $5 over the quarter in metropolitan Melbourne (to $595 per week)'; table row Melbourne $595, rent index 327.5, quarterly 0.0%, annual 4.8%; 'Median weekly rent is based on all new rental lettings for the quarter'. The report is a quarterly series (time series June quarter 2000 to June quarter 2026). The page does not state a release date for the September quarter report; December 2026 is an assumption, refreshAfter 2026-12-31 is a reminder, not a claim.",
+      "refreshAfter": "2026-12-31",
+      "sourceId": "dffh-rental-report-jun2026"
     }
   ],
   "areas": [

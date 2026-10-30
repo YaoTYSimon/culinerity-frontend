@@ -60,7 +60,7 @@ describe('StaticBenchmarkSource', () => {
     expect(budget.length).toBeGreaterThan(0);
     expect(budget.every((i) => i.group === 'budget')).toBe(true);
     expect(src.indicators('policy').every((i) => i.group === 'policy')).toBe(true);
-    expect(src.indicators().length).toBe(budget.length + src.indicators('policy').length);
+    expect(src.indicators().length).toBe(budget.length + src.indicators('policy').length + src.indicators('whatif').length);
   });
   it('has numeric SEIFA scores and no lga', () => {
     for (const a of src.areas()) {
@@ -165,5 +165,46 @@ describe('StaticBenchmarkSource', () => {
     const row = src.indicators('budget').find((i) => i.display)!;
     expect(row.display).toMatch(/%/);
     expect(row.unit).not.toMatch(/^%/);
+  });
+  describe('what-if context rows', () => {
+    const rows = () => src.indicators('whatif');
+    const get = (id: string) => rows().find((i) => i.id === id)!;
+    it('has exactly the eight sourced rows', () => {
+      expect(rows().map((i) => i.id).sort()).toEqual(
+        ['w-jobseeker-energy', 'w-jobseeker-partnered', 'w-jobseeker-single', 'w-jobseeker-single-kids', 'w-min-wage-hour', 'w-min-wage-week', 'w-rent-index-year', 'w-rent-melb-median'],
+      );
+    });
+    it('carries the exact sourced values', () => {
+      expect(get('w-min-wage-hour').value).toBe(26.44);
+      expect(get('w-min-wage-hour').decimals).toBe(2);
+      expect(get('w-min-wage-week').value).toBe(1004.9);
+      expect(get('w-min-wage-week').decimals).toBe(2);
+      expect(get('w-jobseeker-single').value).toBe(824.9);
+      expect(get('w-jobseeker-single').previous?.value).toBe(808.7);
+      expect(get('w-jobseeker-energy').value).toBe(8.8);
+      expect(get('w-jobseeker-single-kids').value).toBe(883.3);
+      expect(get('w-jobseeker-partnered').value).toBe(755.1);
+      expect(get('w-rent-melb-median').value).toBe(595);
+      expect(get('w-rent-index-year').value).toBe(4.8);
+    });
+    it('every row has a year, refreshAfter, primary verification and one of the three new sources', () => {
+      const ids = new Set(['fairwork-minwage', 'dss-rates-2026-09-20', 'dffh-rental-report-jun2026']);
+      const byId = new Map(src.sources().map((s) => [s.id, s]));
+      for (const i of rows()) {
+        expect(Number.isInteger(i.year), i.id).toBe(true);
+        expect(i.refreshAfter, i.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(i.verification).toBe('primary');
+        expect(ids.has(i.sourceId), i.id).toBe(true);
+        expect(byId.get(i.sourceId)!.url.startsWith('https://')).toBe(true);
+        expect(byId.get(i.sourceId)!.accessed).toBe('2026-10-29');
+        expect(i.research, i.id).toMatch(/\S/);
+        expect(i.period, i.id).toMatch(/\S/);
+      }
+    });
+    it('does not leak into the budget and policy views', () => {
+      expect(src.indicators('budget').length).toBe(12);
+      expect(src.indicators('policy').length).toBe(25);
+      expect([...src.indicators('budget'), ...src.indicators('policy')].some((i) => i.id.startsWith('w-'))).toBe(false);
+    });
   });
 });

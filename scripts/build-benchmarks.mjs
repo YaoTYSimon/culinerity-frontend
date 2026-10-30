@@ -9,8 +9,22 @@ export const DATA_PATH = fileURLToPath(new URL('docs/superpowers/research/2026-1
 export const OUT_PATH = fileURLToPath(new URL('packages/core/src/benchmarks/generated/benchmarks.generated.ts', root));
 
 const VERIFICATION = ['primary', 'secondary', 'press'];
-const GROUPS = ['budget', 'policy'];
+const GROUPS = ['budget', 'policy', 'whatif'];
+// notFound items belong to a screen; the what-if screen has none.
+const NOTFOUND_GROUPS = ['budget', 'policy'];
 const EVIDENCE = ['moderate', 'weak', 'mixed', 'strong'];
+
+/** True for a real calendar date written YYYY-MM-DD (rejects 2026-02-30). */
+function isIsoDate(v) {
+  if (typeof v !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(v)) return false;
+  const t = new Date(`${v}T00:00:00Z`);
+  return !Number.isNaN(t.getTime()) && t.toISOString().slice(0, 10) === v;
+}
+
+/** Today's calendar date in Melbourne (YYYY-MM-DD), the same rule as the cultural and places builders. */
+export function melbourneToday(now = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Melbourne', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+}
 
 /** Returns a list of problems; empty when the dataset is sound. */
 export function validateBenchmarks(d) {
@@ -36,6 +50,7 @@ export function validateBenchmarks(d) {
     } else if (!Number.isInteger(i.year) || i.year < 1990 || i.year > 2100) {
       errs.push(`indicator ${i.id} year must be an integer from 1990 to 2100`);
     }
+    if (i.refreshAfter !== undefined && !isIsoDate(i.refreshAfter)) errs.push(`indicator ${i.id} refreshAfter must be a real YYYY-MM-DD date`);
     if (i.research !== undefined && typeof i.research !== 'string') errs.push(`indicator ${i.id} research must be a string`);
     if (i.display !== undefined && typeof i.display !== 'string') errs.push(`indicator ${i.id} display must be a string`);
     if (i.decimals !== undefined && (!Number.isInteger(i.decimals) || i.decimals < 0 || i.decimals > 4 || typeof i.value !== 'number')) {
@@ -62,10 +77,17 @@ export function validateBenchmarks(d) {
     if (v.costPerPersonAud !== null && typeof v.costPerPersonAud !== 'number') errs.push(`intervention ${v.id} cost must be a number or null`);
   }
   if (!Array.isArray(d.caveats) || d.caveats.some((x) => typeof x !== 'string')) errs.push('caveats must be a list of strings');
-  if (!Array.isArray(d.notFound) || d.notFound.some((n) => !n || !GROUPS.includes(n.group) || typeof n.text !== 'string' || n.text === '')) {
+  if (!Array.isArray(d.notFound) || d.notFound.some((n) => !n || !NOTFOUND_GROUPS.includes(n.group) || typeof n.text !== 'string' || n.text === '')) {
     errs.push('notFound must be a list of { group, text } items with a known group');
   }
   return errs;
+}
+
+/** One plain line per indicator whose `refreshAfter` is before `today`. A reminder, never a build error. */
+export function refreshWarnings(d, today = melbourneToday()) {
+  return (d.indicators ?? [])
+    .filter((i) => typeof i.refreshAfter === 'string' && i.refreshAfter < today)
+    .map((i) => `WARNING: ${i.id} was due for a re-read after ${i.refreshAfter} (today is ${today}). Re-read its source and update it: see "Refreshing" in docs/superpowers/research/README.md.`);
 }
 
 export function buildBenchmarks(d) {
@@ -89,6 +111,15 @@ export function buildBenchmarks(d) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  writeFileSync(OUT_PATH, buildBenchmarks(JSON.parse(readFileSync(DATA_PATH, 'utf8'))));
-  console.log(`Wrote ${OUT_PATH}`);
+  const args = process.argv.slice(2);
+  const raw = JSON.parse(readFileSync(DATA_PATH, 'utf8'));
+  const text = buildBenchmarks(raw);
+  if (!args.includes('--no-write')) {
+    writeFileSync(OUT_PATH, text);
+    console.log(`Wrote ${OUT_PATH}`);
+  }
+  const todayArg = args.find((a) => a.startsWith('--today='));
+  const warnings = refreshWarnings(raw, todayArg ? todayArg.slice('--today='.length) : melbourneToday());
+  for (const w of warnings) console.warn(w);
+  if (warnings.length && args.includes('--strict')) process.exit(1);
 }

@@ -1,4 +1,4 @@
-export type IndicatorGroup = 'budget' | 'policy';
+export type IndicatorGroup = 'budget' | 'policy' | 'whatif';
 export type Verification = 'primary' | 'secondary' | 'press';
 export type Evidence = 'moderate' | 'weak' | 'mixed' | 'strong';
 
@@ -26,6 +26,8 @@ export interface Indicator {
   note?: string;
   /** Remarks on how the figure was found. Kept in the data, never shown. */
   research?: string;
+  /** Reminder to re-read the source (YYYY-MM-DD, Melbourne). Not a claim; never shown. */
+  refreshAfter?: string;
   sourceId: string;
 }
 

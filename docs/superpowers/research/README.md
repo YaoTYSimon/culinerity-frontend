@@ -11,6 +11,7 @@
   - `press`: press report only, not checked against the study
 - `dated: true` marks figures that predate known changes; `isOlderData` also flags any figure more than five years before the current year.
 - `note` is plain, user-facing text (what the figure means, its caveats). Remarks on how a figure was found (blocked pages, extraction, what was not opened) go in `research`, which is kept here and never shown.
+- `group` is `budget`, `policy` or `whatif`. `whatif` rows are the sourced context figures beside What if results (minimum wage, JobSeeker rates, Melbourne rent); the Budget and Policy views filter them out, and they are never used as defaults in the maths.
 - `notFound` items carry a `group` (`budget` or `policy`) so each screen lists only its own gaps.
 - `decimals` (optional, 0 to 4) is how many decimal places the source writes (ABS lone-parent families 34.0, CPI 3.0), so a figure is never shown with fewer digits than its source.
 - String-valued figures use `value: null` plus `display`.
@@ -21,6 +22,13 @@
 1. Edit the JSON.
 2. Run `npm run build:benchmarks`. It validates the dataset (unique ids, resolvable sources, https URLs, numeric values) and rewrites `packages/core/src/benchmarks/generated/benchmarks.generated.ts`.
 3. Commit both files. A test regenerates the file in memory and fails if the committed copy is out of date.
+
+### What-if rows and `refreshAfter`
+
+- A `whatif` row carries a `refreshAfter` (real `YYYY-MM-DD`; the generator rejects `2026-02-30`). It is a reminder to re-read the source, not a claim that the figure changes then, and it is never shown. State the source's own update schedule in the row's `research` field: Fair Work reviews the National Minimum Wage each year (changes mostly from 1 July); Services Australia updates JobSeeker rates on 20 March and 20 September; the DFFH Rental Report is a quarterly series (the release date of the next report is not stated on the page).
+- `npm run build:benchmarks` prints a `WARNING` line for each row whose `refreshAfter` has passed (Australia/Melbourne date) and still exits 0. `node scripts/build-benchmarks.mjs --strict` exits non-zero on any such warning: use it in release checks.
+- To refresh: re-read the source page, copy the figure exactly with its period and scope, set `year`, `period`, `previous` and a later `refreshAfter`, update the source `accessed` date and `generatedAt`, run `npm run build:benchmarks` (twice; the second run changes nothing), run `npm test`, and record value, evidence and source in the commit message.
+- The two help lines (National Debt Helpline, Foodbank Find Food) live in `packages/core/src/whatif/context.ts` with a `verifiedOn` date. Change `verifiedOn` only after re-reading the official page (ndh.org.au for the number and hours; the Find Food page for the link).
 
 ## Places
 
