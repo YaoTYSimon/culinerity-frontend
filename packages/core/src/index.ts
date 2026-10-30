@@ -65,3 +65,7 @@ export * from './pantry/safety';
 export * from './pantry/shopping';
 export { centroidTable } from './places/generated/centroids.generated';
 export * from './tradeoffs/support';
+export * from './whatif/types';
+export * from './whatif/units';
+export * from './whatif/scenario';
+export * from './whatif/run';
