@@ -6,10 +6,12 @@ interface Props {
   /** Opens when the page is printed (and closes again afterwards), so nothing is hidden on paper. Default true. */
   printOpen?: boolean;
   className?: string;
+  /** Starts open. Default false. */
+  defaultOpen?: boolean;
 }
 
 /** A plain details/summary: one round chevron, a 44px summary, the same look wherever it is used. */
-export function Disclosure({ summary, children, printOpen = true, className = '' }: Props) {
+export function Disclosure({ summary, children, printOpen = true, className = '', defaultOpen = false }: Props) {
   const el = useRef<HTMLDetailsElement>(null);
   useEffect(() => {
     if (!printOpen) return;
@@ -30,7 +32,7 @@ export function Disclosure({ summary, children, printOpen = true, className = ''
     };
   }, [printOpen]);
   return (
-    <details ref={el} className={`group ${className}`}>
+    <details ref={el} open={defaultOpen || undefined} className={`group ${className}`}>
       <summary className="focus-ring flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-3 rounded-full text-base font-semibold [&::-webkit-details-marker]:hidden">
         <span>{summary}</span>
         <span aria-hidden="true" className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-surface">

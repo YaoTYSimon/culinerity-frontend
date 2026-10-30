@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { formatCents, LIMITS, parseMoney, toWeeklyCents, type Per, type Profile } from '@culinerity/core';
+import { Disclosure } from './Disclosure';
 import { PillButton } from './PillButton';
 import { PillRadio, TextField, type Option } from './WhatIfFields';
 import { WHATIF_COPY } from './whatIfCopy';
@@ -55,19 +56,27 @@ export function WhatIfNumbers({ profile, onChange, onSaved }: Props) {
     onSaved();
   };
 
+  const hasAny = FIELDS.some(({ key }) => typeof profile[key] === 'number');
   return (
     <form ref={form} noValidate className="grid gap-5" onSubmit={(e) => { e.preventDefault(); save(); }}>
       <h2 className="font-display text-[24px]">{WHATIF_COPY.numbersHeading}</h2>
       <p className="text-base text-pretty text-muted">{WHATIF_COPY.numbersIntro}</p>
+      <Disclosure summary={hasAny ? "Change my numbers" : "Add my numbers"} defaultOpen={!hasAny}>
+      <div className="grid gap-5 pt-2">
+      <p id="whatif-numbers-hint" className="-mt-3 text-sm text-pretty text-muted">{WHATIF_COPY.numbersHint}</p>
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-x-6">
       {FIELDS.map(({ key, label }) => (
-        <div key={key} className="grid gap-2">
+        <div key={key} className="grid content-start gap-2">
           <TextField
-            label={label} hint={WHATIF_COPY.numbersHint} value={entries[key].text} error={errors[key]}
+            label={label} hintId="whatif-numbers-hint" value={entries[key].text} error={errors[key]}
             onChange={(text) => setEntries((e) => ({ ...e, [key]: { ...e[key], text } }))}
           />
-          <PillRadio name={`${label}: enter as`} options={PER} value={entries[key].per} onChange={(per) => setEntries((e) => ({ ...e, [key]: { ...e[key], per } }))} />
+          <PillRadio name={`${label}: enter as`} options={PER} value={entries[key].per} compact onChange={(per) => setEntries((e) => ({ ...e, [key]: { ...e[key], per } }))} />
         </div>
       ))}
+      </div>
+      </div>
+      </Disclosure>
       <p className="text-base text-pretty text-muted">{WHATIF_COPY.privacy}</p>
       <div><PillButton type="submit" variant="surface">{WHATIF_COPY.saveNumbers}</PillButton></div>
     </form>

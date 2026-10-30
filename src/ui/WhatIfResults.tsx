@@ -1,6 +1,8 @@
 import type { Ref } from 'react';
 import { formatCents, type Baseline, type Explanation, type ExplanationRow, type RowKey, type Scenario, type WhatIfResult } from '@culinerity/core';
 import { Disclosure } from './Disclosure';
+import { WhatIfPlates } from './WhatIfPlates';
+import { WhatIfWeeks } from './WhatIfWeeks';
 import { WhatIfContext } from './WhatIfContext';
 import { WhatIfHelp } from './WhatIfHelp';
 import { needsSentence, WHATIF_COPY } from './whatIfCopy';
@@ -83,6 +85,7 @@ export function WhatIfResults({ scenario, result, explanation, now, headingRef, 
       {result.status === 'ok' && explanation && (
         <>
           <p className="text-lg font-semibold text-pretty">{explanation.headline}</p>
+          <WhatIfPlates beforeDays={result.before.foodDays} afterDays={result.weeks[result.firstAffectedWeek - 1].foodDays} />
           {explanation.shortfall && (
             <div className="grid gap-2">
               <p className="text-base text-pretty">{WHATIF_COPY.shortfall}</p>
@@ -90,6 +93,7 @@ export function WhatIfResults({ scenario, result, explanation, now, headingRef, 
             </div>
           )}
           <Table rows={explanation.rows.filter((r) => shown(r, hasBill))} weekStart={result.weekStarts[result.firstAffectedWeek - 1]} />
+          <WhatIfWeeks result={result} />
           {result.before.leftAfterCosts === null && <p className="text-base text-pretty">{WHATIF_COPY.addIncome}</p>}
           <div className="grid gap-2">
             <h3 className="text-lg font-semibold">{WHATIF_COPY.howHeading}</h3>

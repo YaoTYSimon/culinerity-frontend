@@ -8,6 +8,7 @@ import { ComparePicker, WhatIfCompare } from './WhatIfCompare';
 import { WhatIfSaved } from './WhatIfSaved';
 import { UndoStatus } from './UndoStatus';
 import { FocusHeading } from './FocusHeading';
+import { PageHeader } from './PageHeader';
 import { WhatIfForm } from './WhatIfForm';
 import { WhatIfNumbers } from './WhatIfNumbers';
 import { WhatIfResults } from './WhatIfResults';
@@ -187,7 +188,9 @@ function Screen({ profile, now, clock, onChange, onSeeSwaps, onOpenBudget, onOpe
 
   return (
     <div ref={root} className="grid grid-cols-[minmax(0,1fr)] gap-6 pb-2">
-      <FocusHeading>{WHATIF_COPY.title}</FocusHeading>
+      <PageHeader photo="budget-harvest">
+        <FocusHeading>{WHATIF_COPY.title}</FocusHeading>
+      </PageHeader>
       <p className="text-base text-pretty">{WHATIF_COPY.notice}</p>
       <WhatIfNumbers profile={profile} onChange={onChange} onSaved={() => setStatus(WHATIF_COPY.numbersSaved)} />
       <div ref={form} className="grid gap-6">
