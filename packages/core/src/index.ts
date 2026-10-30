@@ -69,3 +69,5 @@ export * from './whatif/types';
 export * from './whatif/units';
 export * from './whatif/scenario';
 export * from './whatif/run';
+export * from './whatif/explain';
+export * from './whatif/compare';

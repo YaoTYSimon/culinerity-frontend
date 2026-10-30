@@ -37,7 +37,7 @@ function needed(s: Step): BaselineField | null {
   return null;
 }
 
-interface Deltas {
+export interface Deltas {
   income: Four;
   housing: Four;
   food: Four;
@@ -45,7 +45,7 @@ interface Deltas {
 }
 
 /** One step's weekly deltas, always computed from the baseline, never from another step. */
-function stepDeltas(s: Step, b: Baseline): Deltas {
+export function stepDeltas(s: Step, b: Baseline): Deltas {
   const d: Deltas = { income: [0, 0, 0, 0], housing: [0, 0, 0, 0], food: [0, 0, 0, 0], oneOff: [0, 0, 0, 0] };
   const all = (arr: Four, n: Cents) => arr.forEach((_, i) => (arr[i] = n));
   switch (s.kind) {
