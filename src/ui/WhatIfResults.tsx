@@ -36,7 +36,7 @@ function weekLabel(iso: string): string {
 
 function Cell({ label, children }: { label: string; children: string }) {
   return (
-    <td className="px-4 py-2 text-base sm:table-cell">
+    <td role="cell" className="px-4 py-2 text-base sm:table-cell">
       <span aria-hidden="true" className="block text-sm text-muted sm:hidden">{label}</span>
       {children}
     </td>
@@ -45,18 +45,18 @@ function Cell({ label, children }: { label: string; children: string }) {
 
 function Table({ rows, weekStart }: { rows: ExplanationRow[]; weekStart: string }) {
   return (
-    <table className="w-full border-collapse text-left">
+    <table role="table" className="w-full border-collapse text-left">
       <caption className="mb-2 text-left text-sm text-pretty text-muted">Before and after, for the week starting {weekLabel(weekStart)}</caption>
-      <thead className="sr-only sm:not-sr-only">
-        <tr className="sm:table-row">
-          <th scope="col" className="w-1/4" />
-          {['Before', 'After', 'Change'].map((h) => <th key={h} scope="col" className="px-4 py-2 text-sm font-semibold text-muted">{h}</th>)}
+      <thead role="rowgroup" className="sr-only sm:not-sr-only">
+        <tr role="row" className="sm:table-row">
+          <th role="columnheader" scope="col" className="w-1/4" />
+          {['Before', 'After', 'Change'].map((h) => <th key={h} role="columnheader" scope="col" className="px-4 py-2 text-sm font-semibold text-muted">{h}</th>)}
         </tr>
       </thead>
-      <tbody>
+      <tbody role="rowgroup">
         {rows.map((r) => (
-          <tr key={r.key} className="grid grid-cols-3 odd:bg-surface sm:table-row">
-            <th scope="row" className="col-span-3 px-4 pt-2 text-base font-semibold sm:table-cell sm:py-2">{r.label}</th>
+          <tr key={r.key} role="row" className="grid grid-cols-3 odd:bg-surface sm:table-row">
+            <th role="rowheader" scope="row" className="col-span-3 px-4 pt-2 text-base font-semibold sm:table-cell sm:py-2">{r.label}</th>
             <Cell label="Before">{r.before === null ? 'Not entered' : figure(r, r.before)}</Cell>
             <Cell label="After">{r.before === null ? 'Not known' : figure(r, r.after)}</Cell>
             <Cell label="Change">{changeText(r.change)}</Cell>
