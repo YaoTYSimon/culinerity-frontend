@@ -30,6 +30,15 @@
 - To refresh: re-read the source page, copy the figure exactly with its period and scope, set `year`, `period`, `previous` and a later `refreshAfter`, update the source `accessed` date and `generatedAt`, run `npm run build:benchmarks` (twice; the second run changes nothing), run `npm test`, and record value, evidence and source in the commit message.
 - The two help lines (National Debt Helpline, Foodbank Find Food) live in `packages/core/src/whatif/context.ts` with a `verifiedOn` date. Change `verifiedOn` only after re-reading the official page (ndh.org.au for the number and hours; the Find Food page for the link).
 
+| Rows | `refreshAfter` | Where to re-read | Source id |
+| --- | --- | --- | --- |
+| `w-min-wage-hour`, `w-min-wage-week` | 2027-07-01 | Fair Work Ombudsman, National Minimum Wage | `fairwork-minwage` |
+| `w-jobseeker-single`, `w-jobseeker-energy`, `w-jobseeker-single-kids`, `w-jobseeker-partnered` | 2027-03-21 | DSS rates list after the 20 March 2027 indexation | `dss-rates-2026-09-20` |
+| `w-rent-melb-median`, `w-rent-index-year` | 2026-12-31 | DFFH Rental Report, September 2026 quarter (expected December 2026) | `dffh-rental-report-jun2026` |
+| `b-cpi-food-melbourne`, `b-cpi-food-australia` (existing, shown as What if context) | next monthly CPI | ABS CPI | `abs-cpi-aug2026` |
+
+Context figures are never arithmetic defaults. Legal review of the What if notice is pending; the feature is not for public launch before it.
+
 ## Places
 
 `2026-10-27-nearby-places.json` is the single source of every place on the Nearby view. It is a small starter set, not a directory: it lists only places we could check, and says so. `notFound` records places that were looked at and left out, with the reason.
