@@ -80,7 +80,8 @@ export function tradeoffWeeks(
   const sorted = [...(entries ?? [])].sort(newestFirst);
   const current = weekBounds(now);
   const previous = weekBounds(addLocalDays(current.start, -DAYS_PER_WEEK));
-  const thisWeek = sorted.filter((e) => isInWeek(e.at, current));
+  // A stored entry dated after this week (a clock that moved back) is shown in this week, so it can still be seen and removed.
+  const thisWeek = sorted.filter((e) => Date.parse(e.at) >= current.start.getTime());
   const lastWeek = sorted.filter((e) => isInWeek(e.at, previous));
   const earlier: { start: Date; entries: TradeoffEntry[] }[] = [];
   for (const e of sorted) {

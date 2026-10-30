@@ -45,6 +45,8 @@ export interface MatchInput {
   substitutions: Substitution[];
   /** Ingredient ids whose past best-before date is treated like a use-by. */
   highRisk: Set<string>;
+  /** A recipe id to keep in the results even when it is over the missing limit (it is shown as "few"). Used for an open recipe page. */
+  keep?: string;
 }
 
 /** Assumed everywhere or text-only: never counted, never missing. */
@@ -187,7 +189,7 @@ export function matchRecipes(input: MatchInput): { matches: RecipeMatch[]; hidde
   let hidden = 0;
   for (const recipe of input.recipes) {
     const ev = evaluate(recipe, input, usable);
-    const tier = tierOf(ev.missing.length);
+    const tier = tierOf(ev.missing.length) ?? (recipe.id === input.keep ? 'few' : null);
     if (!tier) continue;
     const fit: Fit = fitsProfile(recipe.info, input.food);
     if (fit === 'out') {

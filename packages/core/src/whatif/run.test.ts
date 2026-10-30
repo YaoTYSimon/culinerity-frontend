@@ -94,6 +94,10 @@ describe('clamping', () => {
     expect(r.weeks[0].income).toBe(0);
     expect(r.clamped).toContain('income');
   });
+  it('a rent cut in dollars with no rent entered does not flag the rent as below zero', () => {
+    const r = run({ kind: 'rent-change', direction: 'down', by: { mode: 'dollars', amount: { cents: 20000, per: 'week' } } }, { incomeWeekly: 90000 });
+    expect(r.clamped).not.toContain('housing');
+  });
   it('housing and food never below zero', () => {
     const r = run({ kind: 'combined', steps: [{ kind: 'rent-change', direction: 'down', by: { mode: 'dollars', amount: { cents: 60000, per: 'week' } } }, { kind: 'food-price-change', direction: 'down', bp: 10000 }] });
     expect(r.weeks[0].housing).toBe(0);

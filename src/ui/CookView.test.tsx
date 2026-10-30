@@ -44,7 +44,7 @@ describe('CookView basics', () => {
     const one = section('Need one more thing');
     expect(within(one).getByRole('button', { name: 'Chickpea and tomato stew' })).toBeInTheDocument();
     expect(within(one).getByText('Need one more thing: Tomatoes, tinned (about $0.50, sample price)')).toBeInTheDocument();
-    expect(within(one).getAllByText('20 min · serves 2').length).toBeGreaterThan(0);
+    expect(within(one).getAllByText('About 20 min (estimate) · serves 2').length).toBeGreaterThan(0);
   });
 
   it('shows a few-missing row naming each missing thing', () => {
@@ -74,6 +74,19 @@ describe('CookView basics', () => {
     for (let i = 0; i < 10; i++) await user.click(screen.getByRole('button', { name: 'More serves' }));
     expect(screen.getByText('Serves 8')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'More serves' })).toBeDisabled();
+  });
+});
+
+describe('the open recipe page', () => {
+  it('stays open when more serves push it over the missing limit', async () => {
+    const exact = [it_('chickpeas-canned', 'Chickpeas, canned', { grams: 240 }), it_('tomatoes-tinned', 'Tomatoes, tinned', { grams: 200 }), it_('onion', 'Onion', { grams: 80 }), it_('garlic', 'Garlic', { grams: 5 }), it_('cumin', 'Cumin'), it_('canola-oil', 'Canola oil')];
+    const user = show({ initial: pantryOf(exact) });
+    await user.click(screen.getByRole('button', { name: 'Chickpea and tomato stew' }));
+    expect(screen.getByRole('heading', { level: 1, name: 'Chickpea and tomato stew' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'More serves' }));
+    expect(screen.getByRole('heading', { level: 1, name: 'Chickpea and tomato stew' })).toBeInTheDocument();
+    expect(screen.getByText('Serves 3')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Back to recipes' })).toBeInTheDocument();
   });
 });
 

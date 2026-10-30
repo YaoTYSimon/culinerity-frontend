@@ -79,7 +79,7 @@ export function PantryView({ profile, onProfile, now, onNavigate, newId = defaul
   };
   const toggleStarter = (ingredientId: string, name: string, on: boolean) => {
     if (on) return void add({ ingredientId, name });
-    changePantry({ ...pantry, items: pantry.items.filter((i) => i.ingredientId !== ingredientId) }, `Removed ${name}.`);
+    changePantry({ ...pantry, items: pantry.items.filter((i) => i.ingredientId !== ingredientId || i.date !== undefined) }, `Removed ${name}.`);
   };
   const remove = (item: PantryItem, neighbour: string | null) => {
     focusAfter.current = { id: neighbour };
@@ -107,7 +107,7 @@ export function PantryView({ profile, onProfile, now, onNavigate, newId = defaul
         <p className="text-base text-pretty text-muted">{INTRO}</p>
       </div>
 
-      <PantryAdd ingredients={ingredients} starters={starters} isOn={(id) => pantry.items.some((i) => i.ingredientId === id)} onAdd={add} onToggleStarter={toggleStarter} />
+      <PantryAdd ingredients={ingredients} starters={starters} isOn={(id) => pantry.items.some((i) => i.ingredientId === id && i.date === undefined)} onAdd={add} onToggleStarter={toggleStarter} />
       <p className="text-sm text-pretty text-muted">{SHARED_DEVICE}</p>
 
       <UndoStatus text={message?.text ?? null} onUndo={message?.restore ? undo : null} />

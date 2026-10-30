@@ -172,6 +172,13 @@ describe('TradeoffsView', () => {
     expect(earlier.querySelector('summary')!.textContent).not.toMatch(/\d/);
   });
 
+  it('after removing from Last week, focus goes to a neighbour there, never to This week', () => {
+    const { container } = show({ initial: [entry('a', 27, 'cut-back'), entry('b', 22, 'borrowed'), entry('c', 21, 'self-treat')] });
+    const last = screen.getByText('Last week').closest('details')!;
+    fireEvent.click(within(last).getAllByRole('button', { name: /^Remove / })[0]);
+    expect(container.querySelector('[data-remove-id="c"]')).toHaveFocus();
+  });
+
   it('no alert role, no red or amber class, no big numeral', () => {
     const { container } = show({ initial: [entry('a', 26, 'meal-skipped')] });
     openAdd();

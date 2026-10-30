@@ -42,11 +42,14 @@ describe('addItem', () => {
     expect(b.items).toHaveLength(1);
     expect(b.items[0].grams).toBe(300);
   });
-  it('merged grams cap at 50000 and a blank quantity stays blank ("enough")', () => {
+  it('merged grams cap at 50000 and a known quantity is never dropped by a blank one', () => {
     const a = addItem(empty, { ingredientId: 'rice', name: 'Rice', grams: 40000 }, NOW, id).state;
     expect(addItem(a, { ingredientId: 'rice', name: 'Rice', grams: 40000 }, NOW, id).state.items[0].grams).toBe(50000);
     const b = addItem(empty, { ingredientId: 'egg', name: 'Egg' }, NOW, id).state;
-    expect(addItem(b, { ingredientId: 'egg', name: 'Egg', grams: 60 }, NOW, id).state.items[0].grams).toBeUndefined();
+    expect(addItem(b, { ingredientId: 'egg', name: 'Egg', grams: 60 }, NOW, id).state.items[0].grams).toBe(60);
+    const c = addItem(empty, { ingredientId: 'rice', name: 'Rice', grams: 100 }, NOW, id).state;
+    expect(addItem(c, { ingredientId: 'rice', name: 'Rice' }, NOW, id).state.items[0].grams).toBe(100);
+    expect(addItem(b, { ingredientId: 'egg', name: 'Egg' }, NOW, id).state.items[0].grams).toBeUndefined();
   });
   it('does not merge when either has a date', () => {
     const a = addItem(empty, { ingredientId: 'milk', name: 'Milk', dateKind: 'use-by', date: '2026-11-01' }, NOW, id).state;

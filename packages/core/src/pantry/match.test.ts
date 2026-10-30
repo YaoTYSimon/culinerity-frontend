@@ -37,6 +37,14 @@ describe('tiers', () => {
     expect(run([four], pantry([item('a')])).matches[0].tier).toBe('few');
     expect(run([four], pantry([])).matches).toEqual([]);
   });
+  it('keep holds one recipe in the results past the missing limit, as few', () => {
+    const four = recipe('f', ['a', 'b', 'c', 'd']);
+    const other = recipe('o', ['a', 'b', 'c', 'd']);
+    const { matches } = run([four, other], pantry([]), { keep: 'f' });
+    expect(matches.map((m) => m.recipeId)).toEqual(['f']);
+    expect(matches[0]).toMatchObject({ tier: 'few' });
+    expect(matches[0].missing).toHaveLength(4);
+  });
   it('staple counts as present; water, salt and pepper never missing', () => {
     const w = recipe('w', ['a', 'water', 'salt', 'pepper']);
     const res = run([w], pantry([], { staples: ['a'] })).matches[0];

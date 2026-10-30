@@ -17,6 +17,10 @@ export const MAX_WHATIF_NAME = 40;
 
 export type SaveError = 'full' | 'invalid' | 'duplicate-id';
 
+const MAX_ID = 64;
+const ISO_INSTANT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/;
+const isIsoInstant = (v: unknown): v is string => typeof v === 'string' && v.length <= 30 && ISO_INSTANT.test(v) && !Number.isNaN(Date.parse(v));
+
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 
 /** Trimmed name of 1 to 40 characters, or null. A longer name is refused, never cut. */
@@ -30,7 +34,7 @@ function cleanName(name: unknown): string | null {
 function cleanItem(raw: unknown): SavedWhatIf | null {
   if (!isObj(raw)) return null;
   const { id, savedAt } = raw;
-  if (typeof id !== 'string' || id === '' || typeof savedAt !== 'string' || savedAt === '') return null;
+  if (typeof id !== 'string' || id === '' || id.length > MAX_ID || !isIsoInstant(savedAt)) return null;
   const name = cleanName(raw.name);
   const v = validateScenario(raw.scenario);
   return name !== null && v.ok ? { id, name, scenario: v.scenario, savedAt } : null;

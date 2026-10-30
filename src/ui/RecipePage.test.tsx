@@ -32,7 +32,7 @@ describe('RecipePage content', () => {
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1, name: r.name })).toHaveFocus();
     expect(screen.getByText(r.blurb)).toBeInTheDocument();
-    expect(screen.getByText('20 min · serves 2')).toBeInTheDocument();
+    expect(screen.getByText('About 20 min (estimate) · serves 2')).toBeInTheDocument();
   });
 
   it('labels each ingredient: in your pantry, swap, missing with a price, optional', () => {
@@ -41,7 +41,7 @@ describe('RecipePage content', () => {
     const list = screen.getByRole('list', { name: 'Ingredients' });
     expect(within(list).getByText(/Red lentils, dried/).closest('li')).toHaveTextContent('swap: Green lentils, dried');
     expect(within(list).getByText(/Spinach/).closest('li')).toHaveTextContent('in your pantry');
-    expect(within(list).getByText(/Canola oil/).closest('li')).toHaveTextContent('missing, about $0.03');
+    expect(within(list).getByText(/Canola oil/).closest('li')).toHaveTextContent('missing, about $0.03 (sample price)');
   });
 
   it('marks an optional ingredient', () => {
@@ -55,7 +55,7 @@ describe('RecipePage content', () => {
     show(r, all(r), { serves: 4 });
     const list = screen.getByRole('list', { name: 'Ingredients' });
     expect(within(list).getByText(/Chickpeas/).closest('li')).toHaveTextContent('480 g');
-    expect(screen.getByText('20 min · serves 4')).toBeInTheDocument();
+    expect(screen.getByText('About 20 min (estimate) · serves 4')).toBeInTheDocument();
   });
 
   it('shows the steps exactly as the dataset has them, numbered', () => {

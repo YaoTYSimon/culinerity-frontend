@@ -9,7 +9,7 @@ export const hasFoodRules = (food: FoodProfile | undefined): boolean =>
 /** Dollars from cents, always two places: "$1.30". */
 export const dollars = (cents: number): string => `$${(cents / 100).toFixed(2)}`;
 
-export const timeAndServes = (recipe: Recipe, serves: number): string => `${recipe.minutes} min · serves ${serves}`;
+export const timeAndServes = (recipe: Recipe, serves: number): string => `About ${recipe.minutes} min (estimate) · serves ${serves}`;
 
 /** "Need one more thing: Tomatoes, tinned (about $0.50, sample price)". The price clause is left out when any price is unknown. */
 export function statusLine(label: string, match: RecipeMatch): string {
@@ -53,7 +53,7 @@ export function noteLines(match: RecipeMatch, items: PantryItem[]): string[] {
 export function ingredientStatus(row: RecipeIngredient, match: RecipeMatch): string {
   const missing: MissingItem | undefined = match.missing.find((m) => m.ingredient === row.ingredient);
   if (missing) {
-    const price = missing.costCents === null ? '' : `, about ${dollars(missing.costCents)}`;
+    const price = missing.costCents === null ? '' : `, about ${dollars(missing.costCents)} (sample price)`;
     if (missing.reason === 'not-enough') return `not enough, ${missing.grams} g more${price}`;
     return `${missing.reason === 'past-date' ? 'missing, yours is past its date' : 'missing'}${price}`;
   }

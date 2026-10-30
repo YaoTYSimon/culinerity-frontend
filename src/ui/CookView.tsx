@@ -45,12 +45,12 @@ export function CookView({ profile, onProfile, now, onNavigate, newId = defaultI
   const recipes = useMemo(() => allRecipes(), []);
   const highRisk = useMemo(() => new Set(pantryIngredients().filter((i) => i.highRisk).map((i) => i.id)), []);
   const prices = useMemo(() => new Map(recipesData.prices.map((p) => [p.ingredient, p.perKg])), []);
+  const [openId, setOpenId] = useState<string | null>(null);
   const result = useMemo(
-    () => matchRecipes({ recipes, pantry, food, now, prices, substitutions: recipesData.substitutions, highRisk }),
-    [recipes, pantry, food, now, prices, highRisk],
+    () => matchRecipes({ recipes, pantry, food, now, prices, substitutions: recipesData.substitutions, highRisk, keep: openId ?? undefined }),
+    [recipes, pantry, food, now, prices, highRisk, openId],
   );
 
-  const [openId, setOpenId] = useState<string | null>(null);
   const [message, setMessage] = useState<{ text: string; restore: (() => void) | null } | null>(null);
   const focusRow = useRef<string | null>(null);
   const root = useRef<HTMLDivElement>(null);

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { MAX_SAVED_WHATIFS, MAX_WHATIF_NAME, type SavedWhatIf } from '@culinerity/core';
 import { INPUT_CLASS } from './formParts';
 import { PillButton } from './PillButton';
@@ -25,7 +25,7 @@ function nameProblem(name: string): string | null {
 function NameField({ label, value, error, onChange, inputRef }: {
   label: string; value: string; error: string | null; onChange: (v: string) => void; inputRef?: React.Ref<HTMLInputElement>;
 }) {
-  const id = `${label.replace(/\W/g, '')}-field`;
+  const id = `${useId()}-field`;
   return (
     <div>
       <label htmlFor={id} className="mb-2 block text-sm font-medium">{label}</label>

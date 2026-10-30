@@ -128,8 +128,8 @@ export function runWhatIf(baseline: Baseline, scenario: Scenario, now: Date): Wh
   const F = baseline.foodBudgetWeekly ?? null;
   const rentTouched = steps.some((s) => s.kind === 'rent-change');
   const clamped = new Set<'income' | 'housing' | 'food'>();
-  const floor0 = (raw: number, name: 'income' | 'housing' | 'food') => {
-    if (raw < 0) clamped.add(name);
+  const floor0 = (raw: number, name: 'income' | 'housing' | 'food' | null) => {
+    if (raw < 0 && name !== null) clamped.add(name);
     return Math.max(0, raw);
   };
 
@@ -137,7 +137,7 @@ export function runWhatIf(baseline: Baseline, scenario: Scenario, now: Date): Wh
   const weeks = [0, 1, 2, 3].map((i) =>
     figures(
       I === null ? null : floor0(I + total.income[i], 'income'),
-      H === null && !rentTouched ? null : floor0((H ?? 0) + total.housing[i], 'housing'),
+      H === null && !rentTouched ? null : floor0((H ?? 0) + total.housing[i], H === null ? null : 'housing'),
       O,
       total.oneOff[i],
       F === null ? null : floor0(F + total.food[i], 'food'),

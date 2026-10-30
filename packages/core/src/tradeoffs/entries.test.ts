@@ -117,6 +117,11 @@ describe('week maths', () => {
     expect(w.earlier[0].entries).toHaveLength(7);
     expect(w.earlier[0].start).toEqual(d(2026, 9, 28));
   });
+  it('tradeoffWeeks shows a future-dated stored entry in this week, so every stored entry is visible and removable', () => {
+    const future = entry('f', d(2026, 11, 20, 9));
+    const w = tradeoffWeeks([future, entry('n', d(2026, 10, 28, 9))], NOW);
+    expect(w.thisWeek.map((x) => x.id)).toEqual(['f', 'n']);
+  });
   it('tradeoffWeeks omits empty weeks and orders newest first', () => {
     const a = entry('a', d(2026, 10, 27, 9));
     const b = entry('b', d(2026, 10, 28, 9));

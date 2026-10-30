@@ -122,6 +122,23 @@ describe('WhatIfView: Your numbers', () => {
     expect(screen.getByText("That's more than we can work with here (up to $20,000 a week). Check the number?")).toBeInTheDocument();
   });
 
+  it('an untouched out-of-range prefilled figure does not block saving another', () => {
+    const onChange = vi.fn();
+    show({ incomeWeekly: 50000, foodBudgetWeekly: 120 }, { onChange });
+    type('Food budget', '150');
+    fireEvent.click(screen.getByRole('button', { name: 'Save my numbers' }));
+    expect(onChange).toHaveBeenLastCalledWith({ incomeWeekly: 50000, foodBudgetWeekly: 150 });
+    expect(screen.queryByText(/more than we can work with/)).not.toBeInTheDocument();
+  });
+
+  it('an out-of-range figure the person types is still refused', () => {
+    const onChange = vi.fn();
+    show({ incomeWeekly: 50000 }, { onChange });
+    type('Income', '50001');
+    fireEvent.click(screen.getByRole('button', { name: 'Save my numbers' }));
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
   it('can save zero income', () => {
     const onChange = vi.fn();
     show({}, { onChange });

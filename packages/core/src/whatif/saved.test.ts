@@ -36,6 +36,9 @@ describe('saveWhatIf', () => {
     const l = full(1);
     expect(saveWhatIf(l, item(2, { scenario: { kind: 'pay-change', direction: 'up', bp: 0 } as Scenario })).error).toBe('invalid');
     expect(saveWhatIf(l, item(2, { id: '' })).error).toBe('invalid');
+    expect(saveWhatIf(l, item(2, { id: 'x'.repeat(65) })).error).toBe('invalid');
+    expect(saveWhatIf(l, item(2, { id: 'x'.repeat(64) })).error).toBeUndefined();
+    for (const savedAt of ['yesterday', '2026-10-29', '2026-13-45T00:00:00.000Z', 'x'.repeat(500)]) expect(saveWhatIf(l, item(2, { savedAt })).error, savedAt).toBe('invalid');
   });
   it('allows duplicate names but not duplicate ids', () => {
     const l = full(1);

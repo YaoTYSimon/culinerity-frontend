@@ -1,5 +1,5 @@
 import {
-  formatCents, LIMITS, parseMoney, parsePercentBp, toWeeklyCents, validateScenario,
+  formatCents, LIMITS, parseMoney, parsePercentBp, toCents, toWeeklyCents, validateScenario,
   type Cents, type Direction, type Per, type Scenario, type Step,
 } from '@culinerity/core';
 import { WHATIF_COPY } from './whatIfCopy';
@@ -44,7 +44,7 @@ export type Built = { ok: true; scenario: Scenario } | { ok: false; errors: Erro
 function money(v: Values, key: FieldKey, errs: Errors, limit: Cents, suffix: string, per?: Per): Cents | null {
   const n = parseMoney(v[key], { allowZero: false });
   if (n === null) { errs[key] = WHATIF_COPY.invalidMoney; return null; }
-  const cents = Math.round(n * 100);
+  const cents = toCents(n);
   if ((per ? toWeeklyCents({ cents, per }) : cents) > limit) { errs[key] = WHATIF_COPY.tooBig(`${formatCents(limit)}${suffix}`); return null; }
   return cents;
 }

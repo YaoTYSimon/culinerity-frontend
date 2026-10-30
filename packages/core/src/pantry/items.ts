@@ -38,7 +38,7 @@ export function addItem(state: PantryState, input: AddItemInput, now: Date, newI
   const dated = input.date !== undefined;
   const twin = dated ? undefined : state.items.find((i) => i.date === undefined && sameThing(i, name, input.ingredientId));
   if (twin) {
-    const grams = twin.grams !== undefined && input.grams !== undefined ? Math.min(MAX_GRAMS, twin.grams + input.grams) : undefined;
+    const grams = twin.grams !== undefined && input.grams !== undefined ? Math.min(MAX_GRAMS, twin.grams + input.grams) : (twin.grams ?? input.grams);
     const merged: PantryItem = { ...twin, grams };
     if (grams === undefined) delete merged.grams;
     return { state: { ...state, items: state.items.map((i) => (i === twin ? merged : i)) } };

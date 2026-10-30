@@ -66,7 +66,7 @@ export function PantryAdd({ ingredients, starters, isOn, onAdd, onToggleStarter 
             </div>
           ))}
         </div>
-        {found.length === 0 && clean !== '' && (
+        {clean !== '' && (
           <div>
             <PillButton variant="surface" className="max-w-full break-words" onClick={() => add({ name: clean })}>{`Add "${clean}" anyway`}</PillButton>
           </div>

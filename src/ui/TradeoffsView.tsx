@@ -138,8 +138,9 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, onOpenSupp
   const onRemove = (e: TradeoffEntry) => {
     const { entries: next, removed } = removeTradeoff(entries, e.id);
     if (!removed) return;
-    const at = week.thisWeek.findIndex((x) => x.id === e.id);
-    focusAfter.current = { id: (week.thisWeek[at + 1] ?? week.thisWeek[at - 1])?.id ?? null };
+    const group = [week.thisWeek, week.lastWeek, ...week.earlier.map((w) => w.entries)].find((g) => g.some((x) => x.id === e.id)) ?? [];
+    const at = group.findIndex((x) => x.id === e.id);
+    focusAfter.current = { id: (group[at + 1] ?? group[at - 1])?.id ?? null };
     onChange(next);
     setAdded(null);
     setSupport(null);
@@ -165,7 +166,7 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, onOpenSupp
 
   const latest = undos[undos.length - 1];
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)] gap-6 pb-2">
+    <div ref={list} className="grid grid-cols-[minmax(0,1fr)] gap-6 pb-2">
       <PageHeader photo="signin-cups">
         <h1 ref={heading} tabIndex={-1} className="font-display text-[30px] text-balance outline-none">{TITLE}</h1>
         <p className="text-base text-pretty text-muted">{INTRO}</p>
@@ -221,7 +222,7 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, onOpenSupp
 
       <section aria-labelledby="tradeoffs-list" className="grid gap-2">
         <h2 id="tradeoffs-list" tabIndex={-1} className="font-display text-[24px] outline-none">This week</h2>
-        <div ref={list}>
+        <div>
           {week.thisWeek.length === 0 ? (
             <div className="flex items-center gap-4 py-1">
               <EmptyPlate size={72} />

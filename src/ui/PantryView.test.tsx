@@ -89,6 +89,24 @@ describe('adding', () => {
     expect(onion).toHaveAttribute('aria-pressed', 'true');
   });
 
+  it('turning a starter off keeps a dated item of the same ingredient', async () => {
+    const onSave = vi.fn();
+    const dated = item('d1', 'Onion', { ingredientId: 'onion', dateKind: 'best-before', date: '2026-11-20' });
+    const plain = item('p1', 'Onion', { ingredientId: 'onion' });
+    const user = show({ initial: pantryOf([dated, plain]), onSave });
+    await user.click(screen.getByRole('button', { name: 'Onion', pressed: true }));
+    expect(lastSave(onSave).pantry?.items.map((i) => i.id)).toEqual(['d1']);
+  });
+
+  it('"Add anyway" is offered even when search matches exist, so "rice paper" can be added', async () => {
+    const onSave = vi.fn();
+    const user = show({ onSave });
+    await user.type(field(), 'rice paper');
+    await user.click(screen.getByRole('button', { name: 'Add "rice paper" anyway' }));
+    expect(lastSave(onSave).pantry?.items[0]).toMatchObject({ name: 'rice paper' });
+    expect(lastSave(onSave).pantry?.items[0].ingredientId).toBeUndefined();
+  });
+
   it('"Add anyway" stores free text with the no-details note', async () => {
     const onSave = vi.fn();
     const user = show({ onSave });

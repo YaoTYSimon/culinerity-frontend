@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { formatCents, LIMITS, parseMoney, toWeeklyCents, type Per, type Profile } from '@culinerity/core';
+import { formatCents, LIMITS, parseMoney, toCents, toWeeklyCents, type Per, type Profile } from '@culinerity/core';
 import { Disclosure } from './Disclosure';
 import { PillButton } from './PillButton';
 import { PillRadio, TextField, type Option } from './WhatIfFields';
@@ -41,11 +41,13 @@ export function WhatIfNumbers({ profile, onChange, onSaved }: Props) {
     const next: Profile = { ...profile };
     for (const { key, limit } of FIELDS) {
       const { text, per } = entries[key];
+      // A prefilled figure left as it was is kept, so an out-of-range one cannot block saving the others.
+      if (per === 'week' && typeof profile[key] === 'number' && text === String(profile[key])) continue;
       delete next[key];
       if (text.trim() === '') continue;
       const n = parseMoney(text);
       if (n === null) { errs[key] = WHATIF_COPY.invalidMoney; continue; }
-      const weekly = toWeeklyCents({ cents: Math.round(n * 100), per });
+      const weekly = toWeeklyCents({ cents: toCents(n), per });
       if (weekly > limit) { errs[key] = WHATIF_COPY.tooBig(`${formatCents(limit)} a week`); continue; }
       next[key] = weekly / 100;
     }

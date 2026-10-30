@@ -53,6 +53,20 @@ describe('saved what-ifs', () => {
     expect(names()).toEqual([forty]);
   });
 
+  it('two rename forms open together have different input ids', () => {
+    show();
+    rentPercent('10');
+    save();
+    rentPercent('20');
+    save();
+    fireEvent.click(screen.getByRole('button', { name: 'Rename Rent up 10%' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Rename Rent up 20%' }));
+    const inputs = screen.getAllByLabelText(WHATIF_COPY.newName);
+    expect(inputs).toHaveLength(2);
+    expect(inputs[0].id).not.toBe(inputs[1].id);
+    expect(new Set(inputs.map((i) => i.id)).size).toBe(2);
+  });
+
   it('refuses a 41 character name with a message and does not save', () => {
     show();
     rentPercent('10');
