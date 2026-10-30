@@ -760,7 +760,7 @@ export const benchmarkData: BenchmarkData = {
       "year": 2026,
       "verification": "primary",
       "note": "Awards and agreements may pay more than this. This is a weekly amount before tax.",
-      "research": "Fair Work Ombudsman page re-read 2026-10-29: 'As of 1 July 2026, the National Minimum Wage is $26.44 per hour or $1004.90 per week.' The page says it applies to employees not covered by an award or registered agreement and is reviewed each year (Annual wage review); most changes begin on the first full pay period on or after 1 July. refreshAfter is a reminder, not a claim.",
+      "research": "Fair Work Ombudsman page re-read 2026-10-29: 'As of 1 July 2026, the National Minimum Wage is $26.44 per hour or $1004.90 per week.' The page says it applies to employees not covered by an award or registered agreement and is reviewed each year (Annual wage review); most changes begin on the first full pay period on or after 1 July. Fair Work page fetched again 2026-10-31 and the sentence is unchanged. Note: 26.44 x 38 = 1004.72, not 1004.90; the page does not say how the weekly figure is worked out, so we record both figures as the page states them and do not recalculate. refreshAfter is a reminder, not a claim.",
       "refreshAfter": "2027-07-01",
       "sourceId": "fairwork-minwage"
     },
@@ -851,7 +851,7 @@ export const benchmarkData: BenchmarkData = {
       "period": "June quarter 2026",
       "year": 2026,
       "verification": "primary",
-      "note": "A median across all new lettings, so your own rent is the better number to use. It fell $5 over the quarter.",
+      "note": "A median across all new lettings, so the rent you actually pay is the number the sums use. It fell $5 over the quarter.",
       "research": "DFFH rental report page re-read 2026-10-29: 'median weekly rent decreased by $5 over the quarter in metropolitan Melbourne (to $595 per week)'; table row Melbourne $595, rent index 327.5, quarterly 0.0%, annual 4.8%; 'Median weekly rent is based on all new rental lettings for the quarter'. The report is a quarterly series (time series June quarter 2000 to June quarter 2026). The page does not state a release date for the September quarter report; December 2026 is an assumption, refreshAfter 2026-12-31 is a reminder, not a claim.",
       "refreshAfter": "2026-12-31",
       "sourceId": "dffh-rental-report-jun2026"

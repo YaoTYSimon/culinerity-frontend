@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { StaticBenchmarkSource } from '../benchmarks/source';
 import type { Scenario, Step } from './types';
+import { hasBannedWord } from './banned';
 import { WHATIF_CONTEXT, WHATIF_HELP, contextIds } from './context';
 
 const ids = new Set(new StaticBenchmarkSource().indicators().map((i) => i.id));
@@ -21,6 +22,13 @@ describe('WHATIF_CONTEXT', () => {
       'w-jobseeker-single', 'w-jobseeker-single-kids', 'w-jobseeker-partnered', 'w-jobseeker-energy',
       'b-poverty-line-single', 'b-poverty-line-couple-2kids', 'b-jobseeker-shortfall', 'b-parenting-shortfall',
     ]);
+  });
+  it('our own notes and labels on the context rows have no banned word (source quotes are not scanned)', () => {
+    const rows = new StaticBenchmarkSource().indicators();
+    for (const id of new Set(Object.values(WHATIF_CONTEXT).flat())) {
+      const row = rows.find((i) => i.id === id)!;
+      for (const text of [row.label, row.note ?? '', row.scope, row.period]) expect(hasBannedWord(text), `${id}: ${text}`).toBe(false);
+    }
   });
   it('never includes prevalence figures', () => {
     for (const id of Object.values(WHATIF_CONTEXT).flat()) expect(id).not.toMatch(/^p-/);
