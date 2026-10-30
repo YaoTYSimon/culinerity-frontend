@@ -37,6 +37,7 @@ interface Props {
   profileId?: string;
   onSeeSwaps?: () => void;
   onOpenWeek?: () => void;
+  onOpenWhatIf?: () => void;
 }
 
 const UNDO_MS = 6000;
@@ -99,7 +100,7 @@ export function BudgetView({ profileId, ...props }: Props) {
 }
 
 /** What was spent on food this week, how the week is going, and sourced context. Everything stays on this device. */
-function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }: Omit<Props, 'profileId'>) {
+function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek, onOpenWhatIf }: Omit<Props, 'profileId'>) {
   const [adding, setAdding] = useState(false);
   const [skipped, setSkipped] = useState(false);
   /** Removed rows that can still be undone, latest last. */
@@ -261,6 +262,12 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek }
         <div className="flex flex-wrap items-center gap-x-2">
           <p className="text-base">Saved with swaps this week: {formatDollars(saved)}</p>
           {onOpenWeek && <PillButton variant="text" className="-ml-3" onClick={onOpenWeek}>My week</PillButton>}
+        </div>
+      )}
+
+      {onOpenWhatIf && (
+        <div>
+          <PillButton variant="text" className="-ml-3" onClick={onOpenWhatIf}>Try a what if</PillButton>
         </div>
       )}
 

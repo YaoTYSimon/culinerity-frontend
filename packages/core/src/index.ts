@@ -73,3 +73,4 @@ export * from './whatif/explain';
 export * from './whatif/compare';
 export * from './whatif/saved';
 export * from './whatif/context';
+export * from './whatif/banned';

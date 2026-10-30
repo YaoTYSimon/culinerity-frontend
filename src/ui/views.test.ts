@@ -25,4 +25,9 @@ describe('resolveView', () => {
     expect(resolveView('tradeoffs', {})).toBe('tradeoffs');
     expect(resolveView('tradeoffs', { score: 10 })).toBe('tradeoffs');
   });
+
+  it('accepts whatif with or without a score', () => {
+    expect(resolveView('whatif', {})).toBe('whatif');
+    expect(resolveView('whatif', { score: 10 })).toBe('whatif');
+  });
 });

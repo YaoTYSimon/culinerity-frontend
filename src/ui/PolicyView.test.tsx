@@ -298,4 +298,17 @@ describe('PolicyView', () => {
     expect(within(how).getAllByText('of Australian households').length).toBeGreaterThan(0);
     expect(within(how).getAllByText('of households').length).toBeGreaterThan(0);
   });
+
+  it('only asks the dataset for budget and policy figures, never the what-if group or an ungrouped list', () => {
+    const asked: (string | undefined)[] = [];
+    const spy: BenchmarkSource = {
+      indicators: (g) => { asked.push(g); return src.indicators(g); },
+      areas: () => src.areas(), interventions: () => src.interventions(), sources: () => src.sources(),
+      updated: () => src.updated(), caveats: () => src.caveats(), notFound: (g) => src.notFound(g),
+    };
+    render(<PolicyView now={NOW} source={spy} />);
+    expect(asked.length).toBeGreaterThan(0);
+    expect(asked).not.toContain(undefined);
+    expect(asked).not.toContain('whatif');
+  });
 });

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { hasBannedWord } from './banned';
 import { DESCRIBE_NAME, explain } from './explain';
 import { runWhatIf } from './run';
 import type { Baseline, Scenario, Step, WhatIfResult } from './types';
@@ -14,9 +15,7 @@ const ex = (s: Scenario, b: Baseline = BASE) => explain(ok(runWhatIf(b, s, NOW))
 const rentUp: Step = { kind: 'rent-change', direction: 'up', by: { mode: 'percent', bp: 1000 } };
 const shift = (o: Partial<Extract<Step, { kind: 'lose-work' }>> = {}): Step => ({ kind: 'lose-work', unit: 'shifts', count: 1, payPerUnit: 12000, everyWeeks: 1, ...o });
 
-// Whole words, case-insensitive. Multi-word phrases are matched as phrases.
-export const BANNED = ['you should', 'you must', 'we recommend', 'overspend', 'fail', 'afford', 'risk', 'danger', 'hunger score', 'safe', 'good', 'bad', 'better', 'worse', 'ai', 'smart', 'predict', 'will', 'must', 'should'];
-const hasBanned = (text: string) => BANNED.some((w) => new RegExp(`(?<![A-Za-z])${w}(?![A-Za-z])`, 'i').test(text));
+const hasBanned = hasBannedWord;
 
 describe('headline', () => {
   it('rent up 10%', () => {

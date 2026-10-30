@@ -63,7 +63,8 @@ function Group({ title, caption, children }: { title: string; caption: ReactNode
 /** What the data says about food insecurity, where each figure comes from and what the evidence says helps. Read-only: no user data. */
 export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
   const sources = source.sources();
-  const all = source.indicators();
+  // Only the groups this page shows; the what-if figures belong to that view and never appear here.
+  const all = [...source.indicators('policy'), ...source.indicators('budget')];
   const byId = (id: string) => all.find((i) => i.id === id);
   const pick = (ids: string[]): Indicator[] => ids.flatMap((id) => byId(id) ?? []);
   const shown: Indicator[] = [];

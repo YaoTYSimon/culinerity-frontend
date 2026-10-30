@@ -348,6 +348,46 @@ describe('my week', () => {
       expect(stored().culturalMeals).toHaveLength(1);
     });
 
+    describe('What if', () => {
+      it('Menu opens What if, shows the notice, saves Your numbers to the profile and nothing else', () => {
+        const KEY = 'culinerity.profile.v1';
+        localStorage.setItem(KEY, JSON.stringify({ ...SEEN, score: 40 }));
+        renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
+        openMenu('What if');
+        expect(screen.getByRole('heading', { level: 1, name: 'What if' })).toBeInTheDocument();
+        expect(screen.getByText(/^General information, not advice\./)).toBeInTheDocument();
+        fireEvent.change(screen.getByLabelText('Rent or housing'), { target: { value: '450' } });
+        fireEvent.click(screen.getByRole('button', { name: 'Save my numbers' }));
+        expect(stored().housingWeekly).toBe(450);
+        expect(Object.keys(localStorage)).toEqual([KEY]);
+      });
+
+      it('its help buttons go to Swaps, Budget, Food support and Nearby', () => {
+        localStorage.setItem('culinerity.profile.v1', JSON.stringify({ ...SEEN, incomeWeekly: 900, housingWeekly: 450, otherFixedWeekly: 150, foodBudgetWeekly: 120 }));
+        renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
+        const run = () => {
+          openMenu('What if');
+          fireEvent.click(screen.getByRole('radio', { name: 'Rent changes' }));
+          fireEvent.change(screen.getByLabelText('Rent change (%)'), { target: { value: '10' } });
+          fireEvent.click(screen.getByRole('button', { name: 'Show what changes' }));
+        };
+        run();
+        fireEvent.click(screen.getByRole('button', { name: 'Budget' }));
+        expect(screen.getByRole('heading', { level: 1, name: "This week's food." })).toBeInTheDocument();
+        run();
+        fireEvent.click(screen.getByRole('button', { name: 'Food support' }));
+        expect(screen.getByRole('region', SUPPORT)).toBeInTheDocument();
+      });
+
+      it('the Budget view links to What if', () => {
+        localStorage.setItem('culinerity.profile.v1', JSON.stringify({ ...SEEN, foodBudgetWeekly: 120 }));
+        renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
+        openMenu('Budget');
+        fireEvent.click(screen.getByRole('button', { name: 'Try a what if' }));
+        expect(screen.getByRole('heading', { level: 1, name: 'What if' })).toBeInTheDocument();
+      });
+    });
+
     describe('Trade-offs', () => {
       it('Menu opens Trade-offs and saving writes only the profile key', () => {
         const KEY = 'culinerity.profile.v1';

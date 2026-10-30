@@ -12,6 +12,7 @@ import { MealsView } from './ui/MealsView';
 import { CookView } from './ui/CookView';
 import { PantryView } from './ui/PantryView';
 import { TradeoffsView } from './ui/TradeoffsView';
+import { WhatIfView } from './ui/WhatIfView';
 import { MyFood } from './ui/MyFood';
 import { PillButton } from './ui/PillButton';
 import { HebcalCredit } from './ui/HebcalCredit';
@@ -202,6 +203,21 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               onChange={update}
               onSeeSwaps={() => setView('swaps')}
               onOpenWeek={() => setView('week')}
+              onOpenWhatIf={() => setView('whatif')}
+            />
+          )}
+
+          {!creating && view === 'whatif' && (
+            <WhatIfView
+              profile={profile}
+              profileId={auth?.current?.id}
+              now={clockNow}
+              clock={() => new Date(now())}
+              onChange={update}
+              onSeeSwaps={() => setView('swaps')}
+              onOpenBudget={() => setView('budget')}
+              onOpenSupport={() => setView('support')}
+              onOpenNearby={() => setView('nearby')}
             />
           )}
 

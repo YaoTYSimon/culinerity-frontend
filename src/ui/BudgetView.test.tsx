@@ -23,6 +23,7 @@ function Harness({ initial, onSave, profileId }: { initial: Profile; onSave?: (p
       onChange={(p) => { setProfile(p); onSave?.(p); }}
       onSeeSwaps={() => {}}
       onOpenWeek={() => {}}
+      onOpenWhatIf={() => {}}
     />
   );
 }
@@ -363,5 +364,15 @@ describe('no figure literals in the budget components', () => {
     const strings = [...src.matchAll(/(["'`])((?:\\.|(?!\1)[^\\])*)\1|>([^<>{}]+)</g)].map((m) => m[2] ?? m[3] ?? '');
     const figures = strings.filter((s) => /\$\s?\d|\d\s?%/.test(s));
     expect(figures).toEqual([]);
+  });
+
+  it('has one quiet link to What if, and none when the prop is absent', () => {
+    const onOpenWhatIf = vi.fn();
+    const { unmount } = render(<BudgetView profile={{ foodBudgetWeekly: 120 }} now={NOW} onChange={() => {}} onOpenWhatIf={onOpenWhatIf} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Try a what if' }));
+    expect(onOpenWhatIf).toHaveBeenCalledTimes(1);
+    unmount();
+    render(<BudgetView profile={{ foodBudgetWeekly: 120 }} now={NOW} onChange={() => {}} />);
+    expect(screen.queryByRole('button', { name: 'Try a what if' })).not.toBeInTheDocument();
   });
 });
