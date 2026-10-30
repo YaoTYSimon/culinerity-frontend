@@ -115,3 +115,41 @@ export function buildScenario(kind: Kind, picked: readonly StepKind[], v: Values
   const checked = validateScenario(raw);
   return checked.ok ? { ok: true, scenario: checked.scenario } : { ok: false, errors, formError: WHATIF_COPY.invalidForm };
 }
+
+const dollars = (cents: Cents): string => {
+  const t = (cents / 100).toFixed(2);
+  return t.endsWith('.00') ? t.slice(0, -3) : t;
+};
+
+function fillStep(s: Step, v: Values): void {
+  switch (s.kind) {
+    case 'lose-work':
+      v['lose.unit'] = s.unit; v['lose.count'] = String(s.count); v['lose.pay'] = dollars(s.payPerUnit); v['lose.every'] = String(s.everyWeeks);
+      return;
+    case 'pay-change':
+      v['pay.dir'] = s.direction; v['pay.pct'] = String(s.bp / 100);
+      return;
+    case 'food-price-change':
+      v['food.dir'] = s.direction; v['food.pct'] = String(s.bp / 100);
+      return;
+    case 'payment-change':
+      v['payment.dir'] = s.direction; v['payment.amt'] = dollars(s.amount.cents); v['payment.per'] = s.amount.per;
+      return;
+    case 'one-off-bill':
+      v['bill.amt'] = dollars(s.cents); v['bill.week'] = String(s.week);
+      return;
+    case 'rent-change':
+      v['rent.dir'] = s.direction; v['rent.mode'] = s.by.mode;
+      if (s.by.mode === 'percent') v['rent.pct'] = String(s.by.bp / 100);
+      else { v['rent.amt'] = dollars(s.by.amount.cents); v['rent.per'] = s.by.amount.per; }
+      return;
+  }
+}
+
+/** The form state that builds this scenario again: the reverse of buildScenario. */
+export function scenarioToDraft(s: Scenario): { kind: Kind; picked: StepKind[]; values: Values } {
+  const values = emptyValues();
+  const steps = s.kind === 'combined' ? s.steps : [s];
+  steps.forEach((step) => fillStep(step, values));
+  return { kind: s.kind, picked: s.kind === 'combined' ? steps.map((x) => x.kind) : [], values };
+}

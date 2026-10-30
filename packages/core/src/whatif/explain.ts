@@ -41,6 +41,9 @@ const LABELS: Record<RowKey, string> = {
   leftAfterFood: 'Left after food',
 };
 
+/** The plain-words name of each key line, shared with the compare table. */
+export const ROW_LABELS: Record<RowKey, string> = LABELS;
+
 const money = (c: Cents): string => formatCents(Math.abs(c));
 const pct = (bp: Bp): string => `${bp / 100}%`;
 const lessMore = (c: Cents): string => (c < 0 ? 'less' : 'more');

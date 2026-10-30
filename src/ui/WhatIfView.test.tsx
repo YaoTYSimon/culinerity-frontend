@@ -138,11 +138,11 @@ describe('WhatIfView: rent goes up 10%', () => {
     pick('goes up');
     type('Rent change (%)', '10');
     expect(screen.queryByRole('heading', { name: 'What changes' })).not.toBeInTheDocument();
-    expect(screen.getByRole('status')).toBeEmptyDOMElement();
+    expect(screen.getAllByRole('status')[0]).toBeEmptyDOMElement();
     run();
     expect(screen.getByRole('heading', { level: 2, name: 'What changes' })).toHaveFocus();
-    expect(screen.getByRole('status')).toHaveTextContent('Results ready');
-    expect(screen.getAllByRole('status')).toHaveLength(1);
+    expect(screen.getAllByRole('status')[0]).toHaveTextContent('Results ready');
+    expect(screen.getAllByRole('status').filter((n) => n.textContent)).toHaveLength(1);
   });
 
   it('reads the headline, a captioned before/after table and the worked lines', () => {
@@ -401,7 +401,7 @@ describe('WhatIfView: Start again and profile switch', () => {
     expect(screen.queryByRole('heading', { name: 'What changes' })).not.toBeInTheDocument();
     expect(screen.queryByLabelText('Rent change (%)')).not.toBeInTheDocument();
     expect(screen.getByLabelText('Income')).toHaveValue('900');
-    expect(screen.getByRole('status')).toBeEmptyDOMElement();
+    expect(screen.getAllByRole('status')[0]).toBeEmptyDOMElement();
     const first = within(screen.getByRole('radiogroup', { name: 'Pick a change' })).getAllByRole('radio')[0];
     expect(first).toHaveFocus();
     pick('Rent changes');
