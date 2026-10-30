@@ -25,7 +25,7 @@ function soonLines(match: RecipeMatch, items: PantryItem[]): string[] {
     const item = items.find((i) => i.id === id);
     if (!item) return [];
     const when = item.date && (item.dateKind === 'use-by' || item.dateKind === 'best-before') ? ` (${dateWords[item.dateKind]} ${dayLabel(item.date)})` : '';
-    return [`Uses your ${item.name.toLowerCase()}${when}`];
+    return [`Uses your ${item.name.split(',')[0].toLowerCase()}${when}`];
   });
 }
 

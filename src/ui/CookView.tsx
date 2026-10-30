@@ -3,6 +3,7 @@ import { addMissingToList, allRecipes, DEFAULT_SERVES, ingredientName, matchReci
 import { defaultId } from './AddSpend';
 import { hasFoodRules, noteLines } from './cookNotes';
 import { FocusHeading } from './FocusHeading';
+import { PageHeader } from './PageHeader';
 import {
   COOK_ALL_HIDDEN, COOK_FREE_TEXT_ONLY, COOK_NO_PANTRY, COOK_NOTHING_CLOSE, COOK_NOTHING_NOW, COOK_RULES_LINE, SECTION_LABELS,
 } from './pantryCopy';
@@ -146,9 +147,13 @@ export function CookView({ profile, onProfile, now, onNavigate, newId = defaultI
 
   return (
     <div ref={root} className="grid grid-cols-[minmax(0,1fr)] gap-6 pb-2">
+      <PageHeader photo="budget-harvest">
+        <div className="grid justify-items-start gap-3">
+          <FocusHeading>Cook with what you have</FocusHeading>
+          {stepper}
+        </div>
+      </PageHeader>
       <div className="grid justify-items-start gap-3">
-        <FocusHeading>Cook with what you have</FocusHeading>
-        {stepper}
         {hasFoodRules(food) && <p className="text-sm text-pretty text-muted">{COOK_RULES_LINE}</p>}
         {result.hidden > 0 && result.matches.length > 0 && (
           <p className="text-sm text-pretty text-muted">{`${result.hidden} ${result.hidden === 1 ? 'recipe is' : 'recipes are'} hidden because of what you told us to avoid.`}</p>

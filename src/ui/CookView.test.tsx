@@ -59,6 +59,12 @@ describe('CookView basics', () => {
     expect(screen.getAllByText('Using green lentils instead of red').length).toBeGreaterThan(0);
   });
 
+  it('names an item by its first words when its name has a comma', () => {
+    show({ initial: pantryOf(dal.map((i) => (i.ingredientId === 'spinach' ? { ...i, name: 'Spinach, baby' } : i))) });
+    expect(screen.getAllByText('Uses your spinach (use by Sat 31 Oct)').length).toBeGreaterThan(0);
+    expect(screen.queryByText(/spinach, baby \(/)).toBeNull();
+  });
+
   it('rescales with the serves stepper and keeps the choice in the profile', async () => {
     const onSave = vi.fn();
     const user = show({ initial: pantryOf(stew), onSave });
