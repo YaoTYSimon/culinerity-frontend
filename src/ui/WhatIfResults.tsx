@@ -1,5 +1,6 @@
 import type { Ref } from 'react';
 import { formatCents, type Baseline, type Explanation, type ExplanationRow, type RowKey, type Scenario, type WhatIfResult } from '@culinerity/core';
+import { dayText } from './AddSpend';
 import { Disclosure } from './Disclosure';
 import { WhatIfTable } from './WhatIfTable';
 import { WhatIfPlates } from './WhatIfPlates';
@@ -32,15 +33,10 @@ const changeText = (c: number | null): string => (c === null ? '' : c === 0 ? 'N
 const shown = (r: ExplanationRow, hasBill: boolean): boolean =>
   (r.before !== null || r.after !== null) && (r.key !== 'oneOff' || hasBill);
 
-function weekLabel(iso: string): string {
-  const [y, m, d] = iso.split('-').map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '');
-}
-
 function Table({ rows, weekStart }: { rows: ExplanationRow[]; weekStart: string }) {
   return (
     <WhatIfTable
-      caption={<>Before and after, for the week starting {weekLabel(weekStart)}</>}
+      caption={<>Before and after, for the week starting {dayText(weekStart)}</>}
       headers={[null, 'Before', 'After', 'Change']}
       rows={rows.map((r) => ({
         key: r.key,

@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { MAX_SPEND_AMOUNT, MAX_SPEND_NOTE, parseMoney, SPEND_CATEGORIES, type SpendEntry } from '@culinerity/core';
+import { dayLabel } from './foodCopy';
 import { INPUT_CLASS } from './formParts';
 import { formatDollars } from './money';
 import { PillButton } from './PillButton';
@@ -41,6 +42,9 @@ export const dayText = (day: string): string => {
   const [y, m, d] = day.split('-').map(Number);
   return new Date(y, m - 1, d).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '');
 };
+
+/** How an instant (ISO timestamp) reads as its local day, e.g. "Thu 29 Oct". */
+export const instantDayText = (iso: string): string => dayLabel(localDay(new Date(iso)));
 
 export const defaultId = (): string => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 

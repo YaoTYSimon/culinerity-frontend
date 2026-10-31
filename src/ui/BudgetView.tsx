@@ -14,7 +14,7 @@ import {
   type Profile,
   type SpendEntry,
 } from '@culinerity/core';
-import { AddSpend, categoryLabel } from './AddSpend';
+import { AddSpend, categoryLabel, dayText, localDay } from './AddSpend';
 import { BenchmarkRows } from './BenchmarkRows';
 import { BudgetDisclosure } from './BudgetDisclosure';
 import { Disclosure } from './Disclosure';
@@ -50,8 +50,6 @@ const PACE_TEXT: Record<Exclude<Pace, 'no-budget'>, string> = {
   over: "You've passed this week's budget. That's okay: here are cheaper swaps.",
 };
 
-/** "Thu 29 Oct", the same shape as every other day in the app (no comma after the weekday). */
-const dayText = (d: Date): string => d.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '');
 const weekOfText = (iso: string): string => {
   const [y, m, d] = iso.split('-').map(Number);
   return `Week of ${new Date(y, m - 1, d).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`;
@@ -300,6 +298,6 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek, 
 }
 
 function note(e: SpendEntry): string {
-  const when = noBreak(dayText(new Date(e.at)));
+  const when = noBreak(dayText(localDay(new Date(e.at))));
   return e.note ? `${categoryLabel(e.category)} · ${when}` : when;
 }

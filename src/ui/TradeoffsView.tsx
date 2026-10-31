@@ -4,7 +4,7 @@ import {
   type TradeoffCategory, type TradeoffEntry,
 } from '@culinerity/core';
 import { NoteForm, AddTradeoff } from './AddTradeoff';
-import { defaultId, localDay } from './AddSpend';
+import { defaultId, instantDayText as dayText, localDay } from './AddSpend';
 import { Disclosure } from './Disclosure';
 import { EmptyPlate } from './illustrations/EmptyPlate';
 import { dayLabel } from './foodCopy';
@@ -35,7 +35,6 @@ type Added = { id: string; category: TradeoffCategory; text: string };
 /** One thing that can be undone: a single removal, or Clear all. */
 type Undo = { entries: TradeoffEntry[]; cleared: boolean };
 
-const dayText = (iso: string): string => dayLabel(localDay(new Date(iso)));
 
 function Rows({ label, entries, onRemove }: { label: string; entries: TradeoffEntry[]; onRemove: (e: TradeoffEntry) => void }) {
   return (

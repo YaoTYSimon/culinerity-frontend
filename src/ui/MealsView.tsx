@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { addMeal, culturalWeek, labelFor, removeMeal, restoreMeal, type CulturalMeal } from '@culinerity/core';
 import { AddMeal, MealDetails, withText } from './AddMeal';
-import { defaultId, localDay } from './AddSpend';
-import { dayLabel } from './foodCopy';
+import { defaultId, instantDayText as dayText } from './AddSpend';
 import { noBreak } from './noBreak';
 import { Disclosure } from './Disclosure';
 import { EmptyPlate } from './illustrations/EmptyPlate';
@@ -28,7 +27,6 @@ const STATUS_MS = 6000;
 type Added = { id: string; text: string; detailed: boolean };
 
 /** The same "Wed 4 Nov" form My food uses, in the person's own time zone. */
-const dayText = (iso: string): string => dayLabel(localDay(new Date(iso)));
 const mealName = (m: CulturalMeal): string => m.dish ?? labelFor(m.tradition);
 const mealNote = (m: CulturalMeal): string =>
   [m.dish ? labelFor(m.tradition) : null, noBreak(dayText(m.at)), m.with ? withText(m.with) : null].filter(Boolean).join(' · ');
