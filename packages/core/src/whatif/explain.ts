@@ -45,6 +45,8 @@ const LABELS: Record<RowKey, string> = {
 export const ROW_LABELS: Record<RowKey, string> = LABELS;
 
 const money = (c: Cents): string => formatCents(Math.abs(c));
+/** Amount left: money(c) when there is some, "short by $X" when costs are more than income. */
+const leftOrShort = (c: Cents): string => (c < 0 ? `short by ${money(c)}` : money(c));
 const pct = (bp: Bp): string => `${bp / 100}%`;
 const lessMore = (c: Cents): string => (c < 0 ? 'less' : 'more');
 const upDown = (d: Direction): string => `go ${d}`;
@@ -193,7 +195,7 @@ function headline(r: Ok, steps: Step[], b: Baseline): string {
   if (after < 0) return `With this change the costs you told us about would be ${money(after)} more than your income ${at.when}.`;
   if (after === 0) return `With this change the costs you told us about would use up all of your income ${at.when}.`;
   const d = after - left;
-  if (d !== 0) return `With this change you'd have ${money(d)} ${lessMore(d)} ${at.when} after the costs you told us about: ${money(after)} left instead of ${money(left)}.`;
+  if (d !== 0) return `With this change you'd have ${money(d)} ${lessMore(d)} ${at.when} after the costs you told us about: ${money(after)} left instead of ${leftOrShort(left)}.`;
 
   const food = r.before.leftAfterFood;
   const atFood = whenOf(r, 'leftAfterFood');
@@ -219,8 +221,10 @@ function worked(r: Ok, steps: Step[], b: Baseline): string[] {
     const c = change4.leftAfterCosts;
     out.push(
       c === 0
-        ? `Over four weeks the amount left after costs stays at ${money(after4.leftAfterCosts)}.`
-        : `Over four weeks that is ${money(c)} ${lessMore(c)} left after costs (${money(after4.leftAfterCosts)} instead of ${money(before4.leftAfterCosts)}).`,
+        ? after4.leftAfterCosts < 0
+          ? `Over four weeks you stay short by ${money(after4.leftAfterCosts)} after costs.`
+          : `Over four weeks the amount left after costs stays at ${money(after4.leftAfterCosts)}.`
+        : `Over four weeks that is ${money(c)} ${lessMore(c)} left after costs (${leftOrShort(after4.leftAfterCosts)} instead of ${leftOrShort(before4.leftAfterCosts)}).`,
     );
   }
   const days = focusFigures(r).foodDays;

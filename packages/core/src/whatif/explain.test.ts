@@ -91,6 +91,31 @@ describe('how, assumed, unknown', () => {
     expect(how).toContain('Left after costs = income - rent - other costs.');
     expect(how).toContain('Over four weeks that is $180 less left after costs ($1,020 instead of $1,200).');
   });
+  it('four-week line says short by when money runs out and nothing changes', () => {
+    const b: Baseline = { incomeWeekly: 0, housingWeekly: 25000, otherFixedWeekly: 0, foodBudgetWeekly: 0 };
+    const how = ex({ kind: 'pay-change', direction: 'up', bp: 1000 }, b).how;
+    expect(how).toContain('Over four weeks you stay short by $1,000 after costs.');
+    expect(how.join(' ')).not.toContain('stays at');
+  });
+  it('four-week line says short by on both sides when shortfall grows', () => {
+    const b: Baseline = { incomeWeekly: 0, housingWeekly: 25000, otherFixedWeekly: 0, foodBudgetWeekly: 0 };
+    const how = ex({ kind: 'rent-change', direction: 'up', by: { mode: 'percent', bp: 1000 } }, b).how;
+    expect(how).toContain('Over four weeks that is $100 less left after costs (short by $1,100 instead of short by $1,000).');
+  });
+  it('four-week line handles crossing from money left to short', () => {
+    const how = ex(shift({ count: 3 })).how;
+    expect(how).toContain('Over four weeks that is $1,440 less left after costs (short by $240 instead of $1,200).');
+    expect(hasBanned(how.join(' '))).toBe(false);
+  });
+  it('four-week line is unchanged when the amount left stays positive', () => {
+    const how = ex({ kind: 'food-price-change', direction: 'up', bp: 1000 }).how;
+    expect(how).toContain('Over four weeks the amount left after costs stays at $1,200.');
+  });
+  it('headline says short by when it started short and the change crosses to money left', () => {
+    const b: Baseline = { incomeWeekly: 50000, housingWeekly: 45000, otherFixedWeekly: 15000, foodBudgetWeekly: 12000 };
+    const e = ex({ kind: 'pay-change', direction: 'up', bp: 5000 }, b);
+    expect(e.headline).toContain('$150 left instead of short by $100');
+  });
   it('echoes the lost shift', () => {
     expect(ex(shift()).how).toContain("You told us you'd lose 1 shift a week and that a shift pays you $120. 1 x $120 = $120 less income each week.");
   });
