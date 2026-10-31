@@ -31,6 +31,16 @@ export function priceOf(id: string, data: RecipesData = recipesData): number | u
   return data.prices.find((p) => p.ingredient === id)?.perKg;
 }
 
+/** Sample prices as an ingredient id to dollars-per-kg map: the one place it is built. A fresh Map each call. */
+export function priceTable(data: RecipesData = recipesData): Map<string, number> {
+  return new Map(data.prices.map((p) => [p.ingredient, p.perKg]));
+}
+
+/** Every substitution, in file order. Callers get copies. */
+export function allSubstitutions(data: RecipesData = recipesData): Substitution[] {
+  return data.substitutions.map((s) => ({ ...s }));
+}
+
 /** Substitutions that can stand in for `id` (same diet flags and allergens by construction). */
 export function substitutionsFor(id: string, data: RecipesData = recipesData): Substitution[] {
   return data.substitutions.filter((s) => s.from === id).map((s) => ({ ...s }));

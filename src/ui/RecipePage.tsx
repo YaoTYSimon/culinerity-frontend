@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { ingredientName, recipeCostPerServeCents, recipesData, safetyLines, type Recipe, type RecipeMatch } from '@culinerity/core';
+import { ingredientName, priceTable, recipeCostPerServeCents, safetyLines, type Recipe, type RecipeMatch } from '@culinerity/core';
 import { useMemo } from 'react';
 import { dollars, gramsFor, ingredientStatus, timeAndServes } from './cookNotes';
 import { FocusHeading } from './FocusHeading';
@@ -27,7 +27,7 @@ const grams1 = (n: number): string => `${Math.round(n * 10) / 10} g`;
 
 /** The recipe: steps and safety lines exactly as the dataset has them; nothing here invents a time or a temperature. */
 export function RecipePage({ recipe, match, serves, onBack, onAddMissing, notes = [], servesControl, status }: Props) {
-  const prices = useMemo(() => new Map(recipesData.prices.map((p) => [p.ingredient, p.perKg])), []);
+  const prices = useMemo(() => priceTable(), []);
   const perServeCents = recipeCostPerServeCents(recipe, prices);
   const safety = safetyLines(recipe);
   const n = recipe.nutrition.perServe;

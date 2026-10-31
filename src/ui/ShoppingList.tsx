@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { clearList, listTotalCents, recipesData, removeEntry, type ShoppingEntry } from '@culinerity/core';
+import { clearList, listTotalCents, priceTable, removeEntry, type ShoppingEntry } from '@culinerity/core';
 import { formatDollars } from './money';
 import { PillButton } from './PillButton';
 import type { NavTarget } from './views';
@@ -13,7 +13,7 @@ interface Props {
 
 /** What the person chose to buy. Device only; the sample total shows only when every entry is priced. */
 export function ShoppingList({ list, onChange, onNavigate }: Props) {
-  const prices = useMemo(() => new Map(recipesData.prices.map((p) => [p.ingredient, p.perKg])), []);
+  const prices = useMemo(() => priceTable(), []);
   const total = listTotalCents(list, prices);
   return (
     <section aria-labelledby="shopping-list" className="grid gap-2">

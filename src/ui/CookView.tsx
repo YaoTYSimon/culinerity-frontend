@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { addMissingToList, allRecipes, DEFAULT_SERVES, ingredientName, matchRecipes, pantryIngredients, recipesData, suggestAdditions, type PantryState, type Profile, type RecipeMatch } from '@culinerity/core';
+import { addMissingToList, allRecipes, allSubstitutions, DEFAULT_SERVES, ingredientName, matchRecipes, pantryIngredients, priceTable, suggestAdditions, type PantryState, type Profile, type RecipeMatch } from '@culinerity/core';
 import { defaultId } from './AddSpend';
 import { hasFoodRules, noteLines } from './cookNotes';
 import { FocusHeading } from './FocusHeading';
@@ -44,10 +44,10 @@ export function CookView({ profile, onProfile, now, onNavigate, newId = defaultI
   const food = profile.foodProfile;
   const recipes = useMemo(() => allRecipes(), []);
   const highRisk = useMemo(() => new Set(pantryIngredients().filter((i) => i.highRisk).map((i) => i.id)), []);
-  const prices = useMemo(() => new Map(recipesData.prices.map((p) => [p.ingredient, p.perKg])), []);
+  const prices = useMemo(() => priceTable(), []);
   const [openId, setOpenId] = useState<string | null>(null);
   const result = useMemo(
-    () => matchRecipes({ recipes, pantry, food, now, prices, substitutions: recipesData.substitutions, highRisk, keep: openId ?? undefined }),
+    () => matchRecipes({ recipes, pantry, food, now, prices, substitutions: allSubstitutions(), highRisk, keep: openId ?? undefined }),
     [recipes, pantry, food, now, prices, highRisk, openId],
   );
 
