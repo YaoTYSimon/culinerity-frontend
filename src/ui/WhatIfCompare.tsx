@@ -1,5 +1,6 @@
 import { compare, formatCents, ROW_LABELS, runWhatIf, type Baseline, type Cents, type RowKey, type SavedWhatIf, type Scenario } from '@culinerity/core';
 import { PillRadio, type Option } from './WhatIfFields';
+import { WhatIfTable } from './WhatIfTable';
 import { needsSentence, WHATIF_COPY } from './whatIfCopy';
 
 type Pick = SavedWhatIf | 'draft';
@@ -27,18 +28,8 @@ function resolve(p: Pick, draft: Props['draft']): { scenario: Scenario; name: st
   return { scenario: p.scenario, name: p.name };
 }
 
-function Cell({ label, children }: { label: string; children: string }) {
-  return (
-    <td role="cell" className="px-4 py-2 text-base sm:table-cell">
-      <span aria-hidden="true" className="block text-sm text-muted sm:hidden">{label}</span>
-      {children}
-    </td>
-  );
-}
-
 /**
- * Two changes, each worked out with today's numbers, line by line. The roles are written out
- * because a grid layout on narrow screens can make browsers drop the table's own meaning.
+ * Two changes, each worked out with today's numbers, line by line.
  */
 export function WhatIfCompare({ a, b, baseline, now, draft }: Props) {
   const ra = resolve(a, draft);
@@ -64,26 +55,19 @@ export function WhatIfCompare({ a, b, baseline, now, draft }: Props) {
       <h3 id="whatif-compare" className="text-lg font-semibold">{WHATIF_COPY.compareResultHeading}</h3>
       <p className="text-lg font-semibold text-pretty">{c.sentence}</p>
       <p className="text-base text-pretty break-words">{WHATIF_COPY.compareFirst}: {x.name}. {WHATIF_COPY.compareSecond}: {y.name}.</p>
-      <table role="table" className="w-full border-collapse text-left">
-        <caption className="mb-2 text-left text-sm text-pretty text-muted">{WHATIF_COPY.compareCaption}</caption>
-        <thead role="rowgroup" className="sr-only sm:not-sr-only">
-          <tr role="row">
-            {[WHATIF_COPY.compareLine, WHATIF_COPY.compareFirst, WHATIF_COPY.compareSecond, WHATIF_COPY.compareDifference].map((h) => (
-              <th key={h} role="columnheader" scope="col" className="px-4 py-2 text-sm font-semibold text-muted">{h}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody role="rowgroup">
-          {rows.map((r) => (
-            <tr key={r.key} role="row" className="grid grid-cols-3 odd:bg-surface sm:table-row">
-              <th role="rowheader" scope="row" className="col-span-3 px-4 pt-2 text-base font-semibold sm:table-cell sm:py-2">{ROW_LABELS[r.key]}</th>
-              <Cell label={WHATIF_COPY.compareFirst}>{figure(r.key, r.a)}</Cell>
-              <Cell label={WHATIF_COPY.compareSecond}>{figure(r.key, r.b)}</Cell>
-              <Cell label={WHATIF_COPY.compareDifference}>{diffText(r.diff)}</Cell>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <WhatIfTable
+        caption={WHATIF_COPY.compareCaption}
+        headers={[WHATIF_COPY.compareLine, WHATIF_COPY.compareFirst, WHATIF_COPY.compareSecond, WHATIF_COPY.compareDifference]}
+        rows={rows.map((r) => ({
+          key: r.key,
+          label: ROW_LABELS[r.key],
+          cells: [
+            { label: WHATIF_COPY.compareFirst, text: figure(r.key, r.a) },
+            { label: WHATIF_COPY.compareSecond, text: figure(r.key, r.b) },
+            { label: WHATIF_COPY.compareDifference, text: diffText(r.diff) },
+          ],
+        }))}
+      />
     </section>
   );
 }

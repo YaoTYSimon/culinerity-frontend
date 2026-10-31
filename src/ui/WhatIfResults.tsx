@@ -1,6 +1,7 @@
 import type { Ref } from 'react';
 import { formatCents, type Baseline, type Explanation, type ExplanationRow, type RowKey, type Scenario, type WhatIfResult } from '@culinerity/core';
 import { Disclosure } from './Disclosure';
+import { WhatIfTable } from './WhatIfTable';
 import { WhatIfPlates } from './WhatIfPlates';
 import { WhatIfWeeks } from './WhatIfWeeks';
 import { WhatIfContext } from './WhatIfContext';
@@ -36,36 +37,21 @@ function weekLabel(iso: string): string {
   return new Date(y, m - 1, d).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '');
 }
 
-function Cell({ label, children }: { label: string; children: string }) {
-  return (
-    <td role="cell" className="px-4 py-2 text-base sm:table-cell">
-      <span aria-hidden="true" className="block text-sm text-muted sm:hidden">{label}</span>
-      {children}
-    </td>
-  );
-}
-
 function Table({ rows, weekStart }: { rows: ExplanationRow[]; weekStart: string }) {
   return (
-    <table role="table" className="w-full border-collapse text-left">
-      <caption className="mb-2 text-left text-sm text-pretty text-muted">Before and after, for the week starting {weekLabel(weekStart)}</caption>
-      <thead role="rowgroup" className="sr-only sm:not-sr-only">
-        <tr role="row" className="sm:table-row">
-          <th role="columnheader" scope="col" className="w-1/4" />
-          {['Before', 'After', 'Change'].map((h) => <th key={h} role="columnheader" scope="col" className="px-4 py-2 text-sm font-semibold text-muted">{h}</th>)}
-        </tr>
-      </thead>
-      <tbody role="rowgroup">
-        {rows.map((r) => (
-          <tr key={r.key} role="row" className="grid grid-cols-3 odd:bg-surface sm:table-row">
-            <th role="rowheader" scope="row" className="col-span-3 px-4 pt-2 text-base font-semibold sm:table-cell sm:py-2">{r.label}</th>
-            <Cell label="Before">{r.before === null ? 'Not entered' : figure(r, r.before)}</Cell>
-            <Cell label="After">{r.before === null ? 'Not known' : figure(r, r.after)}</Cell>
-            <Cell label="Change">{changeText(r.change)}</Cell>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <WhatIfTable
+      caption={<>Before and after, for the week starting {weekLabel(weekStart)}</>}
+      headers={[null, 'Before', 'After', 'Change']}
+      rows={rows.map((r) => ({
+        key: r.key,
+        label: r.label,
+        cells: [
+          { label: 'Before', text: r.before === null ? 'Not entered' : figure(r, r.before) },
+          { label: 'After', text: r.before === null ? 'Not known' : figure(r, r.after) },
+          { label: 'Change', text: changeText(r.change) },
+        ],
+      }))}
+    />
   );
 }
 
