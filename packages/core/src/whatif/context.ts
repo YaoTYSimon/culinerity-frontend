@@ -1,3 +1,4 @@
+import { FOODBANK_FIND_FOOD, HELPLINES } from '../tradeoffs/support';
 import type { Scenario, Step } from './types';
 
 /** Indicator ids shown beside a result, per change kind. Context only: never subtracted from the person's numbers. */
@@ -41,7 +42,7 @@ export const WHATIF_HELP: HelpLine[] = [
   {
     id: 'national-debt-helpline',
     label: 'National Debt Helpline (free financial counselling)',
-    phone: '1800 007 007',
+    phone: HELPLINES['national-debt-helpline'].display,
     hours: 'weekdays 9:30am to 4:30pm, chat weekdays 9am to 8pm',
     url: 'https://ndh.org.au/',
     sourceId: 'national-debt-helpline',
@@ -50,7 +51,7 @@ export const WHATIF_HELP: HelpLine[] = [
   {
     id: 'foodbank-find-food',
     label: 'Foodbank Find Food',
-    url: 'https://findfood.foodbank.org.au/',
+    url: FOODBANK_FIND_FOOD,
     sourceId: 'foodbank-find-food',
     verifiedOn: '2026-10-29',
   },
