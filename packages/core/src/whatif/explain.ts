@@ -185,6 +185,11 @@ function headline(r: Ok, steps: Step[], b: Baseline): string {
   const w = r.weeks[at.index];
   const after = w.leftAfterCosts as Cents;
 
+  if (after === left && after <= 0) {
+    return after < 0
+      ? `The costs you told us about are ${money(after)} more than your income ${at.when}, before and after this change. The change makes no difference to that.`
+      : `The costs you told us about use up all of your income ${at.when}, before and after this change. The change makes no difference to that.`;
+  }
   if (after < 0) return `With this change the costs you told us about would be ${money(after)} more than your income ${at.when}.`;
   if (after === 0) return `With this change the costs you told us about would use up all of your income ${at.when}.`;
   const d = after - left;

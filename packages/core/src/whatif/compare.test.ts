@@ -23,6 +23,25 @@ describe('compare', () => {
     expect(c.rows.find((r) => r.key === 'income')!.sentence).toBeNull();
     expect(c.rows.map((r) => r.key)).toHaveLength(7);
   });
+  it('names the period: a week only when the difference recurs every week', () => {
+    const oneOff: Step = { kind: 'one-off-bill', cents: 40000, week: 1 };
+    const oneOff3: Step = { kind: 'one-off-bill', cents: 40000, week: 3 };
+    // both recurring: every week
+    expect(compare(run(rentUp), run(shift)).sentence).toContain('a week');
+    // two one-offs in the same week: that week only
+    const same = compare(run(oneOff), run({ ...oneOff, cents: 60000 })).sentence;
+    expect(same).toBe('Second leaves $200 less in week 1 than first.');
+    expect(same).not.toContain('a week');
+    // recurring against a one-off: the difference does not repeat
+    const mixed = compare(run(shift), run(oneOff));
+    expect(mixed.sentence).toBe('Second leaves $280 less in week 1 than first.');
+    expect(mixed.rows.find((r) => r.key === 'leftAfterFood')!.sentence).toBe('Second leaves $280 less after food in week 1 than first.');
+    // different first weeks
+    const apart = compare(run(oneOff), run({ ...oneOff3, cents: 60000 })).sentence;
+    expect(apart).toContain('in the first week each change touches');
+    expect(apart).not.toContain('a week');
+    expect(JSON.stringify([mixed, apart])).not.toMatch(/better|worse/i);
+  });
   it('more is more', () => {
     expect(compare(run(shift), run(rentUp)).sentence).toBe('Second leaves $75 a week more than first.');
   });

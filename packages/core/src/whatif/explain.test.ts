@@ -33,6 +33,14 @@ describe('headline', () => {
     expect(e.headline).toContain('would be $60 more than your income');
     expect(e.shortfall).toBe(true);
   });
+  it('a shortfall that is the same before and after is not blamed on the change', () => {
+    const b: Baseline = { incomeWeekly: 50000, housingWeekly: 45000, otherFixedWeekly: 15000, foodBudgetWeekly: 12000 };
+    const e = ex({ kind: 'food-price-change', direction: 'up', bp: 1000 }, b);
+    expect(e.headline).toBe('The costs you told us about are $100 more than your income each week, before and after this change. The change makes no difference to that.');
+    expect(e.shortfall).toBe(true);
+    expect(hasBanned(e.headline)).toBe(false);
+    expect(e.rows.find((r) => r.key === 'leftAfterCosts')).toMatchObject({ before: -10000, after: -10000, change: 0 });
+  });
   it('exactly zero left uses all of income', () => {
     const e = ex(shift({ payPerUnit: 30000 }));
     expect(e.headline).toBe('With this change the costs you told us about would use up all of your income each week.');

@@ -111,6 +111,13 @@ body {
 /* Shared interaction styles, so the focus ring and colour transitions are defined once. */
 @utility focus-ring {
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink;
+  /* Forced-colors mode strips box-shadow, so the ring is drawn as a system-colour outline there. */
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+  }
 }
 @utility motion-colors {
   @apply motion-safe:transition-colors motion-safe:duration-150;
