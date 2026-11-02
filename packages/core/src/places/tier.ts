@@ -1,7 +1,7 @@
 /** Two tiers: the hand-read starter set, and places listed in bulk from an open dataset. */
 export type PlaceTier = 'checked' | 'bulk';
 
-export const BULK_KINDS = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant'] as const;
+export const BULK_KINDS = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant', 'butcher', 'fishmonger', 'deli'] as const;
 export type BulkKind = (typeof BULK_KINDS)[number];
 
 /** Licences a bulk record may carry. Apache-2.0 is absent on purpose: Foursquare-derived records are left out. */
@@ -19,8 +19,10 @@ export interface BulkPlace {
   kind: BulkKind;
   lat: number;
   lng: number;
+  /** Street address as the source gives it. Overture's `locality` is not shipped: it says "Melbourne" for most places. */
   address: string;
-  suburb: string;
+  /** Four-digit postcode from the source's address, shown beside the address; absent when the source has none. */
+  postcode?: string;
   price: 'unknown';
   /** The source's existence confidence, 0 to 1. Used to filter; never shown. */
   confidence: number;
@@ -43,11 +45,14 @@ export function tierLabel(tier: PlaceTier): string {
 }
 
 const KIND_LABELS: Record<BulkKind, string> = {
-  supermarket: 'Supermarket',
+  supermarket: 'Supermarket or grocer',
   greengrocer: 'Fresh produce',
   bakery: 'Bakery',
   takeaway: 'Takeaway',
   'cafe-restaurant': 'Cafe or restaurant',
+  butcher: 'Butcher',
+  fishmonger: 'Fishmonger',
+  deli: 'Deli',
 };
 
 /** A label from the category alone. It never says cheap, healthy or good value. */

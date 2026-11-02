@@ -18,7 +18,7 @@ describe('place tiers', () => {
     expect(CHECKED_TIER_LABEL).not.toBe(BULK_TIER_LABEL);
   });
   it('labels every bulk kind from the category only, with no health claim', () => {
-    expect(BULK_KINDS.map(bulkKindLabel)).toEqual(['Supermarket', 'Fresh produce', 'Bakery', 'Takeaway', 'Cafe or restaurant']);
+    expect(BULK_KINDS.map(bulkKindLabel)).toEqual(['Supermarket or grocer', 'Fresh produce', 'Bakery', 'Takeaway', 'Cafe or restaurant', 'Butcher', 'Fishmonger', 'Deli']);
     for (const k of BULK_KINDS) expect(bulkKindLabel(k)).not.toMatch(/health|cheap|budget|free|affordable/i);
   });
   it('never states a price or hours for a bulk place', () => {

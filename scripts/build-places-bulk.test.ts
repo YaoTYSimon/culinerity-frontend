@@ -29,10 +29,18 @@ describe('buildShards', () => {
 
   it('puts a place on a cell edge in the higher cell, deterministically', () => {
     const edge = places.find((p) => p.id === 'ovt-TEST-CELLEDGE');
-    expect(cellKey(edge.lat, edge.lng)).toBe('1_7');
-    expect(files['cells/1_7.json']).toContain('ovt-TEST-CELLEDGE');
+    expect(cellKey(edge.lat, edge.lng)).toBe('6_46');
+    expect(files['cells/6_46.json']).toContain('ovt-TEST-CELLEDGE');
   });
 
+  it('files a place by the 5-decimal position it ships, so a rounded edge point is in the shard that check-places-bulk expects', () => {
+    // Raw lat is just below the cell edge -38.585; rounded to 5 decimals it sits on the edge, in the higher cell.
+    const p = { ...places[0], id: 'ovt-TEST-ROUNDEDGE', lat: -38.5850004, lng: 144.3 };
+    expect(cellKey(p.lat, p.lng)).toBe('0_0');
+    const out = buildShards([...places, p]).files;
+    expect(out['cells/0_1.json']).toContain('ovt-TEST-ROUNDEDGE');
+    expect(out['cells/0_0.json'] ?? '').not.toContain('ovt-TEST-ROUNDEDGE');
+  });
   it('writes sorted, compact, 5-decimal shards without confidence, price or source', () => {
     for (const [, body] of shards(files)) {
       expect(body.endsWith('}\n')).toBe(true);
@@ -44,13 +52,15 @@ describe('buildShards', () => {
         expect(p).not.toHaveProperty('confidence');
         expect(p).not.toHaveProperty('price');
         expect(p).not.toHaveProperty('source');
+        expect(p).not.toHaveProperty('suburb');
+        expect(p).not.toHaveProperty('locality');
         expect(String(p.lat).split('.')[1]?.length ?? 0).toBeLessThanOrEqual(5);
       }
     }
   });
 
   it('describes cells, sources and a hash of the shard bytes in key order', () => {
-    expect(manifest).toMatchObject({ release: '2026-09-17.0', cellDeg: 0.1, box: { lat: [-38.6, -37.4], lng: [144.3, 145.8] } });
+    expect(manifest).toMatchObject({ release: '2026-09-17.0', cellDeg: 0.015, box: { lat: [-38.6, -37.4], lng: [144.3, 145.8] } });
     const keys = Object.keys(manifest.cells);
     expect(keys).toEqual([...keys].sort());
     const h = createHash('sha256');

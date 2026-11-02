@@ -1,20 +1,24 @@
 // Pure filter, de-duplication and ordering for Overture place rows. No file or network access.
 // Raw row shape (what scripts/extract-overture.mjs emits): { id, lat, lng, names.primary, taxonomy.primary,
-// confidence, operating_status?, addresses[0].{freeform, locality}, websites?[0], sources[0].dataset }.
+// confidence, operating_status?, addresses[0].{freeform, postcode}, websites?[0], sources[0].dataset }.
 import { BULK_BOX, MIN_CONFIDENCE } from './validateBulk.mjs';
 
 /**
  * [taxonomy prefix, bulk kind] pairs, measured on Overture release 2026-10-21.0 (see docs/superpowers/research/2026-11-03-bulk-places-count-report.md).
  * A prefix is matched against the taxonomy hierarchy joined with '>' (taxonomy.primary is only the leaf, e.g. "pizza_restaurant").
  * The longest matching prefix wins; a kind of null excludes that sub-tree. Not listed on purpose: bars, pubs, breweries,
- * wineries, bottle shops, convenience stores, butchers, fishmongers, health food, dessert and candy shops, flea and night markets
- * (no matching BulkKind, or not food retail; see the report).
+ * wineries, bottle shops, convenience stores, health food, dessert and candy shops, flea and night markets
+ * (no matching BulkKind, or not food retail; see the report). Butchers, fishmongers and delis were added by Ruling R2.
  */
 export const ALLOWED_TAXONOMY_PREFIXES = [
   ['shopping>food_and_beverage_store>grocery_store', 'supermarket'],
   ['shopping>food_and_beverage_store>specialty_foods_store>produce_store', 'greengrocer'],
   ['shopping>market>farmers_market', 'greengrocer'],
   ['shopping>market>public_market', 'greengrocer'],
+  ['shopping>food_and_beverage_store>butcher_shop', 'butcher'],
+  ['shopping>food_and_beverage_store>fishmonger', 'fishmonger'],
+  ['shopping>food_and_beverage_store>seafood_market', 'fishmonger'],
+  ['food_and_drink>casual_eatery>delicatessen', 'deli'],
   ['food_and_drink>casual_eatery>bakery', 'bakery'],
   ['food_and_drink>casual_eatery>fast_food_restaurant', 'takeaway'],
   ['food_and_drink>casual_eatery>sandwich_shop', 'takeaway'],
@@ -62,7 +66,7 @@ export const DATASET_LICENCES = {
 /** Overture `operating_status` values that count as open (`operating` kept for older releases). Absent is also kept. */
 const OPEN_STATUSES = ['open', 'operating'];
 
-export const DROP_REASONS = ['closed', 'no-name', 'no-address', 'no-suburb', 'low-confidence', 'outside-box', 'taxonomy', 'foursquare', 'licence'];
+export const DROP_REASONS = ['closed', 'no-name', 'no-address', 'low-confidence', 'outside-box', 'taxonomy', 'foursquare', 'licence'];
 export const DEDUPE_METERS = 50;
 
 const text = (v) => (typeof v === 'string' ? v.trim() : '');
@@ -107,8 +111,7 @@ export function filterPlace(raw, { release, minConfidence = MIN_CONFIDENCE, taxo
   const addr = raw.addresses?.[0];
   const address = text(addr?.freeform);
   if (!address) return { drop: 'no-address' };
-  const suburb = text(addr?.locality);
-  if (!suburb) return { drop: 'no-suburb' };
+  const postcode = text(addr?.postcode);
   if (typeof raw.confidence !== 'number' || !(raw.confidence >= minConfidence)) return { drop: 'low-confidence' };
   if (!inBox(raw.lat, raw.lng)) return { drop: 'outside-box' };
   const kind = kindForTaxonomy(taxonomyPath(raw.taxonomy), taxonomy);
@@ -126,7 +129,6 @@ export function filterPlace(raw, { release, minConfidence = MIN_CONFIDENCE, taxo
     lat: raw.lat,
     lng: raw.lng,
     address,
-    suburb,
     price: 'unknown',
     confidence: raw.confidence,
     source: 'overture',
@@ -134,6 +136,7 @@ export function filterPlace(raw, { release, minConfidence = MIN_CONFIDENCE, taxo
     release,
     licence,
   };
+  if (/^\d{4}$/.test(postcode)) place.postcode = postcode;
   const site = text(raw.websites?.[0]);
   if (site.startsWith('https://')) place.website = site;
   return { place };

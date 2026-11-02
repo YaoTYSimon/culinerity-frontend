@@ -18,9 +18,10 @@ export const OVERTURE_ATTRIBUTION_URL = 'https://docs.overturemaps.org/attributi
 const round5 = (n) => Math.round(n * 1e5) / 1e5;
 const gz = (s) => gzipSync(Buffer.from(s)).length;
 
-/** The fields a shard ships. `confidence`, `source`, `price` and `release` are not repeated per place. */
+/** The fields a shard ships. `confidence`, `source`, `price` and `release` are not repeated per place, and the source `locality` is never shipped (Ruling R1). */
 export function shardPlace(p) {
-  const out = { id: p.id, name: p.name, kind: p.kind, lat: round5(p.lat), lng: round5(p.lng), address: p.address, suburb: p.suburb, sourceDataset: p.sourceDataset, licence: p.licence };
+  const out = { id: p.id, name: p.name, kind: p.kind, lat: round5(p.lat), lng: round5(p.lng), address: p.address, sourceDataset: p.sourceDataset, licence: p.licence };
+  if (p.postcode !== undefined) out.postcode = p.postcode;
   if (p.website !== undefined) out.website = p.website;
   return out;
 }
@@ -33,9 +34,11 @@ export function buildShards(places, { maxShardGzip = MAX_SHARD_GZIP, maxTotalGzi
   const release = places[0].release;
   const byCell = new Map();
   for (const p of [...places].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))) {
-    const key = cellKey(p.lat, p.lng);
+    const shipped = shardPlace(p);
+    // File by the position that ships (5 decimals), so the shard always agrees with check-places-bulk and the loader.
+    const key = cellKey(shipped.lat, shipped.lng);
     if (!byCell.has(key)) byCell.set(key, []);
-    byCell.get(key).push(shardPlace(p));
+    byCell.get(key).push(shipped);
   }
   const files = {};
   const cells = {};

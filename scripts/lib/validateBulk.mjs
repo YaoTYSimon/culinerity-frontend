@@ -1,6 +1,6 @@
 // Pure validator for bulk (Overture-derived) places. No file or network access.
 // Keep the two lists below equal to BULK_KINDS and BULK_LICENCES in packages/core/src/places/tier.ts (a test checks).
-export const BULK_KIND_LIST = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant'];
+export const BULK_KIND_LIST = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant', 'butcher', 'fishmonger', 'deli'];
 export const BULK_LICENCE_LIST = ['CDLA-Permissive-2.0', 'CC0-1.0'];
 // Greater Melbourne box, the same one build-places.mjs uses.
 export const BULK_BOX = { lat: [-38.6, -37.4], lng: [144.3, 145.8] };
@@ -14,7 +14,9 @@ const inRange = (v, [lo, hi]) => typeof v === 'number' && Number.isFinite(v) && 
 export function validateBulkPlace(p, { minConfidence = MIN_CONFIDENCE } = {}) {
   const errs = [];
   if (typeof p.id !== 'string' || !/^ovt-\S+$/.test(p.id)) errs.push('id must be "ovt-" plus the Overture id');
-  for (const k of ['name', 'address', 'suburb', 'release']) if (!nonEmpty(p[k])) errs.push(`${k} must be a non-empty string`);
+  for (const k of ['name', 'address', 'release']) if (!nonEmpty(p[k])) errs.push(`${k} must be a non-empty string`);
+  if (p.postcode !== undefined && !(typeof p.postcode === 'string' && /^\d{4}$/.test(p.postcode))) errs.push('postcode must be four digits when present');
+  if ('suburb' in p || 'locality' in p) errs.push('suburb and locality are not shipped: the source locality is not trustworthy');
   if (!BULK_KIND_LIST.includes(p.kind)) errs.push('bad kind');
   if (!inRange(p.lat, BULK_BOX.lat)) errs.push('lat must be a number inside Greater Melbourne');
   if (!inRange(p.lng, BULK_BOX.lng)) errs.push('lng must be a number inside Greater Melbourne');

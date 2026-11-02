@@ -1,7 +1,7 @@
 // Grid cells over the Greater Melbourne box. Pure.
 import { BULK_BOX } from './validateBulk.mjs';
 
-export const CELL_DEG = 0.1;
+export const CELL_DEG = 0.015;
 export const CELL_ORIGIN = { lat: BULK_BOX.lat[0], lng: BULK_BOX.lng[0] };
 
 const round6 = (n) => Math.round(n * 1e6) / 1e6;

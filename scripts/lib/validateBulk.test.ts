@@ -10,7 +10,7 @@ const good = () => ({
   lat: -37.8,
   lng: 144.96,
   address: '1 Example St',
-  suburb: 'Carlton',
+  postcode: '3053',
   price: 'unknown',
   confidence: 0.9,
   source: 'overture',
@@ -38,8 +38,18 @@ describe('validateBulkPlace', () => {
     expect(errs((p) => (p.priceBasis = 'stated'))).toMatch(/priceBasis/);
     expect(errs((p) => (p.hours = '9 to 5'))).toMatch(/hours/);
   });
-  it('rejects a missing name, address, suburb or release', () => {
-    for (const k of ['name', 'address', 'suburb', 'release']) expect(errs((p) => (p[k] = '  '))).toMatch(new RegExp(k));
+  it('rejects a missing name, address or release', () => {
+    for (const k of ['name', 'address', 'release']) expect(errs((p) => (p[k] = '  '))).toMatch(new RegExp(k));
+  });
+  it('takes an optional four-digit postcode and refuses a suburb or locality', () => {
+    expect(errs((p) => delete p.postcode)).toBe('');
+    expect(errs((p) => (p.postcode = '30'))).toMatch(/postcode/);
+    expect(errs((p) => (p.postcode = 3053))).toMatch(/postcode/);
+    expect(errs((p) => (p.suburb = 'Melbourne'))).toMatch(/suburb/);
+    expect(errs((p) => (p.locality = 'Melbourne'))).toMatch(/suburb/);
+  });
+  it('accepts the fresh-food kinds', () => {
+    for (const kind of ['butcher', 'fishmonger', 'deli']) expect(errs((p) => (p.kind = kind))).toBe('');
   });
   it('rejects coordinates outside Greater Melbourne or not numbers', () => {
     expect(errs((p) => (p.lat = -33.9))).toMatch(/lat/);

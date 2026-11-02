@@ -365,8 +365,8 @@
   },
   {
    "id": "TEST-CELLEDGE",
-   "lat": -37.9,
-   "lng": 144.4,
+   "lat": -37.91,
+   "lng": 144.39,
    "names": {
     "primary": "Test Cell Boundary (synthetic)"
    },
