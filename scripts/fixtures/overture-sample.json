@@ -1,0 +1,957 @@
+{
+ "_note": "TEST DATA ONLY. Invented rows in Overture shape; none is a real place. Names, ids and addresses are made up.",
+ "taxonomy": [
+  [
+   "test.supermarket",
+   "supermarket"
+  ],
+  [
+   "test.produce",
+   "greengrocer"
+  ],
+  [
+   "test.bakery",
+   "bakery"
+  ],
+  [
+   "test.takeaway",
+   "takeaway"
+  ],
+  [
+   "test.cafe",
+   "cafe-restaurant"
+  ]
+ ],
+ "rows": [
+  {
+   "id": "TEST-001",
+   "lat": -37.45,
+   "lng": 144.35,
+   "names": {
+    "primary": "Test Place TEST-001 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.supermarket.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "1 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-002",
+   "lat": -37.540000000000006,
+   "lng": 144.47,
+   "names": {
+    "primary": "Test Place TEST-002 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.produce.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "2 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "Microsoft"
+    }
+   ],
+   "websites": [
+    "https://example.invalid/test"
+   ]
+  },
+  {
+   "id": "TEST-003",
+   "lat": -37.63,
+   "lng": 144.59,
+   "names": {
+    "primary": "Test Place TEST-003 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.bakery.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "3 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "PinMeTo"
+    }
+   ]
+  },
+  {
+   "id": "TEST-004",
+   "lat": -37.720000000000006,
+   "lng": 144.71,
+   "names": {
+    "primary": "Test Place TEST-004 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.takeaway.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "4 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "BrightQuery"
+    }
+   ],
+   "websites": [
+    "https://example.invalid/test"
+   ]
+  },
+  {
+   "id": "TEST-005",
+   "lat": -37.81,
+   "lng": 144.82999999999998,
+   "names": {
+    "primary": "Test Place TEST-005 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "5 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "AllThePlaces"
+    }
+   ]
+  },
+  {
+   "id": "TEST-006",
+   "lat": -37.900000000000006,
+   "lng": 144.95,
+   "names": {
+    "primary": "Test Place TEST-006 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.supermarket.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "6 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ],
+   "websites": [
+    "https://example.invalid/test"
+   ]
+  },
+  {
+   "id": "TEST-007",
+   "lat": -37.99,
+   "lng": 145.07,
+   "names": {
+    "primary": "Test Place TEST-007 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.produce.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "7 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "Microsoft"
+    }
+   ]
+  },
+  {
+   "id": "TEST-008",
+   "lat": -38.080000000000005,
+   "lng": 145.19,
+   "names": {
+    "primary": "Test Place TEST-008 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.bakery.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "8 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "PinMeTo"
+    }
+   ],
+   "websites": [
+    "https://example.invalid/test"
+   ]
+  },
+  {
+   "id": "TEST-009",
+   "lat": -38.17,
+   "lng": 145.31,
+   "names": {
+    "primary": "Test Place TEST-009 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.takeaway.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "9 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "BrightQuery"
+    }
+   ]
+  },
+  {
+   "id": "TEST-010",
+   "lat": -38.260000000000005,
+   "lng": 145.43,
+   "names": {
+    "primary": "Test Place TEST-010 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "10 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "AllThePlaces"
+    }
+   ],
+   "websites": [
+    "https://example.invalid/test"
+   ]
+  },
+  {
+   "id": "TEST-011",
+   "lat": -38.35,
+   "lng": 145.54999999999998,
+   "names": {
+    "primary": "Test Place TEST-011 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.supermarket.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "11 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-012",
+   "lat": -38.440000000000005,
+   "lng": 145.67,
+   "names": {
+    "primary": "Test Place TEST-012 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.produce.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "12 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "Microsoft"
+    }
+   ],
+   "websites": [
+    "https://example.invalid/test"
+   ]
+  },
+  {
+   "id": "TEST-EDGE-SW",
+   "lat": -38.6,
+   "lng": 144.3,
+   "names": {
+    "primary": "Test Edge South West (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "13 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-EDGE-NE",
+   "lat": -37.4,
+   "lng": 145.8,
+   "names": {
+    "primary": "Test Edge North East (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "14 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-CELLEDGE",
+   "lat": -37.9,
+   "lng": 144.4,
+   "names": {
+    "primary": "Test Cell Boundary (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "15 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-CLOSED-1",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-CLOSED-1 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "16 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ],
+   "operating_status": "permanently_closed"
+  },
+  {
+   "id": "TEST-CLOSED-2",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-CLOSED-2 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "17 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ],
+   "operating_status": "temporarily_closed"
+  },
+  {
+   "id": "TEST-NONAME-1",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "  "
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "18 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-NONAME-2",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {},
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "19 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-NOADDR",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-NOADDR (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-NOSUBURB",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-NOSUBURB (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "1 Test Street"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-LOWCONF-1",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-LOWCONF-1 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.69,
+   "addresses": [
+    {
+     "freeform": "22 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-LOWCONF-2",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-LOWCONF-2 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.2,
+   "addresses": [
+    {
+     "freeform": "23 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-OUT-1",
+   "lat": -33.87,
+   "lng": 151.21,
+   "names": {
+    "primary": "Test Place TEST-OUT-1 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "24 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-OUT-2",
+   "lat": -37.3999,
+   "lng": 145,
+   "names": {
+    "primary": "Test Place TEST-OUT-2 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "25 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-OUT-3",
+   "lat": -37.8,
+   "lng": 145.8001,
+   "names": {
+    "primary": "Test Place TEST-OUT-3 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "26 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-TAX-1",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-TAX-1 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.hardware_store"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "27 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-TAX-2",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-TAX-2 (synthetic)"
+   },
+   "taxonomy": {},
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "28 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-FSQ-1",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-FSQ-1 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "29 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "foursquare"
+    }
+   ]
+  },
+  {
+   "id": "TEST-FSQ-2",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-FSQ-2 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "30 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "Foursquare"
+    }
+   ]
+  },
+  {
+   "id": "TEST-LIC-1",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-LIC-1 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "31 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "TestUnlistedDataset"
+    }
+   ]
+  },
+  {
+   "id": "TEST-LIC-2",
+   "lat": -37.8,
+   "lng": 144.96,
+   "names": {
+    "primary": "Test Place TEST-LIC-2 (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "32 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": []
+  },
+  {
+   "id": "TEST-DUP-A1",
+   "lat": -37.7,
+   "lng": 145.1,
+   "names": {
+    "primary": "Test Dup Alpha (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.95,
+   "addresses": [
+    {
+     "freeform": "33 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-DUP-A2",
+   "lat": -37.70015,
+   "lng": 145.1,
+   "names": {
+    "primary": "TEST DUP ALPHA synthetic"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.8,
+   "addresses": [
+    {
+     "freeform": "34 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-DUP-B2",
+   "lat": -37.6,
+   "lng": 145.2,
+   "names": {
+    "primary": "Test Dup Beta (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "35 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-DUP-B1",
+   "lat": -37.6,
+   "lng": 145.2,
+   "names": {
+    "primary": "test dup beta (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "36 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-FAR-C1",
+   "lat": -37.5,
+   "lng": 145.1,
+   "names": {
+    "primary": "Test Far Gamma (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "37 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-FAR-C2",
+   "lat": -37.502,
+   "lng": 145.1,
+   "names": {
+    "primary": "Test Far Gamma (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "38 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-NEAR-D1",
+   "lat": -37.55,
+   "lng": 145.3,
+   "names": {
+    "primary": "Test Delta One (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "39 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  },
+  {
+   "id": "TEST-NEAR-D2",
+   "lat": -37.55,
+   "lng": 145.3,
+   "names": {
+    "primary": "Test Delta Two (synthetic)"
+   },
+   "taxonomy": {
+    "primary": "test.cafe.x"
+   },
+   "confidence": 0.9,
+   "addresses": [
+    {
+     "freeform": "40 Test Street",
+     "locality": "Testville"
+    }
+   ],
+   "sources": [
+    {
+     "dataset": "meta"
+    }
+   ]
+  }
+ ]
+}
