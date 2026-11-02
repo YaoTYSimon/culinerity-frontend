@@ -61,7 +61,7 @@ Research doc section 11 records the user's answers and the rulings.
 
 `scripts/lib/validateBulk.mjs` (+ `.d.mts`): `validateBulkPlace`, `validateBulkPlaces`, `MIN_CONFIDENCE` 0.7. Rejects a stated price, any hours, missing name/address/suburb/release, coordinates outside the box, confidence below the floor or NaN, bad kind or id, Foursquare datasets, licences off the allow-list, non-https websites, duplicate ids and mixed releases. Tests in `validateBulk.test.ts` (also pins the lists equal to the core constants).
 
-### Task 1.2: Extraction script (scratch, reproducible) [fixture work needs no download; the real run does]
+### Task 1.2: Extraction script (DONE: filter and script written and fixture-tested; the script is NOT yet run, that is Task 2.1)
 
 **Files:** create `scripts/lib/overtureFilter.mjs` (pure), `scripts/lib/overtureFilter.test.ts`, `scripts/fixtures/overture-sample.json`, `scripts/extract-overture.mjs`.
 **Interface:**
@@ -81,7 +81,7 @@ Drop reasons (a fixed list, counted in the report): `closed` (operating_status p
 - [ ] `extract-overture.mjs`: `--release <id>` and `--out <dir>` required; exits with an error if `--out` is inside the repo (`path.relative`); prints the exact DuckDB or CLI command it ran (shape in research doc section 4, bbox 144.3,-38.6,145.8,-37.4); applies `filterPlace`, `dedupe`, `sortPlaces`; writes `bulk-places.json` and `drop-counts.json` to `--out`. **Do not run it until the user confirms duckdb is installed and approves the download.**
 - [ ] Commit `feat: filter and de-duplicate Overture places (fixture-tested)`.
 
-### Task 1.3: Shard builder
+### Task 1.3: Shard builder (DONE, fixture-tested; real data not built yet)
 
 **Files:** create `scripts/lib/cells.mjs` (+ test), `scripts/build-places-bulk.mjs` (+ `.d.mts`, test); outputs `public/places/manifest.json` and `public/places/cells/<ix>_<iy>.json`; add `"build:places-bulk"` to `package.json`.
 **Interface:**
@@ -95,7 +95,7 @@ Shard file: `{ release, places: [ { id, name, kind, lat, lng, address, suburb, w
 **Tests:** every place lands in exactly one shard; a place exactly on a cell edge is placed deterministically (table test); `neighbours` returns 9 keys for an interior cell and fewer at the box edge; each shard is under 60 KB gzipped and the total under 2 MB gzipped (build exits non-zero otherwise; test with a synthetic oversized input); two runs are byte-identical; `hash` is SHA-256 of the shard bytes in key order.
 - [ ] Commit `feat: build same-origin place shards and a manifest`.
 
-### Task 1.4b: CI freshness check for the manifest
+### Task 1.4b: CI freshness check for the manifest (DONE; covered by npm test and npm run check:places-bulk)
 
 **Files:** modify `package.json` (`check:places-bulk`); create `scripts/check-places-bulk.mjs` (+ test); a vitest test runs it so `npm test` covers it.
 **Tests (temp-directory fixtures):** manifest hash mismatch fails; a shard whose count differs from the manifest fails; a shard place whose `sourceDataset` is not in `manifest.sources` fails; a shard file not listed in the manifest fails; every shard place passes `validateBulkPlace`. When `public/places/manifest.json` is absent the check passes and says "no bulk places yet".
