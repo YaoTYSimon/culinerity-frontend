@@ -105,7 +105,7 @@ All counts are **planning assumptions, not measurements**.
 
 ## 9. Staged plan (full task list in the plan file)
 
-See [the DRAFT plan](../plans/2026-10-29-melbourne-food-places-database.md).
+See [the plan](../plans/2026-10-29-melbourne-food-places-database.md).
 
 - **Stage 0, licences settled:** user decisions D1 to D5 below; add an in-app "Data licences" page text.
 - **Stage 1, pipeline and schema:** scratch, deterministic script (pinned Overture release, sorted output, no network at validation time); schema extension (`origin`, `confidence`, `release`, `priceBand: 'unknown'`, `kind` additions); a validator that rejects the same things as today plus the new rules.
@@ -132,3 +132,19 @@ Decisions for the user:
 - **D7:** may cafes and restaurants appear at all if they cannot show price? (Recommended: yes, with "Price not known".)
 
 Not legal advice. The ODbL reading above follows the licence text and OSMF's non-binding guidance and should be checked by someone qualified before D1 is answered "yes".
+
+## 11. Decisions (recorded 2026-11-03)
+
+The user answered D1, D2, D3 and D5 by saying "yes to all" to the recommendations in section 10. D4, D6 and D7 were left to the implementer as conservative rulings; they are recorded in the plan and are open for the user to confirm.
+
+| Id | Decision | Answer |
+|----|----------|--------|
+| D1 | OpenStreetMap | **No.** Overture only. The optional OSM stage is dropped. No ODbL duties arise. |
+| D2 | Foursquare-derived Overture records | **Left out of the first pass.** Dropped at extraction, so no Apache-2.0 notice is shipped. |
+| D3 | Show unchecked places | **Yes**, marked "Not checked by us". The 15 hand-verified places remain a separate "Checked by us" tier. |
+| D4 | Quality bar and staleness cut-off | **Ruling** (see plan, "Rulings"). |
+| D5 | Charity and operator data | **Public-licence data only.** No operator, Foodbank, SecondBite or OzHarvest locator is scraped; link out only. No permission request is needed. |
+| D6 | Repo public / problem reports | **Ruling** (see plan). |
+| D7 | Cafes and restaurants without a price | **Ruling** (see plan). |
+
+Wording note: the earlier recommendation text "Listed, not individually checked" is replaced by the user-facing label "Not checked by us".
