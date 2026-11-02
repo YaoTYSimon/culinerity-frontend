@@ -32,6 +32,7 @@ export * from './benchmarks/source';
 export * from './benchmarks/areas';
 export * from './places/types';
 export * from './places/tier';
+export * from './places/bulk';
 export * from './places/source';
 export * from './sources/mock/mockPlaceSource';
 export * from './budget/money';

@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { InMemoryProfileStore, StaticPlaceSource, shareText, weekSummary, type LocationProvider } from '@culinerity/core';
+import { InMemoryProfileStore, StaticPlaceSource, cellKey, cellPath, loadBulkFor, shareText, weekSummary, type LocationProvider } from '@culinerity/core';
 import App from '../App';
 import { LocationProviderContext } from '../location/LocationContext';
 import { createServices } from '../services/container';
@@ -158,6 +158,35 @@ describe('full flow (spec 23, 24)', () => {
       expect(href).toContain(l.getAttribute('aria-label')!.replace(/^Open /, '').replace(/ in Maps$/, ''));
     });
     container.querySelectorAll('img').forEach((img) => expect(leaks(img.src, DIGITS)).toBe(false));
+  });
+});
+
+describe('bulk place requests reveal only a coarse cell', () => {
+  const requested = async (pos: { lat: number; lng: number }) => {
+    const urls: string[] = [];
+    await loadBulkFor(pos, async (key) => {
+      urls.push(cellPath(key));
+      return { release: '2026-10-21.0', places: [] };
+    });
+    return urls;
+  };
+
+  it('every request is a same-origin cell path with no coordinate, rounded or raw', async () => {
+    const urls = await requested(RAW);
+    expect(urls).toHaveLength(9);
+    for (const u of urls) {
+      expect(u).toMatch(/^\/places\/cells\/\d+_\d+\.json$/);
+      expect(leaks(u, [...DIGITS, '-37.813', '144.963', 'Footscray'])).toBe(false);
+    }
+  });
+  it('the cell is coarse: points hundreds of metres apart ask for the same cells', async () => {
+    const a = await requested(RAW);
+    const b = await requested({ lat: RAW.lat + 0.0003, lng: RAW.lng + 0.0003 });
+    expect(cellKey(RAW.lat, RAW.lng)).toBe(cellKey(RAW.lat + 0.0003, RAW.lng + 0.0003));
+    expect(b).toEqual(a);
+  });
+  it('a position outside Greater Melbourne sends no request at all', async () => {
+    expect(await requested({ lat: -33.87, lng: 151.2 })).toEqual([]);
   });
 });
 

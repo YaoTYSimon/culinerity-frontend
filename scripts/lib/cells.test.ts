@@ -1,6 +1,8 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest';
+import { BULK_BOX as CORE_BOX, BULK_CELL_DEG, cellKey as coreCellKey, neighbourKeys } from '../../packages/core/src/places/bulk';
 import { CELL_DEG, cellKey, neighbours } from './cells.mjs';
+import { BULK_BOX } from './validateBulk.mjs';
 
 describe('cellKey', () => {
   it('uses 0.015 degree cells from the box corner', () => {
@@ -17,6 +19,22 @@ describe('cellKey', () => {
     [-37.4001, 145.7999, '99_79'],
   ])('puts (%s, %s) in %s', (lat, lng, key) => {
     expect(cellKey(lat, lng)).toBe(key);
+  });
+});
+
+describe('core loader maths equals the script', () => {
+  const points: Array<[number, number]> = [
+    [-38.6, 144.3], [-37.4, 145.8], [-37.8136, 144.9631], [-37.91, 144.39], [-38.585, 144.315],
+    [-37.4001, 145.7999], [-38.15, 144.36], [-37.9, 145.2], [-37.7, 144.7], [-38.3, 145.05],
+  ];
+  it('shares the box and the cell size', () => {
+    expect(BULK_CELL_DEG).toBe(CELL_DEG);
+    expect(CORE_BOX.lat).toEqual(BULK_BOX.lat);
+    expect(CORE_BOX.lng).toEqual(BULK_BOX.lng);
+  });
+  it.each(points)('gives the same key and neighbours for (%s, %s)', (lat, lng) => {
+    expect(coreCellKey(lat, lng)).toBe(cellKey(lat, lng));
+    expect(neighbourKeys(cellKey(lat, lng))).toEqual(neighbours(cellKey(lat, lng)));
   });
 });
 

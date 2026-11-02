@@ -24,8 +24,8 @@ export interface BulkPlace {
   /** Four-digit postcode from the source's address, shown beside the address; absent when the source has none. */
   postcode?: string;
   price: 'unknown';
-  /** The source's existence confidence, 0 to 1. Used to filter; never shown. */
-  confidence: number;
+  /** The source's existence confidence, 0 to 1. Used to filter before sharding; never shown, and shards do not carry it. */
+  confidence?: number;
   website?: string;
   source: 'overture';
   /** The contributing dataset named in Overture's `sources` (for example `meta`). */

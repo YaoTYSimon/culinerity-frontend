@@ -30,9 +30,20 @@ Format: what, why, cost if wrong.
 - **Ruling, schema deviation:** the draft extended `PlaceKind` and `PriceBand`. That would break every `Record<PlaceKind, ...>` and mislabel bulk places as having a price band. Instead `Place` is untouched and `BulkPlace` is a separate type with `price: 'unknown'` and no hours field. The `label` field is dropped; the label is derived from the kind (`bulkKindLabel`), so it cannot drift. Cost if wrong: the UI handles two types (planned in Task 2.3).
 - **Ruling, City of Melbourne CLUE:** not used in the first pass (Overture is the only list). If Task 2.1 uses it for duplicate matching, add its CC BY credit to `buildDataLicences` in the same commit.
 
+### Controller rulings of 2026-11-03 (flagged for the user to confirm)
+
+Format: Ruling: what, why, cost if wrong.
+
+- **Ruling R1, no locality as suburb:** Overture `locality` is "Melbourne" for 79 percent of kept rows, so it is not shipped or shown. A bulk place shows its street address and, when the source has one, a four-digit postcode (`BulkPlace.postcode`, optional); `suburb` is removed from `BulkPlace`, the shard and the validator (which rejects a `suburb` or `locality` field), and the `no-suburb` drop reason is gone. Typed suburb or postcode matching still goes only through the existing ABS POA centroid table; the bulk postcode is display only. Why: a locality that is wrong for most rows would mislead. Cost if wrong: people see no suburb name on bulk rows; rows with no postcode show the address alone.
+- **Ruling R2, fresh-food kinds:** `BULK_KINDS` gains `butcher`, `fishmonger` and `deli` (taxonomy: butcher_shop; fishmonger and seafood_market; casual_eatery>delicatessen). Convenience stores, bars, pubs and bottle shops stay out. The Fresh filter matches greengrocer, butcher and fishmonger only (not supermarket or deli). Why: fresh food is the point of Nearby and these were the largest gap. Cost if wrong: about 540 more rows to sample-check; one allow-list line each removes them.
+- **Ruling R3, label:** the supermarket label is "Supermarket or grocer" everywhere, because the allow-list maps all grocery stores to it. Cost if wrong: a longer label.
+- **Ruling R4, closed places:** `operating_status` is null for about 99 percent of rows, so it cannot find closed places. The confidence floor stays 0.7 and the Task 4.2 sample check is the only real test of closure. Until Task 4.2 passes, bulk data must not be committed or shown. Cost if wrong: the sample may show the floor is too low and a kind must be dropped.
+- **Ruling R5, cell size (made while fitting the budget):** `CELL_DEG` is 0.015 (about 1.3 to 1.7 km), not 0.1. At 0.1 the CBD shard was 203 KB gzip; 0.02 missed by 165 bytes; 0.015 fits. Measured on release 2026-10-21.0 (19,263 places): 1,351 shards, largest 53,618 bytes gzip (limit 61,440), total 1,460,534 bytes gzip (limit 2,097,152); worst 3x3 request about 137 KB gzip. No per-cell cap was needed and no budget was weakened. Cost if wrong: the nearest 3x3 block guarantees only about 1.3 km of coverage, so outer suburbs may see few or no places; a wider ring or a larger cell with a per-cell cap would be the alternatives, and Task 2.3 should show an empty state. Shards are filed by the 5-decimal position they ship.
+- **Shards are not committed yet:** shards are committed only after the Task 4.2 quality gate (see Task 4.3), so they stay in scratch.
+
 ## Global Constraints
 
-- **No invented data.** A bulk place has name, coordinates, address text and category *exactly as the source gives them*. Price is `unknown`. Hours are absent (no field exists). No "healthy" or "cheap" claim: only category labels ("Supermarket", "Fresh produce", "Bakery", "Takeaway", "Cafe or restaurant").
+- **No invented data.** A bulk place has name, coordinates, address text, postcode and category *exactly as the source gives them*. Price is `unknown`. Hours are absent (no field exists). No "healthy" or "cheap" claim: only category labels ("Supermarket or grocer", "Fresh produce", "Bakery", "Takeaway", "Cafe or restaurant", "Butcher", "Fishmonger", "Deli").
 - **Licences:** only Overture Places records under CDLA-Permissive-2.0 or CC0-1.0 (the validator's allow-list), City of Melbourne CC BY only if Task 2.1 uses it, and facts read by hand from operator or council pages. Never: OpenStreetMap (D1), Foursquare-derived Overture records (D2), chain or charity locators, Foodbank/SecondBite/OzHarvest locators (D5), Google, Apple, Yelp, Tripadvisor, Zomato.
 - **Privacy:** no third-party requests; shard URLs are same-origin and cell-based; position is never stored or sent; the README states that the host can see which coarse cell was fetched.
 - **Raw datasets are never committed.** The repo gets only the generated shards, the manifest, the quality report and the filter-count report.
@@ -86,12 +97,12 @@ Drop reasons (a fixed list, counted in the report): `closed` (operating_status p
 **Files:** create `scripts/lib/cells.mjs` (+ test), `scripts/build-places-bulk.mjs` (+ `.d.mts`, test); outputs `public/places/manifest.json` and `public/places/cells/<ix>_<iy>.json`; add `"build:places-bulk"` to `package.json`.
 **Interface:**
 ```js
-export const CELL_DEG = 0.1;
+export const CELL_DEG = 0.015; // Ruling R5 (was 0.1)
 export function cellKey(lat, lng, cellDeg = CELL_DEG) // '<ix>_<iy>': ix = floor(round6((lng - 144.3) / cellDeg)), iy = floor(round6((lat + 38.6) / cellDeg))
 export function neighbours(key)                        // the 9 keys, row-major, including the key itself, clipped to the box
 // manifest: { release, cellDeg, box, count, cells: { [key]: { n, bytes } }, sources: [{ dataset, licence, url }], hash }
 ```
-Shard file: `{ release, places: [ { id, name, kind, lat, lng, address, suburb, website?, sourceDataset, licence } ] }`, sorted by id, coordinates to 5 decimals, sorted keys, trailing newline. `confidence` is not shipped (never shown); `source` and `price` are re-added by the loader.
+Shard file: `{ release, places: [ { id, name, kind, lat, lng, address, postcode?, website?, sourceDataset, licence } ] }`, sorted by id, coordinates to 5 decimals, sorted keys, trailing newline. `confidence` is not shipped (never shown); `source` and `price` are re-added by the loader.
 **Tests:** every place lands in exactly one shard; a place exactly on a cell edge is placed deterministically (table test); `neighbours` returns 9 keys for an interior cell and fewer at the box edge; each shard is under 60 KB gzipped and the total under 2 MB gzipped (build exits non-zero otherwise; test with a synthetic oversized input); two runs are byte-identical; `hash` is SHA-256 of the shard bytes in key order.
 - [ ] Commit `feat: build same-origin place shards and a manifest`.
 
@@ -111,7 +122,7 @@ Shard file: `{ release, places: [ { id, name, kind, lat, lng, address, suburb, w
 - [ ] Look at the confidence histogram; confirm or adjust the 0.7 floor (never below 0.6).
 - [ ] Commit `docs: measured Overture counts for Greater Melbourne`, then `feat: allow the measured food taxonomy`.
 
-### Task 2.2: Core loader and ranking
+### Task 2.2: Core loader and ranking (DONE; real shards built in scratch and within budget)
 
 **Files:** create `packages/core/src/places/bulk.ts` and `bulk.test.ts`.
 **Interface (platform-free):**
@@ -124,6 +135,7 @@ export function loadBulkFor(pos: { lat: number; lng: number }, fetcher: CellFetc
 export function rankBulk(places: BulkPlace[], pos: { lat: number; lng: number }): Array<{ place: BulkPlace; distanceM: number }>; // distance, then name, then id
 export function bulkStaleness(release: string, today: string): 'fresh' | 'old' | 'hidden'; // 6 and 12 months (Ruling D4a/b)
 ```
+**Built as:** `bulk.ts` also exports `BULK_BOX`, `BULK_CELL_DEG`, `cellPath(key)` (the only URL form, `/places/cells/<key>.json`), `bulkMatchesFilter` and `ShardPlace`; `rankBulk(places, pos, filter = 'all')`. The cell maths is pinned to the script in `scripts/lib/cells.test.ts`. `BulkPlace.confidence` is optional (shards do not carry it). The loader sends the fetcher a cell key only, so the request reveals a coarse cell (about 1.5 km) and nothing else; `nearbyPrivacy.test.tsx` checks it. Ranking is by distance alone (then name, then id); the page lists the checked tier first and bulk under its own heading. A shard of a different release, or a malformed one, counts as a failed cell.
 **Tests:** one failing cell does not break the others and appears in `failedCells`; a position outside the box loads nothing and never calls the fetcher; no storage access; ties break by name then id; `bulkStaleness` at exactly 6 and 12 months; no bulk place passes any Free or Low cost filter (use the existing price filter in `rank.ts`; add a test with `price: 'unknown'`); `cellKey` equals the script's for a table of 10 points (import the `.mjs` in the test).
 - [ ] Commit `feat: load and rank bulk places by cell`.
 
