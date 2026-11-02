@@ -1,11 +1,12 @@
-export const ALLOWED_TAXONOMY_PREFIXES: Array<[string, string]>;
+export const ALLOWED_TAXONOMY_PREFIXES: Array<[string, string | null]>;
 export const DATASET_LICENCES: Record<string, string>;
 export const DROP_REASONS: string[];
 export const DEDUPE_METERS: number;
-export function kindForTaxonomy(taxonomy: string | undefined, table?: Array<[string, string]>): string | null;
+export function taxonomyPath(taxonomy: { primary?: string; hierarchy?: string[] } | undefined): string | undefined;
+export function kindForTaxonomy(taxonomy: string | undefined, table?: Array<[string, string | null]>): string | null;
 export function normaliseName(name: string): string;
 export function distanceMeters(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number;
-export function filterPlace(raw: any, opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string]> }): { place: any } | { drop: string };
+export function filterPlace(raw: any, opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string | null]> }): { place: any } | { drop: string };
 export function dedupe(places: any[]): any[];
 export function sortPlaces(places: any[]): any[];
-export function runPipeline(rows: any[], opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string]> }): { places: any[]; dropCounts: Record<string, number>; duplicates: number };
+export function runPipeline(rows: any[], opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string | null]> }): { places: any[]; dropCounts: Record<string, number>; duplicates: number };

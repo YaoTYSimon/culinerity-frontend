@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { DATASET_LICENCES, DROP_REASONS, ALLOWED_TAXONOMY_PREFIXES, dedupe, distanceMeters, filterPlace, kindForTaxonomy, normaliseName, runPipeline, sortPlaces } from './overtureFilter.mjs';
+import { DATASET_LICENCES, DROP_REASONS, ALLOWED_TAXONOMY_PREFIXES, dedupe, distanceMeters, filterPlace, kindForTaxonomy, normaliseName, runPipeline, sortPlaces, taxonomyPath } from './overtureFilter.mjs';
 import { validateBulkPlaces } from './validateBulk.mjs';
 import { BULK_LICENCES } from '../../packages/core/src/places/tier';
 
@@ -55,9 +55,54 @@ describe('filterPlace: one case per drop reason', () => {
     expect(filtered('TEST-EDGE-SW')).toHaveProperty('place');
     expect(filtered('TEST-EDGE-NE')).toHaveProperty('place');
   });
-  it('drops everything while the taxonomy list is still empty (Task 2.1 fills it)', () => {
-    expect(ALLOWED_TAXONOMY_PREFIXES).toEqual([]);
-    expect(filterPlace(row('TEST-001'), { release: opts.release })).toEqual({ drop: 'taxonomy' });
+  it('drops everything when given an empty taxonomy list', () => {
+    expect(filterPlace(row('TEST-001'), { release: opts.release, taxonomy: [] })).toEqual({ drop: 'taxonomy' });
+  });
+  it('the measured allow-list maps real Overture hierarchies (release 2026-10-21.0 shape) to kinds', () => {
+    const k = (h: string[]) => kindForTaxonomy(taxonomyPath({ primary: h[h.length - 1], hierarchy: h }));
+    expect(k(['shopping', 'food_and_beverage_store', 'grocery_store'])).toBe('supermarket');
+    expect(k(['shopping', 'food_and_beverage_store', 'grocery_store', 'asian_grocery_store'])).toBe('supermarket');
+    expect(k(['shopping', 'market', 'farmers_market'])).toBe('greengrocer');
+    expect(k(['food_and_drink', 'casual_eatery', 'bakery'])).toBe('bakery');
+    expect(k(['food_and_drink', 'casual_eatery', 'fast_food_restaurant'])).toBe('takeaway');
+    expect(k(['food_and_drink', 'restaurant', 'seafood_restaurant', 'fish_and_chips_restaurant'])).toBe('takeaway');
+    expect(k(['food_and_drink', 'restaurant', 'asian_restaurant', 'thai_restaurant'])).toBe('cafe-restaurant');
+    expect(k(['food_and_drink', 'casual_eatery', 'cafe'])).toBe('cafe-restaurant');
+    expect(k(['food_and_drink', 'non_alcoholic_beverage_venue', 'coffee_shop'])).toBe('cafe-restaurant');
+  });
+  it('excludes bars, pubs, bottle shops, internet cafes and unlisted food shops', () => {
+    const k = (h: string[]) => kindForTaxonomy(taxonomyPath({ primary: h[h.length - 1], hierarchy: h }));
+    expect(k(['food_and_drink', 'alcoholic_beverage_venue', 'bar'])).toBeNull();
+    expect(k(['food_and_drink', 'alcoholic_beverage_venue', 'bar', 'pub'])).toBeNull();
+    expect(k(['food_and_drink', 'casual_eatery', 'gastropub'])).toBeNull();
+    expect(k(['shopping', 'food_and_beverage_store', 'liquor_store'])).toBeNull();
+    expect(k(['food_and_drink', 'casual_eatery', 'cafe', 'internet_cafe'])).toBeNull();
+    expect(k(['shopping', 'convenience_store'])).toBeNull();
+    expect(k(['shopping', 'second_hand_store', 'flea_market'])).toBeNull();
+  });
+  it('every allow-list entry names a real bulk kind or null', () => {
+    for (const [prefix, kind] of ALLOWED_TAXONOMY_PREFIXES) {
+      expect(prefix.length).toBeGreaterThan(0);
+      expect([null, 'supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant']).toContain(kind);
+    }
+  });
+  it('taxonomyPath uses the hierarchy and falls back to primary', () => {
+    expect(taxonomyPath({ primary: 'cafe', hierarchy: ['food_and_drink', 'casual_eatery', 'cafe'] })).toBe('food_and_drink>casual_eatery>cafe');
+    expect(taxonomyPath({ primary: 'test.produce.x' })).toBe('test.produce.x');
+    expect(taxonomyPath(undefined)).toBeUndefined();
+  });
+  it('treats Overture "open" as open and the closed statuses as closed', () => {
+    expect(filterPlace({ ...row('TEST-001'), operating_status: 'open' }, opts)).toHaveProperty('place');
+    for (const s of ['permanently_closed', 'temporarily_closed'])
+      expect(filterPlace({ ...row('TEST-001'), operating_status: s }, opts)).toEqual({ drop: 'closed' });
+  });
+  it('checks every source: a Foursquare entry anywhere drops the row; an unlisted entry is a licence drop', () => {
+    const base = row('TEST-001');
+    const withSources = (...d: string[]) => ({ ...base, sources: d.map((dataset) => ({ dataset })) });
+    expect(filterPlace(withSources('meta', 'Foursquare'), opts)).toEqual({ drop: 'foursquare' });
+    expect(filterPlace(withSources('meta', 'Mystery'), opts)).toEqual({ drop: 'licence' });
+    expect(filterPlace(withSources('meta', 'Overture'), opts)).toHaveProperty('place');
+    expect(filterPlace({ ...base, sources: [] }, opts)).toEqual({ drop: 'licence' });
   });
   it('builds a bulk place with no price, no hours and the dataset licence', () => {
     const r: any = filtered('TEST-001');

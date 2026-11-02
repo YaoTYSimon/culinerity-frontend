@@ -4,23 +4,63 @@
 import { BULK_BOX, MIN_CONFIDENCE } from './validateBulk.mjs';
 
 /**
- * [taxonomy prefix, bulk kind] pairs. Empty until Task 2.1 fills it from the measured taxonomy list;
- * nothing is kept until then, which is the safe default. The longest matching prefix wins.
+ * [taxonomy prefix, bulk kind] pairs, measured on Overture release 2026-10-21.0 (see docs/superpowers/research/2026-11-03-bulk-places-count-report.md).
+ * A prefix is matched against the taxonomy hierarchy joined with '>' (taxonomy.primary is only the leaf, e.g. "pizza_restaurant").
+ * The longest matching prefix wins; a kind of null excludes that sub-tree. Not listed on purpose: bars, pubs, breweries,
+ * wineries, bottle shops, convenience stores, butchers, fishmongers, health food, dessert and candy shops, flea and night markets
+ * (no matching BulkKind, or not food retail; see the report).
  */
-export const ALLOWED_TAXONOMY_PREFIXES = [];
+export const ALLOWED_TAXONOMY_PREFIXES = [
+  ['shopping>food_and_beverage_store>grocery_store', 'supermarket'],
+  ['shopping>food_and_beverage_store>specialty_foods_store>produce_store', 'greengrocer'],
+  ['shopping>market>farmers_market', 'greengrocer'],
+  ['shopping>market>public_market', 'greengrocer'],
+  ['food_and_drink>casual_eatery>bakery', 'bakery'],
+  ['food_and_drink>casual_eatery>fast_food_restaurant', 'takeaway'],
+  ['food_and_drink>casual_eatery>sandwich_shop', 'takeaway'],
+  ['food_and_drink>casual_eatery>food_truck_stand', 'takeaway'],
+  ['food_and_drink>restaurant>seafood_restaurant>fish_and_chips_restaurant', 'takeaway'],
+  ['food_and_drink>casual_eatery>cafe', 'cafe-restaurant'],
+  ['food_and_drink>casual_eatery>cafe>internet_cafe', null],
+  ['food_and_drink>casual_eatery>bistro', 'cafe-restaurant'],
+  ['food_and_drink>casual_eatery>diner', 'cafe-restaurant'],
+  ['food_and_drink>non_alcoholic_beverage_venue>coffee_shop', 'cafe-restaurant'],
+  ['food_and_drink>restaurant', 'cafe-restaurant'],
+];
+
+/** The string kindForTaxonomy matches: the hierarchy joined with '>', else the primary alone (fixtures). */
+export function taxonomyPath(taxonomy) {
+  const h = taxonomy?.hierarchy;
+  if (Array.isArray(h) && h.length > 0 && h.every((x) => typeof x === 'string')) return h.join('>');
+  return typeof taxonomy?.primary === 'string' ? taxonomy.primary : undefined;
+}
 
 /**
- * Overture `sources[0].dataset` -> licence. Confirm against the Overture attribution page when run
- * and record the page date here: UNCONFIRMED (not yet checked against the live page).
- * `foursquare` is deliberately absent from this table and has its own drop reason.
+ * Overture `sources[].dataset` -> licence. Confirmed 2026-11-03 against https://docs.overturemaps.org/attribution/
+ * (the Places theme has no theme-wide licence; each contributing dataset is listed: CDLA-Permissive-2.0 for Meta,
+ * Microsoft, PinMeTo, BrightQuery, Krick, RenderSEO, DAC, Birdeye, Uberall and OpenTravel Alliance; CC0 1.0 for
+ * AllThePlaces; Apache-2.0 for Foursquare). `Overture` and `Overture-signals` are Overture's own entries (CDLA-Permissive-2.0 in
+ * the release 2026-10-21.0 data). `foursquare` is deliberately absent and has its own drop reason.
+ * EVERY entry of a record's `sources` must be in this table, not just the first.
  */
 export const DATASET_LICENCES = {
   meta: 'CDLA-Permissive-2.0',
   Microsoft: 'CDLA-Permissive-2.0',
   PinMeTo: 'CDLA-Permissive-2.0',
   BrightQuery: 'CDLA-Permissive-2.0',
+  Krick: 'CDLA-Permissive-2.0',
+  RenderSEO: 'CDLA-Permissive-2.0',
+  DAC: 'CDLA-Permissive-2.0',
+  Birdeye: 'CDLA-Permissive-2.0',
+  Uberall: 'CDLA-Permissive-2.0',
+  OpenTravel: 'CDLA-Permissive-2.0',
+  Overture: 'CDLA-Permissive-2.0',
+  'Overture-signals': 'CDLA-Permissive-2.0',
   AllThePlaces: 'CC0-1.0',
 };
+
+/** Overture `operating_status` values that count as open (`operating` kept for older releases). Absent is also kept. */
+const OPEN_STATUSES = ['open', 'operating'];
 
 export const DROP_REASONS = ['closed', 'no-name', 'no-address', 'no-suburb', 'low-confidence', 'outside-box', 'taxonomy', 'foursquare', 'licence'];
 export const DEDUPE_METERS = 50;
@@ -61,7 +101,7 @@ const inBox = (lat, lng) =>
 
 /** One raw row -> `{ place }` or `{ drop: reason }`. The first failing check names the reason. */
 export function filterPlace(raw, { release, minConfidence = MIN_CONFIDENCE, taxonomy = ALLOWED_TAXONOMY_PREFIXES }) {
-  if (raw.operating_status !== undefined && raw.operating_status !== null && raw.operating_status !== 'operating') return { drop: 'closed' };
+  if (raw.operating_status !== undefined && raw.operating_status !== null && !OPEN_STATUSES.includes(raw.operating_status)) return { drop: 'closed' };
   const name = text(raw.names?.primary);
   if (!name) return { drop: 'no-name' };
   const addr = raw.addresses?.[0];
@@ -71,12 +111,14 @@ export function filterPlace(raw, { release, minConfidence = MIN_CONFIDENCE, taxo
   if (!suburb) return { drop: 'no-suburb' };
   if (typeof raw.confidence !== 'number' || !(raw.confidence >= minConfidence)) return { drop: 'low-confidence' };
   if (!inBox(raw.lat, raw.lng)) return { drop: 'outside-box' };
-  const kind = kindForTaxonomy(raw.taxonomy?.primary, taxonomy);
+  const kind = kindForTaxonomy(taxonomyPath(raw.taxonomy), taxonomy);
   if (!kind) return { drop: 'taxonomy' };
-  const dataset = text(raw.sources?.[0]?.dataset);
-  if (/foursquare/i.test(dataset)) return { drop: 'foursquare' };
-  const licence = Object.hasOwn(DATASET_LICENCES, dataset) ? DATASET_LICENCES[dataset] : undefined;
-  if (!licence) return { drop: 'licence' };
+  const datasets = (Array.isArray(raw.sources) ? raw.sources : []).map((s) => text(s?.dataset));
+  if (datasets.some((d) => /foursquare/i.test(d))) return { drop: 'foursquare' };
+  const dataset = datasets[0] ?? '';
+  const known = (d) => Object.hasOwn(DATASET_LICENCES, d);
+  if (datasets.length === 0 || !datasets.every(known)) return { drop: 'licence' };
+  const licence = DATASET_LICENCES[dataset];
   const place = {
     id: `ovt-${raw.id}`,
     name,
