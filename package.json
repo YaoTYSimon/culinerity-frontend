@@ -17,6 +17,7 @@
     "build:cultural": "node scripts/build-cultural.mjs",
     "build:recipes": "node scripts/build-recipes.mjs",
     "build:places": "node scripts/build-places.mjs",
+    "build:places-bulk": "node scripts/build-places-bulk.mjs",
     "build:centroids": "node scripts/build-centroids.mjs",
     "dev:all": "node scripts/dev-all.mjs"
   },
