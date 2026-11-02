@@ -1,0 +1,1200 @@
+{
+ "release": "2026-10-21.0",
+ "box": "144.3,-38.6,145.8,-37.4",
+ "note": "Counts only; no raw rows. Foodish categories measured before filters; passFilters is before the 50 m de-duplication.",
+ "pipeline": {
+  "dropped": {
+   "closed": 10,
+   "foursquare": 3638,
+   "licence": 0,
+   "low-confidence": 68264,
+   "no-address": 11624,
+   "no-name": 0,
+   "no-suburb": 1344,
+   "outside-box": 0,
+   "taxonomy": 156857
+  },
+  "duplicates": 58,
+  "input": 260288,
+  "kept": 18493,
+  "release": "2026-10-21.0"
+ },
+ "nonFoursquareFoodishConfidenceBands": {
+  "0.0": 121,
+  "0.1": 265,
+  "0.2": 1127,
+  "0.3": 1100,
+  "0.4": 961,
+  "0.5": 1638,
+  "0.6": 1533,
+  "0.7": 1811,
+  "0.8": 4515,
+  "0.9": 19336
+ },
+ "taxonomyPaths": {
+  "food_and_drink>casual_eatery>cafe": {
+   "kind": "cafe-restaurant",
+   "total": 4454,
+   "fsq": 706,
+   "passFilters": 3076
+  },
+  "food_and_drink>restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3031,
+   "fsq": 476,
+   "passFilters": 1430
+  },
+  "shopping>food_and_beverage_store>grocery_store": {
+   "kind": "supermarket",
+   "total": 2189,
+   "fsq": 247,
+   "passFilters": 1457
+  },
+  "food_and_drink>casual_eatery>bakery": {
+   "kind": "bakery",
+   "total": 1897,
+   "fsq": 259,
+   "passFilters": 1240
+  },
+  "food_and_drink>non_alcoholic_beverage_venue>coffee_shop": {
+   "kind": "cafe-restaurant",
+   "total": 1580,
+   "fsq": 121,
+   "passFilters": 1032
+  },
+  "food_and_drink>restaurant>european_restaurant>mediterranean_restaurant>italian_restaurant>pizza_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1389,
+   "fsq": 156,
+   "passFilters": 1094
+  },
+  "food_and_drink>casual_eatery>fast_food_restaurant": {
+   "kind": "takeaway",
+   "total": 1387,
+   "fsq": 129,
+   "passFilters": 941
+  },
+  "shopping>food_and_beverage_store>liquor_store": {
+   "kind": null,
+   "total": 1348,
+   "fsq": 113,
+   "passFilters": 0
+  },
+  "shopping>convenience_store": {
+   "kind": null,
+   "total": 1009,
+   "fsq": 56,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>south_asian_restaurant>indian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 942,
+   "fsq": 124,
+   "passFilters": 637
+  },
+  "food_and_drink>restaurant>asian_restaurant>east_asian_restaurant>chinese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 804,
+   "fsq": 90,
+   "passFilters": 602
+  },
+  "food_and_drink>restaurant>european_restaurant>mediterranean_restaurant>italian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 801,
+   "fsq": 147,
+   "passFilters": 593
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar": {
+   "kind": null,
+   "total": 733,
+   "fsq": 139,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>southeast_asian_restaurant>thai_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 602,
+   "fsq": 78,
+   "passFilters": 461
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>pub": {
+   "kind": null,
+   "total": 598,
+   "fsq": 41,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>meat_restaurant>burger_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 594,
+   "fsq": 94,
+   "passFilters": 433
+  },
+  "food_and_drink>restaurant>seafood_restaurant>fish_and_chips_restaurant": {
+   "kind": "takeaway",
+   "total": 586,
+   "fsq": 55,
+   "passFilters": 457
+  },
+  "food_and_drink>restaurant>asian_restaurant>southeast_asian_restaurant>vietnamese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 567,
+   "fsq": 59,
+   "passFilters": 395
+  },
+  "shopping>food_and_beverage_store>butcher_shop": {
+   "kind": null,
+   "total": 564,
+   "fsq": 102,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>east_asian_restaurant>japanese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 495,
+   "fsq": 80,
+   "passFilters": 353
+  },
+  "food_and_drink>alcoholic_beverage_venue>winery": {
+   "kind": null,
+   "total": 473,
+   "fsq": 40,
+   "passFilters": 0
+  },
+  "shopping>food_and_beverage_store": {
+   "kind": null,
+   "total": 446,
+   "fsq": 109,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>dessert_shop": {
+   "kind": null,
+   "total": 379,
+   "fsq": 71,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>sandwich_shop": {
+   "kind": "takeaway",
+   "total": 370,
+   "fsq": 66,
+   "passFilters": 265
+  },
+  "food_and_drink>restaurant>meat_restaurant>chicken_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 355,
+   "fsq": 34,
+   "passFilters": 272
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>turkish_restaurant>doner_kebab_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 337,
+   "fsq": 25,
+   "passFilters": 245
+  },
+  "food_and_drink>non_alcoholic_beverage_venue>smoothie_juice_bar": {
+   "kind": null,
+   "total": 332,
+   "fsq": 40,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>east_asian_restaurant>japanese_restaurant>sushi_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 323,
+   "fsq": 48,
+   "passFilters": 227
+  },
+  "shopping>food_and_beverage_store>specialty_foods_store>produce_store": {
+   "kind": "greengrocer",
+   "total": 322,
+   "fsq": 34,
+   "passFilters": 183
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>cocktail_bar": {
+   "kind": null,
+   "total": 315,
+   "fsq": 27,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>mexican_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 310,
+   "fsq": 54,
+   "passFilters": 221
+  },
+  "food_and_drink>restaurant>pacific_rim_restaurant>australian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 291,
+   "fsq": 60,
+   "passFilters": 203
+  },
+  "shopping>food_and_beverage_store>health_food_store": {
+   "kind": null,
+   "total": 281,
+   "fsq": 54,
+   "passFilters": 0
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>wine_bar": {
+   "kind": null,
+   "total": 280,
+   "fsq": 48,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 266,
+   "fsq": 66,
+   "passFilters": 150
+  },
+  "food_and_drink>casual_eatery>dessert_shop>ice_cream_shop": {
+   "kind": null,
+   "total": 264,
+   "fsq": 64,
+   "passFilters": 0
+  },
+  "shopping>food_and_beverage_store>specialty_foods_store": {
+   "kind": null,
+   "total": 257,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>east_asian_restaurant>korean_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 252,
+   "fsq": 35,
+   "passFilters": 186
+  },
+  "food_and_drink>non_alcoholic_beverage_venue>bubble_tea_shop": {
+   "kind": null,
+   "total": 245,
+   "fsq": 25,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>delicatessen": {
+   "kind": null,
+   "total": 221,
+   "fsq": 41,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>mediterranean_restaurant>greek_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 204,
+   "fsq": 32,
+   "passFilters": 146
+  },
+  "food_and_drink>restaurant>asian_restaurant>southeast_asian_restaurant>malaysian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 185,
+   "fsq": 27,
+   "passFilters": 126
+  },
+  "food_and_drink>restaurant>seafood_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 170,
+   "fsq": 27,
+   "passFilters": 111
+  },
+  "shopping>market>farmers_market": {
+   "kind": "greengrocer",
+   "total": 169,
+   "fsq": 16,
+   "passFilters": 117
+  },
+  "food_and_drink": {
+   "kind": null,
+   "total": 159,
+   "fsq": 14,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>meat_restaurant>barbecue_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 156,
+   "fsq": 27,
+   "passFilters": 95
+  },
+  "food_and_drink>alcoholic_beverage_venue>brewery": {
+   "kind": null,
+   "total": 154,
+   "fsq": 25,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>dessert_shop>donut_shop": {
+   "kind": null,
+   "total": 146,
+   "fsq": 30,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>food_truck_stand": {
+   "kind": "takeaway",
+   "total": 140,
+   "fsq": 19,
+   "passFilters": 50
+  },
+  "food_and_drink>restaurant>bar_and_grill_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 138,
+   "fsq": 0,
+   "passFilters": 114
+  },
+  "food_and_drink>casual_eatery>gastropub": {
+   "kind": null,
+   "total": 136,
+   "fsq": 10,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>candy_store": {
+   "kind": null,
+   "total": 130,
+   "fsq": 19,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>international_fusion_restaurant>asian_fusion_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 130,
+   "fsq": 0,
+   "passFilters": 123
+  },
+  "food_and_drink>restaurant>asian_restaurant>south_asian_restaurant>sri_lankan_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 124,
+   "fsq": 7,
+   "passFilters": 86
+  },
+  "food_and_drink>casual_eatery>candy_store>chocolatier": {
+   "kind": null,
+   "total": 117,
+   "fsq": 18,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 114,
+   "fsq": 23,
+   "passFilters": 71
+  },
+  "food_and_drink>casual_eatery>dessert_shop>gelato_shop": {
+   "kind": null,
+   "total": 109,
+   "fsq": 4,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>ramen_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 106,
+   "fsq": 34,
+   "passFilters": 63
+  },
+  "food_and_drink>non_alcoholic_beverage_venue>tea_room": {
+   "kind": null,
+   "total": 104,
+   "fsq": 12,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>international_fusion_restaurant>pan_asian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 104,
+   "fsq": 0,
+   "passFilters": 104
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>turkish_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 104,
+   "fsq": 11,
+   "passFilters": 76
+  },
+  "food_and_drink>restaurant>meat_restaurant>steakhouse": {
+   "kind": "cafe-restaurant",
+   "total": 97,
+   "fsq": 12,
+   "passFilters": 72
+  },
+  "food_and_drink>alcoholic_beverage_venue>lounge": {
+   "kind": null,
+   "total": 86,
+   "fsq": 17,
+   "passFilters": 0
+  },
+  "shopping>specialty_store>sporting_goods_store>hunting_and_fishing_store": {
+   "kind": null,
+   "total": 86,
+   "fsq": 13,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>lebanese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 78,
+   "fsq": 5,
+   "passFilters": 62
+  },
+  "food_and_drink>casual_eatery>dessert_shop>cupcake_shop": {
+   "kind": null,
+   "total": 74,
+   "fsq": 9,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>western_european_restaurant>french_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 72,
+   "fsq": 11,
+   "passFilters": 54
+  },
+  "food_and_drink>casual_eatery>tapas_bar": {
+   "kind": null,
+   "total": 71,
+   "fsq": 10,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>special_diet_restaurant>vegetarian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 70,
+   "fsq": 0,
+   "passFilters": 60
+  },
+  "food_and_drink>alcoholic_beverage_venue>distillery": {
+   "kind": null,
+   "total": 66,
+   "fsq": 4,
+   "passFilters": 0
+  },
+  "shopping>food_and_beverage_store>grocery_store>organic_grocery_store": {
+   "kind": "supermarket",
+   "total": 66,
+   "fsq": 11,
+   "passFilters": 44
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>hookah_bar": {
+   "kind": null,
+   "total": 64,
+   "fsq": 3,
+   "passFilters": 0
+  },
+  "shopping>food_and_beverage_store>fishmonger": {
+   "kind": null,
+   "total": 64,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>mediterranean_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 63,
+   "fsq": 10,
+   "passFilters": 46
+  },
+  "food_and_drink>restaurant>asian_restaurant>southeast_asian_restaurant>indonesian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 61,
+   "fsq": 11,
+   "passFilters": 44
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>sports_bar": {
+   "kind": null,
+   "total": 57,
+   "fsq": 4,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>diner": {
+   "kind": "cafe-restaurant",
+   "total": 57,
+   "fsq": 24,
+   "passFilters": 25
+  },
+  "shopping>second_hand_store>flea_market": {
+   "kind": null,
+   "total": 53,
+   "fsq": 6,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>dessert_shop>frozen_yogurt_shop": {
+   "kind": null,
+   "total": 52,
+   "fsq": 10,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>south_asian_restaurant>himalayan_restaurant>nepalese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 51,
+   "fsq": 0,
+   "passFilters": 40
+  },
+  "food_and_drink>restaurant>breakfast_and_brunch_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 51,
+   "fsq": 7,
+   "passFilters": 27
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>beer_bar": {
+   "kind": null,
+   "total": 50,
+   "fsq": 10,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>central_asian_restaurant>afghani_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 49,
+   "fsq": 1,
+   "passFilters": 39
+  },
+  "food_and_drink>restaurant>european_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 47,
+   "fsq": 6,
+   "passFilters": 40
+  },
+  "food_and_drink>restaurant>asian_restaurant>south_asian_restaurant>pakistani_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 46,
+   "fsq": 7,
+   "passFilters": 34
+  },
+  "food_and_drink>restaurant>asian_restaurant>southeast_asian_restaurant>filipino_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 46,
+   "fsq": 3,
+   "passFilters": 34
+  },
+  "food_and_drink>restaurant>european_restaurant>iberian_restaurant>portuguese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 45,
+   "fsq": 11,
+   "passFilters": 32
+  },
+  "food_and_drink>restaurant>special_diet_restaurant>vegan_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 41,
+   "fsq": 39,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>north_american_restaurant>american_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 40,
+   "fsq": 8,
+   "passFilters": 21
+  },
+  "food_and_drink>restaurant>salad_bar": {
+   "kind": "cafe-restaurant",
+   "total": 39,
+   "fsq": 11,
+   "passFilters": 23
+  },
+  "food_and_drink>casual_eatery>bagel_shop": {
+   "kind": null,
+   "total": 32,
+   "fsq": 7,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>breakfast_and_brunch_restaurant>pancake_house": {
+   "kind": "cafe-restaurant",
+   "total": 32,
+   "fsq": 0,
+   "passFilters": 28
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>persian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 29,
+   "fsq": 3,
+   "passFilters": 18
+  },
+  "food_and_drink>restaurant>african_restaurant>east_african_restaurant>ethiopian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 28,
+   "fsq": 2,
+   "passFilters": 25
+  },
+  "food_and_drink>restaurant>special_diet_restaurant>halal_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 28,
+   "fsq": 0,
+   "passFilters": 23
+  },
+  "food_and_drink>restaurant>asian_restaurant>east_asian_restaurant>chinese_restaurant>dim_sum_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 26,
+   "fsq": 7,
+   "passFilters": 16
+  },
+  "food_and_drink>casual_eatery>cafe>internet_cafe": {
+   "kind": null,
+   "total": 25,
+   "fsq": 6,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>buffet_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 25,
+   "fsq": 5,
+   "passFilters": 17
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>dive_bar": {
+   "kind": null,
+   "total": 23,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "shopping>food_and_beverage_store>grocery_store>international_grocery_store": {
+   "kind": "supermarket",
+   "total": 23,
+   "fsq": 0,
+   "passFilters": 23
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>gay_bar": {
+   "kind": null,
+   "total": 22,
+   "fsq": 2,
+   "passFilters": 0
+  },
+  "food_and_drink>alcoholic_beverage_venue>beer_garden": {
+   "kind": null,
+   "total": 22,
+   "fsq": 5,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>east_asian_restaurant>taiwanese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 21,
+   "fsq": 3,
+   "passFilters": 14
+  },
+  "food_and_drink>alcoholic_beverage_venue>lounge>airport_lounge": {
+   "kind": null,
+   "total": 20,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>southeast_asian_restaurant>cambodian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 19,
+   "fsq": 1,
+   "passFilters": 16
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>taco_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 18,
+   "fsq": 5,
+   "passFilters": 11
+  },
+  "food_and_drink>restaurant>african_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 17,
+   "fsq": 4,
+   "passFilters": 10
+  },
+  "food_and_drink>restaurant>pacific_rim_restaurant>polynesian_restaurant>hawaiian_restaurant>poke_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 17,
+   "fsq": 4,
+   "passFilters": 11
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>pub>irish_pub": {
+   "kind": null,
+   "total": 16,
+   "fsq": 2,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>special_diet_restaurant>health_food_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 16,
+   "fsq": 0,
+   "passFilters": 11
+  },
+  "shopping>market>health_market": {
+   "kind": null,
+   "total": 16,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>food_court": {
+   "kind": null,
+   "total": 15,
+   "fsq": 14,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>dumpling_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 15,
+   "fsq": 15,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>latin_american_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 15,
+   "fsq": 2,
+   "passFilters": 12
+  },
+  "food_and_drink>restaurant>special_diet_restaurant>gluten_free_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 15,
+   "fsq": 5,
+   "passFilters": 8
+  },
+  "food_and_drink>restaurant>european_restaurant>iberian_restaurant>spanish_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 13,
+   "fsq": 8,
+   "passFilters": 4
+  },
+  "shopping>market>night_market": {
+   "kind": null,
+   "total": 13,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>bistro": {
+   "kind": "cafe-restaurant",
+   "total": 12,
+   "fsq": 11,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>european_restaurant>central_european_restaurant>german_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 12,
+   "fsq": 1,
+   "passFilters": 9
+  },
+  "food_and_drink>restaurant>meat_restaurant>hot_dog_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 12,
+   "fsq": 2,
+   "passFilters": 7
+  },
+  "shopping>food_and_beverage_store>grocery_store>indian_grocery_store": {
+   "kind": "supermarket",
+   "total": 12,
+   "fsq": 0,
+   "passFilters": 12
+  },
+  "food_and_drink>restaurant>european_restaurant>western_european_restaurant>british_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 11,
+   "fsq": 1,
+   "passFilters": 10
+  },
+  "food_and_drink>restaurant>theme_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 11,
+   "fsq": 2,
+   "passFilters": 6
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>south_american_restaurant>colombian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 10,
+   "fsq": 1,
+   "passFilters": 8
+  },
+  "shopping>food_and_beverage_store>seafood_market": {
+   "kind": null,
+   "total": 10,
+   "fsq": 8,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>comfort_food_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 9,
+   "fsq": 0,
+   "passFilters": 6
+  },
+  "food_and_drink>restaurant>european_restaurant>eastern_european_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 9,
+   "fsq": 3,
+   "passFilters": 6
+  },
+  "shopping>food_and_beverage_store>specialty_foods_store>frozen_foods_store": {
+   "kind": null,
+   "total": 9,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>whiskey_bar": {
+   "kind": null,
+   "total": 8,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>southeast_asian_restaurant>singaporean_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 8,
+   "fsq": 1,
+   "passFilters": 4
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>south_american_restaurant>argentine_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 8,
+   "fsq": 2,
+   "passFilters": 5
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>south_american_restaurant>brazilian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 8,
+   "fsq": 3,
+   "passFilters": 4
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>hotel_bar": {
+   "kind": null,
+   "total": 7,
+   "fsq": 7,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>cafe>hong_kong_style_cafe": {
+   "kind": "cafe-restaurant",
+   "total": 7,
+   "fsq": 0,
+   "passFilters": 6
+  },
+  "food_and_drink>restaurant>asian_restaurant>south_asian_restaurant>bangladeshi_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 7,
+   "fsq": 1,
+   "passFilters": 5
+  },
+  "food_and_drink>restaurant>cafeteria": {
+   "kind": "cafe-restaurant",
+   "total": 7,
+   "fsq": 7,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>central_european_restaurant>austrian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 7,
+   "fsq": 2,
+   "passFilters": 5
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>south_american_restaurant>peruvian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 7,
+   "fsq": 1,
+   "passFilters": 4
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>texmex_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 7,
+   "fsq": 1,
+   "passFilters": 5
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>israeli_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 7,
+   "fsq": 5,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>syrian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 7,
+   "fsq": 1,
+   "passFilters": 6
+  },
+  "shopping>market>public_market": {
+   "kind": "greengrocer",
+   "total": 7,
+   "fsq": 0,
+   "passFilters": 7
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>sake_bar": {
+   "kind": null,
+   "total": 6,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>speakeasy": {
+   "kind": null,
+   "total": 6,
+   "fsq": 2,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>southeast_asian_restaurant>burmese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 6,
+   "fsq": 1,
+   "passFilters": 3
+  },
+  "food_and_drink>restaurant>soup_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 6,
+   "fsq": 1,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>special_diet_restaurant>kosher_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 6,
+   "fsq": 1,
+   "passFilters": 5
+  },
+  "food_and_drink>non_alcoholic_beverage_venue>coffee_shop>coffee_roastery": {
+   "kind": "cafe-restaurant",
+   "total": 5,
+   "fsq": 1,
+   "passFilters": 4
+  },
+  "food_and_drink>restaurant>african_restaurant>north_african_restaurant>egyptian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 5,
+   "fsq": 2,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>european_restaurant>central_european_restaurant>polish_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 5,
+   "fsq": 0,
+   "passFilters": 4
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>falafel_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 5,
+   "fsq": 5,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>dessert_shop>pie_shop": {
+   "kind": null,
+   "total": 4,
+   "fsq": 3,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>central_european_restaurant>hungarian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 4,
+   "fsq": 2,
+   "passFilters": 2
+  },
+  "shopping>food_and_beverage_store>grocery_store>asian_grocery_store": {
+   "kind": "supermarket",
+   "total": 4,
+   "fsq": 0,
+   "passFilters": 4
+  },
+  "shopping>food_and_beverage_store>imported_food_store": {
+   "kind": null,
+   "total": 4,
+   "fsq": 4,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>south_asian_restaurant>himalayan_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3,
+   "fsq": 3,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>eastern_european_restaurant>russian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3,
+   "fsq": 1,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>european_restaurant>scandinavian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3,
+   "fsq": 1,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>south_american_restaurant>chilean_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3,
+   "fsq": 0,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>meat_restaurant>chicken_wings_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3,
+   "fsq": 1,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>georgian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3,
+   "fsq": 0,
+   "passFilters": 3
+  },
+  "food_and_drink>restaurant>north_american_restaurant>american_restaurant>cajun_and_creole_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3,
+   "fsq": 2,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>north_american_restaurant>american_restaurant>southern_american_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 3,
+   "fsq": 2,
+   "passFilters": 1
+  },
+  "shopping>specialty_store>farming_equipment_and_supply_store>farming_equipment_store": {
+   "kind": null,
+   "total": 3,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>champagne_bar": {
+   "kind": null,
+   "total": 2,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>tiki_bar": {
+   "kind": null,
+   "total": 2,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>fondue_restaurant": {
+   "kind": null,
+   "total": 2,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>african_restaurant>north_african_restaurant>moroccan_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 2,
+   "fsq": 2,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>african_restaurant>west_african_restaurant>nigerian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 2,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>east_asian_restaurant>chinese_restaurant>indo_chinese_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 2,
+   "fsq": 1,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>international_fusion_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 2,
+   "fsq": 0,
+   "passFilters": 2
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>caribbean_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 2,
+   "fsq": 1,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>pacific_rim_restaurant>polynesian_restaurant>hawaiian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 2,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "shopping>food_and_beverage_store>honey_farm_shop": {
+   "kind": null,
+   "total": 2,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>alcoholic_beverage_venue>bar>beach_bar": {
+   "kind": null,
+   "total": 1,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "food_and_drink>casual_eatery>dessert_shop>shaved_ice_shop": {
+   "kind": null,
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>asian_restaurant>central_asian_restaurant>uzbek_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>breakfast_and_brunch_restaurant>waffle_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>central_european_restaurant>czech_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>eastern_european_restaurant>ukrainian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>european_restaurant>western_european_restaurant>belgian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>european_restaurant>western_european_restaurant>irish_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>caribbean_restaurant>cuban_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>central_american_restaurant>guatemalan_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>central_american_restaurant>panamanian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>central_american_restaurant>salvadoran_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>latin_american_restaurant>south_american_restaurant>venezuelan_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>meat_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "food_and_drink>restaurant>middle_eastern_restaurant>armenian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>pacific_rim_restaurant>polynesian_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>special_diet_restaurant>acai_bowls": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "food_and_drink>restaurant>special_diet_restaurant>molecular_gastronomy_restaurant": {
+   "kind": "cafe-restaurant",
+   "total": 1,
+   "fsq": 1,
+   "passFilters": 0
+  },
+  "shopping>food_and_beverage_store>grocery_store>korean_grocery_store": {
+   "kind": "supermarket",
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 1
+  },
+  "shopping>food_and_beverage_store>pick_your_own_farm": {
+   "kind": null,
+   "total": 1,
+   "fsq": 0,
+   "passFilters": 0
+  }
+ }
+}
