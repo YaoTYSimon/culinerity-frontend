@@ -1,6 +1,6 @@
 import { haversineMetres, type LatLng } from './distance';
 import type { PlaceFilter } from './rank';
-import type { BulkKind, BulkPlace } from './tier';
+import { BULK_KINDS, type BulkKind, type BulkPlace } from './tier';
 
 /*
  * Privacy: the only thing this module hands to a CellFetcher is a coarse cell key such as "44_53".
@@ -50,6 +50,18 @@ export function neighbourKeys(key: string): string[] {
 
 /** The same-origin path of a shard. It is built from the key alone. */
 export const cellPath = (key: string) => `/places/cells/${key}.json`;
+
+/** The manifest path. It names the release and which cells have a shard; it carries no position. */
+export const MANIFEST_PATH = '/places/manifest.json';
+
+/** The part of the manifest the web app reads. Cells with no places have no shard and are absent from `cells`. */
+export interface BulkManifest {
+  release: string;
+  cells: Record<string, unknown>;
+}
+
+export const isBulkManifest = (m: unknown): m is BulkManifest =>
+  !!m && typeof (m as BulkManifest).release === 'string' && !!(m as BulkManifest).cells && typeof (m as BulkManifest).cells === 'object';
 
 const inBox = ({ lat, lng }: LatLng) =>
   Number.isFinite(lat) && Number.isFinite(lng) && lat >= BULK_BOX.lat[0] && lat <= BULK_BOX.lat[1] && lng >= BULK_BOX.lng[0] && lng <= BULK_BOX.lng[1];
@@ -101,6 +113,9 @@ const FILTERS: Record<PlaceFilter, (p: BulkPlace) => boolean> = {
 };
 
 export const bulkMatchesFilter = (p: BulkPlace, filter: PlaceFilter): boolean => FILTERS[filter](p);
+
+/** False for a filter no bulk place can ever match (Free, Low cost), so the page leaves the tier out instead of showing it empty. */
+export const bulkCanMatch = (filter: PlaceFilter): boolean => BULK_KINDS.some((kind) => FILTERS[filter]({ kind } as BulkPlace));
 
 export interface RankedBulk {
   place: BulkPlace;

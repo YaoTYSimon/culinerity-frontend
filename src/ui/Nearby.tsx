@@ -1,17 +1,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import {
-  centroidTable, coverage, rankPlaces, rankSentence, roundOrigin, suburbCentroid,
+  CHECKED_TIER_LABEL, centroidTable, coverage, rankPlaces, rankSentence, roundOrigin, suburbCentroid,
   type LatLng, type Place, type PlaceFilter, type PlaceSourceRecord,
 } from '@culinerity/core';
+import { useBulkSource } from '../location/BulkContext';
 import { useLocationProvider } from '../location/LocationContext';
 import { useServices } from '../services/ServicesContext';
 import { Disclosure } from './Disclosure';
 import { ExternalLink } from './ExternalLink';
 import { INPUT_CLASS } from './formParts';
+import { NearbyBulk } from './NearbyBulk';
 import { NearbyFilters } from './NearbyFilters';
-import { NearbyPlaceRow } from './NearbyPlaceRow';
+import { NearbyPlaceRow, melbourneToday } from './NearbyPlaceRow';
 import { PageHeader } from './PageHeader';
 import { PillButton } from './PillButton';
+import { bulkView } from './bulkView';
+import { useBulkPlaces } from './useBulkPlaces';
 import type { View } from './views';
 
 /** Held in memory for this view only: rounded to about 100 m, never stored or sent. */
@@ -43,11 +47,14 @@ interface Props {
   profileSuburb?: string;
   /** When given, the view links to Food support (Nearby itself never decides where "elsewhere" is). */
   onNavigate?: (view: View) => void;
+  /** Today in Melbourne as YYYY-MM-DD; decides whether the not-checked list is fresh, old or hidden. Tests set it. */
+  today?: string;
 }
 
-export function Nearby({ score, profileSuburb, onNavigate }: Props) {
+export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   const { places: source } = useServices();
   const provider = useLocationProvider();
+  const bulkSource = useBulkSource();
   const [places, setPlaces] = useState<Place[] | null>(null);
   const [sources, setSources] = useState<PlaceSourceRecord[]>([]);
   const [used, setUsed] = useState(false);
@@ -142,6 +149,14 @@ export function Nearby({ score, profileSuburb, onNavigate }: Props) {
     return { rows: closest, note: `Nothing in our list within 10 km.${far ? ' Our starter list covers Melbourne for now.' : ''}`, paged: false };
   }, [origin, places, score, filter]);
 
+  const bulkState = useBulkPlaces(origin, bulkSource);
+  const bulk = useMemo(
+    () => (origin ? bulkView(bulkState, origin, filter, today ?? melbourneToday()) : ({ mode: 'none' } as const)),
+    [bulkState, origin, filter, today],
+  );
+  // The two tier headings appear together, only when the not-checked tier is on the page.
+  const tiered = bulk.mode === 'shown';
+
   const stats = useMemo(() => (places ? coverage(places) : null), [places]);
 
   const rows = view?.rows ?? [];
@@ -220,14 +235,15 @@ export function Nearby({ score, profileSuburb, onNavigate }: Props) {
       {places && origin && (
         <div className="grid gap-4">
           <NearbyFilters value={filter} onChange={(v) => { setFilter(v); setShown(PAGE); }} />
-          <LiveCount text={plural(rows.length)} />
+          <LiveCount text={plural(rows.length) + (bulk.mode === 'shown' ? `, ${bulk.ranked.length} not checked by us` : '')} />
           {origin.label && <p className="text-sm text-muted">from the middle of {origin.label}</p>}
+          {tiered && <h2 className="mt-2 font-display text-2xl leading-tight font-bold text-balance">{CHECKED_TIER_LABEL}</h2>}
           {view?.note && <p className="text-base font-semibold text-pretty">{view.note}</p>}
           {rows.length > 0 && (
             <>
               <p className="text-sm text-pretty">{rankSentence(score)}</p>
               <ul aria-label="Places near you" className="grid gap-10">
-                {visible.map((r) => <NearbyPlaceRow key={r.place.id} item={r} />)}
+                {visible.map((r) => <NearbyPlaceRow key={r.place.id} item={r} level={tiered ? 3 : 2} />)}
               </ul>
               {view?.paged && visible.length < rows.length && (
                 <PillButton variant="surface" onClick={() => setShown((n) => n + PAGE)} className="justify-self-start">Show more</PillButton>
@@ -235,6 +251,7 @@ export function Nearby({ score, profileSuburb, onNavigate }: Props) {
               <p className="text-sm text-muted">Straight-line distance, not walking time. Price bands are typical for this kind of place.</p>
             </>
           )}
+          <div className={tiered ? 'mt-8' : undefined}><NearbyBulk view={bulk} /></div>
         </div>
       )}
 

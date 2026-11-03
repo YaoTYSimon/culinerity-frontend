@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   BULK_CELL_DEG,
+  bulkCanMatch,
   bulkMatchesFilter,
   bulkStaleness,
   cellKey,
@@ -169,5 +170,14 @@ describe('bulkStaleness (Ruling D4b)', () => {
   it('hides the tier when a date cannot be read', () => {
     expect(bulkStaleness('nonsense', '2026-11-03')).toBe('hidden');
     expect(bulkStaleness(r, 'today')).toBe('hidden');
+  });
+});
+
+describe('bulkCanMatch', () => {
+  it('is false for Free and Low cost, true for All and Fresh produce', () => {
+    expect(bulkCanMatch('free')).toBe(false);
+    expect(bulkCanMatch('low-cost')).toBe(false);
+    expect(bulkCanMatch('all')).toBe(true);
+    expect(bulkCanMatch('fresh')).toBe(true);
   });
 });

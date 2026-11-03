@@ -126,9 +126,13 @@ describe('full flow (spec 23, 24)', () => {
     return { container, links };
   }
 
-  it('makes no network request of any kind', async () => {
+  it('makes no network request except the same-origin manifest and coarse cell paths', async () => {
     await walkFlow();
-    expect(fetchSpy).not.toHaveBeenCalled();
+    for (const [url, init] of fetchSpy.mock.calls) {
+      expect(String(url)).toMatch(/^\/places\/(manifest|cells\/\d+_\d+)\.json$/);
+      expect(init).toMatchObject({ credentials: 'omit', referrerPolicy: 'no-referrer' });
+      expect(leaks(String(url), [...DIGITS, '-37.813', '144.963', 'Footscray'])).toBe(false);
+    }
     expect(xhrOpen).not.toHaveBeenCalled();
     expect(beacon).not.toHaveBeenCalled();
     expect(socket).not.toHaveBeenCalled();
