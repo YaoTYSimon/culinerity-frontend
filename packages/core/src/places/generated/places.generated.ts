@@ -3,7 +3,7 @@
 import type { PlaceData } from '../types';
 
 export const placeData: PlaceData = {
-  "generatedAt": "2026-10-27",
+  "generatedAt": "2026-11-04",
   "sources": [
     {
       "id": "qvm-visit",
@@ -484,8 +484,8 @@ export const placeData: PlaceData = {
       "priceBasis": "typical",
       "fit": [],
       "access": "referral",
-      "hours": "Wednesdays 12:30pm to 2pm, or until stock lasts",
-      "note": "Cost not stated on the page (voluntary donations are welcome). You need to live in the City of Hume, hold a valid concession card and have a referral sent by email or letter from a recognised organisation or a Banksia Gardens worker. One food parcel per concession holder; collect in person. Phone 03 9309 8531.",
+      "hours": "Wednesdays 12:30pm to 2pm, or until stock lasts. Referral needed: you must live in the City of Hume, hold a valid concession card and have a referral from a recognised organisation or a Banksia Gardens worker",
+      "note": "Cost not stated on the page (voluntary donations are welcome). The referral is sent by email or letter. One food parcel per concession holder; collect in person. Phone 03 9309 8531.",
       "sourceId": "banksia-gardens-pantry",
       "verification": "primary",
       "checked": "2026-11-04"
@@ -504,7 +504,7 @@ export const placeData: PlaceData = {
         "meals"
       ],
       "access": "open",
-      "hours": "Wednesday nights: doors open 4pm, meals from 5pm",
+      "hours": "Wednesday nights until 2 December 2026: doors open 4pm, meals from 5pm",
       "notices": [
         {
           "text": "Finishing for 2026 on 2 December.",
@@ -550,7 +550,7 @@ export const placeData: PlaceData = {
       ],
       "access": "open",
       "hours": "Monday dinner (arrive 4:45pm, served 5pm); Wednesday lunch (arrive 11:45am, served 12pm)",
-      "note": "No referral or booking needed; arrive on time, as guests more than five minutes late cannot be admitted. A $5 donation is welcome but never required. Ongoing grocery support has separate eligibility rules (see the page).",
+      "note": "No referral or booking needed; arrive on time, as guests more than five minutes late cannot be admitted. A $5 donation is welcome but never required. Ongoing grocery support has separate eligibility rules (see the page). Address from the site's contact data (directories say 5/3 Webb Street); call or check the page before you go.",
       "sourceId": "transit-food-support",
       "verification": "primary",
       "checked": "2026-11-04"
@@ -590,7 +590,7 @@ export const placeData: PlaceData = {
       "fit": [],
       "access": "open",
       "hours": "Monday, Tuesday, Thursday and Friday 10am to 3pm; breakfast program at 134 Boronia Road 8:30am to 10am on the same days",
-      "note": "Cost not stated on the page for food parcels (it describes its support as free and confidential). Phone (03) 9761 1325.",
+      "note": "Cost not stated on the page for food parcels. Phone (03) 9761 1325.",
       "sourceId": "knox-infolink-home",
       "verification": "primary",
       "checked": "2026-11-04"
