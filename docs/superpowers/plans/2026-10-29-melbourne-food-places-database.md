@@ -181,6 +181,13 @@ export function bulkStaleness(release: string, today: string): 'fresh' | 'old' |
 **Files:** `docs/superpowers/research/README.md` new section "Refreshing the bulk places"; one line each under Scripts and Layout in `AGENTS.md`.
 - [ ] Steps: pin a new release; rerun extraction in a scratch directory; rebuild shards; resample 5 percent with a new seed; compare with the previous report; commit shards, manifest and report. Staleness behaviour is `bulkStaleness` (6 and 12 months).
 
+## Known limitations and privacy notes (final review, 2026-11-04)
+
+- **Typed suburb and the host:** a typed suburb maps to a fixed centroid and so to a fixed 3x3 block of cells. The host can therefore infer the area to about 1.5 km, exactly as for a device position. Nothing finer is sent, and no typed suburb or coordinate is in any URL.
+- **Report a problem:** the mailto body carries the place id and name; the person types the problem type (closed, moved, wrong, other) after the prompt. It is not prefilled because that would need a second link per type; it holds no data about the person.
+- **Dedupe (finding 8, not fixed):** `dedupe` in `scripts/lib/overtureFilter.mjs` compares every kept row with every earlier kept row (O(n squared)) and recomputes `normaliseName` per comparison; about 19,000 rows take minutes, once per release, in a scratch run, so it is accepted. It also ignores `kind`: a bakery and a cafe with the same normalised name within 50 m collapse into the one with higher confidence. Cost: some real places missing from a lossy but deterministic list. A fix would precompute names and bucket by cell, and key on name plus kind.
+- **Staleness boundaries:** fresh until exactly 6 months after the release date, old until exactly 12 months, hidden once older than 12 months (the day after).
+
 ## Review Focus
 
 - Any path where a bulk place shows a price, hours, or a health or cheap claim no source states.
