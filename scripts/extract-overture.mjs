@@ -9,8 +9,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { runPipeline } from './lib/overtureFilter.mjs';
 import { stableJson } from './lib/stableJson.mjs';
+import { applySuppress } from './lib/suppress.mjs';
 import { BULK_BOX } from './lib/validateBulk.mjs';
 
+const SUPPRESS = fileURLToPath(new URL('./suppress.json', import.meta.url));
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 
 /** The DuckDB query. The release id is pinned by the caller; bbox values are point features, so min values suffice. */
@@ -62,10 +64,13 @@ function main() {
   } catch {
     taxonomy = undefined;
   }
-  const { places, dropCounts, duplicates } = runPipeline(rows, { release, taxonomy });
+  const piped = runPipeline(rows, { release, taxonomy });
+  const { dropCounts, duplicates } = piped;
+  // Reported problems (scripts/suppress.json) are removed here; an id not in the data fails the run.
+  const { places, suppressed } = applySuppress(piped.places, JSON.parse(readFileSync(SUPPRESS, 'utf8')));
   writeFileSync(path.join(out, 'bulk-places.json'), stableJson(places, 1));
-  writeFileSync(path.join(out, 'drop-counts.json'), stableJson({ release, input: rows.length, kept: places.length, duplicates, dropped: dropCounts }, 2));
-  console.log(`Read ${rows.length}, kept ${places.length}, duplicates ${duplicates}.`);
+  writeFileSync(path.join(out, 'drop-counts.json'), stableJson({ release, input: rows.length, kept: places.length, duplicates, suppressed, dropped: dropCounts }, 2));
+  console.log(`Read ${rows.length}, kept ${places.length}, duplicates ${duplicates}, suppressed ${suppressed}.`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
