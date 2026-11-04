@@ -67,8 +67,8 @@ describe('Nearby not-checked tier', () => {
     expect(screen.getByText('Bulk Bakery')).toBeInTheDocument();
   });
 
-  it('hides the tier after 12 months with one line, keeping the checked list', async () => {
-    await open(source(), '2027-10-21');
+  it('hides the tier once older than 12 months with one line, keeping the checked list', async () => {
+    await open(source(), '2027-10-22');
     expect(await screen.findByText(BULK_HIDDEN_TEXT)).toBeInTheDocument();
     expect(screen.queryByText('Bulk Bakery')).toBeNull();
     expect(screen.queryByRole('heading', { name: 'Not checked by us' })).toBeNull();
@@ -80,6 +80,20 @@ describe('Nearby not-checked tier', () => {
     await open(source({ cell: async () => { if (n++ === 0) throw new Error('x'); return SHARD; } }));
     expect(await screen.findByText(BULK_FAILED_TEXT)).toBeInTheDocument();
     expect(screen.getAllByText('Bulk Bakery').length).toBeGreaterThan(0);
+  });
+
+  it('does not say the area is empty when every cell failed', async () => {
+    await open(source({ cell: async () => { throw new Error('x'); } }));
+    expect(await screen.findByText(BULK_FAILED_TEXT)).toBeInTheDocument();
+    expect(screen.queryByText(BULK_EMPTY_TEXT)).toBeNull();
+  });
+
+  it('keeps one polite live region mounted before the notes are filled, so they are announced', async () => {
+    await open(source(), '2027-04-22');
+    const note = await screen.findByText(BULK_OLD_TEXT);
+    const region = note.closest('[aria-live="polite"]') as HTMLElement;
+    expect(region).not.toBeNull();
+    expect(region.getAttribute('data-testid')).toBe('bulk-notes');
   });
 
   it('shows an empty state when nothing is listed close by', async () => {

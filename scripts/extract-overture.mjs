@@ -7,7 +7,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { runPipeline } from './lib/overtureFilter.mjs';
+import { ALLOWED_TAXONOMY_PREFIXES, runPipeline } from './lib/overtureFilter.mjs';
 import { stableJson } from './lib/stableJson.mjs';
 import { applySuppress } from './lib/suppress.mjs';
 import { BULK_BOX } from './lib/validateBulk.mjs';
@@ -45,29 +45,42 @@ export function parseArgs(argv) {
   const release = get('--release');
   const out = get('--out');
   const parquet = get('--parquet');
-  if (!release || !out) throw new Error('usage: node scripts/extract-overture.mjs --release <id> --out <dir outside the repo> [--parquet <local copy of the bbox rows of that release>]');
-  return { release, out, parquet };
+  if (!release || !out) throw new Error('usage: node scripts/extract-overture.mjs --release <id> --out <dir outside the repo> [--parquet <local copy of the bbox rows of that release>] [--allow-taxonomy-override]');
+  return { release, out, parquet, allowTaxonomyOverride: argv.includes('--allow-taxonomy-override') };
+}
+
+/**
+ * The allow-list to use. The committed one (ALLOWED_TAXONOMY_PREFIXES) unless <out>/taxonomy.json exists; a file that
+ * differs from the committed list is refused unless --allow-taxonomy-override is given, so output is reproducible from the repo.
+ */
+export function resolveTaxonomy(fileText, allowOverride) {
+  if (fileText === undefined) return ALLOWED_TAXONOMY_PREFIXES;
+  const parsed = JSON.parse(fileText);
+  if (JSON.stringify(parsed) === JSON.stringify(ALLOWED_TAXONOMY_PREFIXES)) return ALLOWED_TAXONOMY_PREFIXES;
+  if (!allowOverride) throw new Error('<out>/taxonomy.json differs from the committed allow-list (scripts/lib/overtureFilter.mjs). Delete it, or pass --allow-taxonomy-override to use it on purpose.');
+  return parsed;
 }
 
 function main() {
-  const { release, out, parquet } = parseArgs(process.argv.slice(2));
+  const { release, out, parquet, allowTaxonomyOverride } = parseArgs(process.argv.slice(2));
   assertOutsideRepo(out);
   mkdirSync(out, { recursive: true });
   const sql = buildSql(release, parquet);
   console.log(`Running: duckdb -json -c "<sql>"\n${sql}`);
   const rows = JSON.parse(execFileSync('duckdb', ['-no-agent', '-json', '-c', sql], { maxBuffer: 1 << 30, encoding: 'utf8' }));
   const taxonomyPath = path.join(out, 'taxonomy.json');
-  // Task 2.1 writes the measured allow-list here as [[prefix, kind], ...]; until then the default (empty) keeps nothing.
-  let taxonomy;
+  let fileText;
   try {
-    taxonomy = JSON.parse(readFileSync(taxonomyPath, 'utf8'));
+    fileText = readFileSync(taxonomyPath, 'utf8');
   } catch {
-    taxonomy = undefined;
+    fileText = undefined;
   }
+  const taxonomy = resolveTaxonomy(fileText, allowTaxonomyOverride);
   const piped = runPipeline(rows, { release, taxonomy });
   const { dropCounts, duplicates } = piped;
-  // Reported problems (scripts/suppress.json) are removed here; an id not in the data fails the run.
-  const { places, suppressed } = applySuppress(piped.places, JSON.parse(readFileSync(SUPPRESS, 'utf8')));
+  // Reported problems (scripts/suppress.json) are removed here; an id not in the data fails the run (one that de-duplication removed only warns).
+  const { places, suppressed, warnings } = applySuppress(piped.places, JSON.parse(readFileSync(SUPPRESS, 'utf8')), piped.dedupedIds);
+  for (const w of warnings) console.warn(`warning: ${w}`);
   writeFileSync(path.join(out, 'bulk-places.json'), stableJson(places, 1));
   writeFileSync(path.join(out, 'drop-counts.json'), stableJson({ release, input: rows.length, kept: places.length, duplicates, suppressed, dropped: dropCounts }, 2));
   console.log(`Read ${rows.length}, kept ${places.length}, duplicates ${duplicates}, suppressed ${suppressed}.`);

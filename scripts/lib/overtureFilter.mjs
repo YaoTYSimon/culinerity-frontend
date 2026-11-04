@@ -6,7 +6,7 @@ import { BULK_BOX, MIN_CONFIDENCE } from './validateBulk.mjs';
 /**
  * [taxonomy prefix, bulk kind] pairs, measured on Overture release 2026-10-21.0 (see docs/superpowers/research/2026-11-03-bulk-places-count-report.md).
  * A prefix is matched against the taxonomy hierarchy joined with '>' (taxonomy.primary is only the leaf, e.g. "pizza_restaurant").
- * The longest matching prefix wins; a kind of null excludes that sub-tree. Not listed on purpose: bars, pubs, breweries,
+ * The prefix must end on a segment boundary ('>' or the end of the path). The longest matching prefix wins; a kind of null excludes that sub-tree. Not listed on purpose: bars, pubs, breweries,
  * wineries, bottle shops, convenience stores, health food, dessert and candy shops, flea and night markets
  * (no matching BulkKind, or not food retail; see the report). Butchers, fishmongers and delis were added by Ruling R2.
  */
@@ -76,7 +76,7 @@ export function kindForTaxonomy(taxonomy, table = ALLOWED_TAXONOMY_PREFIXES) {
   if (typeof taxonomy !== 'string') return null;
   let best = null;
   for (const [prefix, kind] of table) {
-    if (taxonomy.startsWith(prefix) && (!best || prefix.length > best[0].length)) best = [prefix, kind];
+    if ((taxonomy === prefix || taxonomy.startsWith(`${prefix}>`)) && (!best || prefix.length > best[0].length)) best = [prefix, kind];
   }
   return best ? best[1] : null;
 }
@@ -168,5 +168,7 @@ export function runPipeline(rows, opts) {
     else kept.push(r.place);
   }
   const places = sortPlaces(dedupe(kept));
-  return { places, dropCounts, duplicates: kept.length - places.length };
+  const have = new Set(places.map((p) => p.id));
+  const dedupedIds = kept.filter((p) => !have.has(p.id)).map((p) => p.id).sort();
+  return { places, dropCounts, duplicates: kept.length - places.length, dedupedIds };
 }

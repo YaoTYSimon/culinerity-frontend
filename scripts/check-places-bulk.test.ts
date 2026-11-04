@@ -40,6 +40,17 @@ describe('checkPlacesBulk', () => {
   it('passes on the repo as it is today', () => {
     expect(checkPlacesBulk(PLACES_DIR).errors).toEqual([]);
   });
+  it('fails when the manifest cellDeg, box or a source licence is not the one the app uses', () => {
+    let { dir } = written();
+    edit(path.join(dir, 'manifest.json'), (m) => (m.cellDeg = 0.02));
+    expect(checkPlacesBulk(dir).errors.join()).toMatch(/cellDeg/);
+    ({ dir } = written());
+    edit(path.join(dir, 'manifest.json'), (m) => (m.box = { lat: [-38, -37], lng: [144, 145] }));
+    expect(checkPlacesBulk(dir).errors.join()).toMatch(/box/);
+    ({ dir } = written());
+    edit(path.join(dir, 'manifest.json'), (m) => (m.sources[0].licence = 'GPL-3.0'));
+    expect(checkPlacesBulk(dir).errors.join()).toMatch(/licence/);
+  });
   it('fails on a hash mismatch', () => {
     const { dir } = written();
     edit(path.join(dir, 'manifest.json'), (m) => (m.hash = '0'.repeat(64)));

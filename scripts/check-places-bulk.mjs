@@ -5,8 +5,8 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PLACES_DIR } from './build-places-bulk.mjs';
-import { cellKey } from './lib/cells.mjs';
-import { validateBulkPlace } from './lib/validateBulk.mjs';
+import { CELL_DEG, cellKey } from './lib/cells.mjs';
+import { BULK_BOX, BULK_LICENCE_LIST, validateBulkPlace } from './lib/validateBulk.mjs';
 
 /** `{ errors, message }`. An absent manifest is fine: no bulk places have been shipped yet. */
 export function checkPlacesBulk(dir = PLACES_DIR) {
@@ -19,6 +19,9 @@ export function checkPlacesBulk(dir = PLACES_DIR) {
   } catch (e) {
     return { errors: [`manifest.json is not valid JSON: ${e.message}`], message: '' };
   }
+  if (manifest.cellDeg !== CELL_DEG) errors.push(`manifest cellDeg ${manifest.cellDeg} is not ${CELL_DEG}, the size the app uses`);
+  if (JSON.stringify(manifest.box) !== JSON.stringify(BULK_BOX)) errors.push(`manifest box ${JSON.stringify(manifest.box)} is not the Greater Melbourne box ${JSON.stringify(BULK_BOX)}`);
+  for (const s of manifest.sources ?? []) if (!BULK_LICENCE_LIST.includes(s.licence)) errors.push(`manifest source "${s.dataset}" has licence "${s.licence}", not one of ${BULK_LICENCE_LIST.join(', ')}`);
   const cellsDir = path.join(dir, 'cells');
   const onDisk = existsSync(cellsDir) ? readdirSync(cellsDir).filter((f) => !f.startsWith('.')) : [];
   const listed = Object.keys(manifest.cells ?? {}).sort();

@@ -13,10 +13,14 @@ export interface BulkSource {
   cell(manifest: BulkManifest): CellFetcher;
 }
 
+/** A transient manifest failure (network error, server error) is retried on a later visit, this many times at most. */
+const MAX_MANIFEST_ATTEMPTS = 4;
+
 const INIT: RequestInit = { credentials: 'omit', referrerPolicy: 'no-referrer' };
 
 export function createBulkSource(fetchFn: typeof fetch = (...a) => fetch(...a)): BulkSource {
   let cached: Promise<BulkManifest | null> | null = null;
+  let attempts = 0;
   const json = async (url: string): Promise<unknown> => {
     const res = await fetchFn(url, INIT);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -24,11 +28,26 @@ export function createBulkSource(fetchFn: typeof fetch = (...a) => fetch(...a)):
   };
   return {
     manifest() {
-      cached ??= json(MANIFEST_PATH).then(
-        (m) => (isBulkManifest(m) ? m : null),
-        () => null,
-      );
-      return cached;
+      if (cached) return cached;
+      attempts += 1;
+      const pending: Promise<BulkManifest | null> = fetchFn(MANIFEST_PATH, INIT).then(
+        async (res) => {
+          if (res.status === 404) return null; // not published: a settled answer
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          try {
+            const m = await res.json();
+            return isBulkManifest(m) ? m : null;
+          } catch {
+            return null; // HTML fallback or not JSON: not published
+          }
+        },
+      ).catch(() => {
+        // Transient failure: forget it so the next visit can try again, up to a limit.
+        if (attempts < MAX_MANIFEST_ATTEMPTS) cached = null;
+        return null;
+      });
+      cached = pending;
+      return pending;
     },
     cell: (manifest) => async (key) => {
       if (!(key in manifest.cells)) return { release: manifest.release, places: [] };

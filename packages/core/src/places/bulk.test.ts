@@ -155,12 +155,12 @@ describe('bulkMatchesFilter', () => {
 
 describe('bulkStaleness (Ruling D4b)', () => {
   const r = '2026-10-21.0';
-  it('is fresh up to and including 6 months, old after, hidden from 12 months', () => {
+  it('is fresh up to and including 6 months, old after, and hidden only once older than 12 months', () => {
     expect(bulkStaleness(r, '2026-10-21')).toBe('fresh');
     expect(bulkStaleness(r, '2027-04-21')).toBe('fresh');
     expect(bulkStaleness(r, '2027-04-22')).toBe('old');
-    expect(bulkStaleness(r, '2027-10-20')).toBe('old');
-    expect(bulkStaleness(r, '2027-10-21')).toBe('hidden');
+        expect(bulkStaleness(r, '2027-10-21')).toBe('old');
+    expect(bulkStaleness(r, '2027-10-22')).toBe('hidden');
     expect(bulkStaleness(r, '2028-01-01')).toBe('hidden');
   });
   it('clamps month ends (31 August plus 6 months is 28 February)', () => {

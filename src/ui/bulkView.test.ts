@@ -28,9 +28,9 @@ describe('bulkView', () => {
     expect(bulkView(ready(), at, 'free', '2026-11-03')).toEqual({ mode: 'none' });
     expect(bulkView(ready(), at, 'low-cost', '2026-11-03')).toEqual({ mode: 'none' });
   });
-  it('marks old after 6 months and hides after 12', () => {
+  it('marks old after 6 months and hides once older than 12', () => {
     expect(bulkView(ready(), at, 'all', '2027-04-22')).toMatchObject({ mode: 'shown', old: true });
-    expect(bulkView(ready(), at, 'all', '2027-10-21')).toEqual({ mode: 'hidden' });
+    expect(bulkView(ready(), at, 'all', '2027-10-22')).toEqual({ mode: 'hidden' });
   });
   it('flags a failed cell and keeps the rest', () => {
     expect(bulkView(ready({ failedCells: ['1_1'] }), at, 'all', '2026-11-03')).toMatchObject({ mode: 'shown', failed: true });

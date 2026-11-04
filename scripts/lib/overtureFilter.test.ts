@@ -69,6 +69,14 @@ describe('filterPlace: one case per drop reason', () => {
     expect(k(['food_and_drink', 'casual_eatery', 'cafe'])).toBe('cafe-restaurant');
     expect(k(['food_and_drink', 'non_alcoholic_beverage_venue', 'coffee_shop'])).toBe('cafe-restaurant');
   });
+  it('matches a prefix only on a segment boundary', () => {
+    const t = [['a>cafe', 'cafe-restaurant'], ['a>bakery', 'bakery']] as Array<[string, string | null]>;
+    expect(kindForTaxonomy('a>cafe', t)).toBe('cafe-restaurant');
+    expect(kindForTaxonomy('a>cafe>espresso_bar', t)).toBe('cafe-restaurant');
+    expect(kindForTaxonomy('a>cafeteria', t)).toBeNull();
+    expect(kindForTaxonomy('a>bakery_x', t)).toBeNull();
+    expect(kindForTaxonomy('a>bakery>cake_shop', t)).toBe('bakery');
+  });
   it('maps butchers, fishmongers, seafood markets and delicatessens to the fresh-food kinds (Ruling R2)', () => {
     const k = (h: string[]) => kindForTaxonomy(taxonomyPath({ primary: h[h.length - 1], hierarchy: h }));
     expect(k(['shopping', 'food_and_beverage_store', 'butcher_shop'])).toBe('butcher');
@@ -140,14 +148,22 @@ describe('filterPlace: one case per drop reason', () => {
 
 describe('kindForTaxonomy and normaliseName', () => {
   it('takes the longest matching prefix', () => {
-    const table: Array<[string, string]> = [['a', 'bakery'], ['a.b', 'takeaway']];
-    expect(kindForTaxonomy('a.b.c', table)).toBe('takeaway');
-    expect(kindForTaxonomy('a.x', table)).toBe('bakery');
+    const table: Array<[string, string]> = [['a', 'bakery'], ['a>b', 'takeaway']];
+    expect(kindForTaxonomy('a>b>c', table)).toBe('takeaway');
+    expect(kindForTaxonomy('a>x', table)).toBe('bakery');
     expect(kindForTaxonomy('z', table)).toBeNull();
     expect(kindForTaxonomy(undefined, table)).toBeNull();
   });
   it('normalises case, punctuation and spaces', () => {
     expect(normaliseName("  Joe's   CAFE, (Test) ")).toBe('joes cafe test');
+  });
+});
+
+describe('runPipeline dedupe losers', () => {
+  it('lists the ids that de-duplication removed', () => {
+    const r = runPipeline([row('TEST-DUP-A1'), row('TEST-DUP-A2')].filter(Boolean), opts);
+    expect(r.places.length + r.dedupedIds.length).toBe(r.places.length + r.duplicates);
+    expect(r.dedupedIds.length).toBe(r.duplicates);
   });
 });
 

@@ -154,7 +154,7 @@ function addMonths(iso: string, months: number): string | null {
 }
 
 /**
- * Ruling D4b: fresh up to 6 months after the release date, old up to 12, then hidden.
+ * Ruling D4b: fresh until 6 months after the release date, old until 12 months after it, hidden once older than 12 months.
  * `release` is an Overture id such as "2026-10-21.0"; `today` is YYYY-MM-DD. An unreadable date hides the tier.
  */
 export function bulkStaleness(release: string, today: string): 'fresh' | 'old' | 'hidden' {
@@ -162,6 +162,6 @@ export function bulkStaleness(release: string, today: string): 'fresh' | 'old' |
   const six = addMonths(release, 6);
   const twelve = addMonths(release, 12);
   if (!t || !six || !twelve) return 'hidden';
-  if (t >= twelve) return 'hidden';
+  if (t > twelve) return 'hidden';
   return t > six ? 'old' : 'fresh';
 }

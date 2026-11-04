@@ -2,23 +2,23 @@
  "_note": "TEST DATA ONLY. Invented rows in Overture shape; none is a real place. Names, ids and addresses are made up.",
  "taxonomy": [
   [
-   "test.supermarket",
+   "test>supermarket",
    "supermarket"
   ],
   [
-   "test.produce",
+   "test>produce",
    "greengrocer"
   ],
   [
-   "test.bakery",
+   "test>bakery",
    "bakery"
   ],
   [
-   "test.takeaway",
+   "test>takeaway",
    "takeaway"
   ],
   [
-   "test.cafe",
+   "test>cafe",
    "cafe-restaurant"
   ]
  ],
@@ -31,7 +31,7 @@
     "primary": "Test Place TEST-001 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.supermarket.x"
+    "primary": "test>supermarket>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -54,7 +54,7 @@
     "primary": "Test Place TEST-002 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.produce.x"
+    "primary": "test>produce>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -80,7 +80,7 @@
     "primary": "Test Place TEST-003 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.bakery.x"
+    "primary": "test>bakery>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -103,7 +103,7 @@
     "primary": "Test Place TEST-004 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.takeaway.x"
+    "primary": "test>takeaway>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -129,7 +129,7 @@
     "primary": "Test Place TEST-005 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -152,7 +152,7 @@
     "primary": "Test Place TEST-006 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.supermarket.x"
+    "primary": "test>supermarket>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -178,7 +178,7 @@
     "primary": "Test Place TEST-007 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.produce.x"
+    "primary": "test>produce>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -201,7 +201,7 @@
     "primary": "Test Place TEST-008 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.bakery.x"
+    "primary": "test>bakery>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -227,7 +227,7 @@
     "primary": "Test Place TEST-009 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.takeaway.x"
+    "primary": "test>takeaway>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -250,7 +250,7 @@
     "primary": "Test Place TEST-010 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -276,7 +276,7 @@
     "primary": "Test Place TEST-011 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.supermarket.x"
+    "primary": "test>supermarket>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -299,7 +299,7 @@
     "primary": "Test Place TEST-012 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.produce.x"
+    "primary": "test>produce>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -325,7 +325,7 @@
     "primary": "Test Edge South West (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -348,7 +348,7 @@
     "primary": "Test Edge North East (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -371,7 +371,7 @@
     "primary": "Test Cell Boundary (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -394,7 +394,7 @@
     "primary": "Test Place TEST-CLOSED-1 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -418,7 +418,7 @@
     "primary": "Test Place TEST-CLOSED-2 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -442,7 +442,7 @@
     "primary": "  "
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -463,7 +463,7 @@
    "lng": 144.96,
    "names": {},
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -486,7 +486,7 @@
     "primary": "Test Place TEST-NOADDR (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -508,7 +508,7 @@
     "primary": "Test Place TEST-NOSUBURB (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -530,7 +530,7 @@
     "primary": "Test Place TEST-LOWCONF-1 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.69,
    "addresses": [
@@ -553,7 +553,7 @@
     "primary": "Test Place TEST-LOWCONF-2 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.2,
    "addresses": [
@@ -576,7 +576,7 @@
     "primary": "Test Place TEST-OUT-1 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -599,7 +599,7 @@
     "primary": "Test Place TEST-OUT-2 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -622,7 +622,7 @@
     "primary": "Test Place TEST-OUT-3 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -689,7 +689,7 @@
     "primary": "Test Place TEST-FSQ-1 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -712,7 +712,7 @@
     "primary": "Test Place TEST-FSQ-2 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -735,7 +735,7 @@
     "primary": "Test Place TEST-LIC-1 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -758,7 +758,7 @@
     "primary": "Test Place TEST-LIC-2 (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -777,7 +777,7 @@
     "primary": "Test Dup Alpha (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.95,
    "addresses": [
@@ -800,7 +800,7 @@
     "primary": "TEST DUP ALPHA synthetic"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.8,
    "addresses": [
@@ -823,7 +823,7 @@
     "primary": "Test Dup Beta (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -846,7 +846,7 @@
     "primary": "test dup beta (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -869,7 +869,7 @@
     "primary": "Test Far Gamma (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -892,7 +892,7 @@
     "primary": "Test Far Gamma (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -915,7 +915,7 @@
     "primary": "Test Delta One (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [
@@ -938,7 +938,7 @@
     "primary": "Test Delta Two (synthetic)"
    },
    "taxonomy": {
-    "primary": "test.cafe.x"
+    "primary": "test>cafe>x"
    },
    "confidence": 0.9,
    "addresses": [

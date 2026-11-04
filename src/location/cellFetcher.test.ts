@@ -41,6 +41,34 @@ describe('createBulkSource', () => {
     const load = await loadBulkFor({ lat: -37.8136, lng: 144.9631 }, src.cell((await src.manifest())!));
     expect(load.failedCells).toContain('44_52');
   });
+  it('does not keep a failed manifest fetch: the next call tries again, up to a small limit', async () => {
+    let n = 0;
+    const f = vi.fn(async () => { if (n++ < 10) throw new TypeError('offline'); return ok(MANIFEST); });
+    const src = createBulkSource(f as unknown as typeof fetch);
+    expect(await src.manifest()).toBeNull();
+    expect(await src.manifest()).toBeNull();
+    expect(f).toHaveBeenCalledTimes(2);
+    expect(await src.manifest()).toBeNull();
+    expect(await src.manifest()).toBeNull();
+    const calls = f.mock.calls.length;
+    expect(await src.manifest()).toBeNull();
+    expect(f.mock.calls.length).toBe(calls); // limit reached, no more requests
+  });
+  it('a manifest that loads after an earlier failure is kept', async () => {
+    let n = 0;
+    const f = vi.fn(async () => { if (n++ === 0) throw new TypeError('offline'); return ok(MANIFEST); });
+    const src = createBulkSource(f as unknown as typeof fetch);
+    expect(await src.manifest()).toBeNull();
+    expect(await src.manifest()).toEqual(MANIFEST);
+    await src.manifest();
+    expect(f).toHaveBeenCalledTimes(2);
+  });
+  it('a manifest that is not published (404 or not a manifest) stays cached as absent', async () => {
+    const f = vi.fn(async () => ({ ok: false, status: 404 }) as Response);
+    const src = createBulkSource(f as unknown as typeof fetch);
+    await src.manifest(); await src.manifest();
+    expect(f).toHaveBeenCalledTimes(1);
+  });
   it('asks for the manifest once', async () => {
     const f = vi.fn(async () => ok(MANIFEST));
     const src = createBulkSource(f as unknown as typeof fetch);

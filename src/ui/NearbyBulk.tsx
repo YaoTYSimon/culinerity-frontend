@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BULK_TIER_LABEL, bulkSourceLine } from '@culinerity/core';
 import { buildDataLicences } from '../content/dataLicences';
 import { Disclosure } from './Disclosure';
@@ -23,6 +23,19 @@ export function NearbyBulk({ view, reportContact }: { view: BulkView; reportCont
   return <BulkTier view={view} reportContact={reportContact} />;
 }
 
+/** The notes live in a polite region that mounts empty and is filled after mount, so they are announced (same pattern as Nearby's LiveCount). */
+function Notes({ old, failed, empty }: { old: boolean; failed: boolean; empty: boolean }) {
+  const [on, setOn] = useState({ old: false, failed: false, empty: false });
+  useEffect(() => { setOn({ old, failed, empty }); }, [old, failed, empty]);
+  return (
+    <div aria-live="polite" data-testid="bulk-notes" className="empty:hidden grid gap-2 text-base font-semibold text-pretty">
+      {on.old && <p>{BULK_OLD_TEXT}</p>}
+      {on.failed && <p>{BULK_FAILED_TEXT}</p>}
+      {on.empty && <p>{BULK_EMPTY_TEXT}</p>}
+    </div>
+  );
+}
+
 function BulkTier({ view, reportContact }: { view: Shown; reportContact?: string }) {
   const [shown, setShown] = useState(PAGE);
   const { ranked, old, failed, release } = view;
@@ -30,11 +43,7 @@ function BulkTier({ view, reportContact }: { view: Shown; reportContact?: string
   return (
     <section aria-labelledby="nearby-bulk-h" className="grid gap-4">
       <h2 id="nearby-bulk-h" className="font-display text-2xl leading-tight font-bold text-balance">{BULK_TIER_LABEL}</h2>
-      <div aria-live="polite" className="empty:hidden grid gap-2 text-base font-semibold text-pretty">
-        {old && <p>{BULK_OLD_TEXT}</p>}
-        {failed && <p>{BULK_FAILED_TEXT}</p>}
-        {ranked.length === 0 && <p>{BULK_EMPTY_TEXT}</p>}
-      </div>
+      <Notes old={old} failed={failed} empty={ranked.length === 0 && !failed} />
       {ranked.length > 0 && (
         <>
           <ul aria-label={`${BULK_TIER_LABEL} places near you`} className="grid gap-10">

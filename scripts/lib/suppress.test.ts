@@ -17,6 +17,13 @@ describe('suppress list', () => {
   it('fails on an id that is not in the data, naming it', () => {
     expect(() => applySuppress(places, ['ovt-ddd4'])).toThrow(/not in the data: ovt-ddd4/);
   });
+  it('warns, not fails, for an id that de-duplication already removed', () => {
+    const r = applySuppress(places, ['ovt-bbb2', 'ovt-dee9'], ['ovt-dee9']);
+    expect(r.places.map((p) => p.id)).toEqual(['ovt-aaa1', 'ovt-ccc3']);
+    expect(r.suppressed).toBe(1);
+    expect(r.warnings.join()).toMatch(/ovt-dee9/);
+    expect(() => applySuppress(places, ['ovt-dee9', 'ovt-ddd4'], ['ovt-dee9'])).toThrow(/not in the data: ovt-ddd4/);
+  });
   it('fails on a malformed or duplicated list', () => {
     expect(validateSuppressList('x')).toHaveLength(1);
     expect(validateSuppressList([1, 'name', 'ovt-aaa1', 'ovt-aaa1']).length).toBe(3);

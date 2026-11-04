@@ -9,4 +9,4 @@ export function distanceMeters(a: { lat: number; lng: number }, b: { lat: number
 export function filterPlace(raw: any, opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string | null]> }): { place: any } | { drop: string };
 export function dedupe(places: any[]): any[];
 export function sortPlaces(places: any[]): any[];
-export function runPipeline(rows: any[], opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string | null]> }): { places: any[]; dropCounts: Record<string, number>; duplicates: number };
+export function runPipeline(rows: any[], opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string | null]> }): { places: any[]; dropCounts: Record<string, number>; duplicates: number; dedupedIds: string[] };
