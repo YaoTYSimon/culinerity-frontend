@@ -22,4 +22,4 @@ A place is never marked `open-correct` without evidence seen. A page that merely
 
 ## Gate
 
-Per kind: at least 90 percent `open-correct` among verified places, and the lower end of the Wilson 95 percent interval at least 85 percent (`wilson` in `scripts/lib/sample.mjs`). With n verified places and no failures the lower bound is 85.1 percent at n = 22, so a kind cannot pass on fewer than 22 verified places, and a single failure needs roughly 40 or more. If a kind has too few verified places, its interval is reported as it is and the kind does not pass.
+Per kind: at least 90 percent `open-correct` among verified places, and the lower end of the Wilson 95 percent interval at least 85 percent (`wilson` in `scripts/lib/sample.mjs`). With n verified places and no failures the lower bound is 85.1 percent at n = 22, so a kind cannot pass on fewer than 22 verified places, and one failure needs at least 34, two failures at least 45. If a kind has too few verified places, its interval is reported as it is and the kind does not pass.
