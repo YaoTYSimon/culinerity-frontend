@@ -351,6 +351,15 @@
     "usedFor": "C: support for young people"
   },
   {
+    "id": "safe-steps",
+    "publisher": "Safe Steps Family Violence Response Centre",
+    "title": "Safe Steps: '24/7 Support: 1800 015 188', 'Call us any time, day or night', 'For emergency support, please call 000 now'; the Victorian Government's Orange Door after-hours page also lists Safe Steps 1800 015 188 (24 hours a day, 7 days a week)",
+    "url": "https://www.safesteps.org.au/",
+    "licence": "Contact details (facts) only; no licence statement found on the page (footer: supported by the Victorian Government)",
+    "accessed": "2026-11-20",
+    "usedFor": "Need a hand? list: family violence support line. Cross-checked at https://orangedoor.vic.gov.au/statewide-after-hours-support (c) State Government of Victoria, numbers only"
+  },
+  {
     "id": "national-debt-helpline",
     "publisher": "National Debt Helpline",
     "title": "1800 007 007, weekdays 9:30am-4:30pm (phone), chat weekdays 9:00am-8:00pm; free financial counselling",

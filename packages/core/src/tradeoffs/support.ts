@@ -2,7 +2,7 @@ import { TRADEOFF_TIER, type SupportTier } from './categories';
 import type { TradeoffCategory } from './types';
 
 export interface Helpline {
-  id: 'lifeline' | 'kids-helpline' | 'national-debt-helpline';
+  id: 'lifeline' | 'kids-helpline' | 'national-debt-helpline' | 'safe-steps';
   name: string;
   /** The number as people read it. */
   display: string;
@@ -10,16 +10,17 @@ export interface Helpline {
   tel: string;
   /** Plain words for when it answers. */
   hours: string;
-  verifiedOn: '2026-10-29';
+  verifiedOn: '2026-10-29' | '2026-11-20';
 }
 
-/** Checked on each service's own site on 29 October 2026. */
+/** Checked on each service's own site on 29 October 2026 (Safe Steps: 20 November 2026). */
 export const HELPLINES: Record<Helpline['id'], Helpline> = {
   lifeline: { id: 'lifeline', name: 'Lifeline', display: '13 11 14', tel: '131114', hours: 'any time', verifiedOn: '2026-10-29' },
   'kids-helpline': { id: 'kids-helpline', name: 'Kids Helpline', display: '1800 55 1800', tel: '1800551800', hours: 'any time', verifiedOn: '2026-10-29' },
   'national-debt-helpline': {
     id: 'national-debt-helpline', name: 'National Debt Helpline', display: '1800 007 007', tel: '1800007007', hours: 'weekdays', verifiedOn: '2026-10-29',
   },
+  'safe-steps': { id: 'safe-steps', name: 'Safe Steps', display: '1800 015 188', tel: '1800015188', hours: 'any time', verifiedOn: '2026-11-20' },
 };
 
 /** Foodbank's Find Food page (the old foodbank.org.au/find-food/ address redirects here). */

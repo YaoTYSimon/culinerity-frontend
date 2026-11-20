@@ -27,4 +27,6 @@ export const DEBT_HOURS = '(weekdays)';
 export const LIFELINE_LEAD = 'If things feel heavy: Lifeline';
 export const LIFELINE_TAIL = ', any time. In danger, call';
 export const KIDS_LEAD = 'If your child wants someone to talk to: Kids Helpline';
+export const SAFE_STEPS_LEAD = 'If you do not feel safe at home: Safe Steps, family violence support';
+export const SAFE_STEPS_TAIL = ', any time. In danger, call';
 export const KIDS_LEAD_PARENT = 'Kids Helpline, for children and young people:';

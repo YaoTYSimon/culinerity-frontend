@@ -122,6 +122,14 @@ describe('support card on the view', () => {
     expect(inside.getByRole('link', { name: '13 11 14' })).toBeInTheDocument();
     expect(details).toHaveTextContent('Kids Helpline, for children and young people:');
     expect(inside.getByRole('link', { name: '1800 55 1800' })).toBeInTheDocument();
+    expect(details).toHaveTextContent('If you do not feel safe at home: Safe Steps, family violence support');
+    expect(inside.getByRole('link', { name: '1800 015 188' })).toHaveAttribute('href', 'tel:1800015188');
+  });
+
+  it('Safe Steps is in the Need a hand? disclosure only, not in the tier cards', () => {
+    render(<View />);
+    log('bill-delayed');
+    expect(inCard().queryByRole('link', { name: '1800 015 188' })).toBeNull();
   });
 
   it('SupportCard renders nothing for a category with no support', () => {

@@ -5,7 +5,7 @@ import { ExternalLink } from './ExternalLink';
 import { PillButton } from './PillButton';
 import {
   DEBT_HOURS, DEBT_LEAD, FIND_FOOD_LINK, FOOD_SUPPORT_BUTTON, KIDS_LEAD, KIDS_LEAD_PARENT, LIFELINE_LEAD, LIFELINE_TAIL,
-  NEED_A_HAND_TITLE, SUPPORT_BODY, SUPPORT_CLOSE, SUPPORT_HEADING,
+  NEED_A_HAND_TITLE, SAFE_STEPS_LEAD, SAFE_STEPS_TAIL, SUPPORT_BODY, SUPPORT_CLOSE, SUPPORT_HEADING,
 } from './tradeoffCopy';
 
 /** Inside a sentence the link stays inline, so the lines keep their rhythm. */
@@ -34,6 +34,9 @@ function HelpLines({ support: s, onOpenSupport, parent = false }: { support: Sup
       )}
       {s.helplines.includes('national-debt-helpline') && debtLine}
       {s.helplines.includes('lifeline') && lifelineLine}
+      {s.helplines.includes('safe-steps') && (
+        <Line>{SAFE_STEPS_LEAD} {call('safe-steps')}{SAFE_STEPS_TAIL} <TelLink tel="000">000</TelLink>.</Line>
+      )}
       {s.helplines.includes('kids-helpline') && (
         <Line>{parent ? KIDS_LEAD_PARENT : KIDS_LEAD} {call('kids-helpline')}{parent ? '' : '.'}</Line>
       )}
@@ -42,7 +45,7 @@ function HelpLines({ support: s, onOpenSupport, parent = false }: { support: Sup
 }
 
 const EVERYTHING: Support = {
-  tier: 'food+child', findFood: true, foodSupportView: true, helplines: ['national-debt-helpline', 'lifeline', 'kids-helpline'],
+  tier: 'food+child', findFood: true, foodSupportView: true, helplines: ['national-debt-helpline', 'lifeline', 'kids-helpline', 'safe-steps'],
 };
 
 /** Always on the view, so help is reachable without logging anything. */
