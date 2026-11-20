@@ -211,16 +211,17 @@ describe('share text (spec 24)', () => {
         <LocationProviderContext.Provider value={provider}><App now={() => NOW} /></LocationProviderContext.Provider>
       </ServicesProvider>,
     );
-    const go = (item: string) => {
+    const go = async (item: string) => {
       fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
       fireEvent.click(screen.getByRole('button', { name: item }));
+      await screen.findByRole('heading', { level: 1 }); // lazy views: wait for the view's h1
     };
     if (withOrigin) {
-      go('Nearby');
+      await go('Nearby');
       await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Use my location' })); });
       expect(await screen.findByRole('list', { name: 'Places near you' })).toBeInTheDocument();
     }
-    go('My week');
+    await go('My week');
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Share' })); });
     unmount();
     return share.mock.calls[0][0].text as string;
@@ -251,7 +252,7 @@ describe('profile stays untouched (spec 24)', () => {
     const savesBefore = store.saved.length;
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Nearby' }));
-    const field = screen.getByLabelText('Type a suburb or postcode');
+    const field = await screen.findByLabelText('Type a suburb or postcode');
     expect(field).toHaveValue('Carlton');
     fireEvent.change(field, { target: { value: 'Footscray' } });
     fireEvent.click(screen.getByRole('button', { name: 'Use this suburb' }));

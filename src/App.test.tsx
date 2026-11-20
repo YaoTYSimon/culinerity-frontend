@@ -86,10 +86,10 @@ describe('App', () => {
     expect(store.saved.some((p) => p.welcomeSeen === true)).toBe(false);
   });
 
-  it('Nearby opens from the menu with its h1 focused', () => {
+  it('Nearby opens from the menu with its h1 focused', async () => {
     renderApp(new InMemoryProfileStore(SEEN));
     openMenu('Nearby');
-    const h1 = screen.getByRole('heading', { level: 1, name: 'Close to you.' });
+    const h1 = await screen.findByRole('heading', { level: 1, name: 'Close to you.' });
     expect(h1).toBeInTheDocument();
     expect(h1).toHaveFocus();
   });
@@ -179,16 +179,16 @@ describe('App', () => {
     expect(details).not.toHaveAttribute('open');
   });
 
-  it('opens the data and policy page from the footer link and from the Menu', () => {
+  it('opens the data and policy page from the footer link and from the Menu', async () => {
     renderApp();
     fireEvent.click(within(screen.getByRole('contentinfo')).getByRole('button', { name: 'Data and policy' }));
-    expect(screen.getByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Swaps' }));
     expect(screen.queryByRole('heading', { name: 'What we know about food insecurity.' })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: 'Data and policy' }));
-    expect(screen.getByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
   });
 
   it('gives every photo, nutrition and Hebcal credit link an accessible name', () => {
@@ -281,11 +281,11 @@ describe('my week', () => {
     expect(search).toHaveFocus();
   });
 
-  it('the Budget view opens from the menu, takes focus, and saves a spend through the profile store', () => {
+  it('the Budget view opens from the menu, takes focus, and saves a spend through the profile store', async () => {
     const store = new InMemoryProfileStore({ ...SEEN, foodBudgetWeekly: 120 });
     renderApp(store, () => '2026-10-28T12:00:00');
     openMenu('Budget');
-    expect(screen.getByRole('heading', { level: 1, name: "This week's food." })).toHaveFocus();
+    expect(await screen.findByRole('heading', { level: 1, name: "This week's food." })).toHaveFocus();
     fireEvent.click(screen.getByRole('button', { name: 'Add' }));
     fireEvent.change(screen.getByLabelText(/amount/i), { target: { value: '25' } });
     fireEvent.click(screen.getByRole('button', { name: 'Save' }));
@@ -293,10 +293,10 @@ describe('my week', () => {
     expect(store.saved[store.saved.length - 1].spendEntries).toHaveLength(1);
   });
 
-  it('the Budget view follows the swaps total to My week', () => {
+  it('the Budget view follows the swaps total to My week', async () => {
     renderApp(new InMemoryProfileStore({ ...SEEN, foodBudgetWeekly: 120, weekSwaps: [{ itemId: 'x', name: 'Soup', saving: 4, at: '2026-10-27T09:00:00' }] }), () => '2026-10-28T12:00:00');
     openMenu('Budget');
-    fireEvent.click(screen.getByRole('button', { name: 'My week' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'My week' }));
     expect(screen.getByRole('heading', { level: 1, name: /saved/i })).toBeInTheDocument();
   });
 
@@ -349,12 +349,12 @@ describe('my week', () => {
     });
 
     describe('What if', () => {
-      it('Menu opens What if, shows the notice, saves Your numbers to the profile and nothing else', () => {
+      it('Menu opens What if, shows the notice, saves Your numbers to the profile and nothing else', async () => {
         const KEY = 'culinerity.profile.v1';
         localStorage.setItem(KEY, JSON.stringify({ ...SEEN, score: 40 }));
         renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
         openMenu('What if');
-        expect(screen.getByRole('heading', { level: 1, name: 'What if' })).toBeInTheDocument();
+        expect(await screen.findByRole('heading', { level: 1, name: 'What if' })).toBeInTheDocument();
         expect(screen.getByText(/^General information, not advice\./)).toBeInTheDocument();
         fireEvent.change(screen.getByLabelText('Rent or housing'), { target: { value: '450' } });
         fireEvent.click(screen.getByRole('button', { name: 'Save my numbers' }));
@@ -362,40 +362,40 @@ describe('my week', () => {
         expect(Object.keys(localStorage)).toEqual([KEY]);
       });
 
-      it('its help buttons go to Swaps, Budget, Food support and Nearby', () => {
+      it('its help buttons go to Swaps, Budget, Food support and Nearby', async () => {
         localStorage.setItem('culinerity.profile.v1', JSON.stringify({ ...SEEN, incomeWeekly: 900, housingWeekly: 450, otherFixedWeekly: 150, foodBudgetWeekly: 120 }));
         renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
-        const run = () => {
+        const run = async () => {
           openMenu('What if');
-          fireEvent.click(screen.getByRole('radio', { name: 'Rent changes' }));
+          fireEvent.click(await screen.findByRole('radio', { name: 'Rent changes' }));
           fireEvent.change(screen.getByLabelText('Rent change (%)'), { target: { value: '10' } });
           fireEvent.click(screen.getByRole('button', { name: 'Show what changes' }));
         };
-        run();
+        await run();
         fireEvent.click(screen.getByRole('button', { name: 'Budget' }));
-        expect(screen.getByRole('heading', { level: 1, name: "This week's food." })).toBeInTheDocument();
-        run();
+        expect(await screen.findByRole('heading', { level: 1, name: "This week's food." })).toBeInTheDocument();
+        await run();
         fireEvent.click(screen.getByRole('button', { name: 'Food support' }));
         expect(screen.getByRole('region', SUPPORT)).toBeInTheDocument();
       });
 
-      it('the Budget view links to What if', () => {
+      it('the Budget view links to What if', async () => {
         localStorage.setItem('culinerity.profile.v1', JSON.stringify({ ...SEEN, foodBudgetWeekly: 120 }));
         renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
         openMenu('Budget');
-        fireEvent.click(screen.getByRole('button', { name: 'Try a what if' }));
-        expect(screen.getByRole('heading', { level: 1, name: 'What if' })).toBeInTheDocument();
+        fireEvent.click(await screen.findByRole('button', { name: 'Try a what if' }));
+        expect(await screen.findByRole('heading', { level: 1, name: 'What if' })).toBeInTheDocument();
       });
     });
 
     describe('Trade-offs', () => {
-      it('Menu opens Trade-offs and saving writes only the profile key', () => {
+      it('Menu opens Trade-offs and saving writes only the profile key', async () => {
         const KEY = 'culinerity.profile.v1';
         localStorage.setItem(KEY, JSON.stringify({ ...SEEN, score: 40 }));
         renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
         const before = stored();
         openMenu('Trade-offs');
-        expect(screen.getByRole('heading', { level: 1, name: 'What we went without' })).toBeInTheDocument();
+        expect(await screen.findByRole('heading', { level: 1, name: 'What we went without' })).toBeInTheDocument();
         fireEvent.click(screen.getByRole('button', { name: 'Add a trade-off' }));
         fireEvent.click(screen.getByRole('button', { name: 'Went without something nice for myself' }));
         const after = stored();
@@ -481,12 +481,12 @@ describe('my week', () => {
       const PROFILE_KEY = 'culinerity.profile.v1';
       const TODAY = () => '2026-10-29T12:00:00';
 
-      it('adding an item changes only the pantry key of the stored JSON and touches nothing else in storage', () => {
+      it('adding an item changes only the pantry key of the stored JSON and touches nothing else in storage', async () => {
         localStorage.setItem(PROFILE_KEY, JSON.stringify({ ...SEEN, score: 40 }));
         renderApp(new LocalProfileStore(), TODAY);
         const before = stored();
         openMenu('My pantry');
-        expect(screen.getByRole('heading', { level: 1, name: 'My pantry' })).toHaveFocus();
+        expect(await screen.findByRole('heading', { level: 1, name: 'My pantry' })).toHaveFocus();
         fireEvent.click(screen.getByRole('button', { name: 'Onion' }));
         const after = stored();
         expect(Object.keys(after).sort()).toEqual([...Object.keys(before), 'pantry'].sort());
@@ -494,10 +494,10 @@ describe('my week', () => {
         expect(Object.keys(localStorage)).toEqual([PROFILE_KEY]);
       });
 
-      it('"Cook with what you have" opens its own screen', () => {
+      it('"Cook with what you have" opens its own screen', async () => {
         renderApp(new InMemoryProfileStore(SEEN), TODAY);
         openMenu('Cook with what you have');
-        expect(screen.getByRole('heading', { level: 1, name: 'Cook with what you have' })).toBeInTheDocument();
+        expect(await screen.findByRole('heading', { level: 1, name: 'Cook with what you have' })).toBeInTheDocument();
       });
     });
 

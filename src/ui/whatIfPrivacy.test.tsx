@@ -96,9 +96,11 @@ describe('full flow with every channel spied before it starts', () => {
   const pick = (name: string) => fireEvent.click(screen.getByRole('radio', { name }));
   const run = () => fireEvent.click(screen.getByRole('button', { name: 'Show what changes' }));
   const save = (name: string) => { type('Name', name); fireEvent.click(screen.getByRole('button', { name: 'Save this what-if' })); };
-  const nav = (item: string) => {
+  // Views load lazily: wait for the new view's h1 (the old view is hidden while the fallback shows).
+  const nav = async (item: string) => {
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: item }));
+    await screen.findByRole('heading', { level: 1 });
   };
 
   const surfaces = () => {
@@ -118,10 +120,10 @@ describe('full flow with every channel spied before it starts', () => {
     expect(document.cookie, `${step}: cookie`).toBe('');
   };
 
-  function runFlow() {
+  async function runFlow() {
     localStorage.setItem(PROFILE_KEY, JSON.stringify({ welcomeSeen: true }));
     render(<ServicesProvider services={createCoreServices(new LocalProfileStore())}><App now={clock} /></ServicesProvider>);
-    nav('What if');
+    await nav('What if');
     for (const [label, v] of Object.entries(NUMBERS)) type(label, v);
     fireEvent.click(screen.getByRole('button', { name: 'Save my numbers' }));
     checkSurfaces('numbers');
@@ -178,8 +180,8 @@ describe('full flow with every channel spied before it starts', () => {
     for (const spy of [directFetch, xhrOpen, beacon, socket, share, writeText, setItem, consoles[0]]) expect(spy).toHaveBeenCalled();
   });
 
-  it('makes no network call, share, clipboard or console call, and writes only the profile key', () => {
-    runFlow();
+  it('makes no network call, share, clipboard or console call, and writes only the profile key', async () => {
+    await runFlow();
     expect(directFetch).not.toHaveBeenCalled();
     expect(xhrOpen).not.toHaveBeenCalled();
     expect(beacon).not.toHaveBeenCalled();
@@ -190,8 +192,8 @@ describe('full flow with every channel spied before it starts', () => {
     expect(setItem.mock.calls.every((c: unknown[]) => c[0] === PROFILE_KEY || c[0] === KEYS.theme)).toBe(true);
   });
 
-  it('the stored profile holds only documented fields, inputs only, no result numbers', () => {
-    runFlow();
+  it('the stored profile holds only documented fields, inputs only, no result numbers', async () => {
+    await runFlow();
     const profile = stored();
     expect(Object.keys(profile).sort()).toEqual(DOCUMENTED_PROFILE_KEYS);
     expect(profile).toMatchObject({ incomeWeekly: 731.19, housingWeekly: 483.17 });
@@ -202,8 +204,8 @@ describe('full flow with every channel spied before it starts', () => {
     for (const n of RESULT_NUMBERS) expect(new RegExp(`(?<![\\d.])${n.replace('.', '\\.')}(?![\\d])`).test(json), `result number ${n} in saved JSON`).toBe(false);
   });
 
-  it('the names and numbers stay out of My week, its share text and the Menu', () => {
-    runFlow();
+  it('the names and numbers stay out of My week, its share text and the Menu', async () => {
+    await runFlow();
     const bad = [...NAMES];
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     expect(leaks(screen.getByRole('navigation', { name: 'Menu' }).textContent ?? '', bad)).toBe(false);

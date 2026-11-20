@@ -127,9 +127,11 @@ describe('full flow: add, cook, add to list, share the week', () => {
     expect(sessionStorage.length, `${step}: sessionStorage`).toBe(0);
     expect(document.cookie, `${step}: cookie`).toBe('');
   };
-  const openMenu = (item: string) => {
+  // Views load lazily: wait for the new view's h1 (the old view is hidden while the fallback shows).
+  const openMenu = async (item: string) => {
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: item }));
+    await screen.findByRole('heading', { level: 1 });
   };
   const addByName = (text: string) => {
     const field = screen.getByRole('combobox', { name: 'Add something you have' });
@@ -143,7 +145,7 @@ describe('full flow: add, cook, add to list, share the week', () => {
     render(<ServicesProvider services={createCoreServices(new LocalProfileStore())}><App now={clock} /></ServicesProvider>);
 
     // add items, one of them free text with the marker
-    openMenu('My pantry');
+    await openMenu('My pantry');
     addByName('chickpeas');
     addByName('onion');
     addByName('garlic');
@@ -155,7 +157,7 @@ describe('full flow: add, cook, add to list, share the week', () => {
     checkSurfaces('after add');
 
     // open a recipe and add what is missing to the list
-    openMenu('Cook with what you have');
+    await openMenu('Cook with what you have');
     fireEvent.click(screen.getByRole('button', { name: 'Chickpea and tomato stew' }));
     checkSurfaces('recipe page');
     fireEvent.click(screen.getByRole('button', { name: 'Add missing to my shopping list' }));
@@ -163,7 +165,7 @@ describe('full flow: add, cook, add to list, share the week', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Back to recipes' }));
 
     // share the week
-    openMenu('My week');
+    await openMenu('My week');
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Share' })); });
     checkSurfaces('after share');
   }
@@ -226,7 +228,7 @@ describe('full flow: add, cook, add to list, share the week', () => {
 
   it('Clear my pantry and Clear list remove the pantry text from storage', async () => {
     await runFlow();
-    openMenu('My pantry');
+    await openMenu('My pantry');
     fireEvent.click(screen.getByRole('button', { name: 'Clear list' }));
     fireEvent.click(screen.getByRole('button', { name: 'Clear my pantry' }));
     expect(leaks(localStorage.getItem(PROFILE_KEY) ?? '', SECRETS)).toBe(false);
@@ -271,7 +273,7 @@ describe('switching profiles never shows the other pantry', () => {
     await act(async () => void (await auth.signIn('aaa')));
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'My pantry' }));
-    expect(screen.getByText(MARKER, { selector: 'span.block' })).toBeInTheDocument();
+    expect(await screen.findByText(MARKER, { selector: 'span.block' })).toBeInTheDocument();
 
     act(() => auth.lock());
     expect(document.body.textContent).not.toContain(MARKER);

@@ -1,25 +1,18 @@
-import { useContext, useRef, useState } from 'react';
+import { lazy, Suspense, useContext, useRef, useState } from 'react';
 import { addWeekSwap, appendScore, calendar, dismissOccasion, occasionsOn, removeOneWeekSwap, sanitizeMeals, sanitizeTradeoffs, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { RemoveNoteBanner } from './auth/RemoveNoteBanner';
 import { AuthContext } from './auth/useAuth';
 import { CravingSearch } from './ui/CravingSearch';
-import { BudgetView } from './ui/BudgetView';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
 import { Header } from './ui/Header';
 import { MealsView } from './ui/MealsView';
-import { CookView } from './ui/CookView';
-import { PantryView } from './ui/PantryView';
-import { TradeoffsView } from './ui/TradeoffsView';
-import { WhatIfView } from './ui/WhatIfView';
 import { MyFood } from './ui/MyFood';
 import { PillButton } from './ui/PillButton';
 import { HebcalCredit } from './ui/HebcalCredit';
 import { NutritionCredit } from './ui/NutritionCredit';
 import { PhotoCredits } from './ui/PhotoCredits';
-import { PolicyView } from './ui/PolicyView';
-import { Nearby } from './ui/Nearby';
 import { OccasionLine } from './ui/OccasionLine';
 import { NumberScreen } from './ui/NumberScreen';
 import { Questionnaire } from './ui/Questionnaire';
@@ -27,7 +20,17 @@ import { SupportPanel } from './ui/SupportPanel';
 import { homeFor, resolveView, type NavTarget, type View } from './ui/views';
 import { WeekCard } from './ui/WeekCard';
 import { Welcome } from './ui/Welcome';
+import { LoadingText } from './ui/LoadingText';
 import { useFocusOnViewChange } from './ui/useFocusOnViewChange';
+
+// Heavy views that are never the first screen load on demand as same-origin static chunks.
+const BudgetView = lazy(() => import('./ui/BudgetView').then((m) => ({ default: m.BudgetView })));
+const CookView = lazy(() => import('./ui/CookView').then((m) => ({ default: m.CookView })));
+const PantryView = lazy(() => import('./ui/PantryView').then((m) => ({ default: m.PantryView })));
+const TradeoffsView = lazy(() => import('./ui/TradeoffsView').then((m) => ({ default: m.TradeoffsView })));
+const WhatIfView = lazy(() => import('./ui/WhatIfView').then((m) => ({ default: m.WhatIfView })));
+const PolicyView = lazy(() => import('./ui/PolicyView').then((m) => ({ default: m.PolicyView })));
+const Nearby = lazy(() => import('./ui/Nearby').then((m) => ({ default: m.Nearby })));
 import { useNow } from './ui/useNow';
 
 /** The profile with one optional field set, or with the key removed when there is nothing to keep. */
@@ -117,6 +120,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         )}
 
         <main ref={main} id="main" tabIndex={-1} className="flex-1 outline-none px-4 py-4">
+          <Suspense fallback={<LoadingText />}>
           {creating && <CreateProfile onDone={() => setCreating(false)} onCancel={() => setCreating(false)} />}
 
           {!creating && view === 'welcome' && (
@@ -267,6 +271,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               <BudgetDisclosure value={profile} onChange={update} />
             </div>
           )}
+          </Suspense>
         </main>
 
         <footer className="px-4 pb-6 text-[13px] text-muted">

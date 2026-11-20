@@ -110,7 +110,7 @@ describe('(a) share text, score, band and budget', () => {
     expect(leaks(shareText(summary), SECRETS)).toBe(true);
   });
 
-  it('score, band and budget output identical with and without tradeoffs', () => {
+  it('score, band and budget output identical with and without tradeoffs', async () => {
     const now = new Date(NOW_ISO);
     for (const p of [BASE, FULL_PROFILE]) {
       expect(scoreBand(p.score ?? 0)).toBe(scoreBand(40));
@@ -118,17 +118,19 @@ describe('(a) share text, score, band and budget', () => {
       expect(rankNudge(p.score ?? 0)).toBe(rankNudge(40));
       expect(budgetSummary(p.spendEntries, p.foodBudgetWeekly, now)).toEqual(budgetSummary(SPEND, 100, now));
     }
-    const run = (profile: Profile, item: string) => {
+    const run = async (profile: Profile, item: string) => {
       render(<ServicesProvider services={createCoreServices(new InMemoryProfileStore(profile))}><App now={clock} /></ServicesProvider>);
       const home = document.body.textContent;
       fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
       fireEvent.click(screen.getByRole('button', { name: item }));
+      await screen.findByRole('heading', { level: 1 }); // lazy views: wait for the real view, not the fallback
       const view = document.body.textContent;
       cleanup();
       return [home, view];
     };
     for (const item of ['Budget', 'My week', 'Swaps']) {
-      expect(run(FULL_PROFILE, item)).toEqual(run(BASE, item));
+      const full = await run(FULL_PROFILE, item);
+      expect(full).toEqual(await run(BASE, item));
     }
   });
 
@@ -245,6 +247,7 @@ describe('full flow: log, note, remove, undo, clear, support card', () => {
     render(<ServicesProvider services={services}><App now={clock} /></ServicesProvider>);
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Trade-offs' }));
+    await screen.findByRole('heading', { level: 1, name: 'What we went without' });
 
     pick(TRADEOFF_LABELS['meal-skipped']);
     screen.getByRole('heading', { name: 'If it would help' }); // the support card is on screen
@@ -376,12 +379,12 @@ describe('(e) clear, delete and migrate', () => {
     localStorage.clear();
   });
 
-  it('Clear removes the key from the stored JSON and leaves the rest', () => {
+  it('Clear removes the key from the stored JSON and leaves the rest', async () => {
     localStorage.setItem(PROFILE_KEY, JSON.stringify(FULL_PROFILE));
     render(<ServicesProvider services={createCoreServices(new LocalProfileStore())}><App now={clock} /></ServicesProvider>);
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Trade-offs' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Clear all my trade-offs' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Clear all my trade-offs' }));
     const raw = localStorage.getItem(PROFILE_KEY) ?? '';
     expect(Object.keys(JSON.parse(raw)).sort()).toEqual(['foodBudgetWeekly', 'score', 'spendEntries', 'suburb', 'weekSwaps', 'welcomeSeen']);
     expect(leaks(raw, SECRETS)).toBe(false);

@@ -135,12 +135,12 @@ describe('OccasionLine in the app', () => {
     expect(store.load().foodProfile?.dismissed).toEqual(['easter-2026', 'ramadan-2027']);
   });
 
-  it('"Look at your budget" opens the budget; "See swaps that fit" focuses the search', () => {
+  it('"Look at your budget" opens the budget; "See swaps that fit" focuses the search', async () => {
     renderApp({ welcomeSeen: true, foodProfile: FOOD(['eid-al-fitr']) }, '2027-03-05');
     fireEvent.click(screen.getByRole('button', { name: 'See swaps that fit' }));
     expect(screen.getByLabelText(/what are you craving/i)).toHaveFocus();
     fireEvent.click(screen.getByRole('button', { name: 'Look at your budget' }));
-    expect(screen.getByRole('heading', { level: 1, name: /This week's food/ })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1, name: /This week's food/ })).toBeInTheDocument();
   });
 
   it('never changes which swaps are shown', async () => {

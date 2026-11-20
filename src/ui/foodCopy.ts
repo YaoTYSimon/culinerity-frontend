@@ -1,4 +1,4 @@
-import type { DietRule } from '@culinerity/core';
+import type { DietRule, FoodProfile } from '@culinerity/core';
 
 /** Said on every setup screen. */
 export const PRIVACY_LINE = 'Optional. Stays on this device. You can clear it any time.';
@@ -31,3 +31,7 @@ export function dayLabel(iso: string): string {
 }
 
 export const MOON_CAVEAT = 'Dates depend on the moon sighting.';
+
+/** Any food rule or allergy is on (the same test as the swaps screen). */
+export const hasFoodRules = (food: FoodProfile | undefined): boolean =>
+  (food?.rules.length ?? 0) > 0 || (food?.allergies.some((a) => a.trim() !== '') ?? false);

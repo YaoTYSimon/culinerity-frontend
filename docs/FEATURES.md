@@ -99,5 +99,8 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
   - The pregnancy and weakened-immune-system line is left out: the NSW PDF could not be read (embedded fonts). It is added only once the text is read.
   - Whether to also adapt NHS (Open Government Licence) recipe text; not in release one.
 
+## Build size
+- **View-level code splitting.** `src/App.tsx` loads Budget, What if, Trade-offs, My pantry, Cook, Policy and Nearby with `React.lazy`, behind one `Suspense` with a plain-text "Loading…" fallback (`src/ui/LoadingText.tsx`). They are same-origin static chunks: no new network hosts. The main chunk dropped from about 889 kB to about 415 kB, so Vite's 500 kB warning is gone. When a view loads late, focus still moves to its heading (`useFocusOnViewChange`). Keep the first screen's imports free of the recipes dataset (it once came in through `cookNotes`); tests that open a lazy view use `await findBy…`.
+
 ## Requested, not started
 - **Nearby tags for cultural food** (part of the cultural food spec): deferred.

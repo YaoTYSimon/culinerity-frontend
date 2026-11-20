@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { type FoodItem, type Profile, type ProfiledSwap, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
-import { hasFoodRules } from './cookNotes';
+import { hasFoodRules } from './foodCopy';
 import { SwapResults, type SwapNote, type WeekSwapInput } from './SwapResults';
 import { FIELD_EDGE } from './formParts';
 import { PillButton } from './PillButton';

@@ -1,11 +1,8 @@
 import { ingredientName, scaledGrams, type FoodProfile, type MissingItem, type PantryItem, type Recipe, type RecipeIngredient, type RecipeMatch } from '@culinerity/core';
 import { BEST_BEFORE_CHECK } from './pantryCopy';
-import { dayLabel } from './foodCopy';
+import { dayLabel, hasFoodRules } from './foodCopy';
 
-/** Any food rule or allergy is on (the same test as the swaps screen). */
-export const hasFoodRules = (food: FoodProfile | undefined): boolean =>
-  (food?.rules.length ?? 0) > 0 || (food?.allergies.some((a) => a.trim() !== '') ?? false);
-
+export { hasFoodRules };
 /** Dollars from cents, always two places: "$1.30". */
 export const dollars = (cents: number): string => `$${(cents / 100).toFixed(2)}`;
 
