@@ -3,7 +3,7 @@
 import type { PlaceData } from '../types';
 
 export const placeData: PlaceData = {
-  "generatedAt": "2026-11-04",
+  "generatedAt": "2026-11-20",
   "sources": [
     {
       "id": "qvm-visit",
@@ -140,6 +140,54 @@ export const placeData: PlaceData = {
       "url": "https://www.knoxinfolink.org.au/",
       "licence": "Operator page of Knox InfoLink, rights not stated; facts only (name, address, schedule) and the coordinates in the operator's own map embed",
       "accessed": "2026-11-04"
+    },
+    {
+      "id": "csf-food-support",
+      "publisher": "Community Support Frankston",
+      "title": "Food Support (35 Beach Street, Frankston; free hot meal program, emergency food parcels, phone triage hours). Coordinates: the site's own business-location metadata in its page source (businessLocationCoordinates -38.1415229, 145.1279928, \"35 Beach Street, Frankston VIC, Australia\"); the site publishes no map link.",
+      "url": "https://frankston.net/food",
+      "licence": "Operator page, rights not stated; facts only (name, address, days and hours) and the coordinates in its own page metadata",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "salvos-wyndham-get-help",
+      "publisher": "The Salvation Army Australia",
+      "title": "Get help, Wyndham (emergency relief hours; Cafe Agape community meals). Address from the page: collection at 209 Watton Street, Werribee, while its contact box and map link say 211 Watton St, Werribee VIC 3030. Coordinates: the operator's own map link on that page (maps.app.goo.gl/d5HzTgq9dH7VabwE6, resolves to -37.905334, 144.6545385).",
+      "url": "https://www.salvationarmy.org.au/wyndham/get-help/",
+      "licence": "Operator page (Salvation Army Wyndham get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "salvos-ringwood-get-help",
+      "publisher": "The Salvation Army Australia",
+      "title": "Get help, Ringwood (emergency relief Mon, Wed, Fri 10am to 2pm; address 53 Wantirna Road, Ringwood). Coordinates: the operator's own map link on that page (maps.app.goo.gl/C4tFGg1AHreGv436A, resolves to -37.8217384, 145.2277615).",
+      "url": "https://www.salvationarmy.org.au/ringwood/get-help/",
+      "licence": "Operator page (Salvation Army Ringwood get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "salvos-mooroolbark-get-help",
+      "publisher": "The Salvation Army Australia",
+      "title": "Get help, Mooroolbark (emergency food pantry Monday; address on the page 305 Manchester Road, Chirnside Park, Victoria 3138). Coordinates: the operator's own map link on that page (maps.app.goo.gl/Jmetq2sBnDdGeaS67, resolves to -37.7614963, 145.3144941).",
+      "url": "https://www.salvationarmy.org.au/mooroolbark/get-help/",
+      "licence": "Operator page (Salvation Army Mooroolbark get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "salvos-craigieburn-get-help",
+      "publisher": "The Salvation Army Australia",
+      "title": "Get help, Craigieburn (voucher collection days; address 75 Interlink Drive, Craigieburn from the page footer and the Craigieburn Salvos page https://www.salvationarmy.org.au/craigieburn/). Coordinates: the operator's own map link on that page (maps.app.goo.gl/gViYoyVeDkt9sVqAA, resolves to -37.6029873, 144.9467646).",
+      "url": "https://www.salvationarmy.org.au/craigieburn/get-help/",
+      "licence": "Operator page (Salvation Army Craigieburn get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "salvos-dandenong-get-help",
+      "publisher": "The Salvation Army Australia",
+      "title": "Get help, Dandenong (Community Food Parcels, 16 George Street, Dandenong). Coordinates: the operator's own map link on that page (maps.app.goo.gl/aapHmEbN7Sb9HbaE8, resolves to -37.9881836, 145.2089866, labelled The Salvation Army Dandenong Corps).",
+      "url": "https://www.salvationarmy.org.au/dandenong/get-help/",
+      "licence": "Operator page (Salvation Army Dandenong get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-20"
     }
   ],
   "places": [
@@ -594,6 +642,143 @@ export const placeData: PlaceData = {
       "sourceId": "knox-infolink-home",
       "verification": "primary",
       "checked": "2026-11-04"
+    },
+    {
+      "id": "csf-frankston",
+      "name": "Community Support Frankston food support and free hot meals",
+      "kind": "food-relief",
+      "lat": -38.1415229,
+      "lng": 145.1279928,
+      "address": "35 Beach Street, Frankston VIC 3199",
+      "suburb": "Frankston",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals",
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Free takeaway hot meal Monday, Tuesday, Thursday and Friday 12pm to 2pm. Phone line for food and emergency relief: Monday, Tuesday, Wednesday and Friday 9:30am to 3:30pm, Thursday 12pm to 3:30pm",
+      "note": "The page lists emergency food parcels (free basic pantry and fridge items), fresh fruit and vegetables and bread; food or meal vouchers and pre-prepared meals are case by case. Call (03) 9783 7284 and a volunteer will assess what you need.",
+      "sourceId": "csf-food-support",
+      "verification": "primary",
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "salvos-werribee-relief",
+      "name": "Salvation Army Wyndham (Werribee) emergency relief",
+      "kind": "food-relief",
+      "lat": -37.905334,
+      "lng": 144.6545385,
+      "address": "211 Watton St, Werribee VIC 3030 (the page's relief text says 209 Watton Street)",
+      "suburb": "Werribee",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Monday to Friday 9:30am to 12:30pm and 1:30pm to 3:30pm (Tuesday starts 10:30am); walk-ins only, no appointments, and a walk-in does not guarantee an appointment",
+      "note": "Cost not stated on the page. Food parcels are available within those hours; you may be told you are eligible for a food, fuel or electricity voucher and directed to collect it. Phone 03 9741 7359.",
+      "sourceId": "salvos-wyndham-get-help",
+      "verification": "primary",
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "salvos-werribee-cafe-agape",
+      "name": "Cafe Agape community meals (Salvation Army Wyndham)",
+      "kind": "community-meal",
+      "lat": -37.905334,
+      "lng": 144.6545385,
+      "address": "211 Watton St, Werribee VIC 3030 (the page's relief text says 209 Watton Street)",
+      "suburb": "Werribee",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesday, Wednesday and Thursday 12pm",
+      "note": "The page says a two-course meal, open to all; a gold coin donation is gratefully accepted. The page gives the Salvos phone 03 9741 7359 for the site; the meal location is not stated separately from the corps address.",
+      "sourceId": "salvos-wyndham-get-help",
+      "verification": "primary",
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "salvos-ringwood-relief",
+      "name": "Salvation Army Ringwood emergency relief",
+      "kind": "food-relief",
+      "lat": -37.8217384,
+      "lng": 145.2277615,
+      "address": "53 Wantirna Road, Ringwood VIC 3134",
+      "suburb": "Ringwood",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Monday, Wednesday and Friday 10am to 2pm",
+      "note": "Cost not stated on the page. On site they can help with food and basic needs; no financial assistance interviews are done at this site, so for financial help call the Salvos Phone Assistance Line on 03 8873 5288 (Monday to Friday 9am to 4pm).",
+      "sourceId": "salvos-ringwood-get-help",
+      "verification": "primary",
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "salvos-mooroolbark-pantry",
+      "name": "Salvation Army Mooroolbark emergency food pantry",
+      "kind": "food-relief",
+      "lat": -37.7614963,
+      "lng": 145.3144941,
+      "address": "305 Manchester Road, Chirnside Park VIC 3138",
+      "suburb": "Chirnside Park",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Monday 10am to 12pm and 1pm to 2pm; no appointment necessary",
+      "note": "Cost not stated on the page. Non-perishable groceries for those in need. The Salvos page names this the Mooroolbark site; its address is Chirnside Park. Phone 03 9727 4777.",
+      "sourceId": "salvos-mooroolbark-get-help",
+      "verification": "primary",
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "salvos-craigieburn-relief",
+      "name": "Salvation Army Craigieburn emergency relief (food vouchers)",
+      "kind": "food-relief",
+      "lat": -37.6029873,
+      "lng": 144.9467646,
+      "address": "75 Interlink Drive, Craigieburn VIC 3064",
+      "suburb": "Craigieburn",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Call 03 8873 5288 first (Monday to Friday 9am to 4pm); if you are eligible you are directed to collect a voucher on Monday, Wednesday or Thursday 9:30am to 12:30pm",
+      "note": "Cost not stated on the page. This is vouchers for food, fuel or electricity, not a food pantry. Christmas hamper support from the first week of November: call 03 8339 6100.",
+      "sourceId": "salvos-craigieburn-get-help",
+      "verification": "primary",
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "salvos-dandenong-food-parcels",
+      "name": "Salvation Army Dandenong Community Food Parcels",
+      "kind": "food-relief",
+      "lat": -37.9881836,
+      "lng": 145.2089866,
+      "address": "16 George Street, Dandenong VIC 3175",
+      "suburb": "Dandenong",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "referral",
+      "hours": "Monday to Friday 10am to 2pm; for residents of the Greater Dandenong area",
+      "note": "Free food parcels with fresh and packaged items for people facing food insecurity or an emergency. Phone Dandenong Salvos 03 9708 9000.",
+      "sourceId": "salvos-dandenong-get-help",
+      "verification": "primary",
+      "checked": "2026-11-20"
     }
   ],
   "notFound": [
@@ -609,6 +794,13 @@ export const placeData: PlaceData = {
     "Banksia Gardens food relief at Kenley Court Neighbourhood House (Meadow Heights, Wednesday 12:30pm to 2:30pm, referral and concession card): the page gives an address but no coordinates for this site. The Broadmeadows pantry from the same page is included.",
     "Wyndham Park Community Centre Community Store (55-57 Kookaburra Avenue, Werribee; Thursdays 9:30am to 11:30am, $5 contribution, residents of Werribee and Hoppers Crossing, referral form): the page has no map; its contact-page embed is an address query with no coordinates.",
     "Northpoint Centre food relief sites (Craigieburn, Sunbury, Tullamarine), Mentis Assist Pantry Plus (Frankston, 252 Frankston-Flinders Road, appointment only) and Dallas Neighbourhood House food parcels (Broadmeadows, free parcels but no days, times or eligibility on the page): left out because the pages give no coordinates or no schedule.",
-    "Melton City Council food relief page: the council site refused the request (HTTP 403), so it was not read. Council and market listings for Craigieburn, Epping, Frankston, Berwick and Doveton were looked for but only third-party guides turned up, which are not used."
+    "Melton City Council food relief page: the council site refused the request (HTTP 403), so it was not read. Council and market listings for Craigieburn, Epping, Frankston, Berwick and Doveton were looked for but only third-party guides turned up, which are not used.",
+    "Second pass, outer suburbs (read 2026-11-20). Salvation Army Sunbury Corps (27-37 Anderson Road): its page gives a coordinate and address but no emergency relief days or hours, and it has no get-help page; the hours seen elsewhere are third-party.",
+    "Goonawarra Neighbourhood House, Sunbury (8 Gullane Drive): the house's own site gives the address and house hours but no food relief days or prices (Thursday parcels appear only on third-party listings), and its map embed is a name query with no coordinates.",
+    "LinC Yarra Valley social supermarkets (free fresh food, Fridays and Wednesdays): the page gives sites in Yarra Junction, Wandin North, Woori Yallock, Millgrove and Healesville, none in the listed suburbs and none with coordinates; the Mooroolbark site (Fridays 9am) gives no address, only an email.",
+    "Lilydale (Turningpoint Basement Food Hub, Vantage Point Community Sunday boxes, FoodStop), Mooroolbark Baptist Church dinner, Ringwood Church of Christ lunch and Food is Free Ringwood East: found only on the Yarra Ranges and Maroondah council pages, which refused the request (HTTP 403), and no operator page with coordinates was found.",
+    "Melton (Combined Churches Melton foodbank, Melton South Community Centre ADRA food bank, CatholicCare Melton) and Sunbury, Epping and Whittlesea sites (Whittlesea Food Collective, Countrywide Community Missions Epping, Craigieburn Education and Community Centre parcels): council pages refused the request (HTTP 403) or the operator page gave no coordinates, or the schedule was only on third-party listings.",
+    "Salvation Army Dandenong Hub and Carrum Downs Corps location pages (seen in search): the pages no longer resolve (they redirect to the locations list), so they were not used. Salvation Army Sunshine (42 Devonshire Road), Project Juan Werribee foodbank, Wyndham Council community foodbank and Manor Lakes foodbank: no readable operator page with coordinates (council pages refused or gave only the council office map).",
+    "Fresh-food markets and greengrocers in the outer suburbs: the Seaford Farmers Market appears to have closed in 2023; the ScullyBug Cranbourne market and Pakenham Lakeside Market have only single listed dates, not a stable weekly schedule; no independent greengrocer page with address, hours and a published coordinate was found. No social supermarket other than LinC (above) was found for the listed suburbs."
   ]
 };
