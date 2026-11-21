@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { buildPlaces, melbourneToday, validatePlaces, DATA_PATH, OUT_PATH } from './build-places.mjs';
+import { buildPlaces, findDuplicatePairs, melbourneToday, validatePlaces, DATA_PATH, OUT_PATH } from './build-places.mjs';
 
 const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
 const errorsFor = (mut: (d: any) => void) => {
@@ -94,5 +94,51 @@ describe('melbourneToday', () => {
     vi.setSystemTime(new Date('2026-11-20T15:00:00Z'));
     expect(errorsFor((d) => (d.places[0].checked = '2026-11-21'))).toBe('');
     expect(errorsFor((d) => (d.places[0].checked = '2026-11-22'))).toMatch(/checked/);
+  });
+});
+
+describe('duplicate guard', () => {
+  const src = (id: string, url: string) => ({ id, publisher: 'P', title: 't', url, licence: 'l', accessed: '2026-10-27' });
+  const place = (id: string, name: string, sourceId: string, lat = -37.8, lng = 145) => ({
+    id, name, kind: 'food-relief', lat, lng, address: '1 A St', suburb: 'X', priceBand: 'free', priceBasis: 'stated',
+    fit: [], access: 'open', verification: 'primary', checked: '2026-10-27', sourceId,
+  });
+  // 0.0001 degrees of latitude is about 11 m.
+  const dataset = (places: any[], distinctPairs?: any[]) => ({
+    generatedAt: '2026-10-27',
+    sources: [src('s1', 'https://a.example/x'), src('s2', 'https://b.example/y'), src('s3', 'https://a.example/x')],
+    places,
+    notFound: [],
+    ...(distinctPairs ? { distinctPairs } : {}),
+  });
+  const errs = (d: any) => validatePlaces(d).join('\n');
+
+  it('flags the same operator url within 25 m', () => {
+    const d = dataset([place('a', 'Alpha Pantry', 's1'), place('b', 'Totally Different', 's3', -37.8001)]);
+    expect(errs(d)).toMatch(/possible duplicate.*a.*b/i);
+    expect(findDuplicatePairs(d.places, d.sources).map((x: any) => x.rule)).toEqual(['same-source-url']);
+  });
+  it('does not flag the same url when the places are further than 25 m apart', () => {
+    expect(errs(dataset([place('a', 'Alpha Pantry', 's1'), place('b', 'Other', 's3', -37.8004)]))).toBe('');
+  });
+  it('flags a similar name within 50 m and not beyond', () => {
+    expect(errs(dataset([place('a', 'The Community Grocer, Pakenham', 's1'), place('b', 'Pakenham Community Pantry', 's2', -37.80035)]))).toMatch(/possible duplicate/i);
+    expect(errs(dataset([place('a', 'The Community Grocer, Pakenham', 's1'), place('b', 'Pakenham Community Pantry', 's2', -37.8008)]))).toBe('');
+  });
+  it('does not flag different names, or similar names with different sources far apart', () => {
+    expect(errs(dataset([place('a', 'Alpha Pantry', 's1'), place('b', 'Beta Kitchen', 's2', -37.80035)]))).toBe('');
+  });
+  it('accepts a documented distinct pair and rejects a bad allow-list entry', () => {
+    const places = [place('a', 'Alpha Pantry', 's1'), place('b', 'Beta', 's3')];
+    const ok = { ids: ['a', 'b'], reason: 'Separate programs in one building', evidence: 'https://a.example/x lists both' };
+    expect(errs(dataset(places, [ok]))).toBe('');
+    expect(errs(dataset(places, [{ ...ok, reason: ' ' }]))).toMatch(/reason/);
+    expect(errs(dataset(places, [{ ...ok, evidence: '' }]))).toMatch(/evidence/);
+    expect(errs(dataset(places, [{ ...ok, ids: ['a', 'zzz'] }]))).toMatch(/zzz/);
+    expect(errs(dataset(places, [{ ...ok, ids: ['a'] }]))).toMatch(/ids/);
+  });
+  it('the committed dataset has no unexplained duplicate pairs', () => {
+    const d = data();
+    expect(validatePlaces(d).filter((e: string) => /duplicate/i.test(e))).toEqual([]);
   });
 });

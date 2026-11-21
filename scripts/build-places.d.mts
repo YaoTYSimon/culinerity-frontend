@@ -3,3 +3,4 @@ export const OUT_PATH: string;
 export function validatePlaces(data: any): string[];
 export function buildPlaces(data: any): string;
 export function melbourneToday(now?: Date): string;
+export function findDuplicatePairs(places: any[], sources: any[]): { a: string; b: string; rule: string; meters: number }[];
