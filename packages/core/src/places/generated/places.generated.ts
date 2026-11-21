@@ -1196,6 +1196,182 @@ export const placeData: PlaceData = {
       "url": "https://www.mornpen.vic.gov.au/Things-to-do/Events/Whats-on/Bittern-Market",
       "licence": "Council event listing (Mornington Peninsula Shire, Bittern Market), copyright 2026 Mornington Peninsula Shire; facts only (name, address, days, times, entry) and the coordinates the Shire publishes",
       "accessed": "2026-11-21"
+    },
+    {
+      "id": "boronia-road-uniting-church-food-parcels-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (Boronia Road Uniting Church, 209 Boronia Road, Boronia: Tue and Fri 10 am-12 pm, non-perishable food parcels, no bookings, 9762 6732; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 209 BORONIA ROAD BORONIA 3155 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, Boronia Road Uniting Church entry (council page), rights not stated; facts only (name, address, days, hours, booking, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "saint-pauls-boronia-thursday-dinner-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (Saint Pauls Church, 273 Dorset Road, Boronia: Thu 5:30 pm-7:30 pm (dinner 6:30 pm), dine-in community meals, 9761 1797; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 273 DORSET ROAD BORONIA 3155 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, Saint Pauls Church Boronia entry (council page), rights not stated; facts only (name, address, day, times, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "orchard-church-of-christ-friday-dinner-boronia-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (The Orchard Church of Christ, 59 Boronia Road, Boronia: Fri 5:30 pm-6:30 pm, dinner, no bookings, 9762 1277; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 59 BORONIA ROAD BORONIA 3155 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, The Orchard Church of Christ entry (council page), rights not stated; facts only (name, address, day, times, booking, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "salvation-army-boronia-food-market-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (The Salvation Army Boronia, 2 Liverpool Road, Boronia: Thu 10 am-2 pm, food market and vouchers, no appointment, 8873 5288; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 2 LIVERPOOL ROAD BORONIA 3155 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, Salvation Army Boronia entry (council page), rights not stated; facts only (name, address, day, hours, booking, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "salvation-army-ferntree-gully-mini-market-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (The Salvation Army Ferntree Gully, 37 Wattletree Road, Ferntree Gully: Mini Market Wed 9:30 am-11:30 am, Cuppa & chat Tue 9:30 am-11:30 am, 8873 5288; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 37 WATTLETREE ROAD FERNTREE GULLY 3156 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, Salvation Army Ferntree Gully entry (council page), rights not stated; facts only (name, address, days, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "scoresby-uniting-church-emergency-food-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (Scoresby Uniting Church, 17 Darryl Street, Scoresby: Mon and Thu 11 am-2 pm, emergency food relief, 0488 999 623; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 17 DARRYL STREET SCORESBY 3179 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, Scoresby Uniting Church entry (council page), rights not stated; facts only (name, address, days, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "one-hope-community-church-scoresby-meals-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (One Hope Community Church (Scoresby), Community@Cavell, 15-17 Cavell Street: community meals Tue 6 pm-7 pm, 9759 9155; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: the exact point for 15 CAVELL STREET SCORESBY 3179 (17 is 3 m away) in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, One Hope Community Church entry (council page), rights not stated; facts only (name, address, day, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "rbcares-the-well-rowville-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (RBCares - The Well (Rowville), 6 Le John Street, Rowville: Tue 10:30 am-12 pm, morning tea, food pantry, toiletries, produce, bread, bring own bags, no appointment; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 6 LE JOHN STREET ROWVILLE 3178 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, RBCares The Well entry (council page), rights not stated; facts only (name, address, day, hours, what is offered, booking). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "raft-anglican-church-rowville-food-pantry-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (RAFT Anglican Church (Rowville), 131 Taylors Lane, Rowville: Mon-Wed 1 pm-3 pm, Fri 10 am-2 pm, non-perishable items, 7 items per visit, one visit per month, no bookings, 9764 2573; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 131 TAYLORS LANE ROWVILLE 3178 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, RAFT Anglican Church Rowville entry (council page), rights not stated; facts only (name, address, days, hours, limits, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "australia-for-christ-community-care-rowville-src",
+      "publisher": "City of Knox",
+      "title": "City of Knox 'Community and welfare relief service providers' page (Australia For Christ Community Care (Rowville), 1070 Stud Road, Rowville: 1st and 3rd Thu monthly 5:30 pm, community meals and food pantry, bring own bags, 9764 8330 or 0438 039 391; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 1070 STUD ROAD ROWVILLE 3178 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.knox.vic.gov.au/relief-providers",
+      "licence": "City of Knox community and welfare relief providers list, Australia For Christ Community Care entry (council page), rights not stated; facts only (name, address, days, time, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "helping-hand-croydon-uniting-food-pantry-src",
+      "publisher": "City of Maroondah",
+      "title": "City of Maroondah 'Community meals and food relief' page (Helping Hand, 5a Mount View Street, Croydon: Mon-Fri 9.30am-11.30am, food pantry 11am-11.45am, fresh fruit and vegetables Wednesdays 9.30am-10.30am, bring your own bags, 9725 1115; the Croydon Uniting Church page (croydon.unitingchurch.org.au, no copyright year) gives the same address and Monday to Friday 9.30am to 11.45am; page shows no update date, footer '© 2026 Maroondah City Council'). Coordinates: the exact point for 5 MOUNT VIEW STREET CROYDON 3136 (the page says 5A) in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
+      "licence": "City of Maroondah community meals and food relief page, Helping Hand entry (council page), rights not stated; facts only (name, address, days, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "north-ringwood-care-food-relief-src",
+      "publisher": "City of Maroondah",
+      "title": "City of Maroondah 'Community meals and food relief' page (North Ringwood Care, 14 Dickson Crescent, North Ringwood: Mon to Fri 10am-1pm, 9876 5625; page shows no update date, footer '© 2026 Maroondah City Council'). Coordinates: the range point 14-16 DICKSON CRESCENT RINGWOOD NORTH 3134 (the point that holds number 14) in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
+      "licence": "City of Maroondah community meals and food relief page, North Ringwood Care entry (council page), rights not stated; facts only (name, address, days, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "maroondah-community-assist-croydon-food-relief-src",
+      "publisher": "City of Maroondah",
+      "title": "City of Maroondah 'Community meals and food relief' page (Maroondah Community Assist - Croydon, Unit 8, 7 Civic Square, Croydon 3136: Tuesday to Friday 9.30am-1pm, 9725 7920; page shows no update date, footer '© 2026 Maroondah City Council'). Coordinates: the building point 7 CIVIC SQUARE CROYDON 3136 (no unit-level point) in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
+      "licence": "City of Maroondah community meals and food relief page, Maroondah Community Assist Croydon entry (council page), rights not stated; facts only (name, address, days, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "ringwood-church-of-christ-emergency-food-relief-src",
+      "publisher": "City of Maroondah",
+      "title": "City of Maroondah 'Community meals and food relief' page (Ringwood Church of Christ, 13 Bedford Road, Ringwood: emergency food relief Tue-Thu 9am-3pm, 9870 8169; community lunch Thursdays 12pm-1pm; the church page ringwoodchurch.org.au (© 2026) gives 13-15 Bedford Rd; page shows no update date, footer '© 2026 Maroondah City Council'). Coordinates: the range point 11-15 BEDFORD ROAD RINGWOOD 3134 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
+      "licence": "City of Maroondah community meals and food relief page, Ringwood Church of Christ entries (council page), rights not stated; facts only (name, address, days, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "st-pauls-mullum-mullum-anglican-food-relief-src",
+      "publisher": "City of Maroondah",
+      "title": "City of Maroondah 'Community meals and food relief' page (St. Pauls Mullum Mullum Anglican Church, 40 Warrandyte Road, Ringwood: Tuesday 9am-1pm, 9870 2093; the church page mullumanglican.org.au confirms the address and phone but not the relief; page shows no update date, footer '© 2026 Maroondah City Council'). Coordinates: exact match for 40 WARRANDYTE ROAD RINGWOOD 3134 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
+      "licence": "City of Maroondah community meals and food relief page, St Pauls Mullum Mullum Anglican Church entry (council page), rights not stated; facts only (name, address, day, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "tlc-church-bayswater-north-food-relief-src",
+      "publisher": "City of Maroondah",
+      "title": "City of Maroondah 'Community meals and food relief' page (Truth and Liberation (TLC), 265 Canterbury Road, Bayswater North: Monday and Tuesday 1pm-3pm, 9729 6555; the church page tlcchurch.org.au confirms the address and phone but not the relief; page shows no update date, footer '© 2026 Maroondah City Council'). Coordinates: exact match for 265 CANTERBURY ROAD BAYSWATER NORTH 3153 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
+      "licence": "City of Maroondah community meals and food relief page, TLC Bayswater North entry (council page), rights not stated; facts only (name, address, days, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "sri-guru-singh-sabha-bonnie-brook-meals-src",
+      "publisher": "City of Melton",
+      "title": "City of Melton 'Food relief' page (Sri Guru Singh Sabha, 718 Leakes Road, Bonnie Brook: cooked vegetarian Punjabi and Indian meals, eat-in or pickup, phone line open Monday to Sunday 7.30am-10.30am and 6.30pm-9.30pm, walk-ins welcome during these hours, for 'those in need', 0422 900 741; page shows no update date, footer '© 2026 City of Melton'). Coordinates: exact match for 718 LEAKES ROAD BONNIE BROOK 3335 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.melton.vic.gov.au/Services/Support-services/Food-Relief",
+      "licence": "City of Melton food relief page, Sri Guru Singh Sabha entry (council page), rights not stated; facts only (name, address, hours, eat-in or pickup, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "vinnies-soup-kitchen-bus-melton-town-centre-src",
+      "publisher": "City of Melton",
+      "title": "City of Melton 'Food relief' page (St Vincent de Paul Soup Kitchen Bus, Melton Town Centre Amphitheatre, 323 High Street, Melton: Tuesdays 6pm-6.30pm and Thursdays 6pm-6.45pm, food pantry, home-made meals, rolls and sandwiches, 1800 305 330; page shows no update date, footer '© 2026 City of Melton'). Coordinates: the range point 323-325 HIGH STREET MELTON 3337 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.melton.vic.gov.au/Services/Support-services/Food-Relief",
+      "licence": "City of Melton food relief page, St Vincent de Paul Soup Kitchen Bus Melton Town Centre entry (council page), rights not stated; facts only (name, location, days, times, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "vinnies-soup-kitchen-bus-melton-south-src",
+      "publisher": "City of Melton",
+      "title": "City of Melton 'Food relief' page (St Vincent de Paul Soup Kitchen Bus, Melton South Shopping Centre, 11-17 Station Road, Melton South: Tuesdays 7pm-7.30pm, food pantry, home-made meals, rolls and sandwiches, 1800 305 330; page shows no update date, footer '© 2026 City of Melton'). Coordinates: the range point 11-17 STATION ROAD MELTON SOUTH 3338 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.melton.vic.gov.au/Services/Support-services/Food-Relief",
+      "licence": "City of Melton food relief page, St Vincent de Paul Soup Kitchen Bus Melton South entry (council page), rights not stated; facts only (name, location, day, time, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "combined-churches-caring-melton-food-relief-src",
+      "publisher": "City of Melton",
+      "title": "City of Melton 'Food relief' page (Combined Churches Caring Melton (CCCM), 100 Coburns Road, Melton South: emergency food relief and budget education Monday to Friday 10am-12.30pm, City of Melton residents only, Foodbank access twice per year, two forms of ID (one a Healthcare or Centrelink Pension card), 9747 6811; page shows no update date, footer '© 2026 City of Melton'). Coordinates: the range point 98-100 COBURNS ROAD MELTON SOUTH 3338 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.melton.vic.gov.au/Services/Support-services/Food-Relief",
+      "licence": "City of Melton food relief page, Combined Churches Caring Melton entry (council page), rights not stated; facts only (name, address, days, hours, eligibility, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "eltham-linc-community-pantry-st-margarets-src",
+      "publisher": "Nillumbik Shire Council",
+      "title": "Nillumbik Community and Services Directory entry for Eltham LinC (St. Margaret's Anglican Church, 79-81 Pitt Street, Eltham 3095; the LinC Community Pantry described as open 24/7 for anyone who needs emergency food and toiletries including pet food; contact 0424398565; page footer '© 2026 Nillumbik Shire Council', no update date). Coordinates: exact match for 79-81 PITT STREET ELTHAM 3095 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.nillumbik.vic.gov.au/Community/Community-development/Community-and-Services-Directory/Eltham-LinC",
+      "licence": "Nillumbik Community and Services Directory, Eltham LinC entry (council page), rights not stated; facts only (name, address, description, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "loaves-and-fishes-st-albans-holy-eucharist-src",
+      "publisher": "Brimbank City Council",
+      "title": "Brimbank City Council 'Crisis support services' page (Loaves and Fishes, Holy Eucharist Parish, 1A Oleander Drive St Albans, 03 9366 1310: Fridays 10.30am-2pm, for people in Brimbank, must have Centrelink or Immigration Card, no appointment required, fresh fruit vegetables, non-perishable food; page footer 'Last updated: 7 September 2026'). Coordinates: exact match for 1A OLEANDER DRIVE ST ALBANS 3021 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.brimbank.vic.gov.au/living-here/our-wellbeing-and-safety/crisis-support-services",
+      "licence": "Brimbank City Council crisis support services list, Loaves and Fishes entry (council page), rights not stated; facts only (name, address, day, hours, eligibility, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
     }
   ],
   "places": [
@@ -4395,6 +4571,428 @@ export const placeData: PlaceData = {
       ],
       "note": "Free entry. Volunteer-run by Westernport Rotary Club. Farm-fresh produce, honey, crafts and pre-loved items. Product prices not stated.",
       "sourceId": "bittern-market"
+    },
+    {
+      "id": "boronia-road-uniting-church-food-parcels",
+      "name": "Boronia Road Uniting Church non-perishable food parcels, Boronia",
+      "kind": "food-relief",
+      "lat": -37.86127652684801,
+      "lng": 145.2761186478333,
+      "address": "209 Boronia Road, Boronia VIC 3155",
+      "suburb": "Boronia",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Tuesday and Friday 10am to 12pm",
+      "note": "Cost not stated. The City of Knox page lists non-perishable food parcels with no bookings. Phone 03 9762 6732. The page is the only source read (no operator page found), so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "boronia-road-uniting-church-food-parcels-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "saint-pauls-boronia-thursday-dinner",
+      "name": "Saint Paul's Church community dinner, Boronia",
+      "kind": "community-meal",
+      "lat": -37.85894723798167,
+      "lng": 145.2854946546095,
+      "address": "273 Dorset Road, Boronia VIC 3155",
+      "suburb": "Boronia",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Thursdays 5:30pm to 7:30pm, dinner at 6:30pm",
+      "note": "Cost not stated. The City of Knox page lists dine-in community meals. Phone 03 9761 1797. The page is the only source read (no operator page found), so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "saint-pauls-boronia-thursday-dinner-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "orchard-church-of-christ-friday-dinner-boronia",
+      "name": "The Orchard Church of Christ Friday dinner, Boronia",
+      "kind": "community-meal",
+      "lat": -37.862528946041444,
+      "lng": 145.28938712570252,
+      "address": "59 Boronia Road, Boronia VIC 3155",
+      "suburb": "Boronia",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Fridays 5:30pm to 6:30pm",
+      "note": "Cost not stated. The City of Knox page lists a dinner with no bookings. Phone 03 9762 1277. The page is the only source read (no operator page found), so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "orchard-church-of-christ-friday-dinner-boronia-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "salvation-army-boronia-food-market",
+      "name": "Salvation Army Boronia food market and vouchers, Boronia",
+      "kind": "food-relief",
+      "lat": -37.84868207966477,
+      "lng": 145.30945540830135,
+      "address": "2 Liverpool Road, Boronia VIC 3155",
+      "suburb": "Boronia",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Thursdays 10am to 2pm",
+      "note": "Cost not stated. The City of Knox page lists a food market and vouchers with no appointment. Phone 03 8873 5288. The page does not say what the market stocks. The page is the only source read, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "salvation-army-boronia-food-market-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "salvation-army-ferntree-gully-mini-market",
+      "name": "Salvation Army Ferntree Gully Mini Market, Ferntree Gully",
+      "kind": "food-relief",
+      "lat": -37.87538374678884,
+      "lng": 145.27806445802753,
+      "address": "37 Wattletree Road, Ferntree Gully VIC 3156",
+      "suburb": "Ferntree Gully",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Mini Market Wednesdays 9:30am to 11:30am, Cuppa and chat Tuesdays 9:30am to 11:30am",
+      "note": "Cost not stated. The City of Knox page lists a Mini Market and a cuppa and chat, and gives no eligibility or what is stocked. Phone 03 8873 5288. The page is the only source read, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "salvation-army-ferntree-gully-mini-market-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "scoresby-uniting-church-emergency-food",
+      "name": "Scoresby Uniting Church emergency food relief, Scoresby",
+      "kind": "food-relief",
+      "lat": -37.898600535100485,
+      "lng": 145.23124628393361,
+      "address": "17 Darryl Street, Scoresby VIC 3179",
+      "suburb": "Scoresby",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Mondays and Thursdays 11am to 2pm",
+      "note": "Cost not stated. The City of Knox page lists emergency food relief and gives no eligibility. Phone 0488 999 623. The page is the only source read (no operator page found), so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "scoresby-uniting-church-emergency-food-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "one-hope-community-church-scoresby-meals",
+      "name": "One Hope Community Church community meals, Scoresby",
+      "kind": "community-meal",
+      "lat": -37.88889913427397,
+      "lng": 145.23578713025262,
+      "address": "Community@Cavell, 15-17 Cavell Street, Scoresby VIC 3179",
+      "suburb": "Scoresby",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Community meals Tuesdays 6pm to 7pm",
+      "note": "Cost not stated. The City of Knox page also lists a breakfast club on Tuesdays and Thursdays 8am to 8:30am at Scoresby Secondary College, 20 Cavell Street. Phone 03 9759 9155. The church's own home page confirms its office at 15 Cavell Street but does not mention the meals, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "one-hope-community-church-scoresby-meals-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "rbcares-the-well-rowville",
+      "name": "RBCares The Well morning tea and food pantry, Rowville",
+      "kind": "food-relief",
+      "lat": -37.92614790216183,
+      "lng": 145.24921082622313,
+      "address": "6 Le John Street, Rowville VIC 3178",
+      "suburb": "Rowville",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Tuesdays 10:30am to 12pm",
+      "note": "Cost not stated. The City of Knox page lists morning tea, a food pantry, toiletries, produce and bread, says to bring your own bags and that no appointment is needed. No phone is listed. The operator page it links to could not be reached, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "rbcares-the-well-rowville-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "raft-anglican-church-rowville-food-pantry",
+      "name": "RAFT Anglican Church non-perishable food, Rowville",
+      "kind": "food-relief",
+      "lat": -37.91124812012808,
+      "lng": 145.2469379753666,
+      "address": "131 Taylors Lane, Rowville VIC 3178",
+      "suburb": "Rowville",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Mondays to Wednesdays 1pm to 3pm, Fridays 10am to 2pm, 7 items per visit, one visit per month",
+      "note": "Cost not stated. The City of Knox page lists non-perishable items with no bookings, limited to 7 items a visit and one visit a month. Phone 03 9764 2573. The page is the only source read (no operator page found), so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "raft-anglican-church-rowville-food-pantry-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "australia-for-christ-community-care-rowville",
+      "name": "Australia For Christ Community Care meals and food pantry, Rowville",
+      "kind": "community-meal",
+      "lat": -37.91571454322638,
+      "lng": 145.23501617990613,
+      "address": "1070 Stud Road, Rowville VIC 3178",
+      "suburb": "Rowville",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "First and third Thursday of the month, 5:30pm",
+      "note": "Cost not stated. The City of Knox page lists community meals and a food pantry, and says to bring your own bags. Phone 03 9764 8330 or 0438 039 391. The page does not say how long the meal or pantry runs. The page is the only source read, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "australia-for-christ-community-care-rowville-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "helping-hand-croydon-uniting-food-pantry",
+      "name": "Helping Hand food pantry (Croydon Uniting Church), Croydon",
+      "kind": "food-relief",
+      "lat": -37.798450568768864,
+      "lng": 145.27982939603257,
+      "address": "5A Mount View Street, Croydon VIC 3136",
+      "suburb": "Croydon",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh"
+      ],
+      "access": "open",
+      "hours": "Monday to Friday 9:30am to 11:30am, food pantry 11am to 11:45am, fresh fruit and vegetables Wednesdays 9:30am to 10:30am",
+      "note": "Cost not stated. The City of Maroondah page says to bring your own bags. Phone 03 9725 1115. The church's own page says emergency food relief Monday to Friday 9:30am to 11:45am at 5A Mount View Street and gives no cost or eligibility, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "helping-hand-croydon-uniting-food-pantry-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "north-ringwood-care-food-relief",
+      "name": "North Ringwood Care emergency food relief, North Ringwood",
+      "kind": "food-relief",
+      "lat": -37.7955296587722,
+      "lng": 145.2371116323587,
+      "address": "14 Dickson Crescent, North Ringwood VIC 3134",
+      "suburb": "North Ringwood",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Monday to Friday 10am to 1pm",
+      "note": "Cost not stated. The City of Maroondah page lists it under emergency food relief and gives no eligibility or what is stocked. Phone 03 9876 5625. The page is the only source read (the operator page could not be opened), so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "north-ringwood-care-food-relief-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "maroondah-community-assist-croydon-food-relief",
+      "name": "Maroondah Community Assist emergency food relief, Croydon",
+      "kind": "food-relief",
+      "lat": -37.80098632395509,
+      "lng": 145.28197392973732,
+      "address": "Unit 8, 7 Civic Square, Croydon VIC 3136",
+      "suburb": "Croydon",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Tuesday to Friday 9:30am to 1pm",
+      "note": "Cost not stated. The City of Maroondah page lists it under emergency food relief and gives no eligibility or what is stocked. Phone 03 9725 7920. It is in the same building as The Kiosk soup kitchen (Saturday evenings). The page is the only source read (the operator page could not be opened), so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "maroondah-community-assist-croydon-food-relief-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "ringwood-church-of-christ-emergency-food-relief",
+      "name": "Ringwood Church of Christ emergency food relief and Thursday lunch, Ringwood",
+      "kind": "food-relief",
+      "lat": -37.8156758577993,
+      "lng": 145.23262567310354,
+      "address": "13 Bedford Road, Ringwood VIC 3134",
+      "suburb": "Ringwood",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Tuesday to Thursday 9am to 3pm, community lunch Thursdays 12pm to 1pm",
+      "note": "Cost not stated. The City of Maroondah page lists emergency food relief Tuesday to Thursday and a Thursday lunch at this address, and gives no eligibility. Phone 03 9870 8169. The church's own home page (copyright 2026) gives the address as 13-15 Bedford Rd, office open Tuesday and Thursday 9am to 3pm and an Oasis Community Meal flyer without days or times, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "ringwood-church-of-christ-emergency-food-relief-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "st-pauls-mullum-mullum-anglican-food-relief",
+      "name": "St Paul's Mullum Mullum Anglican Church emergency food relief, Ringwood",
+      "kind": "food-relief",
+      "lat": -37.809504942040974,
+      "lng": 145.230817114705,
+      "address": "40 Warrandyte Road, Ringwood VIC 3134",
+      "suburb": "Ringwood",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Tuesdays 9am to 1pm",
+      "note": "Cost not stated. The City of Maroondah page lists it under emergency food relief and gives no eligibility or what is stocked. Phone 03 9870 2093. The church's own page confirms the address and phone but has no food relief details, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "st-pauls-mullum-mullum-anglican-food-relief-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "tlc-church-bayswater-north-food-relief",
+      "name": "Truth and Liberation (TLC) emergency food relief, Bayswater North",
+      "kind": "food-relief",
+      "lat": -37.83095162030053,
+      "lng": 145.27403337508957,
+      "address": "265 Canterbury Road, Bayswater North VIC 3153",
+      "suburb": "Bayswater North",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Mondays and Tuesdays 1pm to 3pm",
+      "note": "Cost not stated. The City of Maroondah page lists it under emergency food relief and gives no eligibility or what is stocked. Phone 03 9729 6555. The church's own page confirms the address and phone but has no food relief details, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "tlc-church-bayswater-north-food-relief-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "sri-guru-singh-sabha-bonnie-brook-meals",
+      "name": "Sri Guru Singh Sabha free langar meals, Bonnie Brook",
+      "kind": "community-meal",
+      "lat": -37.69704905603034,
+      "lng": 144.64781089596008,
+      "address": "718 Leakes Road, Bonnie Brook VIC 3335",
+      "suburb": "Bonnie Brook",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Phone line open every day 7:30am to 10:30am and 6:30pm to 9:30pm, walk-ins welcome in those hours",
+      "note": "Cost not stated. The City of Melton page lists cooked vegetarian Punjabi and Indian meals, eat-in or pickup, for those in need. Phone 0422 900 741. No operator page found, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "sri-guru-singh-sabha-bonnie-brook-meals-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "vinnies-soup-kitchen-bus-melton-town-centre",
+      "name": "St Vincent de Paul Soup Kitchen Bus, Melton Town Centre",
+      "kind": "community-meal",
+      "lat": -37.68355208274378,
+      "lng": 144.5828998291872,
+      "address": "Melton Town Centre Amphitheatre, 323 High Street, Melton VIC 3337",
+      "suburb": "Melton",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesdays 6pm to 6:30pm, Thursdays 6pm to 6:45pm",
+      "note": "Cost not stated. The City of Melton page lists a food pantry, home-made meals, and rolls and sandwiches from the Soup Kitchen Bus. Phone 1800 305 330 (Monday to Friday). The pin is the Vicmap range point 323-325 High Street, so the bus may stop a short walk away. No operator page found, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "vinnies-soup-kitchen-bus-melton-town-centre-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "vinnies-soup-kitchen-bus-melton-south",
+      "name": "St Vincent de Paul Soup Kitchen Bus, Melton South",
+      "kind": "community-meal",
+      "lat": -37.7026670418373,
+      "lng": 144.57386072298192,
+      "address": "Melton South Shopping Centre, 11-17 Station Road, Melton South VIC 3338",
+      "suburb": "Melton South",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesdays 7pm to 7:30pm",
+      "note": "Cost not stated. The City of Melton page lists a food pantry, home-made meals, and rolls and sandwiches from the Soup Kitchen Bus. Phone 1800 305 330 (Monday to Friday). The pin is the Vicmap range point 11-17 Station Road. No operator page found, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "vinnies-soup-kitchen-bus-melton-south-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "combined-churches-caring-melton-food-relief",
+      "name": "Combined Churches Caring Melton (CCCM) emergency food relief, Melton South",
+      "kind": "food-relief",
+      "lat": -37.69311086312537,
+      "lng": 144.56681820603885,
+      "address": "100 Coburns Road, Melton South VIC 3338",
+      "suburb": "Melton South",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Monday to Friday 10am to 12:30pm, City of Melton residents only, two forms of ID including a Healthcare or Centrelink Pension card, Foodbank access twice a year",
+      "note": "Cost not stated. The City of Melton page also lists budget education. Phone 03 9747 6811. The pin is the Vicmap range point 98-100 Coburns Road. The council page names www.cccmelton.org.au but that site could not be reached earlier, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "combined-churches-caring-melton-food-relief-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "eltham-linc-community-pantry-st-margarets",
+      "name": "Eltham LinC Community Pantry (St Margaret's Anglican Church), Eltham",
+      "kind": "food-relief",
+      "lat": -37.72085580924974,
+      "lng": 145.14724526278846,
+      "address": "St Margaret's Anglican Church, 79-81 Pitt Street, Eltham VIC 3095",
+      "suburb": "Eltham",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Described as open 24 hours a day, 7 days a week",
+      "note": "Cost not stated. The Nillumbik Community and Services Directory says the pantry is for anyone who needs emergency food and toiletries, including pet food. The listing shows opening hours as 12:00 AM to 4:00 PM with a typo on Monday, and in one place gives the pantry address as 29-31 Pitt Street, so confirm where it is. Phone 0424 398 565. The church's own site (copyright 2016) gives only the parish office at 79-81 Pitt Street.",
+      "checked": "2026-11-21",
+      "sourceId": "eltham-linc-community-pantry-st-margarets-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "loaves-and-fishes-st-albans-holy-eucharist",
+      "name": "Loaves and Fishes (Holy Eucharist Parish) food, St Albans",
+      "kind": "food-relief",
+      "lat": -37.756684694690094,
+      "lng": 144.81172434876126,
+      "address": "1A Oleander Drive, St Albans VIC 3021",
+      "suburb": "St Albans",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "referral",
+      "hours": "Fridays 10:30am to 2pm, for people in Brimbank, bring a Centrelink or Immigration card, no appointment needed",
+      "note": "Cost not stated. The Brimbank crisis support list (last updated 7 September 2026) lists fresh fruit and vegetables and non-perishable food. Phone 03 9366 1310. No operator page was found, so check before you go.",
+      "checked": "2026-11-21",
+      "sourceId": "loaves-and-fishes-st-albans-holy-eucharist-src",
+      "verification": "secondary"
     }
   ],
   "notFound": [
@@ -4437,6 +5035,8 @@ export const placeData: PlaceData = {
     "Sixteenth pass, retries of places skipped for a missing Vicmap point (read 2026-11-21), 9 places added: Stairway Church @ThePantry (Vermont; Vicmap does hold a range point 159-171 Rooks Road, earlier passes only saw the 170-180 and 173-181 ranges), Encompass Care Bundoora (the Visit Us page does carry a map-block marker, and the Banyule guide, updated May 2026, now agrees with the page: Tuesday and Wednesday 9am to 3pm), Anglicare Emergency Relief Sunshine (nearest numbered point 98 Anderson Road, Brimbank list dated 7 September 2026), Manna4Life Kensington Tuesday dinner (Vicmap now has a point for 76 McCracken Street), Reservoir Neighbourhood House food parcels and Thursday community meals (shared 2A/2C point; the house's pages are dated 2026 and the Darebin 2026 leaflet states the meals are free), Empower Australia Lower Plenty (the page's own Google Maps link; the page says everything is free) and Wallan Gateway Church Foodbank (range point 7-9 Commercial Drive). Retried and still left out, with reasons: Compass Community Care Pantry, Bentleigh East (the site's pages say only 'each Tuesday afternoon', carry a 2021 copyright and were last edited in May 2025, and the only Vicmap point is the whole Virginia Park site, so the pin is not within 100 m); Noble Park Community Centre Noble Pantry and Servants Reaching Out lunch (the centre's community page, modified 2026-09-14, gives days and times but no street address or cost, its map is a name query for Memorial Drive, and the number 44 comes only from an older council PDF; Vicmap still has no point for 44); Hope Centre, Bundoora (5/17 Enterprise Drive; its only source is the undated Whittlesea Community Connections PDF, which an earlier pass already rejected as undated; Vicmap has points for 15 and 19 only); Mornington Community Support Centre's Thursday fresh food at St Marks Uniting Church and Dromana Community House's Thursday Food Share at the Pier Street clubrooms (the operators' pages give only 'Barkley St' and 'Pier street clubrooms' with no number; the church and reserve addresses seen came only from non-operator listings, and a sports reserve is too large to pin a clubroom within 100 m); Sikh Volunteers Australia Hastings Sunday stop (the page names only the Fred Smith Reserve car park, no address); Combined Churches Caring Melton (Vicmap has a 98-100 Coburns Road range point, but no operator page could be reached and the council page is undated); Hope City Mission Croydon (no Vicmap point for 51 Lusher Road, the days still disagree between sources and no current dated operator page was read); Yarraville Community Centre (59 Francis Street, no pickup hours on its page); Cornerstone Centre Dandenong (no cost stated and a 2023 copyright; Vicmap holds a 23-29 James Street range point). The Reservoir Neighbourhood House and Encompass Care Bundoora wording in earlier entries above is superseded by this one.",
     "Seventeenth pass, multi-site operators (read 2026-11-21), 4 places added: Empower Australia Southbank and Ringwood (five-site page, copyright 2026, everything free) and Cheaper Buy Miles Flemington and Fitzroy (home page, copyright 2026). Left out, with reasons: Empower Clyde North (Hillcrest Christian College Gate 4, 500 Soldiers Rd: Vicmap has no numbered point on Soldiers Road in Clyde North and the page pin is the whole campus, about 255 m from the only point) and Grovedale (not Greater Melbourne); Sikh Volunteers Australia Langwarrin tiffin pickup (no date beyond copyright 2025, no map link) and Food Van stops (car parks, no street address); Vinnies soup vans (stops only in PDFs, no street addresses on the page); Uniting St Kilda Engagement Hub (adults with a mental health diagnosis only, and the cost is stated two ways); Project Fresh Start Frankston community fridges (undated, 2021 copyright, conflicting restock days); Watsonia Neighbourhood House Tuesday lunch (no time or date); Open Table pantry (copyright 2025, no venue or times); Open House Macleod Thursday lunch (no details on its site); Anglicare Victoria (HTTP 403, not worked around); Rotary Diamond Creek and Eltham Lions pantries (search snippets only).",
     "Eighteenth pass, low-cost fresh food (read 2026-11-21), 6 places added: Slow Food Melbourne's Spotswood, West Footscray (WeFo) and Edgewater markets (dated 2026-27 schedule on the operator's own pages, council listings give the pins), the Yarraville Farmers Market at Bassett Reserve (operator page, copyright 2026), Hill & Ridge Community Market (Red Hill) and Eltham Farmers' Market. Left out, with reasons: Slow Food Yarraville at Cruickshank Park (Court St, no street number and no pin on any page read); Essendon Farmers' Market at Lincoln Park (only third-party directories and an undated Facebook link, no operator page with 2026 dates); Elwood Farmers' Market and Mount Eliza Farmers' Market (onlymelbourne pages returned HTTP 403 and were not worked around; the Elwood listing seen in search was dated February 2026, and Mount Eliza's December status conflicted between listings); Sunbury markets (only Raine and Horne and old Rotary listings, no operator page with dates); Berwick (the 'Coal Creek' market found is in Korumburra); Brighton, Malvern, Caulfield and Sorrento (no farmers' market or independent greengrocer page found); Mornington Food Yard and Racecourse markets (no operator page read, dates only on listings); Foodbank, SecondBite and OzHarvest locators were not read. Prices: no page states product prices, so every entry is `mid` and `typical`.",
-    "Nineteenth pass, low-cost fresh food from operators and council listings (read 2026-11-21), 6 places added: Kinglake Market (operator page with dated 2026 days), the ECOSS Valley Saturday Market (Wesburn, Yarra Ranges listing), Kingston Farmers' Market (Cheltenham, council page), Mt Eliza Farmers Market (Shire listing, which gives the dates that pass 18 could not read), The Mount Martha Briars Market and Bittern Market (Shire listings). Left out, with reasons: Melbourne Farmers Markets (mfm.com.au redirects to a shop domain whose markets page returned 404, not worked around); Slow Food Melbourne's other pages (Slow Foodscray is a community street event, Yarraville Cruickshank Park still has no street number or pin); Whitehorse Farmers' Market Nunawading (operator page has no dates or copyright); Warrandyte Riverside Market (craft-led, no 2026 dates, no map or entry cost); Boroondara Farmers Market (council page is on the blocked list, Rotary Glenferrie page undated); Lilydale Rotary market (no dates on the club page); Healesville, Emerald, Hume Community Market (Craigieburn) and Whittlesea Food Collective (Epping) (aggregator or school-newsletter listings only, conflicting days); Darley Market (Bacchus Marsh, a flea market); Cruden Farm (Langwarrin, paid-entry events, no current date); Hurstbridge and Warrandyte food swaps (swap events, not a place to buy food, and no price band fits); The Community Grocer pages (already in the dataset, no new site). No independent greengrocer or Open Food Network pickup page with hours was found in the target suburbs. Prices: no page states product prices, so every entry is `mid` and `typical`. Kinglake Market (Kinglake Central) was added then removed before publishing: Kinglake Central is outside Greater Melbourne (the same reason Kilmore was excluded) and its operator page footer says 2023."
+    "Nineteenth pass, low-cost fresh food from operators and council listings (read 2026-11-21), 6 places added: Kinglake Market (operator page with dated 2026 days), the ECOSS Valley Saturday Market (Wesburn, Yarra Ranges listing), Kingston Farmers' Market (Cheltenham, council page), Mt Eliza Farmers Market (Shire listing, which gives the dates that pass 18 could not read), The Mount Martha Briars Market and Bittern Market (Shire listings). Left out, with reasons: Melbourne Farmers Markets (mfm.com.au redirects to a shop domain whose markets page returned 404, not worked around); Slow Food Melbourne's other pages (Slow Foodscray is a community street event, Yarraville Cruickshank Park still has no street number or pin); Whitehorse Farmers' Market Nunawading (operator page has no dates or copyright); Warrandyte Riverside Market (craft-led, no 2026 dates, no map or entry cost); Boroondara Farmers Market (council page is on the blocked list, Rotary Glenferrie page undated); Lilydale Rotary market (no dates on the club page); Healesville, Emerald, Hume Community Market (Craigieburn) and Whittlesea Food Collective (Epping) (aggregator or school-newsletter listings only, conflicting days); Darley Market (Bacchus Marsh, a flea market); Cruden Farm (Langwarrin, paid-entry events, no current date); Hurstbridge and Warrandyte food swaps (swap events, not a place to buy food, and no price band fits); The Community Grocer pages (already in the dataset, no new site). No independent greengrocer or Open Food Network pickup page with hours was found in the target suburbs. Prices: no page states product prices, so every entry is `mid` and `typical`. Kinglake Market (Kinglake Central) was added then removed before publishing: Kinglake Central is outside Greater Melbourne (the same reason Kilmore was excluded) and its operator page footer says 2023.",
+    "Twentieth pass, council pages dated 2026 or carrying a 2026 copyright (read 2026-11-21), 22 places added, all council-sourced and so `secondary` with a 'check before you go' note: City of Knox 'Community and welfare relief service providers' page (footer copyright 2026, no update date; Boronia Road Uniting Church, Saint Paul's Boronia dinner, The Orchard Church of Christ dinner, Salvation Army Boronia and Ferntree Gully, Scoresby Uniting Church, One Hope Community Church, RBCares The Well, RAFT Rowville, Australia For Christ Rowville), City of Maroondah 'Community meals and food relief' page (footer 2026; Helping Hand Croydon, North Ringwood Care, Maroondah Community Assist, Ringwood Church of Christ, St Paul's Mullum Mullum, TLC Bayswater North), City of Melton 'Food relief' page (footer 2026; Sri Guru Singh Sabha Bonnie Brook, two St Vincent de Paul Soup Kitchen Bus stops, Combined Churches Caring Melton), the Nillumbik Community and Services Directory entry for Eltham LinC (footer 2026) and the Brimbank 'Crisis support services' list (last updated 7 September 2026; Loaves and Fishes St Albans). Coordinates are Vicmap Address points (exact, or range points where the address sits in a range). Operator pages were tried where the council page names one: the Croydon Uniting Church, Ringwood Church of Christ, St Paul's Mullum Mullum, TLC and One Hope pages confirm the address but carry no relief details (the Ringwood Church of Christ page also has an Oasis Community Meal flyer without times); Maroondah Community Assist (mca.org.au) and North Ringwood Care (nruc.org.au) failed TLS certificate checks and were not worked around; the RBCares host did not resolve; the St Margaret's Eltham site (copyright 2016) has no pantry details.",
+    "Twentieth pass, left out with reasons: City of Cardinia food relief page (HTTP 403 earlier and the fetch was refused this pass, not retried) and the City of Wyndham node pages (HTTP 403 or 404, not worked around; the Sahtain / Pulse with Purpose event page is a pre-ordered meal fundraiser with no stated public access); City of Casey (community-resources-supports links only to an interactive food directory map with no listings, the 2023 resource was not used); Greater Dandenong support agency list (the 2025-2026 edition has no 2026 date text and was already used in earlier passes); Whitehorse community directory entry for Whitehorse Emergency Relief & Support (no date or copyright year; the Food Finders brochure is on the do-not-retry list); Monash (the Shared Plate Project page is a cooking-class program with no street address, the community directory has no 2026 food listings); Glen Eira (only older 2020 contacts booklets turned up); Moonee Valley (only subsidised home-delivered meals for seniors and COVID-era news); Bayside (BayCISS and Bayside Community Care already listed); Hume (only a COVID-era service directory); Whittlesea (the council emergency relief PDF is dated 2017 in its file metadata and its text could not be read); Frankston (funding news only, no listing with addresses); Mitchell Shire not searched beyond a dated listing check. From the Knox page: ADRA Op Shop Boronia (no food service stated), Aussie Veteran's Op Shop (a shop unit in Dorset Square, no building-level point), Shree Swaminarayan Temple (appointments required, no times), Adracare Lysterfield, Upper Ferntree Gully and Wantirna (bookings required or no Vicmap point), Foothills Upwey (Monday meal ends 30 November), Share Space The Sanctuary (group lunches, access unclear), St Vincent de Paul home delivery and Restore Community Care (already listed or no address). From the Maroondah page: Eastern Food Rescue (Facebook group only, a Thursday morning market limited to concession card holders), Hope City Mission (previously skipped, no Vicmap point), Mullum Mullum Indigenous Gathering Place (First Peoples only), The Freedom Initiative (no operator page, address only a unit), The Dining Room Mission and Winter Shelter dinners (no street number). From the Melton page: CatholicCare (phone appointments only, no address), Kirrip (Aboriginal and Torres Strait Islander only), Dal Baba Bidhi Chand Ji Khalsa Shaouni (pickup after a phone call, no times for walk-ins), Sri Durga Temple Deanside and Manna Food Distribution Rockbank (no Vicmap point for 705-715 Neales Road or 1995 Western Freeway), Sureway (no address), Earth Village Breadland and ADRA Melton South (already in the dataset). From the Brimbank page: Anglicare St Albans and Sydenham (voucher or priority postcode services, one of them corner address only), Tin Shed Neighbourhood House (appointment only, 309A Main Road East shares a point with another entry), Helping Hands Mission Sunshine (COVIDSafe wording), Assist Ability Australia Store (its own page now gives Factory 1, 49 McArthurs Road, Altona North, Monday to Friday 9am to 5pm for concession holders in Hobsons Bay and Wyndham with no hamper hours, and Vicmap has no point for number 49), St Albans Community Cafe and Vantage Point Care (2021 and COVID-era text), Northpoint Tullamarine (already skipped in earlier passes). Hurstbridge Community Hub pantry (Nillumbik page, copyright 2026, 50 Graysharps Road): no pantry hours on the page beyond the hub's 9am to 5pm weekday opening, so not added. Nillumbik's DVCS Hurstbridge outreach event page returned 404."
   ]
 };
