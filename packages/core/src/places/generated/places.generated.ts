@@ -372,6 +372,118 @@ export const placeData: PlaceData = {
       "url": "https://mocsis.org.au/advice-and-help/emergency-relief/",
       "licence": "Operator page (MOCSIS emergency relief page and home page), rights not stated; facts only (name, address, hours, eligibility area, vouchers). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
+    },
+    {
+      "id": "life-kitchen-truganina",
+      "publisher": "LIFE Melbourne (LIFE Community Kitchen)",
+      "title": "Community Kitchen page (Truganina sit-down dinner every Monday 6pm until 30 November, Arndell Park Community Centre, 29-49 Federation Boulevard, Truganina; 'The meals are free'; no Health Care Card, Low income Card or Pension Card required; vegetarian and halal options). Page read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 29-49 FEDERATION BOULEVARD TRUGANINA 3029, read 2026-11-21; the page gives no map",
+      "url": "https://lifeau.org/communitykitchen/",
+      "licence": "Operator page (LIFE Melbourne Community Kitchen page, Truganina entry), rights not stated; facts only (name, address, day, time, end date, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "life-kitchen-tarneit",
+      "publisher": "LIFE Melbourne (LIFE Community Kitchen)",
+      "title": "Community Kitchen page (Tarneit sit-down dinner every Tuesday 6pm until 1 December, Tarneit Community Learning Centre, 150 Sunset Views Boulevard, Tarneit; 'The meals are free'; no Health Care Card, Low income Card or Pension Card required; vegetarian and halal options). Page read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 150 SUNSET VIEWS BOULEVARD TARNEIT 3029, read 2026-11-21; the page gives no map",
+      "url": "https://lifeau.org/communitykitchen/",
+      "licence": "Operator page (LIFE Melbourne Community Kitchen page, Tarneit entry), rights not stated; facts only (name, address, day, time, end date, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "life-kitchen-tarneit-breakfast",
+      "publisher": "LIFE Melbourne (LIFE Community Kitchen)",
+      "title": "Community Kitchen page (Tarneit sit-down and takeaway breakfast, school term only, every Wednesday from 8am until 2 December and Friday from 8am until 11 December, Dianella Community Centre, 6 Congo Drive, Tarneit; 'The meals are free'; no Health Care Card, Low income Card or Pension Card required; vegetarian and halal options). Page read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 6 CONGO DRIVE TARNEIT 3029, read 2026-11-21; the page gives no map",
+      "url": "https://lifeau.org/communitykitchen/",
+      "licence": "Operator page (LIFE Melbourne Community Kitchen page, Tarneit breakfast entry), rights not stated; facts only (name, address, day, time, end date, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "life-kitchen-roxburgh-park",
+      "publisher": "LIFE Melbourne (LIFE Community Kitchen)",
+      "title": "Community Kitchen page (Roxburgh Park sit-down dinner every Monday 6pm until 7 December, Roxburgh Park Recreation Centre, 75 Lakeside Drive, Roxburgh Park; 'The meals are free'; no Health Care Card, Low income Card or Pension Card required; vegetarian and halal options). Page read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 75 LAKESIDE DRIVE ROXBURGH PARK 3064, read 2026-11-21; the page gives no map",
+      "url": "https://lifeau.org/communitykitchen/",
+      "licence": "Operator page (LIFE Melbourne Community Kitchen page, Roxburgh Park entry), rights not stated; facts only (name, address, day, time, end date, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "darebin-thornbury-community-church",
+      "publisher": "City of Darebin",
+      "title": "Free and low-cost meals in Darebin 2026 leaflet (council PDF, dated 5/26) (Free Pickup Food: Thornbury Community Church, 16-18 Martin Street: fruit and veg, frozen meals, pantry items and bread, Thursday 1-2.30pm, register on 0437 559 945). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 16-18 MARTIN STREET THORNBURY 3071, read 2026-11-21; the leaflet gives no map",
+      "url": "https://www.darebin.vic.gov.au/files/assets/public/v/2/community-and-pets/documents/older-adults/free-and-low-cost-meals-leaflet-2026.pdf",
+      "licence": "Council leaflet (City of Darebin Free and low-cost meals in Darebin 2026, Thornbury Community Church entry), rights not stated; facts only (name, address, day, hours, what is offered, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "darebin-span-community-house",
+      "publisher": "City of Darebin",
+      "title": "Free and low-cost meals in Darebin 2026 leaflet (council PDF, dated 5/26) (Share a Meal with Your Neighbours: Span Community House, 64 Clyde Street, Thornbury: free community lunch every 2nd Wednesday of the month 12.30-2.30pm; RSVP welcome at 9480 1364). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 64 CLYDE STREET THORNBURY 3071, read 2026-11-21; the leaflet gives no map",
+      "url": "https://www.darebin.vic.gov.au/files/assets/public/v/2/community-and-pets/documents/older-adults/free-and-low-cost-meals-leaflet-2026.pdf",
+      "licence": "Council leaflet (City of Darebin Free and low-cost meals in Darebin 2026, Span Community House entry), rights not stated; facts only (name, address, day, hours, what is offered, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "darebin-east-preston-community-centre",
+      "publisher": "City of Darebin",
+      "title": "Free and low-cost meals in Darebin 2026 leaflet (council PDF, dated 5/26) (Free Pickup Food: East Preston Community Centre, 7 Newton Street, Reservoir: fresh food pickup fortnightly on Wednesdays 10.30am-12pm, contact 8470 8107). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 7 NEWTON STREET RESERVOIR 3073, read 2026-11-21; the leaflet gives no map",
+      "url": "https://www.darebin.vic.gov.au/files/assets/public/v/2/community-and-pets/documents/older-adults/free-and-low-cost-meals-leaflet-2026.pdf",
+      "licence": "Council leaflet (City of Darebin Free and low-cost meals in Darebin 2026, East Preston Community Centre entry), rights not stated; facts only (name, address, day, hours, what is offered, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "merri-bek-meals-hope-cafe",
+      "publisher": "City of Merri-bek (flyer by CIS Merri-bek)",
+      "title": "Merri-bek Community Meals flyer, last updated 12/05/2026 (hosted on the council site, produced by volunteers of Community Information & Support Merri-bek) (Thursday: Hope Cafe, St Mark's Church, 9 Lee Street, Fawkner 3060, T 9359 3111, 5.30pm-6.30pm FREE hot meal). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 9 LEE STREET FAWKNER 3060, read 2026-11-21; the flyer gives no map",
+      "url": "https://www.merri-bek.vic.gov.au/globalassets/website-merri-bek/areas/living-merri-bek/community-services/public-health-and-wellbeing/food-security/food-access-and-security/merri-bek-community-meals-may-2026-1.pdf",
+      "licence": "Council-hosted flyer (Merri-bek Community Meals, May 2026, Hope Cafe entry), rights not stated; facts only (name, address, day, time, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "merri-bek-meals-glenroy-nh",
+      "publisher": "City of Merri-bek (flyer by CIS Merri-bek)",
+      "title": "Merri-bek Community Meals flyer, last updated 12/05/2026 (hosted on the council site, produced by volunteers of Community Information & Support Merri-bek) (Tuesday: Glenroy Neighbourhood House, 5B Cromwell Street, Glenroy 3046, 12.00pm-1.00pm, school term only; the flyer's introduction says the meals are free or low cost and gives no price for this one). The October 2025 Food & Material Aid Relief Services flyer on the same site lists Glenroy Neighbourhood House, T 9304 3910: food parcels, meals, cleaning and personal hygiene products, Tuesday 10am-12pm, walk in. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 5B CROMWELL STREET GLENROY 3046, read 2026-11-21; the flyers give no map",
+      "url": "https://www.merri-bek.vic.gov.au/globalassets/website-merri-bek/areas/living-merri-bek/community-services/public-health-and-wellbeing/food-security/food-access-and-security/merri-bek-community-meals-may-2026-1.pdf",
+      "licence": "Council-hosted flyer (Merri-bek Community Meals, May 2026, Glenroy Neighbourhood House entry), rights not stated; facts only (name, address, day, time). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "helping-hands-dining-room",
+      "publisher": "Helping Hands Mission",
+      "title": "Community Dining Room page (Airport West Op Shop, 14 McIntosh Street, Airport West, Monday to Friday 12pm-2pm hot meals, Saturdays 12pm-2pm toasties; tea and coffee all day for a $2 donation; everyone is welcome; head office 1300 892 010). Page read 2026-11-21. Coordinates: the Airport West pin in the operator's own embedded Google My Maps map on the site (-37.721411, 144.8900384; the map's KML lists Preston, Sunshine and Airport West op shops), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): there is no point for number 14, and 15 MCINTOSH STREET AIRPORT WEST 3042 is at -37.7216661, 144.8900073, about 29 m away",
+      "url": "https://www.helpinghandsmission.org.au/community-dining-room",
+      "licence": "Operator page (Helping Hands Mission Community Dining Room page), rights not stated; facts only (name, address, days, hours, tea donation) and the coordinate the operator publishes in its own map embed",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "kingston-pantry-5000",
+      "publisher": "City of Kingston",
+      "title": "Community groups: Pantry 5000 (Longbeach Anglican Church, St Aidan's, 1-3 Poulson St, Carrum 3197; Wednesday 09:30 AM-12:30 PM; emergency and ongoing food relief for postcodes 3195, 3196, 3197 and 3198; financial difficulty to be shown, usually a Centrelink Health Care Card or Pension Card). Council page. Hours also read on the operator's page https://longbeachanglicans.org.au/outreach-ministries/pantry-5000/ (every Wednesday 9:30am-1:00pm; the operator's wording is used). Coordinates: the council page's own map marker (-38.0755557, 145.1258795), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 1-3 POULSON STREET CARRUM 3197 is at -38.0755867, 145.1256791, about 18 m away",
+      "url": "https://kingston.vic.gov.au/community/get-involved/community-groups/Pantry-5000",
+      "licence": "Council page (City of Kingston community groups, Pantry 5000 listing) and operator page (Longbeach Anglican Church), rights not stated; facts only (name, address, day, hours, eligibility, what is given) and the coordinate the council publishes in its own map",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "kingston-inspire-city-church",
+      "publisher": "City of Kingston",
+      "title": "Community groups: Emergency Resources - Inspire City Church Kingston (St Aidans Anglican Church, 64 Robert St, Parkdale VIC 3195; Wednesday 10:00 AM-02:00 PM; food relief to people facing hardship in the local area of Kingston and neighbouring suburbs; a food parcel with pantry items, fresh produce and bread; pick up only; contact 03 85516610). Council page. Coordinates: the council page's own map marker (-37.9873881, 145.0885592), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 64 ROBERT STREET PARKDALE 3195 is at -37.9873995, 145.0882645, about 26 m away",
+      "url": "https://www.kingston.vic.gov.au/community/get-involved/community-groups/Emergency-Resources-Kingston-City-Church",
+      "licence": "Council page (City of Kingston community groups, Emergency Resources - Inspire City Church Kingston listing), rights not stated; facts only (name, address, day, hours, what is given) and the coordinate the council publishes in its own map",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "kingston-mcaib",
+      "publisher": "City of Kingston",
+      "title": "Community groups: Mentone Community Assistance and Information Bureau Inc (36 Florence Street, Mentone 3194; Tuesday, Wednesday and Friday 10:00 AM-04:00 PM; emergency relief of food parcels and vouchers to meet immediate needs for local residents in financial hardship; assistance that is free, confidential and impartial; client catchment postcodes 3195, 3194 and 3192 between Centre Dandenong Road and Mordialloc Creek; phone 9583 2436). Council page. Coordinates: the council page's own map marker (-37.9829208, 145.0633694), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 36 FLORENCE STREET MENTONE 3194 is at -37.9828679, 145.0633690, about 6 m away",
+      "url": "https://www.kingston.vic.gov.au/community/get-involved/community-groups/Mentone-Community-Assistance-and-Information-Bureau-Inc",
+      "licence": "Council page (City of Kingston community groups, Mentone Community Assistance and Information Bureau Inc listing), rights not stated; facts only (name, address, days, hours, catchment, what is given, cost) and the coordinate the council publishes in its own map",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "share-space-rowville",
+      "publisher": "Share Space Inc.",
+      "title": "Home page (Share Space Inc. offers 24/7 access to food, personal hygiene and essential items on a regular basis to local families and individuals, as well as emergency food packs; all are welcome; based in Rowville and servicing Rowville/Lysterfield and the Knox community; 'Share Space (tubs & packs) 15 Goulburn Drive Rowville'; mobile 0435 330 732). Page read 2026-11-21; the City of Knox Need help flyer (Spring Edition 2025) also lists an external pantry accessible 24/7 at 15 Goulburn Drive, Rowville. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 15 GOULBURN DRIVE ROWVILLE 3178, read 2026-11-21; the page gives no map",
+      "url": "https://sharespace.org.au/",
+      "licence": "Operator page (Share Space Inc. home page), rights not stated; facts only (name, address, access, area served). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
     }
   ],
   "places": [
@@ -1427,6 +1539,310 @@ export const placeData: PlaceData = {
       "sourceId": "mocsis-emergency-relief",
       "verification": "primary",
       "checked": "2026-11-21"
+    },
+    {
+      "id": "life-kitchen-truganina-dinner",
+      "name": "LIFE Community Kitchen free dinner, Truganina",
+      "kind": "community-meal",
+      "lat": -37.8618716,
+      "lng": 144.7291271,
+      "address": "Arndell Park Community Centre, 29-49 Federation Boulevard, Truganina VIC 3029",
+      "suburb": "Truganina",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Mondays at 6pm until 30 November 2026 (the operator page gives no later date). Drop in, no booking",
+      "note": "The page says the meals are free and no Health Care Card or Pension Card is needed. It lists vegetarian and halal options. The City of Wyndham event listing for the same dinner still shows Mondays up to 21 December, so email communitykitchen@lifeau.org or phone 1300 722 333 to confirm whether it continues.",
+      "notices": [
+        {
+          "text": "The LIFE page lists this dinner only until Monday 30 November. The City of Wyndham event listing shows Mondays up to 21 December. Check with LIFE before you go.",
+          "until": "2026-11-30"
+        }
+      ],
+      "sourceId": "life-kitchen-truganina",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "life-kitchen-tarneit-dinner",
+      "name": "LIFE Community Kitchen free dinner, Tarneit",
+      "kind": "community-meal",
+      "lat": -37.8352405,
+      "lng": 144.6961424,
+      "address": "Tarneit Community Learning Centre, 150 Sunset Views Boulevard, Tarneit VIC 3029",
+      "suburb": "Tarneit",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesdays at 6pm until 1 December 2026 (the operator page gives no later date). Drop in, no booking",
+      "note": "The page says the meals are free and no Health Care Card or Pension Card is needed. It lists vegetarian and halal options. The City of Wyndham event listing shows Tuesdays up to 15 December and then 2 February 2027, so email communitykitchen@lifeau.org or phone 1300 722 333 to confirm.",
+      "notices": [
+        {
+          "text": "The LIFE page lists this dinner only until Tuesday 1 December. The City of Wyndham event listing shows Tuesdays up to 15 December, then 2 February 2027. Check with LIFE before you go.",
+          "until": "2026-12-01"
+        }
+      ],
+      "sourceId": "life-kitchen-tarneit",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "life-kitchen-tarneit-breakfast",
+      "name": "LIFE Community Kitchen free breakfast, Tarneit (Dianella Community Centre)",
+      "kind": "community-meal",
+      "lat": -37.8530961,
+      "lng": 144.6472841,
+      "address": "Dianella Community Centre, 6 Congo Drive, Tarneit VIC 3029",
+      "suburb": "Tarneit",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "School term only: Wednesdays from 8am until 2 December 2026 and Fridays from 8am until 11 December 2026. Sit down or takeaway",
+      "note": "The page says the meals are free. The City of Wyndham listing for this breakfast says children must stay with a parent, guardian or responsible adult, and children on their own can collect food to take away. Email communitykitchen@lifeau.org or phone 1300 722 333 to confirm.",
+      "notices": [
+        {
+          "text": "The LIFE page lists the Wednesday breakfast until 2 December and the Friday breakfast until 11 December, school term only.",
+          "until": "2026-12-11"
+        }
+      ],
+      "sourceId": "life-kitchen-tarneit-breakfast",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "life-kitchen-roxburgh-park-dinner",
+      "name": "LIFE Community Kitchen free dinner, Roxburgh Park",
+      "kind": "community-meal",
+      "lat": -37.6304883,
+      "lng": 144.931952,
+      "address": "Roxburgh Park Recreation Centre, 75 Lakeside Drive, Roxburgh Park VIC 3064",
+      "suburb": "Roxburgh Park",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Mondays at 6pm until 7 December 2026 (the operator page gives no later date)",
+      "note": "The page says the meals are free and no Health Care Card or Pension Card is needed. It lists vegetarian and halal options. Email communitykitchen@lifeau.org or phone 1300 722 333 to confirm whether it continues after 7 December.",
+      "notices": [
+        {
+          "text": "The LIFE page lists this dinner only until Monday 7 December.",
+          "until": "2026-12-07"
+        }
+      ],
+      "sourceId": "life-kitchen-roxburgh-park",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "thornbury-community-church-pickup",
+      "name": "Thornbury Community Church free food pickup",
+      "kind": "food-relief",
+      "lat": -37.7611625,
+      "lng": 145.0016143,
+      "address": "16-18 Martin Street, Thornbury VIC 3071",
+      "suburb": "Thornbury",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "fresh",
+        "packaged",
+        "meals"
+      ],
+      "access": "referral",
+      "hours": "Thursdays 1pm to 2:30pm. Register first on 0437 559 945",
+      "note": "Listed by the City of Darebin under Free Pickup Food: fruit and vegetables, frozen meals, pantry items and bread. The leaflet says to register on 0437 559 945 and does not say who qualifies. No page of the church’s own was found, so confirm the day before you go.",
+      "sourceId": "darebin-thornbury-community-church",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "span-community-house-thornbury-lunch",
+      "name": "Span Community House free community lunch, Thornbury",
+      "kind": "community-meal",
+      "lat": -37.7619345,
+      "lng": 145.0138467,
+      "address": "64 Clyde Street, Thornbury VIC 3071",
+      "suburb": "Thornbury",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Second Wednesday of the month, 12:30pm to 2:30pm. RSVP welcome on 9480 1364",
+      "note": "Listed by the City of Darebin as a free community lunch. The leaflet also lists a morning tea on Tuesdays 10am to 11am at the same house. No page of the house’s own could be reached, so confirm the date before you go.",
+      "sourceId": "darebin-span-community-house",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "east-preston-community-centre-fresh-food",
+      "name": "East Preston Community Centre free fresh food pickup, Reservoir",
+      "kind": "food-relief",
+      "lat": -37.7319538,
+      "lng": 145.0282559,
+      "address": "7 Newton Street, Reservoir VIC 3073",
+      "suburb": "Reservoir",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "fresh"
+      ],
+      "access": "open",
+      "hours": "Fortnightly on Wednesdays, 10:30am to 12pm. Phone 8470 8107",
+      "note": "Listed by the City of Darebin under Free Pickup Food as a fresh food pickup. The leaflet does not say which Wednesdays or who qualifies, so phone 8470 8107 to confirm the next date.",
+      "sourceId": "darebin-east-preston-community-centre",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "hope-cafe-fawkner-thursday-meal",
+      "name": "Hope Cafe free hot meal (St Mark’s Church), Fawkner",
+      "kind": "community-meal",
+      "lat": -37.7160232,
+      "lng": 144.9636886,
+      "address": "St Mark’s Church, 9 Lee Street, Fawkner VIC 3060",
+      "suburb": "Fawkner",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Thursdays 5:30pm to 6:30pm",
+      "note": "The council-hosted community meals flyer (updated 12 May 2026) lists a free hot meal. An earlier version of the same flyer (July 2025) gave 6pm to 8pm and other listings give other times, so phone the church on 9359 3111 to confirm the time. No page of the church’s own could be reached.",
+      "sourceId": "merri-bek-meals-hope-cafe",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "glenroy-neighbourhood-house-tuesday",
+      "name": "Glenroy Neighbourhood House Tuesday community lunch",
+      "kind": "community-meal",
+      "lat": -37.7040235,
+      "lng": 144.9219714,
+      "address": "5B Cromwell Street, Glenroy VIC 3046",
+      "suburb": "Glenroy",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesdays 12pm to 1pm, school term only",
+      "note": "Cost not stated: the council-hosted flyer says its community meals are free or low cost and gives no price for this one. An October 2025 flyer on the same site lists food parcels and meals here on Tuesdays 10am to 12pm (walk in, no appointment). The house’s own site does not describe either, so phone 9304 3910 to confirm.",
+      "sourceId": "merri-bek-meals-glenroy-nh",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "helping-hands-dining-room-airport-west",
+      "name": "Helping Hands Community Dining Room, Airport West",
+      "kind": "community-meal",
+      "lat": -37.721411,
+      "lng": 144.8900384,
+      "address": "14 McIntosh Street, Airport West VIC 3042",
+      "suburb": "Airport West",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Monday to Friday 12pm to 2pm (hot meals); Saturday 12pm to 2pm (toasties)",
+      "note": "Cost not stated for the meals on the page. It says tea and coffee are available all day for a $2 donation and that everyone is welcome. Meals are made mostly from rescued food and change daily. The same op shop runs the Helping Hands emergency pantry by appointment: that needs a Health Care Card, Immi Card, Student or Bridging Visa and registration at the head office, so it is not listed as open. Phone 1300 892 010.",
+      "sourceId": "helping-hands-dining-room",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "pantry-5000-carrum",
+      "name": "Pantry 5000 (Longbeach Anglican Church), Carrum",
+      "kind": "food-relief",
+      "lat": -38.0755557,
+      "lng": 145.1258795,
+      "address": "St Aidan’s Anglican Church hall, 1-3 Poulson Street, Carrum VIC 3197",
+      "suburb": "Carrum",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "referral",
+      "hours": "Wednesdays 9:30am to 1pm (the Kingston council listing says 9:30am to 12:30pm). For people in postcodes 3195, 3196, 3197 and 3198 who can show financial difficulty, usually with a Health Care Card or Pension Card",
+      "note": "Cost not stated on the pages. Groceries, fresh produce, bakery items, dairy and frozen foods, collected once a week. On the corner of Poulson Street and McLeod Road; enter from Poulson Street. Phone the church administrator on 03 9772 1251.",
+      "sourceId": "kingston-pantry-5000",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "inspire-city-church-emergency-resources-parkdale",
+      "name": "Inspire City Church Emergency Resources food parcels, Parkdale",
+      "kind": "food-relief",
+      "lat": -37.9873881,
+      "lng": 145.0885592,
+      "address": "St Aidan’s Anglican Church, 64 Robert Street, Parkdale VIC 3195",
+      "suburb": "Parkdale",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Wednesdays 10am to 2pm (hours as listed by the council). Pick up only, no delivery",
+      "note": "Cost not stated on the council page. A food parcel with pantry items, fresh produce and bread for people facing hardship in Kingston and neighbouring suburbs. The page says the church does not give gift cards or pay bills but can refer you to agencies that do. No page of the church’s own was found; phone 03 8551 6610 to confirm.",
+      "sourceId": "kingston-inspire-city-church",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "mentone-community-assistance-bureau",
+      "name": "Mentone Community Assistance and Information Bureau food parcels and vouchers, Mentone",
+      "kind": "food-relief",
+      "lat": -37.9829208,
+      "lng": 145.0633694,
+      "address": "36 Florence Street, Mentone VIC 3194",
+      "suburb": "Mentone",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [],
+      "access": "referral",
+      "hours": "Hours listed by the council: Tuesday, Wednesday and Friday 10am to 4pm. For local residents in financial hardship in postcodes 3195 and 3194, and part of 3192 (between Centre Dandenong Road and Mordialloc Creek)",
+      "note": "The council page says the bureau’s assistance is free. Emergency relief is food parcels and vouchers for immediate needs, and the bureau also helps with bill arrears and forms. It is run by trained volunteers; the page does not say whether you need to book, so phone 9583 2436 first.",
+      "sourceId": "kingston-mcaib",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "share-space-pantry-rowville",
+      "name": "Share Space Inc community pantry (tubs and packs), Rowville",
+      "kind": "food-relief",
+      "lat": -37.9164236,
+      "lng": 145.2479747,
+      "address": "15 Goulburn Drive, Rowville VIC 3178",
+      "suburb": "Rowville",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "The page describes 24/7 access to food and essential items",
+      "note": "Cost not stated on the page. It says the charity offers 24/7 access to food, personal hygiene and essential items to local families and individuals, serving Rowville, Lysterfield and the Knox community, and that all are welcome. The page does not describe how the access works, so confirm by phone (0435 330 732) or the charity’s social media before you go.",
+      "sourceId": "share-space-rowville",
+      "verification": "primary",
+      "checked": "2026-11-21"
     }
   ],
   "notFound": [
@@ -1455,6 +1871,7 @@ export const placeData: PlaceData = {
     "Fourth pass, middle-ring suburbs (read 2026-11-21), left out for a missing coordinate: coordinates now come from the operator's map or from an exact Vicmap Address match, and these had neither. Reservoir Neighbourhood House (2B Cuthbert Road; food relief parcels Tuesday and Wednesday 9:30am to 3:30pm; the page gives no map and Vicmap has no point for 2B, only 2 and 2A/2C about 170 m apart); Yarraville Community Centre / The Nourish Project (59 Francis Street; no pickup hours on the page, and Vicmap has no point for number 59); Banyule Support and Information Centre Foodhub (added in the fifth pass, see below; Shop 48, The Harmony Centre, The Mall, Heidelberg West; Mon, Tue, Wed, Fri 12pm to 3pm, Thu 10:30am to 1:30pm; no map and Vicmap cannot place a shop); Combined Churches Caring Melton (100 Coburns Road, Melton South; Monday to Friday 10am to 12:30pm; no map and Vicmap has no point for number 100); Braybrook Soul Kitchen (added in the fifth pass, see below; Braybrook Community Hub, 107 Churchill Avenue; Sunday dinner, free; no map and Vicmap has no point for 107, only a 107-139 hub); Salvation Army Merri-bek (15 Headley Street, Coburg North; Tuesday 10am to 2pm and Friday 10am to 1pm vouchers; no map and Vicmap has no point for 15); Salvation Army Brunswick (256 Albert Street; no food service on its page).",
     "Fourth pass, left out because the operator's own page does not state what is needed: Noble Pantry (Noble Park Community Centre; its page gives Friday 12pm to 2pm but no address or cost for the pantry); Berwick Church of Christ Food Pantry (Tuesdays 10:30am to 2pm by referral, Casey residents; the page gives only the church address, 432-446 Centre Road, not a pantry address, and no map); Duke Street Community House Sunshine (27 Duke Street; the Braybrook Wednesday site is included); Tin Shed Neighbourhood House, St Albans (no food page found); Clayton Church of Christ Love Loud (free weekly meal delivery by referral, Monash and Kingston residents: a delivery service with no visit site); Matt's Place Cheltenham (the page lists the Mentone Uniting Church site but says the program is temporarily moving for six weeks from 8 October 2026, so the site was not recorded; the Chelsea meal is included); Bayside Community Care food relief (Cheltenham; no days, hours or cost beyond 'Tues-Thur 10am-3pm', and a Health Care Card is needed); Wyndham South West Community Services and Lighthouse Store (Hoppers Crossing; only Wyndham council text, and the council page returned HTTP 403, so it was not read).",
     "Fourth pass, council pages used for Melton and Yarra Ranges only where the council page itself was readable (HTTP 200 on 2026-11-21): Melton and Yarra Ranges were readable this time (earlier passes saw HTTP 403); the Wyndham node page and the Whittlesea page still refused or did not resolve, so no Wyndham or Whittlesea entries were taken from them. Other Melton council entries left out: Kirrip Aboriginal Corporation (eligibility limited to Aboriginal and Torres Strait Islander people), temples and a soup van (no stable coordinate or no address match: Sri Durga Temple 705-715 Neales Road, Deanside has no Vicmap point), CatholicCare (phone appointments only). Gordon Street Little Pantry (252 Gordon Street, Footscray) and Braybrook and Maidstone Neighbourhood House (113 Melon Street, free bread Mondays) appear on the Maribyrnong council page, but the first has no Vicmap point and an operator Facebook page only, and the second's page text carries stale 2025-26 holiday dates and no food page was found on its own site. The Footscray Market, Sunshine, St Albans, Broadmeadows (other than the existing two), Heidelberg, Springvale, Noble Park, Oakleigh, Bentleigh, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick and Narre Warren gaps remain: no operator or council page was found that gives an address, hours, a price and an exact coordinate. No independent greengrocer or stable weekly fresh-food market could be verified in this pass (Footscray Market: no operator website was found, and hours appear only on third-party listings).",
-    "Fifth pass (read 2026-11-21), 12 places added. Coordinate lessons: the Cheaper Buy Miles page does carry a Google Maps link per store (an earlier pass missed them), the BANSIC Contact page embeds a map block with a marker, and the Brunswick Uniting Church and Croydon North Uniting Church pages carry location data. Still left out, with reasons: Reservoir Neighbourhood House (2B Cuthbert Road; its Contact and Drop-in pages give food relief parcels Tuesday and Wednesday 9:30am to 3:30pm but no map, and Vicmap has no point for 2B, retried); Yarraville Community Centre pantry (59 Francis Street; Vicmap has no Yarraville point for number 59, retried); Combined Churches Caring Melton (no operator site could be reached); Hope City Mission, Croydon (51 Lusher Road; its Drive-Thru Foodbank is Thursdays by appointment and the page has a map link, but Vicmap has no point for number 51, the pin is about 100 m from the neighbouring points, and the City of Maroondah page says Wednesday and Thursday); Salvation Army Merri-bek (Coburg North) and Reservoir (phone-led vouchers, no collection hours for food on the get-help pages), Sunshine Corps (42 Devonshire Road: the corps page gives an address and coordinate but no relief hours, and the Brimbank council listing still carries COVID-era entries) and Hobsons Bay Corps (Altona: location page only, the Wednesday lunch appears only on third-party listings); Springvale Learning and Activities Centre social supermarket (monthly Tuesdays 12:30pm to 2:30pm for Springvale residents by registration, but its home page says 'That's a Wrap for 2026' and gives no 2027 dates); Noble Pantry (Noble Park Community Centre: its own site has no pantry page, and Friday 12pm to 2pm appears only in 2025 press); Jika Jika Community Centre free food program (Northcote: free fruit, vegetables and meals on Wednesday 10:30am to noon for Darebin residents on low incomes; the page's map pin is about 350 m from 1B Plant Street and the page does not say which of its two sites hosts it); Whittlesea Community Connections Hardship Help (Epping: an office in a shopping centre, by phone or form, no pickup hours); Sunbury Neighbourhood Kitchen (Monday dinners at Sunbury Memorial Hall, Stawell Street, closed from 21 December 2026 and reopening 8 February 2027: the page gives no street number, its map is a name query, and Vicmap has no point for the hall); Williamstown Community and Education Centre pantry swap (addresses only; hours appear only in press and third-party items); Brunswick Neighbourhood House (monthly lunch, second Thursday) and Span Community House, Thornbury (second Wednesday lunch, RSVP): no operator page could be reached, council flyers only; Mill Park Baptist Church 'The Shak' (free Saturday lunch: no operator page or address found); Doncaster East Gateway Lighthouse Food Pantry and CareNet (Templestowe): the Manningham council page returned HTTP 403 (not worked around) and CareNet's map is an address query; Monash Waverley Community Information and Support (Mount Waverley): no page found. Not fresh food or no stable schedule: Bentleigh Sunday Market (a general and craft market) and the monthly or dated farmers markets at Williamstown, Yarraville, Altona and Essendon (council or third-party listings only); Footscray Market has no operator page that could be reached (listings name two different websites). Cheaper Buy Miles Flemington and Fitzroy resolve the same way but are outside the target suburbs and were not added. Suburbs still with nothing verified after this pass: Sunshine, St Albans, Springvale, Noble Park, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick, Reservoir, Thornbury, Essendon, Moonee Ponds, Williamstown, Altona, Mentone, Dingley, Mount Waverley, Doncaster and Mill Park. The Wyndham and Whittlesea council pages were not retried."
+    "Fifth pass (read 2026-11-21), 12 places added. Coordinate lessons: the Cheaper Buy Miles page does carry a Google Maps link per store (an earlier pass missed them), the BANSIC Contact page embeds a map block with a marker, and the Brunswick Uniting Church and Croydon North Uniting Church pages carry location data. Still left out, with reasons: Reservoir Neighbourhood House (2B Cuthbert Road; its Contact and Drop-in pages give food relief parcels Tuesday and Wednesday 9:30am to 3:30pm but no map, and Vicmap has no point for 2B, retried); Yarraville Community Centre pantry (59 Francis Street; Vicmap has no Yarraville point for number 59, retried); Combined Churches Caring Melton (no operator site could be reached); Hope City Mission, Croydon (51 Lusher Road; its Drive-Thru Foodbank is Thursdays by appointment and the page has a map link, but Vicmap has no point for number 51, the pin is about 100 m from the neighbouring points, and the City of Maroondah page says Wednesday and Thursday); Salvation Army Merri-bek (Coburg North) and Reservoir (phone-led vouchers, no collection hours for food on the get-help pages), Sunshine Corps (42 Devonshire Road: the corps page gives an address and coordinate but no relief hours, and the Brimbank council listing still carries COVID-era entries) and Hobsons Bay Corps (Altona: location page only, the Wednesday lunch appears only on third-party listings); Springvale Learning and Activities Centre social supermarket (monthly Tuesdays 12:30pm to 2:30pm for Springvale residents by registration, but its home page says 'That's a Wrap for 2026' and gives no 2027 dates); Noble Pantry (Noble Park Community Centre: its own site has no pantry page, and Friday 12pm to 2pm appears only in 2025 press); Jika Jika Community Centre free food program (Northcote: free fruit, vegetables and meals on Wednesday 10:30am to noon for Darebin residents on low incomes; the page's map pin is about 350 m from 1B Plant Street and the page does not say which of its two sites hosts it); Whittlesea Community Connections Hardship Help (Epping: an office in a shopping centre, by phone or form, no pickup hours); Sunbury Neighbourhood Kitchen (Monday dinners at Sunbury Memorial Hall, Stawell Street, closed from 21 December 2026 and reopening 8 February 2027: the page gives no street number, its map is a name query, and Vicmap has no point for the hall); Williamstown Community and Education Centre pantry swap (addresses only; hours appear only in press and third-party items); Brunswick Neighbourhood House (monthly lunch, second Thursday) and Span Community House, Thornbury (second Wednesday lunch, RSVP): no operator page could be reached, council flyers only; Mill Park Baptist Church 'The Shak' (free Saturday lunch: no operator page or address found); Doncaster East Gateway Lighthouse Food Pantry and CareNet (Templestowe): the Manningham council page returned HTTP 403 (not worked around) and CareNet's map is an address query; Monash Waverley Community Information and Support (Mount Waverley): no page found. Not fresh food or no stable schedule: Bentleigh Sunday Market (a general and craft market) and the monthly or dated farmers markets at Williamstown, Yarraville, Altona and Essendon (council or third-party listings only); Footscray Market has no operator page that could be reached (listings name two different websites). Cheaper Buy Miles Flemington and Fitzroy resolve the same way but are outside the target suburbs and were not added. Suburbs still with nothing verified after this pass: Sunshine, St Albans, Springvale, Noble Park, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick, Reservoir, Thornbury, Essendon, Moonee Ponds, Williamstown, Altona, Mentone, Dingley, Mount Waverley, Doncaster and Mill Park. The Wyndham and Whittlesea council pages were not retried.",
+    "Sixth pass (read 2026-11-21), 14 places added from charity operator pages (LIFE Community Kitchen, Helping Hands Mission, Share Space Inc.) and from official council pages and leaflets (City of Wyndham events, Darebin 2026 leaflet, Merri-bek flyers, Kingston community groups). Coordinates were Vicmap Address exact matches (trailing wildcards, results capped at 12 rows in the script) or the council's or operator's own map marker, each cross-checked within 30 m. Still left out, with reasons: Reservoir Neighbourhood House (the Darebin leaflet now says it runs a free Thursday community lunch and dinner and gives the address as 2 Cuthbert Road, but the house's own site says 2B; Vicmap has a point for 2 (near number 4) and a point for 2A/2C about 190 m east, so which one is the house cannot be told; retried); Thornbury Church of Christ (390 St George's Road; no Vicmap point for 390); CHAMPION (Temple Society Australia, 51 Elizabeth Street, Bayswater; Monday 10am to 12:30pm and Wednesday 12:30pm to 3pm on the Yarra Ranges and Knox pages, no cost stated, its own site is script-rendered; the council map pin is about 115 m from the nearest Vicmap points and there is no point for 51); Noble Park Community Centre pantry and lunch (44 Memorial Drive; the Greater Dandenong 2025-26 PDF gives Friday 12pm to 2pm and Tuesday 11am to 1pm, but Vicmap has no point for 44 and its own site has no food page, and the PDF aims it at asylum seekers and people who fall between gaps); Brimbank 'Crisis support services' page (Anglicare Sunshine at Holy Apostles, 100 Anderson Road, Tin Shed St Albans, Loaves and Fishes St Albans, Helping Hands Sunshine): the page still carries COVID-era text ('operating during stage 4 restrictions'), no current operator page corroborated it, Vicmap has no point for 100 Anderson Road Sunshine and the Helping Hands Sunshine pantry address is not on its own site, so none were used; St Albans: the LIFE breakfast at Errington Reserve (309A Main Road East, Thursdays from 8am until 3 December) is on LIFE's page but Vicmap holds 309A Main Road E as the neighbourhood house point, not the reserve, so it was not added; St Mark's Forest Hill monthly lunch (page looks stale: COVID wording, 2015 news); Whittlesea's emergency relief PDF (Christmas closures 2024, no street addresses) and The Shak (Mill Park Baptist, no address); the Knox 'Need help' flyer (Spring edition 2025, over a year old) was used only to corroborate Share Space, and its other Rowville, Scoresby and Boronia entries (RAFT Anglican, Restore Community Care, The Well, Australia for Christ Community Care at 1079 or 1070 Stud Road, Scoresby Uniting, Community@Cavell) were not added because no current operator page was found and the flyer and council directory disagree on an address; Helping Hands emergency pantries (Airport West and Sunshine) need a Health Care Card or Immi Card and an appointment, and the pantry address is not given, so only the Airport West dining room was added; Latitude (Altona) is for young people only; Williamstown Community and Education Centre food relief (Joan Kirner House, 14 Thompson Street; Monday and Friday 10am to 1pm) appears only in a newspaper item and a Healthdirect listing, and its own site could not be reached; Cardinia Shire food relief page returned HTTP 403 (not worked around); Greater Dandenong Council Assist page needs a sign-in; Aboriginal community-controlled services in the Darebin and Merri-bek leaflets (Barrbunin Beek, VACCA, Aboriginal Advancement League, Yakeen Tharn) are eligibility-restricted, so none were listed as general; Sikh Volunteers Australia food van (Noble Park car park behind Coles) is a van with no fixed address. Suburbs still with nothing verified after this pass: Sunshine, Springvale, Noble Park, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick, Essendon, Moonee Ponds, Williamstown, Altona, Dingley, Mount Waverley, Doncaster and Mill Park (St Albans stays empty too; Reservoir and Thornbury are now covered, plus Truganina, Tarneit, Roxburgh Park, Fawkner, Glenroy, Airport West, Carrum, Parkdale, Mentone and Rowville). Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used."
   ]
 };
