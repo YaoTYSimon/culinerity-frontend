@@ -276,6 +276,102 @@ export const placeData: PlaceData = {
       "url": "https://melton.vic.gov.au/Services/Support-services/Food-Relief",
       "licence": "Council page (City of Melton food relief, Melton South Community Centre and ADRA entry), rights not stated; facts only (name, address, day, donation, eligibility). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
+    },
+    {
+      "id": "bansic-foodhub",
+      "publisher": "Banyule Support and Information Centre (BANSIC)",
+      "title": "Foodhub page (Monday, Tuesday, Wednesday and Friday 12pm-3pm, Thursday 10:30am-1:30pm; supports postcodes 3079, 3081, 3084 and 3085). Address from the Contact page https://www.bansic.org.au/contact (Shop 48, The Harmony Centre, The Mall, Heidelberg West 3081, corner Bell Street and Oriel Road); the FAQ page https://www.bansic.org.au/faqs says food may be available at the Foodhub regardless of where you live. Coordinates: the Contact page's own embedded map block marker titled BANSIC (-37.7486496, 145.0430795), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): the nearest point, 45 THE MALL HEIDELBERG WEST 3081, is about 60 m away (the Harmony Centre has no single address point for a shop), so the operator's marker was kept",
+      "url": "https://www.bansic.org.au/gethelp/foodhub",
+      "licence": "Operator page (BANSIC Foodhub page, with its Contact and FAQ pages), rights not stated; facts only (name, address, hours, postcodes, what is stocked) and the coordinate the operator publishes in its own map block",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "dixon-house-emergency-relief",
+      "publisher": "Dixon House Neighbourhood Centre",
+      "title": "Emergency Relief page (run by Anglicare Victoria in partnership with Dixon House and All Saints Church; food parcels, food vouchers and bill assistance through an eligibility assessment; Wednesdays and Thursdays 10-12pm and 1-2:45pm, February to early December; drop-ins only; address 2 Dixon Street, Clayton VIC, All Saints Anglican Church, next to Monash Hospital). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 2 DIXON STREET CLAYTON 3168 (two address points about 20 m apart, the first used), read 2026-11-21; the page gives no map",
+      "url": "https://www.dixonhouse.org.au/emergency-relief.html",
+      "licence": "Operator page (Dixon House Neighbourhood Centre emergency relief page), rights not stated; facts only (name, address, days, hours, eligibility, what is given). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "westgate-baptist-cooking",
+      "publisher": "Westgate Baptist Community",
+      "title": "Cooking for Community page (weekly nutritious dinners for anyone in the wider community, 6.00pm every Monday except public holidays and the summer school holidays; frozen meals given to people who would appreciate a free meal at home). Address from the Contact page https://westgatebaptist.org.au/contact/ (16 High Street Yarraville 3013; the Cooking page footer gives 3012). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 16 HIGH STREET YARRAVILLE 3013, read 2026-11-21; the page's map link is an address search with no coordinates",
+      "url": "https://westgatebaptist.org.au/cooking-for-community/",
+      "licence": "Operator page (Westgate Baptist Community, Cooking for Community page), rights not stated; facts only (name, address, day, time, what is offered). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "cheaper-buy-miles-footscray",
+      "publisher": "Cheaper Buy Miles",
+      "title": "Home page, Store Details (Footscray, 20 Paisley St, Footscray VIC 3011; Mon to Sat 9:00am-7:00pm, Sun 10:00am-6:00pm; phone 03 8351 5336; sells close to, and past, best before date food with a 100% money back guarantee). Coordinates: the page's own Google Maps link for the Footscray store (maps.app.goo.gl/v9nHYK7CfJquzLdv5, resolves to place pin !3d-37.8006518!4d144.898601), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 20-20A PAISLEY STREET FOOTSCRAY 3011 is at -37.8006426, 144.8986046, about 1 m away",
+      "url": "https://www.cheaperbuymiles.com.au/",
+      "licence": "Operator page (Cheaper Buy Miles home page, Footscray store details), rights not stated; facts only (name, address, hours, what is sold) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "cheaper-buy-miles-brunswick",
+      "publisher": "Cheaper Buy Miles",
+      "title": "Home page, Store Details (Brunswick, 109 Sydney Road, Brunswick VIC 3056; Mon to Sat 9:00am-7:00pm, Sun 10:00am-6:00pm; phone 03 8529 9376; sells close to, and past, best before date food with a 100% money back guarantee). Coordinates: the page's own Google Maps link for the Brunswick store (maps.app.goo.gl/zNiS85b9es5sbm1j8, resolves to place pin !3d-37.7748842!4d144.9605383), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 109 SYDNEY ROAD BRUNSWICK 3056 is at -37.7749009, 144.9606309, about 8 m away",
+      "url": "https://www.cheaperbuymiles.com.au/",
+      "licence": "Operator page (Cheaper Buy Miles home page, Brunswick store details), rights not stated; facts only (name, address, hours, what is sold) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "300blankets-soul-kitchen",
+      "publisher": "300 Blankets",
+      "title": "Soul Kitchen page (a free community dinner every Sunday evening in Braybrook, a hearty 3-course dinner prepared in the kitchen of Braybrook Community Hub from 6.45pm; Details: Braybrook Community Hub, 107 Churchill Ave, Braybrook VIC 3019, every Sunday, guests arrive 6.45pm). The City of Maribyrnong food relief page https://www.maribyrnong.vic.gov.au/Residents/Support-in-your-community/Maribyrnong-Support-Finder/Food-relief-in-Maribyrnong lists the site as 'Braybrook Community Hub, 107-139 Churchill Avenue' with 'Bookings essential'. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for the range 107-139 CHURCHILL AVENUE BRAYBROOK 3019 (the council's wording for the hub; a 107-109 point is at the same position), read 2026-11-21; the page gives no map and no operator pin was available to compare",
+      "url": "https://300blankets.org/soul-kitchen",
+      "licence": "Operator page (300 Blankets Soul Kitchen page), rights not stated; facts only (name, address, day, time, free). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "olive-way-brunswick",
+      "publisher": "Brunswick Uniting Church",
+      "title": "Olive Way page (current operating hours: Tuesday 10am-1:30pm, hot lunch served at 12pm; Wednesday 10am-1:30pm, sandwiches served from 10:30am; Thursday 9am-11:30am, coffee, tea, chat morning; page dated 2026-08-31). Address and coordinates from the Getting here page https://brunswick.unitingchurch.org.au/getting-here/ (212 Sydney Road, Brunswick, corner of Merri St; the page's own location data -37.7726304, 144.9613806), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 212 SYDNEY ROAD BRUNSWICK 3056 is at -37.7726189, 144.9613859, about 1 m away",
+      "url": "https://brunswick.unitingchurch.org.au/olive-way/",
+      "licence": "Operator page (Brunswick Uniting Church Olive Way page and Getting here page), rights not stated; facts only (name, address, days, hours) and the coordinate the operator publishes in its own page data",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "croydon-north-uc-lunch",
+      "publisher": "Croydon North Uniting Church",
+      "title": "Croydon North Community Meals page (Free Community Lunch every Tuesday from 12 noon at Croydon North Uniting Church, 387A Maroondah Hwy, Croydon North, within Gifford Village; phone 0481 338 738; newest post on the page is from 2024). Coordinates: the page's own map data (-37.77262119857609, 145.29295581574843), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 387A MAROONDAH HIGHWAY CROYDON NORTH 3136 is at -37.7727009, 145.2929451, about 9 m away. The City of Maroondah community meals page (read 2026-11-21) still lists a Tuesday 12pm lunch at Gifford Village Community Centre, 387A Maroondah Highway",
+      "url": "https://croydonnorth.unitingchurch.org.au/category/news/croydon-north-village-community-meals",
+      "licence": "Operator page (Croydon North Uniting Church community meals category page), rights not stated; facts only (name, address, day, time, free) and the coordinate the operator publishes in its own page data",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "maroondah-meals-mbc",
+      "publisher": "City of Maroondah",
+      "title": "Community meals and food relief (Dinner: Mooroolbark Baptist Church, Mondays at 5pm including public holidays, 153-157 Hull Rd, Croydon). Council page. Coordinates: the church's own Google Maps link on https://mbc.org.au/ (place pin !3d-37.7904085!4d145.3062451, labelled 153-157 Hull Rd, Croydon VIC 3136), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 153 HULL ROAD CROYDON 3136 is at -37.7903227, 145.3063470, about 13 m away. The church's contact page gives office phone (03) 9725 3700; the pages read there do not describe the dinner",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
+      "licence": "Council page (City of Maroondah community meals and food relief, Mooroolbark Baptist Church entry), rights not stated; facts only (name, address, day, time). Coordinates: the church's own map link on its page",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "maroondah-meals-kiosk",
+      "publisher": "City of Maroondah",
+      "title": "Community meals and food relief (The Kiosk - Croydon Soup Kitchen: Saturdays from 5pm to 6.30pm, Croydon Community Hub, 7 Civic Square, Croydon). Council page. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 7 CIVIC SQUARE CROYDON 3136, read 2026-11-21; the page gives no map",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
+      "licence": "Council page (City of Maroondah community meals and food relief, The Kiosk Croydon Soup Kitchen entry), rights not stated; facts only (name, address, day, time). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "glen-eira-salvos-bentleigh",
+      "publisher": "City of Glen Eira",
+      "title": "Community connections and contacts (Salvation Army, 87 Robert Street, Bentleigh, phone 9557 2644: Thursday Dawn's Kitchen & Pantry 10am-2pm, drop in for a cuppa and chat, lunch and food parcels available; Thursday Market Day 10am-2pm, fresh food parcels available; no appointment needed). Council page. Coordinates: the Salvation Army Bentleigh Corps location page https://www.salvationarmy.org.au/locations/church/bentleigh-corps/ (87 Robert Street, Bentleigh; its own location data -37.91918205, 145.0403013), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 87 ROBERT STREET BENTLEIGH 3204 is at -37.9191689, 145.0403072, about 2 m away",
+      "url": "https://www.gleneira.vic.gov.au/services/community-support/community-connections-and-contacts",
+      "licence": "Council page (City of Glen Eira community connections and contacts, Salvation Army Bentleigh entry), rights not stated; facts only (name, address, day, hours, what is offered). Coordinates: the Salvation Army's own location page data",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "mocsis-emergency-relief",
+      "publisher": "Monash-Oakleigh Community Support and Information Service (MOCSIS)",
+      "title": "Emergency Relief page (food vouchers and other assistance may be provided for people living in postcode 3166 and parts of 3167, 3168, 3169 and 3148; bring evidence of where you live). Address and hours from the home page https://www.mocsis.org.au/ (25 Downing St Oakleigh VIC 3166; operating hours 10.00 am till 2.00 pm Monday to Friday; not open on public holidays; phone (03) 9568 4533). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 25 DOWNING STREET OAKLEIGH 3166, read 2026-11-21; the pages give no map",
+      "url": "https://mocsis.org.au/advice-and-help/emergency-relief/",
+      "licence": "Operator page (MOCSIS emergency relief page and home page), rights not stated; facts only (name, address, hours, eligibility area, vouchers). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
     }
   ],
   "places": [
@@ -1096,6 +1192,241 @@ export const placeData: PlaceData = {
       "sourceId": "melton-council-adra",
       "verification": "primary",
       "checked": "2026-11-21"
+    },
+    {
+      "id": "bansic-foodhub-heidelberg-west",
+      "name": "BANSIC Foodhub, Heidelberg West",
+      "kind": "food-relief",
+      "lat": -37.7486496,
+      "lng": 145.0430795,
+      "address": "Shop 48, The Harmony Centre, The Mall, Heidelberg West VIC 3081",
+      "suburb": "Heidelberg West",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged",
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Monday, Tuesday, Wednesday and Friday 12pm to 3pm; Thursday 10:30am to 1:30pm",
+      "note": "Cost not stated on the page. The page says the Foodhub supports people from postcodes 3079, 3081, 3084 and 3085, and its FAQ says you may be able to get food there wherever you live. Depending on availability it lists fresh fruit and vegetables, meat, eggs, dairy, pantry staples, bread, frozen foods, pet food and frozen meals. In The Harmony Centre, corner of Bell Street and Oriel Road. Phone 9459 5959.",
+      "sourceId": "bansic-foodhub",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "dixon-house-emergency-relief-clayton",
+      "name": "Dixon House emergency relief (Anglicare Victoria, All Saints Church), Clayton",
+      "kind": "food-relief",
+      "lat": -37.9191599,
+      "lng": 145.1210656,
+      "address": "All Saints Anglican Church, 2 Dixon Street, Clayton VIC 3168",
+      "suburb": "Clayton",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Wednesdays and Thursdays 10am to 12pm and 1pm to 2:45pm, February to early December. Drop in (no appointments); help is given after an eligibility assessment",
+      "note": "Cost not stated on the page. Food parcels, food vouchers and bill assistance. Help is focused on people living locally, though people further away may be eligible after an assessment, and the most you can use it is once every four weeks. Phone 9543 8911 during service times only; the page asks you not to leave messages at other times. The page does not say the service is open after early December.",
+      "sourceId": "dixon-house-emergency-relief",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "westgate-baptist-monday-dinner",
+      "name": "Westgate Baptist Community Monday dinner, Yarraville",
+      "kind": "community-meal",
+      "lat": -37.8160634,
+      "lng": 144.880502,
+      "address": "16 High Street, Yarraville VIC 3013",
+      "suburb": "Yarraville",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Mondays at 6:00pm, except public holidays and the summer school holidays",
+      "note": "Cost not stated on the page. A weekly dinner for anyone in the wider community, made from food that would otherwise be thrown out. The church also freezes meals to give to people who would like a free meal to eat at home. Phone 03 9314 7626.",
+      "sourceId": "westgate-baptist-cooking",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "cheaper-buy-miles-footscray",
+      "name": "Cheaper Buy Miles, Footscray",
+      "kind": "grocer",
+      "lat": -37.8006518,
+      "lng": 144.898601,
+      "address": "20 Paisley Street, Footscray VIC 3011",
+      "suburb": "Footscray",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Monday to Saturday 9:00am to 7:00pm; Sunday 10:00am to 6:00pm",
+      "note": "A discount grocer: the page says it sells food close to, and past, its best before date with a 100% money back guarantee, and that this gives customers huge savings on their grocery bill. No prices stated. Phone 03 8351 5336.",
+      "sourceId": "cheaper-buy-miles-footscray",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "cheaper-buy-miles-brunswick",
+      "name": "Cheaper Buy Miles, Brunswick",
+      "kind": "grocer",
+      "lat": -37.7748842,
+      "lng": 144.9605383,
+      "address": "109 Sydney Road, Brunswick VIC 3056",
+      "suburb": "Brunswick",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Monday to Saturday 9:00am to 7:00pm; Sunday 10:00am to 6:00pm",
+      "note": "A discount grocer: the page says it sells food close to, and past, its best before date with a 100% money back guarantee, and that this gives customers huge savings on their grocery bill. No prices stated. Phone 03 8529 9376.",
+      "sourceId": "cheaper-buy-miles-brunswick",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "soul-kitchen-braybrook",
+      "name": "Soul Kitchen free Sunday dinner (300 Blankets), Braybrook",
+      "kind": "community-meal",
+      "lat": -37.786329,
+      "lng": 144.8548381,
+      "address": "Braybrook Community Hub, 107 Churchill Avenue, Braybrook VIC 3019",
+      "suburb": "Braybrook",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Every Sunday evening; guests arrive 6:45pm",
+      "note": "The operator page says Soul Kitchen is free and describes a 3-course dinner run by volunteers, with all welcome. The City of Maribyrnong food relief page lists it as bookings essential (phone 0459 294 980); the operator page does not mention booking, so check before you go.",
+      "sourceId": "300blankets-soul-kitchen",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "olive-way-brunswick",
+      "name": "Olive Way (Brunswick Uniting Church) community lunch",
+      "kind": "community-meal",
+      "lat": -37.7726304,
+      "lng": 144.9613806,
+      "address": "212 Sydney Road (corner of Merri Street), Brunswick VIC 3056",
+      "suburb": "Brunswick",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesday 10am to 1:30pm (hot lunch at 12pm); Wednesday 10am to 1:30pm (sandwiches from 10:30am); Thursday 9am to 11:30am (coffee, tea and a chat)",
+      "note": "Cost not stated on the page. The page describes Olive Way as a place of welcome and hospitality run by Brunswick Uniting Church. The Olive Way entrance has street-level access from Sydney Road.",
+      "sourceId": "olive-way-brunswick",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "croydon-north-uniting-lunch",
+      "name": "Croydon North Uniting Church free community lunch (Gifford Village)",
+      "kind": "community-meal",
+      "lat": -37.7726212,
+      "lng": 145.2929558,
+      "address": "387A Maroondah Highway, Croydon North VIC 3136",
+      "suburb": "Croydon North",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesdays from 12 noon",
+      "note": "The church page calls it a free community lunch. The newest post on that page is from 2024 and an older post (2022) said sit-down from 11:30am or takeaway from 12 noon, so confirm the times. The City of Maroondah list (read 21 November 2026) shows a Tuesday 12pm lunch at Gifford Village Community Centre at the same address. Phone 0481 338 738.",
+      "sourceId": "croydon-north-uc-lunch",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "mooroolbark-baptist-croydon-dinner",
+      "name": "Mooroolbark Baptist Church community dinner, Croydon",
+      "kind": "community-meal",
+      "lat": -37.7904085,
+      "lng": 145.3062451,
+      "address": "153-157 Hull Road, Croydon VIC 3136",
+      "suburb": "Croydon",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Mondays at 5pm, including public holidays",
+      "note": "Cost not stated on the council page. Listed by the City of Maroondah under community meals (dinner). The church’s own website pages that were read did not describe the dinner, so confirm with the church office on (03) 9725 3700.",
+      "sourceId": "maroondah-meals-mbc",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "kiosk-croydon-soup-kitchen",
+      "name": "The Kiosk, Croydon Soup Kitchen",
+      "kind": "community-meal",
+      "lat": -37.8009863,
+      "lng": 145.2819739,
+      "address": "Croydon Community Hub, 7 Civic Square, Croydon VIC 3136",
+      "suburb": "Croydon",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Saturdays 5pm to 6:30pm",
+      "note": "Cost not stated on the council page. Listed by the City of Maroondah under community meals. No operator page was found, so confirm before you go.",
+      "sourceId": "maroondah-meals-kiosk",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "salvos-bentleigh-dawns-kitchen-market-day",
+      "name": "Salvation Army Bentleigh Dawn’s Kitchen & Pantry and Market Day",
+      "kind": "food-relief",
+      "lat": -37.9191821,
+      "lng": 145.0403013,
+      "address": "87 Robert Street, Bentleigh VIC 3204",
+      "suburb": "Bentleigh",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Thursdays 10am to 2pm; drop in, no appointment needed",
+      "note": "Cost not stated on the council page. The City of Glen Eira lists two Thursday sessions: Dawn’s Kitchen & Pantry (lunch and food parcels, with a cuppa and chat) and Market Day (fresh food parcels). For financial assistance the page gives 8873 5288. Phone 9557 2644.",
+      "sourceId": "glen-eira-salvos-bentleigh",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "mocsis-oakleigh-food-vouchers",
+      "name": "MOCSIS food vouchers and emergency relief, Oakleigh",
+      "kind": "food-relief",
+      "lat": -37.9009764,
+      "lng": 145.0935746,
+      "address": "25 Downing Street, Oakleigh VIC 3166",
+      "suburb": "Oakleigh",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Monday to Friday 10am to 2pm, closed public holidays. For people experiencing hardship who live in postcode 3166 or parts of 3167, 3168, 3169 and 3148 (bring evidence of where you live)",
+      "note": "Cost not stated on the page. Food vouchers and other assistance may be provided; this is a voucher service, not a pantry. The home page still carries a note about a last day of 17 December 2025 and a reopening on 19 January 2026, which is out of date, so phone (03) 9568 4533 to confirm hours.",
+      "sourceId": "mocsis-emergency-relief",
+      "verification": "primary",
+      "checked": "2026-11-21"
     }
   ],
   "notFound": [
@@ -1103,7 +1434,7 @@ export const placeData: PlaceData = {
     "Footscray Market (corner of Hopkins and Leeds Streets; Tuesday and Wednesday 7am to 4pm, Thursday and Friday 7am to 5pm, Saturday 7am to 5pm, read on the market's page): left out because no openly licensed coordinate was found.",
     "City of Casey emergency food relief and community meal providers: not imported. The licence is ambiguous (CC BY 3 on the state portal with no licence text, none and 'All rights reserved' on the publisher's page), so neither its rows nor its coordinates were used.",
     "CAN Community Support, Carlton (pantry at the rear of 180 Palmerston Street, Tuesday 11am to 2pm, Wednesday 10am to 12pm with a shared lunch, Thursday 10:30am to 1:30pm; Health Care Card and appointment): left out because its page gives no coordinates.",
-    "Cheaper Buy Miles, Footscray (20 Paisley St) and Flemington (325-327 Racecourse Rd): discount grocer selling close to and past best-before-date food, addresses and hours read on its own page; left out because the page gives no coordinates.",
+    "Cheaper Buy Miles, Footscray (20 Paisley St; added in the fifth pass, see below) and Flemington (325-327 Racecourse Rd): discount grocer selling close to and past best-before-date food, addresses and hours read on its own page; left out because the page gives no coordinates.",
     "Reservoir Neighbourhood House (2B Cuthbert Road; Thursday Shared Table Community Lunch 11:30am to 1pm) and Urban Life, Ringwood (143 Maroondah Hwy): left out because their pages give no coordinates and do not state that the meal is free.",
     "Social supermarkets, food co-ops and other community meals (Footscray, St Kilda, Collingwood, Frankston): not found with an operator page that states an address and an open coordinate.",
     "Whittlesea Community House pantry (Whittlesea): its pantry page and contact page give no street address or coordinates.",
@@ -1121,8 +1452,9 @@ export const placeData: PlaceData = {
     "Fresh-food markets and greengrocers in the outer suburbs: the Seaford Farmers Market appears to have closed in 2023; the ScullyBug Cranbourne market and Pakenham Lakeside Market have only single listed dates, not a stable weekly schedule; no independent greengrocer page with address, hours and a published coordinate was found. No social supermarket other than LinC (above) was found for the listed suburbs.",
     "Second attempt, outer-suburb fresh food (read 2026-11-21). Left out, with reasons: Lilydale Rotary Craft and Produce Market (own page gives first Sunday 9am to 2pm for only part of the year and no address or coordinate; the Yarra Ranges council page refused the request, HTTP 403); Whittlesea Monday Market (council page 403; only third-party listings give coordinates); Eynesbury Market (Melton council page 403; dated Sundays only) and Laurimar Lakeside Community Market, Doreen (Whittlesea council page 403); Wyndham Makers and Farmers Market, Werribee Racecourse (monthly, dates only on third-party and council pages, no operator page found); Wyndham Harbour Grocery Pop Up Store (its Visit Werribee page now returns 404; dated run); Berwick Farmers Market at the Old Cheese Factory (conflicting 2nd and 4th Saturday schedules on third-party listings, operator page not found); Sunbury Village Market and Mornington-side markets (third-party only); Melbourne Market Super Saturdays, Epping (2026 trial ended in April); VFMA member directory (not read; its terms were not found, and the list is not copied).",
     "Greengrocers, second attempt (read 2026-11-21): Henrys Mercato at Karingal Hub, Frankston (hours and address read on the centre's page, but the only coordinate is the whole shopping centre's pin, too coarse for a shop inside it); MarketPlace Fresh at Cranbourne Park (the page's coordinate and hours are the centre's, not the shop's); Hoppers Fresh, Hoppers Crossing, Mooroolbark Fresh Fruit Shop, Get Fresh Boronia, Werribee Fresh Market and Pakenham Fruit and Veg Market (no operator page with hours and a coordinate found; directory and news listings are not used). Persimmon Tree (Croydon) and Victoria Fruit Palace (Ripponlea, not outer) were opened and not used.",
-    "Fourth pass, middle-ring suburbs (read 2026-11-21), left out for a missing coordinate: coordinates now come from the operator's map or from an exact Vicmap Address match, and these had neither. Reservoir Neighbourhood House (2B Cuthbert Road; food relief parcels Tuesday and Wednesday 9:30am to 3:30pm; the page gives no map and Vicmap has no point for 2B, only 2 and 2A/2C about 170 m apart); Yarraville Community Centre / The Nourish Project (59 Francis Street; no pickup hours on the page, and Vicmap has no point for number 59); Banyule Support and Information Centre Foodhub (Shop 48, The Harmony Centre, The Mall, Heidelberg West; Mon, Tue, Wed, Fri 12pm to 3pm, Thu 10:30am to 1:30pm; no map and Vicmap cannot place a shop); Combined Churches Caring Melton (100 Coburns Road, Melton South; Monday to Friday 10am to 12:30pm; no map and Vicmap has no point for number 100); Braybrook Soul Kitchen (Braybrook Community Hub, 107 Churchill Avenue; Sunday dinner, free; no map and Vicmap has no point for 107, only a 107-139 hub); Salvation Army Merri-bek (15 Headley Street, Coburg North; Tuesday 10am to 2pm and Friday 10am to 1pm vouchers; no map and Vicmap has no point for 15); Salvation Army Brunswick (256 Albert Street; no food service on its page).",
+    "Fourth pass, middle-ring suburbs (read 2026-11-21), left out for a missing coordinate: coordinates now come from the operator's map or from an exact Vicmap Address match, and these had neither. Reservoir Neighbourhood House (2B Cuthbert Road; food relief parcels Tuesday and Wednesday 9:30am to 3:30pm; the page gives no map and Vicmap has no point for 2B, only 2 and 2A/2C about 170 m apart); Yarraville Community Centre / The Nourish Project (59 Francis Street; no pickup hours on the page, and Vicmap has no point for number 59); Banyule Support and Information Centre Foodhub (added in the fifth pass, see below; Shop 48, The Harmony Centre, The Mall, Heidelberg West; Mon, Tue, Wed, Fri 12pm to 3pm, Thu 10:30am to 1:30pm; no map and Vicmap cannot place a shop); Combined Churches Caring Melton (100 Coburns Road, Melton South; Monday to Friday 10am to 12:30pm; no map and Vicmap has no point for number 100); Braybrook Soul Kitchen (added in the fifth pass, see below; Braybrook Community Hub, 107 Churchill Avenue; Sunday dinner, free; no map and Vicmap has no point for 107, only a 107-139 hub); Salvation Army Merri-bek (15 Headley Street, Coburg North; Tuesday 10am to 2pm and Friday 10am to 1pm vouchers; no map and Vicmap has no point for 15); Salvation Army Brunswick (256 Albert Street; no food service on its page).",
     "Fourth pass, left out because the operator's own page does not state what is needed: Noble Pantry (Noble Park Community Centre; its page gives Friday 12pm to 2pm but no address or cost for the pantry); Berwick Church of Christ Food Pantry (Tuesdays 10:30am to 2pm by referral, Casey residents; the page gives only the church address, 432-446 Centre Road, not a pantry address, and no map); Duke Street Community House Sunshine (27 Duke Street; the Braybrook Wednesday site is included); Tin Shed Neighbourhood House, St Albans (no food page found); Clayton Church of Christ Love Loud (free weekly meal delivery by referral, Monash and Kingston residents: a delivery service with no visit site); Matt's Place Cheltenham (the page lists the Mentone Uniting Church site but says the program is temporarily moving for six weeks from 8 October 2026, so the site was not recorded; the Chelsea meal is included); Bayside Community Care food relief (Cheltenham; no days, hours or cost beyond 'Tues-Thur 10am-3pm', and a Health Care Card is needed); Wyndham South West Community Services and Lighthouse Store (Hoppers Crossing; only Wyndham council text, and the council page returned HTTP 403, so it was not read).",
-    "Fourth pass, council pages used for Melton and Yarra Ranges only where the council page itself was readable (HTTP 200 on 2026-11-21): Melton and Yarra Ranges were readable this time (earlier passes saw HTTP 403); the Wyndham node page and the Whittlesea page still refused or did not resolve, so no Wyndham or Whittlesea entries were taken from them. Other Melton council entries left out: Kirrip Aboriginal Corporation (eligibility limited to Aboriginal and Torres Strait Islander people), temples and a soup van (no stable coordinate or no address match: Sri Durga Temple 705-715 Neales Road, Deanside has no Vicmap point), CatholicCare (phone appointments only). Gordon Street Little Pantry (252 Gordon Street, Footscray) and Braybrook and Maidstone Neighbourhood House (113 Melon Street, free bread Mondays) appear on the Maribyrnong council page, but the first has no Vicmap point and an operator Facebook page only, and the second's page text carries stale 2025-26 holiday dates and no food page was found on its own site. The Footscray Market, Sunshine, St Albans, Broadmeadows (other than the existing two), Heidelberg, Springvale, Noble Park, Oakleigh, Bentleigh, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick and Narre Warren gaps remain: no operator or council page was found that gives an address, hours, a price and an exact coordinate. No independent greengrocer or stable weekly fresh-food market could be verified in this pass (Footscray Market: no operator website was found, and hours appear only on third-party listings)."
+    "Fourth pass, council pages used for Melton and Yarra Ranges only where the council page itself was readable (HTTP 200 on 2026-11-21): Melton and Yarra Ranges were readable this time (earlier passes saw HTTP 403); the Wyndham node page and the Whittlesea page still refused or did not resolve, so no Wyndham or Whittlesea entries were taken from them. Other Melton council entries left out: Kirrip Aboriginal Corporation (eligibility limited to Aboriginal and Torres Strait Islander people), temples and a soup van (no stable coordinate or no address match: Sri Durga Temple 705-715 Neales Road, Deanside has no Vicmap point), CatholicCare (phone appointments only). Gordon Street Little Pantry (252 Gordon Street, Footscray) and Braybrook and Maidstone Neighbourhood House (113 Melon Street, free bread Mondays) appear on the Maribyrnong council page, but the first has no Vicmap point and an operator Facebook page only, and the second's page text carries stale 2025-26 holiday dates and no food page was found on its own site. The Footscray Market, Sunshine, St Albans, Broadmeadows (other than the existing two), Heidelberg, Springvale, Noble Park, Oakleigh, Bentleigh, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick and Narre Warren gaps remain: no operator or council page was found that gives an address, hours, a price and an exact coordinate. No independent greengrocer or stable weekly fresh-food market could be verified in this pass (Footscray Market: no operator website was found, and hours appear only on third-party listings).",
+    "Fifth pass (read 2026-11-21), 12 places added. Coordinate lessons: the Cheaper Buy Miles page does carry a Google Maps link per store (an earlier pass missed them), the BANSIC Contact page embeds a map block with a marker, and the Brunswick Uniting Church and Croydon North Uniting Church pages carry location data. Still left out, with reasons: Reservoir Neighbourhood House (2B Cuthbert Road; its Contact and Drop-in pages give food relief parcels Tuesday and Wednesday 9:30am to 3:30pm but no map, and Vicmap has no point for 2B, retried); Yarraville Community Centre pantry (59 Francis Street; Vicmap has no Yarraville point for number 59, retried); Combined Churches Caring Melton (no operator site could be reached); Hope City Mission, Croydon (51 Lusher Road; its Drive-Thru Foodbank is Thursdays by appointment and the page has a map link, but Vicmap has no point for number 51, the pin is about 100 m from the neighbouring points, and the City of Maroondah page says Wednesday and Thursday); Salvation Army Merri-bek (Coburg North) and Reservoir (phone-led vouchers, no collection hours for food on the get-help pages), Sunshine Corps (42 Devonshire Road: the corps page gives an address and coordinate but no relief hours, and the Brimbank council listing still carries COVID-era entries) and Hobsons Bay Corps (Altona: location page only, the Wednesday lunch appears only on third-party listings); Springvale Learning and Activities Centre social supermarket (monthly Tuesdays 12:30pm to 2:30pm for Springvale residents by registration, but its home page says 'That's a Wrap for 2026' and gives no 2027 dates); Noble Pantry (Noble Park Community Centre: its own site has no pantry page, and Friday 12pm to 2pm appears only in 2025 press); Jika Jika Community Centre free food program (Northcote: free fruit, vegetables and meals on Wednesday 10:30am to noon for Darebin residents on low incomes; the page's map pin is about 350 m from 1B Plant Street and the page does not say which of its two sites hosts it); Whittlesea Community Connections Hardship Help (Epping: an office in a shopping centre, by phone or form, no pickup hours); Sunbury Neighbourhood Kitchen (Monday dinners at Sunbury Memorial Hall, Stawell Street, closed from 21 December 2026 and reopening 8 February 2027: the page gives no street number, its map is a name query, and Vicmap has no point for the hall); Williamstown Community and Education Centre pantry swap (addresses only; hours appear only in press and third-party items); Brunswick Neighbourhood House (monthly lunch, second Thursday) and Span Community House, Thornbury (second Wednesday lunch, RSVP): no operator page could be reached, council flyers only; Mill Park Baptist Church 'The Shak' (free Saturday lunch: no operator page or address found); Doncaster East Gateway Lighthouse Food Pantry and CareNet (Templestowe): the Manningham council page returned HTTP 403 (not worked around) and CareNet's map is an address query; Monash Waverley Community Information and Support (Mount Waverley): no page found. Not fresh food or no stable schedule: Bentleigh Sunday Market (a general and craft market) and the monthly or dated farmers markets at Williamstown, Yarraville, Altona and Essendon (council or third-party listings only); Footscray Market has no operator page that could be reached (listings name two different websites). Cheaper Buy Miles Flemington and Fitzroy resolve the same way but are outside the target suburbs and were not added. Suburbs still with nothing verified after this pass: Sunshine, St Albans, Springvale, Noble Park, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick, Reservoir, Thornbury, Essendon, Moonee Ponds, Williamstown, Altona, Mentone, Dingley, Mount Waverley, Doncaster and Mill Park. The Wyndham and Whittlesea council pages were not retried."
   ]
 };
