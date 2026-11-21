@@ -2618,7 +2618,7 @@ export const placeData: PlaceData = {
       "fit": [],
       "access": "referral",
       "hours": "Mondays 10:30am to 2:30pm and Wednesdays 10:30am to 12:30pm, walk-in. One parcel per calendar month. For people in need in the City of Greater Dandenong with a valid Health Care Card, or asylum seekers or refugees",
-      "note": "Cost not stated on the page. A parcel is packed by volunteers from the food available at the time, at the portable labelled Open Door; some bread is available on those days. Phone (03) 9798 7005 or email community@klckeys.com.au. The map point is the one Vicmap holds for the range 402-418 Corrigan Road, so the portable may be a short walk away.",
+      "note": "Cost not stated on the page. A parcel is packed by volunteers from the food available at the time, at the portable labelled Open Door; some bread is available on those days. Phone (03) 9798 7005 or email community@klckeys.com.au. The map pin is approximate for the whole site, so the portable may be a short walk from it.",
       "sourceId": "klc-keysborough",
       "verification": "primary",
       "checked": "2026-11-21"
@@ -2716,7 +2716,7 @@ export const placeData: PlaceData = {
       "fit": [],
       "access": "open",
       "hours": "Tuesdays and Thursdays 10am to 2pm",
-      "note": "Cost not stated on the page. It describes food assistance and support from a pantry stocked by donations, with a warm welcome and a listening ear; the page states no eligibility condition. Enter from Blackburn Road. Phone 03 9803 3400. The map point is Vicmap’s point for 220 Burwood Highway (the church property), so the centre door may be a short walk away.",
+      "note": "Cost not stated on the page. It describes food assistance and support from a pantry stocked by donations, with a warm welcome and a listening ear; the page states no eligibility condition. Enter from Blackburn Road. Phone 03 9803 3400. The map pin is approximate for the church property, so the centre door may be a short walk from it.",
       "sourceId": "east-burwood-care",
       "verification": "primary",
       "checked": "2026-11-21"
