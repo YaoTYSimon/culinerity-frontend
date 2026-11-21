@@ -144,7 +144,7 @@ export const placeData: PlaceData = {
     {
       "id": "csf-food-support",
       "publisher": "Community Support Frankston",
-      "title": "Food Support (35 Beach Street, Frankston; free hot meal program, emergency food parcels, phone triage hours). Coordinates: the site's own business-location metadata in its page source (businessLocationCoordinates -38.1415229, 145.1279928, \"35 Beach Street, Frankston VIC, Australia\"); the site publishes no map link.",
+      "title": "Food Support (35 Beach Street, Frankston; free hot meal program, emergency food parcels, phone triage hours). Coordinates: the site's own business-location metadata in its page source (businessLocationCoordinates -38.1415229, 145.1279928, \"35 Beach Street, Frankston VIC, Australia\"); the site publishes no map link. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service): '35 BEACH STREET FRANKSTON 3199' address point -38.141520, 145.127955, 3 m from the recorded coordinate, so the coordinate is kept.",
       "url": "https://frankston.net/food",
       "licence": "Operator page, rights not stated; facts only (name, address, days and hours) and the coordinates in its own page metadata",
       "accessed": "2026-11-20"
@@ -192,7 +192,7 @@ export const placeData: PlaceData = {
     {
       "id": "cranbourne-market-contact",
       "publisher": "Cranbourne Market",
-      "title": "Contact Us and home page (22-28 High St, Cranbourne 3977; opening hours; 'Subject to change' on the contact page). Coordinates: the page's own embedded Google map (label 'Cranbourne Market fresh food centre 22-28 High St, Cranbourne'), centre point -38.107474, 145.28306, read from the rendered map's own link on 2026-11-21. Price wording on the page: 'reasonable prices' (not 'affordable', so the band stays at the default)",
+      "title": "Contact Us and home page (22-28 High St, Cranbourne 3977; opening hours; 'Subject to change' on the contact page). Coordinates: the page's own embedded Google map (label 'Cranbourne Market fresh food centre 22-28 High St, Cranbourne'), centre point -38.107474, 145.28306, read from the rendered map's own link on 2026-11-21. Price wording on the page: 'reasonable prices' (not 'affordable', so the band stays at the default). Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0): no point is labelled 'High Street' (the road is addressed as South Gippsland Highway), and the nearest address points (150-156 and 158 South Gippsland Highway, 125/151 South Gippsland Highway) are 33 to 42 m from the recorded centre, so the coordinate is within 50 m of the address block",
       "url": "https://www.cranbournemarket.com/contact-us",
       "licence": "Operator page, rights not stated; facts only (name, address words, days and hours). Coordinates: the page's own embedded map",
       "accessed": "2026-11-21"
