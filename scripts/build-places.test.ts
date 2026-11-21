@@ -72,6 +72,14 @@ describe('build-places', () => {
   });
 });
 
+describe('endsOn', () => {
+  it('accepts a real YYYY-MM-DD date and rejects anything else', () => {
+    expect(errorsFor((d) => (d.places[0].endsOn = '2999-01-01'))).toBe('');
+    expect(errorsFor((d) => (d.places[0].endsOn = '30 Nov'))).toMatch(/endsOn/);
+    expect(errorsFor((d) => (d.places[0].endsOn = '2026-02-31'))).toMatch(/endsOn/);
+  });
+});
+
 describe('melbourneToday', () => {
   afterEach(() => vi.useRealTimers());
   it('uses the Australia/Melbourne calendar date, not UTC', () => {

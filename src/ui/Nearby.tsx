@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import {
-  CHECKED_TIER_LABEL, centroidTable, coverage, rankPlaces, rankSentence, roundOrigin, suburbCentroid,
+  CHECKED_TIER_LABEL, centroidTable, coverage, rankPlaces, runningPlaces, rankSentence, roundOrigin, suburbCentroid,
   type LatLng, type Place, type PlaceFilter, type PlaceSourceRecord,
 } from '@culinerity/core';
 import { useBulkSource } from '../location/BulkContext';
@@ -139,15 +139,18 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
     queueMicrotask(() => locateButton.current?.focus());
   };
 
+  // A place whose source-stated end date has passed is never listed as open.
+  const running = useMemo(() => (places ? runningPlaces(places, today ?? melbourneToday()) : null), [places, today]);
+
   const view = useMemo(() => {
-    if (!origin || !places) return null;
-    const ranked = rankPlaces(places, origin, score, filter);
+    if (!origin || !running) return null;
+    const ranked = rankPlaces(running, origin, score, filter);
     if (ranked.length === 0) return { rows: [], note: 'Nothing matches that filter nearby. Try All.', paged: false };
     if (ranked.some((r) => r.metres < NEAR_M)) return { rows: ranked, note: '', paged: true };
     const closest = [...ranked].sort((a, b) => a.metres - b.metres).slice(0, FALLBACK_COUNT);
     const far = closest[0].metres > FAR_M;
     return { rows: closest, note: `Nothing in our list within 10 km.${far ? ' Our starter list covers Melbourne for now.' : ''}`, paged: false };
-  }, [origin, places, score, filter]);
+  }, [origin, running, score, filter]);
 
   const bulkState = useBulkPlaces(origin, bulkSource);
   const bulk = useMemo(
@@ -157,7 +160,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   // The two tier headings appear together, only when the not-checked tier is on the page.
   const tiered = bulk.mode === 'shown';
 
-  const stats = useMemo(() => (places ? coverage(places) : null), [places]);
+  const stats = useMemo(() => (running ? coverage(running) : null), [running]);
 
   const rows = view?.rows ?? [];
   const visible = view?.paged ? rows.slice(0, shown) : rows;

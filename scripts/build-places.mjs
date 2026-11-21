@@ -69,6 +69,7 @@ export function validatePlaces(d, today = melbourneToday()) {
       if (!Array.isArray(p.notices)) errs.push(`place ${p.id} notices must be a list`);
       else if (p.notices.some((n) => !n || !nonEmpty(n.text) || !isIsoDate(n.until))) errs.push(`place ${p.id} has a bad notice (needs text and an until date YYYY-MM-DD)`);
     }
+    if (p.endsOn !== undefined && !isIsoDate(p.endsOn)) errs.push(`place ${p.id} has a bad endsOn (needs a date YYYY-MM-DD)`);
     if (!Array.isArray(p.fit) || p.fit.some((f) => !FITS.includes(f))) errs.push(`place ${p.id} has bad fit`);
     if (!ACCESS.includes(p.access)) errs.push(`place ${p.id} has bad access`);
     if (!VERIFICATION.includes(p.verification)) errs.push(`place ${p.id} has bad verification`);

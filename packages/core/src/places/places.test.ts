@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { placeData } from './source';
-import { StaticPlaceSource, activeNotices, coverage, placeSourceFor } from './source';
+import { StaticPlaceSource, activeNotices, coverage, placeSourceFor, runningPlaces } from './source';
 import { MockPlaceSource } from '../sources/mock/mockPlaceSource';
 import type { Place, PlaceKind, PriceBand } from './types';
 
@@ -81,7 +81,30 @@ describe('activeNotices', () => {
   });
 });
 
+describe('runningPlaces', () => {
+  const base = placeData.places[0];
+  const ended: Place = { ...base, id: 'ended', endsOn: '2026-11-30' };
+  const open: Place = { ...base, id: 'open', endsOn: undefined };
+  it('keeps a place through its last day and drops it the day after', () => {
+    expect(runningPlaces([ended, open], '2026-11-30').map((p) => p.id)).toEqual(['ended', 'open']);
+    expect(runningPlaces([ended, open], '2026-12-01').map((p) => p.id)).toEqual(['open']);
+  });
+  it('hides every end-dated committed place once its end date has passed', () => {
+    const dated = placeData.places.filter((p) => p.endsOn);
+    expect(dated.length).toBeGreaterThan(0);
+    for (const p of dated) expect(runningPlaces([p], '2999-01-01'), p.id).toEqual([]);
+  });
+});
+
 describe('committed places', () => {
+  it('give every place whose hours name an end date an endsOn that matches', () => {
+    const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+    for (const p of placeData.places) {
+      const m = /\buntil (\d{1,2}) (\w+) (20\d\d)\b/gi;
+      const dates = [...(p.hours ?? '').matchAll(m)].map((x) => `${x[3]}-${String(MONTHS.indexOf(x[2].toLowerCase()) + 1).padStart(2, '0')}-${x[1].padStart(2, '0')}`);
+      if (dates.length) expect(p.endsOn, p.id).toBe(dates.sort().at(-1));
+    }
+  });
   it('keep the price band consistent with the kind', () => {
     for (const p of placeData.places) expect(DEFAULT_BAND[p.kind], p.id).toContain(p.priceBand);
   });

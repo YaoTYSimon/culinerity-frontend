@@ -35,3 +35,8 @@ export function coverage(places: Place[]): { count: number; suburbs: string[] } 
 export function activeNotices(place: Place, today: string): PlaceNotice[] {
   return (place.notices ?? []).filter((n) => n.until >= today);
 }
+
+/** Places whose source-stated end date has not passed on `today` (YYYY-MM-DD); an ended place is never listed as open. */
+export function runningPlaces(places: Place[], today: string): Place[] {
+  return places.filter((p) => !p.endsOn || p.endsOn >= today);
+}

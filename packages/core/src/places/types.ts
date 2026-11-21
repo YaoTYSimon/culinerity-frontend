@@ -37,6 +37,8 @@ export interface Place {
   note?: string;
   /** Dated notices from the source; show only while `until` (YYYY-MM-DD, inclusive) has not passed. */
   notices?: PlaceNotice[];
+  /** Last day (YYYY-MM-DD, inclusive) the source says this runs; the place is not listed after it. */
+  endsOn?: string;
   sourceId: string;
   verification: 'primary' | 'secondary';
   /** ISO date (YYYY-MM-DD) the source was last read. */

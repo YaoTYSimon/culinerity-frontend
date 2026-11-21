@@ -24,7 +24,7 @@ const deferred = () => {
   return { provider: { locate: vi.fn(() => promise) }, resolve, promise };
 };
 
-function renderNearby(provider: LocationProvider, props: { score?: number; profileSuburb?: string; onNavigate?: (v: View) => void } = {}, source: PlaceSource = new MockPlaceSource()) {
+function renderNearby(provider: LocationProvider, props: { score?: number; profileSuburb?: string; onNavigate?: (v: View) => void; today?: string } = {}, source: PlaceSource = new MockPlaceSource()) {
   const services = { ...createServices(), places: source };
   return render(
     <ServicesProvider services={services}>
@@ -51,6 +51,25 @@ const many = (n: number, lat = -37.81, lng = 144.96): PlaceSource => ({
 afterEach(() => {
   Object.defineProperty(navigator, 'onLine', { value: true, configurable: true });
   vi.useRealTimers();
+});
+
+describe('Nearby end-dated places', () => {
+  const dated: PlaceSource = {
+    sources: async () => [],
+    list: async () => [
+      { id: 'a', name: 'Ended Dinner', kind: 'community-meal', lat: -37.8137, lng: 144.9631, address: '1 Test Street', suburb: 'Testville', priceBand: 'free', priceBasis: 'stated', fit: ['meals'], access: 'open', endsOn: '2026-11-30', sourceId: 't', verification: 'primary', checked: '2026-11-21' },
+      { id: 'b', name: 'Ongoing Pantry', kind: 'food-relief', lat: -37.8140, lng: 144.9631, address: '2 Test Street', suburb: 'Testville', priceBand: 'free', priceBasis: 'stated', fit: ['packaged'], access: 'open', sourceId: 't', verification: 'primary', checked: '2026-11-21' },
+    ],
+  };
+  it('lists a place through its last day and not after it', async () => {
+    renderNearby(fake(OK), { today: '2026-11-30' }, dated);
+    await press();
+    await waitFor(() => expect([...names()].sort()).toEqual(['Ended Dinner', 'Ongoing Pantry']));
+    cleanup();
+    renderNearby(fake(OK), { today: '2026-12-01' }, dated);
+    await press();
+    await waitFor(() => expect(names()).toEqual(['Ongoing Pantry']));
+  });
 });
 
 describe('Nearby', () => {
