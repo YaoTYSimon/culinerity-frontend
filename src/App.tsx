@@ -29,6 +29,7 @@ const CookView = lazy(() => import('./ui/CookView').then((m) => ({ default: m.Co
 const PantryView = lazy(() => import('./ui/PantryView').then((m) => ({ default: m.PantryView })));
 const TradeoffsView = lazy(() => import('./ui/TradeoffsView').then((m) => ({ default: m.TradeoffsView })));
 const WhatIfView = lazy(() => import('./ui/WhatIfView').then((m) => ({ default: m.WhatIfView })));
+const FoodSafetyView = lazy(() => import('./ui/FoodSafetyView').then((m) => ({ default: m.FoodSafetyView })));
 const PolicyView = lazy(() => import('./ui/PolicyView').then((m) => ({ default: m.PolicyView })));
 const Nearby = lazy(() => import('./ui/Nearby').then((m) => ({ default: m.Nearby })));
 import { useNow } from './ui/useNow';
@@ -224,6 +225,8 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               onOpenNearby={() => setView('nearby')}
             />
           )}
+
+          {!creating && view === 'foodsafety' && <FoodSafetyView />}
 
           {!creating && view === 'policy' && <PolicyView now={clockNow} />}
 

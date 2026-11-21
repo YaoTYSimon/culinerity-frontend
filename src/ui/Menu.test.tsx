@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Menu } from './Menu';
 
-const ITEMS = ['Home', 'Swaps', 'Check-in', 'Budget', 'What if', 'Food support', 'Nearby', 'My food', 'Meals that felt like home', 'My pantry', 'Cook with what you have', 'Trade-offs', 'My week', 'Welcome', 'Data and policy'];
+const ITEMS = ['Home', 'Swaps', 'Check-in', 'Budget', 'What if', 'Food support', 'Nearby', 'My food', 'Meals that felt like home', 'My pantry', 'Cook with what you have', 'Food safety', 'Trade-offs', 'My week', 'Welcome', 'Data and policy'];
 
 describe('Menu', () => {
   it('lists destinations in order', () => {

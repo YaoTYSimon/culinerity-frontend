@@ -1,0 +1,233 @@
+{
+  "generatedAt": "2026-11-21",
+  "checked": "2026-11-21",
+  "note": "Sourced facts for the Food safety at home view. Every figure is read from an official Victorian or Australian Government page on 2026-11-21. Wording is the app's own; no passage is copied. A food-safety or dietitian review is needed before public launch (docs only, never shown in the app).",
+  "sources": [
+    {
+      "id": "bhc-storage",
+      "title": "Food safety and storage",
+      "publisher": "Better Health Channel, Victorian Department of Health",
+      "url": "https://www.betterhealth.vic.gov.au/health/healthyliving/food-safety-and-storage",
+      "licence": "© State of Victoria. No open licence stated; Better Health terms of use apply (https://www.betterhealth.vic.gov.au/about/terms-of-use). Facts restated in our own words, linked to the source.",
+      "accessed": "2026-11-21",
+      "reviewed": "2024-02-14",
+      "read": [
+        "Fridge temperature 5 °C or below; check it with a thermometer.",
+        "Freezer temperature below -15 °C.",
+        "Danger zone 5 °C to 60 °C; keep high-risk food at 5 °C or below, or above 60 °C.",
+        "Cool hot food in shallow dishes or smaller portions; wait until steam stops rising before refrigerating.",
+        "Keep defrosted food in the fridge until cooking; cook straight away if defrosted in a microwave; never refreeze raw food after thawing.",
+        "High-risk food left in the danger zone for more than 4 hours should be thrown out.",
+        "If unsure of the use-by date, throw it out.",
+        "Cooked rice and eggs listed as high-risk foods."
+      ]
+    },
+    {
+      "id": "bhc-cooking",
+      "title": "Food safety when cooking",
+      "publisher": "Better Health Channel, Victorian Department of Health",
+      "url": "https://www.betterhealth.vic.gov.au/health/healthyliving/food-safety-when-cooking",
+      "licence": "© State of Victoria. No open licence stated; Better Health terms of use apply (https://www.betterhealth.vic.gov.au/about/terms-of-use). Facts restated in our own words, linked to the source.",
+      "accessed": "2026-11-21",
+      "reviewed": "2021-10-07",
+      "read": [
+        "Cook food to at least 75 °C; use a thermometer.",
+        "Keep hot food hotter than 60 °C.",
+        "Cool food once steam stops rising, then cover and refrigerate; shallow trays or smaller portions cool faster.",
+        "Cooked food keeps a few days in the fridge in ideal conditions; to keep it longer, freeze it once cooled in the fridge.",
+        "Danger zone 5 °C to 60 °C, high-risk food: up to 2 hours reheat, refrigerate or eat; over 2 hours and under 4 hours eat immediately; more than 4 hours throw out.",
+        "Reheat to above 75 °C or preferably until boiling, with steam coming through the whole food, not just the edges.",
+        "Raw-egg foods such as homemade mayonnaise, hollandaise, tiramisu and mousse need extra care; do not give them to pregnant women, young children, elderly people or anyone with a chronic illness.",
+        "Store raw meat and poultry at the bottom of the fridge, apart from cooked food."
+      ]
+    },
+    {
+      "id": "bhc-dates",
+      "title": "Food use-by and best-before dates",
+      "publisher": "Better Health Channel, Victorian Department of Health",
+      "url": "https://www.betterhealth.vic.gov.au/health/healthyliving/food-use-by-and-best-before-dates",
+      "licence": "© State of Victoria. No open licence stated; Better Health terms of use apply (https://www.betterhealth.vic.gov.au/about/terms-of-use). Facts restated in our own words, linked to the source.",
+      "accessed": "2026-11-21",
+      "reviewed": "2023-03-24",
+      "read": [
+        "Food with a use-by date must be consumed before or on that date; do not eat it after, even if it looks and smells fine.",
+        "Best-before is about quality, not a strict safety cutoff; food that looks and smells as expected should generally be safe after the date.",
+        "Storage and packaging affect how long food lasts."
+      ]
+    },
+    {
+      "id": "bhc-eggs",
+      "title": "Food safety and eggs",
+      "publisher": "Better Health Channel, Victorian Department of Health",
+      "url": "https://www.betterhealth.vic.gov.au/health/healthyliving/food-safety-eggs",
+      "licence": "© State of Victoria. No open licence stated; Better Health terms of use apply (https://www.betterhealth.vic.gov.au/about/terms-of-use). Facts restated in our own words, linked to the source.",
+      "accessed": "2026-11-21",
+      "reviewed": "2024-08-28",
+      "read": [
+        "Keep eggs in their carton in the fridge; the best-before date assumes the fridge.",
+        "Throw out dirty or cracked eggs; do not wash eggs.",
+        "Cook eggs and egg foods until hot all the way through.",
+        "Homemade foods with raw or lightly cooked egg (mayonnaise, aioli, hollandaise, mousse, custard, tiramisu, uncooked batter or dough) are often linked to food poisoning.",
+        "Symptoms are often more severe in pregnant women, older people and people with chronic illness."
+      ]
+    },
+    {
+      "id": "bhc-prevention",
+      "title": "Food poisoning - prevention",
+      "publisher": "Better Health Channel, Victorian Department of Health",
+      "url": "https://www.betterhealth.vic.gov.au/health/healthyliving/food-poisoning-prevention",
+      "licence": "© State of Victoria. No open licence stated; Better Health terms of use apply (https://www.betterhealth.vic.gov.au/about/terms-of-use). Facts restated in our own words, linked to the source.",
+      "accessed": "2026-11-21",
+      "reviewed": "2024-06-06",
+      "read": [
+        "Avoid food past its use-by date and food in swollen, dented, leaking or damaged packaging.",
+        "See your doctor as soon as possible if you think you have food poisoning.",
+        "Nurse-On-Call 1300 606 024, 24 hours, 7 days.",
+        "Report illness to your local council or the Department of Health, especially if it may be linked to a restaurant, cafe, shop or takeaway."
+      ]
+    },
+    {
+      "id": "fsanz-basics",
+      "title": "Food safety basics",
+      "publisher": "Food Standards Australia New Zealand",
+      "url": "https://www.foodstandards.gov.au/consumer/prevention-of-foodborne-illness/food-safety-basics",
+      "licence": "© Food Standards Australia New Zealand. No open licence named on the page; facts restated in our own words, linked to the source.",
+      "accessed": "2026-11-21",
+      "reviewed": "2025-07-08",
+      "read": [
+        "Keep perishable food at 5 °C or colder.",
+        "Danger zone 5 to 60 °C.",
+        "Left at room temperature: under 2 hours return to the fridge; 2 to 4 hours eat straight away; after 4 hours throw away.",
+        "Do not thaw frozen food at room temperature; thaw in the fridge or use a microwave.",
+        "Do not eat food past its use-by date."
+      ]
+    },
+    {
+      "id": "vic-nurse-on-call",
+      "title": "Nurse-on-Call",
+      "publisher": "Victorian Department of Health",
+      "url": "https://www.health.vic.gov.au/primary-care/nurse-on-call",
+      "licence": "© State Government of Victoria. No open licence stated; number and hours restated, linked to the source.",
+      "accessed": "2026-11-21",
+      "reviewed": "2026-07-09",
+      "read": [
+        "Nurse-on-Call 1300 60 60 24, free health advice from a registered nurse, 24 hours a day, 7 days a week.",
+        "If you think your situation is an emergency, call 000 or go to an emergency department."
+      ]
+    },
+    {
+      "id": "bhc-crisis",
+      "title": "Who to call in a crisis",
+      "publisher": "Better Health Channel, Victorian Department of Health",
+      "url": "https://www.betterhealth.vic.gov.au/node/2688",
+      "licence": "© State of Victoria. No open licence stated; Better Health terms of use apply (https://www.betterhealth.vic.gov.au/about/terms-of-use). Number restated, linked to the source.",
+      "accessed": "2026-11-21",
+      "reviewed": "2021-07-23",
+      "read": [
+        "In an emergency, call triple zero (000) on any phone that has reception; free, 24 hours a day, 7 days a week."
+      ]
+    },
+    {
+      "id": "sfv-home",
+      "title": "Safe Food Victoria",
+      "publisher": "Safe Food Victoria, Victorian Government",
+      "url": "https://www.safefood.vic.gov.au/",
+      "licence": "© State Government of Victoria. No open licence stated; linked only.",
+      "accessed": "2026-11-21",
+      "read": [
+        "Councils regulate most food businesses in Victoria.",
+        "Safe Food Victoria takes food safety complaints through its contact page."
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "id": "cold-hot",
+      "title": "Keep it cold or hot",
+      "lines": [
+        { "text": "Set the fridge to 5 °C or colder, and use a fridge thermometer to check it.", "sourceIds": ["bhc-storage", "fsanz-basics"], "figures": ["5"] },
+        { "text": "The freezer should be colder than -15 °C.", "sourceIds": ["bhc-storage"], "figures": ["15"] },
+        { "text": "Germs grow fastest between 5 °C and 60 °C. Keep food that spoils easily below that range or above it.", "sourceIds": ["bhc-storage", "fsanz-basics"], "figures": ["5", "60"] },
+        { "text": "Keep raw meat on the bottom shelf, away from cooked food.", "sourceIds": ["bhc-cooking"], "figures": [] }
+      ]
+    },
+    {
+      "id": "dates",
+      "title": "Use-by and best-before",
+      "lines": [
+        { "text": "A use-by date is about safety. Do not eat the food after that day, even if it looks and smells fine.", "sourceIds": ["bhc-dates", "fsanz-basics"], "figures": [] },
+        { "text": "A best-before date is about quality. Food that looks and smells as it should is generally fine to eat after it.", "sourceIds": ["bhc-dates"], "figures": [] },
+        { "text": "If you are not sure about a use-by date, throw the food out.", "sourceIds": ["bhc-storage"], "figures": [] }
+      ]
+    },
+    {
+      "id": "leftovers",
+      "title": "Leftovers and reheating",
+      "lines": [
+        { "text": "Let the steam stop rising, then cover the food and put it in the fridge. Shallow dishes or smaller portions cool faster.", "sourceIds": ["bhc-cooking", "bhc-storage"], "figures": [] },
+        { "text": "Cooked food keeps a few days in the fridge. To keep it longer, freeze it once it has cooled in the fridge.", "sourceIds": ["bhc-cooking"], "figures": [] },
+        { "text": "Reheat until it is steaming all the way through, above 75 °C, or until it boils. A thermometer helps.", "sourceIds": ["bhc-cooking"], "figures": ["75"] }
+      ]
+    },
+    {
+      "id": "rice",
+      "title": "Rice",
+      "lines": [
+        { "text": "Cooked rice is on Victoria's list of foods that spoil easily, so the same leftover steps apply: cool it, cover it and refrigerate it soon after it is cooked.", "sourceIds": ["bhc-storage", "bhc-cooking"], "figures": [] },
+        { "text": "The pages we read give no timings that are just for rice, so none are given here.", "sourceIds": ["bhc-storage"], "figures": [] }
+      ]
+    },
+    {
+      "id": "eggs",
+      "title": "Eggs",
+      "lines": [
+        { "text": "Keep eggs in their carton in the fridge. Do not wash them.", "sourceIds": ["bhc-eggs"], "figures": [] },
+        { "text": "Throw out eggs that are cracked or dirty.", "sourceIds": ["bhc-eggs"], "figures": [] },
+        { "text": "Cook eggs until the food is hot all the way through.", "sourceIds": ["bhc-eggs"], "figures": [] },
+        { "text": "Homemade foods with raw or lightly cooked egg, such as mayonnaise, hollandaise, mousse and tiramisu, are often linked to food poisoning. Pregnant women, young children, older people and anyone with a long-term illness are advised not to eat them.", "sourceIds": ["bhc-eggs", "bhc-cooking"], "figures": [] }
+      ]
+    },
+    {
+      "id": "thawing",
+      "title": "Thawing",
+      "lines": [
+        { "text": "Thaw frozen food in the fridge or in a microwave, not on the bench.", "sourceIds": ["fsanz-basics", "bhc-storage"], "figures": [] },
+        { "text": "Keep thawed food in the fridge until you cook it. If you thawed it in a microwave, cook it straight away.", "sourceIds": ["bhc-storage"], "figures": [] },
+        { "text": "Do not freeze raw food again once it has thawed.", "sourceIds": ["bhc-storage"], "figures": [] }
+      ]
+    },
+    {
+      "id": "throw-out",
+      "title": "When to throw food out",
+      "lines": [
+        { "text": "Food that spoils easily and has sat between 5 °C and 60 °C for under 2 hours can go back in the fridge, be reheated or be eaten.", "sourceIds": ["bhc-cooking", "fsanz-basics"], "figures": ["5", "60", "2"] },
+        { "text": "After 2 hours and up to 4 hours, eat it straight away.", "sourceIds": ["bhc-cooking", "fsanz-basics"], "figures": ["2", "4"] },
+        { "text": "After 4 hours, throw it out.", "sourceIds": ["bhc-cooking", "bhc-storage", "fsanz-basics"], "figures": ["4"] },
+        { "text": "Also throw out food past its use-by date, cracked or dirty eggs, and food in packaging that is swollen, dented, leaking or damaged.", "sourceIds": ["bhc-prevention", "bhc-eggs"], "figures": [] }
+      ]
+    },
+    {
+      "id": "who",
+      "title": "Who to call",
+      "lines": [
+        { "text": "If you think you have food poisoning, see your doctor as soon as you can.", "sourceIds": ["bhc-prevention"], "figures": [] },
+        { "text": "For a food complaint, or to report an illness you think came from a restaurant, cafe, shop or takeaway, contact your local council. The Department of Health also takes reports.", "sourceIds": ["bhc-prevention", "sfv-home"], "figures": [] }
+      ]
+    }
+  ],
+  "contacts": [
+    { "id": "nurse-on-call", "name": "Nurse-on-Call", "display": "1300 60 60 24", "tel": "1300606024", "hours": "free, any time", "sourceId": "vic-nurse-on-call", "figures": ["1300", "60", "24"] },
+    { "id": "triple-zero", "name": "Emergency", "display": "000", "tel": "000", "hours": "any time", "sourceId": "bhc-crisis", "figures": ["000"] }
+  ],
+  "notFound": [
+    "Victorian leftovers page (betterhealth.vic.gov.au food-safety-leftovers) returned 404; the cooking and storage pages were used instead.",
+    "No official page read gives a number of days for leftovers in the fridge, only 'a few days', so no number is shown.",
+    "No official page read gives rice-specific cooling, storage or reheating timings. The FSANZ Bacillus cereus PDF could not be read as text, so nothing from it is used.",
+    "The Department of Health 'Your guide to food safety' PDF could not be extracted as text, so nothing from it is used.",
+    "Fridge wording differs between Better Health pages ('5 °C or below' on storage, 'below 5 °C' on prevention); the storage page and FSANZ ('5 °C or colder') agree and are used.",
+    "1300 364 352 appears as the 'Food Safety Hotline' on Better Health and as the recall line on the Safe Food Victoria page; the labels differ, so the number is not shown. The Safe Food Victoria complaint page is linked instead.",
+    "No official consumer page read gives a cold-water thawing method for home use (the Department's FoodSmart page says it is not recommended), so it is not covered.",
+    "Pregnancy, weakened immune system and Listeria advice is not covered here; it needs its own page and review.",
+    "The Department of Health food-complaint page (health.vic.gov.au/food-safety/making-a-complaint...) redirects to Safe Food Victoria; councils' own complaint pages were not read, so no council phone number is given."
+  ]
+}

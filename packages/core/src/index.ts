@@ -76,3 +76,5 @@ export * from './whatif/compare';
 export * from './whatif/saved';
 export * from './whatif/context';
 export * from './whatif/banned';
+export * from './foodsafety/types';
+export * from './foodsafety/source';

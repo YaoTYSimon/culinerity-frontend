@@ -191,6 +191,14 @@ describe('App', () => {
     expect(await screen.findByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
   });
 
+  it('opens Food safety from the Menu and moves focus to its heading', async () => {
+    renderApp(new InMemoryProfileStore(), undefined);
+    openMenu('Food safety');
+    const h1 = await screen.findByRole('heading', { level: 1, name: 'Food safety at home' });
+    await vi.waitFor(() => expect(h1).toHaveFocus());
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
+  });
+
   it('gives every photo, nutrition and Hebcal credit link an accessible name', () => {
     renderApp();
     const links = within(screen.getByRole('contentinfo')).getAllByRole('link', { hidden: true });

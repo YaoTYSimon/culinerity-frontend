@@ -22,6 +22,7 @@ const ITEMS: { to: NavTarget; label: string }[] = [
   { to: 'meals', label: 'Meals that felt like home' },
   { to: 'pantry', label: 'My pantry' },
   { to: 'cook', label: 'Cook with what you have' },
+  { to: 'foodsafety', label: 'Food safety' },
   { to: 'tradeoffs', label: 'Trade-offs' },
   { to: 'week', label: 'My week' },
   { to: 'welcome', label: 'Welcome' },

@@ -16,6 +16,7 @@
     "build:benchmarks": "node scripts/build-benchmarks.mjs",
     "build:cultural": "node scripts/build-cultural.mjs",
     "build:recipes": "node scripts/build-recipes.mjs",
+    "build:foodsafety": "node scripts/build-foodsafety.mjs",
     "build:places": "node scripts/build-places.mjs",
     "build:places-bulk": "node scripts/build-places-bulk.mjs",
     "check:places-bulk": "node scripts/check-places-bulk.mjs",

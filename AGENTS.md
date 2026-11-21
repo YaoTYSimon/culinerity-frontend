@@ -23,6 +23,7 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 - `scripts/build-benchmarks.mjs`: validates the research JSON and writes the generated dataset.
 - `scripts/build-cultural.mjs`: validates `docs/superpowers/research/2026-10-27-cultural-food.json` and writes the cultural dataset (`npm run build:cultural`; a test fails if the committed file is stale). `scripts/computus.mjs` computes Easter dates.
 - `scripts/build-recipes.mjs`: validates `docs/superpowers/research/2026-10-29-pantry-recipes.json` against the cultural ingredient table and writes the recipe dataset (`npm run build:recipes`; a test fails if the committed file is stale).
+- `scripts/build-foodsafety.mjs`: validates `docs/superpowers/research/2026-11-21-food-safety.json` (no invented numbers: each figure must appear in a cited official source's `read` notes) and writes `packages/core/src/foodsafety/generated/foodsafety.generated.ts` (`npm run build:foodsafety`; a test fails if stale). View: `src/ui/FoodSafetyView.tsx` (`foodsafety` in `View`, Menu "Food safety"), stores and sends nothing (`foodSafetyPrivacy.test.tsx`). Dietitian or food-safety review needed before public launch.
 - `scripts/contrast.mjs`: `node scripts/contrast.mjs` checks WCAG contrast of every theme from `src/index.css`.
 - `docs/superpowers/`: design specs and implementation plans (the plate redesign is `specs/2026-10-26-welcome-themes-plate-redesign-design.md`).
 
