@@ -1343,8 +1343,8 @@ export const placeData: PlaceData = {
         "meals"
       ],
       "access": "open",
-      "hours": "Tuesdays from 12 noon",
-      "note": "The church page calls it a free community lunch. The newest post on that page is from 2024 and an older post (2022) said sit-down from 11:30am or takeaway from 12 noon, so confirm the times. The City of Maroondah list (read 21 November 2026) shows a Tuesday 12pm lunch at Gifford Village Community Centre at the same address. Phone 0481 338 738.",
+      "hours": "Tuesdays from 12 noon, February to mid December (except public holidays)",
+      "note": "The church page calls it a free community lunch. The newest post on that page is from 2024 and an older post (2022) said sit-down from 11:30am or takeaway from 12 noon, so confirm the times. The City of Maroondah list (read 21 November 2026) shows a Tuesday 12pm lunch at Gifford Village Community Centre at the same address, with a different phone number (0419 260 158). Church page phone 0481 338 738. The church page says the lunch runs from February to mid December, so it may be paused over summer.",
       "sourceId": "croydon-north-uc-lunch",
       "verification": "primary",
       "checked": "2026-11-21"
