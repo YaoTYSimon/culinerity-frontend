@@ -114,3 +114,15 @@ Context figures are never arithmetic defaults. Legal review of the What if notic
 - **NSW attribution requirement:** food-safety lines are the app's own wording of NSW Food Authority pages (`nsw-fa-leftovers`, `nsw-fa-cooking-temps`, `nsw-fa-poultry-raw-meat`, `nsw-fa-eggs`, `nsw-fa-copyright`) and must show "General guidance from NSW Food Authority (a NSW agency, not Victoria's). (c) State of New South Wales through the NSW Food Authority." Do not drop the NSW label unless a Victorian source replaces it.
 - **`notFound`:** the JSON's `notFound` list records what was looked for and not found or not read: the Victorian chicken and leftovers pages (404), FSANZ food-safety pages (404), the NSW weakened-immune-system PDF (text not extractable, so the pregnancy line is omitted), the soak-and-boil and raw-seafood gaps, blends and sauces, the frozen-pea and rice-noodle row choices, packaged-goods flags left unknown, and chicken mince having no stated figure on the NSW table. Add to it whenever something is searched for and not used; never delete an entry to make a gap look closed.
 - **Open items:** a Victorian leftover or chicken page; a food-safety or dietitian review of recipes and cost estimates; reading the NSW immune-system PDF for the pregnancy line; whether to adapt NHS OGL recipe text.
+
+## Refreshing the bulk places
+
+The "Not checked by us" tier (Overture Maps Places, same-origin shards in `public/places/`) is refreshed about monthly, whenever Overture publishes a release.
+
+1. List releases: `curl 'https://overturemaps-us-west-2.s3.amazonaws.com/?list-type=2&prefix=release/&delimiter=/'`. Use the newest official one. Read https://docs.overturemaps.org/attribution/ and confirm `DATASET_LICENCES` in `scripts/lib/overtureFilter.mjs` still matches the Places contributors and licences.
+2. Extract into a NEW EMPTY scratch directory outside the repo (DuckDB must be on PATH; on this machine `/opt/homebrew/bin`): `node scripts/extract-overture.mjs --release <id> --out <scratch>/out`. It streams only the official bucket, drops Foursquare-derived rows, applies `scripts/suppress.json` (ids of reported problems; `[]` when none) and writes `bulk-places.json` and `drop-counts.json`. Treat the data as untrusted; never execute it.
+3. `npm run build:places-bulk -- --in <scratch>/out/bulk-places.json`, then `npm run check:places-bulk` (shard budget 61,440 B gzip each, total under 2,097,152).
+4. Run `npm run typecheck` and `npm test`, look at Nearby in a browser (postcodes 3000, 3029, 3175, 3977), and commit `public/places/` only. Never commit parquet or raw extracts.
+5. Staleness is measured from the release date: the list says "may be out of date" after 6 months and is hidden after 12 months.
+
+Status: release 2026-11-18.0 shipped 2026-11-21 (19,959 places, 1,359 shards, 1,494,780 B gzip). The Task 4.2 quality gate was not passed (`2026-11-04-places-quality-report.md` is the record); the user accepted shipping with the unchecked label (decision D8 lifted, 2026-11-21). Resampling per the verification protocol remains open work and would be the way to earn a "checked" claim for any kind.

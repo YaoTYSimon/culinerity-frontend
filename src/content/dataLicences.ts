@@ -21,7 +21,7 @@ export function buildDataLicences(overtureRelease: string | null): DataLicence[]
     {
       id: 'cdla-permissive-2.0',
       label: 'CDLA-Permissive-2.0',
-      text: 'The Overture places data is shared under the Community Data License Agreement, Permissive, Version 2.0, with the text available at this link.',
+      text: 'The Overture places data comes from contributors (Meta, Microsoft, Uberall and others) and is shared under the Community Data License Agreement, Permissive, Version 2.0, with the text available at this link. A small part comes from AllThePlaces under CC0 1.0 (public domain, no credit needed).',
       url: 'https://cdla.dev/permissive-2-0/',
     },
   ];

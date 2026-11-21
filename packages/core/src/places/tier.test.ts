@@ -26,7 +26,7 @@ describe('place tiers', () => {
     expect(BULK_HOURS_TEXT).toBe('Check hours before you go');
   });
   it('credits the release and says the place is not checked', () => {
-    expect(bulkSourceLine('2026-09-17.0')).toBe('Listed by Overture Maps, release 2026-09-17.0. Not checked by us.');
+    expect(bulkSourceLine('2026-09-17.0')).toBe('Listed by Overture Maps, release 2026-09-17.0. Not checked by us: a sample check did not confirm that these places are open and in the right spot, so some may have closed or moved.');
   });
   it('allows only the permissive licences (no Apache-2.0, so no Foursquare records)', () => {
     expect([...BULK_LICENCES]).toEqual(['CDLA-Permissive-2.0', 'CC0-1.0']);

@@ -12,7 +12,7 @@ import { BULK_BOX, validateBulkPlaces } from './lib/validateBulk.mjs';
 export const PLACES_DIR = fileURLToPath(new URL('../public/places/', import.meta.url));
 export const MAX_SHARD_GZIP = 60 * 1024;
 export const MAX_TOTAL_GZIP = 2 * 1024 * 1024;
-// Unconfirmed: check the page when the real run happens (plan Task 2.1).
+// Overture attribution page, read 2026-11-21: it lists the Places contributors and their licences.
 export const OVERTURE_ATTRIBUTION_URL = 'https://docs.overturemaps.org/attribution/';
 
 const round5 = (n) => Math.round(n * 1e5) / 1e5;

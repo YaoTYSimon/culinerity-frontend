@@ -61,5 +61,5 @@ export function bulkKindLabel(kind: BulkKind): string {
 }
 
 export function bulkSourceLine(release: string): string {
-  return `Listed by Overture Maps, release ${release}. Not checked by us.`;
+  return `Listed by Overture Maps, release ${release}. Not checked by us: a sample check did not confirm that these places are open and in the right spot, so some may have closed or moved.`;
 }
