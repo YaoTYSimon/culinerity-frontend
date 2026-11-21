@@ -30,3 +30,6 @@ Archive.zip
 crimaaaaaa.jpg
 apps/
 shots/
+
+# Playwright MCP scratch (snapshots, console logs)
+.playwright-mcp/

@@ -102,6 +102,28 @@ describe('Nearby not-checked tier', () => {
     expect(screen.getByRole('heading', { name: 'Not checked by us' })).toBeInTheDocument();
   });
 
+  it('reads fine when many rows are under 100 m: each row says so, and equal distances order by name', async () => {
+    const crowd = ['Delta Cafe', 'Alpha Cafe', 'Charlie Cafe', 'Bravo Cafe', 'Echo Cafe', 'Foxtrot Cafe'].map((n, i) =>
+      shardPlace(`ovt-c${i}`, n, 'cafe-restaurant', CBD.lat + 0.0002));
+    const shard = { release: RELEASE, places: crowd } as unknown as CellShard;
+    await open(source({ cell: async (key) => (key === cellKey(CBD.lat, CBD.lng) ? shard : { release: RELEASE, places: [] }) }));
+    const list = await screen.findByRole('list', { name: 'Not checked by us places near you' });
+    const rows = within(list).getAllByRole('listitem');
+    expect(rows).toHaveLength(6);
+    for (const row of rows) expect(row.textContent).toMatch(/Cafe or restaurant · ovt-c\d High St 3000 · under\u00A0100\u00A0m/);
+    expect(within(list).getAllByRole('heading', { level: 3 }).map((h) => h.textContent)).toEqual(['Alpha Cafe', 'Bravo Cafe', 'Charlie Cafe', 'Delta Cafe', 'Echo Cafe', 'Foxtrot Cafe']);
+  });
+
+  it('shows the empty line for a real Greater Melbourne place with no listed places in its block (Christmas Hills)', async () => {
+    // Christmas Hills (-37.658, 145.314): the shipped manifest has no shard in its 3x3 block, so the app shows no bulk rows.
+    const { readFileSync } = await import('node:fs');
+    const manifest = JSON.parse(readFileSync('public/places/manifest.json', 'utf8')) as BulkManifest;
+    const key = cellKey(-37.658, 145.314);
+    const [ix, iy] = key.split('_').map(Number);
+    for (let y = iy - 1; y <= iy + 1; y++) for (let x = ix - 1; x <= ix + 1; x++) expect(manifest.cells[`${x}_${y}`]).toBeUndefined();
+    expect(BULK_EMPTY_TEXT).toBe('No places in this list close to here.');
+  });
+
   it('leaves the tier out for Free and Low cost, and Fresh produce keeps only fresh kinds', async () => {
     await open(source());
     await screen.findByText('Bulk Bakery');
