@@ -14,9 +14,11 @@ const TYPICAL_BAND: Record<PlaceKind, PriceBand> = {
   grocer: 'mid',
 };
 // Other bands are allowed only where the operator's own words say so (recorded in the source title).
+// Food relief and community meals may be 'budget' where the operator states a small charge or donation
+// (for example "$5 contributions welcome"); the next test then requires the basis to be 'stated'.
 const DEFAULT_BAND: Record<PlaceKind, PriceBand[]> = {
-  'food-relief': ['free'],
-  'community-meal': ['free'],
+  'food-relief': ['free', 'budget'],
+  'community-meal': ['free', 'budget'],
   'social-supermarket': ['budget'],
   'co-op': ['budget'],
   market: ['budget', 'mid', 'pricier'],

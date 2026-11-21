@@ -196,6 +196,86 @@ export const placeData: PlaceData = {
       "url": "https://www.cranbournemarket.com/contact-us",
       "licence": "Operator page, rights not stated; facts only (name, address words, days and hours). Coordinates: the page's own embedded map",
       "accessed": "2026-11-21"
+    },
+    {
+      "id": "shm-dining-hall",
+      "publisher": "Sacred Heart Mission",
+      "title": "Dining Hall (87 Grey Street, St Kilda 3182; Free meals daily; opening times). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 87 GREY STREET ST KILDA 3182, read 2026-11-21; the page itself gives only a Google Maps search link with no coordinates",
+      "url": "https://www.sacredheartmission.org/service/dining-hall/",
+      "licence": "Operator page (Sacred Heart Mission Dining Hall page), rights not stated; facts only (name, address, days, hours, free meals). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "rsnh-community-lunch",
+      "publisher": "Reynard Street Neighbourhood House",
+      "title": "Community Lunch (104a Reynard St, Coburg VIC 3058; $5 contributions welcome; 12:30pm to 1:30pm every Wednesday during the Term). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 104A REYNARD STREET COBURG 3058, read 2026-11-21; the page gives no map or coordinates",
+      "url": "https://rsnh.org.au/whats-on/community-lunch/",
+      "licence": "Operator page (Reynard Street Neighbourhood House community lunch page), rights not stated; facts only (name, address, day, hours, $5 contribution). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "matts-place-chelsea",
+      "publisher": "Bayside Community Care",
+      "title": "Matt’s Place Community Meals Program (Chelsea: every Tuesday 10:45am-1:00pm, St Chad’s Anglican Church, 12-14 Thames Promenade, Chelsea). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 12-14 THAMES PROMENADE CHELSEA 3196, read 2026-11-21; the page gives no map. The Cheltenham meal on the same page is temporarily relocating and is not included",
+      "url": "https://baysidecommunitycare.com.au/programs/matts-place/",
+      "licence": "Operator page (Bayside Community Care, Matt’s Place page), rights not stated; facts only (name, address, day, hours). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "dsch-food-relief",
+      "publisher": "Duke Street Community House",
+      "title": "Services, Food Relief Service (every Wednesday 1:00pm to 2:30pm, Central West Shopping Centre Shop D4, 67 Ashley St, Braybrook VIC 3019; hampers $5 donation, no questions asked if you cannot pay; postcodes 3012, 3019, 3020). Coordinates: the page’s own Google Maps link for ‘Duke Street Community House - Food Relief Service Site’ (!3d-37.7944487!4d144.86165), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): the address points for 67 Ashley Street are about 120 m from that pin (the centre is large), so the operator’s own pin was kept",
+      "url": "https://dsch.org.au/services/",
+      "licence": "Operator page (Duke Street Community House services page), rights not stated; facts only (name, address, day, hours, donation, eligibility). Coordinates: the operator’s own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "turningpoint-food-hub",
+      "publisher": "Yarra Ranges Council (community directory listing for Turningpoint Food Hub)",
+      "title": "Turningpoint Food Hub listing (Turningpoint Basement Food Hub, back of Subway, 197 Main Street, Lilydale 3140; Monday 09:30 AM-02:30 PM). Coordinates: the listing’s own map (-37.7572851, 145.35006), read 2026-11-21. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): the address point labelled 193-197 MAIN STREET LILYDALE 3140 (-37.7573118, 145.3499802) is about 3 m away. Another council food-relief page gives 9:30am to 2pm; the hub’s own listing was used",
+      "url": "https://www.yarraranges.vic.gov.au/Explore-Yarra-Ranges/Special-interest-groups/Community-directory/Turningpoint-Food-Hub",
+      "licence": "Council community directory page, rights not stated; facts only (name, address, day, hours, what is carried). Coordinates: the listing’s own map",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "salvos-waverley-get-help",
+      "publisher": "The Salvation Army Australia",
+      "title": "Get help, Waverley (Community food pantry, 958 High Street Road, Glen Waverley; Tuesday, Wednesday and Friday, 10am-2pm). Coordinates: the operator’s own map link on that page (maps.app.goo.gl/SaxGmuW9MyPfZkyA8, resolves to -37.8770375, 145.1860972, labelled 958 High St Rd, Glen Waverley). Vicmap Address has no point matching that road name, so no cross-check was possible",
+      "url": "https://www.salvationarmy.org.au/waverley/get-help/",
+      "licence": "Operator page (Salvation Army Waverley get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "salvos-preston-get-help",
+      "publisher": "The Salvation Army Australia",
+      "title": "Get help, Preston (Salvos Community Connect Pantry, 263 Gower Street, Preston; Monday, Tuesday, Thursday and Friday 10am-2pm; ‘free community pantry’). Coordinates: the operator’s own map link on that page (maps.app.goo.gl/5dJkjFFriE2SUVcd7, resolves to -37.740622, 145.00436, labelled The Salvation Army Preston Corps). Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 263 GOWER STREET PRESTON 3072 is at -37.7406057, 145.0043246, about 4 m away",
+      "url": "https://www.salvationarmy.org.au/preston/get-help/",
+      "licence": "Operator page (Salvation Army Preston get help page), rights not stated; facts only (name, address, days, hours, free pantry) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "salvos-boxhill-get-help",
+      "publisher": "The Salvation Army Australia",
+      "title": "Get help, Box Hill (Doorways Emergency Food Relief, 1010 Whitehorse Road, Box Hill; Tuesday and Thursday 10am-2pm; free food packs). The page is served in Chinese and was read in that language. Coordinates: the operator’s own Google Maps link on that page (place pin !3d-37.8189193!4d145.1260967, labelled The Salvation Army Box Hill). Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 1010 WHITEHORSE ROAD BOX HILL 3128 is at -37.8186888, 145.1258942, about 35 m away",
+      "url": "https://www.salvationarmy.org.au/boxhill/get-help/",
+      "licence": "Operator page (Salvation Army Box Hill get help page), rights not stated; facts only (name, address, days, hours, free food packs) and the coordinates the operator publishes in its own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "melton-council-earth-village",
+      "publisher": "City of Melton",
+      "title": "Food relief (Earth Village Breadland: free meal, bread and fruit and vegetables for community members in need; 43 Unitt Street, Melton; Monday to Friday 10.30am - 1pm). Council page. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 43 UNITT STREET MELTON 3337, read 2026-11-21; the page gives no map",
+      "url": "https://melton.vic.gov.au/Services/Support-services/Food-Relief",
+      "licence": "Council page (City of Melton food relief, Earth Village Breadland entry), rights not stated; facts only (name, address, days, hours, free). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "melton-council-adra",
+      "publisher": "City of Melton",
+      "title": "Food relief (Melton South Community Centre / ADRA Community Care: food parcels every Friday; City of Melton residents with a valid Victorian health care or concession card; $3 donation asked for ambient and cold food; 41 Exford Road, Melton South). Council page. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 41 EXFORD ROAD MELTON SOUTH 3338, read 2026-11-21; the page gives no map",
+      "url": "https://melton.vic.gov.au/Services/Support-services/Food-Relief",
+      "licence": "Council page (City of Melton food relief, Melton South Community Centre and ADRA entry), rights not stated; facts only (name, address, day, donation, eligibility). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
     }
   ],
   "places": [
@@ -812,6 +892,210 @@ export const placeData: PlaceData = {
       "sourceId": "cranbourne-market-contact",
       "verification": "primary",
       "checked": "2026-11-21"
+    },
+    {
+      "id": "shm-dining-hall",
+      "name": "Sacred Heart Mission Dining Hall",
+      "kind": "community-meal",
+      "lat": -37.86274,
+      "lng": 144.9800574,
+      "address": "87 Grey Street, St Kilda VIC 3182",
+      "suburb": "St Kilda",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Monday to Friday 8:30am to 10:30am (breakfast) and 11:30am to 1:00pm (lunch); weekends and public holidays 9:00am to 10:30am (breakfast) and 11:30am to 1:00pm (lunch)",
+      "note": "Free meals daily; the page says everyone is welcome to drop in. Phone (03) 9537 1166 (from the operator home page).",
+      "sourceId": "shm-dining-hall",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "reynard-street-community-lunch",
+      "name": "Reynard Street Neighbourhood House community lunch",
+      "kind": "community-meal",
+      "lat": -37.7479498,
+      "lng": 144.9594302,
+      "address": "104a Reynard Street, Coburg VIC 3058",
+      "suburb": "Coburg",
+      "priceBand": "budget",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Wednesdays 12:30pm to 1:30pm during school terms",
+      "note": "$5 contributions welcome; a pay-it-forward option lets you add a meal for someone in need. Stock depends on donations, so the page says availability is not guaranteed each week. Phone 03 9386 7128.",
+      "sourceId": "rsnh-community-lunch",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "matts-place-chelsea",
+      "name": "Matt’s Place community meal, Chelsea (Bayside Community Care)",
+      "kind": "community-meal",
+      "lat": -38.0501252,
+      "lng": 145.1175053,
+      "address": "St Chad’s Anglican Church, 12-14 Thames Promenade, Chelsea VIC 3196",
+      "suburb": "Chelsea",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Every Tuesday 10:45am to 1:00pm; arrive from 10:45am for morning tea and a chat",
+      "note": "Cost not stated on the page. People experiencing economic hardship or social isolation are welcome. The Thursday Cheltenham meal is temporarily at another site and is not listed here.",
+      "sourceId": "matts-place-chelsea",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "dsch-food-relief-braybrook",
+      "name": "Duke Street Community House Food Relief Service",
+      "kind": "food-relief",
+      "lat": -37.7944487,
+      "lng": 144.86165,
+      "address": "Central West Shopping Centre Shop D4, 67 Ashley Street, Braybrook VIC 3019",
+      "suburb": "Braybrook",
+      "priceBand": "budget",
+      "priceBasis": "stated",
+      "fit": [],
+      "access": "referral",
+      "hours": "Wednesdays 1:00pm to 2:30pm. For residents experiencing food insecurity who live in postcodes 3012, 3019 or 3020. Hampers: $5 donation",
+      "note": "The page says the donation buys the following week’s food and that no questions are asked if you cannot pay. The house itself is at 27 Duke Street, Sunshine (Monday to Friday 9am to 4pm), phone (03) 9311 9973.",
+      "sourceId": "dsch-food-relief",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "turningpoint-basement-food-hub",
+      "name": "Turningpoint Basement Food Hub",
+      "kind": "food-relief",
+      "lat": -37.7572851,
+      "lng": 145.35006,
+      "address": "197 Main Street (back of Subway), Lilydale VIC 3140",
+      "suburb": "Lilydale",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Mondays 9:30am to 2:30pm (closed other days)",
+      "note": "Cost not stated on the listing. Food boxes and meals for people who need food; the page says it carries dry food, frozen and fresh produce. Contact Joel 0425 820 589. The council’s separate food-relief page gives a 2pm finish, so confirm the end time.",
+      "sourceId": "turningpoint-food-hub",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "salvos-waverley-pantry",
+      "name": "Salvation Army Waverley community food pantry",
+      "kind": "food-relief",
+      "lat": -37.8770375,
+      "lng": 145.1860972,
+      "address": "958 High Street Road, Glen Waverley VIC 3150",
+      "suburb": "Glen Waverley",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Tuesday, Wednesday and Friday 10am to 2pm",
+      "note": "Cost not stated: the page says emergency food parcels, groceries and fresh food are available “at a very low cost” but gives no prices and does not call it free. No eligibility or referral is listed. Emergency vouchers are a separate phone service (03 8873 5288).",
+      "sourceId": "salvos-waverley-get-help",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "salvos-preston-pantry",
+      "name": "Salvos Community Connect Pantry, Preston",
+      "kind": "food-relief",
+      "lat": -37.740622,
+      "lng": 145.00436,
+      "address": "263 Gower Street, Preston VIC 3072",
+      "suburb": "Preston",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Monday, Tuesday, Thursday and Friday 10am to 2pm",
+      "note": "The page calls it a free community pantry with fresh fruit and vegetables, bread and milk, and says to come in or call. Phone 03 9471 9111.",
+      "sourceId": "salvos-preston-get-help",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "salvos-box-hill-doorways",
+      "name": "Salvation Army Box Hill Doorways Emergency Food Relief",
+      "kind": "food-relief",
+      "lat": -37.8189193,
+      "lng": 145.1260967,
+      "address": "1010 Whitehorse Road, Box Hill VIC 3128",
+      "suburb": "Box Hill",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Tuesday and Thursday 10am to 2pm",
+      "note": "Free food packs with fresh and packaged food for people facing a food shortage or emergency. The page also says that after phoning the financial assistance line (03 8873 5288) you may be told you can collect a food voucher here. The page is in Chinese.",
+      "sourceId": "salvos-boxhill-get-help",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "earth-village-breadland-melton",
+      "name": "Earth Village Breadland",
+      "kind": "food-relief",
+      "lat": -37.682038761,
+      "lng": 144.584023901,
+      "address": "43 Unitt Street, Melton VIC 3337",
+      "suburb": "Melton",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals",
+        "fresh"
+      ],
+      "access": "open",
+      "hours": "Monday to Friday 10:30am to 1pm",
+      "note": "A free meal, bread and fruit and vegetables for community members in need. Staff may ask to see a Medicare card to check family size. Phone 1300 525 332 or 0478 965 735. Read on the council page, not the operator’s own (none is listed).",
+      "sourceId": "melton-council-earth-village",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "melton-south-adra-food-parcels",
+      "name": "Melton South Community Centre / ADRA food parcels",
+      "kind": "food-relief",
+      "lat": -37.7066244,
+      "lng": 144.5741383,
+      "address": "41 Exford Road, Melton South VIC 3338",
+      "suburb": "Melton South",
+      "priceBand": "budget",
+      "priceBasis": "stated",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "referral",
+      "hours": "Fridays. New customers attend on a Friday at 10:30am and are given an appointment time for food collection. City of Melton residents with a valid Victorian health care or concession card (shown every visit)",
+      "note": "A $3 donation is asked for ambient and cold food; if you do not have it, fruit, vegetables and bread are offered, subject to availability. Bring reusable fabric bags. Phone 9747 8576. Read on the council page; no operator page was found.",
+      "sourceId": "melton-council-adra",
+      "verification": "primary",
+      "checked": "2026-11-21"
     }
   ],
   "notFound": [
@@ -836,6 +1120,9 @@ export const placeData: PlaceData = {
     "Salvation Army Dandenong Hub and Carrum Downs Corps location pages (seen in search): the pages no longer resolve (they redirect to the locations list), so they were not used. Salvation Army Sunshine (42 Devonshire Road), Project Juan Werribee foodbank, Wyndham Council community foodbank and Manor Lakes foodbank: no readable operator page with coordinates (council pages refused or gave only the council office map).",
     "Fresh-food markets and greengrocers in the outer suburbs: the Seaford Farmers Market appears to have closed in 2023; the ScullyBug Cranbourne market and Pakenham Lakeside Market have only single listed dates, not a stable weekly schedule; no independent greengrocer page with address, hours and a published coordinate was found. No social supermarket other than LinC (above) was found for the listed suburbs.",
     "Second attempt, outer-suburb fresh food (read 2026-11-21). Left out, with reasons: Lilydale Rotary Craft and Produce Market (own page gives first Sunday 9am to 2pm for only part of the year and no address or coordinate; the Yarra Ranges council page refused the request, HTTP 403); Whittlesea Monday Market (council page 403; only third-party listings give coordinates); Eynesbury Market (Melton council page 403; dated Sundays only) and Laurimar Lakeside Community Market, Doreen (Whittlesea council page 403); Wyndham Makers and Farmers Market, Werribee Racecourse (monthly, dates only on third-party and council pages, no operator page found); Wyndham Harbour Grocery Pop Up Store (its Visit Werribee page now returns 404; dated run); Berwick Farmers Market at the Old Cheese Factory (conflicting 2nd and 4th Saturday schedules on third-party listings, operator page not found); Sunbury Village Market and Mornington-side markets (third-party only); Melbourne Market Super Saturdays, Epping (2026 trial ended in April); VFMA member directory (not read; its terms were not found, and the list is not copied).",
-    "Greengrocers, second attempt (read 2026-11-21): Henrys Mercato at Karingal Hub, Frankston (hours and address read on the centre's page, but the only coordinate is the whole shopping centre's pin, too coarse for a shop inside it); MarketPlace Fresh at Cranbourne Park (the page's coordinate and hours are the centre's, not the shop's); Hoppers Fresh, Hoppers Crossing, Mooroolbark Fresh Fruit Shop, Get Fresh Boronia, Werribee Fresh Market and Pakenham Fruit and Veg Market (no operator page with hours and a coordinate found; directory and news listings are not used). Persimmon Tree (Croydon) and Victoria Fruit Palace (Ripponlea, not outer) were opened and not used."
+    "Greengrocers, second attempt (read 2026-11-21): Henrys Mercato at Karingal Hub, Frankston (hours and address read on the centre's page, but the only coordinate is the whole shopping centre's pin, too coarse for a shop inside it); MarketPlace Fresh at Cranbourne Park (the page's coordinate and hours are the centre's, not the shop's); Hoppers Fresh, Hoppers Crossing, Mooroolbark Fresh Fruit Shop, Get Fresh Boronia, Werribee Fresh Market and Pakenham Fruit and Veg Market (no operator page with hours and a coordinate found; directory and news listings are not used). Persimmon Tree (Croydon) and Victoria Fruit Palace (Ripponlea, not outer) were opened and not used.",
+    "Fourth pass, middle-ring suburbs (read 2026-11-21), left out for a missing coordinate: coordinates now come from the operator's map or from an exact Vicmap Address match, and these had neither. Reservoir Neighbourhood House (2B Cuthbert Road; food relief parcels Tuesday and Wednesday 9:30am to 3:30pm; the page gives no map and Vicmap has no point for 2B, only 2 and 2A/2C about 170 m apart); Yarraville Community Centre / The Nourish Project (59 Francis Street; no pickup hours on the page, and Vicmap has no point for number 59); Banyule Support and Information Centre Foodhub (Shop 48, The Harmony Centre, The Mall, Heidelberg West; Mon, Tue, Wed, Fri 12pm to 3pm, Thu 10:30am to 1:30pm; no map and Vicmap cannot place a shop); Combined Churches Caring Melton (100 Coburns Road, Melton South; Monday to Friday 10am to 12:30pm; no map and Vicmap has no point for number 100); Braybrook Soul Kitchen (Braybrook Community Hub, 107 Churchill Avenue; Sunday dinner, free; no map and Vicmap has no point for 107, only a 107-139 hub); Salvation Army Merri-bek (15 Headley Street, Coburg North; Tuesday 10am to 2pm and Friday 10am to 1pm vouchers; no map and Vicmap has no point for 15); Salvation Army Brunswick (256 Albert Street; no food service on its page).",
+    "Fourth pass, left out because the operator's own page does not state what is needed: Noble Pantry (Noble Park Community Centre; its page gives Friday 12pm to 2pm but no address or cost for the pantry); Berwick Church of Christ Food Pantry (Tuesdays 10:30am to 2pm by referral, Casey residents; the page gives only the church address, 432-446 Centre Road, not a pantry address, and no map); Duke Street Community House Sunshine (27 Duke Street; the Braybrook Wednesday site is included); Tin Shed Neighbourhood House, St Albans (no food page found); Clayton Church of Christ Love Loud (free weekly meal delivery by referral, Monash and Kingston residents: a delivery service with no visit site); Matt's Place Cheltenham (the page lists the Mentone Uniting Church site but says the program is temporarily moving for six weeks from 8 October 2026, so the site was not recorded; the Chelsea meal is included); Bayside Community Care food relief (Cheltenham; no days, hours or cost beyond 'Tues-Thur 10am-3pm', and a Health Care Card is needed); Wyndham South West Community Services and Lighthouse Store (Hoppers Crossing; only Wyndham council text, and the council page returned HTTP 403, so it was not read).",
+    "Fourth pass, council pages used for Melton and Yarra Ranges only where the council page itself was readable (HTTP 200 on 2026-11-21): Melton and Yarra Ranges were readable this time (earlier passes saw HTTP 403); the Wyndham node page and the Whittlesea page still refused or did not resolve, so no Wyndham or Whittlesea entries were taken from them. Other Melton council entries left out: Kirrip Aboriginal Corporation (eligibility limited to Aboriginal and Torres Strait Islander people), temples and a soup van (no stable coordinate or no address match: Sri Durga Temple 705-715 Neales Road, Deanside has no Vicmap point), CatholicCare (phone appointments only). Gordon Street Little Pantry (252 Gordon Street, Footscray) and Braybrook and Maidstone Neighbourhood House (113 Melon Street, free bread Mondays) appear on the Maribyrnong council page, but the first has no Vicmap point and an operator Facebook page only, and the second's page text carries stale 2025-26 holiday dates and no food page was found on its own site. The Footscray Market, Sunshine, St Albans, Broadmeadows (other than the existing two), Heidelberg, Springvale, Noble Park, Oakleigh, Bentleigh, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick and Narre Warren gaps remain: no operator or council page was found that gives an address, hours, a price and an exact coordinate. No independent greengrocer or stable weekly fresh-food market could be verified in this pass (Footscray Market: no operator website was found, and hours appear only on third-party listings)."
   ]
 };
