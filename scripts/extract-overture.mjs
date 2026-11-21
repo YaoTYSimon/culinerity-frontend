@@ -8,11 +8,13 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ALLOWED_TAXONOMY_PREFIXES, refinePlaces, runPipeline } from './lib/overtureFilter.mjs';
+import { dropNearChecked } from './lib/checkedOverlap.mjs';
 import { stableJson } from './lib/stableJson.mjs';
 import { applySuppress } from './lib/suppress.mjs';
 import { BULK_BOX } from './lib/validateBulk.mjs';
 
 const SUPPRESS = fileURLToPath(new URL('./suppress.json', import.meta.url));
+const CHECKED = fileURLToPath(new URL('../docs/superpowers/research/2026-10-27-nearby-places.json', import.meta.url));
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 
 /** The DuckDB query. The release id is pinned by the caller; bbox values are point features, so min values suffice. */
@@ -66,8 +68,10 @@ export function resolveTaxonomy(fileText, allowOverride) {
 function refineExisting(fromPlaces, out) {
   const before = JSON.parse(readFileSync(fromPlaces, 'utf8'));
   const r = refinePlaces(before);
-  const { places, suppressed, warnings } = applySuppress(r.places, JSON.parse(readFileSync(SUPPRESS, 'utf8')), r.dedupedIds);
-  for (const w of warnings) console.warn(`warning: ${w}`);
+  const supp = applySuppress(r.places, JSON.parse(readFileSync(SUPPRESS, 'utf8')), r.dedupedIds);
+  for (const w of supp.warnings) console.warn(`warning: ${w}`);
+  const { kept: places } = dropNearChecked(supp.places, JSON.parse(readFileSync(CHECKED, 'utf8')).places);
+  const suppressed = supp.suppressed;
   const byId = new Map(before.map((p) => [p.id, p]));
   const brief = (id) => ({ id, name: byId.get(id).name, address: byId.get(id).address, kind: byId.get(id).kind });
   writeFileSync(path.join(out, 'bulk-places.json'), stableJson(places, 1));
@@ -96,11 +100,15 @@ function main() {
   const piped = runPipeline(rows, { release, taxonomy });
   const { dropCounts, duplicates, duplicateRules } = piped;
   // Reported problems (scripts/suppress.json) are removed here; an id not in the data fails the run (one that de-duplication removed only warns).
-  const { places, suppressed, warnings } = applySuppress(piped.places, JSON.parse(readFileSync(SUPPRESS, 'utf8')), piped.dedupedIds);
-  for (const w of warnings) console.warn(`warning: ${w}`);
+  const supp = applySuppress(piped.places, JSON.parse(readFileSync(SUPPRESS, 'utf8')), piped.dedupedIds);
+  for (const w of supp.warnings) console.warn(`warning: ${w}`);
+  // The checked record wins: a food relief row near a hand-verified place with a similar name is left out.
+  const { kept: places, dropped: checkedDuplicates } = dropNearChecked(supp.places, JSON.parse(readFileSync(CHECKED, 'utf8')).places);
+  const suppressed = supp.suppressed;
   writeFileSync(path.join(out, 'bulk-places.json'), stableJson(places, 1));
-  writeFileSync(path.join(out, 'drop-counts.json'), stableJson({ release, input: rows.length, kept: places.length, duplicates, duplicateRules, suppressed, dropped: dropCounts }, 2));
-  console.log(`Read ${rows.length}, kept ${places.length}, duplicates ${duplicates}, suppressed ${suppressed}.`);
+  writeFileSync(path.join(out, 'checked-duplicates.json'), stableJson(checkedDuplicates, 1));
+  writeFileSync(path.join(out, 'drop-counts.json'), stableJson({ release, input: rows.length, kept: places.length, duplicates, duplicateRules, suppressed, checkedDuplicates: checkedDuplicates.length, dropped: dropCounts }, 2));
+  console.log(`Read ${rows.length}, kept ${places.length}, duplicates ${duplicates}, suppressed ${suppressed}, food relief dropped as already checked ${checkedDuplicates.length}.`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

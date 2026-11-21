@@ -1,6 +1,6 @@
 // Pure validator for bulk (Overture-derived) places. No file or network access.
 // Keep the two lists below equal to BULK_KINDS and BULK_LICENCES in packages/core/src/places/tier.ts (a test checks).
-export const BULK_KIND_LIST = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant', 'butcher', 'fishmonger', 'deli'];
+export const BULK_KIND_LIST = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant', 'butcher', 'fishmonger', 'deli', 'food-relief'];
 export const BULK_LICENCE_LIST = ['CDLA-Permissive-2.0', 'CC0-1.0'];
 // Greater Melbourne box, the same one build-places.mjs uses.
 export const BULK_BOX = { lat: [-38.6, -37.4], lng: [144.3, 145.8] };

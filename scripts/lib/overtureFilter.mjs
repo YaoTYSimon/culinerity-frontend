@@ -34,6 +34,9 @@ export const ALLOWED_TAXONOMY_PREFIXES = [
   ['food_and_drink>casual_eatery>diner', 'cafe-restaurant'],
   ['food_and_drink>non_alcoholic_beverage_venue>coffee_shop', 'cafe-restaurant'],
   ['food_and_drink>restaurant', 'cafe-restaurant'],
+  // Food relief (Ruling D8 lifted 2026-11-21). Only the precise Overture category: its taxonomy has no soup kitchen or pantry category,
+  // and social_or_community_service, charity_organization, community_center, homeless_shelter and places of worship are NOT food relief.
+  ['community_and_government>social_or_community_service>food_bank', 'food-relief'],
 ];
 
 /** The string kindForTaxonomy matches: the hierarchy joined with '>', else the primary alone (fixtures). */
@@ -184,7 +187,7 @@ export function namesAlike(a, b) {
 }
 
 // More specific kinds win a duplicate pair: a retail kind over takeaway over the catch-all cafe-restaurant.
-const KIND_RANK = { supermarket: 0, greengrocer: 0, bakery: 0, butcher: 0, fishmonger: 0, deli: 0, takeaway: 1, 'cafe-restaurant': 2 };
+const KIND_RANK = { 'food-relief': 0, supermarket: 0, greengrocer: 0, bakery: 0, butcher: 0, fishmonger: 0, deli: 0, takeaway: 1, 'cafe-restaurant': 2 };
 const rank = (kind) => KIND_RANK[kind] ?? 3;
 const byPriority = (a, b) => rank(a.kind) - rank(b.kind) || b.confidence - a.confidence || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
 

@@ -130,7 +130,7 @@ describe('bulkMatchesFilter', () => {
   const one = async (kind: BulkKind) =>
     (await loadBulkFor(here, async (k) => (k === cellKey(here.lat, here.lng) ? shard(shardPlace('a', 10, 'A', kind)) : shard()))).places[0];
   it('never returns a bulk place from Free or Low cost: its price is unknown', async () => {
-    const kinds: BulkKind[] = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant', 'butcher', 'fishmonger', 'deli'];
+    const kinds: BulkKind[] = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant', 'butcher', 'fishmonger', 'deli', 'food-relief'];
     for (const k of kinds) {
       const p = await one(k);
       expect(p.price).toBe('unknown');
@@ -141,7 +141,7 @@ describe('bulkMatchesFilter', () => {
   });
   it('treats only produce, butcher and fish shops as fresh', async () => {
     const fresh: Record<BulkKind, boolean> = {
-      supermarket: false, greengrocer: true, bakery: false, takeaway: false, 'cafe-restaurant': false, butcher: true, fishmonger: true, deli: false,
+      supermarket: false, greengrocer: true, bakery: false, takeaway: false, 'cafe-restaurant': false, butcher: true, fishmonger: true, deli: false, 'food-relief': false,
     };
     for (const [k, want] of Object.entries(fresh)) expect(bulkMatchesFilter(await one(k as BulkKind), 'fresh' as PlaceFilter)).toBe(want);
   });
@@ -150,6 +150,15 @@ describe('bulkMatchesFilter', () => {
     expect(rankBulk(places, here, 'fresh').map((r) => r.place.id)).toEqual(['ovt-a']);
     expect(rankBulk(places, here, 'free')).toEqual([]);
     expect(rankBulk(places, here, 'low-cost')).toEqual([]);
+  });
+});
+
+describe('food-relief kind', () => {
+  it('is ordered by distance with the other kinds (no priority), and skipped when a shard has a kind this app does not know', async () => {
+    const bad = { ...shardPlace('x', 5), kind: 'mystery' } as unknown as CellShard['places'][number];
+    const places = (await loadBulkFor(here, async (k) => (k === cellKey(here.lat, here.lng) ? shard(shardPlace('a', 30, 'A', 'bakery'), shardPlace('b', 60, 'B', 'food-relief'), shardPlace('c', 10, 'C', 'deli'), bad) : shard()))).places;
+    expect(places.map((p) => p.id).sort()).toEqual(['ovt-a', 'ovt-b', 'ovt-c']);
+    expect(rankBulk(places, here).map((r) => r.place.id)).toEqual(['ovt-c', 'ovt-a', 'ovt-b']);
   });
 });
 

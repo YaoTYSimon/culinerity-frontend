@@ -69,6 +69,20 @@ describe('filterPlace: one case per drop reason', () => {
     expect(k(['food_and_drink', 'casual_eatery', 'cafe'])).toBe('cafe-restaurant');
     expect(k(['food_and_drink', 'non_alcoholic_beverage_venue', 'coffee_shop'])).toBe('cafe-restaurant');
   });
+  it('maps only the Overture food_bank category to food-relief, not broader community categories (food relief rule)', () => {
+    const k = (h: string[]) => kindForTaxonomy(taxonomyPath({ primary: h[h.length - 1], hierarchy: h }));
+    expect(k(['community_and_government', 'social_or_community_service', 'food_bank'])).toBe('food-relief');
+    for (const h of [
+      ['community_and_government', 'social_or_community_service'],
+      ['community_and_government', 'social_or_community_service', 'community_center'],
+      ['community_and_government', 'social_or_community_service', 'homeless_shelter'],
+      ['community_and_government', 'social_or_community_service', 'social_and_human_service'],
+      ['community_and_government', 'civic_organization', 'charity_organization'],
+      ['food_and_drink', 'restaurant', 'soup_restaurant'],
+    ]) {
+      expect(k(h)).toBe(h.join('>').startsWith('food_and_drink>restaurant') ? 'cafe-restaurant' : null);
+    }
+  });
   it('matches a prefix only on a segment boundary', () => {
     const t = [['a>cafe', 'cafe-restaurant'], ['a>bakery', 'bakery']] as Array<[string, string | null]>;
     expect(kindForTaxonomy('a>cafe', t)).toBe('cafe-restaurant');

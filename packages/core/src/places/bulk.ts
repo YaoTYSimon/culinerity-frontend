@@ -78,6 +78,9 @@ async function request(fetcher: CellFetcher, key: string): Promise<CellShard | n
   }
 }
 
+/** An older app reading a newer shard (or the reverse) skips a kind it does not know rather than showing it with no label. */
+const isKnownKind = (k: unknown): k is BulkKind => (BULK_KINDS as readonly unknown[]).includes(k);
+
 const hydrate = (p: ShardPlace, release: string): BulkPlace => ({ ...p, price: 'unknown', source: 'overture', release });
 
 /**
@@ -93,7 +96,7 @@ export async function loadBulkFor(pos: LatLng, fetcher: CellFetcher): Promise<Bu
   const failedCells: string[] = [];
   shards.forEach((s, i) => {
     if (s === null || s.release !== release) failedCells.push(keys[i]);
-    else for (const p of s.places) places.push(hydrate(p, s.release));
+    else for (const p of s.places) if (isKnownKind(p.kind)) places.push(hydrate(p, s.release));
   });
   return { places, failedCells, release };
 }

@@ -137,6 +137,19 @@ describe('Nearby not-checked tier', () => {
     }
   });
 
+  it('a food relief row shows its label, no price line, and the check line; other rows are unchanged', async () => {
+    const shard = { release: RELEASE, places: [shardPlace('ovt-1', 'Bulk Bakery', 'bakery', -37.815), shardPlace('ovt-9', 'Bulk Food Bank', 'food-relief', -37.814)] } as unknown as CellShard;
+    await open(source({ cell: async (key) => (key === cellKey(CBD.lat, CBD.lng) ? shard : { release: RELEASE, places: [] }) }));
+    const list = await screen.findByRole('list', { name: 'Not checked by us places near you' });
+    const rows = within(list).getAllByRole('listitem');
+    expect(rows[0].textContent).toMatch(/Bulk Food Bank/);
+    expect(rows[0].textContent).toMatch(/Food relief \(listing not checked\)/);
+    expect(rows[0].textContent).not.toMatch(/Price not known/);
+    expect(within(rows[0]).getByText('Check opening hours and who it is for before you go')).toBeInTheDocument();
+    expect(within(rows[1]).getByText('Price not known')).toBeInTheDocument();
+    expect(list.textContent).not.toMatch(/\bfree\b|\$/i);
+  });
+
   it('rows carry no price band, hours, or cheap/healthy/budget words, and nothing is stored', async () => {
     await open(source());
     const list = await screen.findByRole('list', { name: 'Not checked by us places near you' });
