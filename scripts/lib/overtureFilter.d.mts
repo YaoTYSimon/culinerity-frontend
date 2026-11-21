@@ -7,6 +7,13 @@ export function kindForTaxonomy(taxonomy: string | undefined, table?: Array<[str
 export function normaliseName(name: string): string;
 export function distanceMeters(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number;
 export function filterPlace(raw: any, opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string | null]> }): { place: any } | { drop: string };
+export const DEDUPE_ALIKE_METERS: number;
+export const DEDUPE_SAME_ADDRESS_METERS: number;
+export function nameTokens(name: string): string[];
+export function addressKey(address: string): string | null;
+export function namesAlike(a: string[], b: string[]): 'exact' | 'variant' | null;
 export function dedupe(places: any[]): any[];
+export function dedupeDetailed(places: any[]): { kept: any[]; removed: Array<{ id: string; of: string; rule: 'same-address' | 'near' }> };
+export function refinePlaces(places: any[]): { places: any[]; dropCounts: Record<string, number>; dropped: Array<{ id: string; reason: string }>; duplicates: number; duplicateRules: Record<string, number>; removed: Array<{ id: string; of: string; rule: string }>; dedupedIds: string[] };
 export function sortPlaces(places: any[]): any[];
-export function runPipeline(rows: any[], opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string | null]> }): { places: any[]; dropCounts: Record<string, number>; duplicates: number; dedupedIds: string[] };
+export function runPipeline(rows: any[], opts: { release: string; minConfidence?: number; taxonomy?: Array<[string, string | null]> }): ReturnType<typeof refinePlaces> & { filtered: number };

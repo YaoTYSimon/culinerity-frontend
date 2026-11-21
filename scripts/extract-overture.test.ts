@@ -25,6 +25,10 @@ describe('extract-overture helpers', () => {
     expect(parseArgs(['--release', '2026-09-17.0', '--out', '/x'])).toEqual({ release: '2026-09-17.0', out: '/x', parquet: undefined, allowTaxonomyOverride: false });
     expect(parseArgs(['--release', '2026-09-17.0', '--out', '/x', '--parquet', '/p.parquet']).parquet).toBe('/p.parquet');
   });
+  it('can refine an earlier bulk-places.json without a release', () => {
+    expect(parseArgs(['--from-places', '/a/bulk-places.json', '--out', '/x']).fromPlaces).toBe('/a/bulk-places.json');
+    expect(() => parseArgs(['--from-places', '/a/bulk-places.json'])).toThrow(/usage/);
+  });
   it('pins the release and the Greater Melbourne box in the query, and rejects a bad release', () => {
     const sql = buildSql('2026-09-17.0');
     expect(sql).toContain('release/2026-09-17.0/theme=places');

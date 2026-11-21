@@ -43,7 +43,7 @@ describe('filterPlace: one case per drop reason', () => {
     expect(filtered(id)).toEqual({ drop: reason });
   });
   it('covers every reason in the fixed list', () => {
-    expect(new Set(cases.map((c) => c[1]))).toEqual(new Set(DROP_REASONS));
+    expect(new Set(cases.map((c) => c[1]))).toEqual(new Set(DROP_REASONS.slice(0, 8)));
   });
   it('keeps an operating place and one with no operating_status; keeps the confidence floor itself', () => {
     expect(filterPlace({ ...row('TEST-001'), operating_status: 'operating' }, opts)).toHaveProperty('place');
@@ -182,6 +182,24 @@ describe('dedupe', () => {
   });
   it('measures about 111 km per degree of latitude', () => {
     expect(distanceMeters({ lat: 0, lng: 0 }, { lat: 1, lng: 0 })).toBeCloseTo(111195, -2);
+  });
+});
+
+describe('runPipeline quality stage', () => {
+  const base = row('TEST-001');
+  const variant = (id: string, over: Record<string, unknown>) => ({ ...base, id, ...over });
+  it('counts truncated names, junk names, addresses without a number and shared points, and none of them reach the output', () => {
+    const list = [
+      variant('TEST-Q-1', { names: { primary: 'Wyndham Community And' } }),
+      variant('TEST-Q-2', { names: { primary: 'Pizza Shop' } }),
+      variant('TEST-Q-3', { addresses: [{ freeform: 'Lower Dandenong Road', postcode: '3000' }] }),
+      ...Array.from({ length: 9 }, (_, i) => variant(`TEST-Q-C${i}`, { names: { primary: `Centre Tenant ${i}` }, lat: -37.9, lng: 145.1 })),
+      base,
+    ];
+    const r = runPipeline(list, opts);
+    expect(r.dropCounts).toMatchObject({ 'truncated-name': 1, 'junk-name': 1, 'bad-address': 1, centroid: 9 });
+    expect(Object.keys(r.dropCounts)).toEqual(DROP_REASONS);
+    expect(r.places.map((p: any) => p.id)).toEqual(['ovt-TEST-001']);
   });
 });
 
