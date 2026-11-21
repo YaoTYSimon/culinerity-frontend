@@ -38,6 +38,14 @@ describe('build-foodsafety validator', () => {
     expect(errorsFor((d) => (d.sources[0].licence = ''))).toMatch(/licence/);
     expect(errorsFor((d) => (d.sources[0].accessed = '2026-02-30'))).toMatch(/real/);
   });
+  it('rejects other Australian government hosts and look-alikes', () => {
+    expect(errorsFor((d) => (d.sources[0].url = 'https://www.ato.gov.au/x'))).toMatch(/not an official/);
+    expect(errorsFor((d) => (d.sources[0].url = 'https://www.vic.gov.au/x'))).toMatch(/not an official/);
+    expect(errorsFor((d) => (d.sources[0].url = 'https://evilbetterhealth.vic.gov.au.example.com/x'))).toMatch(/not an official/);
+  });
+  it('treats a leading minus as part of a figure', () => {
+    expect(errorsFor((d) => (d.sections[0].lines[0].text = 'Keep the freezer at -15 °C.'))).toMatch(/figure -15 is not listed/);
+  });
   it('rejects a line with no source or an unknown source', () => {
     expect(errorsFor((d) => (d.sections[0].lines[0].sourceIds = []))).toMatch(/at least one source/);
     expect(errorsFor((d) => (d.sections[0].lines[0].sourceIds = ['nope']))).toMatch(/unknown source/);

@@ -12,7 +12,7 @@ const ISO = /^\d{4}-\d{2}-\d{2}$/;
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const nonEmpty = (v) => typeof v === 'string' && v.trim() !== '';
 const realDate = (s) => ISO.test(s) && !Number.isNaN(Date.parse(`${s}T00:00:00Z`)) && new Date(`${s}T00:00:00Z`).toISOString().slice(0, 10) === s;
-const OFFICIAL_HOSTS = ['betterhealth.vic.gov.au', 'health.vic.gov.au', 'safefood.vic.gov.au', 'foodstandards.gov.au', 'vic.gov.au', 'gov.au'];
+const OFFICIAL_HOSTS = ['betterhealth.vic.gov.au', 'health.vic.gov.au', 'safefood.vic.gov.au', 'foodstandards.gov.au'];
 
 /**
  * The "no invented numbers" rule: every run of digits in a line must be listed in that line's `figures`,
@@ -34,7 +34,7 @@ export function validateFoodSafety(d, today = '2026-11-21') {
     } catch {
       err(`source ${s.id}: bad url`);
     }
-    if (!OFFICIAL_HOSTS.some((h) => host === h || host.endsWith(`.${h}`))) err(`source ${s.id}: ${host} is not an official Victorian or Australian Government host`);
+    if (!OFFICIAL_HOSTS.some((h) => host === h || host.endsWith(`.${h}`))) err(`source ${s.id}: ${host} is not an official host used for this dataset`);
     if (!nonEmpty(s.title) || !nonEmpty(s.publisher)) err(`source ${s.id}: needs a title and publisher`);
     if (!nonEmpty(s.licence)) err(`source ${s.id}: needs licence wording`);
     if (!realDate(s.accessed)) err(`source ${s.id}: accessed must be a real YYYY-MM-DD date`);
@@ -47,7 +47,7 @@ export function validateFoodSafety(d, today = '2026-11-21') {
   const readOf = (ids) => ids.map((id) => (sources.get(id)?.read ?? []).join(' ')).join(' ');
   const checkFigures = (where, text, figures, sourceIds) => {
     for (const id of sourceIds) if (!sources.has(id)) err(`${where}: unknown source ${id}`);
-    const tokens = text.match(/\d+/g) ?? [];
+    const tokens = text.match(/(?<!\d)-?\d+/g) ?? [];
     for (const t of tokens) if (!(figures ?? []).includes(t)) err(`${where}: figure ${t} is not listed in figures`);
     const read = readOf(sourceIds);
     for (const f of figures ?? []) if (!new RegExp(`(^|\\D)${f}(\\D|$)`).test(read)) err(`${where}: figure ${f} is not in the cited sources' read notes`);

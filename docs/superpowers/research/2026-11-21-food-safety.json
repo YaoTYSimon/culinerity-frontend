@@ -146,7 +146,7 @@
       "title": "Keep it cold or hot",
       "lines": [
         { "text": "Set the fridge to 5 °C or colder, and use a fridge thermometer to check it.", "sourceIds": ["bhc-storage", "fsanz-basics"], "figures": ["5"] },
-        { "text": "The freezer should be colder than -15 °C.", "sourceIds": ["bhc-storage"], "figures": ["15"] },
+        { "text": "The freezer should be colder than -15 °C.", "sourceIds": ["bhc-storage"], "figures": ["-15"] },
         { "text": "Germs grow fastest between 5 °C and 60 °C. Keep food that spoils easily below that range or above it.", "sourceIds": ["bhc-storage", "fsanz-basics"], "figures": ["5", "60"] },
         { "text": "Keep raw meat on the bottom shelf, away from cooked food.", "sourceIds": ["bhc-cooking"], "figures": [] }
       ]
