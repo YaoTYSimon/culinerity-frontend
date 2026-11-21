@@ -1064,7 +1064,7 @@ export const placeData: PlaceData = {
     {
       "id": "empower-australia-food-relief-centre",
       "publisher": "Empower Australia",
-      "title": "Food Relief Centre page ('an upmarket grocery store where everything is free', 'Our doors are open for all who find themselves in need', 'North East 360 Main Road Lower Plenty VIC 3094 Sundays 8.30am - 9.30am Google Maps'; page metadata modified 2026-05-13; copyright 2026). Page read 2026-11-21. Coordinates: the page's own Google Maps link for the Lower Plenty site (goo.gl/maps/2hiCP8cu3RrMppfy9, opened without any workaround and redirecting to a place pin at -37.7302417, 145.1278416), 68 m from the point for 366 MAIN ROAD LOWER PLENTY 3093 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address) (Vicmap has no point for 358 to 364), read 2026-11-21",
+      "title": "Food Relief Centre page ('an upmarket grocery store where everything is free', 'Our doors are open for all who find themselves in need', 'North East 360 Main Road Lower Plenty VIC 3094 Sundays 8.30am - 9.30am Google Maps'; page metadata modified 2026-05-13; copyright 2026). Page read 2026-11-21. Coordinates: the page's own Google Maps link for the Lower Plenty site (goo.gl/maps/2hiCP8cu3RrMppfy9, opened without any workaround and redirecting to a place pin at -37.7302417, 145.1278416), 89 m from the point for 366 MAIN ROAD LOWER PLENTY 3093 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address) (Vicmap has no point for 358 to 364), read 2026-11-21",
       "url": "https://www.empoweraustralia.com.au/programs/food-relief-centre/",
       "licence": "Operator page (Empower Australia Food Relief Centre), rights not stated; facts only (name, address, day, hours, cost). Marker coordinate taken from the page link; Vicmap Address, CC BY 4.0 (State of Victoria), used to cross-check",
       "accessed": "2026-11-21"
@@ -1152,7 +1152,7 @@ export const placeData: PlaceData = {
     {
       "id": "eltham-farmers-market",
       "publisher": "Eltham Farmers' Market (Local Food Connect)",
-      "title": "Eltham Farmers' Market page (10-18 Arthur Street, Eltham, on the car park at Eltham Town Mall; open every Sunday 8am to 12.30pm; next market listed Sunday 22 November; entry free; locally grown (Vic) or made food; stallholder attendance varies; page modified 2026-11-18 per its own metadata; no Christmas dates on the page). Coordinates: the page's own Google Maps link (goo.gl/maps/yv9kZ4z3M1p7uDdD9, resolves to pin -37.7146516, 145.1499417). Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0): 10-18 ARTHUR STREET ELTHAM 3095 is at -37.71467950, 145.14988826, about 5 m away",
+      "title": "Eltham Farmers' Market page (10-18 Arthur Street, Eltham, on the car park at Eltham Town Mall; open every Sunday 8am to 12.30pm; next market listed Sunday 22 November; entry cost not stated; locally grown (Vic) or made food; stallholder attendance varies; page modified 2026-11-18 per its own metadata; no Christmas dates on the page). Coordinates: the page's own Google Maps link (goo.gl/maps/yv9kZ4z3M1p7uDdD9, resolves to pin -37.7146516, 145.1499417). Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0): 10-18 ARTHUR STREET ELTHAM 3095 is at -37.71467950, 145.14988826, about 5 m away",
       "url": "https://localfoodconnect.org.au/elthamfm/",
       "licence": "Operator page (Eltham Farmers' Market page), rights not stated; facts only (name, address, days, times, entry) and the coordinates the operator or its council publishes",
       "accessed": "2026-11-21"
@@ -4206,7 +4206,7 @@ export const placeData: PlaceData = {
       "fit": [],
       "access": "open",
       "hours": "Sundays 8:30am to 9:30am",
-      "note": "The page describes a grocery store where you choose your own food and everything is free, and says its doors are open to all who need it. It does not list what is stocked on a given Sunday, so check before you go. The coordinate is the place pin from the page's Google Maps link, 68 m from the Vicmap point for 366 Main Road, because Vicmap has no point for 358 to 364.",
+      "note": "The page describes a grocery store where you choose your own food and everything is free, and says its doors are open to all who need it. It does not list what is stocked on a given Sunday, so check before you go. The coordinate is the place pin from the page's Google Maps link, 89 m from the Vicmap point for 366 Main Road, because Vicmap has no point for 358 to 364.",
       "sourceId": "empower-australia-food-relief-centre",
       "verification": "primary",
       "checked": "2026-11-21"
@@ -4437,7 +4437,7 @@ export const placeData: PlaceData = {
         "fresh"
       ],
       "hours": "Every Sunday 8am to 12:30pm (page: stallholder attendance varies, no Christmas dates given)",
-      "note": "Free entry. Locally grown (Vic) or made food. Product prices not stated.",
+      "note": "Entry cost is not stated on the page. Locally grown (Vic) or made food. Product prices not stated.",
       "sourceId": "eltham-farmers-market"
     },
     {
