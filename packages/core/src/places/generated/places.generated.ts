@@ -820,6 +820,62 @@ export const placeData: PlaceData = {
       "url": "https://www.nillumbik.vic.gov.au/Community/Community-development/Community-and-Services-Directory/Community-Cupboard-healthAbility",
       "licence": "Council web page, rights not stated; facts only (name, address, days, hours). Cross-check: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
+    },
+    {
+      "id": "hicci-dinner-darrons",
+      "publisher": "Healesville Interchurch Community Care Inc (HICCI)",
+      "title": "Dinner @ Darron's page ('A free two-course dinner held weekly in Healesville', 'No need to book and nothing to pay', 'Tuesday 5:30 - 6:30pm', 'Darron Honey Centre, Healesville Uniting Church, Maroondah Hwy'; no street number and no date on the page). Page read 2026-11-21. Street number: the Healesville Uniting Church's own venue-hire page (healesville.unitingchurch.org.au/people/venue-hire/) gives '286 Maroondah Highway, Healesville 3777' and names the Darron Honey Centre as its community centre. Coordinates: exact address point 286 MAROONDAH HIGHWAY HEALESVILLE 3777 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21",
+      "url": "https://www.hicci.org.au/dinner-darrons",
+      "licence": "Operator page (HICCI Dinner @ Darron's), rights not stated; facts only (name, venue, day, time, free). Address number from the church's own page, coordinate from Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "oonah-yarra-ranges-food-relief",
+      "publisher": "Yarra Ranges Council (Food relief - food boxes and meals)",
+      "title": "Council listing for Oonah ('Food relief program and food boxes', 'Every Friday, 12 pm to 3 pm', 'Need to book prior on the Thursday by phone', 'Oonah mainly provides services to the Aboriginal community but welcomes the whole community of Healesville', '1 Badger Creek Road, Healesville', 03 5962 2940; no cost stated; page undated). Page read 2026-11-21. The page gives no coordinates. Coordinates: exact address point 1 BADGER CREEK ROAD HEALESVILLE 3777 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21",
+      "url": "https://www.yarraranges.vic.gov.au/Our-services/Health-and-wellbeing/Community-relief-and-support-agencies/Food-relief-food-boxes-and-meals",
+      "licence": "Council web page (Yarra Ranges Council food relief listing), rights not stated; facts only (name, address, day, hours, booking). Coordinate from Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "montrose-community-cupboard-site",
+      "publisher": "Montrose Community Cupboard Inc",
+      "title": "About and FAQ pages ('redistribute the food to the community, free of charge', 'Who can use the community cupboard? EVERYONE!', 'The community cupboards are located at 49 Durham Rd, Kilsyth, 3137 (Japara Bridge House)', 'weekly markets from 3-4pm on Saturdays. The location alternates between Kilsyth and Montrose', 'our cupboards can be quite unpredictable'; copyright 2025). Hours: the Yarra Ranges Council directory listing (yarraranges.vic.gov.au/Community/Community-directory/Montrose-Community-Cupboard) says 'The cupboard is open 24/7' and gives the coordinates -37.8010333, 145.3218225 for 49 Durham Road, Kilsyth. Pages read 2026-11-21. Cross-check: exact address point 49 DURHAM ROAD KILSYTH 3137 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), 1 m from the listing's coordinates, read 2026-11-21",
+      "url": "https://www.montrosecommunitycupboard.org/about",
+      "licence": "Operator page (Montrose Community Cupboard) and council directory listing, rights not stated on either; facts only (name, address, free, hours). Cross-check: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "outlets-coop-support-services",
+      "publisher": "Outlets Co-op Neighbourhood House Ltd",
+      "title": "Support Services page ('Emergency Food Relief', 'Our drop-in service welcomes everyone without the need for bookings, and operates during school terms, however it's closed during school holidays', 'fresh produce, pantry items, selected personal hygiene products, and baby products, subject to availability', 'Wednesdays | 10:30 am-12:30 pm'; footer 43 Mason St, Newport VIC 3015, (03) 9391 8504; no cost stated, page undated). Page read 2026-11-21. The page's own map link (maps.app.goo.gl/CuUVJZWgzGbuWLHP6) was not resolved. Coordinates: exact address point 43 MASON STREET NEWPORT 3015 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21",
+      "url": "https://outletsco-op.com.au/support-services/",
+      "licence": "Operator page (Outlets Co-op Neighbourhood House Support Services), rights not stated; facts only (name, address, day, hours, drop-in). Coordinate from Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "careworks-sunranges-services",
+      "publisher": "CareWorks SunRanges Inc",
+      "title": "Home and Our Services pages ('FOOD BANK - FOOD SHARE - FINANCIAL ASSISTANCE', 'our foodbank program provides immediate help through the provision of food hampers to families and individuals', 'Prepared/Frozen meals are available, subject to availability', 'CareWorks is open Tuesday and Thursday from 10:00 AM until 2:30 PM', Sunbury Community Centre, 531 Elizabeth Drive, Sunbury 3429, (03) 9740 5061; no cost stated; footer copyright 2023). Pages read 2026-11-21. The page gives no coordinates. Coordinates: exact address point 531 ELIZABETH DRIVE SUNBURY 3429 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21",
+      "url": "https://www.careworks.com.au/our-services/",
+      "licence": "Operator page (CareWorks SunRanges Our Services), rights not stated; facts only (name, address, days, hours, food hampers). Coordinate from Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "manna4life-our-service",
+      "publisher": "Manna4Life Ltd",
+      "title": "Our Service page (region heading 'South East Melbourne', 'When: Every Tuesday & Thursday nights at 6pm (dinner is served at 7pm)', 'Where: The Manna House', 'Address: 19 Empire Way, Hallam VIC Australia', phone +61 412 111 461; no cost and no eligibility stated; copyright 2025). Page read 2026-11-21. The page gives no map. Coordinates: exact address point 19 EMPIRE WAY HALLAM 3803 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21",
+      "url": "https://www.manna4life.org.au/our-service",
+      "licence": "Operator page (Manna4Life Our Service), rights not stated; facts only (name, address, days, times). Coordinate from Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "wcc-emergency-relief-calendar-2026",
+      "publisher": "Whittlesea Community Connections (Emergency Relief Support Services list, PDF)",
+      "title": "Emergency Relief Support Services list (The Shak: 'Free community lunch, Sat: 1pm (Bookings appreciated)', address '11 Morang Drive, Mill Park 3082', theshak@millparkbaptistchurch.org.au; Repurpose And Serve Inc.: 'Food Support, Wed and Fri: 1pm - 2:30pm (except public holidays). Walk-in/No appointment needed, *$5 donation required', address '46 Serenity Way, South Morang 3752', 9432 4273). The PDF is undated (URL path 2026/05, file metadata 2024) and its Christmas-closure companion, published by the City of Whittlesea, is the 2024 edition (The Shak closing 7 December, reopening 1 February). Read 2026-11-21. The Shak's address is confirmed by Mill Park Baptist Church's own home page (millparkbaptistchurch.org.au, '11 Morang Drive Mill Park 3082'). The list gives no coordinates. Coordinates: exact address points 11 MORANG DRIVE MILL PARK 3082 and 46 SERENITY WAY SOUTH MORANG 3752 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21",
+      "url": "https://www.whittleseacommunityconnections.org.au/wp-content/uploads/2026/05/Emergency-Relief-Calendar-2026.pdf",
+      "licence": "Community organisation PDF (Whittlesea Community Connections Emergency Relief Support Services list), rights not stated; facts only (names, addresses, days, hours, price wording). Coordinates from Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
     }
   ],
   "places": [
@@ -3028,6 +3084,164 @@ export const placeData: PlaceData = {
       "sourceId": "healthability-eltham-cupboard",
       "verification": "primary",
       "checked": "2026-11-21"
+    },
+    {
+      "id": "hicci-dinner-darrons-healesville",
+      "name": "Dinner @ Darron's (HICCI), Healesville",
+      "kind": "community-meal",
+      "lat": -37.6538267,
+      "lng": 145.5179702,
+      "address": "Darron Honey Centre, Healesville Uniting Church, 286 Maroondah Highway, Healesville VIC 3777",
+      "suburb": "Healesville",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesday 5:30pm to 6:30pm",
+      "note": "The page says it is a free two-course dinner held weekly, with no need to book and nothing to pay. The page is undated and gives the venue as Maroondah Hwy with no street number: 286 comes from the church's own page. Phone HICCI (03) 5911 6000.",
+      "sourceId": "hicci-dinner-darrons",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "oonah-food-relief-healesville",
+      "name": "Oonah food relief program, Healesville",
+      "kind": "food-relief",
+      "lat": -37.6553483,
+      "lng": 145.5238631,
+      "address": "1 Badger Creek Road, Healesville VIC 3777",
+      "suburb": "Healesville",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Every Friday 12pm to 3pm. Book by phone on the Thursday before: 03 5962 2940",
+      "note": "Cost not stated on the council listing; ask when you call. The listing says Oonah mainly provides services to the Aboriginal community but welcomes the whole community of Healesville, and that it runs a food relief program and food boxes. The listing is undated.",
+      "sourceId": "oonah-yarra-ranges-food-relief",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "montrose-community-cupboard-kilsyth",
+      "name": "Montrose Community Cupboard, Kilsyth (Japara Bridge House)",
+      "kind": "food-relief",
+      "lat": -37.8010333,
+      "lng": 145.3218225,
+      "address": "Japara Bridge House, 49 Durham Road, Kilsyth VIC 3137",
+      "suburb": "Kilsyth",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Open 24/7. Free food markets most Saturdays 3pm to 4pm, alternating between Kilsyth and Montrose",
+      "note": "The operator says it redistributes rescued and donated food to the community free of charge, and that the cupboard is for everyone: take what you need, give what you can. Stock is unpredictable, so it may be empty or full, and the page asks you to bring your own bag. Check the group’s Facebook page for the market location each week.",
+      "sourceId": "montrose-community-cupboard-site",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "outlets-coop-food-relief-newport",
+      "name": "Outlets Co-op Neighbourhood House emergency food relief, Newport",
+      "kind": "food-relief",
+      "lat": -37.8423926,
+      "lng": 144.8803796,
+      "address": "43 Mason St, Newport VIC 3015",
+      "suburb": "Newport",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Wednesdays 10:30am to 12:30pm during school terms, closed during school holidays. No booking needed",
+      "note": "Cost not stated on the page; ask when you call. The page says the drop-in service welcomes everyone without bookings and offers fresh produce, pantry items, some personal hygiene and baby products, subject to availability. Bring your own bags. Phone (03) 9391 8504.",
+      "sourceId": "outlets-coop-support-services",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "careworks-sunranges-sunbury",
+      "name": "CareWorks SunRanges food bank, Sunbury",
+      "kind": "food-relief",
+      "lat": -37.57764,
+      "lng": 144.7109758,
+      "address": "Sunbury Community Centre, 531 Elizabeth Drive, Sunbury VIC 3429",
+      "suburb": "Sunbury",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Tuesday and Thursday 10:00am to 2:30pm",
+      "note": "Cost not stated on the page; ask when you call. The page describes food hampers (normally 3 meals a day for 2 to 3 days for everyone in the household), prepared or frozen meals subject to availability, and food vouchers for special diets. The page is undated (copyright 2023) and does not state a Christmas break. Phone (03) 9740 5061.",
+      "sourceId": "careworks-sunranges-services",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "manna4life-manna-house-hallam",
+      "name": "Manna4Life dinner at The Manna House, Hallam",
+      "kind": "community-meal",
+      "lat": -38.0156836,
+      "lng": 145.2706155,
+      "address": "The Manna House, 19 Empire Way, Hallam VIC 3803",
+      "suburb": "Hallam",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Every Tuesday and Thursday night at 6pm, dinner is served at 7pm",
+      "note": "Cost not stated on the page; ask when you call. The page says dinner is served but does not say who it is for or what it costs. Phone 0412 111 461.",
+      "sourceId": "manna4life-our-service",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "the-shak-mill-park",
+      "name": "The Shak free community lunch (Mill Park Baptist Church), Mill Park",
+      "kind": "community-meal",
+      "lat": -37.6605789,
+      "lng": 145.054008,
+      "address": "11 Morang Drive, Mill Park VIC 3082",
+      "suburb": "Mill Park",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Saturday 1pm (bookings appreciated)",
+      "note": "The list says it is a free community lunch and that bookings are appreciated, not required. The list is undated, and its 2024 Christmas companion shows The Shak closing in early December until 1 February, so check before you go. Email theshak@millparkbaptistchurch.org.au. The church's own page gives the same address.",
+      "sourceId": "wcc-emergency-relief-calendar-2026",
+      "verification": "primary",
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "repurpose-and-serve-south-morang",
+      "name": "Repurpose And Serve food support, South Morang",
+      "kind": "food-relief",
+      "lat": -37.6498887,
+      "lng": 145.0970209,
+      "address": "46 Serenity Way, South Morang VIC 3752",
+      "suburb": "South Morang",
+      "priceBand": "budget",
+      "priceBasis": "stated",
+      "fit": [],
+      "access": "open",
+      "hours": "Wednesday and Friday 1pm to 2:30pm, except public holidays. Walk-in, no appointment needed. $5 donation required",
+      "note": "The list gives no other details about the service and is undated, so check before you go. Phone 9432 4273.",
+      "sourceId": "wcc-emergency-relief-calendar-2026",
+      "verification": "primary",
+      "checked": "2026-11-21"
     }
   ],
   "notFound": [
@@ -3062,6 +3276,7 @@ export const placeData: PlaceData = {
     "Eighth pass (read 2026-11-21), 9 places added from operator pages (Encompass Care Vic Mernda, Diamond Valley Community Support and Greenhills Neighbourhood House in Greensborough, LIFE Community Kitchen St Albans breakfast and West Melbourne dinner, Williamstown Community and Education Centre at Joan Kirner House and Altona North Community House, Boroondara Community Outreach Kew, Moonee Ponds Baptist Church Monday community meal). Vicmap lesson: the service abbreviates road types (for example 'MAIN ROAD E', not 'MAIN ROAD EAST'), so an earlier 'no Vicmap point' may only be a spelling mismatch; Vicmap still has no point for 309A Main Road East (the nearest point for 309 was used and said so), Community Drive Greensborough, 31-61 McLeans Road Bundoora, 95-105 Railway Avenue Laverton, 28-36 Trafalgar Avenue Altona Meadows, 25-27 James Street Dandenong, 2B Cuthbert Road Reservoir, 5B South Drive Bentleigh East, 59 Francis Street Yarraville, 100 Coburns Road Melton South or 51 Lusher Road Croydon (retried, still none). Left out, with reasons: Sunbury Neighbourhood Kitchen (the Sunbury Life pages render no text and a radio listing says $4 a meal, no operator page or street number); Compass Community Care Bentleigh East, Cornerstone Centre Dandenong and Reservoir Neighbourhood House (retried: still no Vicmap point and no operator map); Encompass Care Bundoora (31-61 McLeans Road: no Vicmap point and Bundoora is outside the targets); Laverton Community Integrated Services (its Wednesday cafe at 95-105 Railway Avenue, Laverton and Friday cafe at 28-36 Trafalgar Avenue, Altona Meadows, booking essential, cost not stated: no Vicmap point for either range and the contact-page map embed is a generic centre about 1 km off; its Emergency Relief page does not say food); Berwick Church of Christ Food Pantry (the page says by referral on Tuesdays 10:30am to 2pm but still gives only the church footer address 432-446 Centre Road, which is shared with a Clyde campus link, so the pantry site is not stated); healthAbility Community Cupboard Eltham (917 Main Road; the only page is a March 2025 article on a staging host, cost and current hours not stated, and Vicmap has no point labelled 917); Eltham LinC pantry (the Nillumbik listing gives two conflicting addresses and garbled hours); Diamond Valley Foodshare (203 Henry Street Greensborough; Sunday 9am to 10am and DVCS referral per the Banyule guide, but no operator page); Mill Park Baptist 'The Shak' (a 2024 article says a free Saturday lunch, but no operator page or address was found); Whittlesea Community House, Whittlesea Food Share and the City of Whittlesea Christmas closure PDF (council pages and a 2024 PDF only, no operator page with hours and cost); Wyndham council listings for South West Community Services (Lighthouse Store, 13 Elm Park Drive, Wednesdays 10am to 2pm) and Project Juan (Central Park Community Centre, 80 Lonsdale Circuit, Tuesdays 10am to 12 noon) in Hoppers Crossing (council pages only, no operator page); Malvern Emergency Food Program (its Stonnington page is 404 and its fundraising page says the cause is closed); Tin Shed Neighbourhood House St Albans (still no food page); Duke Street Community House Sunshine (the only food program is the Braybrook Wednesday market already listed); the Brimbank, Frankston, Moonee Valley and Bayside council pages (no food listings with hours, or text that would not load); Casey's 2023 food resource (licence unclear, dated). Suburbs still with nothing verified after this pass: Sunshine, Noble Park, Epping, Sunbury, Hoppers Crossing, Berwick, Essendon, Mill Park, Eltham, Frankston North, Carrum Downs, Hampton Park, Endeavour Hills, Lynbrook, Wantirna, Malvern, Caulfield, Brighton, Sandringham, Moorabbin, Dingley, Mount Waverley and Whittlesea; Mernda, Greensborough, St Albans, Williamstown, Altona (Altona North only), Kew and Moonee Ponds now have one or more places. Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used.",
     "Ninth pass (read 2026-11-21), 9 places added: Crossway LifeCare Community Pantry and East Burwood Care (Burwood East), Burwood Neighbourhood House open pantry (Burwood), ADRA Community Care Centre (Wantirna), Restore Community Care food rooms (Rowville), Livingstone Community Centre food support (Ivanhoe), Keysborough Learning Centre Open Door (Keysborough), Mordialloc Pantry at St Nicholas Anglican Church (Mordialloc; a City of Kingston listing, no page of the church's own found) and Equip Food Bank (Hoppers Crossing). Routes that worked: council help lists (Knox, Kingston, Greater Dandenong, Wyndham) used only to find the operator, then the operator's own page; Vicmap queries with a leading wildcard. Left out, with reasons: Freedom Care food assistance, Kilmore (Tuesday to Thursday and Saturday mornings; 127C Northern Highway; the operator page gives hours, address and its own coordinate, 43 m from the Vicmap point; left out only because Kilmore, latitude -37.28, lies outside the Greater Melbourne box the validator enforces, -38.6 to -37.4, so the box would have to be widened first); Wallan Gateway Church Foodbank (7 Commercial Drive, Wallan; Thursdays 10:30am to 1pm in school terms, no cost, Health Care Card or Pension Card needed; its page has no map and Vicmap has points for 4, 6 and 8 Commercial Drive but not 7); Encompass Care Bundoora (31-61 McLeans Road; its Visit Us page gives 'trade hours' Tuesday and Wednesday 9am to 3pm and Vicmap now has a point for number 31, but the range runs on from it and the page has no map, so the point cannot be tied to the food room within 100 m); Turbans 4 Australia Thomastown (its Get Help page says food and grocery assistance is only being provided in Sydney); Helping Hands Mission Sunshine pantry (registered clients by appointment only; its page gives no pantry address, only the op shop at 85-89 Hampshire Road); Noble Park Community Centre pantry (44 Memorial Drive: Vicmap has points for 20 and 45 Memorial Drive and none for 44, and its own site has no pantry page); Laverton Community Integrated Services (95-105 Railway Avenue and 28-36 Trafalgar Avenue: leading-wildcard Vicmap queries still find no point for either range); healthAbility Eltham (917 Main Road: still no Vicmap point under the abbreviated 'MAIN R' prefix and no current operator page); Eltham LinC and Food Collective pantries (conflicting Pitt Street addresses, directory listings only); Kensington McCracken Street Food Share Pantry (the house's own pantry post returns 404 and no current page states hours); Stairway Church The Pantry (171 Rooks Road, Vermont; the Whitehorse directory pages now return 404, Stairway's own pages carry no pantry details and Vicmap has no point for 171); OneCare Food Pantry (184 Surrey Road, Blackburn; no operator page and no Vicmap point for 184); the Whitehorse Food Finders PDFs (the 2026 links return 404); ADRA Rowville-Lysterfield (82 Bellfield Drive; Vicmap has the point but ADRA's pages give no hours, and only the Knox list says Tuesday); RAFT Anglican Rowville, Adracare Upper Ferntree Gully and Australia For Christ Community Care Rowville (Knox list only, no operator page read); Peninsula Christian Care Pantry Plus and Theodora's Cheerful Givers (Seaford; operator site unreachable), Turningpoint Seaford and Make A Difference Dingley Village (no operator page with hours found), Salvation Army Carrum Downs and Sunbury (corps pages return 404), Hampton Park Uniting Church (its free 'Open Up' meal has no schedule on any page read) and Find A Penny Hampton Park (no operator page); Mill Park Baptist The Shak, Countrywide Community Missions Epping, the Food Share sites and Sunbury Give Until It Hurts and Care Works (listings or local news only); Whittlesea Community Connections Hardship Help (an office service with no pickup hours); Berwick Uniting Church (its Missions page only points to the Transit Food Bank and Cranbourne Food Truck already listed); Gordon Street Little Pantry (Facebook only). Most Wyndham City directory pages returned HTTP 403 and were not worked around; Equip Community Services' own page was used. Target suburbs with no place after this pass: Sunshine West, Noble Park, Epping, South Morang, Thomastown, Sunbury, Wyndham Vale, Berwick, Narre Warren South, Essendon, Ascot Vale, Mill Park, Eltham, Moorabbin, Dingley Village, Springvale South, Mulgrave, Mount Waverley, Blackburn, Nunawading, Vermont, Lysterfield, Carrum Downs, Seaford, Frankston North, Langwarrin, Hampton Park, Endeavour Hills, Doveton, Lynbrook, Bayswater, Malvern East, Caulfield, Brighton, Sandringham, Laverton, Altona Meadows, Seddon, Maidstone, Kensington, Northcote, Heidelberg, Bundoora, Whittlesea, Wallan and Kilmore.",
     "Tenth pass, Mornington Peninsula (read 2026-11-21), 7 places added: Mornington Community Support Centre (Mornington), Southern Peninsula Community Support, Vinnies Kitchen and Sikh Volunteers Australia (Rosebud), Dromana Community House The Hutch (Dromana), Rye Community House (Rye) and Western Port Community Support (Hastings). Left out, with reasons: Sikh Volunteers Australia Hastings Sunday stop (Fred Smith Reserve car park: no street address or map on any page read); Helping Hands Somerville pantry (Western Port News reports Monday, Wednesday and Friday 9:30am to 2:30pm at the Seniors Activity Hall, Worwong Avenue, but no operator or council page was found, and a newspaper article from August 2025 is not a source we use); Food for All Southern Peninsula (Shire listing at 16 Hinton Street, Rosebud and its own site give no days, hours or cost); Salvation Army Westernport Corps, Hastings (its page lists no food, meal or relief service); Anglican Church St John's Sorrento and The Friday Club, Rye (the Thursday breakfast is for children and carers only, and the Friday Club is mainly for people recovering from mental illness); Mornington Community Support Centre's Thursday fresh food at St Marks Uniting Church, Barkley Street (no street number, only mentioned in the note); Dromana Community House's Thursday Food Share at the Pier Street clubrooms (no street number) and its Training Kitchen (pay what you feel, a cooking program, not mapped); Peninsula Christian Care Pantry Plus (252 Frankston-Flinders Road, Frankston, listed on the Shire page; the Shire page gives only Tuesday 10am to 2pm and the operator page pencc.org was not read, and Frankston is outside the targets); westernportcomsupport.org.au (the domain did not resolve). No place with an operator or council page giving hours was found for Portsea, Sorrento, McCrae, Mount Martha, Somerville, Tyabb, Baxter or Langwarrin. Dromana's page carries a 'Term Three 2026' banner, so its schedule may be stale. Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used.",
-    "Eleventh pass, wealthier inner and bayside suburbs (read 2026-11-21), 5 places added: Father Bob's Pantry (South Melbourne), Hartley's Meals and Uniting Prahran Emergency Relief (Prahran), Hare Krishna temple free meals (Albert Park) and Community Cupboard at healthAbility (Eltham). Left out, with reasons: Malvern Emergency Food Program (the Stonnington page now returns 404 and the sources found disagree on hours, daily 10am to 6pm versus Monday, Wednesday and Friday, and on 24-hour access); Avalon Centre, Malvern East (Stonnington page lists a drop-in, clothing and housing but no food relief); Stonnington Community Assist (Prahran Market, South Yarra; South Yarra already covered and no cost or eligibility stated); City of Port Phillip Free Food Directory pages and PDFs (HTTP 429, not worked around), so the St Joseph's Hall Port Melbourne pantry (Friday, Port Phillip residency and Health Care Card), the Mission Community Meals Thursday dinner at 325 Dorcas Street South Melbourne (listings disagree on 5pm, 5:30pm and 6pm) and Saint Silas Albert Park takeaway meals (listings disagree on eligibility) were only seen in search snippets and not added; Father Bob's Tuesday Alma Park West meal, Windsor (its page says nothing on cost and the venue is a park corner with no street address); Eltham LinC community pantry (29-31 versus 79-81 Pitt Street, directory listing only, hours listing contradicts '24/7'); CareNet Templestowe (its own pages returned HTTP 401, and a search snippet gives a booking requirement and a $5 co-contribution that we could not read on the page); Boroondara council pages (HTTP 403, not worked around), so the Surrey Hills Neighbourhood Centre community lunch (a single dated event, 20 February 2025, only seen in a search snippet) was not added; Surrey Hills Neighbourhood Centre's own site lists no food program; Avenue Neighbourhood House Blackburn South (its own site lists no food program) and the Whitehorse Food Finders PDFs (404); Bayside Baptist Church food pantry (the page found is a church in Virginia Beach, USA, not Melbourne); BayCISS Hampton East (already covered: Hampton East; the Kingston listing does not mention food relief); Tony's Cafe Glen Huntly and CIS Glen Eira (Glen Huntly already covered, CIS gives vouchers by phone); Essendon Baptist People's Pantry and Wired For Glory food bank (2020 article and a listing with no address); Vinnies (no local pantry or conference address found for Brighton, Elwood, Caulfield, Malvern, Armadale, Toorak or Hampton). No operator or council page giving address plus hours was found for Brighton, Brighton East, Hampton, Sandringham, Black Rock, Beaumaris, Elwood, Caulfield, Malvern, Armadale, Toorak, Windsor, Port Melbourne, Balwyn, Canterbury, Surrey Hills, Mont Albert, Glen Iris, Templestowe, Essendon, Mount Waverley or Blackburn. Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used."
+    "Eleventh pass, wealthier inner and bayside suburbs (read 2026-11-21), 5 places added: Father Bob's Pantry (South Melbourne), Hartley's Meals and Uniting Prahran Emergency Relief (Prahran), Hare Krishna temple free meals (Albert Park) and Community Cupboard at healthAbility (Eltham). Left out, with reasons: Malvern Emergency Food Program (the Stonnington page now returns 404 and the sources found disagree on hours, daily 10am to 6pm versus Monday, Wednesday and Friday, and on 24-hour access); Avalon Centre, Malvern East (Stonnington page lists a drop-in, clothing and housing but no food relief); Stonnington Community Assist (Prahran Market, South Yarra; South Yarra already covered and no cost or eligibility stated); City of Port Phillip Free Food Directory pages and PDFs (HTTP 429, not worked around), so the St Joseph's Hall Port Melbourne pantry (Friday, Port Phillip residency and Health Care Card), the Mission Community Meals Thursday dinner at 325 Dorcas Street South Melbourne (listings disagree on 5pm, 5:30pm and 6pm) and Saint Silas Albert Park takeaway meals (listings disagree on eligibility) were only seen in search snippets and not added; Father Bob's Tuesday Alma Park West meal, Windsor (its page says nothing on cost and the venue is a park corner with no street address); Eltham LinC community pantry (29-31 versus 79-81 Pitt Street, directory listing only, hours listing contradicts '24/7'); CareNet Templestowe (its own pages returned HTTP 401, and a search snippet gives a booking requirement and a $5 co-contribution that we could not read on the page); Boroondara council pages (HTTP 403, not worked around), so the Surrey Hills Neighbourhood Centre community lunch (a single dated event, 20 February 2025, only seen in a search snippet) was not added; Surrey Hills Neighbourhood Centre's own site lists no food program; Avenue Neighbourhood House Blackburn South (its own site lists no food program) and the Whitehorse Food Finders PDFs (404); Bayside Baptist Church food pantry (the page found is a church in Virginia Beach, USA, not Melbourne); BayCISS Hampton East (already covered: Hampton East; the Kingston listing does not mention food relief); Tony's Cafe Glen Huntly and CIS Glen Eira (Glen Huntly already covered, CIS gives vouchers by phone); Essendon Baptist People's Pantry and Wired For Glory food bank (2020 article and a listing with no address); Vinnies (no local pantry or conference address found for Brighton, Elwood, Caulfield, Malvern, Armadale, Toorak or Hampton). No operator or council page giving address plus hours was found for Brighton, Brighton East, Hampton, Sandringham, Black Rock, Beaumaris, Elwood, Caulfield, Malvern, Armadale, Toorak, Windsor, Port Melbourne, Balwyn, Canterbury, Surrey Hills, Mont Albert, Glen Iris, Templestowe, Essendon, Mount Waverley or Blackburn. Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used.",
+    "Twelfth pass (read 2026-11-21), 8 places added: Dinner @ Darron's and Oonah food relief (Healesville), Montrose Community Cupboard (Kilsyth), Outlets Co-op Neighbourhood House emergency food relief (Newport), CareWorks SunRanges (Sunbury), Manna4Life Manna House dinner (Hallam), The Shak (Mill Park) and Repurpose And Serve (South Morang). Routes that worked: operator pages found through a council food list (HICCI, Montrose Community Cupboard, Outlets Co-op), the Whittlesea Community Connections Emergency Relief list (2026 edition, now with a text layer) for the Mill Park and South Morang entries, and exact Vicmap Address points for every coordinate. Left out, with reasons: HICCI Community Grocer, Healesville (free, open each day 9am to 2pm, but the page gives no address for the grocer, only HICCI's Visit address on its Contact page, so the site is not stated); Noble Park Community Centre Noble Pantry (Friday 12pm to 2pm) and Servants Reaching Out community lunch (Tuesday 11am to 1pm), both on nobleparkcc.org.au/community: the page has no street number and its map is a name query, and Vicmap has points for 20 and 45 Memorial Drive only, none for the centre's 44; Country Wide Community Missions, Epping (129 Narina Way, Vicmap exact, but the two Whittlesea lists disagree on the days, Thursday 10am to 4pm against the 1st and 3rd Thursday, and no operator page was found); Hope Centre, Bundoora (5/17 Enterprise Drive: no Vicmap point for number 17, only 15 and 20); Encompass Care Bundoora (the range 31-61 McLeans Road, as before); Salvation Army Millpark (Whittlesea list says call to check what assistance can be provided, no food stated); Kensington Manna4Life Tuesday dinner (Uniting Church, 76 McCracken Street: Vicmap has points for 74 and 78 but none for 76); Berwick Church of Christ Food Pantry (still only the 432-446 Centre Road footer address, as in earlier passes); Sunbury Wednesday Kitchen (Give Until It Hurts, Sunbury Community Centre: news articles and a community website only, the times conflict between 6pm and 6:30pm) and Salvation Army Sunbury (no corps page); Doveton Neighbourhood Learning Centre hampers and the Doveton Manna 4 Life pantry (only in the City of Casey 2023 resource and a search snippet, no operator page), Holy Family Doveton soup kitchen (its own Outreach page says 'Content to be provided', and the only schedule is a single 2025 fundraiser) and Endeavour Hills services (the City of Casey 2023 resource only, licence unclear, see above); Salvation Army Berwick, Doveton, Epping, Sunshine, Carrum Downs and other corps pages (the get-help pages that exist cover only the corps already listed, and these slugs return 404); Brimbank crisis-support page entries for Sunshine West and Deer Park (the page still carries COVID-era text, commUnity+ Deer Park and West Sunshine Community Centre list no food service); City of Cardinia food relief page (HTTP 403, not worked around, so Officer and Beaconsfield stay empty); City of Maribyrnong food relief page (read, but its Christmas dates are the 2025 edition and the suburbs it lists are already covered or outside the targets); Latitude pantry, Altona (a youth service, not open to the public); Laverton Community Integrated Services (no Vicmap point for 95-105 Railway Avenue, as before). No operator or council page with address plus hours was found for Sunshine West, Sunshine, Deer Park, Noble Park, Epping, Berwick, Beaconsfield, Moorabbin, Bentleigh East, Essendon, Niddrie, Keilor, Kealba, Laverton, Altona, Spotswood, Maribyrnong, Kensington, Northcote, Bundoora, Eltham North, Mooroolbark (already covered), Doveton, Endeavour Hills, Lynbrook, Clyde, Officer, Rosebud West (Rosebud already covered), Seaford, Carrum Downs, Skye, Langwarrin or Tyabb. Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used."
   ]
 };
