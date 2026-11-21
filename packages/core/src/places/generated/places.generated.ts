@@ -484,6 +484,102 @@ export const placeData: PlaceData = {
       "url": "https://sharespace.org.au/",
       "licence": "Operator page (Share Space Inc. home page), rights not stated; facts only (name, address, access, area served). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
+    },
+    {
+      "id": "salvos-camberwell-lunch",
+      "publisher": "The Salvation Army Camberwell Corps",
+      "title": "Home page and Join our activities page (Free community lunches, Friday 12-1pm and Sunday 12.30-1.30pm, 'Lunch does not operate on public holidays', 'Open to all'; 7-11 Bowen Street, Camberwell). Pages read 2026-11-21. Coordinates: the corps page's own Google Maps link (maps.app.goo.gl/3jqnRgMKwiMgSHyW9), resolved to -37.8390826, 145.0636339; cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 7-11 BOWEN STREET CAMBERWELL 3124 is at -37.8391819, 145.0636016, about 11 m away",
+      "url": "https://www.salvationarmy.org.au/camberwell/",
+      "licence": "Operator page (Salvation Army Camberwell Corps home page and activities page, free community lunches entry), rights not stated; facts only (name, address, days, times, cost, holiday closure) and the coordinate in the page's own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "camcare-camberwell",
+      "publisher": "Camcare (Access Health and Community)",
+      "title": "Camcare page (part of Access Health and Community; 'essential food, fresh produce' emergency relief for people facing financial hardship or food insecurity in the City of Boroondara; Camcare Camberwell, 51 St Johns Ave, Camberwell VIC 3124, opening hours Monday, Thursday, Friday 10am-2pm). Page read 2026-11-21 (camcare.org.au redirects to accesshc.org.au/services/camcare). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 51 ST JOHNS AVENUE CAMBERWELL 3124, read 2026-11-21; the page gives no map",
+      "url": "https://accesshc.org.au/services/camcare",
+      "licence": "Operator page (Camcare page on the Access Health and Community site, Camberwell site entry), rights not stated; facts only (name, address, hours, area served, what is offered). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "camcare-ashburton",
+      "publisher": "Camcare (Access Health and Community)",
+      "title": "Camcare page (part of Access Health and Community; 'essential food, fresh produce' emergency relief for people facing financial hardship or food insecurity in the City of Boroondara; Camcare Ashburton, 4 Y St, Ashburton VIC 3147, opening hours Wednesday 10am-2pm). Page read 2026-11-21 (camcare.org.au redirects to accesshc.org.au/services/camcare). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 4 Y STREET ASHBURTON 3147, read 2026-11-21; the page gives no map",
+      "url": "https://accesshc.org.au/services/camcare",
+      "licence": "Operator page (Camcare page on the Access Health and Community site, Ashburton site entry), rights not stated; facts only (name, address, hours, area served, what is offered). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "hawthorn-community-house-lunch",
+      "publisher": "Access Health and Community (Hawthorn Community House)",
+      "title": "Drop in Lunch event page (Wednesdays 12:15pm-1:15pm during the school term, 28 January to 16 December 2026, 584 Glenferrie Rd, Hawthorn VIC 3122; 'This is a free session with no need for registration... everyone is welcome!'; Cost: Free; Term 4: Wednesday 7 October to Wednesday 16 December). Page read 2026-11-21; the Hawthorn Community House home page (hch.org.au) says Henry Street programs relocated to Level 1, 584 Glenferrie Road from 5 October 2026. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 584 GLENFERRIE ROAD HAWTHORN 3122, read 2026-11-21; the page gives no map",
+      "url": "https://accesshc.org.au/whats-on/drop-in-lunch/",
+      "licence": "Operator page (Access Health and Community 'Drop in Lunch' event page for Hawthorn Community House), rights not stated; facts only (name, address, day, time, term dates, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "point-cook-food-bank",
+      "publisher": "CrossCulture Church of Christ Point Cook",
+      "title": "Point Cook Foodbank page (pickup every Sunday 1pm-2pm, 'grab some frozen food for their family'; CrossCulture Point Cook, 7 Adelphi Boulevard, Point Cook VIC 3030; the City of Wyndham directory entry for the Point Cook Food Bank, https://www.wyndham.vic.gov.au/directory/point-cook-food-bank, gives the same address and time and adds 'during school term'). Page read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 7 ADELPHI BOULEVARD POINT COOK 3030, read 2026-11-21; the page gives no map",
+      "url": "https://www.crossculturepointcook.au/foodbank",
+      "licence": "Operator page (CrossCulture Church of Christ Point Cook, Point Cook Foodbank page), rights not stated; facts only (name, address, day, time). The Wyndham directory entry was used only to corroborate. Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "glen-park-community-pantry",
+      "publisher": "Glen Park Community Centre",
+      "title": "Free Community Pantry page (pantry stocked with personal hygiene items and perishable and non-perishable food 'such as fresh fruit, veggies, bread, meat, eggs'; 'operates on a fortnightly basis in 2026'; 'Membership eligibility applies, please contact the office for eligibility, dates and times'; 'Waitlists may operate'; 30 Glen Park Road, Bayswater North VIC 3153; (03) 9720 5097). Page read 2026-11-21; the City of Knox relief providers page lists Tuesdays 10am-12pm for the pantry. Coordinates: the page's own 'View on Google Maps' link (maps.app.goo.gl/pkV3DXhvVrK1asiu7), resolved to -37.8342819, 145.272987; Vicmap Address has no point for number 30 (nearest road-labelled GLEN PARK ROAD BAYSWATER NORTH points are 53 to 55 m from the pin, read 2026-11-21)",
+      "url": "https://glenparkcc.com.au/free-community-pantry/",
+      "licence": "Operator page (Glen Park Community Centre, Free Community Pantry page), rights not stated; facts only (name, address, schedule, eligibility wording, contents) and the coordinate in the page's own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "secl-springvale-emergency-relief",
+      "publisher": "South East Community Links (SECL)",
+      "title": "Emergency Relief page and Contact page (emergency relief 'may include food, transport or chemist vouchers... food parcels or clothing'; 'operates mainly from our Springvale and Dandenong sites and appointments are preferred'; postcodes 3169, 3171, 3172, 3173, 3174, 3175; call 9546 5255; Springvale, 5 Osborne Avenue, Springvale 3171, Monday-Friday 9am-5pm, appointment only). Pages read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 5 OSBORNE AVENUE SPRINGVALE 3171, read 2026-11-21; the pages give no map",
+      "url": "https://secl.org.au/wellbeing/emergency-relief/",
+      "licence": "Operator page (SECL Emergency Relief page and Contact page, Springvale site), rights not stated; facts only (name, address, hours, eligibility area, what may be provided). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "we-care-community-services-pantry",
+      "publisher": "We Care Community Services",
+      "title": "Home page (Opening hours: 'Community Pantry: Friday 10am -1pm'; Address '307 Gladstone Rd, Dandenong North'; the charity supplies 'essential items such as food, clothing, toiletries and bedding without charge through our community events called Helping Hand Days and our volunteer run Helping Hand Centre'). Page read 2026-11-21; the City of Greater Dandenong support list dated June 2026 links to this site. Coordinates: the page's own Google Maps link (goo.gl/maps/zzEkRSoVGhoXPz7A9), resolved to -37.949902, 145.209699; cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address): 307 GLADSTONE ROAD DANDENONG NORTH 3175 is at -37.9496138, 145.2089419, about 74 m away (inside the 100 m limit; the operator pin is kept)",
+      "url": "https://www.wecare.services/",
+      "licence": "Operator page (We Care Community Services home page), rights not stated; facts only (name, address, pantry day and time, what the charity supplies) and the coordinate in the page's own map link",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "doncare-emergency-relief-pantry",
+      "publisher": "Doncare",
+      "title": "Emergency Relief and Financial Assistance page ('Visit our Food Pantry... we aim to provide choice'; food vouchers; 'You can request an appointment by calling or emailing'; may be asked for identification, proof of address or a concession card; 'provided in partnership with Manningham City Council'; Suite 4, Level 1, 687 Doncaster Road, Doncaster VIC 3108; 9856 1500, reception@doncare.org.au). Page read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 687 DONCASTER ROAD DONCASTER 3108, read 2026-11-21 (the building; the suite is on level 1); the page gives no map",
+      "url": "https://www.doncare.org.au/find-support/emergency-relief-material-aid/information-and-emergency-relief",
+      "licence": "Operator page (Doncare Emergency Relief and Financial Assistance page), rights not stated; facts only (name, address, how to book, what is offered). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "bayside-community-care-food-relief",
+      "publisher": "Bayside Community Care",
+      "title": "Food Relief page ('Food hampers are accessible fortnightly by arrangement. Please call ahead'; 'A Health Care Card or Pension Card must be shown'; 'currently only available for those living in the Kingston and Bayside council areas'; Cheltenham, Tues-Thur weekly 10am-3pm, 99-101 Argus St, Cheltenham; 03 9585 2455). Page read 2026-11-21; the City of Kingston community-group page lists the same address with a map pin of -37.9597197, 145.0746223. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 99-101 ARGUS STREET CHELTENHAM 3192, read 2026-11-21 (the council pin is about 29 m away)",
+      "url": "https://baysidecommunitycare.com.au/programs/emergency-food/",
+      "licence": "Operator page (Bayside Community Care Food Relief program page), rights not stated; facts only (name, address, days, hours, eligibility, how to arrange). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "bayciss-emergency-relief",
+      "publisher": "Bayside Community Information and Support Service (BayCISS)",
+      "title": "Emergency Relief page and Contact page (emergency relief 'may include food parcels, food vouchers, pharmacy vouchers, phone credit and transport cards'; for residents of Bayside and parts of Kingston bounded by South, Warrigal and Centre Dandenong Roads; current ID showing your address is required; BayCISS Hampton East Centre, 12 Katoomba Street, Hampton East 3188, Mon-Fri 10am-4pm; phone 9555 9910 or 9555 6560). Pages read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 12 KATOOMBA STREET HAMPTON EAST 3188, read 2026-11-21; the pages give no map",
+      "url": "https://www.bayciss.org.au/emergency-relief",
+      "licence": "Operator page (BayCISS Emergency Relief page and Contact page, Hampton East centre), rights not stated; facts only (name, address, centre hours, eligibility, what may be provided). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "cis-glen-eira-food-support",
+      "publisher": "CIS Glen Eira",
+      "title": "Get help page and Contact page ('Food and Material Support, and Financial Assistance Program: When funding is available, we may be able to assist you with food, personal care items, medical expenses and other financial assistance. This program is by appointment only'; 'Our services are: Free'; for Glen Eira residents experiencing financial hardship; 1134 Glen Huntly Road, Glen Huntly VIC 3163, Tuesdays-Fridays 9:30am-3:30pm, closed 12:30-1:00pm; phone (03) 9571 7644). Pages read 2026-11-21 (cisvic.org.au/gleneira redirects to cisgleneira.org.au). Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 1134 GLEN HUNTLY ROAD GLEN HUNTLY 3163, read 2026-11-21; the pages give no map",
+      "url": "https://cisgleneira.org.au/get-help/",
+      "licence": "Operator page (CIS Glen Eira Get help page and Contact page), rights not stated; facts only (name, address, hours, eligibility, what may be provided, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
     }
   ],
   "places": [
@@ -1848,6 +1944,245 @@ export const placeData: PlaceData = {
       "sourceId": "share-space-rowville",
       "verification": "primary",
       "checked": "2026-11-21"
+    },
+    {
+      "id": "salvos-camberwell-free-lunch",
+      "name": "Salvation Army Camberwell free community lunch, Camberwell",
+      "kind": "community-meal",
+      "lat": -37.8390826,
+      "lng": 145.0636339,
+      "address": "Camberwell Salvos, 7-11 Bowen Street, Camberwell VIC 3124",
+      "suburb": "Camberwell",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Fridays 12pm to 1pm and Sundays 12:30pm to 1:30pm. Does not run on public holidays",
+      "note": "The page calls these free community lunches, open to all, to share good food and conversation. It publishes no Christmas or New Year change yet; the corps has a separate Advent and Christmas page. Phone 03 9518 2100.",
+      "checked": "2026-11-21",
+      "sourceId": "salvos-camberwell-lunch",
+      "verification": "primary"
+    },
+    {
+      "id": "camcare-camberwell-emergency-relief",
+      "name": "Camcare emergency relief (food), Camberwell",
+      "kind": "food-relief",
+      "lat": -37.83500851416958,
+      "lng": 145.06259376705444,
+      "address": "51 St Johns Avenue, Camberwell VIC 3124",
+      "suburb": "Camberwell",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "referral",
+      "hours": "Camberwell site open Monday, Thursday and Friday 10am to 2pm (the page gives these as the site's opening hours, not separate food times). For people who live, work or play in the City of Boroondara",
+      "note": "Cost not stated on the page. It lists essential food and fresh produce for people facing financial hardship or food insecurity, as part of emergency relief. The page does not say whether you need an appointment, so phone 03 9831 1900 or email camcare@camcare.org.au first.",
+      "checked": "2026-11-21",
+      "sourceId": "camcare-camberwell",
+      "verification": "primary"
+    },
+    {
+      "id": "camcare-ashburton-emergency-relief",
+      "name": "Camcare emergency relief (food), Ashburton",
+      "kind": "food-relief",
+      "lat": -37.862633205783965,
+      "lng": 145.07934249799735,
+      "address": "4 Y Street, Ashburton VIC 3147",
+      "suburb": "Ashburton",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "referral",
+      "hours": "Ashburton site open Wednesday 10am to 2pm (the page gives this as the site's opening hours, not separate food times). For people who live, work or play in the City of Boroondara",
+      "note": "Cost not stated on the page. It lists essential food and fresh produce for people facing financial hardship or food insecurity, as part of emergency relief. The page does not say whether you need an appointment, so phone 03 9831 1900 or email camcare@camcare.org.au first.",
+      "checked": "2026-11-21",
+      "sourceId": "camcare-ashburton",
+      "verification": "primary"
+    },
+    {
+      "id": "hawthorn-community-house-drop-in-lunch",
+      "name": "Hawthorn Community House drop-in lunch, Hawthorn",
+      "kind": "community-meal",
+      "lat": -37.824964083295974,
+      "lng": 145.0351217899711,
+      "address": "Hawthorn Community House, Level 1, 584 Glenferrie Road, Hawthorn VIC 3122",
+      "suburb": "Hawthorn",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Wednesdays 12:15pm to 1:15pm during school terms, until 16 December 2026 (the last date the page lists). The page lists no 2027 dates yet",
+      "note": "The page says it is free, with no need to register, and everyone is welcome. It follows the school term dates, so there is no lunch in the school holidays. The house moved its Henry Street programs to the Glenferrie Road site from Term 4. Phone 03 9819 2629.",
+      "notices": [
+        {
+          "text": "The page lists Wednesday lunches only up to 16 December 2026 (the end of Term 4) and no 2027 dates yet.",
+          "until": "2026-12-16"
+        }
+      ],
+      "endsOn": "2026-12-16",
+      "checked": "2026-11-21",
+      "sourceId": "hawthorn-community-house-lunch",
+      "verification": "primary"
+    },
+    {
+      "id": "point-cook-food-bank-pickup",
+      "name": "Point Cook Food Bank pickup (CrossCulture Church), Point Cook",
+      "kind": "food-relief",
+      "lat": -37.899189795819574,
+      "lng": 144.73939470780962,
+      "address": "CrossCulture Church of Christ, 7 Adelphi Boulevard, Point Cook VIC 3030",
+      "suburb": "Point Cook",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Sundays 1pm to 2pm (the City of Wyndham directory adds: during school term)",
+      "note": "Cost not stated on the page. It describes a pickup of frozen food for local families, run by the church; it asks for donations to the pantry rather than payment, and says to check its Facebook page (Point Cook Food Bank) for updates. The Wyndham directory entry also lists dry goods and fresh groceries.",
+      "checked": "2026-11-21",
+      "sourceId": "point-cook-food-bank",
+      "verification": "primary"
+    },
+    {
+      "id": "glen-park-free-community-pantry",
+      "name": "Glen Park Community Centre Free Community Pantry, Bayswater North",
+      "kind": "food-relief",
+      "lat": -37.8342819,
+      "lng": 145.272987,
+      "address": "30 Glen Park Road, Bayswater North VIC 3153",
+      "suburb": "Bayswater North",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "membership",
+      "hours": "Fortnightly in 2026. The page gives no days or times: contact the office for dates and times (the City of Knox page lists Tuesdays 10am to 12pm)",
+      "note": "The page calls it a Free Community Pantry. Membership eligibility applies and waitlists may operate, so phone (03) 9720 5097 or email office@glenparkcc.com.au before you go. It stocks hygiene items and fresh and non-perishable food.",
+      "checked": "2026-11-21",
+      "sourceId": "glen-park-community-pantry",
+      "verification": "primary"
+    },
+    {
+      "id": "secl-springvale-emergency-relief-food",
+      "name": "South East Community Links emergency relief (food vouchers and parcels), Springvale",
+      "kind": "food-relief",
+      "lat": -37.94677590972637,
+      "lng": 145.14841610626854,
+      "address": "5 Osborne Avenue, Springvale VIC 3171",
+      "suburb": "Springvale",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Springvale site Monday to Friday 9am to 5pm, appointment only (call 9546 5255). For residents of postcodes 3169, 3171, 3172, 3173, 3174 and 3175",
+      "note": "Cost not stated on the page. This is an emergency relief service, not a pantry: the page says help may include food vouchers or parcels, and the type of help varies. Try to bring a Centrelink Healthcare card or photo ID showing your address. The City of Greater Dandenong 2026 support list links to this service.",
+      "checked": "2026-11-21",
+      "sourceId": "secl-springvale-emergency-relief",
+      "verification": "primary"
+    },
+    {
+      "id": "we-care-community-pantry-dandenong-north",
+      "name": "We Care Community Services community pantry, Dandenong North",
+      "kind": "food-relief",
+      "lat": -37.949902,
+      "lng": 145.209699,
+      "address": "307 Gladstone Road, Dandenong North VIC 3175",
+      "suburb": "Dandenong North",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Community Pantry Fridays 10am to 1pm",
+      "note": "Cost not stated for the pantry itself; the page says the charity supplies essential items such as food, clothing and toiletries without charge through its Helping Hand Centre and Helping Hand Days. The page does not say whether you need to register or what stock is on offer.",
+      "checked": "2026-11-21",
+      "sourceId": "we-care-community-services-pantry",
+      "verification": "primary"
+    },
+    {
+      "id": "doncare-food-pantry-doncaster",
+      "name": "Doncare Emergency Relief food pantry (by appointment), Doncaster",
+      "kind": "food-relief",
+      "lat": -37.78720089328261,
+      "lng": 145.13144207336074,
+      "address": "Suite 4, Level 1, 687 Doncaster Road, Doncaster VIC 3108",
+      "suburb": "Doncaster",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "referral",
+      "hours": "No opening times listed. By appointment: call 9856 1500 or email reception@doncare.org.au",
+      "note": "Cost not stated on the page. The pantry lets you choose items where possible; the page mentions fresh food and essential supplies, and food vouchers. You may be asked for identification, proof of address or a concession card. The page says the program is provided in partnership with Manningham City Council.",
+      "checked": "2026-11-21",
+      "sourceId": "doncare-emergency-relief-pantry",
+      "verification": "primary"
+    },
+    {
+      "id": "bayside-community-care-food-hampers-cheltenham",
+      "name": "Bayside Community Care food relief hampers, Cheltenham",
+      "kind": "food-relief",
+      "lat": -37.96007027404349,
+      "lng": 145.07465701842605,
+      "address": "Bayside Church, 99-101 Argus Street, Cheltenham VIC 3192",
+      "suburb": "Cheltenham",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Tuesday to Thursday weekly 10am to 3pm. Hampers fortnightly by arrangement: call ahead on 03 9585 2455. Show a Health Care Card or Pension Card; for people living in the Kingston and Bayside council areas",
+      "note": "Cost not stated on the page. It does not say what a hamper holds; the City of Kingston page calls them non-perishable pantry staples. This is the food relief program only: the Matt's Place meals are listed separately (Chelsea). An earlier pass left it out for unclear hours; the page now gives them.",
+      "checked": "2026-11-21",
+      "sourceId": "bayside-community-care-food-relief",
+      "verification": "primary"
+    },
+    {
+      "id": "bayciss-emergency-relief-hampton-east",
+      "name": "BayCISS emergency relief (food parcels and vouchers), Hampton East",
+      "kind": "food-relief",
+      "lat": -37.93495786401581,
+      "lng": 145.03465841199812,
+      "address": "BayCISS Hampton East Centre, 12 Katoomba Street, Hampton East VIC 3188",
+      "suburb": "Hampton East",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "referral",
+      "hours": "Hampton East centre open Monday to Friday 10am to 4pm (the contact page; the emergency relief page gives no times of its own). For residents of Bayside and parts of Kingston; bring current ID showing your address",
+      "note": "Cost not stated on the page. It says help may include food parcels or food vouchers (vouchers generally no more than once every three months), pharmacy vouchers, phone credit and transport cards after a talk with a trained volunteer or support worker. This is an emergency relief service, not a pantry. Phone 9555 9910 first to check how to book.",
+      "checked": "2026-11-21",
+      "sourceId": "bayciss-emergency-relief",
+      "verification": "primary"
+    },
+    {
+      "id": "cis-glen-eira-food-support-glen-huntly",
+      "name": "CIS Glen Eira food and material support, Glen Huntly",
+      "kind": "food-relief",
+      "lat": -37.889472885731664,
+      "lng": 145.0413571032577,
+      "address": "1134 Glen Huntly Road, Glen Huntly VIC 3163",
+      "suburb": "Glen Huntly",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [],
+      "access": "referral",
+      "hours": "Tuesday to Friday 9:30am to 3:30pm (closed 12:30pm to 1pm). Food and material support is by appointment only: phone (03) 9571 7644. For Glen Eira residents experiencing financial hardship",
+      "note": "The page says CIS Glen Eira's services are free. Food and material support is given only when funding is available and depends on your situation and what the service has, so it may be vouchers or items rather than a parcel. It is not a pantry.",
+      "checked": "2026-11-21",
+      "sourceId": "cis-glen-eira-food-support",
+      "verification": "primary"
     }
   ],
   "notFound": [
@@ -1877,6 +2212,7 @@ export const placeData: PlaceData = {
     "Fourth pass, left out because the operator's own page does not state what is needed: Noble Pantry (Noble Park Community Centre; its page gives Friday 12pm to 2pm but no address or cost for the pantry); Berwick Church of Christ Food Pantry (Tuesdays 10:30am to 2pm by referral, Casey residents; the page gives only the church address, 432-446 Centre Road, not a pantry address, and no map); Duke Street Community House Sunshine (27 Duke Street; the Braybrook Wednesday site is included); Tin Shed Neighbourhood House, St Albans (no food page found); Clayton Church of Christ Love Loud (free weekly meal delivery by referral, Monash and Kingston residents: a delivery service with no visit site); Matt's Place Cheltenham (the page lists the Mentone Uniting Church site but says the program is temporarily moving for six weeks from 8 October 2026, so the site was not recorded; the Chelsea meal is included); Bayside Community Care food relief (Cheltenham; no days, hours or cost beyond 'Tues-Thur 10am-3pm', and a Health Care Card is needed); Wyndham South West Community Services and Lighthouse Store (Hoppers Crossing; only Wyndham council text, and the council page returned HTTP 403, so it was not read).",
     "Fourth pass, council pages used for Melton and Yarra Ranges only where the council page itself was readable (HTTP 200 on 2026-11-21): Melton and Yarra Ranges were readable this time (earlier passes saw HTTP 403); the Wyndham node page and the Whittlesea page still refused or did not resolve, so no Wyndham or Whittlesea entries were taken from them. Other Melton council entries left out: Kirrip Aboriginal Corporation (eligibility limited to Aboriginal and Torres Strait Islander people), temples and a soup van (no stable coordinate or no address match: Sri Durga Temple 705-715 Neales Road, Deanside has no Vicmap point), CatholicCare (phone appointments only). Gordon Street Little Pantry (252 Gordon Street, Footscray) and Braybrook and Maidstone Neighbourhood House (113 Melon Street, free bread Mondays) appear on the Maribyrnong council page, but the first has no Vicmap point and an operator Facebook page only, and the second's page text carries stale 2025-26 holiday dates and no food page was found on its own site. The Footscray Market, Sunshine, St Albans, Broadmeadows (other than the existing two), Heidelberg, Springvale, Noble Park, Oakleigh, Bentleigh, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick and Narre Warren gaps remain: no operator or council page was found that gives an address, hours, a price and an exact coordinate. No independent greengrocer or stable weekly fresh-food market could be verified in this pass (Footscray Market: no operator website was found, and hours appear only on third-party listings).",
     "Fifth pass (read 2026-11-21), 12 places added. Coordinate lessons: the Cheaper Buy Miles page does carry a Google Maps link per store (an earlier pass missed them), the BANSIC Contact page embeds a map block with a marker, and the Brunswick Uniting Church and Croydon North Uniting Church pages carry location data. Still left out, with reasons: Reservoir Neighbourhood House (2B Cuthbert Road; its Contact and Drop-in pages give food relief parcels Tuesday and Wednesday 9:30am to 3:30pm but no map, and Vicmap has no point for 2B, retried); Yarraville Community Centre pantry (59 Francis Street; Vicmap has no Yarraville point for number 59, retried); Combined Churches Caring Melton (no operator site could be reached); Hope City Mission, Croydon (51 Lusher Road; its Drive-Thru Foodbank is Thursdays by appointment and the page has a map link, but Vicmap has no point for number 51, the pin is about 100 m from the neighbouring points, and the City of Maroondah page says Wednesday and Thursday); Salvation Army Merri-bek (Coburg North) and Reservoir (phone-led vouchers, no collection hours for food on the get-help pages), Sunshine Corps (42 Devonshire Road: the corps page gives an address and coordinate but no relief hours, and the Brimbank council listing still carries COVID-era entries) and Hobsons Bay Corps (Altona: location page only, the Wednesday lunch appears only on third-party listings); Springvale Learning and Activities Centre social supermarket (monthly Tuesdays 12:30pm to 2:30pm for Springvale residents by registration, but its home page says 'That's a Wrap for 2026' and gives no 2027 dates); Noble Pantry (Noble Park Community Centre: its own site has no pantry page, and Friday 12pm to 2pm appears only in 2025 press); Jika Jika Community Centre free food program (Northcote: free fruit, vegetables and meals on Wednesday 10:30am to noon for Darebin residents on low incomes; the page's map pin is about 350 m from 1B Plant Street and the page does not say which of its two sites hosts it); Whittlesea Community Connections Hardship Help (Epping: an office in a shopping centre, by phone or form, no pickup hours); Sunbury Neighbourhood Kitchen (Monday dinners at Sunbury Memorial Hall, Stawell Street, closed from 21 December 2026 and reopening 8 February 2027: the page gives no street number, its map is a name query, and Vicmap has no point for the hall); Williamstown Community and Education Centre pantry swap (addresses only; hours appear only in press and third-party items); Brunswick Neighbourhood House (monthly lunch, second Thursday) and Span Community House, Thornbury (second Wednesday lunch, RSVP): no operator page could be reached, council flyers only; Mill Park Baptist Church 'The Shak' (free Saturday lunch: no operator page or address found); Doncaster East Gateway Lighthouse Food Pantry and CareNet (Templestowe): the Manningham council page returned HTTP 403 (not worked around) and CareNet's map is an address query; Monash Waverley Community Information and Support (Mount Waverley): no page found. Not fresh food or no stable schedule: Bentleigh Sunday Market (a general and craft market) and the monthly or dated farmers markets at Williamstown, Yarraville, Altona and Essendon (council or third-party listings only); Footscray Market has no operator page that could be reached (listings name two different websites). Cheaper Buy Miles Flemington and Fitzroy resolve the same way but are outside the target suburbs and were not added. Suburbs still with nothing verified after this pass: Sunshine, St Albans, Springvale, Noble Park, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick, Reservoir, Thornbury, Essendon, Moonee Ponds, Williamstown, Altona, Mentone, Dingley, Mount Waverley, Doncaster and Mill Park. The Wyndham and Whittlesea council pages were not retried.",
-    "Sixth pass (read 2026-11-21), 14 places added from charity operator pages (LIFE Community Kitchen, Helping Hands Mission, Share Space Inc.) and from official council pages and leaflets (City of Wyndham events, Darebin 2026 leaflet, Merri-bek flyers, Kingston community groups). Coordinates were Vicmap Address exact matches (trailing wildcards, results capped at 12 rows in the script) or the council's or operator's own map marker, each cross-checked within 30 m. Still left out, with reasons: Reservoir Neighbourhood House (the Darebin leaflet now says it runs a free Thursday community lunch and dinner and gives the address as 2 Cuthbert Road, but the house's own site says 2B; Vicmap has a point for 2 (near number 4) and a point for 2A/2C about 190 m east, so which one is the house cannot be told; retried); Thornbury Church of Christ (390 St George's Road; no Vicmap point for 390); CHAMPION (Temple Society Australia, 51 Elizabeth Street, Bayswater; Monday 10am to 12:30pm and Wednesday 12:30pm to 3pm on the Yarra Ranges and Knox pages, no cost stated, its own site is script-rendered; the council map pin is about 115 m from the nearest Vicmap points and there is no point for 51); Noble Park Community Centre pantry and lunch (44 Memorial Drive; the Greater Dandenong 2025-26 PDF gives Friday 12pm to 2pm and Tuesday 11am to 1pm, but Vicmap has no point for 44 and its own site has no food page, and the PDF aims it at asylum seekers and people who fall between gaps); Brimbank 'Crisis support services' page (Anglicare Sunshine at Holy Apostles, 100 Anderson Road, Tin Shed St Albans, Loaves and Fishes St Albans, Helping Hands Sunshine): the page still carries COVID-era text ('operating during stage 4 restrictions'), no current operator page corroborated it, Vicmap has no point for 100 Anderson Road Sunshine and the Helping Hands Sunshine pantry address is not on its own site, so none were used; St Albans: the LIFE breakfast at Errington Reserve (309A Main Road East, Thursdays from 8am until 3 December) is on LIFE's page but Vicmap holds 309A Main Road E as the neighbourhood house point, not the reserve, so it was not added; St Mark's Forest Hill monthly lunch (page looks stale: COVID wording, 2015 news); Whittlesea's emergency relief PDF (Christmas closures 2024, no street addresses) and The Shak (Mill Park Baptist, no address); the Knox 'Need help' flyer (Spring edition 2025, over a year old) was used only to corroborate Share Space, and its other Rowville, Scoresby and Boronia entries (RAFT Anglican, Restore Community Care, The Well, Australia for Christ Community Care at 1079 or 1070 Stud Road, Scoresby Uniting, Community@Cavell) were not added because no current operator page was found and the flyer and council directory disagree on an address; Helping Hands emergency pantries (Airport West and Sunshine) need a Health Care Card or Immi Card and an appointment, and the pantry address is not given, so only the Airport West dining room was added; Latitude (Altona) is for young people only; Williamstown Community and Education Centre food relief (Joan Kirner House, 14 Thompson Street; Monday and Friday 10am to 1pm) appears only in a newspaper item and a Healthdirect listing, and its own site could not be reached; Cardinia Shire food relief page returned HTTP 403 (not worked around); Greater Dandenong Council Assist page needs a sign-in; Aboriginal community-controlled services in the Darebin and Merri-bek leaflets (Barrbunin Beek, VACCA, Aboriginal Advancement League, Yakeen Tharn) are eligibility-restricted, so none were listed as general; Sikh Volunteers Australia food van (Noble Park car park behind Coles) is a van with no fixed address. Suburbs still with nothing verified after this pass: Sunshine, Springvale, Noble Park, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick, Essendon, Moonee Ponds, Williamstown, Altona, Dingley, Mount Waverley, Doncaster and Mill Park (St Albans stays empty too; Reservoir and Thornbury are now covered, plus Truganina, Tarneit, Roxburgh Park, Fawkner, Glenroy, Airport West, Carrum, Parkdale, Mentone and Rowville). Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used."
+    "Sixth pass (read 2026-11-21), 14 places added from charity operator pages (LIFE Community Kitchen, Helping Hands Mission, Share Space Inc.) and from official council pages and leaflets (City of Wyndham events, Darebin 2026 leaflet, Merri-bek flyers, Kingston community groups). Coordinates were Vicmap Address exact matches (trailing wildcards, results capped at 12 rows in the script) or the council's or operator's own map marker, each cross-checked within 30 m. Still left out, with reasons: Reservoir Neighbourhood House (the Darebin leaflet now says it runs a free Thursday community lunch and dinner and gives the address as 2 Cuthbert Road, but the house's own site says 2B; Vicmap has a point for 2 (near number 4) and a point for 2A/2C about 190 m east, so which one is the house cannot be told; retried); Thornbury Church of Christ (390 St George's Road; no Vicmap point for 390); CHAMPION (Temple Society Australia, 51 Elizabeth Street, Bayswater; Monday 10am to 12:30pm and Wednesday 12:30pm to 3pm on the Yarra Ranges and Knox pages, no cost stated, its own site is script-rendered; the council map pin is about 115 m from the nearest Vicmap points and there is no point for 51); Noble Park Community Centre pantry and lunch (44 Memorial Drive; the Greater Dandenong 2025-26 PDF gives Friday 12pm to 2pm and Tuesday 11am to 1pm, but Vicmap has no point for 44 and its own site has no food page, and the PDF aims it at asylum seekers and people who fall between gaps); Brimbank 'Crisis support services' page (Anglicare Sunshine at Holy Apostles, 100 Anderson Road, Tin Shed St Albans, Loaves and Fishes St Albans, Helping Hands Sunshine): the page still carries COVID-era text ('operating during stage 4 restrictions'), no current operator page corroborated it, Vicmap has no point for 100 Anderson Road Sunshine and the Helping Hands Sunshine pantry address is not on its own site, so none were used; St Albans: the LIFE breakfast at Errington Reserve (309A Main Road East, Thursdays from 8am until 3 December) is on LIFE's page but Vicmap holds 309A Main Road E as the neighbourhood house point, not the reserve, so it was not added; St Mark's Forest Hill monthly lunch (page looks stale: COVID wording, 2015 news); Whittlesea's emergency relief PDF (Christmas closures 2024, no street addresses) and The Shak (Mill Park Baptist, no address); the Knox 'Need help' flyer (Spring edition 2025, over a year old) was used only to corroborate Share Space, and its other Rowville, Scoresby and Boronia entries (RAFT Anglican, Restore Community Care, The Well, Australia for Christ Community Care at 1079 or 1070 Stud Road, Scoresby Uniting, Community@Cavell) were not added because no current operator page was found and the flyer and council directory disagree on an address; Helping Hands emergency pantries (Airport West and Sunshine) need a Health Care Card or Immi Card and an appointment, and the pantry address is not given, so only the Airport West dining room was added; Latitude (Altona) is for young people only; Williamstown Community and Education Centre food relief (Joan Kirner House, 14 Thompson Street; Monday and Friday 10am to 1pm) appears only in a newspaper item and a Healthdirect listing, and its own site could not be reached; Cardinia Shire food relief page returned HTTP 403 (not worked around); Greater Dandenong Council Assist page needs a sign-in; Aboriginal community-controlled services in the Darebin and Merri-bek leaflets (Barrbunin Beek, VACCA, Aboriginal Advancement League, Yakeen Tharn) are eligibility-restricted, so none were listed as general; Sikh Volunteers Australia food van (Noble Park car park behind Coles) is a van with no fixed address. Suburbs still with nothing verified after this pass: Sunshine, Springvale, Noble Park, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick, Essendon, Moonee Ponds, Williamstown, Altona, Dingley, Mount Waverley, Doncaster and Mill Park (St Albans stays empty too; Reservoir and Thornbury are now covered, plus Truganina, Tarneit, Roxburgh Park, Fawkner, Glenroy, Airport West, Carrum, Parkdale, Mentone and Rowville). Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used.",
+    "Seventh pass (read 2026-11-21), 12 places added by council directory pages (Boroondara, Knox, Glen Eira, Brimbank, Kingston, City of Greater Dandenong 2026 list) followed by the operator's own page. Council-only entries were not added. Left out, with reasons: Council pages that could not be read: Manningham (HTTP 403, so Gateway Lighthouse Doncaster East, CareNet Templestowe and the Pentecost 24/7 pantry were not used; not worked around), Port Phillip (a Vercel 'verifying your browser' check, HTTP 429, not worked around), Anglicare Victoria's emergency relief pages (HTTP 403 challenge, so the Brimbank Anglicare Sunshine and St Albans entries stay uncorroborated), Stonnington's Malvern Emergency Food Program page (HTTP 404 now; Malvern stays empty) and the Whitehorse community directory and Food Finders PDF (moved or 404). Wyndham's 'Find local help' page now only points to Ask Izzy and the Community Connector, so it gave no list. Pages that gave no usable record: Boroondara Community Outreach, Kew (no hours; the site at 23 Highbury Grove is under renovation and has moved next door to 21); Salvation Army Camberwell's Get help page (vouchers by phone, not a food service with collection times); Compass Community Care pantry, Bentleigh East (the page says 'complimentary' food and care parcels 'each Tuesday afternoon' with no times, copyright 2021, and the only Vicmap point near its address is 236 East Boundary Road, the entrance to the large Virginia Park site, so 5b South Drive could not be placed within 100 m); Holy Trinity Williamstown Friday community lunch (its page gives a midday Friday meal 'to people in need' but no times, cost or street address; the 255 Nelson Place address and 10am to noon times appear only in a local newspaper and a council listing); Cornerstone Centre Dandenong (lunch Tuesday and Friday at noon at Dandenong Baptist Church, 25-27 James Street: no cost stated, page copyright 2023, and Vicmap has no point for 25-27 James Street); Sunbury Neighbourhood Kitchen (Monday dinners; still no street number for Sunbury Memorial Hall and Vicmap has only 6 and 12 Stawell Street, retried); Hume Homestead Community Lunch, Roxburgh Park (dates end 1 April 2026); Whittlesea Community Connections community lunch (for people in hardship, not open to all) and the Whittlesea emergency relief PDF (2024, no text layer); Mill Park Baptist 'The Shak' and the Berwick Church of Christ pantry (no operator page with days and an address); Brimbank's Tin Shed pages (staffed hours only, no food page); the Knox Scoresby, Rowville and Wantirna pantries (Adracare site is a golf-club page, RBCares unreachable, Restore Community Care is appointment-only with no stated cost and already outside the suburbs targeted); Monash Waverley Community Information and Support (page shows only a December 2025 closure note); Matt's Place Cheltenham (the page gives Thursdays 10am to 1pm at 'Mentone Uniting Church, corner of Charman Road and Maude Street' with no street number, so no exact address point); Greater Dandenong KLC Keys emergency food relief page (script-rendered, no text); Sikh langar: no gurdwara page stating public access and times was found (the Blackburn Gurdwara Sahib schedule appears only in 2011 and travel listings). Eligibility-restricted: services open to residents of a named area or to card holders were added with that condition in `hours` and an access label; youth-only services (SECL Youth Links Hub in Noble Park, Latitude) were not listed. Suburbs still with nothing verified after this pass: Sunshine, Noble Park, Moorabbin, Epping, Whittlesea, Sunbury, Hoppers Crossing, Berwick, Essendon, Moonee Ponds, Williamstown, Altona, Mount Waverley, Dingley, Mill Park, St Albans, Mernda, Doreen, Eltham, Greensborough, Frankston North, Carrum Downs, Hampton Park, Endeavour Hills, Lynbrook, Bayswater (Bayswater North is now covered), Wantirna, Kew, Malvern, Caulfield (Glen Huntly is covered), Brighton, Sandringham, Werribee South; Point Cook, Springvale, Doncaster, Camberwell, Hawthorn and Cheltenham are now covered. Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used."
   ]
 };
