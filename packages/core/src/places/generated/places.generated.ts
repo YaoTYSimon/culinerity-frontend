@@ -16,10 +16,10 @@ export const placeData: PlaceData = {
     {
       "id": "dandenong-market-visit",
       "publisher": "Dandenong Market",
-      "title": "Visit: Getting Here and Opening Hours (corner of Clow Street and Cleeland Street, Dandenong VIC 3175). Notices re-read 2026-10-27: Bazaar precinct temporarily unavailable from 21 September 2026, expected to reopen in November; closed Melbourne Cup Day, Tuesday 3 November. Coordinates: Wikidata Q28183931 (-37.98384, 145.21583), https://www.wikidata.org/wiki/Q28183931",
+      "title": "Visit: Getting Here and Opening Hours (corner of Clow Street and Cleeland Street, Dandenong VIC 3175). Notices re-read 2026-11-21: Tuesday 7am to 4pm now listed with Friday, Saturday and Sunday; Bazaar due to reopen as Market Hall on Friday 27 November; Christmas Day, Boxing Day and New Year's Day closed; festive trading hours from https://dandenongmarket.com.au/event/festive-season-trading-hours-2026/ (that page writes 'Thursday 31 January', read as 31 December because it is the Thursday in the list). Earlier: closed Melbourne Cup Day, Tuesday 3 November. Coordinates: Wikidata Q28183931 (-37.98384, 145.21583), https://www.wikidata.org/wiki/Q28183931",
       "url": "https://dandenongmarket.com.au/visit/",
       "licence": "Operator page, rights not stated; facts only (name, address words, days and hours). Coordinates: Wikidata, CC0 1.0",
-      "accessed": "2026-10-27"
+      "accessed": "2026-11-21"
     },
     {
       "id": "prahran-market-contact",
@@ -99,7 +99,7 @@ export const placeData: PlaceData = {
       "title": "Community Pantry (Wednesdays 12:30pm-2:00pm or until stock lasts; eligibility; 71-81 Pearcedale Parade, Broadmeadows). Coordinates from the operator's own map link on that page (goo.gl/maps/3TCsh2HXxq4HYnw69 redirects to @-37.676465,144.9192717). The page says voluntary donations are welcome and states no price.",
       "url": "https://banksiagardens.org.au/community-pantry/",
       "licence": "Operator page of Banksia Gardens, rights not stated; facts only (name, address, eligibility, schedule) and the coordinates in the operator's own map link",
-      "accessed": "2026-11-04"
+      "accessed": "2026-11-21"
     },
     {
       "id": "foothills-community-meal",
@@ -107,7 +107,7 @@ export const placeData: PlaceData = {
       "title": "Ferntree Gully Community Meal (free meals Wednesday nights, Ferntree Gully Girl Guides Hall, 156 Underwood Road, Ferntree Gully; finishing for 2026 on December 2nd). Coordinates from the operator's own embedded map on that page (Ferntree Gully Girl Guide Hall, !2d145.2932282!3d-37.8808019). The Upwey meal was left out: its embedded map shows an older venue.",
       "url": "https://foothillscare.org.au/",
       "licence": "Operator page of Foothills Community Care, rights not stated; facts only (name, address, schedule) and the coordinates in the operator's own map embed",
-      "accessed": "2026-11-04"
+      "accessed": "2026-11-21"
     },
     {
       "id": "living-learning-pantry",
@@ -147,7 +147,7 @@ export const placeData: PlaceData = {
       "title": "Food Support (35 Beach Street, Frankston; free hot meal program, emergency food parcels, phone triage hours). Coordinates: the site's own business-location metadata in its page source (businessLocationCoordinates -38.1415229, 145.1279928, \"35 Beach Street, Frankston VIC, Australia\"); the site publishes no map link. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service): '35 BEACH STREET FRANKSTON 3199' address point -38.141520, 145.127955, 3 m from the recorded coordinate, so the coordinate is kept.",
       "url": "https://frankston.net/food",
       "licence": "Operator page, rights not stated; facts only (name, address, days and hours) and the coordinates in its own page metadata",
-      "accessed": "2026-11-20"
+      "accessed": "2026-11-21"
     },
     {
       "id": "salvos-wyndham-get-help",
@@ -155,7 +155,7 @@ export const placeData: PlaceData = {
       "title": "Get help, Wyndham (emergency relief hours; Cafe Agape community meals). Address from the page: collection at 209 Watton Street, Werribee, while its contact box and map link say 211 Watton St, Werribee VIC 3030. Coordinates: the operator's own map link on that page (maps.app.goo.gl/d5HzTgq9dH7VabwE6, resolves to -37.905334, 144.6545385).",
       "url": "https://www.salvationarmy.org.au/wyndham/get-help/",
       "licence": "Operator page (Salvation Army Wyndham get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
-      "accessed": "2026-11-20"
+      "accessed": "2026-11-21"
     },
     {
       "id": "salvos-ringwood-get-help",
@@ -163,7 +163,7 @@ export const placeData: PlaceData = {
       "title": "Get help, Ringwood (emergency relief Mon, Wed, Fri 10am to 2pm; address 53 Wantirna Road, Ringwood). Coordinates: the operator's own map link on that page (maps.app.goo.gl/C4tFGg1AHreGv436A, resolves to -37.8217384, 145.2277615).",
       "url": "https://www.salvationarmy.org.au/ringwood/get-help/",
       "licence": "Operator page (Salvation Army Ringwood get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
-      "accessed": "2026-11-20"
+      "accessed": "2026-11-21"
     },
     {
       "id": "salvos-mooroolbark-get-help",
@@ -171,7 +171,7 @@ export const placeData: PlaceData = {
       "title": "Get help, Mooroolbark (emergency food pantry Monday; address on the page 305 Manchester Road, Chirnside Park, Victoria 3138). Coordinates: the operator's own map link on that page (maps.app.goo.gl/Jmetq2sBnDdGeaS67, resolves to -37.7614963, 145.3144941).",
       "url": "https://www.salvationarmy.org.au/mooroolbark/get-help/",
       "licence": "Operator page (Salvation Army Mooroolbark get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
-      "accessed": "2026-11-20"
+      "accessed": "2026-11-21"
     },
     {
       "id": "salvos-craigieburn-get-help",
@@ -179,7 +179,7 @@ export const placeData: PlaceData = {
       "title": "Get help, Craigieburn (voucher collection days; address 75 Interlink Drive, Craigieburn from the page footer and the Craigieburn Salvos page https://www.salvationarmy.org.au/craigieburn/). Coordinates: the operator's own map link on that page (maps.app.goo.gl/gViYoyVeDkt9sVqAA, resolves to -37.6029873, 144.9467646).",
       "url": "https://www.salvationarmy.org.au/craigieburn/get-help/",
       "licence": "Operator page (Salvation Army Craigieburn get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
-      "accessed": "2026-11-20"
+      "accessed": "2026-11-21"
     },
     {
       "id": "salvos-dandenong-get-help",
@@ -187,7 +187,7 @@ export const placeData: PlaceData = {
       "title": "Get help, Dandenong (Community Food Parcels, 16 George Street, Dandenong). Coordinates: the operator's own map link on that page (maps.app.goo.gl/aapHmEbN7Sb9HbaE8, resolves to -37.9881836, 145.2089866, labelled The Salvation Army Dandenong Corps).",
       "url": "https://www.salvationarmy.org.au/dandenong/get-help/",
       "licence": "Operator page (Salvation Army Dandenong get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
-      "accessed": "2026-11-20"
+      "accessed": "2026-11-21"
     },
     {
       "id": "cranbourne-market-contact",
@@ -234,16 +234,20 @@ export const placeData: PlaceData = {
         "packaged"
       ],
       "access": "open",
-      "hours": "Friday and Saturday 7am to 4pm; Sunday 9am to 4pm",
+      "hours": "Tuesday, Friday and Saturday 7am to 4pm; Sunday 9am to 4pm",
       "notices": [
         {
-          "text": "The Bazaar precinct is temporarily unavailable from 21 September 2026 and is expected to reopen in November. The rest of the market stays open.",
-          "until": "2026-11-30"
+          "text": "The Bazaar precinct is temporarily unavailable and is due to reopen as Market Hall on Friday 27 November. The rest of the market stays open.",
+          "until": "2026-11-26"
+        },
+        {
+          "text": "Christmas and New Year: closed Friday 25 and Saturday 26 December and Friday 1 January. Open Tuesday 22 December 7am to 4pm; Wednesday 23 December 7am to 4pm; Thursday 24 December 6am to 4pm; Sunday 27 December 9am to 4pm; Tuesday 29 December 7am to 4pm; Thursday 31 December 7am to 4pm; closed Monday 28 and Wednesday 30 December.",
+          "until": "2027-01-01"
         }
       ],
       "sourceId": "dandenong-market-visit",
       "verification": "primary",
-      "checked": "2026-10-27"
+      "checked": "2026-11-21"
     },
     {
       "id": "prahran-market",
@@ -569,7 +573,7 @@ export const placeData: PlaceData = {
       ],
       "sourceId": "foothills-community-meal",
       "verification": "primary",
-      "checked": "2026-11-04"
+      "checked": "2026-11-21"
     },
     {
       "id": "pakenham-community-pantry",
@@ -671,7 +675,7 @@ export const placeData: PlaceData = {
       "note": "The page lists emergency food parcels (free basic pantry and fridge items), fresh fruit and vegetables and bread; food or meal vouchers and pre-prepared meals are case by case. Call (03) 9783 7284 and a volunteer will assess what you need.",
       "sourceId": "csf-food-support",
       "verification": "primary",
-      "checked": "2026-11-20"
+      "checked": "2026-11-21"
     },
     {
       "id": "salvos-werribee-relief",
@@ -689,7 +693,7 @@ export const placeData: PlaceData = {
       "note": "Cost not stated on the page. Food parcels are available within those hours; you may be told you are eligible for a food, fuel or electricity voucher and directed to collect it. Phone 03 9741 7359.",
       "sourceId": "salvos-wyndham-get-help",
       "verification": "primary",
-      "checked": "2026-11-20"
+      "checked": "2026-11-21"
     },
     {
       "id": "salvos-werribee-cafe-agape",
@@ -709,7 +713,7 @@ export const placeData: PlaceData = {
       "note": "The page says a two-course meal, open to all; a gold coin donation is gratefully accepted. The page gives the Salvos phone 03 9741 7359 for the site; the meal location is not stated separately from the corps address.",
       "sourceId": "salvos-wyndham-get-help",
       "verification": "primary",
-      "checked": "2026-11-20"
+      "checked": "2026-11-21"
     },
     {
       "id": "salvos-ringwood-relief",
@@ -727,7 +731,7 @@ export const placeData: PlaceData = {
       "note": "Cost not stated on the page. On site they can help with food and basic needs; no financial assistance interviews are done at this site, so for financial help call the Salvos Phone Assistance Line on 03 8873 5288 (Monday to Friday 9am to 4pm).",
       "sourceId": "salvos-ringwood-get-help",
       "verification": "primary",
-      "checked": "2026-11-20"
+      "checked": "2026-11-21"
     },
     {
       "id": "salvos-mooroolbark-pantry",
@@ -747,7 +751,7 @@ export const placeData: PlaceData = {
       "note": "Cost not stated on the page. Non-perishable groceries for those in need. The Salvos page names this the Mooroolbark site; its address is Chirnside Park. Phone 03 9727 4777.",
       "sourceId": "salvos-mooroolbark-get-help",
       "verification": "primary",
-      "checked": "2026-11-20"
+      "checked": "2026-11-21"
     },
     {
       "id": "salvos-craigieburn-relief",
@@ -765,7 +769,7 @@ export const placeData: PlaceData = {
       "note": "Cost not stated on the page. This is vouchers for food, fuel or electricity, not a food pantry. Christmas hamper support from the first week of November: call 03 8339 6100.",
       "sourceId": "salvos-craigieburn-get-help",
       "verification": "primary",
-      "checked": "2026-11-20"
+      "checked": "2026-11-21"
     },
     {
       "id": "salvos-dandenong-food-parcels",
@@ -786,7 +790,7 @@ export const placeData: PlaceData = {
       "note": "Free food parcels with fresh and packaged items for people facing food insecurity or an emergency. Phone Dandenong Salvos 03 9708 9000.",
       "sourceId": "salvos-dandenong-get-help",
       "verification": "primary",
-      "checked": "2026-11-20"
+      "checked": "2026-11-21"
     },
     {
       "id": "cranbourne-market",
