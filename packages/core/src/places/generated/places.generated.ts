@@ -1979,7 +1979,7 @@ export const placeData: PlaceData = {
         "fresh",
         "packaged"
       ],
-      "access": "referral",
+      "access": "open",
       "hours": "Camberwell site open Monday, Thursday and Friday 10am to 2pm (the page gives these as the site's opening hours, not separate food times). For people who live, work or play in the City of Boroondara",
       "note": "Cost not stated on the page. It lists essential food and fresh produce for people facing financial hardship or food insecurity, as part of emergency relief. The page does not say whether you need an appointment, so phone 03 9831 1900 or email camcare@camcare.org.au first.",
       "checked": "2026-11-21",
@@ -2000,7 +2000,7 @@ export const placeData: PlaceData = {
         "fresh",
         "packaged"
       ],
-      "access": "referral",
+      "access": "open",
       "hours": "Ashburton site open Wednesday 10am to 2pm (the page gives this as the site's opening hours, not separate food times). For people who live, work or play in the City of Boroondara",
       "note": "Cost not stated on the page. It lists essential food and fresh produce for people facing financial hardship or food insecurity, as part of emergency relief. The page does not say whether you need an appointment, so phone 03 9831 1900 or email camcare@camcare.org.au first.",
       "checked": "2026-11-21",
@@ -2068,7 +2068,7 @@ export const placeData: PlaceData = {
       ],
       "access": "membership",
       "hours": "Fortnightly in 2026. The page gives no days or times: contact the office for dates and times (the City of Knox page lists Tuesdays 10am to 12pm)",
-      "note": "The page calls it a Free Community Pantry. Membership eligibility applies and waitlists may operate, so phone (03) 9720 5097 or email office@glenparkcc.com.au before you go. It stocks hygiene items and fresh and non-perishable food.",
+      "note": "The page calls it a Free Community Pantry. Membership eligibility applies and waitlists may operate; the page does not say whether membership costs anything, so phone (03) 9720 5097 or email office@glenparkcc.com.au before you go. It stocks hygiene items and fresh and non-perishable food.",
       "checked": "2026-11-21",
       "sourceId": "glen-park-community-pantry",
       "verification": "primary"
@@ -2159,7 +2159,7 @@ export const placeData: PlaceData = {
       "priceBand": "free",
       "priceBasis": "typical",
       "fit": [],
-      "access": "referral",
+      "access": "open",
       "hours": "Hampton East centre open Monday to Friday 10am to 4pm (the contact page; the emergency relief page gives no times of its own). For residents of Bayside and parts of Kingston; bring current ID showing your address",
       "note": "Cost not stated on the page. It says help may include food parcels or food vouchers (vouchers generally no more than once every three months), pharmacy vouchers, phone credit and transport cards after a talk with a trained volunteer or support worker. This is an emergency relief service, not a pantry. Phone 9555 9910 first to check how to book.",
       "checked": "2026-11-21",
