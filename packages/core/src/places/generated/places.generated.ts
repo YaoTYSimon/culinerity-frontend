@@ -3,7 +3,7 @@
 import type { PlaceData } from '../types';
 
 export const placeData: PlaceData = {
-  "generatedAt": "2026-11-20",
+  "generatedAt": "2026-11-21",
   "sources": [
     {
       "id": "qvm-visit",
@@ -188,6 +188,14 @@ export const placeData: PlaceData = {
       "url": "https://www.salvationarmy.org.au/dandenong/get-help/",
       "licence": "Operator page (Salvation Army Dandenong get help page), rights not stated; facts only (name, address, days and hours) and the coordinates the operator publishes in its own map link",
       "accessed": "2026-11-20"
+    },
+    {
+      "id": "cranbourne-market-contact",
+      "publisher": "Cranbourne Market",
+      "title": "Contact Us and home page (22-28 High St, Cranbourne 3977; opening hours; 'Subject to change' on the contact page). Coordinates: the page's own embedded Google map (label 'Cranbourne Market fresh food centre 22-28 High St, Cranbourne'), centre point -38.107474, 145.28306, read from the rendered map's own link on 2026-11-21. Price wording on the page: 'reasonable prices' (not 'affordable', so the band stays at the default)",
+      "url": "https://www.cranbournemarket.com/contact-us",
+      "licence": "Operator page, rights not stated; facts only (name, address words, days and hours). Coordinates: the page's own embedded map",
+      "accessed": "2026-11-21"
     }
   ],
   "places": [
@@ -779,6 +787,27 @@ export const placeData: PlaceData = {
       "sourceId": "salvos-dandenong-get-help",
       "verification": "primary",
       "checked": "2026-11-20"
+    },
+    {
+      "id": "cranbourne-market",
+      "name": "Cranbourne Market",
+      "kind": "grocer",
+      "lat": -38.107474,
+      "lng": 145.28306,
+      "address": "22-28 High Street, Cranbourne VIC 3977 (parking at rear)",
+      "suburb": "Cranbourne",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "access": "open",
+      "hours": "Monday to Thursday 8am to 5pm; Friday 8am to 6pm; Saturday and Sunday 8am to 5pm (page: subject to change)",
+      "note": "Family-run fresh food shop: fruit and vegetables, meat, poultry, deli and groceries. Phone 03 5995 0833.",
+      "sourceId": "cranbourne-market-contact",
+      "verification": "primary",
+      "checked": "2026-11-21"
     }
   ],
   "notFound": [
@@ -801,6 +830,8 @@ export const placeData: PlaceData = {
     "Lilydale (Turningpoint Basement Food Hub, Vantage Point Community Sunday boxes, FoodStop), Mooroolbark Baptist Church dinner, Ringwood Church of Christ lunch and Food is Free Ringwood East: found only on the Yarra Ranges and Maroondah council pages, which refused the request (HTTP 403), and no operator page with coordinates was found.",
     "Melton (Combined Churches Melton foodbank, Melton South Community Centre ADRA food bank, CatholicCare Melton) and Sunbury, Epping and Whittlesea sites (Whittlesea Food Collective, Countrywide Community Missions Epping, Craigieburn Education and Community Centre parcels): council pages refused the request (HTTP 403) or the operator page gave no coordinates, or the schedule was only on third-party listings.",
     "Salvation Army Dandenong Hub and Carrum Downs Corps location pages (seen in search): the pages no longer resolve (they redirect to the locations list), so they were not used. Salvation Army Sunshine (42 Devonshire Road), Project Juan Werribee foodbank, Wyndham Council community foodbank and Manor Lakes foodbank: no readable operator page with coordinates (council pages refused or gave only the council office map).",
-    "Fresh-food markets and greengrocers in the outer suburbs: the Seaford Farmers Market appears to have closed in 2023; the ScullyBug Cranbourne market and Pakenham Lakeside Market have only single listed dates, not a stable weekly schedule; no independent greengrocer page with address, hours and a published coordinate was found. No social supermarket other than LinC (above) was found for the listed suburbs."
+    "Fresh-food markets and greengrocers in the outer suburbs: the Seaford Farmers Market appears to have closed in 2023; the ScullyBug Cranbourne market and Pakenham Lakeside Market have only single listed dates, not a stable weekly schedule; no independent greengrocer page with address, hours and a published coordinate was found. No social supermarket other than LinC (above) was found for the listed suburbs.",
+    "Second attempt, outer-suburb fresh food (read 2026-11-21). Left out, with reasons: Lilydale Rotary Craft and Produce Market (own page gives first Sunday 9am to 2pm for only part of the year and no address or coordinate; the Yarra Ranges council page refused the request, HTTP 403); Whittlesea Monday Market (council page 403; only third-party listings give coordinates); Eynesbury Market (Melton council page 403; dated Sundays only) and Laurimar Lakeside Community Market, Doreen (Whittlesea council page 403); Wyndham Makers and Farmers Market, Werribee Racecourse (monthly, dates only on third-party and council pages, no operator page found); Wyndham Harbour Grocery Pop Up Store (its Visit Werribee page now returns 404; dated run); Berwick Farmers Market at the Old Cheese Factory (conflicting 2nd and 4th Saturday schedules on third-party listings, operator page not found); Sunbury Village Market and Mornington-side markets (third-party only); Melbourne Market Super Saturdays, Epping (2026 trial ended in April); VFMA member directory (not read; its terms were not found, and the list is not copied).",
+    "Greengrocers, second attempt (read 2026-11-21): Henrys Mercato at Karingal Hub, Frankston (hours and address read on the centre's page, but the only coordinate is the whole shopping centre's pin, too coarse for a shop inside it); MarketPlace Fresh at Cranbourne Park (the page's coordinate and hours are the centre's, not the shop's); Hoppers Fresh, Hoppers Crossing, Mooroolbark Fresh Fruit Shop, Get Fresh Boronia, Werribee Fresh Market and Pakenham Fruit and Veg Market (no operator page with hours and a coordinate found; directory and news listings are not used). Persimmon Tree (Croydon) and Victoria Fruit Palace (Ripponlea, not outer) were opened and not used."
   ]
 };
