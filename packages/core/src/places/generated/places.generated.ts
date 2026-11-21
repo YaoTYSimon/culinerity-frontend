@@ -966,11 +966,11 @@ export const placeData: PlaceData = {
       "accessed": "2026-11-21"
     },
     {
-      "id": "merri-bek-salvos-coburg-breakfast",
-      "publisher": "City of Merri-bek",
-      "title": "Merri-bek Community Meals flyer (council PDF 'merri-bek-community-meals-may-2026', 'Last updated: 12/05/2026', linked from the Food access and security page https://www.merri-bek.vic.gov.au/living-in-merri-bek/community-services/public-health/food-security/food-access-and-security/, whose prose repeats the day and venue) (Tuesday: 'The Salvation Army, 828 Sydney Rd, Coburg 3058 (enter via Headley St)', '9.00am FREE - cooked hot breakfast'; Friday: same venue, '9.00am - 10.00am FREE - hot cooked breakfast'). Coordinates: the exact point 828 SYDNEY ROAD COBURG NORTH 3058 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address) (Vicmap places 828 Sydney Road in the locality Coburg North), read 2026-11-21; the flyer gives no map",
-      "url": "https://www.merri-bek.vic.gov.au/globalassets/website-merri-bek/areas/living-merri-bek/community-services/public-health-and-wellbeing/food-security/food-access-and-security/merri-bek-community-meals-may-2026-1.pdf",
-      "licence": "City of Merri-bek Community Meals flyer, Salvation Army Coburg entry (council document), rights not stated; facts only (name, address, days, hours, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "id": "salvos-merri-bek-community-connect-breakfast",
+      "publisher": "The Salvation Army Australia (Merri-bek Salvos)",
+      "title": "Merri-bek Salvos 'Join our community activities' page (salvationarmy.org.au/merribek/merri-bek-salvos/; site footer '© Copyright The Salvation Army 2026', and the hub's home page advertises an exhibition on 13 to 27 March 2027; 15 Headley Street, Coburg North, 'Call 03 9320 7500'; 'Salvos Community Connect and Breakfast, Tuesdays, 10am-2pm, Fridays, 10am-1pm ... Free hot breakfast at 9am'). Coordinates: the exact point 828 SYDNEY ROAD COBURG NORTH 3058 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address) (the council flyer's address; Vicmap has no point for 15 Headley Street, and the pin is about 58 m from the 11 Headley Street point and 86 m from 14 Headley Street), read 2026-11-21; the page gives no map",
+      "url": "https://www.salvationarmy.org.au/merribek/merri-bek-salvos/",
+      "licence": "The Salvation Army Australia web page (Merri-bek Salvos activities), rights not stated; facts only (address, days, hours, cost, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
     },
     {
@@ -1198,11 +1198,11 @@ export const placeData: PlaceData = {
       "accessed": "2026-11-21"
     },
     {
-      "id": "boronia-road-uniting-church-food-parcels-src",
-      "publisher": "City of Knox",
-      "title": "City of Knox 'Community and welfare relief service providers' page (Boronia Road Uniting Church, 209 Boronia Road, Boronia: Tue and Fri 10 am-12 pm, non-perishable food parcels, no bookings, 9762 6732; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 209 BORONIA ROAD BORONIA 3155 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
-      "url": "https://www.knox.vic.gov.au/relief-providers",
-      "licence": "City of Knox community and welfare relief providers list, Boronia Road Uniting Church entry (council page), rights not stated; facts only (name, address, days, hours, booking, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "id": "boronia-road-uniting-church-food-parcels-operator",
+      "publisher": "Boronia Road Uniting Church",
+      "title": "Boronia Road Uniting Church home page (boroniaroad.ucavictas.org.au, page last modified 2026-11-12 per the site's public WordPress REST API: 'Emergency Food Relief. We are a member of the Knox Emergency Relief Network and provide food parcels of non-perishable goods for those who live in the Knox area. Our opening hours are Tuesday and Friday from 10am - 12 noon', address '209 BORONIA ROAD, BORONIA'). Coordinates: exact match for 209 BORONIA ROAD BORONIA 3155 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://boroniaroad.ucavictas.org.au/",
+      "licence": "Boronia Road Uniting Church web page (Community Outreach), rights not stated; facts only (address, days, hours, eligibility). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
     },
     {
@@ -1246,19 +1246,19 @@ export const placeData: PlaceData = {
       "accessed": "2026-11-21"
     },
     {
-      "id": "one-hope-community-church-scoresby-meals-src",
-      "publisher": "City of Knox",
-      "title": "City of Knox 'Community and welfare relief service providers' page (One Hope Community Church (Scoresby), Community@Cavell, 15-17 Cavell Street: community meals Tue 6 pm-7 pm, 9759 9155; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: the exact point for 15 CAVELL STREET SCORESBY 3179 (17 is 3 m away) in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
-      "url": "https://www.knox.vic.gov.au/relief-providers",
-      "licence": "City of Knox community and welfare relief providers list, One Hope Community Church entry (council page), rights not stated; facts only (name, address, day, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "id": "one-hope-community-church-scoresby-meals-operator",
+      "publisher": "One Hope Community Church",
+      "title": "One Hope Community Church 'Community' page (ohcc.com.au/community-cavell; the same site lists sermons dated up to 15 November 2026 and a 30 November 2026 date on its About page: 'Most Tuesday evenings from 6-7pm, during school terms, our volunteers provide a delicious free 2-course meal and friendly conversation', 'Everyone is welcome', 'We meet at our community hub, Community@Cavell, located at 15 Cavell St, Scoresby', 'call us at 03 9759 9155'). Coordinates: the exact point for 15 CAVELL STREET SCORESBY 3179 (17 is 3 m away) in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://www.ohcc.com.au/community-cavell",
+      "licence": "One Hope Community Church web page (Community Focus, Cavell Kitchen), rights not stated; facts only (address, day, hours, cost, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
     },
     {
-      "id": "rbcares-the-well-rowville-src",
-      "publisher": "City of Knox",
-      "title": "City of Knox 'Community and welfare relief service providers' page (RBCares - The Well (Rowville), 6 Le John Street, Rowville: Tue 10:30 am-12 pm, morning tea, food pantry, toiletries, produce, bread, bring own bags, no appointment; page shows no update date, footer 'Copyright © Knox City Council 2026'). Coordinates: exact match for 6 LE JOHN STREET ROWVILLE 3178 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
-      "url": "https://www.knox.vic.gov.au/relief-providers",
-      "licence": "City of Knox community and welfare relief providers list, RBCares The Well entry (council page), rights not stated; facts only (name, address, day, hours, what is offered, booking). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "id": "rbcares-the-well-rowville-operator",
+      "publisher": "Rowville Baptist Cares Incorporated (RBCares)",
+      "title": "RBCares 'The Well' page (rbcares.org.au/the-well/, last modified 2026-04-18 per the site's public WordPress REST API; the site's events list dated 2026 dates and a news post of 2026-04-18: 'Our weekly community food relief program runs on a Tuesday morning between 10.30am and 12 noon, operating out of the Wellington Care Centre (within the grounds of Rowville Baptist Church)', 'fresh produce (fruit, veggies, meat, milk), groceries, bread and cakes, pantry items, toiletries and cleaning materials', 'a complimentary morning tea', 'Everyone is welcome', '6 Le John St, Rowville VIC 3178'). Coordinates: exact match for 6 LE JOHN STREET ROWVILLE 3178 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://rbcares.org.au/the-well/",
+      "licence": "RBCares web page (The Well), rights not stated; facts only (address, day, hours, what is offered). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
     },
     {
@@ -1278,11 +1278,11 @@ export const placeData: PlaceData = {
       "accessed": "2026-11-21"
     },
     {
-      "id": "helping-hand-croydon-uniting-food-pantry-src",
-      "publisher": "City of Maroondah",
-      "title": "City of Maroondah 'Community meals and food relief' page (Helping Hand, 5a Mount View Street, Croydon: Mon-Fri 9.30am-11.30am, food pantry 11am-11.45am, fresh fruit and vegetables Wednesdays 9.30am-10.30am, bring your own bags, 9725 1115; the Croydon Uniting Church page (croydon.unitingchurch.org.au, no copyright year) gives the same address and Monday to Friday 9.30am to 11.45am; page shows no update date, footer '© 2026 Maroondah City Council'). Coordinates: the exact point for 5 MOUNT VIEW STREET CROYDON 3136 (the page says 5A) in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
-      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-health-safety-and-wellbeing/Community-Wellbeing/Food-relief-and-financial-assistance/Community-meals-and-food-relief",
-      "licence": "City of Maroondah community meals and food relief page, Helping Hand entry (council page), rights not stated; facts only (name, address, days, hours, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "id": "helping-hand-croydon-uniting-food-pantry-operator",
+      "publisher": "Croydon Uniting Church",
+      "title": "Croydon Uniting Church 'Helping Hand' page (croydon.unitingchurch.org.au/life-and-activities/helping-hand/, last modified 2026-01-11 per the site's public WordPress REST API: 'Helping Hand is an emergency relief service for people in need in our local community, providing food parcels and food vouchers', '5A Mount View Street, Croydon, Vic 3136 (A property of Uniting)', 'Opening hours: 9.30 am - 11.45 am Monday to Friday (Closed on public holidays)', 'Ph: 9725 1115'; the church's Contact page, last modified 2025-10-30, adds 'Clients are welcome to visit once per month. No referral necessary. Must be on a Centrelink pension or be in financial difficulties' and 'Fruit and vegetable distribution occurs on Wednesdays at 10:00 am'). Coordinates: the exact point for 5 MOUNT VIEW STREET CROYDON 3136 (the page says 5A) in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://croydon.unitingchurch.org.au/life-and-activities/helping-hand/",
+      "licence": "Croydon Uniting Church web page (Helping Hand), rights not stated; facts only (address, days, hours, phone, eligibility). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
     },
     {
@@ -1350,11 +1350,19 @@ export const placeData: PlaceData = {
       "accessed": "2026-11-21"
     },
     {
-      "id": "combined-churches-caring-melton-food-relief-src",
-      "publisher": "City of Melton",
-      "title": "City of Melton 'Food relief' page (Combined Churches Caring Melton (CCCM), 100 Coburns Road, Melton South: emergency food relief and budget education Monday to Friday 10am-12.30pm, City of Melton residents only, Foodbank access twice per year, two forms of ID (one a Healthcare or Centrelink Pension card), 9747 6811; page shows no update date, footer '© 2026 City of Melton'). Coordinates: the range point 98-100 COBURNS ROAD MELTON SOUTH 3338 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
-      "url": "https://www.melton.vic.gov.au/Services/Support-services/Food-Relief",
-      "licence": "City of Melton food relief page, Combined Churches Caring Melton entry (council page), rights not stated; facts only (name, address, days, hours, eligibility, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "id": "combined-churches-caring-melton-food-relief-operator",
+      "publisher": "Combined Churches Caring Melton Inc",
+      "title": "Combined Churches Caring Melton Contact page (cccmelton.org.au/contact-combined-churches-caring-melton, HTTP Last-Modified 14 April 2026; 'Services provided by CCCM are free-of-charge ... You do not need a referral', 'Foodbank opening hours Monday - Friday: 10am - 12:30pm', 'closed on Public Holidays', 'The foodbank and Op Shop are co-located at 100 Coburns Road, Melton South VIC 3338. The foodbank is located at the rear', 'Call us on 03 9747 6811') and Get help page (Last-Modified 14 April 2026: 'two forms of ID - one of which is your healthcare or pension card. Both ID documents must state your City of Melton address', 'usually twice a year, with at least six weeks between each visit'). The site's Support page (also 14 April 2026) gives longer hours (Monday to Thursday 10am to 2:30pm, Friday 10am to 12:30pm), which conflicts with the Contact page. Coordinates: the range point 98-100 COBURNS ROAD MELTON SOUTH 3338 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the pages give no map",
+      "url": "https://cccmelton.org.au/contact-combined-churches-caring-melton",
+      "licence": "Combined Churches Caring Melton web pages (Contact, Get help), rights not stated; facts only (address, days, hours, eligibility, cost, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "cccm-soul-food-melton-south-src",
+      "publisher": "Combined Churches Caring Melton Inc",
+      "title": "Combined Churches Caring Melton 'Soul Food' page (cccmelton.org.au/soul-food, HTTP Last-Modified 15 April 2026: 'Join us every Wednesday during the school term at St Mark's Lutheran Church for Soul Food ... From 12pm to 1pm, we offer a nice warm bowl of soup, some fresh bread, and a short Bible reading', 'Free Soup and Bread', 'Anyone and everyone are welcome', 'St Mark's Lutheran Church - 100 Coburns Rd, Melton South VIC 3338 (in the same complex as the CCCM Foodbank and Op Shop)'). Coordinates: the range point 98-100 COBURNS ROAD MELTON SOUTH 3338 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-21; the page gives no map",
+      "url": "https://cccmelton.org.au/soul-food",
+      "licence": "Combined Churches Caring Melton web page (Soul Food), rights not stated; facts only (address, day, hours, cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
     },
     {
@@ -3957,7 +3965,7 @@ export const placeData: PlaceData = {
       "kind": "community-meal",
       "lat": -37.728045,
       "lng": 144.963918,
-      "address": "The Salvation Army, 828 Sydney Road, Coburg North VIC 3058 (enter via Headley Street)",
+      "address": "The Salvation Army, 828 Sydney Road, Coburg North VIC 3058 (enter via Headley Street, given as 15 Headley Street on the Salvos page)",
       "suburb": "Coburg North",
       "priceBand": "free",
       "priceBasis": "stated",
@@ -3965,10 +3973,10 @@ export const placeData: PlaceData = {
         "meals"
       ],
       "access": "open",
-      "hours": "Tuesdays from 9am and Fridays 9am to 10am, free cooked breakfast",
-      "note": "Listed on the City of Merri-bek Community Meals flyer (last updated 12 May 2026) as a free cooked hot breakfast; enter via Headley Street. The Salvation Army's own page was not read, so check before you go, especially over Christmas.",
-      "verification": "secondary",
-      "sourceId": "merri-bek-salvos-coburg-breakfast",
+      "hours": "Free hot breakfast at 9am on Tuesdays and Fridays, Community Connect drop-in Tuesdays 10am to 2pm and Fridays 10am to 1pm",
+      "note": "The Salvation Army's own Merri-bek Salvos page says free hot breakfast at 9am and a Community Connect drop-in (listening ear, refreshments, referrals) and gives the site as 15 Headley Street, Coburg North, phone 03 9320 7500. The City of Merri-bek Community Meals flyer (last updated 12 May 2026) agrees on the breakfast (Tuesday from 9am, Friday 9am to 10am) and gives the venue as 828 Sydney Road, entering via Headley Street. Check before you go, especially over Christmas.",
+      "verification": "primary",
+      "sourceId": "salvos-merri-bek-community-connect-breakfast",
       "checked": "2026-11-21"
     },
     {
@@ -4578,11 +4586,11 @@ export const placeData: PlaceData = {
         "packaged"
       ],
       "access": "open",
-      "hours": "Tuesday and Friday 10am to 12pm",
-      "note": "Cost not stated. The City of Knox page lists non-perishable food parcels with no bookings. Phone 03 9762 6732. The page is the only source read (no operator page found), so check before you go.",
+      "hours": "Tuesday and Friday 10am to 12 noon, for people who live in the Knox area",
+      "note": "Cost not stated. The church's own page (last edited 12 November 2026) says it is a member of the Knox Emergency Relief Network and gives food parcels of non-perishable goods to people who live in the Knox area. The City of Knox page (footer 2026) lists the same days and says no bookings. Phone 03 9762 6732 (from the council page). Check before you go, especially over Christmas.",
       "checked": "2026-11-21",
-      "sourceId": "boronia-road-uniting-church-food-parcels-src",
-      "verification": "secondary"
+      "sourceId": "boronia-road-uniting-church-food-parcels-operator",
+      "verification": "primary"
     },
     {
       "id": "saint-pauls-boronia-thursday-dinner",
@@ -4599,7 +4607,7 @@ export const placeData: PlaceData = {
       ],
       "access": "open",
       "hours": "Thursdays 5:30pm to 7:30pm, dinner at 6:30pm",
-      "note": "Cost not stated. The City of Knox page lists dine-in community meals. Phone 03 9761 1797. The page is the only source read (no operator page found), so check before you go.",
+      "note": "Cost not stated. The City of Knox page lists dine-in community meals. Phone 03 9761 1797. The church's own Ministries page (undated) says a free Community Meal every Thursday evening 6pm to 7pm in the Atrium, which differs from the council's 5:30pm to 7:30pm, so check the time before you go.",
       "checked": "2026-11-21",
       "sourceId": "saint-pauls-boronia-thursday-dinner-src",
       "verification": "secondary"
@@ -4619,7 +4627,7 @@ export const placeData: PlaceData = {
       ],
       "access": "open",
       "hours": "Fridays 5:30pm to 6:30pm",
-      "note": "Cost not stated. The City of Knox page lists a dinner with no bookings. Phone 03 9762 1277. The page is the only source read (no operator page found), so check before you go.",
+      "note": "Cost not stated. The City of Knox page lists a dinner with no bookings. Phone 03 9762 1277. The church's own Community Meals page (undated) lists a Friday dinner at 5:30pm at 59 Boronia Road, meals free, no booking needed, with no end time, so check before you go.",
       "checked": "2026-11-21",
       "sourceId": "orchard-church-of-christ-friday-dinner-boronia-src",
       "verification": "secondary"
@@ -4684,19 +4692,19 @@ export const placeData: PlaceData = {
       "kind": "community-meal",
       "lat": -37.88889913427397,
       "lng": 145.23578713025262,
-      "address": "Community@Cavell, 15-17 Cavell Street, Scoresby VIC 3179",
+      "address": "Community@Cavell, 15 Cavell Street, Scoresby VIC 3179",
       "suburb": "Scoresby",
       "priceBand": "free",
-      "priceBasis": "typical",
+      "priceBasis": "stated",
       "fit": [
         "meals"
       ],
       "access": "open",
-      "hours": "Community meals Tuesdays 6pm to 7pm",
-      "note": "Cost not stated. The City of Knox page also lists a breakfast club on Tuesdays and Thursdays 8am to 8:30am at Scoresby Secondary College, 20 Cavell Street. Phone 03 9759 9155. The church's own home page confirms its office at 15 Cavell Street but does not mention the meals, so check before you go.",
+      "hours": "Most Tuesday evenings 6pm to 7pm during school terms, free two-course meal",
+      "note": "The church's own page (Cavell Kitchen) says most Tuesday evenings during school terms a free two-course meal with conversation, everyone welcome, and does not give term dates, so check over Christmas and January. The City of Knox page (footer 2026) lists the same Tuesday 6pm to 7pm meal and also a breakfast club on Tuesdays and Thursdays 8am to 8:30am at Scoresby Secondary College, 20 Cavell Street. Phone 03 9759 9155.",
       "checked": "2026-11-21",
-      "sourceId": "one-hope-community-church-scoresby-meals-src",
-      "verification": "secondary"
+      "sourceId": "one-hope-community-church-scoresby-meals-operator",
+      "verification": "primary"
     },
     {
       "id": "rbcares-the-well-rowville",
@@ -4713,11 +4721,11 @@ export const placeData: PlaceData = {
         "packaged"
       ],
       "access": "open",
-      "hours": "Tuesdays 10:30am to 12pm",
-      "note": "Cost not stated. The City of Knox page lists morning tea, a food pantry, toiletries, produce and bread, says to bring your own bags and that no appointment is needed. No phone is listed. The operator page it links to could not be reached, so check before you go.",
+      "hours": "Tuesdays 10:30am to 12 noon",
+      "note": "Cost not stated for the food (the page offers a complimentary morning tea and says everyone is welcome). RBCares' own page (last edited 18 April 2026) lists fresh produce, groceries, bread and cakes, pantry items, toiletries and cleaning materials, asks you to bring your own bags or boxes, and says it runs from the Wellington Care Centre in the grounds of Rowville Baptist Church. The City of Knox page (footer 2026) agrees on Tuesdays 10:30am to 12pm and says no appointment is needed. A site post from January 2026 about Christmas 2025 says the team looked forward to seeing clients again in February, so expect a Christmas break (2026 dates are not published). Check before you go.",
       "checked": "2026-11-21",
-      "sourceId": "rbcares-the-well-rowville-src",
-      "verification": "secondary"
+      "sourceId": "rbcares-the-well-rowville-operator",
+      "verification": "primary"
     },
     {
       "id": "raft-anglican-church-rowville-food-pantry",
@@ -4773,11 +4781,11 @@ export const placeData: PlaceData = {
         "fresh"
       ],
       "access": "open",
-      "hours": "Monday to Friday 9:30am to 11:30am, food pantry 11am to 11:45am, fresh fruit and vegetables Wednesdays 9:30am to 10:30am",
-      "note": "Cost not stated. The City of Maroondah page says to bring your own bags. Phone 03 9725 1115. The church's own page says emergency food relief Monday to Friday 9:30am to 11:45am at 5A Mount View Street and gives no cost or eligibility, so check before you go.",
+      "hours": "Monday to Friday 9:30am to 11:45am, closed on public holidays",
+      "note": "Cost not stated. The church's own Helping Hand page (last edited 11 January 2026) gives the hours and says it provides food parcels and food vouchers; its Contact page (edited 30 October 2025) says clients can visit once a month, no referral is necessary, and clients must be on a Centrelink pension or in financial difficulty. Fresh fruit and vegetables are on Wednesdays, at 10am on the church's Contact page but 9:30am to 10:30am on the City of Maroondah page, which also says to bring your own bags. Phone 03 9725 1115. Check before you go, especially over Christmas.",
       "checked": "2026-11-21",
-      "sourceId": "helping-hand-croydon-uniting-food-pantry-src",
-      "verification": "secondary"
+      "sourceId": "helping-hand-croydon-uniting-food-pantry-operator",
+      "verification": "primary"
     },
     {
       "id": "north-ringwood-care-food-relief",
@@ -4828,7 +4836,7 @@ export const placeData: PlaceData = {
       "fit": [],
       "access": "open",
       "hours": "Tuesday to Thursday 9am to 3pm, community lunch Thursdays 12pm to 1pm",
-      "note": "Cost not stated. The City of Maroondah page lists emergency food relief Tuesday to Thursday and a Thursday lunch at this address, and gives no eligibility. Phone 03 9870 8169. The church's own home page (copyright 2026) gives the address as 13-15 Bedford Rd, office open Tuesday and Thursday 9am to 3pm and an Oasis Community Meal flyer without days or times, so check before you go.",
+      "note": "Cost not stated. The City of Maroondah page lists emergency food relief Tuesday to Thursday and a Thursday lunch at this address, and gives no eligibility. Phone 03 9870 8169. The church's own home page (copyright 2026) gives the address as 13-15 Bedford Rd, office open Tuesday and Thursday 9am to 3pm and an Oasis Community Meal flyer without days or times, The church's community page (last edited 28 May 2025) lists the pantry Tuesday to Thursday 9am to 3pm at the church office and an Oasis lunch on Thursdays 12pm to 1pm for a gold coin donation, so the lunch may not be free. Check before you go.",
       "checked": "2026-11-21",
       "sourceId": "ringwood-church-of-christ-emergency-food-relief-src",
       "verification": "secondary"
@@ -4904,7 +4912,7 @@ export const placeData: PlaceData = {
       ],
       "access": "open",
       "hours": "Tuesdays 6pm to 6:30pm, Thursdays 6pm to 6:45pm",
-      "note": "Cost not stated. The City of Melton page lists a food pantry, home-made meals, and rolls and sandwiches from the Soup Kitchen Bus. Phone 1800 305 330 (Monday to Friday). The pin is the Vicmap range point 323-325 High Street, so the bus may stop a short walk away. No operator page found, so check before you go.",
+      "note": "Cost not stated. The City of Melton page lists a food pantry, home-made meals, and rolls and sandwiches from the Soup Kitchen Bus. Phone 1800 305 330 (Monday to Friday). The pin is the Vicmap range point 323-325 High Street, so the bus may stop a short walk away. Vinnies' own flyer (vinnies.org.au, file named 30-6-2025, no 2026 date) lists Tuesday 6pm to 6:30pm at the Melton Town Centre Amphitheatre (Palmerston Street) and Thursday 6pm to 6:30pm rather than 6:45pm, and says to check its Facebook page for schedule changes, so the Thursday end time may differ: check before you go.",
       "checked": "2026-11-21",
       "sourceId": "vinnies-soup-kitchen-bus-melton-town-centre-src",
       "verification": "secondary"
@@ -4924,7 +4932,7 @@ export const placeData: PlaceData = {
       ],
       "access": "open",
       "hours": "Tuesdays 7pm to 7:30pm",
-      "note": "Cost not stated. The City of Melton page lists a food pantry, home-made meals, and rolls and sandwiches from the Soup Kitchen Bus. Phone 1800 305 330 (Monday to Friday). The pin is the Vicmap range point 11-17 Station Road. No operator page found, so check before you go.",
+      "note": "Cost not stated. The City of Melton page lists a food pantry, home-made meals, and rolls and sandwiches from the Soup Kitchen Bus. Phone 1800 305 330 (Monday to Friday). The pin is the Vicmap range point 11-17 Station Road. Vinnies' own flyer (vinnies.org.au, file named 30-6-2025, no 2026 date) lists a Tuesday stop at Melton Station Square Shopping Centre (11-25 Station Square) running to 7:15pm rather than Station Road 7pm to 7:30pm, and says to check its Facebook page for schedule changes, so the stop and times may differ: check before you go.",
       "checked": "2026-11-21",
       "sourceId": "vinnies-soup-kitchen-bus-melton-south-src",
       "verification": "secondary"
@@ -4938,14 +4946,34 @@ export const placeData: PlaceData = {
       "address": "100 Coburns Road, Melton South VIC 3338",
       "suburb": "Melton South",
       "priceBand": "free",
-      "priceBasis": "typical",
+      "priceBasis": "stated",
       "fit": [],
-      "access": "referral",
-      "hours": "Monday to Friday 10am to 12:30pm, City of Melton residents only, two forms of ID including a Healthcare or Centrelink Pension card, Foodbank access twice a year",
-      "note": "Cost not stated. The City of Melton page also lists budget education. Phone 03 9747 6811. The pin is the Vicmap range point 98-100 Coburns Road. The council page names www.cccmelton.org.au but that site could not be reached earlier, so check before you go.",
+      "access": "open",
+      "hours": "Monday to Friday 10am to 12:30pm, closed on public holidays, City of Melton residents only, two forms of ID including a healthcare or pension card with a City of Melton address, usually twice a year",
+      "note": "CCCM's own site (pages edited April 2026) says its services are free of charge and that no referral is needed, but you must be a City of Melton resident and show two forms of ID, and visits are usually limited to twice a year at least six weeks apart. It also offers budget assistance. Hours: the Contact page and the City of Melton page both say Monday to Friday 10am to 12:30pm, which is used here, but the site's Support page says Monday to Thursday 10am to 2:30pm and Friday 10am to 12:30pm, so check before you go. The foodbank is at the rear of 100 Coburns Road. Phone 03 9747 6811. The pin is the Vicmap range point 98-100 Coburns Road.",
       "checked": "2026-11-21",
-      "sourceId": "combined-churches-caring-melton-food-relief-src",
-      "verification": "secondary"
+      "sourceId": "combined-churches-caring-melton-food-relief-operator",
+      "verification": "primary"
+    },
+    {
+      "id": "cccm-soul-food-melton-south",
+      "name": "CCCM Soul Food free soup and bread lunch, Melton South",
+      "kind": "community-meal",
+      "lat": -37.69311086312537,
+      "lng": 144.56681820603885,
+      "address": "St Mark's Lutheran Church, 100 Coburns Road, Melton South VIC 3338",
+      "suburb": "Melton South",
+      "priceBand": "free",
+      "priceBasis": "stated",
+      "fit": [
+        "meals"
+      ],
+      "access": "open",
+      "hours": "Wednesdays 12pm to 1pm during the school term, free soup and bread",
+      "note": "Combined Churches Caring Melton's own page (edited April 2026) says free soup and bread, friendship and a short Bible reading, and that anyone is welcome. It is held at St Mark's Lutheran Church in the same complex as the CCCM foodbank. Term dates are not on the page, so check over Christmas and January. Phone 03 9747 6811 (CCCM). The pin is the Vicmap range point 98-100 Coburns Road.",
+      "checked": "2026-11-21",
+      "sourceId": "cccm-soul-food-melton-south-src",
+      "verification": "primary"
     },
     {
       "id": "loaves-and-fishes-st-albans-holy-eucharist",
