@@ -140,14 +140,62 @@ describe('Nearby not-checked tier', () => {
   it('a food relief row shows its label, no price line, and the check line; other rows are unchanged', async () => {
     const shard = { release: RELEASE, places: [shardPlace('ovt-1', 'Bulk Bakery', 'bakery', -37.815), shardPlace('ovt-9', 'Bulk Food Bank', 'food-relief', -37.814)] } as unknown as CellShard;
     await open(source({ cell: async (key) => (key === cellKey(CBD.lat, CBD.lng) ? shard : { release: RELEASE, places: [] }) }));
-    const list = await screen.findByRole('list', { name: 'Not checked by us places near you' });
-    const rows = within(list).getAllByRole('listitem');
-    expect(rows[0].textContent).toMatch(/Bulk Food Bank/);
-    expect(rows[0].textContent).toMatch(/Food relief \(listing not checked\)/);
-    expect(rows[0].textContent).not.toMatch(/Price not known/);
-    expect(within(rows[0]).getByText('Check opening hours and who it is for before you go')).toBeInTheDocument();
-    expect(within(rows[1]).getByText('Price not known')).toBeInTheDocument();
-    expect(list.textContent).not.toMatch(/\bfree\b|\$/i);
+    const group = await screen.findByTestId('bulk-relief');
+    const list = screen.getByRole('list', { name: 'Not checked by us places near you' });
+    const relief = within(group).getByRole('listitem');
+    expect(relief.textContent).toMatch(/Bulk Food Bank/);
+    expect(relief.textContent).toMatch(/Food relief \(listing not checked\)/);
+    expect(relief.textContent).not.toMatch(/Price not known/);
+    expect(within(relief).getByText('Check opening hours and who it is for before you go')).toBeInTheDocument();
+    expect(within(within(list).getByRole('listitem')).getByText('Price not known')).toBeInTheDocument();
+    expect(group.textContent + list.textContent).not.toMatch(/\bfree\b|\$/i);
+  });
+
+  const reliefOpen = (places: unknown[]) => {
+    const shard = { release: RELEASE, places } as unknown as CellShard;
+    return open(source({ cell: async (key) => (key === cellKey(CBD.lat, CBD.lng) ? shard : { release: RELEASE, places: [] }) }));
+  };
+
+  it('F2: food relief comes first under its own heading, nearest first, then shops by distance, no repeats', async () => {
+    await reliefOpen([
+      shardPlace('ovt-1', 'Near Cafe', 'cafe-restaurant', -37.8140),
+      shardPlace('ovt-8', 'Far Pantry', 'food-relief', -37.8300),
+      shardPlace('ovt-9', 'Close Pantry', 'food-relief', -37.8200),
+    ]);
+    const group = await screen.findByTestId('bulk-relief');
+    expect(within(group).getByRole('heading', { level: 3, name: 'Food relief (listings not checked)' })).toBeInTheDocument();
+    expect(within(group).getAllByRole('heading', { level: 4 }).map((h) => h.textContent)).toEqual(['Close Pantry', 'Far Pantry']);
+    expect(within(group).queryByRole('button')).toBeNull();
+    const tier = screen.getByRole('heading', { level: 2, name: 'Not checked by us' }).closest('section') as HTMLElement;
+    const order = within(tier).getAllByRole('heading').map((h) => h.textContent);
+    expect(order.slice(0, 6)).toEqual(['Not checked by us', 'Food relief (listings not checked)', 'Close Pantry', 'Far Pantry', 'Shops, cafes and takeaways', 'Near Cafe']);
+    expect(within(tier).getAllByText('Close Pantry')).toHaveLength(1);
+    expect(within(group).getAllByText('Check opening hours and who it is for before you go')).toHaveLength(2);
+    expect(tier.textContent).not.toMatch(/better|worse|\bAI\b|verified/i);
+  });
+
+  it('F2: shows 5 relief rows and Show more food relief reveals the rest', async () => {
+    await reliefOpen(Array.from({ length: 7 }, (_, i) => shardPlace(`ovt-r${i}`, `Pantry ${i}`, 'food-relief', -37.8140 - i * 0.001)));
+    const group = await screen.findByTestId('bulk-relief');
+    expect(within(group).getAllByRole('listitem')).toHaveLength(5);
+    fireEvent.click(within(group).getByRole('button', { name: 'Show more food relief' }));
+    expect(within(group).getAllByRole('listitem')).toHaveLength(7);
+    expect(within(group).queryByRole('button')).toBeNull();
+  });
+
+  it('F2: no relief nearby means no group and no empty heading, and the list reads as before', async () => {
+    await open(source());
+    await screen.findByText('Bulk Bakery');
+    expect(screen.queryByTestId('bulk-relief')).toBeNull();
+    expect(screen.queryByRole('heading', { name: /Food relief/ })).toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Shops, cafes and takeaways' })).toBeNull();
+  });
+
+  it('F2: only relief nearby gives the group alone, no empty second heading or list', async () => {
+    await reliefOpen([shardPlace('ovt-9', 'Only Pantry', 'food-relief', -37.8200)]);
+    await screen.findByTestId('bulk-relief');
+    expect(screen.queryByRole('heading', { name: 'Shops, cafes and takeaways' })).toBeNull();
+    expect(screen.queryByRole('list', { name: 'Not checked by us places near you' })).toBeNull();
   });
 
   it('rows carry no price band, hours, or cheap/healthy/budget words, and nothing is stored', async () => {

@@ -9,6 +9,7 @@ import {
   loadBulkFor,
   neighbourKeys,
   rankBulk,
+  splitReliefFirst,
   type CellShard,
 } from './bulk';
 import type { BulkKind } from './tier';
@@ -123,6 +124,21 @@ describe('rankBulk', () => {
   it('drops a place whose distance is not a number', async () => {
     const places = await hydrate(shardPlace('a', 10), { ...shardPlace('b', 10), lat: Number.NaN });
     expect(rankBulk(places, here).map((r) => r.place.id)).toEqual(['ovt-a']);
+  });
+});
+
+describe('splitReliefFirst (ruling F2)', () => {
+  const load = async (...ps: CellShard['places']) => (await loadBulkFor(here, async (k) => (k === cellKey(here.lat, here.lng) ? shard(...ps) : shard()))).places;
+  it('puts food relief in its own group, nearest first, and leaves the rest in distance order without it', async () => {
+    const ranked = rankBulk(await load(shardPlace('cafe', 10, 'Cafe', 'cafe-restaurant'), shardPlace('far', 800, 'Far Pantry', 'food-relief'), shardPlace('near', 300, 'Near Pantry', 'food-relief'), shardPlace('bake', 20, 'Bake', 'bakery')), here);
+    const { relief, rest } = splitReliefFirst(ranked);
+    expect(relief.map((r) => r.place.id)).toEqual(['ovt-near', 'ovt-far']);
+    expect(rest.map((r) => r.place.id)).toEqual(['ovt-cafe', 'ovt-bake']);
+  });
+  it('returns an empty relief group when there is none', async () => {
+    const { relief, rest } = splitReliefFirst(rankBulk(await load(shardPlace('a', 10)), here));
+    expect(relief).toEqual([]);
+    expect(rest).toHaveLength(1);
   });
 });
 

@@ -142,6 +142,18 @@ export function rankBulk(places: BulkPlace[], pos: LatLng, filter: PlaceFilter =
     );
 }
 
+/**
+ * Ruling F2 (replaces F1): within the unchecked tier, food relief rows are shown first as their own group, nearest first,
+ * and the other kinds follow in the same distance order as before. Input must already be ranked; order is kept.
+ * Food relief rows are not repeated in `rest`.
+ */
+export function splitReliefFirst(ranked: RankedBulk[]): { relief: RankedBulk[]; rest: RankedBulk[] } {
+  return {
+    relief: ranked.filter((r) => r.place.kind === 'food-relief'),
+    rest: ranked.filter((r) => r.place.kind !== 'food-relief'),
+  };
+}
+
 const ISO = /^(\d{4})-(\d{2})-(\d{2})/;
 
 function addMonths(iso: string, months: number): string | null {

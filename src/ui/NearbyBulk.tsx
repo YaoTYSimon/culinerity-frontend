@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BULK_TIER_LABEL, bulkSourceLine } from '@culinerity/core';
+import { BULK_TIER_LABEL, bulkSourceLine, splitReliefFirst } from '@culinerity/core';
 import { buildDataLicences } from '../content/dataLicences';
 import { Disclosure } from './Disclosure';
 import { ExternalLink } from './ExternalLink';
@@ -8,6 +8,10 @@ import { NearbyBulkRow } from './NearbyBulkRow';
 import { PillButton } from './PillButton';
 
 const PAGE = 12;
+const RELIEF_PAGE = 5;
+
+export const BULK_RELIEF_HEADING = 'Food relief (listings not checked)';
+export const BULK_REST_HEADING = 'Shops, cafes and takeaways';
 
 export const BULK_OLD_TEXT = 'This list may be out of date.';
 export const BULK_HIDDEN_TEXT = 'The wider list is being refreshed.';
@@ -38,21 +42,38 @@ function Notes({ old, failed, empty }: { old: boolean; failed: boolean; empty: b
 
 function BulkTier({ view, reportContact }: { view: Shown; reportContact?: string }) {
   const [shown, setShown] = useState(PAGE);
+  const [reliefShown, setReliefShown] = useState(RELIEF_PAGE);
   const { ranked, old, failed, release } = view;
-  const visible = ranked.slice(0, shown);
+  // Ruling F2: food relief first, nearest first, then everything else by distance. No group, no heading, when there is none.
+  const { relief, rest } = splitReliefFirst(ranked);
+  const grouped = relief.length > 0;
+  const level = grouped ? 4 : 3;
+  const visible = rest.slice(0, shown);
   return (
     <section aria-labelledby="nearby-bulk-h" className="grid gap-4">
       <h2 id="nearby-bulk-h" className="font-display text-2xl leading-tight font-bold text-balance">{BULK_TIER_LABEL}</h2>
       <Notes old={old} failed={failed} empty={ranked.length === 0 && !failed} />
-      {ranked.length > 0 && (
-        <>
-          <ul aria-label={`${BULK_TIER_LABEL} places near you`} className="grid gap-10">
-            {visible.map((r) => <NearbyBulkRow key={r.place.id} item={r} reportContact={reportContact} />)}
+      {grouped && (
+        <div className="grid gap-4 pb-6" data-testid="bulk-relief">
+          <h3 id="nearby-relief-h" className="font-display text-xl leading-tight font-bold text-balance">{BULK_RELIEF_HEADING}</h3>
+          <ul aria-labelledby="nearby-relief-h" className="grid gap-10">
+            {relief.slice(0, reliefShown).map((r) => <NearbyBulkRow key={r.place.id} item={r} reportContact={reportContact} level={4} />)}
           </ul>
-          {visible.length < ranked.length && (
+          {reliefShown < relief.length && (
+            <PillButton variant="surface" onClick={() => setReliefShown((n) => n + RELIEF_PAGE)} className="justify-self-start">Show more food relief</PillButton>
+          )}
+        </div>
+      )}
+      {rest.length > 0 && (
+        <div className="grid gap-4">
+          {grouped && <h3 id="nearby-rest-h" className="font-display text-xl leading-tight font-bold text-balance">{BULK_REST_HEADING}</h3>}
+          <ul aria-label={`${BULK_TIER_LABEL} places near you`} className="grid gap-10">
+            {visible.map((r) => <NearbyBulkRow key={r.place.id} item={r} reportContact={reportContact} level={level} />)}
+          </ul>
+          {visible.length < rest.length && (
             <PillButton variant="surface" onClick={() => setShown((n) => n + PAGE)} className="justify-self-start">Show more</PillButton>
           )}
-        </>
+        </div>
       )}
       <p className="text-sm text-muted">{bulkSourceLine(release)}</p>
       <Disclosure summary="Data licences">
