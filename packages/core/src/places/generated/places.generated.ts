@@ -859,6 +859,7 @@ export const placeData: PlaceData = {
           "until": "2026-12-02"
         }
       ],
+      "endsOn": "2026-12-02",
       "sourceId": "foothills-community-meal",
       "verification": "primary",
       "checked": "2026-11-21"
@@ -1554,7 +1555,7 @@ export const placeData: PlaceData = {
         "meals"
       ],
       "access": "open",
-      "hours": "Mondays at 6pm until 30 November 2026 (the operator page gives no later date). Drop in, no booking",
+      "hours": "Mondays at 6pm until 30 November 2026 (the operator page gives no later date). The City of Wyndham listing says no bookings are needed",
       "note": "The page says the meals are free and no Health Care Card or Pension Card is needed. It lists vegetarian and halal options. The City of Wyndham event listing for the same dinner still shows Mondays up to 21 December, so email communitykitchen@lifeau.org or phone 1300 722 333 to confirm whether it continues.",
       "notices": [
         {
@@ -1562,6 +1563,7 @@ export const placeData: PlaceData = {
           "until": "2026-11-30"
         }
       ],
+      "endsOn": "2026-11-30",
       "sourceId": "life-kitchen-truganina",
       "verification": "primary",
       "checked": "2026-11-21"
@@ -1580,7 +1582,7 @@ export const placeData: PlaceData = {
         "meals"
       ],
       "access": "open",
-      "hours": "Tuesdays at 6pm until 1 December 2026 (the operator page gives no later date). Drop in, no booking",
+      "hours": "Tuesdays at 6pm until 1 December 2026 (the operator page gives no later date)",
       "note": "The page says the meals are free and no Health Care Card or Pension Card is needed. It lists vegetarian and halal options. The City of Wyndham event listing shows Tuesdays up to 15 December and then 2 February 2027, so email communitykitchen@lifeau.org or phone 1300 722 333 to confirm.",
       "notices": [
         {
@@ -1588,6 +1590,7 @@ export const placeData: PlaceData = {
           "until": "2026-12-01"
         }
       ],
+      "endsOn": "2026-12-01",
       "sourceId": "life-kitchen-tarneit",
       "verification": "primary",
       "checked": "2026-11-21"
@@ -1607,13 +1610,14 @@ export const placeData: PlaceData = {
       ],
       "access": "open",
       "hours": "School term only: Wednesdays from 8am until 2 December 2026 and Fridays from 8am until 11 December 2026. Sit down or takeaway",
-      "note": "The page says the meals are free. The City of Wyndham listing for this breakfast says children must stay with a parent, guardian or responsible adult, and children on their own can collect food to take away. Email communitykitchen@lifeau.org or phone 1300 722 333 to confirm.",
+      "note": "The page says the meals are free. The City of Wyndham listing for this breakfast says children must stay with a parent, guardian or responsible adult, and children on their own can collect food to take away. The Wyndham listing shows Wednesdays and Fridays up to 9 December, which differs from LIFE's end dates. Email communitykitchen@lifeau.org or phone 1300 722 333 to confirm.",
       "notices": [
         {
           "text": "The LIFE page lists the Wednesday breakfast until 2 December and the Friday breakfast until 11 December, school term only.",
           "until": "2026-12-11"
         }
       ],
+      "endsOn": "2026-12-11",
       "sourceId": "life-kitchen-tarneit-breakfast",
       "verification": "primary",
       "checked": "2026-11-21"
@@ -1640,6 +1644,7 @@ export const placeData: PlaceData = {
           "until": "2026-12-07"
         }
       ],
+      "endsOn": "2026-12-07",
       "sourceId": "life-kitchen-roxburgh-park",
       "verification": "primary",
       "checked": "2026-11-21"
@@ -1761,7 +1766,7 @@ export const placeData: PlaceData = {
       ],
       "access": "open",
       "hours": "Monday to Friday 12pm to 2pm (hot meals); Saturday 12pm to 2pm (toasties)",
-      "note": "Cost not stated for the meals on the page. It says tea and coffee are available all day for a $2 donation and that everyone is welcome. Meals are made mostly from rescued food and change daily. The same op shop runs the Helping Hands emergency pantry by appointment: that needs a Health Care Card, Immi Card, Student or Bridging Visa and registration at the head office, so it is not listed as open. Phone 1300 892 010.",
+      "note": "Cost not stated for the meals on the page. It says tea and coffee are available all day for a $2 donation and that everyone is welcome. Meals are made mostly from rescued food and change daily. The page also points to Helping Hands' separate Emergency Aid programs for people in hardship; those are not listed here, so see the page or phone 1300 892 010.",
       "sourceId": "helping-hands-dining-room",
       "verification": "primary",
       "checked": "2026-11-21"
@@ -1838,8 +1843,8 @@ export const placeData: PlaceData = {
       "priceBasis": "typical",
       "fit": [],
       "access": "open",
-      "hours": "The page describes 24/7 access to food and essential items",
-      "note": "Cost not stated on the page. It says the charity offers 24/7 access to food, personal hygiene and essential items to local families and individuals, serving Rowville, Lysterfield and the Knox community, and that all are welcome. The page does not describe how the access works, so confirm by phone (0435 330 732) or the charity’s social media before you go.",
+      "hours": "No opening times listed. The page says 24/7 access to food and essential items, and asks you to reach out through its social media pages first",
+      "note": "Cost not stated on the page. It says the charity offers 24/7 access to food, personal hygiene and essential items to local families and individuals, serving Rowville, Lysterfield and the Knox community, and that all are welcome. The page does not say what is available at the 15 Goulburn Drive tubs and packs address at any hour, or that food is always there. It says weekly food parcels are assembled and to reach out through the charity’s social media pages for details and a confidential discussion, so do that or phone 0435 330 732 before you go.",
       "sourceId": "share-space-rowville",
       "verification": "primary",
       "checked": "2026-11-21"
