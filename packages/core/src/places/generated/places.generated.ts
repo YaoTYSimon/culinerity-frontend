@@ -1156,6 +1156,54 @@ export const placeData: PlaceData = {
       "url": "https://localfoodconnect.org.au/elthamfm/",
       "licence": "Operator page (Eltham Farmers' Market page), rights not stated; facts only (name, address, days, times, entry) and the coordinates the operator or its council publishes",
       "accessed": "2026-11-21"
+    },
+    {
+      "id": "kinglake-market",
+      "publisher": "Rotary Club Kinglake Ranges",
+      "title": "Kinglake Market home page (1 Extons Road, Kinglake Central 3757; Sundays 22 November and 20 December 2026 listed, 10am to 2pm, 25 October 2026 cancelled; entry by gold coin donation; the page is seeking produce stallholders; footer copyright 2023 and the sidebar still shows an older 'next market' line, so only the dated 2026 days are used). Local produce and fresh food per the Whittlesea council listing 'Kinglake Market' (Kinglake Rotary, gold coin donation, no dates). Coordinates: the page's own Google Maps address link (goo.gl/maps/dPRUaNkFSqDfwpqy9, resolves to pin -37.5077466, 145.315094). Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0): 1C EXTONS ROAD KINGLAKE CENTRAL 3757 is at -37.50821229, 145.31514304, about 52 m away (Vicmap has no point numbered 1)",
+      "url": "https://kinglakemarket.com.au/",
+      "licence": "Operator page (Kinglake Market home page), rights not stated; facts only (name, address, days, times, entry) and the coordinates the operator publishes",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "ecoss-valley-saturday-market",
+      "publisher": "Yarra Ranges Council (listing for Yarra Valley ECOSS)",
+      "title": "Food & Farmers ECOSS Valley Monthly Saturday Market council event listing (Yarra Valley ECOSS, 711 Old Warburton Road, Wesburn 3799; fourth Saturday 10am to 2pm; listed dates 27 June, 25 July, 22 August, 26 September, 24 October and 28 November 2026; free; local produce, food, coffee, chocolate and artisan treats; organiser Yarra Valley ECOSS; page footer copyright 2026 Yarra Ranges Council). Coordinates: the listing's own -37.7746447, 145.6477624. Cross-checked on 2026-11-21 against Vicmap Address (State of Victoria, CC BY 4.0): 711 OLD WARBURTON ROAD WESBURN 3799 is at -37.77462776, 145.64775838, under 2 m away",
+      "url": "https://www.yarraranges.vic.gov.au/Explore-Yarra-Ranges/Events/Food-and-farmers-ecoss-valley-monthly-saturday-market",
+      "licence": "Council event listing (Yarra Ranges Council, ECOSS monthly Saturday market), copyright 2026 Yarra Ranges Council; facts only (name, address, days, times, entry) and the coordinates the council publishes",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "kingston-farmers-market",
+      "publisher": "City of Kingston",
+      "title": "Kingston Farmers' Market council page (Kingston Heath Reserve, 285 Centre Dandenong Road, Cheltenham 3192; 2026 Saturdays 8am to 12:30pm: 7 Feb, 7 Mar, 4 Apr, 2 May, 6 Jun, 4 Jul, 1 Aug, 5 Sep, 3 Oct, 7 Nov, 5 Dec (moved to George Wood Reserve, 58 Governor Road, Mordialloc, while the Australian Open Golf is on) and Wednesday 23 December; a $2 donation to Rotary; a fresh produce and farm-origin food products market trading since October 2004; no January market; footer copyright 2026 City of Kingston). Coordinates: the page's own pin -37.96744421, 145.08851767. Vicmap Address (State of Victoria, CC BY 4.0) has several separate '285 CENTRE DANDENONG ROAD' points across the reserve (166 to 240 m from the pin), so the page pin is used",
+      "url": "https://www.kingston.vic.gov.au/community/events/upcoming-events/farmers-market",
+      "licence": "Council page (City of Kingston, Kingston Farmers' Market), copyright 2026 City of Kingston; facts only (name, address, days, times, entry) and the coordinates the council publishes",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "mt-eliza-farmers-market",
+      "publisher": "Mornington Peninsula Shire (listing for Mt Eliza Farmers Market)",
+      "title": "Mt Eliza Farmers Market Shire event listing (corner Mt Eliza Way and Canadian Bay Road, Mount Eliza 3930; fourth Sunday 9am to 1pm: 25 October and 22 November 2026, 24 January, 28 February, 28 March, 25 April, 23 May, 27 June, 25 July, 22 August, 26 September and 24 October 2027, plus Friday 18 December 2026 5pm to 9pm; entry $2 supporting Mt Eliza Rotary and Lions; seasonal produce, sourdough, cheese, free-range eggs and more; no product prices; copyright 2026 Mornington Peninsula Shire). The market's own site (mtelizafarmersmarket.com.au, copyright 2018) agrees on the days but gives 18 December as 3pm to 8pm. Coordinates: the listing's own -38.1837402, 145.0892463. Vicmap Address (State of Victoria, CC BY 4.0) has no point for the corner; the nearest, 84 MOUNT ELIZA WAY, is about 86 m away",
+      "url": "https://www.mornpen.vic.gov.au/Things-to-do/Events/Whats-on/Mt-Eliza-Farmers-Market",
+      "licence": "Council event listing (Mornington Peninsula Shire, Mt Eliza Farmers Market), copyright 2026 Mornington Peninsula Shire; facts only (name, address, days, times, entry) and the coordinates the Shire publishes",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "briars-market-mount-martha",
+      "publisher": "Mornington Peninsula Shire (listing for The Mount Martha Briars Market)",
+      "title": "The Mount Martha Briars Market Shire event listing (The Briars, 450 Nepean Highway, Mount Martha 3934; Saturdays 9am to 2pm: 5 December 2026, 2 January, 6 February, 6 March, 3 April and 1 May 2027, plus Sunday 27 December 2026 3pm to 8pm; free entry, parking fees apply on entry to Briars Reserve (amount not stated); outdoor craft and produce market with homemade and homegrown products; organiser Craft Markets Australia; the 5 September 2026 market was cancelled by wind; copyright 2026 Mornington Peninsula Shire). Coordinates: the listing's own -38.2741732, 145.0407247. Vicmap Address (State of Victoria, CC BY 4.0): the nearest 448 and 450A NEPEAN HIGHWAY points are 130 to 142 m away on the large reserve, so the Shire pin is used",
+      "url": "https://www.mornpen.vic.gov.au/Things-to-do/Events/Whats-on/The-Mount-Martha-Briars-Market-1",
+      "licence": "Council event listing (Mornington Peninsula Shire, The Mount Martha Briars Market), copyright 2026 Mornington Peninsula Shire; facts only (name, address, days, times, entry) and the coordinates the Shire publishes",
+      "accessed": "2026-11-21"
+    },
+    {
+      "id": "bittern-market",
+      "publisher": "Mornington Peninsula Shire (listing for Bittern Market, Westernport Rotary Club)",
+      "title": "Bittern Market Shire event listing (Bittern Railway Station, Bittern 3918; every Sunday 8am to 1pm, 56 Sundays listed from 4 October 2026 to 31 October 2027 with none on 27 December 2026; free; volunteer-run by Westernport Rotary Club, farm-fresh produce, honey, new and pre-loved items, crafts, food and coffee; copyright 2026 Mornington Peninsula Shire). Coordinates: the listing's own map marker -38.3371322, 145.1780307 (Vicmap Address has no numbered point at the station)",
+      "url": "https://www.mornpen.vic.gov.au/Things-to-do/Events/Whats-on/Bittern-Market",
+      "licence": "Council event listing (Mornington Peninsula Shire, Bittern Market), copyright 2026 Mornington Peninsula Shire; facts only (name, address, days, times, entry) and the coordinates the Shire publishes",
+      "accessed": "2026-11-21"
     }
   ],
   "places": [
@@ -4231,6 +4279,151 @@ export const placeData: PlaceData = {
       "hours": "Every Sunday 8am to 12:30pm (page: stallholder attendance varies, no Christmas dates given)",
       "note": "Free entry. Locally grown (Vic) or made food. Product prices not stated.",
       "sourceId": "eltham-farmers-market"
+    },
+    {
+      "kind": "market",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "access": "open",
+      "verification": "primary",
+      "checked": "2026-11-21",
+      "id": "kinglake-market",
+      "name": "Kinglake Market",
+      "lat": -37.5077466,
+      "lng": 145.315094,
+      "address": "1 Extons Road, Kinglake Central VIC 3757",
+      "suburb": "Kinglake",
+      "fit": [
+        "fresh"
+      ],
+      "hours": "Sundays 22 November and 20 December 2026, 10am to 2pm (page lists no 2027 dates, 25 October was cancelled)",
+      "endsOn": "2026-12-20",
+      "note": "Run by Rotary Club Kinglake Ranges. Entry by gold coin donation. Local produce and artisan food, and the page is seeking more produce stallholders. Product prices not stated. The page footer says 2023 and a sidebar shows older dates, so confirm before travelling. Pin is the page's own map link, 52 m from the Vicmap 1C point.",
+      "sourceId": "kinglake-market"
+    },
+    {
+      "kind": "market",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "access": "open",
+      "verification": "primary",
+      "checked": "2026-11-21",
+      "id": "ecoss-valley-saturday-market",
+      "name": "Food & Farmers ECOSS Valley Saturday Market",
+      "lat": -37.7746447,
+      "lng": 145.6477624,
+      "address": "Yarra Valley ECOSS, 711 Old Warburton Road, Wesburn VIC 3799",
+      "suburb": "Wesburn",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "hours": "Fourth Saturday of the month 10am to 2pm, next 28 November 2026 (listing gives dates to 28 November only)",
+      "endsOn": "2026-11-28",
+      "note": "Free entry. Local produce, food, coffee, chocolate and artisan treats at a permaculture-designed hub. Product prices not stated. Phone 0438 252 519.",
+      "sourceId": "ecoss-valley-saturday-market"
+    },
+    {
+      "kind": "market",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "access": "open",
+      "verification": "primary",
+      "checked": "2026-11-21",
+      "id": "kingston-farmers-market",
+      "name": "Kingston Farmers' Market",
+      "lat": -37.96744421,
+      "lng": 145.08851767,
+      "address": "Kingston Heath Reserve, 285 Centre Dandenong Road, Cheltenham VIC 3192",
+      "suburb": "Cheltenham",
+      "fit": [
+        "fresh"
+      ],
+      "hours": "First Saturday of the month 8am to 12:30pm (no January market), next 5 December 2026 at George Wood Reserve, 58 Governor Road, Mordialloc, then Wednesday 23 December 2026 (page lists dates to 23 December only)",
+      "endsOn": "2026-12-23",
+      "notices": [
+        {
+          "text": "Saturday 5 December 2026 market is at George Wood Reserve, 58 Governor Road, Mordialloc, while the Australian Open Golf is on. The page lists the 23 December market with a 3:30 start, which looks like a typo, so confirm the time.",
+          "until": "2026-12-23"
+        }
+      ],
+      "note": "A $2 donation to Rotary is asked at entry. A fresh produce and farm-origin food market run through the City of Kingston. Product prices not stated. Pin is the council page's own, in the reserve.",
+      "sourceId": "kingston-farmers-market"
+    },
+    {
+      "kind": "market",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "access": "open",
+      "verification": "primary",
+      "checked": "2026-11-21",
+      "id": "mt-eliza-farmers-market",
+      "name": "Mt Eliza Farmers Market",
+      "lat": -38.1837402,
+      "lng": 145.0892463,
+      "address": "Corner Mt Eliza Way and Canadian Bay Road, Mount Eliza VIC 3930",
+      "suburb": "Mount Eliza",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "hours": "Fourth Sunday of the month 9am to 1pm, next 22 November 2026, then 24 January, 28 February and 28 March 2027, plus a Friday 18 December 2026 twilight market",
+      "notices": [
+        {
+          "text": "Friday 18 December 2026 twilight market: the Shire lists 5pm to 9pm and the market's own site 3pm to 8pm, so confirm the time. No Sunday market in December.",
+          "until": "2026-12-18"
+        }
+      ],
+      "note": "A small entry fee of $2 supports the Mt Eliza Rotary and Lions clubs. Seasonal produce, sourdough, cheese and free-range eggs. Product prices not stated. Pin is the Shire listing's own, 86 m from the nearest Vicmap point.",
+      "sourceId": "mt-eliza-farmers-market"
+    },
+    {
+      "kind": "market",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "access": "open",
+      "verification": "primary",
+      "checked": "2026-11-21",
+      "id": "briars-market-mount-martha",
+      "name": "The Mount Martha Briars Market",
+      "lat": -38.2741732,
+      "lng": 145.0407247,
+      "address": "The Briars, 450 Nepean Highway, Mount Martha VIC 3934",
+      "suburb": "Mount Martha",
+      "fit": [
+        "fresh"
+      ],
+      "hours": "Saturdays 9am to 2pm: 5 December 2026, 2 January, 6 February, 6 March, 3 April and 1 May 2027, plus Sunday 27 December 2026 3pm to 8pm",
+      "endsOn": "2027-05-01",
+      "note": "Free entry, but parking fees apply on entry to Briars Reserve (amount not stated). An outdoor craft and produce market of homemade and homegrown products. Product prices not stated. Run by Craft Markets Australia. Pin is the Shire listing's own, on a large reserve.",
+      "sourceId": "briars-market-mount-martha"
+    },
+    {
+      "kind": "market",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "access": "open",
+      "verification": "primary",
+      "checked": "2026-11-21",
+      "id": "bittern-market",
+      "name": "Bittern Market",
+      "lat": -38.3371322,
+      "lng": 145.1780307,
+      "address": "Bittern Railway Station, Bittern VIC 3918",
+      "suburb": "Bittern",
+      "fit": [
+        "fresh",
+        "packaged"
+      ],
+      "hours": "Every Sunday 8am to 1pm, dates listed to 31 October 2027, no market on 27 December 2026",
+      "notices": [
+        {
+          "text": "No market listed for Sunday 27 December 2026: last before the break is 20 December, next 3 January 2027.",
+          "until": "2026-12-27"
+        }
+      ],
+      "note": "Free entry. Volunteer-run by Westernport Rotary Club. Farm-fresh produce, honey, crafts and pre-loved items. Product prices not stated.",
+      "sourceId": "bittern-market"
     }
   ],
   "notFound": [
@@ -4272,6 +4465,7 @@ export const placeData: PlaceData = {
     "Fifteenth pass, council lists dated 2026 (read 2026-11-21), 10 places added: Thornbury Church of Christ Careworks food pickup, DIVRS food share, Bridge Darebin Laneway Lunch and All Saints Preston Saturday lunch (City of Darebin 'Free and low-cost meals in Darebin 2026' leaflet, footer 5/26; the first three corroborated on the operators' own pages), Salvation Army Coburg breakfast, Catalyst Social Centre breakfast, Our Lady Help of Christians soup kitchen, Brunswick Neighbourhood House vegetarian lunch and Our Daily Bread (City of Merri-bek Community Meals flyer, 'Last updated: 12/05/2026'), and Diamond Valley Foodshare (Banyule Hardship and Emergency Relief Guide, 'Updated May 2026'). Coordinates are Vicmap Address points (range queries on road_name and locality_name; three are range or suffix points and say so). Left out, with reasons: Reservoir Neighbourhood House (the Darebin leaflet says 2 Cuthbert Road and the house says 2B; Vicmap has no point for 2B, so the site still cannot be told apart, retried); Empower Australia Lower Plenty (Banyule guide, Sunday 9am to 10am, 360 Main Road: no Vicmap point in 358-362) and Maroondah's Ringwood site; Rosanna Fire Station Community House, Eltham Lions Club and LINC at St Margarets pantries (Banyule guide gives addresses but no days or hours); Uni Hill Church Hope Centre (open early February to early November only, so over for 2026); Barrbunin Beek foodshare and mob dinner (for Aboriginal and Torres Strait Islander people only); Holstep Health and the Salvation Army and St Vincent de Paul phone services (appointment or voucher assessment, no food pickup times); Alphington Community Centre lunch (gold coin donation with no dollar figure, and its own site shows no food page); Anglicare Victoria Preston and the Darebin leaflet's second All Saints pickup at 239 Murray Road (hours garbled in the text layer); the Darebin Food Guide PDF (internal text says May 2025 and July 2025, so not a 2026 edition); Merri-bek Food and Material Aid Relief Services flyer (12/05/2026, but its text layer scrambles which hours belong to which service); Merri-bek free and low-cost food boxes flyer (last updated 10/07/2025); Brunswick Salvos (no hours on the council list); Moonee Valley, Hume, Monash, Nillumbik and Bayside councils (no current dated food list found); the Maroondah Community meals and food relief, Melton Food Relief, Yarra Ranges Food relief and Darebin Food pages (read, HTTP 200, but no visible last-updated or 2026 edition date, only a copyright footer, so not used; every Maroondah, Melton and Yarra Ranges entry on them was already present or was found in earlier passes); Greater Dandenong Material Aid and Emergency Relief Services 2025-2026 PDF (the 2025-26 edition with December 2025 closures and a June 2026 file date, so not clearly a 2026 edition, and its entries are mostly already present); City of Yarra food relief options (HTTP 403), Manningham find local support services (HTTP 403) and City of Melbourne Community Food Guide (HTTP 202 empty challenge response), none worked around. No dated listing or operator page with address, hours and a usable coordinate was found for Sunshine West, Deer Park, Epping, Berwick, Beaconsfield, Officer, Moorabbin, Essendon, Niddrie, Keilor, Spotswood, Maribyrnong, Kensington, Eltham North, Endeavour Hills, Lynbrook, Clyde, Seaford, Carrum Downs, Skye, Langwarrin, Tyabb, Brighton, Elwood, Caulfield, Malvern, Hampton, Mount Waverley, Nunawading, Pascoe Vale, Fairfield, Footscray West, Sunshine North, Cranbourne North and Narre Warren South. Foodbank, SecondBite and OzHarvest locators were not read; OpenStreetMap was not used; the previously blocked pages were not retried.",
     "Sixteenth pass, retries of places skipped for a missing Vicmap point (read 2026-11-21), 9 places added: Stairway Church @ThePantry (Vermont; Vicmap does hold a range point 159-171 Rooks Road, earlier passes only saw the 170-180 and 173-181 ranges), Encompass Care Bundoora (the Visit Us page does carry a map-block marker, and the Banyule guide, updated May 2026, now agrees with the page: Tuesday and Wednesday 9am to 3pm), Anglicare Emergency Relief Sunshine (nearest numbered point 98 Anderson Road, Brimbank list dated 7 September 2026), Manna4Life Kensington Tuesday dinner (Vicmap now has a point for 76 McCracken Street), Reservoir Neighbourhood House food parcels and Thursday community meals (shared 2A/2C point; the house's pages are dated 2026 and the Darebin 2026 leaflet states the meals are free), Empower Australia Lower Plenty (the page's own Google Maps link; the page says everything is free) and Wallan Gateway Church Foodbank (range point 7-9 Commercial Drive). Retried and still left out, with reasons: Compass Community Care Pantry, Bentleigh East (the site's pages say only 'each Tuesday afternoon', carry a 2021 copyright and were last edited in May 2025, and the only Vicmap point is the whole Virginia Park site, so the pin is not within 100 m); Noble Park Community Centre Noble Pantry and Servants Reaching Out lunch (the centre's community page, modified 2026-09-14, gives days and times but no street address or cost, its map is a name query for Memorial Drive, and the number 44 comes only from an older council PDF; Vicmap still has no point for 44); Hope Centre, Bundoora (5/17 Enterprise Drive; its only source is the undated Whittlesea Community Connections PDF, which an earlier pass already rejected as undated; Vicmap has points for 15 and 19 only); Mornington Community Support Centre's Thursday fresh food at St Marks Uniting Church and Dromana Community House's Thursday Food Share at the Pier Street clubrooms (the operators' pages give only 'Barkley St' and 'Pier street clubrooms' with no number; the church and reserve addresses seen came only from non-operator listings, and a sports reserve is too large to pin a clubroom within 100 m); Sikh Volunteers Australia Hastings Sunday stop (the page names only the Fred Smith Reserve car park, no address); Combined Churches Caring Melton (Vicmap has a 98-100 Coburns Road range point, but no operator page could be reached and the council page is undated); Hope City Mission Croydon (no Vicmap point for 51 Lusher Road, the days still disagree between sources and no current dated operator page was read); Yarraville Community Centre (59 Francis Street, no pickup hours on its page); Cornerstone Centre Dandenong (no cost stated and a 2023 copyright; Vicmap holds a 23-29 James Street range point). The Reservoir Neighbourhood House and Encompass Care Bundoora wording in earlier entries above is superseded by this one.",
     "Seventeenth pass, multi-site operators (read 2026-11-21), 4 places added: Empower Australia Southbank and Ringwood (five-site page, copyright 2026, everything free) and Cheaper Buy Miles Flemington and Fitzroy (home page, copyright 2026). Left out, with reasons: Empower Clyde North (Hillcrest Christian College Gate 4, 500 Soldiers Rd: Vicmap has no numbered point on Soldiers Road in Clyde North and the page pin is the whole campus, about 255 m from the only point) and Grovedale (not Greater Melbourne); Sikh Volunteers Australia Langwarrin tiffin pickup (no date beyond copyright 2025, no map link) and Food Van stops (car parks, no street address); Vinnies soup vans (stops only in PDFs, no street addresses on the page); Uniting St Kilda Engagement Hub (adults with a mental health diagnosis only, and the cost is stated two ways); Project Fresh Start Frankston community fridges (undated, 2021 copyright, conflicting restock days); Watsonia Neighbourhood House Tuesday lunch (no time or date); Open Table pantry (copyright 2025, no venue or times); Open House Macleod Thursday lunch (no details on its site); Anglicare Victoria (HTTP 403, not worked around); Rotary Diamond Creek and Eltham Lions pantries (search snippets only).",
-    "Eighteenth pass, low-cost fresh food (read 2026-11-21), 6 places added: Slow Food Melbourne's Spotswood, West Footscray (WeFo) and Edgewater markets (dated 2026-27 schedule on the operator's own pages, council listings give the pins), the Yarraville Farmers Market at Bassett Reserve (operator page, copyright 2026), Hill & Ridge Community Market (Red Hill) and Eltham Farmers' Market. Left out, with reasons: Slow Food Yarraville at Cruickshank Park (Court St, no street number and no pin on any page read); Essendon Farmers' Market at Lincoln Park (only third-party directories and an undated Facebook link, no operator page with 2026 dates); Elwood Farmers' Market and Mount Eliza Farmers' Market (onlymelbourne pages returned HTTP 403 and were not worked around; the Elwood listing seen in search was dated February 2026, and Mount Eliza's December status conflicted between listings); Sunbury markets (only Raine and Horne and old Rotary listings, no operator page with dates); Berwick (the 'Coal Creek' market found is in Korumburra); Brighton, Malvern, Caulfield and Sorrento (no farmers' market or independent greengrocer page found); Mornington Food Yard and Racecourse markets (no operator page read, dates only on listings); Foodbank, SecondBite and OzHarvest locators were not read. Prices: no page states product prices, so every entry is `mid` and `typical`."
+    "Eighteenth pass, low-cost fresh food (read 2026-11-21), 6 places added: Slow Food Melbourne's Spotswood, West Footscray (WeFo) and Edgewater markets (dated 2026-27 schedule on the operator's own pages, council listings give the pins), the Yarraville Farmers Market at Bassett Reserve (operator page, copyright 2026), Hill & Ridge Community Market (Red Hill) and Eltham Farmers' Market. Left out, with reasons: Slow Food Yarraville at Cruickshank Park (Court St, no street number and no pin on any page read); Essendon Farmers' Market at Lincoln Park (only third-party directories and an undated Facebook link, no operator page with 2026 dates); Elwood Farmers' Market and Mount Eliza Farmers' Market (onlymelbourne pages returned HTTP 403 and were not worked around; the Elwood listing seen in search was dated February 2026, and Mount Eliza's December status conflicted between listings); Sunbury markets (only Raine and Horne and old Rotary listings, no operator page with dates); Berwick (the 'Coal Creek' market found is in Korumburra); Brighton, Malvern, Caulfield and Sorrento (no farmers' market or independent greengrocer page found); Mornington Food Yard and Racecourse markets (no operator page read, dates only on listings); Foodbank, SecondBite and OzHarvest locators were not read. Prices: no page states product prices, so every entry is `mid` and `typical`.",
+    "Nineteenth pass, low-cost fresh food from operators and council listings (read 2026-11-21), 6 places added: Kinglake Market (operator page with dated 2026 days), the ECOSS Valley Saturday Market (Wesburn, Yarra Ranges listing), Kingston Farmers' Market (Cheltenham, council page), Mt Eliza Farmers Market (Shire listing, which gives the dates that pass 18 could not read), The Mount Martha Briars Market and Bittern Market (Shire listings). Left out, with reasons: Melbourne Farmers Markets (mfm.com.au redirects to a shop domain whose markets page returned 404, not worked around); Slow Food Melbourne's other pages (Slow Foodscray is a community street event, Yarraville Cruickshank Park still has no street number or pin); Whitehorse Farmers' Market Nunawading (operator page has no dates or copyright); Warrandyte Riverside Market (craft-led, no 2026 dates, no map or entry cost); Boroondara Farmers Market (council page is on the blocked list, Rotary Glenferrie page undated); Lilydale Rotary market (no dates on the club page); Healesville, Emerald, Hume Community Market (Craigieburn) and Whittlesea Food Collective (Epping) (aggregator or school-newsletter listings only, conflicting days); Darley Market (Bacchus Marsh, a flea market); Cruden Farm (Langwarrin, paid-entry events, no current date); Hurstbridge and Warrandyte food swaps (swap events, not a place to buy food, and no price band fits); The Community Grocer pages (already in the dataset, no new site). No independent greengrocer or Open Food Network pickup page with hours was found in the target suburbs. Prices: no page states product prices, so every entry is `mid` and `typical`."
   ]
 };
