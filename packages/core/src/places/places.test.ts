@@ -106,6 +106,14 @@ describe('committed places', () => {
       expect(p.note ?? '', p.id).toMatch(/cost not stated|no prices stated/i);
     }
   });
+  it('give every stated budget food-relief or community-meal record a dollar figure in its note or source title', () => {
+    const rows = placeData.places.filter((p) => (p.kind === 'food-relief' || p.kind === 'community-meal') && p.priceBand === 'budget' && p.priceBasis === 'stated');
+    expect(rows.length).toBeGreaterThan(0);
+    for (const p of rows) {
+      const title = placeData.sources.find((s) => s.id === p.sourceId)?.title ?? '';
+      expect(`${p.note ?? ''} ${title}`, p.id).toMatch(/\$\d|very low cost|low cost/i);
+    }
+  });
   it('give the Community Grocer markets a typical, not stated, budget band', () => {
     const cg = placeData.places.filter((p) => p.id.startsWith('community-grocer-'));
     expect(cg.length).toBe(7);
