@@ -16,7 +16,7 @@ export const placeData: PlaceData = {
     {
       "id": "dandenong-market-visit",
       "publisher": "Dandenong Market",
-      "title": "Visit: Getting Here and Opening Hours (corner of Clow Street and Cleeland Street, Dandenong VIC 3175). Notices re-read 2026-11-21: Tuesday 7am to 4pm now listed with Friday, Saturday and Sunday; Bazaar due to reopen as Market Hall on Friday 27 November; Christmas Day, Boxing Day and New Year's Day closed; festive trading hours from https://dandenongmarket.com.au/event/festive-season-trading-hours-2026/ (that page writes 'Thursday 31 January', read as 31 December because it is the Thursday in the list). Earlier: closed Melbourne Cup Day, Tuesday 3 November. Coordinates: Wikidata Q28183931 (-37.98384, 145.21583), https://www.wikidata.org/wiki/Q28183931",
+      "title": "Visit: Getting Here and Opening Hours (corner of Clow Street and Cleeland Street, Dandenong VIC 3175). Notices re-read 2026-11-21: Tuesday 7am to 4pm now listed with Friday, Saturday and Sunday; Bazaar due to reopen as Market Hall on Friday 27 November (notice also on the home page https://dandenongmarket.com.au/); Christmas Day, Boxing Day and New Year's Day closed; festive trading hours from https://dandenongmarket.com.au/event/festive-season-trading-hours-2026/ (that page writes 'Thursday 31 January', read as 31 December because it is the Thursday in the list). Earlier: closed Melbourne Cup Day, Tuesday 3 November. Coordinates: Wikidata Q28183931 (-37.98384, 145.21583), https://www.wikidata.org/wiki/Q28183931",
       "url": "https://dandenongmarket.com.au/visit/",
       "licence": "Operator page, rights not stated; facts only (name, address words, days and hours). Coordinates: Wikidata, CC0 1.0",
       "accessed": "2026-11-21"

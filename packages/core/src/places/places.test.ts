@@ -119,6 +119,11 @@ describe('committed places', () => {
     expect(cg.length).toBe(7);
     for (const p of cg) expect([p.priceBand, p.priceBasis], p.id).toEqual(['budget', 'typical']);
   });
+  it('cite the market home page for the Dandenong Market reopening notice', () => {
+    const src = placeData.sources.find((s) => s.id === 'dandenong-market-visit');
+    expect(src?.title).toMatch(/https:\/\/dandenongmarket\.com\.au\/(?![\w-])/);
+    expect(src?.title).toMatch(/reopen.*Friday 27 November/);
+  });
   it('keep dated notices short and dated', () => {
     for (const p of placeData.places) for (const n of p.notices ?? []) {
       expect(n.text.trim(), p.id).not.toBe('');
