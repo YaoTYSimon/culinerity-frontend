@@ -624,9 +624,9 @@ export const placeData: PlaceData = {
     {
       "id": "wcec-joan-kirner-house",
       "publisher": "Williamstown Community and Education Centre Inc (WCEC)",
-      "title": "Semester Two 2026 brochure (PDF linked from the centre's home page; 'Food Relief, Joan Kirner House and Altona North Community House, call 03 9397 6168'; Additional Services: 'Food Relief Joan Kirner House, Mondays and Fridays'; facilities 'Food relief including fresh bakery items delivered each morning'; Joan Kirner House, 14 Thompson Street, Williamstown), the Semester Two 2026 weekly timetable (Emergency Relief 10.00-1.00 on Mondays and Fridays at Joan Kirner House) and the Semester One 2026 brochure ('FREE Initiatives. Food Relief: Food relief available at Joan Kirner House Monday and Friday 10am to 1pm'). Read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 14 THOMPSON STREET WILLIAMSTOWN 3016, read 2026-11-21; the home page's map links are address searches without coordinates",
+      "title": "Semester Two 2026 brochure (PDF linked from the centre's home page; 'Food Relief, Joan Kirner House and Altona North Community House, call 03 9397 6168'; Additional Services: 'Food Relief Joan Kirner House, Mondays and Fridays'; facilities 'Food relief including fresh bakery items delivered each morning'; Joan Kirner House, 14 Thompson Street, Williamstown), and the Semester One 2026 brochure ('FREE Initiatives. Food Relief: Food relief available at Joan Kirner House Monday and Friday 10am to 1pm'; the Semester Two weekly timetable lists an 'Emergency Relief' block 10.00-1.00 whose days could not be read reliably from the PDF, so it was not used). Read 2026-11-21. Coordinates: Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), exact match for 14 THOMPSON STREET WILLIAMSTOWN 3016, read 2026-11-21; the home page's map links are address searches without coordinates",
       "url": "https://williamstown-spotswoodcc.org.au/wp-content/uploads/Semester-Two-Brochure.pdf",
-      "licence": "Operator documents (WCEC Semester Two 2026 brochure and weekly timetable, Semester One 2026 brochure, Joan Kirner House food relief entry), rights not stated; facts only (name, address, days, hours, what is offered). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "licence": "Operator documents (WCEC Semester Two 2026 brochure and Semester One 2026 brochure, Joan Kirner House food relief entry), rights not stated; facts only (name, address, days, hours, what is offered). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-21"
     },
     {
@@ -2382,7 +2382,7 @@ export const placeData: PlaceData = {
         "packaged"
       ],
       "access": "open",
-      "hours": "Mondays and Fridays 10am to 1pm. Phone 03 9397 6168 (office Monday to Friday 9am to 4pm)",
+      "hours": "Mondays and Fridays (the Semester One 2026 brochure said 10am to 1pm; the Semester Two brochure gives no time). Phone 03 9397 6168 (office Monday to Friday 9am to 4pm)",
       "note": "Cost not stated in the Semester Two 2026 brochure; the Semester One 2026 brochure listed food relief under its free initiatives. The brochure also lists a pantry swap, a fresh produce exchange and fresh bakery items delivered each morning at the house. The brochures do not say whether the service pauses over the Christmas break, so phone before you go.",
       "sourceId": "wcec-joan-kirner-house",
       "verification": "primary",
