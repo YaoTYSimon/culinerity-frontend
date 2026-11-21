@@ -1,4 +1,4 @@
-import { lazy, Suspense, useContext, useRef, useState } from 'react';
+import { Suspense, useContext, useRef, useState } from 'react';
 import { addWeekSwap, appendScore, calendar, dismissOccasion, occasionsOn, removeOneWeekSwap, sanitizeMeals, sanitizeTradeoffs, type CulturalMeal, type FoodProfile, type Profile } from '@culinerity/core';
 import { useServices } from './services/ServicesContext';
 import { RemoveNoteBanner } from './auth/RemoveNoteBanner';
@@ -21,17 +21,19 @@ import { homeFor, resolveView, type NavTarget, type View } from './ui/views';
 import { WeekCard } from './ui/WeekCard';
 import { Welcome } from './ui/Welcome';
 import { LoadingText } from './ui/LoadingText';
+import { LazyErrorBoundary } from './ui/LazyErrorBoundary';
+import { lazyWithRetry } from './ui/lazyWithRetry';
 import { useFocusOnViewChange } from './ui/useFocusOnViewChange';
 
 // Heavy views that are never the first screen load on demand as same-origin static chunks.
-const BudgetView = lazy(() => import('./ui/BudgetView').then((m) => ({ default: m.BudgetView })));
-const CookView = lazy(() => import('./ui/CookView').then((m) => ({ default: m.CookView })));
-const PantryView = lazy(() => import('./ui/PantryView').then((m) => ({ default: m.PantryView })));
-const TradeoffsView = lazy(() => import('./ui/TradeoffsView').then((m) => ({ default: m.TradeoffsView })));
-const WhatIfView = lazy(() => import('./ui/WhatIfView').then((m) => ({ default: m.WhatIfView })));
-const FoodSafetyView = lazy(() => import('./ui/FoodSafetyView').then((m) => ({ default: m.FoodSafetyView })));
-const PolicyView = lazy(() => import('./ui/PolicyView').then((m) => ({ default: m.PolicyView })));
-const Nearby = lazy(() => import('./ui/Nearby').then((m) => ({ default: m.Nearby })));
+const BudgetView = lazyWithRetry(() => import('./ui/BudgetView').then((m) => ({ default: m.BudgetView })));
+const CookView = lazyWithRetry(() => import('./ui/CookView').then((m) => ({ default: m.CookView })));
+const PantryView = lazyWithRetry(() => import('./ui/PantryView').then((m) => ({ default: m.PantryView })));
+const TradeoffsView = lazyWithRetry(() => import('./ui/TradeoffsView').then((m) => ({ default: m.TradeoffsView })));
+const WhatIfView = lazyWithRetry(() => import('./ui/WhatIfView').then((m) => ({ default: m.WhatIfView })));
+const FoodSafetyView = lazyWithRetry(() => import('./ui/FoodSafetyView').then((m) => ({ default: m.FoodSafetyView })));
+const PolicyView = lazyWithRetry(() => import('./ui/PolicyView').then((m) => ({ default: m.PolicyView })));
+const Nearby = lazyWithRetry(() => import('./ui/Nearby').then((m) => ({ default: m.Nearby })));
 import { useNow } from './ui/useNow';
 
 /** The profile with one optional field set, or with the key removed when there is nothing to keep. */
@@ -121,6 +123,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         )}
 
         <main ref={main} id="main" tabIndex={-1} className="flex-1 outline-none px-4 py-4">
+          <LazyErrorBoundary resetKey={view}>
           <Suspense fallback={<LoadingText />}>
           {creating && <CreateProfile onDone={() => setCreating(false)} onCancel={() => setCreating(false)} />}
 
@@ -275,6 +278,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
             </div>
           )}
           </Suspense>
+          </LazyErrorBoundary>
         </main>
 
         <footer className="px-4 pb-6 text-[13px] text-muted">

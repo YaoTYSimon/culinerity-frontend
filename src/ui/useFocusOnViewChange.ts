@@ -12,7 +12,7 @@ export function useFocusOnViewChange(view: View, main: RefObject<HTMLElement | n
     previous.current = view;
     const el = main.current;
     if (!el) return;
-    const focusHeading = () => (el.querySelector<HTMLElement>('h1') ?? el).focus();
+    const focusHeading = () => (el.querySelector<HTMLElement>('[data-lazy-error], h1') ?? el).focus();
     // A lazily loaded view shows a fallback first (the old view stays hidden underneath it), so wait for the
     // fallback to go, then move focus the same way an eager view does.
     if (el.querySelector('[data-lazy-fallback]')) {
