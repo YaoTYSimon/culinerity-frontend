@@ -1000,15 +1000,15 @@ export const placeData: PlaceData = {
       "lng": 145.1860972,
       "address": "958 High Street Road, Glen Waverley VIC 3150",
       "suburb": "Glen Waverley",
-      "priceBand": "free",
-      "priceBasis": "typical",
+      "priceBand": "budget",
+      "priceBasis": "stated",
       "fit": [
         "fresh",
         "packaged"
       ],
       "access": "open",
       "hours": "Tuesday, Wednesday and Friday 10am to 2pm",
-      "note": "Cost not stated: the page says emergency food parcels, groceries and fresh food are available “at a very low cost” but gives no prices and does not call it free. No eligibility or referral is listed. Emergency vouchers are a separate phone service (03 8873 5288).",
+      "note": "The page says emergency food parcels, groceries and fresh food are available “at a very low cost”; it gives no prices and does not call it free, so bring some money. No eligibility or referral is listed. Emergency vouchers are a separate phone service (03 8873 5288).",
       "sourceId": "salvos-waverley-get-help",
       "verification": "primary",
       "checked": "2026-11-21"
