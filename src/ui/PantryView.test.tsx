@@ -36,8 +36,8 @@ describe('PantryView basics', () => {
 
   it('shows the intro, the shared-device sentence, an empty note and the starters', () => {
     show();
-    expect(screen.getByText("Tell us what you have and we'll suggest what to cook. Optional.")).toBeInTheDocument();
-    expect(screen.getByText('Your pantry is saved on this device only. Anyone who can open your profile here can see it.')).toBeInTheDocument();
+    expect(screen.getByText("Tell us what you have and we'll suggest meals.")).toBeInTheDocument();
+    expect(screen.getByText('Saved on this device. Anyone using your profile here can see it.')).toBeInTheDocument();
     expect(screen.getByText(/Nothing here yet/)).toBeInTheDocument();
     expect(screen.getByText('Common starters, our pick')).toBeInTheDocument();
     for (const name of ['Rice, white', 'Egg', 'Onion']) expect(screen.getByRole('button', { name })).toHaveAttribute('aria-pressed', 'false');

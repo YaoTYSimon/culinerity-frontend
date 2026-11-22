@@ -14,7 +14,7 @@ import { PillButton } from './PillButton';
 import { HelpDisclosure, SupportCard } from './SupportCard';
 import {
   countSentence, DISCLAIMER, EMPTY_WEEK, INTRO, REFLECTION, RETENTION, SHARED_DEVICE, STATUS_CLEARED, STATUS_REMOVED,
-  STAYS_WITH_PROFILE, statusAdded, TITLE,
+  statusAdded, TITLE,
 } from './tradeoffCopy';
 
 interface Props {
@@ -268,7 +268,6 @@ export function TradeoffsView({ entries, now, onChange, onOpenBudget, onOpenSupp
       <div className="grid gap-2 text-sm text-muted">
         <p>{SHARED_DEVICE}</p>
         <p>{RETENTION}</p>
-        <p>{STAYS_WITH_PROFILE}</p>
       </div>
 
       {all.length > 0 && (

@@ -1,12 +1,11 @@
 /** The exact words of the trade-offs feature. Kept in one place so a test can check them. */
 export const TITLE = 'What we went without';
-export const INTRO = 'A private record of what keeping food on the table cost. It stays on this device. Add only what you want to.';
-export const EMPTY_WEEK = 'Nothing logged this week. Log one only if you want to.';
-export const DISCLAIMER = 'This is just a record. There is no right number. It is not a test or a score. It is not a validated measure.';
+export const INTRO = 'A private record, kept on this device. Add only what you want.';
+export const EMPTY_WEEK = 'Nothing logged this week.';
+export const DISCLAIMER = 'Just a record. Not a test, a score or a validated measure.';
 export const REFLECTION = 'Keeping food on the table should not cost this much.';
-export const RETENTION = 'We keep the last 8 weeks on this device, then they go.';
-export const SHARED_DEVICE = 'Anyone who can open this browser as you could see this. Use a profile with a password on a shared device.';
-export const STAYS_WITH_PROFILE = 'These stay with this profile on this device.';
+export const RETENTION = 'Kept 8 weeks on this device, with this profile.';
+export const SHARED_DEVICE = 'Anyone using this browser as you can see this. Use a password on shared devices.';
 export const STATUS_REMOVED = 'Removed.';
 export const STATUS_CLEARED = 'Cleared. Undo (this goes when you leave this page)';
 export const NEED_A_HAND_TITLE = 'Need a hand?';

@@ -71,7 +71,7 @@ export function TraditionsStep({ draft, onDraft }: StepProps) {
   };
   return (
     <>
-      <Lead>Pick any that fit you, or add your own. These are food styles, not a guess about who you are.</Lead>
+      <Lead>Pick any, or add your own. Food styles, not a guess about you.</Lead>
       <div role="group" aria-label="Food traditions" className="flex flex-wrap gap-2">
         {starters.map((t) => {
           const selected = draft.traditions.includes(t.id);
@@ -83,7 +83,7 @@ export function TraditionsStep({ draft, onDraft }: StepProps) {
         values={own}
         onChange={setOwn}
         max={MAX_TAGS - chosenStarters}
-        hint={`Up to ${MAX_TAGS} in all. We show your words back exactly as you typed them.`}
+        hint={`Up to ${MAX_TAGS}, shown as you type them.`}
       />
     </>
   );

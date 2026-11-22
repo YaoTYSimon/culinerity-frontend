@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { TRADEOFF_LABELS, type TradeoffEntry } from '@culinerity/core';
 import { TradeoffsView } from './TradeoffsView';
-import { DISCLAIMER, EMPTY_WEEK, REFLECTION, RETENTION, SHARED_DEVICE, STAYS_WITH_PROFILE } from './tradeoffCopy';
+import { DISCLAIMER, EMPTY_WEEK, REFLECTION, RETENTION, SHARED_DEVICE } from './tradeoffCopy';
 
 // Wednesday 28 October 2026. This week began Monday 26th; last week began Monday 19th.
 const NOW = new Date(2026, 9, 28, 12, 0, 0);
@@ -189,7 +189,7 @@ describe('TradeoffsView', () => {
 
   it('shared-device, retention, stays-with-profile and disclaimer sentences are present', () => {
     show();
-    for (const t of [SHARED_DEVICE, RETENTION, STAYS_WITH_PROFILE, DISCLAIMER]) expect(screen.getByText(t)).toBeInTheDocument();
+    for (const t of [SHARED_DEVICE, RETENTION, DISCLAIMER]) expect(screen.getByText(t)).toBeInTheDocument();
   });
 
   it('See my food budget appears only with an entry and calls onOpenBudget', () => {

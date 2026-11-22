@@ -10,8 +10,8 @@ const H = [
   'Any occasions you would like a heads-up for?',
   'Here is what you chose',
 ];
-const PRIVACY = 'Optional. Stays on this device. You can clear it any time.';
-const SHARED = 'Anyone who can open this browser as you could see this. Use a profile with a password on a shared device.';
+const PRIVACY = 'Optional. On this device; clear any time.';
+const SHARED = 'Anyone using this browser as you can see this. Use a password on shared devices.';
 const FOOD: FoodProfile = { traditions: ['greek'], rules: ['halal'], allergies: ['Peanuts'], occasions: [], dismissed: [] };
 const MEAL: CulturalMeal = { id: 'm1', at: '2026-10-27T01:00:00.000Z', tradition: 'greek' };
 

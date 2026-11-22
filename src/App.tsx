@@ -270,7 +270,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               <Greeting />
               <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">Cheaper, healthier swaps for what you crave</h1>
               <p className="text-base text-pretty text-muted">
-                Pick a craving and see what costs less and sits better. For anyone in Melbourne.
+                Pick a craving to see what costs less and sits better.
               </p>
               <OccasionLine
                 active={activeOccasion}
@@ -287,10 +287,13 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         </main>
 
         <footer className="px-4 pb-6 text-[13px] text-muted">
-          Culinerity is not medical advice. Prices and places shown are sample data. Swap ideas are drawn; photos are credited below.
+          Not medical advice. Sample prices and places. Swap pictures are drawn.
           <PhotoCredits />
-          <NutritionCredit />
-          <HebcalCredit />
+          <details>
+            <summary className="inline-flex min-h-11 cursor-pointer items-center rounded-full focus-ring">Data credits</summary>
+            <NutritionCredit />
+            <HebcalCredit />
+          </details>
           <PillButton variant="text" onClick={() => go('policy')} className="-ml-3 mt-2">
             Data and policy
           </PillButton>

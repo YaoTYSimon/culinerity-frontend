@@ -1,11 +1,11 @@
 import type { DietRule, FoodProfile } from '@culinerity/core';
 
 /** Said on every setup screen. */
-export const PRIVACY_LINE = 'Optional. Stays on this device. You can clear it any time.';
+export const PRIVACY_LINE = 'Optional. On this device; clear any time.';
 
 /** The password is access control, not encryption (see AGENTS.md). */
 export const SHARED_DEVICE_LINE =
-  'Anyone who can open this browser as you could see this. Use a profile with a password on a shared device.';
+  'Anyone using this browser as you can see this. Use a password on shared devices.';
 
 export const ALLERGY_NOTE = 'Tell us what to avoid. This does not replace reading labels or medical advice.';
 

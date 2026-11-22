@@ -18,7 +18,7 @@ export function Welcome({ onFindNumber, onSkip, onFood }: Props) {
       <div className="grid gap-3">
         <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">How much is food on your mind?</h1>
         <p className="text-base text-pretty text-muted">
-          Two minutes, one number out of 100. 100 is secure, 0 is critical. It stays on your phone.
+          Two minutes, one number. 100 is secure, 0 is critical. Stays on your phone.
         </p>
       </div>
       <Plate score={null} className="mx-auto max-w-[220px]" />

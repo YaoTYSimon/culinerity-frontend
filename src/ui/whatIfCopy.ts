@@ -21,10 +21,10 @@ export function needsSentence(missing: BaselineField[], offerDollars: boolean): 
 export const WHATIF_COPY = {
   title: 'What if',
   notice:
-    "General information, not advice. This does simple sums on the numbers you give us, here on your device. It doesn't know your whole situation, can't tell you what will happen, and isn't financial advice. For advice that fits you, a free financial counsellor can help: National Debt Helpline 1800 007 007.",
-  privacy: "These numbers stay on this device. Nothing is sent anywhere, and there's no sharing button on this page.",
+    "General information, not financial advice. Simple sums on your numbers. Free help: National Debt Helpline 1800 007 007.",
+  privacy: "These numbers stay on this device. Nothing is sent.",
   numbersHeading: 'Your numbers',
-  numbersIntro: 'All optional. Add only what you want the sums to use.',
+  numbersIntro: 'All optional.',
   numbersHint: 'In dollars, like 120 or 120.50. Leave it blank to leave it out.',
   saveNumbers: 'Save my numbers',
   numbersSaved: 'Your numbers are saved on this device.',
@@ -47,7 +47,7 @@ export const WHATIF_COPY = {
   helpHeading: 'What could help',
   empty: 'Nothing saved yet. Try a change above and save it to compare later.',
   savedHeading: 'Saved what-ifs',
-  savedIntro: 'Only the change is saved, on this device. Opening one works it out again with your numbers as they are today.',
+  savedIntro: 'Saved on this device. Opening one recalculates with today\'s numbers.',
   nameLabel: 'Name',
   saveThis: 'Save this what-if',
   newName: 'New name',

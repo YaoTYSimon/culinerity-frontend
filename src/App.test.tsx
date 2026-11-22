@@ -172,8 +172,8 @@ describe('App', () => {
     renderApp();
     const footer = screen.getByRole('contentinfo');
     expect(footer).toHaveTextContent(/not medical advice/i);
-    expect(footer).toHaveTextContent(/sample data/i);
-    expect(footer).toHaveTextContent('Swap ideas are drawn; photos are credited below.');
+    expect(footer).toHaveTextContent(/sample prices and places/i);
+    expect(footer).toHaveTextContent('Swap pictures are drawn.');
     expect(within(footer).getByText(`Photo credits (${PHOTO_CREDITS.length})`)).toBeInTheDocument();
     const details = footer.querySelector('details');
     expect(details).not.toBeNull();
@@ -364,7 +364,7 @@ describe('my week', () => {
         renderApp(new LocalProfileStore(), () => '2026-10-28T12:00:00');
         openMenu('What if');
         expect(await screen.findByRole('heading', { level: 1, name: 'What if' })).toBeInTheDocument();
-        expect(screen.getByText(/^General information, not advice\./)).toBeInTheDocument();
+        expect(screen.getByText(/^General information, not financial advice\./)).toBeInTheDocument();
         fireEvent.change(screen.getByLabelText('Rent or housing'), { target: { value: '450' } });
         fireEvent.click(screen.getByRole('button', { name: 'Save my numbers' }));
         expect(stored().housingWeekly).toBe(450);
