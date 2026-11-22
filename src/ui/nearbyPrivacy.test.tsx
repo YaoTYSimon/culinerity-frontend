@@ -64,11 +64,13 @@ describe('static guard (spec 22)', () => {
     join(ROOT, 'src/location/LocationContext.tsx'),
     join(ROOT, 'src/location/BrowserLocationProvider.ts'),
     ...walk(join(ROOT, 'packages/core/src/places')),
+    join(ROOT, 'packages/core/src/map/view.ts'),
+    join(ROOT, 'packages/core/src/map/project.ts'),
   ].filter(isSource);
 
   it('scans the real files', () => {
     const rel = files.map((f) => f.slice(ROOT.length + 1));
-    expect(rel).toEqual(expect.arrayContaining(['src/ui/Nearby.tsx', 'src/ui/NearbyFilters.tsx', 'src/ui/NearbyPlaceRow.tsx', 'src/location/LocationContext.tsx', 'src/location/BrowserLocationProvider.ts', 'packages/core/src/places/rank.ts']));
+    expect(rel).toEqual(expect.arrayContaining(['src/ui/Nearby.tsx', 'src/ui/NearbyFilters.tsx', 'src/ui/NearbyPlaceRow.tsx', 'src/ui/NearbyMap.tsx', 'src/ui/NearbyViewSwitch.tsx', 'packages/core/src/map/view.ts', 'src/location/LocationContext.tsx', 'src/location/BrowserLocationProvider.ts', 'packages/core/src/places/rank.ts']));
   });
   it.each(files.map((f) => [f.slice(ROOT.length + 1), f]))('%s mentions no network or storage API', (_n, f) => {
     const code = readFileSync(f, 'utf8');
@@ -144,6 +146,29 @@ describe('full flow (spec 23, 24)', () => {
     expect(beacon).not.toHaveBeenCalled();
     expect(socket).not.toHaveBeenCalled();
     expect(imageCtor).not.toHaveBeenCalled();
+  });
+
+  it('the map adds no request, no storage write and no outside resource, and carries no coordinate in its markup', async () => {
+    const { container } = await walkFlow();
+    const requestsBefore = fetchSpy.mock.calls.length;
+    fireEvent.click(screen.getByRole('radio', { name: 'Map' }));
+    const map = await screen.findByRole('img', { name: /map of Melbourne/ });
+    fireEvent.click(screen.getByRole('button', { name: 'Zoom in' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Zoom out' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Whole map' }));
+    fireEvent.keyDown(screen.getAllByRole('button').find((b) => b.getAttribute('data-dot') === 'checked')!, { key: 'ArrowLeft' });
+    fireEvent.click(screen.getAllByRole('button').find((b) => b.getAttribute('data-dot') === 'checked')!);
+    expect(fetchSpy.mock.calls.length).toBe(requestsBefore);
+    expect(xhrOpen).not.toHaveBeenCalled();
+    expect(beacon).not.toHaveBeenCalled();
+    expect(socket).not.toHaveBeenCalled();
+    expect(imageCtor).not.toHaveBeenCalled();
+    expect(container.querySelectorAll('svg image, svg use, svg foreignObject, svg script').length).toBe(0);
+    // Nothing in the map points anywhere else: no href or src on any map element except the Maps link to the place.
+    container.querySelectorAll('svg [href], svg [src], svg [xlink\\:href]').forEach((el) => { throw new Error(`map element links out: ${el.outerHTML}`); });
+    expect(localStorage.length + sessionStorage.length).toBe(0);
+    expect(document.cookie).toBe('');
+    expect(leaks(map.outerHTML + container.innerHTML, ['-37.81234', '144.96321'])).toBe(false);
   });
 
   it('logs nothing, so no coordinate reaches the console', async () => {

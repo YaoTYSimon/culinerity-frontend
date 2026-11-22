@@ -1,7 +1,7 @@
 import { activeNotices, formatDistance, priceLabel, type PlaceFit, type PlaceKind, type RankedPlace } from '@culinerity/core';
 import { NearbyMapsLink } from './NearbyMapsLink';
 
-const KIND: Record<PlaceKind, string> = {
+export const KIND: Record<PlaceKind, string> = {
   market: 'Market',
   grocer: 'Grocer',
   'social-supermarket': 'Social supermarket',
@@ -11,6 +11,9 @@ const KIND: Record<PlaceKind, string> = {
 };
 const FIT: Record<PlaceFit, string> = { fresh: 'Fresh produce', packaged: 'Packaged', meals: 'Meals' };
 const ACCESS = { open: '', referral: 'Referral needed', membership: 'Membership' } as const;
+
+/** A stable id for a checked place's row, so the map can move focus to it. */
+export const nearbyRowId = (placeId: string) => `nearby-place-${placeId}`;
 
 /** Today's date in Melbourne as YYYY-MM-DD, so a dated notice ends on Melbourne's calendar. */
 export function melbourneToday(now = new Date()): string {
@@ -41,7 +44,7 @@ export function NearbyPlaceRow({ item, today, level = 2 }: { item: RankedPlace; 
   const notices = activeNotices(p, today ?? melbourneToday());
   const access = ACCESS[p.access];
   return (
-    <li className="grid justify-items-start gap-1.5">
+    <li id={nearbyRowId(p.id)} tabIndex={-1} className="grid justify-items-start gap-1.5 outline-none">
       <Heading className="text-base font-semibold text-pretty break-words">{p.name}</Heading>
       <p className="text-sm text-muted">{KIND[p.kind]} · {p.suburb} · {formatDistance(metres)}</p>
       <p className="text-sm font-semibold">

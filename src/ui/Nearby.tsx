@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import {
-  CHECKED_TIER_LABEL, NO_FILTERS, centroidTable, coverage, hasActiveFilters, rankPlaces, runningPlaces, rankSentence, roundOrigin, suburbCentroid,
+  CHECKED_TIER_LABEL, NO_FILTERS, buildMapDots, centroidTable, coverage, hasActiveFilters, rankPlaces, runningPlaces, rankSentence, roundOrigin, suburbCentroid,
   type LatLng, type Place, type PlaceFilters, type PlaceSourceRecord,
 } from '@culinerity/core';
 import { useBulkSource } from '../location/BulkContext';
@@ -11,7 +11,9 @@ import { ExternalLink } from './ExternalLink';
 import { INPUT_CLASS } from './formParts';
 import { NearbyBulk } from './NearbyBulk';
 import { NearbyFilters } from './NearbyFilters';
-import { NearbyPlaceRow, melbourneToday } from './NearbyPlaceRow';
+import { NearbyMap } from './NearbyMap';
+import { NearbyPlaceRow, melbourneToday, nearbyRowId } from './NearbyPlaceRow';
+import { NearbyViewSwitch, type NearbyMode } from './NearbyViewSwitch';
 import { PageHeader } from './PageHeader';
 import { PillButton } from './PillButton';
 import { bulkView } from './bulkView';
@@ -68,6 +70,8 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [noMatch, setNoMatch] = useState(false);
   const [shown, setShown] = useState(PAGE);
+  const [mode, setMode] = useState<NearbyMode>('list');
+  const [focusRow, setFocusRow] = useState<string | null>(null);
   const token = useRef(0);
   const busy = useRef(false);
   const field = useRef<HTMLInputElement>(null);
@@ -167,6 +171,21 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   const filtering = hasActiveFilters(filter);
   const nothing = filtering && rows.length === 0 && (bulk.mode !== 'shown' || bulk.ranked.length === 0);
   const visible = view?.paged ? rows.slice(0, shown) : rows;
+  const dots = useMemo(() => buildMapDots(rows, bulk.mode === 'shown' ? bulk.ranked : []), [rows, bulk]);
+  const mapOn = mode === 'map' && dots.length > 0;
+  const showInList = (id: string) => {
+    const at = rows.findIndex((r) => r.place.id === id);
+    if (view?.paged && at >= 0) setShown((n) => Math.max(n, at + 1));
+    setMode('list');
+    setFocusRow(id);
+  };
+  // After the list has drawn the row, move focus to it (a place past the first page was just revealed).
+  useEffect(() => {
+    if (focusRow && mode === 'list') {
+      document.getElementById(nearbyRowId(focusRow))?.focus();
+      setFocusRow(null);
+    }
+  }, [focusRow, mode, shown]);
   const locating = phase.kind === 'locating';
   const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
 
@@ -247,9 +266,11 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
             status={<LiveCount text={nothing ? NOTHING_TEXT : plural(rows.length) + (bulk.mode === 'shown' ? `, ${bulk.ranked.length} not checked by us` : '')} />}
           />
           {origin.label && <p className="text-sm text-muted">from the middle of {origin.label}</p>}
-          {tiered && rows.length > 0 && <h2 className="mt-2 font-display text-2xl leading-tight font-bold text-balance">{CHECKED_TIER_LABEL}</h2>}
-          {view?.note && <p className="text-base font-semibold text-pretty">{view.note}</p>}
-          {rows.length > 0 && (
+          {dots.length > 0 && <NearbyViewSwitch value={mapOn ? 'map' : 'list'} onChange={setMode} />}
+          {mapOn && origin && <NearbyMap dots={dots} origin={origin} onShowInList={showInList} />}
+          {!mapOn && tiered && rows.length > 0 && <h2 className="mt-2 font-display text-2xl leading-tight font-bold text-balance">{CHECKED_TIER_LABEL}</h2>}
+          {!mapOn && view?.note && <p className="text-base font-semibold text-pretty">{view.note}</p>}
+          {!mapOn && rows.length > 0 && (
             <>
               <p className="text-sm text-pretty">{rankSentence(score)}</p>
               <ul aria-label="Places near you" className="grid gap-10">
@@ -261,7 +282,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
               <p className="text-sm text-muted">Straight-line distance, not walking time. Price bands are typical for this kind of place.</p>
             </>
           )}
-          <div className={tiered ? 'mt-8' : undefined}><NearbyBulk view={bulk} /></div>
+          {!mapOn && <div className={tiered ? 'mt-8' : undefined}><NearbyBulk view={bulk} /></div>}
         </div>
       )}
 
