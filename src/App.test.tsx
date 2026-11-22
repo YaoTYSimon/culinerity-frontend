@@ -14,7 +14,7 @@ const WELCOME_H1 = 'How much is food on your mind?';
 
 function openMenu(item: string) {
   fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-  fireEvent.click(screen.getByRole('button', { name: item }));
+  fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: item }));
 }
 
 function renderApp(store: ProfileStore = new InMemoryProfileStore(), now?: () => string) {
@@ -381,7 +381,7 @@ describe('my week', () => {
           fireEvent.click(screen.getByRole('button', { name: 'Show what changes' }));
         };
         await run();
-        fireEvent.click(screen.getByRole('button', { name: 'Budget' }));
+        fireEvent.click(within(screen.getByRole('main')).getByRole('button', { name: 'Budget' }));
         expect(await screen.findByRole('heading', { level: 1, name: "This week's food." })).toBeInTheDocument();
         await run();
         fireEvent.click(screen.getByRole('button', { name: 'Food support' }));

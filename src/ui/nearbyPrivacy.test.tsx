@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -245,7 +245,7 @@ describe('share text (spec 24)', () => {
     );
     const go = async (item: string) => {
       fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-      fireEvent.click(screen.getByRole('button', { name: item }));
+      fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: item }));
       await screen.findByRole('heading', { level: 1 }); // lazy views: wait for the view's h1
     };
     if (withOrigin) {
@@ -283,7 +283,7 @@ describe('profile stays untouched (spec 24)', () => {
     );
     const savesBefore = store.saved.length;
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Nearby' }));
+    fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: 'Nearby' }));
     const field = await screen.findByLabelText('Type a suburb or postcode');
     expect(field).toHaveValue('Carlton');
     fireEvent.change(field, { target: { value: 'Footscray' } });

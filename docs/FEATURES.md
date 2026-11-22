@@ -31,6 +31,7 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
 - **Data and policy dashboard:** plain-language sourced figures with dials, bars and scales, Melbourne areas by disadvantage, what helps (summaries under "Details"), gaps and caveats under closed disclosures, sources, and a print layout. Reached from the Menu and the footer.
 
 - **One header button (app polish):** the avatar (a guest glyph for guests) plus "Menu" in one round pill opens one panel. The profile block is on top (name, Switch profile, Lock, Sign out, Delete profile; guests see Create a profile and, when profiles exist, Sign in). Below it the destinations sit in compact one-word groups: Today, Money, Food, Help, About. No explanatory text. Escape closes and returns focus to the button, focus moves into the panel on open, the current page has `aria-current`.
+- **Bottom dock (app polish):** a floating round island at the bottom of the app column (not on the Start or Sign-in screens) with Home, Nearby, Budget and Cook as bubbles; the current one grows into an accent pill with its label, the rest are icon only. Home is current on the swaps and the number. Which four targets it holds is the one `DOCK_ITEMS` constant in `src/ui/Dock.tsx`; icons are in `src/ui/dockIcons.tsx`; `--dock-h` in `src/index.css` is the space the page reserves under it. The Menu is unchanged.
 
 ## `feature/visuals` (complete, unpushed)
 - **Photo headers** for budget, policy and sign-in, and **empty-state visuals**, in the plate design.

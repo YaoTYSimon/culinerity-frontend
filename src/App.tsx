@@ -7,6 +7,7 @@ import { CravingSearch } from './ui/CravingSearch';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
 import { Greeting } from './ui/Greeting';
+import { Dock } from './ui/Dock';
 import { Header } from './ui/Header';
 import { MealsView } from './ui/MealsView';
 import { MyFood } from './ui/MyFood';
@@ -286,7 +287,9 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           </LazyErrorBoundary>
         </main>
 
-        <footer className="px-4 pb-6 text-[13px] text-muted">
+        <Dock current={view} onNavigate={go} />
+
+        <footer className="pb-[calc(1.5rem+var(--dock-h))] px-4 text-[13px] text-muted">
           Not medical advice. Sample prices and places. Swap pictures are drawn.
           <PhotoCredits />
           <details>

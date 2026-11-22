@@ -422,6 +422,6 @@ describe('Header outside an AuthProvider', () => {
     );
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     expect(screen.queryByRole('region', { name: 'Profile' })).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Home' })).toHaveFocus();
+    expect(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: 'Home' })).toHaveFocus();
   });
 });

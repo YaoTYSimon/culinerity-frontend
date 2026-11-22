@@ -15,6 +15,8 @@
   --muted: #cdbfa8;
   --accent: #9aab3c;
   --accent-ink: #472913;
+  /* Space the page reserves for the bottom dock: bubbles 56 + padding 12 + inset 12 + 12 breathing room. */
+  --dock-h: calc(92px + env(safe-area-inset-bottom));
 }
 [data-theme='sand'] {
   color-scheme: light;
