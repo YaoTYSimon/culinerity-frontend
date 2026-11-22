@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { calendar, InMemoryProfileStore, occasionsOn, type OccasionId, type Profile } from '@culinerity/core';
 import App from '../App';
@@ -83,7 +83,7 @@ function renderApp(profile: Profile, day: string, store = new InMemoryProfileSto
 }
 const openMenu = (item: string) => {
   fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-  fireEvent.click(screen.getByRole('button', { name: item }));
+  fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: item }));
 };
 const RAMADAN_LINE = /Ramadan starts about Mon 8 Feb/;
 

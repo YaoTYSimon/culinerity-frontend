@@ -122,7 +122,7 @@ describe('(a) share text, score, band and budget', () => {
       render(<ServicesProvider services={createCoreServices(new InMemoryProfileStore(profile))}><App now={clock} /></ServicesProvider>);
       const home = document.body.textContent;
       fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-      fireEvent.click(screen.getByRole('button', { name: item }));
+      fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: item }));
       await screen.findByRole('heading', { level: 1 }); // lazy views: wait for the real view, not the fallback
       const view = document.body.textContent;
       cleanup();
