@@ -11,7 +11,7 @@ describe('FoodSafetyView', () => {
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1, name: 'Food safety at home' })).toHaveFocus();
     const h2 = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent);
-    expect(h2).toEqual([...sections, 'Where this comes from']);
+    expect(h2).toEqual([...sections, 'Sources']);
   });
 
   it('shows the dataset figures: fridge, freezer, reheating and the 2 and 4 hour limits', () => {
@@ -24,7 +24,7 @@ describe('FoodSafetyView', () => {
 
   it('lists every source with its reviewed date, checked date and licence note', () => {
     render(<FoodSafetyView />);
-    const region = screen.getByRole('region', { name: 'Where this comes from' });
+    const region = screen.getByRole('region', { name: 'Sources' });
     foodSafetyData.sources.forEach((s) => {
       expect(within(region).getByRole('link', { name: new RegExp(s.title) })).toHaveAttribute('href', s.url);
     });

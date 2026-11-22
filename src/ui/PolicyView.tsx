@@ -107,23 +107,23 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
   const sectionHow = (
     <Section id="how-many" title="How many go without">
       <p className="text-base text-pretty">
-        Food insecurity means not having enough food, or not being sure of getting it, because of money. Surveys ask different questions in different years, so these two national measures differ and are shown apart.
+        Food insecurity: not enough food, or not sure of getting it, because of money.
       </p>
       <Group
         title="Foodbank Hunger Report 2025"
-        caption="An online survey of Australian households. A different question and sample from the ABS measure below, so the two cannot be compared or added."
+        caption="Online household survey. Not comparable with the ABS measure."
       >
         {dial(FOODBANK_HEADLINE)}
         {compact([FOODBANK_HEADLINE, ...FOODBANK_MORE], FOODBANK_HEADLINE)}
       </Group>
       <Group
         title="Australian Bureau of Statistics, 2023"
-        caption="The ABS household survey, using a 10-item food insecurity module. Different from the Foodbank measure above."
+        caption="Household survey, 10-item module. Not comparable with Foodbank."
       >
         {dial(ABS_HEADLINE)}
         {compact([ABS_HEADLINE], ABS_HEADLINE)}
       </Group>
-      <Group title="Victoria" caption="From the Victorian Population Health Survey, which asks whether people ran out of food and could not afford more. That is a different question from the national measures.">
+      <Group title="Victoria" caption="Victorian Population Health Survey: ran out of food and could not afford more.">
         {compact(VICTORIA)}
       </Group>
     </Section>
@@ -133,12 +133,12 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
     <Section id="who" title="Who is most affected">
       <BarRows
         title="Foodbank Hunger Report 2025"
-        caption={<>Share of each group of households that were food insecure, from Foodbank's online household survey. <br />{barSource(FOODBANK_BARS[0])}</>}
+        caption={<>Share of each group that were food insecure. <br />{barSource(FOODBANK_BARS[0])}</>}
         bars={bars(FOODBANK_BARS)}
       />
       <BarRows
         title="Australian Bureau of Statistics, 2023"
-        caption={<>Share of each group of households that were food insecure, from the ABS household survey with the 10-item module. Not the same question as Foodbank's. <br />{barSource(ABS_BARS[0])}</>}
+        caption={<>Share of each group that were food insecure. Not the same question as Foodbank's. <br />{barSource(ABS_BARS[0])}</>}
         bars={bars(ABS_BARS)}
       />
     </Section>
@@ -154,20 +154,22 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
   const sectionAreas = (
     <Section id="areas" title="Melbourne areas">
       <p className="text-sm text-pretty text-muted">
-        A selection of areas across Melbourne's west, south-east and inner suburbs, for illustration. This is not a ranking of Melbourne.
-      </p>
-      <p className="text-sm text-pretty text-muted">
-        Lower scores mean more disadvantage. The score is the ABS SEIFA Index of Relative Socio-economic Disadvantage (2021). These are ABS statistical areas (SA2), not suburbs. Decile 1 is the most disadvantaged tenth of Victoria. This measures disadvantage, not hunger.
+        A selection of areas, for illustration. This is not a ranking of Melbourne. Lower scores mean more disadvantage.
       </p>
       <ScaleRows areas={areas} />
+      <Disclosure summary="How to read this">
+        <p className="pt-1 text-sm text-pretty text-muted">
+          The ABS SEIFA Index of Relative Socio-economic Disadvantage (2021). These are ABS statistical areas (SA2), not suburbs. Decile 1 is the most disadvantaged tenth of Victoria. This measures disadvantage, not hunger.
+        </p>
+      </Disclosure>
     </Section>
   );
 
   const sectionHelps = (
     <Section id="helps" title="What helps (evidence)">
       <p className="text-sm text-pretty text-muted">
-        The evidence is thin: mostly one review of studies from high-income countries plus small Australian studies.
-        {noCosts && ' Cost per person figures were not found for any of these.'}
+        The evidence is thin.
+        {noCosts && ' Cost per person: not found.'}
       </p>
       <ul className="grid gap-4">
         {interventions.map((i) => {
@@ -176,8 +178,12 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
             <li key={i.id} className="grid gap-1">
               <h3 className="text-lg font-semibold text-balance">{i.label}</h3>
               <p className="text-base font-semibold">Evidence: {EVIDENCE_WORD[i.evidence]}</p>
-              <p className="text-base text-pretty">{i.summary}</p>
-              {s && <p className="text-sm text-muted">Source: {s.publisher}</p>}
+              <Disclosure summary="Details">
+                <div className="grid gap-1 pb-2">
+                  <p className="text-base text-pretty">{i.summary}</p>
+                  {s && <p className="text-sm text-muted">Source: {s.publisher}</p>}
+                </div>
+              </Disclosure>
             </li>
           );
         })}
@@ -197,7 +203,7 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
 
   const sectionCost = (
     <Section id="cost" title="Cost of living">
-      <p className="text-sm text-pretty text-muted">The same figures as the budget page, as their sources give them.</p>
+      <p className="text-sm text-pretty text-muted">Same figures as the budget page.</p>
       {compact(COST_HEADLINE)}
       <Disclosure summary="More cost figures">
         <div className="grid gap-1 pt-1">
@@ -224,15 +230,17 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
         ))}
       </ul>
       </Disclosure>
-      <h3 className="text-lg font-semibold">Things to keep in mind</h3>
-      <ul aria-label="Things to keep in mind" className="grid list-disc gap-2 pl-5 text-sm text-pretty">
-        {source.caveats().map((c) => <li key={c}>{c}</li>)}
-      </ul>
-      <h3 className="text-lg font-semibold">Not found</h3>
-      <p className="text-sm text-pretty text-muted">We looked and could not find these, so we show no number for them.</p>
-      <ul aria-label="Not found" className="grid list-disc gap-2 pl-5 text-sm text-pretty">
-        {source.notFound().map((g) => <li key={g}>{g}</li>)}
-      </ul>
+      <Disclosure summary="Things to keep in mind">
+        <ul aria-label="Things to keep in mind" className="grid list-disc gap-2 pl-5 pt-1 text-sm text-pretty">
+          {source.caveats().map((c) => <li key={c}>{c}</li>)}
+        </ul>
+      </Disclosure>
+      <Disclosure summary="Not found">
+        <p className="pt-1 text-sm text-pretty text-muted">No number is shown for these.</p>
+        <ul aria-label="Not found" className="grid list-disc gap-2 pl-5 pt-1 text-sm text-pretty">
+          {source.notFound().map((g) => <li key={g}>{g}</li>)}
+        </ul>
+      </Disclosure>
       <p className="text-sm text-muted">Last updated {longDate(source.updated())}</p>
       <p className="text-sm text-muted">General information, not advice. Nothing on this page uses your data.</p>
     </Section>
@@ -245,7 +253,7 @@ export function PolicyView({ now, source = DEFAULT_SOURCE }: Props) {
           <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none max-[359px]:text-[26px]">What we know about food insecurity.</h1>
         </PageHeader>
         <p className="text-base text-pretty text-muted">
-          Figures from published research, with where each one comes from. Different surveys measure different things, so we show them side by side, never added together.
+          Published figures and their sources. Different surveys, so never added together.
         </p>
       </div>
       {sectionHow}

@@ -49,16 +49,18 @@ export function BenchmarkRow({ indicator, source, now, figure: showFigure = true
           {figure.unit && <span className="block text-base font-semibold text-pretty">{figure.unit}</span>}
         </p>
       )}
-      {earlier && <p className="text-sm text-pretty text-muted">Earlier: {earlier}.</p>}
-      <p className="text-sm text-pretty text-muted">
-        {indicator.scope}. {periodText(indicator)}.
-        {indicator.measure ? ` ${indicator.measure}.` : ''}
-      </p>
-      {indicator.note && <p className="text-sm text-pretty text-muted">{indicator.note}</p>}
-      <p className="text-sm text-pretty text-muted">
-        {verificationLabel(indicator.verification)}
-        {isOlderData(indicator, now) && <strong className="font-semibold text-ink">{' · Older data'}</strong>}
-      </p>
+      {isOlderData(indicator, now) && <p className="text-sm font-semibold text-pretty">Older data</p>}
+      <Disclosure summary="About this figure">
+        <div className="grid gap-1 pb-2 text-sm text-pretty text-muted">
+          {earlier && <p>Earlier: {earlier}.</p>}
+          <p>
+            {indicator.scope}. {periodText(indicator)}.
+            {indicator.measure ? ` ${indicator.measure}.` : ''}
+          </p>
+          {indicator.note && <p>{indicator.note}</p>}
+          <p>{verificationLabel(indicator.verification)}</p>
+        </div>
+      </Disclosure>
       {source && <ExternalLink href={source.url}>{source.publisher}</ExternalLink>}
     </li>
   );
@@ -81,9 +83,9 @@ export function BenchmarkRows({ now, source = DEFAULT_SOURCE }: Props) {
   return (
     <section aria-labelledby="compares" className="grid gap-3">
       <h2 id="compares" className="font-display text-[24px]">How this compares</h2>
-      <p className="text-sm text-pretty text-muted">
-        Official and published figures, shown as their sources give them. They measure different things, so they are not added together.
-      </p>
+      <Disclosure summary="Show published figures">
+      <div className="grid gap-3 pt-1">
+      <p className="text-sm text-pretty text-muted">Published figures. Not added together.</p>
       {rows(headline)}
       <p className="text-sm text-pretty">{POVERTY_LINE_NOTE}</p>
       {more.length > 0 && (
@@ -92,15 +94,18 @@ export function BenchmarkRows({ now, source = DEFAULT_SOURCE }: Props) {
         </Disclosure>
       )}
       {gaps.length > 0 && (
-        <div className="grid gap-1">
-          <h3 className="text-base font-semibold">Not found</h3>
-          <p className="text-sm text-muted">We looked and could not find these, so we show no number for them.</p>
-          <ul className="grid list-disc gap-1 pl-5 text-sm text-pretty text-muted">
-            {gaps.map((g) => <li key={g}>{g}</li>)}
-          </ul>
-        </div>
+        <Disclosure summary="Not found">
+          <div className="grid gap-1">
+            <p className="text-sm text-muted">No number is shown for these.</p>
+            <ul className="grid list-disc gap-1 pl-5 text-sm text-pretty text-muted">
+              {gaps.map((g) => <li key={g}>{g}</li>)}
+            </ul>
+          </div>
+        </Disclosure>
       )}
       <p className="text-sm text-muted">General information, not financial advice.</p>
+      </div>
+      </Disclosure>
     </section>
   );
 }

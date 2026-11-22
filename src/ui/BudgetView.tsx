@@ -47,7 +47,7 @@ const PAST_WEEKS = 12;
 const PACE_TEXT: Record<Exclude<Pace, 'no-budget'>, string> = {
   'on-track': "You're on track.",
   'a-bit-fast': "You're spending a bit faster than the week.",
-  over: "You've passed this week's budget. That's okay: here are cheaper swaps.",
+  over: "Over this week's budget. That's okay.",
 };
 
 const weekOfText = (iso: string): string => {
@@ -70,7 +70,7 @@ function AskBudget({ onSave, onSkip }: { onSave: (n: number) => void; onSkip: ()
         else onSave(n);
       }}
     >
-      <p className="text-base text-pretty text-muted">Set a weekly food budget to see how the week is going. You can skip this.</p>
+      <p className="text-base text-pretty text-muted">Set a weekly food budget, or skip.</p>
       <div>
         <label htmlFor="ask-budget" className="mb-2 block text-sm font-medium">Weekly food budget ($)</label>
         <input
@@ -271,7 +271,7 @@ function BudgetViewFor({ profile, now, clock, onChange, onSeeSwaps, onOpenWeek, 
 
       {share !== null && summary.spent > 0 && (
         <p className="text-base text-pretty">
-          You've logged {formatDollars(summary.spent)} of food spending, which is {share}% of your weekly income of {formatDollars(profile.incomeWeekly as number)}.
+          {formatDollars(summary.spent)} logged is {share}% of your weekly income of {formatDollars(profile.incomeWeekly as number)}.
         </p>
       )}
 

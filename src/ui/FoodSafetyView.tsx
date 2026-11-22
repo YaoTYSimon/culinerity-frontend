@@ -1,4 +1,5 @@
 import { foodSafetyData, sourcesFor, type FoodSafetyContact, type FoodSafetyData } from '@culinerity/core';
+import { Disclosure } from './Disclosure';
 import { ExternalLink } from './ExternalLink';
 import { FocusHeading } from './FocusHeading';
 import { FOOD_SAFETY_INTRO, FOOD_SAFETY_TITLE, NOTHING_STORED, SECTION_SOURCES, SOURCES_INTRO, SOURCES_TITLE } from './foodSafetyCopy';
@@ -53,17 +54,19 @@ export function FoodSafetyView({ data = foodSafetyData }: { data?: FoodSafetyDat
 
       <section aria-labelledby="fs-sources" className="grid gap-3">
         <h2 id="fs-sources" className="font-display text-[24px] text-balance">{SOURCES_TITLE}</h2>
-        <p className="text-sm text-pretty text-muted">{SOURCES_INTRO}</p>
-        <ul className="grid gap-4">
-          {data.sources.map((s) => (
-            <li key={s.id} className="grid justify-items-start gap-1">
-              <ExternalLink href={s.url}>{s.publisher}: {s.title}</ExternalLink>
-              <p className="text-sm text-pretty text-muted">
-                {s.reviewed ? `Reviewed ${longDate(s.reviewed)}. ` : ''}Read {longDate(s.accessed)}. {s.licence}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <Disclosure summary="Sources and dates">
+          <p className="pb-2 text-sm text-pretty text-muted">{SOURCES_INTRO}</p>
+          <ul className="grid gap-4">
+            {data.sources.map((s) => (
+              <li key={s.id} className="grid justify-items-start gap-1">
+                <ExternalLink href={s.url}>{s.publisher}: {s.title}</ExternalLink>
+                <p className="text-sm text-pretty text-muted">
+                  {s.reviewed ? `Reviewed ${longDate(s.reviewed)}. ` : ''}Read {longDate(s.accessed)}. {s.licence}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </Disclosure>
         <p className="text-sm text-pretty text-muted">{NOTHING_STORED}</p>
       </section>
     </div>

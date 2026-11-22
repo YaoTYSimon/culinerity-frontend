@@ -123,7 +123,7 @@ describe('BudgetView', () => {
   it('over budget reads "$12 over" with a kind sentence and never says overspent', () => {
     const { container } = show({ foodBudgetWeekly: 100, spendEntries: [entry('a', 112, 27)] });
     expect(screen.getByRole('img', { name: '$12 over' })).toBeInTheDocument();
-    expect(screen.getByText(/You've passed this week's budget\. That's okay/)).toBeInTheDocument();
+    expect(screen.getByText(/Over this week's budget\. That's okay/)).toBeInTheDocument();
     expect(container.textContent?.toLowerCase()).not.toContain('overspent');
     expect(screen.queryByText(/a day for the rest of the week/)).not.toBeInTheDocument();
   });
@@ -159,7 +159,7 @@ describe('BudgetView', () => {
     expect(screen.queryByText(/of your weekly income/)).not.toBeInTheDocument();
     unmount();
     show({ foodBudgetWeekly: 120, incomeWeekly: 600, spendEntries: [entry('a', 63, 27)] });
-    const s = screen.getByText("You've logged $63 of food spending, which is 10.5% of your weekly income of $600.");
+    const s = screen.getByText('$63 logged is 10.5% of your weekly income of $600.');
     expect(s.textContent).not.toMatch(/average|typical|poverty|benchmark|compare/i);
   });
 
@@ -345,7 +345,7 @@ describe('How this compares', () => {
     show({ foodBudgetWeekly: 120 });
     expect(screen.getByText('These are lines for total income, not food budgets.')).toBeInTheDocument();
     const gapsHeading = screen.getByText('Not found');
-    const gaps = within(gapsHeading.parentElement as HTMLElement).getAllByRole('listitem');
+    const gaps = within(gapsHeading.closest('details') as HTMLElement).getAllByRole('listitem');
     expect(gaps).toHaveLength(5);
     expect(gaps.map((g) => g.textContent)).toEqual(source.notFound('budget'));
     const more = screen.getByText('More figures').closest('details') as HTMLElement;

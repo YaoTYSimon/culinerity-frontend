@@ -59,7 +59,7 @@ describe('PolicyView', () => {
     expect(ag).not.toHaveTextContent(foodbank.label);
     expect(within(fg).getByRole('img', { name: /33%/ })).toBeInTheDocument();
     expect(within(ag).getByRole('img', { name: /13\.2%/ })).toBeInTheDocument();
-    expect(fg).toHaveTextContent(/different/i);
+    expect(fg).toHaveTextContent(/not comparable/i);
   });
 
   it('states the measure of the Victorian rows', () => {
@@ -271,11 +271,12 @@ describe('PolicyView', () => {
     expect(section('Students and young people')).toHaveTextContent(label);
   });
 
-  it('keeps caveats and not-found always visible (not inside a folded details)', () => {
+  it('keeps caveats and not-found one tap away, each under its own closed disclosure', () => {
     show();
     const s = section('About this data');
     for (const name of ['Things to keep in mind', 'Not found']) {
-      expect(within(s).getByRole('list', { name }).closest('details')).toBeNull();
+      expect(within(s).getByRole('list', { name, hidden: true }).closest('details')).not.toHaveAttribute('open');
+      expect(within(s).getByText(name)).toBeInTheDocument();
     }
     expect(within(s).getByRole('list', { name: 'Sources' }).closest('details')).not.toBeNull();
   });
