@@ -14,6 +14,7 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
 - **Welcome page** for new users with real home-cooked-meal photos.
 - **Four cover themes** (tobacco, sand, walnut, cream) with a picker; single token source with a drift test.
 - **One-question-at-a-time check-in**, the number screen, swaps with "Add to my week", food support, friendly empty/error states.
+- **Welcome, NAME** line on the home screen for a signed-in profile (plain text, one truncated line; guests see none).
 - **My week** card with savings and a share text (no personal data in it).
 
 ## `feature/sign-in` (complete, unpushed)

@@ -6,6 +6,7 @@ import { AuthContext } from './auth/useAuth';
 import { CravingSearch } from './ui/CravingSearch';
 import { BudgetDisclosure } from './ui/BudgetDisclosure';
 import { CreateProfile } from './ui/CreateProfile';
+import { Greeting } from './ui/Greeting';
 import { Header } from './ui/Header';
 import { MealsView } from './ui/MealsView';
 import { MyFood } from './ui/MyFood';
@@ -240,6 +241,8 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           {!creating && view === 'nearby' && <Nearby score={profile.score} profileSuburb={profile.suburb} onNavigate={setView} />}
 
           {!creating && view === 'number' && (
+            <div className="grid gap-3">
+            <Greeting />
             <NumberScreen
               profile={profile}
               onSeeSwaps={() => setView('swaps')}
@@ -248,6 +251,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               onOpenBudget={() => setView('budget')}
               onChange={update}
             />
+            </div>
           )}
 
           {!creating && view === 'week' && (
@@ -263,6 +267,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
 
           {!creating && view === 'swaps' && (
             <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
+              <Greeting />
               <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">Cheaper, healthier swaps for what you crave</h1>
               <p className="text-base text-pretty text-muted">
                 Pick a craving and see what costs less and sits better. For anyone in Melbourne, no sign-up.

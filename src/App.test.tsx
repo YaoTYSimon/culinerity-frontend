@@ -5,6 +5,7 @@ import { PHOTO_CREDITS } from './assets/photos';
 import { DOMAINS, FIES_QUESTIONS, SUPPORT_BELOW, InMemoryProfileStore, type ProfileStore } from '@culinerity/core';
 import { createServices } from './services/container';
 import { ServicesProvider } from './services/ServicesContext';
+import { AuthContext, type AuthState } from './auth/useAuth';
 import { LocalProfileStore } from './storage/localProfileStore';
 
 const SUPPORT = { name: 'Free food near you.' };
@@ -513,6 +514,38 @@ describe('my week', () => {
       renderApp(new InMemoryProfileStore(SEEN));
       openMenu('Meals that felt like home');
       expect(screen.getByRole('heading', { level: 1, name: 'Meals that felt like home' })).toBeInTheDocument();
+    });
+  });
+
+  describe('welcome greeting on home', () => {
+    function renderAs(name: string | null, profile: object) {
+      const auth = { current: name === null ? null : { id: 'a', name, colour: 'sand', createdAt: '2026-01-01T00:00:00Z' }, accounts: [], removeNotice: null } as unknown as AuthState;
+      const services = { ...createServices(), profiles: new InMemoryProfileStore(profile) };
+      return render(<ServicesProvider services={services}><AuthContext.Provider value={auth}><App /></AuthContext.Provider></ServicesProvider>);
+    }
+    const variants: [string, object][] = [['swaps home', SEEN], ['number screen', { ...SEEN, score: 60 }]];
+
+    it.each(variants)('shows Welcome, NAME on the %s with one h1 that keeps focus', (_label, profile) => {
+      const { container } = renderAs('Sam', profile);
+      expect(screen.getByText('Sam')).toBeInTheDocument();
+      expect(container.querySelector('main')?.textContent).toContain('Welcome, Sam');
+      expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
+      openMenu('Food support');
+      openMenu('Home');
+      expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
+      expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
+      expect(container.querySelector('main')?.textContent).toContain('Welcome, Sam');
+    });
+
+    it.each(variants)('shows nothing for a guest on the %s', (_label, profile) => {
+      renderAs(null, profile);
+      expect(screen.queryByText(/Welcome,/)).not.toBeInTheDocument();
+    });
+
+    it.each(variants)('escapes a markup-looking name on the %s', (_label, profile) => {
+      const { container } = renderAs('<b>x</b>', profile);
+      expect(container.querySelector('main')?.textContent).toContain('Welcome, <b>x</b>');
+      expect(container.querySelector('main b')).toBeNull();
     });
   });
 });
