@@ -125,13 +125,13 @@ export function Menu({ current, onNavigate, open: controlled, onOpenChange, onCr
               onCreateProfile={onCreateProfile}
             />
           )}
-          <nav aria-label="Menu" className="grid gap-2 md:grid-cols-3 lg:grid-cols-5">
+          <nav aria-label="Menu" className="grid gap-2">
             {GROUPS.map(({ heading, items }) => (
               <div key={heading}>
                 <p id={`${panelId}-${heading}`} className="px-4 pb-0.5 text-sm text-muted">
                   {heading}
                 </p>
-                <ul aria-labelledby={`${panelId}-${heading}`} className="grid grid-cols-2 gap-x-1 md:grid-cols-1">
+                <ul aria-labelledby={`${panelId}-${heading}`} className="grid grid-cols-2 items-start gap-x-1">
                   {items.map(({ to, label }) => (
                     <li key={to}>
                       <button
