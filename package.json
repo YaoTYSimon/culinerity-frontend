@@ -20,6 +20,7 @@
     "build:places": "node scripts/build-places.mjs",
     "build:places-bulk": "node scripts/build-places-bulk.mjs",
     "check:places-bulk": "node scripts/check-places-bulk.mjs",
+    "build:map": "node scripts/build-map-outline.mjs",
     "build:centroids": "node scripts/build-centroids.mjs",
     "dev:all": "node scripts/dev-all.mjs"
   },

@@ -23,6 +23,13 @@ describe('data licences', () => {
     expect(buildDataLicences('2026-09-17.0').find((l) => l.id === 'overture')?.text).toContain('release 2026-09-17.0');
     expect(DATA_LICENCES.find((l) => l.id === 'overture')?.text).toMatch(/release is named here when/i);
   });
+  it('credits the Vicmap map outline under CC BY 4.0 with a checked date', () => {
+    const v = DATA_LICENCES.find((l) => l.id === 'vicmap-lga');
+    expect(v?.text).toContain('Vicmap Admin');
+    expect(v?.text).toContain('State of Victoria');
+    expect(v?.text).toContain('CC BY 4.0');
+    expect(v?.text).toContain('22 November 2026');
+  });
   it('has no Foursquare, OpenStreetMap or ODbL entry', () => {
     const all = JSON.stringify(DATA_LICENCES);
     expect(all).not.toMatch(/foursquare|openstreetmap|odbl/i);
