@@ -42,6 +42,7 @@ const openPanel = (name = 'Sam') => fireEvent.click(profileButton(name));
 
 beforeEach(() => {
   localStorage.clear();
+  localStorage.setItem(KEYS.welcomed, '1'); // the start screen has its own tests
   sessionStorage.clear();
 });
 afterEach(() => localStorage.clear());
@@ -369,7 +370,7 @@ describe('ProfileMenu: guest', () => {
     const s = service();
     await add(s, 'Sam');
     mount(s);
-    fireEvent.click(await screen.findByRole('button', { name: 'Skip for now' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Browse as a guest' }));
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Sign in' }));
     expect(await screen.findByRole('heading', { level: 1, name: 'Welcome back.' })).toBeInTheDocument();

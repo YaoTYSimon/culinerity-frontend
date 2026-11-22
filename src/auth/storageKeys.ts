@@ -7,6 +7,8 @@ export const KEYS = {
   /** The guest profile (no suffix). */
   guestProfile: 'culinerity.profile.v1',
   theme: 'culinerity.theme.v1',
+  /** Set once the visitor has chosen at the start screen (sign in, create or guest). Holds no personal data. */
+  welcomed: 'culinerity.welcomed',
 } as const;
 
 /** Profile key: the guest key, or the guest key plus `.<id>`. */

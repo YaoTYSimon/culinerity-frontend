@@ -2,7 +2,7 @@ import { SignIn } from '../ui/SignIn';
 import { RemoveNoteBanner } from './RemoveNoteBanner';
 
 /** The sign-in slot of the Gate: the plate shell around the real screen. It shows no profile data. */
-export function SignInScreen() {
+export function SignInScreen({ onGuest }: { onGuest?: () => void }) {
   return (
     <div className="min-h-dvh bg-surface">
       <div className="mx-auto flex min-h-dvh w-full max-w-[520px] flex-col bg-bg text-ink">
@@ -11,7 +11,7 @@ export function SignInScreen() {
           <div className="mb-4 empty:hidden">
             <RemoveNoteBanner />
           </div>
-          <SignIn />
+          <SignIn onGuest={onGuest} />
         </main>
       </div>
     </div>

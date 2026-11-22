@@ -21,6 +21,8 @@ type Mode =
   | { kind: 'create' };
 
 interface Props {
+  /** Called when the visitor chooses to browse as a guest (the Gate remembers the choice). */
+  onGuest?: () => void;
   /** Injected clock (ms) for the pause countdown. */
   now?: () => number;
   /** Calls `cb` about once a second until the returned function is called. Injected in tests. */
@@ -36,7 +38,7 @@ const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one :
 const pauseMessage = (s: number) => `Too many tries. You can try again in ${plural(s, 'second', 'seconds')}.`;
 
 /** "Who is this?": the profile chooser, the password step, and the delete / create side screens. */
-export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
+export function SignIn({ now = Date.now, ticker = everySecond, onGuest }: Props) {
   const { accounts, signIn, remove, continueAsGuest } = useAuth();
   const [mode, setMode] = useState<Mode>({ kind: 'choose' });
   const [message, setMessage] = useState('');
@@ -337,8 +339,14 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
           <PillButton variant="text" onClick={() => go({ kind: 'create' })}>
             Create a profile
           </PillButton>
-          <PillButton variant="text" onClick={continueAsGuest}>
-            Skip for now
+          <PillButton
+            variant="text"
+            onClick={() => {
+              continueAsGuest();
+              onGuest?.();
+            }}
+          >
+            Browse as a guest
           </PillButton>
         </div>
         <p className="text-[13px] text-pretty text-muted">{HONESTY}</p>

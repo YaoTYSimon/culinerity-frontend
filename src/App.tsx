@@ -270,7 +270,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
               <Greeting />
               <h1 tabIndex={-1} className="font-display text-[30px] text-balance outline-none">Cheaper, healthier swaps for what you crave</h1>
               <p className="text-base text-pretty text-muted">
-                Pick a craving and see what costs less and sits better. For anyone in Melbourne, no sign-up.
+                Pick a craving and see what costs less and sits better. For anyone in Melbourne.
               </p>
               <OccasionLine
                 active={activeOccasion}

@@ -15,6 +15,7 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
 - **Four cover themes** (tobacco, sand, walnut, cream) with a picker; single token source with a drift test.
 - **One-question-at-a-time check-in**, the number screen, swaps with "Add to my week", food support, friendly empty/error states.
 - **Welcome, NAME** line on the home screen for a signed-in profile (plain text, one truncated line; guests see none).
+- **Start screen (first visit):** a new visitor with no profile sees three round actions: Create a profile, Browse as a guest and (only when profiles exist) Sign in. The choice is remembered with a non-personal `culinerity.welcomed` flag; profiles still lock on this device. The sign-in chooser also offers Browse as a guest, which signs nobody in and deletes nothing.
 - **My week** card with savings and a share text (no personal data in it).
 
 ## `feature/sign-in` (complete, unpushed)

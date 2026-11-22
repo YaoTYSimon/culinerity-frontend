@@ -99,7 +99,7 @@ describe('headline and chooser', () => {
     mount(s);
     expect(screen.getByText(HONESTY)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Create a profile' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Skip for now' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Browse as a guest' })).toBeInTheDocument();
   });
 
   it('7 profiles show 6 avatars plus More; More lists the rest and picking one works', async () => {
@@ -132,11 +132,11 @@ describe('no passcode', () => {
     expect(auth.current?.name).toBe('Sam');
   });
 
-  it('"Skip for now" continues as a guest', async () => {
+  it('"Browse as a guest" continues as a guest', async () => {
     const s = new LocalAuthService({ now });
     await add(s, 'Sam');
     mount(s);
-    await userEvent.click(screen.getByRole('button', { name: 'Skip for now' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Browse as a guest' }));
     expect(auth.status).toBe('guest');
   });
 });
@@ -325,7 +325,7 @@ describe('errors from the service', () => {
     await waitFor(() =>
       expect(live()).toHaveTextContent("This browser can't keep you signed in. Try again, or continue as a guest."),
     );
-    expect(screen.getByRole('button', { name: 'Skip for now' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Browse as a guest' })).toBeInTheDocument();
   });
 
   it('unknown-profile says so and returns to the chooser', async () => {

@@ -50,6 +50,7 @@ function openWeek() {
 
 beforeEach(() => {
   localStorage.clear();
+  localStorage.setItem(KEYS.welcomed, '1'); // the start screen has its own tests
   sessionStorage.clear();
 });
 afterEach(() => vi.restoreAllMocks());
@@ -265,6 +266,8 @@ describe('a failing service', () => {
       throw new Error('denied');
     });
     mount();
+    // The start flag cannot be read, so the start screen shows; a guest choice still enters the app.
+    fireEvent.click(screen.getByRole('button', { name: 'Browse as a guest' }));
     expect(screen.getByRole('heading', { name: WELCOME_H1 })).toBeInTheDocument();
   });
 });
