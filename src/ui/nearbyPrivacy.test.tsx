@@ -9,6 +9,12 @@ import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { Nearby } from './Nearby';
 
+/** The filter groups live behind the Filters pill; open it (once) before reaching for a pill. */
+const openFilters = () => {
+  const b = screen.getByRole('button', { name: /^Filters/ });
+  if (b.getAttribute('aria-expanded') === 'false') fireEvent.click(b);
+};
+
 const FORBIDDEN =
   /\b(fetch|XMLHttpRequest|sendBeacon|WebSocket|EventSource|localStorage|sessionStorage|indexedDB|caches|BroadcastChannel|importScripts)\b|document\s*\.\s*cookie|\bimport\s*\(|\b(window|globalThis|self|top|parent|frames)\s*\[|(?<![-\w])(globalThis|self)(?![-\w])|\bnavigator\s*\[|\beval\s*\(|\bnew\s+Function\b|\bcookie\s*[:=]|(?:'|"|`)\s*(?:local|session)\s*(?:'|"|`)\s*\+|\bstorage\b\s*\[/i;
 const ROOT = resolve(__dirname, '../..');
@@ -116,6 +122,7 @@ describe('full flow (spec 23, 24)', () => {
     );
     await screen.findByText(/starter list/i);
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Use my location' })); });
+    openFilters();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Fresh produce' }));
     fireEvent.click(screen.getByRole('button', { name: 'Clear' }));
     fireEvent.change(screen.getByLabelText('Type a suburb or postcode'), { target: { value: 'Footscray' } });

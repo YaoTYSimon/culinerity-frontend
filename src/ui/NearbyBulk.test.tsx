@@ -9,6 +9,12 @@ import { ServicesProvider } from '../services/ServicesContext';
 import { Nearby } from './Nearby';
 import { BULK_EMPTY_TEXT, BULK_FAILED_TEXT, BULK_HIDDEN_TEXT, BULK_OLD_TEXT } from './NearbyBulk';
 
+/** The filter groups live behind the Filters pill; open it (once) before reaching for a pill. */
+const openFilters = () => {
+  const b = screen.getByRole('button', { name: /^Filters/ });
+  if (b.getAttribute('aria-expanded') === 'false') fireEvent.click(b);
+};
+
 const CBD = { lat: -37.8136, lng: 144.9631 };
 const provider: LocationProvider = { locate: () => Promise.resolve({ ok: true, ...CBD }) };
 const RELEASE = '2026-10-21.0';
@@ -127,14 +133,18 @@ describe('Nearby not-checked tier', () => {
   it('Fresh produce keeps only fresh kinds; any Cost, Access or Checked pill leaves the tier out', async () => {
     await open(source());
     await screen.findByText('Bulk Bakery');
+    openFilters();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Fresh produce' }));
     expect(screen.queryByText('Bulk Bakery')).toBeNull();
     expect(screen.getByText('Bulk Greens')).toBeInTheDocument();
+    openFilters();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Fresh produce' }));
     for (const name of ['Free', 'Low cost', 'Walk in', 'Referral or appointment', 'Checked by us only']) {
+      openFilters();
       fireEvent.click(screen.getByRole('checkbox', { name }));
       expect(screen.queryByRole('heading', { name: 'Not checked by us' }), name).toBeNull();
       expect(screen.queryByText('Bulk Greens'), name).toBeNull();
+      openFilters();
       fireEvent.click(screen.getByRole('checkbox', { name }));
       expect(screen.getByText('Bulk Greens'), name).toBeInTheDocument();
     }
@@ -143,14 +153,19 @@ describe('Nearby not-checked tier', () => {
   it('Type pills pick bulk kinds: Grocers keeps both, Cafes and takeaway keeps neither, Markets leaves the tier out', async () => {
     await open(source());
     await screen.findByText('Bulk Bakery');
+    openFilters();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Grocers' }));
     expect(screen.getByText('Bulk Bakery')).toBeInTheDocument();
     expect(screen.getByText('Bulk Greens')).toBeInTheDocument();
+    openFilters();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Grocers' }));
+    openFilters();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Cafes and takeaway' }));
     expect(screen.queryByText('Bulk Bakery')).toBeNull();
     expect(screen.getByText('Nothing matches')).toBeInTheDocument();
+    openFilters();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Cafes and takeaway' }));
+    openFilters();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Markets' }));
     expect(screen.queryByRole('heading', { name: 'Not checked by us' })).toBeNull();
     expect(screen.getByRole('list', { name: 'Places near you' })).toBeInTheDocument();
