@@ -7,7 +7,7 @@ import {
   THEME_IDS,
   triesLeft,
   validateName,
-  validatePasscode,
+  validatePassword,
   type AccountRecord,
   type AttemptState,
   type AuthService,
@@ -178,10 +178,10 @@ export class LocalAuthService implements AuthService {
     const passcode = input.passcode ? input.passcode : undefined;
     if (passcode !== undefined) {
       if (!supportsPasscode()) {
-        return fail('passcode-unsupported', "This browser can't protect profiles with a passcode.");
+        return fail('passcode-unsupported', "This browser can't protect profiles with a password.");
       }
-      const p = validatePasscode(passcode);
-      if (!p.ok) return fail('invalid-passcode', p.reason ?? 'Use 4 to 8 digits.');
+      const p = validatePassword(passcode);
+      if (!p.ok) return fail('invalid-passcode', p.reason ?? 'Use 6 to 64 characters.');
     }
     try {
       if (this.readAccounts().corrupt) {
@@ -253,8 +253,9 @@ export class LocalAuthService implements AuthService {
           const wait = retryInSeconds(this.readAttempt(id), this.now());
           return wait > 0 ? { ok: false, reason: 'too-many-attempts', retryInSeconds: wait } : null;
         };
-        // No hashing for an absurd length: it is simply not the passcode (passcodes are 4 to 8 digits).
-        if (passcode.length > MAX_PASSCODE_INPUT) return { ok: false, reason: 'wrong-passcode' };
+        // No hashing for an absurd length: it is simply not the password (up to 64 characters, counted as
+        // code points; old passcodes were 4 to 8 digits). A cheap unit check first, so a huge string is not split.
+        if (passcode.length > MAX_PASSCODE_INPUT * 2 || [...passcode].length > MAX_PASSCODE_INPUT) return { ok: false, reason: 'wrong-passcode' };
         const early = locked();
         if (early) return early;
         const ok = await verifyPasscode(passcode, account.verifier);

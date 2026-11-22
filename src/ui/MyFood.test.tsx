@@ -11,7 +11,7 @@ const H = [
   'Here is what you chose',
 ];
 const PRIVACY = 'Optional. Stays on this device. You can clear it any time.';
-const SHARED = 'Anyone who can open this browser as you could see this. Use a profile with a passcode on a shared device.';
+const SHARED = 'Anyone who can open this browser as you could see this. Use a profile with a password on a shared device.';
 const FOOD: FoodProfile = { traditions: ['greek'], rules: ['halal'], allergies: ['Peanuts'], occasions: [], dismissed: [] };
 const MEAL: CulturalMeal = { id: 'm1', at: '2026-10-27T01:00:00.000Z', tradition: 'greek' };
 

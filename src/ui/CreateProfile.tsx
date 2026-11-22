@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
-import { THEME_IDS, validateName, validatePasscode, type ThemeId } from '@culinerity/core';
+import { THEME_IDS, validateName, validatePassword, type ThemeId } from '@culinerity/core';
 import { supportsPasscode } from '../auth/uuid';
 import { useAuth } from '../auth/useAuth';
 import { LocalProfileStore } from '../storage/localProfileStore';
@@ -21,14 +21,14 @@ interface Props {
 const SAVED_NOT_SIGNED_IN =
   'Your profile is saved, but we could not sign you in just now. You can choose it from the sign-in screen.';
 const NAME_HELP = 'A first name or nickname is plenty. It stays on this device.';
-const PASSCODE_HELP = "Optional. If you forget it, we can't reset it, but you can start a new profile.";
+const PASSWORD_HELP = "Optional. We can't reset a forgotten password.";
 
 const defaultReadGuest = (): Record<string, unknown> => ({ ...new LocalProfileStore().load() });
 
 /** Only a guest who has saved something (more than having seen the welcome page) gets the data choice. */
 const hasGuestData = (p: Record<string, unknown>): boolean => Object.keys(p).some((k) => k !== 'welcomeSeen');
 
-/** Name, optional passcode, avatar colour, and (only if there is guest data) where to start from. */
+/** Name, optional password, avatar colour, and (only if there is guest data) where to start from. */
 export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultReadGuest }: Props) {
   const { create, signIn, signOut, showNote, status } = useAuth();
   const [name, setName] = useState('');
@@ -57,8 +57,8 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
     if (!n.ok) return setMessage(n.reason ?? 'Please enter a name.');
     const wantsLock = canLock && (passcode !== '' || again !== '');
     if (wantsLock) {
-      const p = validatePasscode(passcode);
-      if (!p.ok) return setMessage(p.reason ?? 'Use 4 to 8 digits.');
+      const p = validatePassword(passcode);
+      if (!p.ok) return setMessage(p.reason ?? 'Use 6 to 64 characters.');
       if (passcode !== again) return setMessage("Those didn't match.");
     }
     const code = wantsLock ? passcode : undefined;
@@ -77,7 +77,7 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
         setMessage(r.message);
         return;
       }
-      // The passcode is not kept past this call, in state or anywhere else.
+      // The password is not kept past this call, in state or anywhere else.
       setPasscode('');
       setAgain('');
       const s = await signIn(r.account.id, code);
@@ -177,17 +177,15 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
         <div className="grid gap-4">
           <div className="grid gap-2">
             <label htmlFor="create-passcode" className="text-base font-semibold">
-              Passcode
+              Password
             </label>
             <div className="flex items-center gap-2">
               <input
                 id="create-passcode"
                 name="culinerity-lock"
                 type={showPasscode ? 'text' : 'password'}
-                inputMode="numeric"
-                pattern="[0-9]*"
-                autoComplete="off"
-                maxLength={8}
+                autoComplete="new-password"
+                maxLength={64}
                 spellCheck={false}
                 value={passcode}
                 onChange={(e) => setPasscode(e.target.value)}
@@ -203,21 +201,19 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
               </PillButton>
             </div>
             <p id="create-passcode-help" className="px-2 text-[13px] text-pretty text-muted">
-              {PASSCODE_HELP}
+              {PASSWORD_HELP}
             </p>
           </div>
           <div className="grid gap-2">
             <label htmlFor="create-passcode-again" className="text-base font-semibold">
-              Confirm passcode
+              Confirm password
             </label>
             <input
               id="create-passcode-again"
               name="culinerity-lock-again"
               type={showPasscode ? 'text' : 'password'}
-              inputMode="numeric"
-              pattern="[0-9]*"
-              autoComplete="off"
-              maxLength={8}
+              autoComplete="new-password"
+              maxLength={64}
               spellCheck={false}
               value={again}
               onChange={(e) => setAgain(e.target.value)}
@@ -227,7 +223,7 @@ export function CreateProfile({ onDone, onCancel, readGuestProfile = defaultRead
         </div>
       ) : (
         <p className="text-base text-pretty text-muted">
-          This browser can&apos;t protect profiles with a passcode. You can still make a profile without one.
+          This browser can&apos;t protect profiles with a password. You can still make a profile without one.
         </p>
       )}
 

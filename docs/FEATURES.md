@@ -19,7 +19,7 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
 
 ## `feature/sign-in` (complete, unpushed)
 - **Local, on-device profiles:** create, sign in, switch, lock, delete (typed-name confirmation); avatars and colours.
-- **Optional passcode:** PBKDF2-HMAC-SHA-256 (210,000 rounds, random salt), session in `sessionStorage`, soft 30 s pause after 5 wrong tries.
+- **Optional password (6 to 64 characters, any characters; older 4 to 8 digit passcodes still work):** PBKDF2-HMAC-SHA-256 (210,000 rounds, random salt), session in `sessionStorage`, soft 30 s pause after 5 wrong tries.
 - **Move guest data** into a new profile; per-profile storage; corrupt-storage and cross-tab protections.
 - Honest copy: a local lock, not encryption or account security. README/AGENTS document limits and how to reset.
 - Visible 2px field edges (WCAG 1.4.11) across every input; plate favicon.

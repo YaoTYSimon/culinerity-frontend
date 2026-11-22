@@ -16,8 +16,15 @@ export function validateName(name: string): { ok: boolean; value: string; reason
   return { ok: true, value };
 }
 
-function isWeak(p: string): boolean {
-  const digits = [...p].map(Number);
+const PASSWORD_MIN = 6;
+const PASSWORD_MAX = 64;
+const LENGTH_MESSAGE = `Use ${PASSWORD_MIN} to ${PASSWORD_MAX} characters.`;
+
+/** Rejects easy digit-only passwords (as before): one digit repeated, runs up or down, short repeats. */
+function isWeak(chars: string[]): boolean {
+  if (!chars.every((c) => c >= '0' && c <= '9')) return false;
+  const p = chars.join('');
+  const digits = chars.map(Number);
   const n = digits.length;
   if (digits.every((d) => d === digits[0])) return true;
   const step = (a: number, b: number) => (b - a + 10) % 10;
@@ -29,9 +36,17 @@ function isWeak(p: string): boolean {
   return false;
 }
 
-export function validatePasscode(p: string): { ok: boolean; reason?: string } {
-  if (!/^[0-9]{4,8}$/.test(p)) return { ok: false, reason: 'Use 4 to 8 digits.' };
-  if (isWeak(p)) return { ok: false, reason: WEAK_MESSAGE };
+/** A password is 6 to 64 Unicode code points, any characters but control ones, never trimmed. */
+export function validatePassword(p: string): { ok: boolean; reason?: string } {
+  // A cheap bound first, so an absurdly long string is not split into code points.
+  if (typeof p !== 'string' || p.length > PASSWORD_MAX * 2) return { ok: false, reason: LENGTH_MESSAGE };
+  const chars = [...p];
+  if (chars.length < PASSWORD_MIN || chars.length > PASSWORD_MAX) return { ok: false, reason: LENGTH_MESSAGE };
+  // eslint-disable-next-line no-control-regex
+  if (/[\u0000-\u001F\u007F-\u009F]/.test(p)) {
+    return { ok: false, reason: 'Please remove any hidden or control characters.' };
+  }
+  if (isWeak(chars)) return { ok: false, reason: WEAK_MESSAGE };
   return { ok: true };
 }
 

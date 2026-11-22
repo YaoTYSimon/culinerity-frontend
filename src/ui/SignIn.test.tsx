@@ -6,6 +6,7 @@ import { AuthProvider } from '../auth/AuthProvider';
 import { LocalAuthService } from '../auth/LocalAuthService';
 import { KEYS, profileKey } from '../auth/storageKeys';
 import { useAuth, type AuthState } from '../auth/useAuth';
+import { createVerifier } from '../auth/verifier';
 import { SignIn } from './SignIn';
 
 let t = 1_000_000;
@@ -28,7 +29,7 @@ const tick = (seconds: number) => {
 };
 
 const HONESTY =
-  'Profiles live only on this device. A passcode adds a lock, not encryption. Someone with technical access could get around it.';
+  'A password locks this profile on this device. It is not encryption.';
 
 function mount(service = new LocalAuthService({ now })) {
   const view = render(
@@ -46,7 +47,7 @@ async function add(service: LocalAuthService, name: string, passcode?: string, c
   return r.account;
 }
 
-const field = () => screen.getByLabelText('Passcode') as HTMLInputElement;
+const field = () => screen.getByLabelText('Password') as HTMLInputElement;
 const type = (v: string) => fireEvent.change(field(), { target: { value: v } });
 const live = () => document.querySelector('[aria-live]') as HTMLElement;
 
@@ -84,7 +85,7 @@ describe('headline and chooser', () => {
   it('shows a named avatar button per profile, decorative circles with the name in text', async () => {
     const s = new LocalAuthService({ now });
     await add(s, 'Sam');
-    await add(s, 'Alex', '4829');
+    await add(s, 'Alex', 'fake-pass-82');
     mount(s);
     const sam = screen.getByRole('button', { name: 'Sign in as Sam' });
     expect(within(sam).getByText('Sam')).toBeInTheDocument();
@@ -140,28 +141,54 @@ describe('no passcode', () => {
   });
 });
 
+describe('profile made under the old 4 to 8 digit rule', () => {
+  it('still signs in with the digits', async () => {
+    const s = new LocalAuthService({ now });
+    const id = '22222222-2222-4222-8222-222222222222';
+    localStorage.setItem(
+      KEYS.accounts,
+      JSON.stringify([{ id, name: 'Old', colour: 'sand', createdAt: '2026-01-01T00:00:00.000Z', verifier: await createVerifier('4829') }]),
+    );
+    mount(s);
+    await userEvent.click(screen.getByRole('button', { name: 'Sign in as Old' }));
+    await userEvent.type(field(), '4829{Enter}');
+    await waitFor(() => expect(auth.current?.name).toBe('Old'));
+  });
+});
+
 describe('passcode profile', () => {
   async function withPasscode() {
     const s = new LocalAuthService({ now });
-    await add(s, 'Sam', '4829');
+    await add(s, 'Sam', 'fake-pass-82');
     await add(s, 'Alex');
     const view = mount(s);
     await userEvent.click(screen.getByRole('button', { name: 'Sign in as Sam' }));
     return { s, ...view };
   }
 
-  it('selecting shows a labelled masked numeric field with safe attributes and a Sign in button', async () => {
+  it('selecting shows a labelled masked text field with safe attributes and a Sign in button', async () => {
     await withPasscode();
     const f = field();
     expect(f).toHaveAttribute('type', 'password');
-    expect(f).toHaveAttribute('inputmode', 'numeric');
-    expect(f).toHaveAttribute('pattern', '[0-9]*');
-    expect(f).toHaveAttribute('autocomplete', 'off');
-    expect(f).toHaveAttribute('maxlength', '8');
+    expect(f).not.toHaveAttribute('inputmode');
+    expect(f).not.toHaveAttribute('pattern');
+    expect(f).toHaveAttribute('autocomplete', 'current-password');
+    expect(f).toHaveAttribute('maxlength', '64');
     expect(f.getAttribute('name')).toBe('culinerity-lock');
     expect(f.getAttribute('name')).not.toMatch(/pass|pwd|pin/i);
     expect(screen.getByRole('button', { name: 'Sign in' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
+  });
+
+  it('the box is cleared after a sign-in attempt, wrong or right, and takes 64 characters', async () => {
+    const { s } = await withPasscode();
+    expect(field()).toHaveAttribute('maxlength', '64');
+    await userEvent.type(field(), 'wrong-pass-05{Enter}');
+    await waitFor(() => expect(live()).toHaveTextContent("That password didn't match."));
+    expect(field().value).toBe('');
+    await userEvent.type(field(), 'fake-pass-82{Enter}');
+    await waitFor(() => expect(auth.status).toBe('signed-in'));
+    expect(s.current()?.name).toBe('Sam');
   });
 
   it('Show toggles type password <-> text with aria-pressed', async () => {
@@ -176,39 +203,39 @@ describe('passcode profile', () => {
     expect(show).toHaveAttribute('aria-pressed', 'false');
   });
 
-  it('the correct passcode signs in (Enter submits)', async () => {
+  it('the correct password signs in (Enter submits)', async () => {
     await withPasscode();
-    await userEvent.type(field(), '4829{Enter}');
+    await userEvent.type(field(), 'fake-pass-82{Enter}');
     await waitFor(() => expect(auth.current?.name).toBe('Sam'));
   });
 
-  it('a wrong passcode shows the exact calm message with tries left, clears the field, and does not log it', async () => {
+  it('a wrong password shows the exact calm message with tries left, clears the field, and does not log it', async () => {
     await withPasscode();
     const spies = (['log', 'info', 'warn', 'error', 'debug'] as const).map((m) => vi.spyOn(console, m));
-    await userEvent.type(field(), '9051');
+    await userEvent.type(field(), 'wrong-pass-05');
     await userEvent.click(screen.getByRole('button', { name: 'Sign in' }));
-    await waitFor(() => expect(live()).toHaveTextContent("That passcode didn't match. 4 tries left."));
+    await waitFor(() => expect(live()).toHaveTextContent("That password didn't match. 4 tries left."));
     expect(field().value).toBe('');
-    expect(document.body.textContent).not.toContain('9051');
-    expect(document.body.innerHTML).not.toContain('9051');
-    for (const s of spies) expect(JSON.stringify(s.mock.calls)).not.toMatch(/9051|4829/);
+    expect(document.body.textContent).not.toContain('wrong-pass-05');
+    expect(document.body.innerHTML).not.toContain('wrong-pass-05');
+    for (const s of spies) expect(JSON.stringify(s.mock.calls)).not.toMatch(/wrong-pass-05|fake-pass-82/);
     expect(auth.status).toBe('locked');
   });
 
   it('says "1 try left." in the singular', async () => {
     await withPasscode();
     for (let i = 0; i < 4; i++) {
-      type('9051');
+      type('wrong-pass-05');
       await userEvent.click(screen.getByRole('button', { name: 'Sign in' }));
       await waitFor(() => expect(live()).toHaveTextContent(/tr(y|ies) left/));
     }
-    expect(live()).toHaveTextContent("That passcode didn't match. 1 try left.");
+    expect(live()).toHaveTextContent("That password didn't match. 1 try left.");
   });
 
   it('the 5th failure shows the pause with a live countdown, disables Sign in, then re-enables at zero', async () => {
     await withPasscode();
     for (let i = 0; i < 5; i++) {
-      type('9051');
+      type('wrong-pass-05');
       await userEvent.click(screen.getByRole('button', { name: 'Sign in' }));
       await waitFor(() => expect(live().textContent).not.toBe(''));
       await act(async () => {});
@@ -236,7 +263,7 @@ describe('passcode profile', () => {
     expect(live()).toHaveAttribute('aria-live', 'assertive');
     expect(live()).toHaveTextContent('You can try again now.');
     // a correct passcode now works
-    type('4829');
+    type('fake-pass-82');
     await userEvent.click(btn);
     await waitFor(() => expect(auth.current?.name).toBe('Sam'));
   });
@@ -245,7 +272,7 @@ describe('passcode profile', () => {
     const { s } = await withPasscode();
     let release!: (v: Awaited<ReturnType<typeof s.signIn>>) => void;
     const spy = vi.spyOn(s, 'signIn').mockImplementation(() => new Promise((r) => (release = r)));
-    type('4829');
+    type('fake-pass-82');
     const btn = screen.getByRole('button', { name: 'Sign in' });
     fireEvent.click(btn);
     fireEvent.click(btn);
@@ -257,14 +284,14 @@ describe('passcode profile', () => {
     expect(screen.getByRole('button', { name: 'Sign in' })).toBeEnabled();
   });
 
-  it('never renders the typed passcode, even while typing, shown, or after success', async () => {
+  it('never renders the typed password, even while typing, shown, or after success', async () => {
     await withPasscode();
-    await userEvent.type(field(), '4829');
+    await userEvent.type(field(), 'fake-pass-82');
     await userEvent.click(screen.getByRole('button', { name: 'Show' }));
-    expect(document.body.textContent).not.toContain('4829');
+    expect(document.body.textContent).not.toContain('fake-pass-82');
     await userEvent.click(screen.getByRole('button', { name: 'Sign in' }));
     await waitFor(() => expect(auth.status).toBe('signed-in'));
-    expect(document.body.textContent).not.toContain('4829');
+    expect(document.body.textContent).not.toContain('fake-pass-82');
   });
 
   it('an empty submit asks calmly without calling signIn', async () => {
@@ -272,7 +299,7 @@ describe('passcode profile', () => {
     const spy = vi.spyOn(s, 'signIn');
     await userEvent.click(screen.getByRole('button', { name: 'Sign in' }));
     expect(spy).not.toHaveBeenCalled();
-    expect(live()).toHaveTextContent('Please enter your passcode.');
+    expect(live()).toHaveTextContent('Please enter your password.');
   });
 
   it('"Use a different profile" and Escape return to the chooser', async () => {
@@ -280,10 +307,10 @@ describe('passcode profile', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Use a different profile' }));
     expect(screen.getByRole('button', { name: 'Sign in as Alex' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
-    expect(screen.queryByLabelText('Passcode')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('Password')).not.toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: 'Sign in as Sam' }));
     await userEvent.keyboard('{Escape}');
-    expect(screen.queryByLabelText('Passcode')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('Password')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Sign in as Alex' })).toBeInTheDocument();
   });
 });
@@ -303,29 +330,29 @@ describe('errors from the service', () => {
 
   it('unknown-profile says so and returns to the chooser', async () => {
     const s = new LocalAuthService({ now });
-    await add(s, 'Sam', '4829');
+    await add(s, 'Sam', 'fake-pass-82');
     await add(s, 'Alex');
     mount(s);
     await userEvent.click(screen.getByRole('button', { name: 'Sign in as Sam' }));
     vi.spyOn(s, 'signIn').mockResolvedValue({ ok: false, reason: 'unknown-profile' });
-    type('4829');
+    type('fake-pass-82');
     await userEvent.click(screen.getByRole('button', { name: 'Sign in' }));
     await waitFor(() => expect(live()).toHaveTextContent("That profile isn't here any more."));
-    expect(screen.queryByLabelText('Passcode')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('Password')).not.toBeInTheDocument();
   });
 });
 
 describe('forgot passcode: delete this profile', () => {
   async function toDelete() {
     const s = new LocalAuthService({ now });
-    const sam = await add(s, 'Sam', '4829');
+    const sam = await add(s, 'Sam', 'fake-pass-82');
     const alex = await add(s, 'Alex');
     localStorage.setItem(profileKey(sam.id), JSON.stringify({ score: 40 }));
     localStorage.setItem(profileKey(alex.id), JSON.stringify({ score: 70 }));
     localStorage.setItem(KEYS.guestProfile, JSON.stringify({ score: 10 }));
     mount(s);
     await userEvent.click(screen.getByRole('button', { name: 'Sign in as Sam' }));
-    await userEvent.click(screen.getByRole('button', { name: 'Forgot passcode? Delete this profile' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Forgot password? Delete this profile' }));
     return { s, sam, alex };
   }
 
@@ -362,7 +389,7 @@ describe('forgot passcode: delete this profile', () => {
   it('Cancel goes back to the passcode screen', async () => {
     await toDelete();
     await userEvent.click(screen.getByRole('button', { name: 'Cancel' }));
-    expect(screen.getByLabelText('Passcode')).toBeInTheDocument();
+    expect(screen.getByLabelText('Password')).toBeInTheDocument();
   });
 });
 

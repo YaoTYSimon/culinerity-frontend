@@ -1,10 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { LocalAuthService } from './LocalAuthService';
 import { KEYS, profileKey } from './storageKeys';
+import { createVerifier } from './verifier';
 
 let t = 1_000_000;
 const make = () => new LocalAuthService({ now: () => t });
-const PASS = '5829';
+const PASS = 'fake-pass-58';
 
 beforeEach(() => {
   localStorage.clear();
@@ -39,7 +40,7 @@ describe('create / list / signIn', () => {
   it('rejects bad names and weak passcodes with typed reasons', async () => {
     const svc = make();
     expect(await svc.create({ name: '  ', colour: 'sand' })).toMatchObject({ ok: false, reason: 'invalid-name' });
-    expect(await svc.create({ name: 'A', colour: 'sand', passcode: '1234' })).toMatchObject({
+    expect(await svc.create({ name: 'A', colour: 'sand', passcode: '123456' })).toMatchObject({
       ok: false,
       reason: 'invalid-passcode',
     });
@@ -367,16 +368,16 @@ describe('secrets and failures', () => {
   it('never logs a passcode', async () => {
     const spies = (['log', 'info', 'warn', 'error', 'debug'] as const).map((m) => vi.spyOn(console, m));
     const svc = make();
-    const a = await mk(svc, 'Sam', '7391');
+    const a = await mk(svc, 'Sam', 'fake-pass-73');
     await svc.signIn(a.id, '1111');
-    await svc.signIn(a.id, '7391');
-    await svc.create({ name: 'X', colour: 'sand', passcode: '1234' });
+    await svc.signIn(a.id, 'fake-pass-73');
+    await svc.create({ name: 'X', colour: 'sand', passcode: 'fake-pass-99' });
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
       throw new Error('boom');
     });
-    await svc.signIn(a.id, '7391');
+    await svc.signIn(a.id, 'fake-pass-73');
     const out = JSON.stringify(spies.flatMap((s) => s.mock.calls));
-    expect(out).not.toContain('7391');
+    expect(out).not.toContain('fake-pass-73');
     expect(out).not.toContain('1111');
   });
   it('never throws when storage throws in every operation', async () => {
@@ -443,5 +444,38 @@ describe('passcode length guard', () => {
     expect(r).toMatchObject({ ok: false, reason: 'wrong-passcode' });
     expect(spy).not.toHaveBeenCalled();
     expect(svc.current()).toBeNull();
+  });
+});
+
+describe('password rules', () => {
+  const tryCreate = (p: string) => make().create({ name: 'Sam', colour: 'sand', passcode: p });
+  it('accepts 6 to 64 characters of any kind, including spaces, symbols and emoji (code points)', async () => {
+    for (const p of ['abc def', 'p@ss!w0rd#', 'x'.repeat(64), '\u{1F600}'.repeat(6)]) {
+      localStorage.clear();
+      expect(await tryCreate(p), p).toMatchObject({ ok: true });
+    }
+  });
+  it('rejects 5 and 65 characters with the short message', async () => {
+    for (const p of ['abcde', 'x'.repeat(65)]) {
+      expect(await tryCreate(p)).toMatchObject({ ok: false, reason: 'invalid-passcode', message: 'Use 6 to 64 characters.' });
+    }
+  });
+  it('signs in with a 64 code point password made of emoji (more than 64 UTF-16 units)', async () => {
+    const svc = make();
+    const long = '\u{1F600}'.repeat(64);
+    const a = await mk(svc, 'Sam', long);
+    expect(await svc.signIn(a.id, long)).toMatchObject({ ok: true });
+  });
+  it('an existing profile with a 4-digit passcode (old rules) still signs in; a wrong one still counts', async () => {
+    const id = '11111111-1111-4111-8111-111111111111';
+    const verifier = await createVerifier('4829');
+    localStorage.setItem(
+      KEYS.accounts,
+      JSON.stringify([{ id, name: 'Old', colour: 'sand', createdAt: '2026-01-01T00:00:00.000Z', verifier }]),
+    );
+    const svc = make();
+    expect(await svc.signIn(id, '4830')).toEqual({ ok: false, reason: 'wrong-passcode', triesLeft: 4 });
+    expect(await svc.signIn(id, '4829')).toMatchObject({ ok: true });
+    expect(svc.current()?.id).toBe(id);
   });
 });

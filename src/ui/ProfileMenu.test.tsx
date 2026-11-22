@@ -116,16 +116,16 @@ describe('ProfileMenu: signed in', () => {
     expect(await screen.findByRole('heading', { level: 1, name: 'Welcome back.' })).toBeInTheDocument();
   });
 
-  it('never puts a passcode or hash in the DOM', async () => {
+  it('never puts a password or hash in the DOM', async () => {
     const s = service();
-    const a = await add(s, 'Sam', '2468');
-    await s.signIn(a.id, '2468');
+    const a = await add(s, 'Sam', 'fake-pass-24');
+    await s.signIn(a.id, 'fake-pass-24');
     seedProfile(a.id, { welcomeSeen: true });
     mount(s);
     openPanel();
     const hash = JSON.parse(localStorage.getItem(KEYS.accounts)!)[0].verifier.hash as string;
     expect(document.body.innerHTML).not.toContain(hash);
-    expect(document.body.innerHTML).not.toContain('2468');
+    expect(document.body.innerHTML).not.toContain('fake-pass-24');
     expect(document.body.innerHTML).not.toMatch(/verifier|salt/i);
   });
 });

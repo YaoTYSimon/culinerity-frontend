@@ -26,8 +26,8 @@ function mount(props: Partial<React.ComponentProps<typeof CreateProfile>> = {}, 
 }
 
 const name = () => screen.getByLabelText('Name') as HTMLInputElement;
-const pass = () => screen.getByLabelText('Passcode') as HTMLInputElement;
-const confirm = () => screen.getByLabelText('Confirm passcode') as HTMLInputElement;
+const pass = () => screen.getByLabelText('Password') as HTMLInputElement;
+const confirm = () => screen.getByLabelText('Confirm password') as HTMLInputElement;
 const live = () => document.querySelector('[aria-live]') as HTMLElement;
 const create = () => userEvent.click(screen.getByRole('button', { name: 'Create profile' }));
 
@@ -38,27 +38,57 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks());
 
 describe('CreateProfile', () => {
-  it('has one h1 that takes focus, the name helper text and the passcode helper text', () => {
+  it('has one h1 that takes focus, the name helper text and the password helper text', () => {
     mount();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1 })).toHaveFocus();
     expect(screen.getByText('A first name or nickname is plenty. It stays on this device.')).toBeInTheDocument();
     expect(
-      screen.getByText("Optional. If you forget it, we can't reset it, but you can start a new profile."),
+      screen.getByText("Optional. We can't reset a forgotten password."),
     ).toBeInTheDocument();
   });
 
-  it('passcode inputs are masked numeric, autocomplete off, with non-password-like names', () => {
+  it('password inputs are masked, free text, new-password, capped at 64, with non-password-like names', () => {
     mount();
     for (const f of [pass(), confirm()]) {
       expect(f).toHaveAttribute('type', 'password');
-      expect(f).toHaveAttribute('inputmode', 'numeric');
-      expect(f).toHaveAttribute('pattern', '[0-9]*');
-      expect(f).toHaveAttribute('autocomplete', 'off');
-      expect(f).toHaveAttribute('maxlength', '8');
+      expect(f).not.toHaveAttribute('inputmode');
+      expect(f).not.toHaveAttribute('pattern');
+      expect(f).toHaveAttribute('autocomplete', 'new-password');
+      expect(f).toHaveAttribute('maxlength', '64');
       expect(f.getAttribute('name')).not.toMatch(/pass|pwd/i);
     }
     expect(name()).toHaveAttribute('autocomplete', 'off');
+  });
+
+  it('takes 64 characters in the box (not cut at 8) and creates the profile', async () => {
+    const { service } = mount();
+    const long = 'Ab 1!'.repeat(12) + 'wxyz'; // 64 characters with spaces and symbols
+    expect(long).toHaveLength(64);
+    await userEvent.type(name(), 'Sam');
+    fireEvent.change(pass(), { target: { value: long } });
+    fireEvent.change(confirm(), { target: { value: long } });
+    expect(pass().value).toBe(long);
+    await create();
+    await waitFor(() => expect(auth.current?.name).toBe('Sam'));
+    expect(service.list()[0].verifier).toBeDefined();
+  });
+
+  it('rejects a 5 character password and clears both boxes after a successful create', async () => {
+    mount();
+    await userEvent.type(name(), 'Sam');
+    await userEvent.type(pass(), 'abcde');
+    await userEvent.type(confirm(), 'abcde');
+    await create();
+    expect(live()).toHaveTextContent('Use 6 to 64 characters.');
+    await userEvent.clear(pass());
+    await userEvent.clear(confirm());
+    await userEvent.type(pass(), 'abc def');
+    await userEvent.type(confirm(), 'abc def');
+    await create();
+    await waitFor(() => expect(auth.current?.name).toBe('Sam'));
+    expect(pass().value).toBe('');
+    expect(confirm().value).toBe('');
   });
 
   it('shows the validateName message for an empty name and for 25 characters', async () => {
@@ -70,21 +100,21 @@ describe('CreateProfile', () => {
     expect(live()).toHaveTextContent('Keep it to 24 characters or fewer.');
   });
 
-  it('shows the validatePasscode messages (format, weak) and the mismatch message', async () => {
+  it('shows the validatePassword messages (format, weak) and the mismatch message', async () => {
     mount();
     await userEvent.type(name(), 'Sam');
-    await userEvent.type(pass(), '12');
+    await userEvent.type(pass(), 'abc');
     await create();
-    expect(live()).toHaveTextContent('Use 4 to 8 digits.');
+    expect(live()).toHaveTextContent('Use 6 to 64 characters.');
     await userEvent.clear(pass());
-    await userEvent.type(pass(), '1234');
-    await userEvent.type(confirm(), '1234');
+    await userEvent.type(pass(), '123456');
+    await userEvent.type(confirm(), '123456');
     await create();
     expect(live()).toHaveTextContent('That one is easy to guess. Try another.');
     await userEvent.clear(pass());
     await userEvent.clear(confirm());
-    await userEvent.type(pass(), '4829');
-    await userEvent.type(confirm(), '4820');
+    await userEvent.type(pass(), 'fake-pass-82');
+    await userEvent.type(confirm(), 'fake-pass-83');
     await create();
     expect(live()).toHaveTextContent("Those didn't match.");
     expect(auth.accounts).toHaveLength(0);
@@ -103,17 +133,17 @@ describe('CreateProfile', () => {
     expect(onDone).toHaveBeenCalledTimes(1);
   });
 
-  it('creates a profile with a passcode and signs in with it; the passcode is not left in the DOM', async () => {
+  it('creates a profile with a password and signs in with it; the password is not left in the DOM', async () => {
     const { service } = mount();
     const spies = (['log', 'info', 'warn', 'error', 'debug'] as const).map((m) => vi.spyOn(console, m));
     await userEvent.type(name(), 'Sam');
-    await userEvent.type(pass(), '4829');
-    await userEvent.type(confirm(), '4829');
+    await userEvent.type(pass(), 'fake-pass-82');
+    await userEvent.type(confirm(), 'fake-pass-82');
     await create();
     await waitFor(() => expect(auth.current?.name).toBe('Sam'));
     expect(service.list()[0].verifier).toBeDefined();
-    expect(document.body.innerHTML).not.toContain('4829');
-    for (const s of spies) expect(JSON.stringify(s.mock.calls)).not.toContain('4829');
+    expect(document.body.innerHTML).not.toContain('fake-pass-82');
+    for (const s of spies) expect(JSON.stringify(s.mock.calls)).not.toContain('fake-pass-82');
   });
 
   it('shows the typed failure message from create() in the live region and stays put', async () => {
@@ -217,11 +247,11 @@ describe('CreateProfile', () => {
     expect(fresh).toHaveFocus();
   });
 
-  it('hides the passcode inputs with a notice when the browser cannot protect passcodes', async () => {
+  it('hides the password inputs with a notice when the browser cannot protect passwords', async () => {
     vi.stubGlobal('crypto', { randomUUID: () => crypto.randomUUID.call(globalThis.crypto) });
     mount();
-    expect(screen.queryByLabelText('Passcode')).not.toBeInTheDocument();
-    expect(screen.getByText(/This browser can't protect profiles with a passcode/)).toBeInTheDocument();
+    expect(screen.queryByLabelText('Password')).not.toBeInTheDocument();
+    expect(screen.getByText(/This browser can't protect profiles with a password/)).toBeInTheDocument();
     vi.unstubAllGlobals();
   });
 

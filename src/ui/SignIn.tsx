@@ -11,7 +11,7 @@ import { PillButton } from './PillButton';
 const MAX_SHOWN = 6;
 
 const HONESTY =
-  'Profiles live only on this device. A passcode adds a lock, not encryption. Someone with technical access could get around it.';
+  'A password locks this profile on this device. It is not encryption.';
 
 type Mode =
   | { kind: 'choose' }
@@ -35,7 +35,7 @@ const everySecond = (cb: () => void): (() => void) => {
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 const pauseMessage = (s: number) => `Too many tries. You can try again in ${plural(s, 'second', 'seconds')}.`;
 
-/** "Who is this?": the profile chooser, the passcode step, and the delete / create side screens. */
+/** "Who is this?": the profile chooser, the password step, and the delete / create side screens. */
 export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
   const { accounts, signIn, remove, continueAsGuest } = useAuth();
   const [mode, setMode] = useState<Mode>({ kind: 'choose' });
@@ -43,7 +43,7 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
   const [busy, setBusy] = useState(false);
   const [showPasscode, setShowPasscode] = useState(false);
   const [confirmName, setConfirmName] = useState('');
-  // The pause after too many wrong passcodes: when it ends, whole seconds left, and whether it has ticked yet.
+  // The pause after too many wrong passwords: when it ends, whole seconds left, and whether it has ticked yet.
   const [pause, setPause] = useState<{ until: number; left: number; ticked: boolean } | null>(null);
   const busyRef = useRef(false);
   const passcodeRef = useRef<HTMLInputElement>(null);
@@ -84,7 +84,7 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
       case 'wrong-passcode': {
         const n = r.triesLeft;
         setMessage(
-          n === undefined ? "That passcode didn't match." : `That passcode didn't match. ${plural(n, 'try', 'tries')} left.`,
+          n === undefined ? "That password didn't match." : `That password didn't match. ${plural(n, 'try', 'tries')} left.`,
         );
         passcodeRef.current?.focus();
         return;
@@ -131,11 +131,11 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
   function submitPasscode(e: FormEvent) {
     e.preventDefault();
     if (!target || busyRef.current || (pause && pause.left > 0)) return;
-    // Read once, then clear at once: the passcode lives in this local only, never in state or the page.
+    // Read once, then clear at once: the password lives in this local only, never in state or the page.
     const value = passcodeRef.current?.value ?? '';
     if (passcodeRef.current) passcodeRef.current.value = '';
     if (!value) {
-      setMessage('Please enter your passcode.');
+      setMessage('Please enter your password.');
       return;
     }
     setMessage('');
@@ -186,13 +186,13 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
           <Avatar name={target.name} colour={target.colour} size={80} />
           <div className="grid gap-2">
             <FocusHeading>{`Hi, ${target.name}.`}</FocusHeading>
-            <p className="text-base text-pretty text-muted">Enter your passcode to carry on.</p>
+            <p className="text-base text-pretty text-muted">Enter your password to carry on.</p>
           </div>
         </div>
         <form onSubmit={submitPasscode} className="grid gap-4" noValidate>
           <div className="grid gap-2">
             <label htmlFor="signin-passcode" className="text-base font-semibold">
-              Passcode
+              Password
             </label>
             <div className="flex items-center gap-2">
               <input
@@ -200,10 +200,8 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
                 ref={passcodeRef}
                 name="culinerity-lock"
                 type={showPasscode ? 'text' : 'password'}
-                inputMode="numeric"
-                pattern="[0-9]*"
-                autoComplete="off"
-                maxLength={8}
+                autoComplete="current-password"
+                maxLength={64}
                 spellCheck={false}
                 className={INPUT_CLASS}
               />
@@ -227,7 +225,7 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
             Use a different profile
           </PillButton>
           <PillButton variant="text" onClick={() => go({ kind: 'delete', id: target.id })}>
-            Forgot passcode? Delete this profile
+            Forgot password? Delete this profile
           </PillButton>
         </div>
         <p className="text-[13px] text-pretty text-muted">{HONESTY}</p>
@@ -240,7 +238,7 @@ export function SignIn({ now = Date.now, ticker = everySecond }: Props) {
           <FocusHeading>Delete this profile?</FocusHeading>
           <p className="text-base text-pretty text-muted">
             This removes {target.name} and everything saved under it on this device. It can&apos;t be undone. Anyone
-            using this browser can do this, so a forgotten passcode isn&apos;t the end of the road.
+            using this browser can do this, so a forgotten password isn&apos;t the end of the road.
           </p>
         </div>
         <div className="grid gap-2">

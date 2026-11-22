@@ -13,7 +13,7 @@ Culinerity helps anyone in Melbourne find cheaper, healthier swaps for what they
 - **Budget**: a plate showing what is left of your weekly food budget (weeks run Monday to Sunday), a plain pace message, spending you add, remove or undo, past weeks, what swaps saved, and "How this compares" with cited figures. The budget is optional: the tracker works on spending alone.
 - **Data and policy**: a plain-language page of sourced figures on food insecurity in Australia and Victoria (cost of living, students, Melbourne areas by disadvantage, what helps), each with its source, year and how it was checked. Open it from the Menu or the footer link.
 - **My week**: the swaps you added in the last 7 days and what you saved, shareable as savings-only text.
-- **Local profiles** (optional): name, an avatar colour and an optional 4 to 8 digit passcode, kept on this device only. A round avatar button in the header opens Switch profile, Lock, Delete this profile and its data, and Sign out. Guests can make a profile from the same button and choose whether to bring their current data along.
+- **Local profiles** (optional): name, an avatar colour and an optional password (6 to 64 characters), kept on this device only. A round avatar button in the header opens Switch profile, Lock, Delete this profile and its data, and Sign out. Guests can make a profile from the same button and choose whether to bring their current data along.
 - **Four themes** (tobacco, sand, walnut, cream), chosen with the dots in the header and remembered on your device.
 
 Requires Node >= 22.
@@ -54,23 +54,23 @@ node scripts/contrast.mjs   # WCAG contrast of the four themes
 
 Answers to the check-in, your score and its history, budget, suburb, My week and theme stay on your device and are never sent anywhere. The app makes no third-party requests (no analytics, CDNs or remote fonts). Nearby uses your location only if you press "Use my location": it is rounded, kept in memory while the view is open, and never stored or sent. Typed suburbs are matched on the device. The optional server only serves reference data.
 
-## Local profiles and the passcode lock
+## Local profiles and the password lock
 
 Profiles live only in this browser's storage. They are a convenience for a shared device, not security:
 
-- The passcode is never stored. A PBKDF2-SHA-256 verifier (random salt, 210,000 iterations) is, and the passcode lock only gates the app's own screens. The saved data is **not encrypted**: anyone with access to the browser's developer tools can read it, and a 4 to 8 digit code can be guessed offline.
-- After 5 wrong passcodes there is a 30 second pause. It is tracked in storage and in memory, and clearing the site's storage resets it. Nothing is ever deleted because of wrong tries.
-- If a browser has no Web Crypto (very old or insecure contexts), only profiles without a passcode can be made.
-- A forgotten passcode cannot be reset. Anyone using the browser can delete that profile from the sign-in screen (typing its name) and start a new one.
-- Duplicating a tab copies its signed-in session (the copy starts signed in as the same profile), and two tabs open at once can under-count wrong passcodes, so the 5-try pause is a soft limit.
+- The password is never stored. A PBKDF2-SHA-256 verifier (random salt, 210,000 iterations) is, and the password lock only gates the app's own screens. The saved data is **not encrypted**: anyone with access to the browser's developer tools can read it, and a short or common password can be guessed offline.
+- After 5 wrong passwords there is a 30 second pause. It is tracked in storage and in memory, and clearing the site's storage resets it. Nothing is ever deleted because of wrong tries.
+- If a browser has no Web Crypto (very old or insecure contexts), only profiles without a password can be made.
+- A forgotten password cannot be reset. Anyone using the browser can delete that profile from the sign-in screen (typing its name) and start a new one.
+- Duplicating a tab copies its signed-in session (the copy starts signed in as the same profile), and two tabs open at once can under-count wrong passwords, so the 5-try pause is a soft limit.
 - Closing the tab signs you out (the signed-in id lives in `sessionStorage`). A refresh stays signed in. A fresh tab with profiles on the device asks who is eating; "Skip for now" continues as a guest. The theme is device-wide and not part of a profile.
 
 Storage keys:
 
 | Key | Where | Holds |
 | --- | --- | --- |
-| `culinerity.accounts.v1` | localStorage | names, avatar colours, passcode verifiers |
-| `culinerity.attempts.v1` | localStorage | wrong-passcode counts and pause times |
+| `culinerity.accounts.v1` | localStorage | names, avatar colours, password verifiers |
+| `culinerity.attempts.v1` | localStorage | wrong-password counts and pause times |
 | `culinerity.session.v1` | sessionStorage | the signed-in profile id for this tab |
 | `culinerity.profile.v1` | localStorage | the guest's data (also what "start from my current data" moves) |
 | `culinerity.profile.v1.<id>` | localStorage | one profile's data |
