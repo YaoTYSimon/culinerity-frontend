@@ -37,7 +37,7 @@ async function signedIn(name = 'Sam') {
   seedProfile(a.id, { welcomeSeen: true, suburb: 'Carlton' });
   return { s, a };
 }
-const profileButton = (name: string) => screen.getByRole('button', { name: `Profile menu, signed in as ${name}` });
+const profileButton = (_name?: string) => screen.getByRole('button', { name: 'Menu' });
 const openPanel = (name = 'Sam') => fireEvent.click(profileButton(name));
 
 beforeEach(() => {
@@ -52,11 +52,11 @@ describe('ProfileMenu: signed in', () => {
     mount(s);
     const btn = profileButton('Sam');
     expect(btn).toHaveAttribute('aria-expanded', 'false');
-    expect(screen.queryByText('Signed in as Sam')).not.toBeInTheDocument();
+    expect(screen.queryByRole('region', { name: 'Profile' })).not.toBeInTheDocument();
     fireEvent.click(btn);
     expect(btn).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.getByText('Signed in as Sam')).toBeInTheDocument();
-    for (const name of ['Switch profile', 'Lock', 'Delete this profile and its data', 'Sign out']) {
+    expect(screen.getByRole('region', { name: 'Profile' })).toHaveTextContent('Signed in as Sam');
+    for (const name of ['Switch profile', 'Lock', 'Delete profile', 'Sign out']) {
       expect(screen.getByRole('button', { name })).toBeInTheDocument();
     }
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
@@ -69,21 +69,21 @@ describe('ProfileMenu: signed in', () => {
     fireEvent.click(btn);
     expect(screen.getByRole('button', { name: 'Switch profile' })).toHaveFocus();
     fireEvent.keyDown(screen.getByRole('button', { name: 'Lock' }), { key: 'Escape' });
-    expect(screen.queryByText('Signed in as Sam')).not.toBeInTheDocument();
+    expect(screen.queryByRole('region', { name: 'Profile' })).not.toBeInTheDocument();
     expect(btn).toHaveFocus();
   });
 
-  it('opening the profile panel closes the Menu, and the other way round', async () => {
+  it('one panel holds the profile block above the destinations, and the button toggles it', async () => {
     const { s } = await signedIn();
     mount(s);
-    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    expect(screen.getByRole('button', { name: 'My week' })).toBeInTheDocument();
     openPanel();
+    const panel = document.getElementById(profileButton().getAttribute('aria-controls')!)!;
+    expect(within(panel).getByRole('region', { name: 'Profile' })).toBeInTheDocument();
+    expect(within(panel).getByRole('navigation', { name: 'Menu' })).toBeInTheDocument();
+    expect(screen.getAllByRole('navigation', { name: 'Menu' })).toHaveLength(1);
+    openPanel();
+    expect(screen.queryByRole('region', { name: 'Profile' })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'My week' })).not.toBeInTheDocument();
-    expect(screen.getByText('Signed in as Sam')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    expect(screen.queryByText('Signed in as Sam')).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'My week' })).toBeInTheDocument();
   });
 
   it('Lock returns to sign-in and the profile data leaves the DOM', async () => {
@@ -94,7 +94,7 @@ describe('ProfileMenu: signed in', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Lock' }));
     expect(await screen.findByRole('heading', { level: 1, name: 'Welcome back.' })).toBeInTheDocument();
     expect(screen.queryByText(/Cheaper, healthier swaps/)).not.toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /Profile menu/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Menu' })).not.toBeInTheDocument();
     expect(screen.queryByText('Carlton')).not.toBeInTheDocument();
   });
 
@@ -143,7 +143,7 @@ describe('ProfileMenu: delete', () => {
     const { s } = await openDelete();
     mount(s);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     const dialog = screen.getByRole('dialog', { name: 'Delete this profile?' });
     const input = within(dialog).getByLabelText('Type Sam to confirm');
     expect(input).toHaveFocus();
@@ -161,12 +161,12 @@ describe('ProfileMenu: delete', () => {
     const { s } = await openDelete();
     mount(s);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.keyDown(screen.getByLabelText('Type Sam to confirm'), { key: 'Escape' });
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(profileButton('Sam')).toHaveFocus();
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(profileButton('Sam')).toHaveFocus();
@@ -176,7 +176,7 @@ describe('ProfileMenu: delete', () => {
     const { s, a, other } = await openDelete();
     mount(s);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
     fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     expect(await screen.findByRole('heading', { level: 1, name: 'Welcome back.' })).toBeInTheDocument();
@@ -191,11 +191,12 @@ describe('ProfileMenu: delete', () => {
     const { s } = await signedIn();
     mount(s);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
     fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Profile menu, guest' })).toBeInTheDocument());
-    expect(screen.queryByRole('button', { name: /signed in as/ })).not.toBeInTheDocument();
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Menu' })).toBeInTheDocument());
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    expect(screen.getByRole('region', { name: 'Profile' })).toHaveTextContent('Guest');
   });
 
   it('keeps the dialog open and lists what could not be removed', async () => {
@@ -207,7 +208,7 @@ describe('ProfileMenu: delete', () => {
     failing.remove = async () => ({ ok: false, reason: 'storage-error', remaining: ['data', 'account'] });
     mount(failing);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
     fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     const dialog = await screen.findByRole('dialog');
@@ -232,7 +233,7 @@ describe('ProfileMenu: delete that signs out but leaves data behind', () => {
     };
     mount(failing);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
     fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     expect(await screen.findByRole('heading', { level: 1, name: "Who's eating today?" })).toBeInTheDocument();
@@ -255,13 +256,13 @@ describe('ProfileMenu: delete that signs out but leaves data behind', () => {
     };
     mount(failing);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
     fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     expect(await screen.findByRole('status')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Sign in as Alex' }));
-    await screen.findByRole('button', { name: 'Profile menu, signed in as Alex' });
-    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, signed in as Alex' }));
+    await screen.findByRole('button', { name: 'Menu' });
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Lock' }));
     await screen.findByRole('heading', { level: 1, name: "Who's eating today?" });
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
@@ -279,12 +280,12 @@ describe('ProfileMenu: delete that signs out but leaves data behind', () => {
     };
     mount(failing);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
     fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     const note = await screen.findByRole('status');
     expect(note).toHaveTextContent(/saved answers/i);
-    expect(screen.getByRole('button', { name: 'Profile menu, guest' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Menu' })).toBeInTheDocument();
     fireEvent.click(within(note).getByRole('button', { name: 'Dismiss' }));
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
   });
@@ -306,12 +307,12 @@ describe('ProfileMenu: delete that signs out but leaves data behind', () => {
     };
     mount(flaky);
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     fireEvent.change(screen.getByLabelText('Type Sam to confirm'), { target: { value: 'Sam' } });
     fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     expect(await screen.findByRole('status')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Sign in as Alex' }));
-    await screen.findByRole('button', { name: `Profile menu, signed in as ${b.name}` });
+    await screen.findByRole('button', { name: 'Menu' });
   });
 });
 
@@ -322,7 +323,7 @@ describe('ProfileMenu: delete dialog isolates the page', () => {
     const menuButton = screen.getByRole('button', { name: 'Menu' });
     expect(menuButton.closest('[inert]')).toBeNull();
     openPanel();
-    fireEvent.click(screen.getByRole('button', { name: 'Delete this profile and its data' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete profile' }));
     const dialog = screen.getByRole('dialog');
     expect(menuButton.closest('[inert]')).not.toBeNull();
     expect(screen.getByRole('main', { hidden: true }).closest('[inert]')).not.toBeNull();
@@ -337,28 +338,28 @@ describe('ProfileMenu: guest', () => {
   it('names the button "guest" and offers Create a profile, which signs the new profile in', async () => {
     const s = service();
     mount(s);
-    const btn = screen.getByRole('button', { name: 'Profile menu, guest' });
+    const btn = screen.getByRole('button', { name: 'Menu' });
     fireEvent.click(btn);
-    expect(screen.getByText("You're using Culinerity as a guest")).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Profile' })).toHaveTextContent('Guest');
     expect(screen.queryByRole('button', { name: 'Sign in' })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Create a profile' }));
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Robin' } });
     fireEvent.click(screen.getByRole('button', { name: 'Create profile' }));
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Profile menu, signed in as Robin' })).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Menu' })).toBeInTheDocument());
   });
 
   it('offers the data choice when the guest has saved data', async () => {
     seedProfile(undefined, { welcomeSeen: true, score: 62, scoreTakenAt: '2026-10-01T00:00:00.000Z' });
     mount(service());
-    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, guest' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Create a profile' }));
     expect(screen.getByRole('radio', { name: 'Start from my current data' })).toBeInTheDocument();
   });
 
   it('Cancel returns to the page', async () => {
     mount(service());
-    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, guest' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Create a profile' }));
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.getByRole('heading', { level: 1 })).not.toHaveTextContent('Create a profile');
@@ -369,7 +370,7 @@ describe('ProfileMenu: guest', () => {
     await add(s, 'Sam');
     mount(s);
     fireEvent.click(await screen.findByRole('button', { name: 'Skip for now' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, guest' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Sign in' }));
     expect(await screen.findByRole('heading', { level: 1, name: 'Welcome back.' })).toBeInTheDocument();
   });
@@ -382,14 +383,14 @@ describe('ProfileMenu: migration with a failed auto sign-in', () => {
     const failing = Object.create(real) as LocalAuthService;
     failing.signIn = async () => ({ ok: false, reason: 'storage-error' });
     mount(failing);
-    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, guest' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Create a profile' }));
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Robin' } });
     fireEvent.click(screen.getByRole('radio', { name: 'Start from my current data' }));
     fireEvent.click(screen.getByRole('button', { name: 'Create profile' }));
     expect(await screen.findByRole('heading', { level: 1, name: 'Welcome back.' })).toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent(/could not sign you in/i);
-    expect(screen.queryByRole('button', { name: /Profile menu/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Menu' })).not.toBeInTheDocument();
     expect(localStorage.getItem(profileKey())).toBeNull();
     expect(Object.keys(localStorage).filter((k) => k.startsWith('culinerity.profile.v1.'))).toHaveLength(1);
   });
@@ -400,7 +401,7 @@ describe('ProfileMenu: migration with a failed auto sign-in', () => {
     const failing = Object.create(real) as LocalAuthService;
     failing.signIn = async () => ({ ok: false, reason: 'storage-error' });
     mount(failing);
-    fireEvent.click(screen.getByRole('button', { name: 'Profile menu, guest' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
     fireEvent.click(screen.getByRole('button', { name: 'Create a profile' }));
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Robin' } });
     fireEvent.click(screen.getByRole('button', { name: 'Create profile' }));
@@ -410,7 +411,7 @@ describe('ProfileMenu: migration with a failed auto sign-in', () => {
 });
 
 describe('Header outside an AuthProvider', () => {
-  it('shows no profile button (existing App tests render without one)', () => {
+  it('shows the Menu without a profile block (existing App tests render without one)', () => {
     render(
       <ThemeProvider store={new InMemoryThemeStore()}>
         <ServicesProvider services={createServices()}>
@@ -418,6 +419,8 @@ describe('Header outside an AuthProvider', () => {
         </ServicesProvider>
       </ThemeProvider>,
     );
-    expect(screen.queryByRole('button', { name: /Profile menu/ })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    expect(screen.queryByRole('region', { name: 'Profile' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Home' })).toHaveFocus();
   });
 });

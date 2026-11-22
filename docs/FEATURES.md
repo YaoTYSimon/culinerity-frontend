@@ -28,6 +28,8 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
 - **Budget tracker:** Monday-week maths (DST-safe), plate showing what is left, pace message, add/remove/undo spending, past weeks, saved-with-swaps, income sentence and "How this compares" with cited figures.
 - **Data and policy dashboard:** plain-language sourced figures with dials, bars and scales, Melbourne areas by disadvantage, what helps, gaps listed, sources, and a print layout. Reached from the Menu and the footer.
 
+- **One header button (app polish):** the avatar (a guest glyph for guests) plus "Menu" in one round pill opens one panel. The profile block is on top (name, Switch profile, Lock, Sign out, Delete profile; guests see Create a profile and, when profiles exist, Sign in). Below it the destinations sit in compact one-word groups: Today, Money, Food, Help, About. No explanatory text. Escape closes and returns focus to the button, focus moves into the panel on open, the current page has `aria-current`.
+
 ## `feature/visuals` (complete, unpushed)
 - **Photo headers** for budget, policy and sign-in, and **empty-state visuals**, in the plate design.
 

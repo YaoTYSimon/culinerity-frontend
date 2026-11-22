@@ -1,24 +1,17 @@
-import { useContext, useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
+import { useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { isDeletionConfirmed, type AccountRecord } from '@culinerity/core';
 import { describeLeftovers } from '../auth/removeNotice';
-import { AuthContext, type AuthState } from '../auth/useAuth';
+import type { AuthState } from '../auth/useAuth';
 import { Avatar } from './Avatar';
 import { INPUT_CLASS, Live } from './formParts';
 import { PillButton } from './PillButton';
 
-interface Props {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  /** Guests: open the create-a-profile screen (the shell shows it; one h1 stays on the page). */
-  onCreateProfile: () => void;
-}
-
 const ITEM =
-  'focus-ring motion-colors flex min-h-11 w-full items-center rounded-full px-4 text-left text-lg font-semibold hover:bg-bg';
+  'focus-ring motion-colors flex min-h-11 items-center rounded-full px-4 text-left text-base font-semibold hover:bg-bg';
 
 /** Neutral person glyph for a guest: a flat surface circle, no letter. */
-function GuestAvatar() {
+export function GuestAvatar() {
   return (
     <span aria-hidden="true" className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-surface text-ink">
       <svg viewBox="0 0 24 24" className="size-5" fill="currentColor">
@@ -29,122 +22,88 @@ function GuestAvatar() {
   );
 }
 
-/**
- * The round avatar button in the header and its small panel. Renders nothing outside an AuthProvider.
- * Like the Menu it is a disclosure: Escape closes it and focus returns to the button.
- */
-export function ProfileMenu(props: Props) {
-  const auth = useContext(AuthContext);
-  return auth ? <ProfileMenuInner auth={auth} {...props} /> : null;
+interface BlockProps {
+  auth: AuthState;
+  /** Receives focus when the panel opens (the first action of the block). */
+  firstItem: RefObject<HTMLButtonElement | null>;
+  /** Close the panel (focus is left alone: the next screen or dialog takes it). */
+  onClose: () => void;
+  /** Ask the shell to open the delete-this-profile dialog (it outlives the panel). */
+  onDelete: () => void;
+  onCreateProfile: () => void;
 }
 
-function ProfileMenuInner({ auth, open, onOpenChange, onCreateProfile }: Props & { auth: AuthState }) {
+/**
+ * The profile part of the header panel: who is using the app and what they can do about it. Guests see
+ * "Create a profile" (and "Sign in" when profiles exist); signed-in people see their name, switch, lock,
+ * delete and sign out. The actions are short pills laid out in a wrapping row to keep the panel compact.
+ */
+export function ProfileBlock({ auth, firstItem, onClose, onDelete, onCreateProfile }: BlockProps) {
   const { current, accounts } = auth;
-  const button = useRef<HTMLButtonElement>(null);
-  const firstItem = useRef<HTMLButtonElement>(null);
-  const panelId = useId();
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    if (open) firstItem.current?.focus();
-  }, [open]);
-
-  // Focus goes back to the avatar once the dialog has closed and the page is no longer inert.
-  const wasDeleting = useRef(false);
-  useEffect(() => {
-    if (wasDeleting.current && !deleting) button.current?.focus();
-    wasDeleting.current = deleting;
-  }, [deleting]);
-
-  const close = () => {
-    onOpenChange(false);
-    button.current?.focus();
-  };
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape' && open) {
-      e.stopPropagation();
-      close();
-    }
-  };
+  // Switch profile and Lock both call lock(): the screen that follows depends on how many profiles exist (the chooser, or the one profile's sign-in).
   const showChooser = () => auth.lock();
-  const label = current ? `Profile menu, signed in as ${current.name}` : 'Profile menu, guest';
-
   return (
-    <div onKeyDown={onKeyDown}>
-      <button
-        ref={button}
-        type="button"
-        aria-label={label}
-        aria-expanded={open}
-        aria-controls={open ? panelId : undefined}
-        onClick={() => (open ? close() : onOpenChange(true))}
-        className="focus-ring motion-colors flex size-11 shrink-0 items-center justify-center rounded-full"
-      >
-        {current ? <Avatar name={current.name} colour={current.colour} size={36} /> : <GuestAvatar />}
-      </button>
-
-      {open && (
-        <div id={panelId} role="group" aria-label="Profile menu" className="absolute inset-x-0 top-full z-10 grid gap-1 bg-surface px-4 pb-4 pt-2">
-          {current ? (
-            <>
-              <p className="px-4 py-2 text-base text-muted [overflow-wrap:anywhere]">Signed in as {current.name}</p>
-              {/* Switch profile and Lock both call lock(): the screen that follows depends on how many profiles exist (the chooser, or the one profile's sign-in). */}
-              <button ref={firstItem} type="button" className={ITEM} onClick={showChooser}>
-                Switch profile
-              </button>
+    <section aria-label="Profile" className="grid gap-0.5">
+      {current ? (
+        <>
+          <p className="flex items-center gap-2 px-4 text-base font-semibold [overflow-wrap:anywhere]">
+            <Avatar name={current.name} colour={current.colour} size={28} />
+            <span className="sr-only">Signed in as </span>
+            {current.name}
+          </p>
+          <div className="flex flex-wrap gap-x-1">
+            <button ref={firstItem} type="button" className={ITEM} onClick={showChooser}>
+              Switch profile
+            </button>
+            <button type="button" className={ITEM} onClick={showChooser}>
+              Lock
+            </button>
+            <button type="button" className={ITEM} onClick={() => auth.signOut()}>
+              Sign out
+            </button>
+            <button
+              type="button"
+              className={ITEM}
+              onClick={() => {
+                onClose();
+                onDelete();
+              }}
+            >
+              Delete profile
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="flex items-center gap-2 px-4 text-base font-semibold">
+            <GuestAvatar />
+            Guest
+          </p>
+          <div className="flex flex-wrap gap-x-1">
+            <button
+              ref={firstItem}
+              type="button"
+              className={ITEM}
+              onClick={() => {
+                onClose();
+                onCreateProfile();
+              }}
+            >
+              Create a profile
+            </button>
+            {accounts.length > 0 && (
               <button type="button" className={ITEM} onClick={showChooser}>
-                Lock
+                Sign in
               </button>
-              <button
-                type="button"
-                className={ITEM}
-                onClick={() => {
-                  onOpenChange(false);
-                  setDeleting(true);
-                }}
-              >
-                Delete this profile and its data
-              </button>
-              <button type="button" className={ITEM} onClick={() => auth.signOut()}>
-                Sign out
-              </button>
-            </>
-          ) : (
-            <>
-              <p className="px-4 py-2 text-base text-muted">You&apos;re using Culinerity as a guest</p>
-              <button
-                ref={firstItem}
-                type="button"
-                className={ITEM}
-                onClick={() => {
-                  onOpenChange(false);
-                  onCreateProfile();
-                }}
-              >
-                Create a profile
-              </button>
-              {accounts.length > 0 && (
-                <button type="button" className={ITEM} onClick={showChooser}>
-                  Sign in
-                </button>
-              )}
-            </>
-          )}
-        </div>
+            )}
+          </div>
+        </>
       )}
-
-      {deleting && current && (
-        <DeleteDialog
-          auth={auth}
-          account={current}
-          onClose={() => setDeleting(false)}
-        />
-      )}
-    </div>
+    </section>
   );
 }
 
-function DeleteDialog({ auth, account, onClose }: { auth: AuthState; account: AccountRecord; onClose: () => void }) {
+export function DeleteDialog({ auth, account, onClose }: { auth: AuthState; account: AccountRecord; onClose: () => void }) {
   const [typed, setTyped] = useState('');
   const [message, setMessage] = useState('');
   const [failed, setFailed] = useState(false);

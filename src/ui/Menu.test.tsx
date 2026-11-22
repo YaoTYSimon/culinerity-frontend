@@ -1,13 +1,29 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Menu } from './Menu';
 
-const ITEMS = ['Home', 'Swaps', 'Check-in', 'Budget', 'What if', 'Food support', 'Nearby', 'My food', 'Meals that felt like home', 'My pantry', 'Cook with what you have', 'Food safety', 'Trade-offs', 'My week', 'Welcome', 'Data and policy'];
+const GROUPS: Record<string, string[]> = {
+  Today: ['Home', 'Swaps', 'Check-in', 'My week'],
+  Money: ['Budget', 'What if', 'Trade-offs'],
+  Food: ['Cook with what you have', 'My pantry', 'My food', 'Meals that felt like home', 'Food safety'],
+  Help: ['Nearby', 'Food support'],
+  About: ['Welcome', 'Data and policy'],
+};
+const ITEMS = Object.values(GROUPS).flat();
 
 describe('Menu', () => {
-  it('lists destinations in order', () => {
+  it('lists every destination under its one-word group heading', () => {
     render(<Menu current="swaps" onNavigate={() => {}} open />);
     expect(screen.getAllByRole('listitem').map((li) => li.textContent)).toEqual(ITEMS);
+    for (const [heading, labels] of Object.entries(GROUPS)) {
+      const list = screen.getByRole('list', { name: heading });
+      expect(within(list).getAllByRole('listitem').map((li) => li.textContent)).toEqual(labels);
+    }
+  });
+
+  it('has no explanatory sentences: only headings and short labels', () => {
+    render(<Menu current="swaps" onNavigate={() => {}} open />);
+    expect(screen.getByRole('navigation', { name: 'Menu' }).textContent).not.toMatch(/[.,]/);
   });
 
   it('is closed until the Menu button is pressed, then lists every destination', () => {
@@ -63,12 +79,18 @@ describe('Menu', () => {
     expect(screen.getByRole('button', { name: 'Swaps' })).not.toHaveAttribute('aria-current');
   });
 
-  it('Nearby follows Food support and navigates to nearby', () => {
+  it('Nearby is under Help with Food support and navigates to nearby', () => {
     const onNavigate = vi.fn();
     render(<Menu current="swaps" onNavigate={onNavigate} open />);
-    const labels = screen.getAllByRole('listitem').map((li) => li.textContent);
-    expect(labels.indexOf('Nearby')).toBe(labels.indexOf('Food support') + 1);
+    expect(within(screen.getByRole('list', { name: 'Help' })).getByRole('button', { name: 'Food support' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Nearby' }));
     expect(onNavigate).toHaveBeenCalledWith('nearby');
+  });
+
+  it('the trigger and panel are linked and the panel is one block', () => {
+    render(<Menu current="swaps" onNavigate={() => {}} />);
+    const button = screen.getByRole('button', { name: 'Menu' });
+    fireEvent.click(button);
+    expect(document.getElementById(button.getAttribute('aria-controls')!)).toContainElement(screen.getByRole('navigation', { name: 'Menu' }));
   });
 });
