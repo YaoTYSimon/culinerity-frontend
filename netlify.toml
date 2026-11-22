@@ -1,0 +1,9 @@
+# The web app is the Vite app at the repo root. packages/core is a library
+# bundled into it, and server/ is an optional API that is not deployed here.
+[build]
+  base = ""
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
