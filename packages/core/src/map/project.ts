@@ -42,7 +42,7 @@ const MIN_WINDOW = 120;
  * A zoomed viewBox around the points that are on the map, with the map's aspect ratio, a minimum size for a
  * single point, and clamped so it never leaves the map. No usable points gives the whole map.
  */
-export function viewBoxAround(points: ReadonlyArray<{ lat: number; lng: number }>, paddingFraction: number): ViewBox {
+export function viewBoxAround(points: ReadonlyArray<{ lat: number; lng: number }>, paddingFraction: number, minWidth = MIN_WINDOW): ViewBox {
   const full: ViewBox = { ...MAP_VIEWBOX };
   const xy = points.filter((p) => isInsideMap(p.lat, p.lng)).map((p) => projectPoint(p.lat, p.lng));
   if (xy.length === 0) return full;
@@ -54,7 +54,7 @@ export function viewBoxAround(points: ReadonlyArray<{ lat: number; lng: number }
   const pad = Math.max(0, paddingFraction);
   const bw = (maxX - minX) * (1 + 2 * pad);
   const bh = (maxY - minY) * (1 + 2 * pad);
-  let w = Math.max(bw, bh * ratio, MIN_WINDOW);
+  let w = Math.max(bw, bh * ratio, minWidth);
   if (w >= WIDTH) return full;
   const h = w / ratio;
   const cx = (minX + maxX) / 2;

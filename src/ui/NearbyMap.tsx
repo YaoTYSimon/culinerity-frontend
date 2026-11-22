@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent, type ReactNode } from 'react';
 import {
-  MAP_COUNCILS, MAP_VIEWBOX, dotRadius, formatDistance, isInsideMap, panViewBox, projectPoint, viewBoxAround, zoomViewBox,
+  MAP_COUNCILS, MAP_VIEWBOX, countInView, dotRadius, formatDistance, isInsideMap, localViewBox, panViewBox, projectPoint, ringsVisible, zoomViewBox,
   type MapDot, type PlaceKind, type ViewBox,
 } from '@culinerity/core';
 import { NearbyMapsLink } from './NearbyMapsLink';
@@ -16,18 +16,20 @@ interface Props {
 }
 
 // Sizes are fractions of the window width, so a dot is the same size on screen at every zoom.
-const R_CHECKED = 0.011;
-const R_UNCHECKED = 0.0085;
-const R_YOU = 0.014;
+const R_CHECKED = 0.015;
+const R_UNCHECKED = 0.012;
+const R_YOU = 0.02;
 const R_HIT = 0.062;
-const PAD = 0.18;
+const NEAREST = 25;
 const ZOOM_STEP = 0.6;
 
-// Flat tones derived from the theme roles, so all four themes work with no colour of their own.
+// Flat tones derived from the theme roles. Water is always the lighter, calmer tone and land the darker one:
+// on the dark themes water is the surface and land the background; on the light themes water is the background
+// and land a touch of ink. Dots (ink, accent) keep 3:1 or more against land and the inner councils.
 const TONES = {
-  '--map-water': 'var(--surface)',
-  '--map-land': 'color-mix(in srgb, var(--ink) 20%, var(--bg))',
-  '--map-core': 'color-mix(in srgb, var(--ink) 32%, var(--bg))',
+  '--map-water': 'light-dark(var(--bg), var(--surface))',
+  '--map-land': 'light-dark(color-mix(in srgb, var(--ink) 12%, var(--bg)), var(--bg))',
+  '--map-core': 'color-mix(in srgb, var(--ink) 20%, var(--bg))',
 } as CSSProperties;
 
 const ICON = { fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true } as const;
@@ -56,7 +58,8 @@ function MapButton({ label, onClick, children }: { label: string; onClick: () =>
 /** Greater Melbourne drawn on the device from a bundled outline: no tiles, no request to any host. */
 export function NearbyMap({ dots, origin, onShowInList }: Props) {
   const youOn = isInsideMap(origin.lat, origin.lng);
-  const fit = useMemo(() => viewBoxAround([...dots, ...(youOn ? [origin] : [])], PAD), [dots, origin, youOn]);
+  const checkedDots = useMemo(() => dots.filter((d) => d.checked), [dots]);
+  const fit = useMemo(() => localViewBox(youOn ? origin : null, checkedDots, NEAREST), [checkedDots, origin, youOn]);
   const fitKey = `${fit.x}|${fit.y}|${fit.w}`;
   const [moved, setMoved] = useState<{ key: string; vb: ViewBox } | null>(null);
   const vb = moved && moved.key === fitKey ? moved.vb : fit;
@@ -105,8 +108,8 @@ export function NearbyMap({ dots, origin, onShowInList }: Props) {
   };
   const endDrag = () => { drag.current = null; };
 
-  const checkedDots = dots.filter((d) => d.checked);
-  const places = `${dots.length} ${dots.length === 1 ? 'place' : 'places'} on a map of Melbourne`;
+  const inView = countInView(vb, dots);
+  const places = inView === dots.length ? `${dots.length} ${dots.length === 1 ? 'place' : 'places'} near you` : `${inView} of ${dots.length} places near you`;
   const you = youOn ? `. ${origin.label ? `You are here (middle of ${origin.label})` : 'You are here'}` : '';
   const viewBox = `${vb.x} ${vb.y} ${vb.w} ${vb.h}`;
   const you2 = youOn ? projectPoint(origin.lat, origin.lng) : null;
@@ -114,6 +117,9 @@ export function NearbyMap({ dots, origin, onShowInList }: Props) {
   const rU = dotRadius(vb, R_UNCHECKED);
   const rY = dotRadius(vb, R_YOU);
   const line = dotRadius(vb, 0.003);
+  const ringLine = dotRadius(vb, 0.005);
+  const rings = ringsVisible(vb);
+  const fs = dotRadius(vb, 0.032);
 
   return (
     <div className="grid gap-3">
@@ -129,11 +135,11 @@ export function NearbyMap({ dots, origin, onShowInList }: Props) {
         >
           <svg role="img" aria-label={places + you} viewBox={viewBox} className="absolute inset-0 size-full">
             {councils}
-            {dots.filter((d) => !d.checked).map((d) => {
+            {rings && dots.filter((d) => !d.checked).map((d) => {
               const { x, y } = projectPoint(d.lat, d.lng);
               return (
                 <circle
-                  key={d.id} data-dot="unchecked" cx={x} cy={y} r={rU} fill="transparent" stroke="var(--ink)" strokeWidth={line} aria-hidden="true"
+                  key={d.id} data-dot="unchecked" cx={x} cy={y} r={rU} fill="transparent" stroke="var(--ink)" strokeWidth={ringLine} aria-hidden="true"
                   onClick={() => { if (!wasDrag.current) setPickedId(d.id); }}
                 />
               );
@@ -142,12 +148,6 @@ export function NearbyMap({ dots, origin, onShowInList }: Props) {
               const { x, y } = projectPoint(picked.lat, picked.lng);
               return <circle data-testid="map-selected" cx={x} cy={y} r={rC * 2} fill="none" stroke="var(--ink)" strokeWidth={line * 1.5} aria-hidden="true" />;
             })()}
-            {you2 && (
-              <g data-testid="map-you" aria-hidden="true">
-                <circle cx={you2.x} cy={you2.y} r={rY * 2} fill="none" stroke="var(--ink)" strokeWidth={line * 1.5} />
-                <circle cx={you2.x} cy={you2.y} r={rY} fill="var(--accent)" stroke="var(--ink)" strokeWidth={line} />
-              </g>
-            )}
           </svg>
           <svg role="group" aria-label="Places checked by us" viewBox={viewBox} className="pointer-events-none absolute inset-0 size-full">
             {checkedDots.map((d) => {
@@ -166,6 +166,18 @@ export function NearbyMap({ dots, origin, onShowInList }: Props) {
                 </g>
               );
             })}
+            {you2 && (
+              <g data-testid="map-you" aria-hidden="true">
+                <circle cx={you2.x} cy={you2.y} r={rY * 1.9} fill="none" stroke="var(--ink)" strokeWidth={ringLine} />
+                <circle cx={you2.x} cy={you2.y} r={rY} fill="var(--accent)" stroke="var(--bg)" strokeWidth={ringLine} />
+                {you2.y + rY * 1.9 + fs * 1.3 < vb.y + vb.h && (
+                  <text
+                    data-testid="map-you-label" x={you2.x} y={you2.y + rY * 1.9 + fs} textAnchor="middle" fontSize={fs} fontWeight={700}
+                    fill="var(--ink)" stroke="var(--bg)" strokeWidth={fs * 0.28} paintOrder="stroke"
+                  >You</text>
+                )}
+              </g>
+            )}
           </svg>
         </div>
         <div className="absolute right-3 bottom-3 grid gap-2">

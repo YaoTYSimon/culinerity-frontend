@@ -3,8 +3,8 @@ import type { RankedBulk } from '../places/bulk';
 import type { RankedPlace } from '../places/rank';
 import type { BulkPlace } from '../places/tier';
 import type { Place } from '../places/types';
-import { MAP_VIEWBOX, viewBoxAround } from './project';
-import { MIN_ZOOM_WIDTH, buildMapDots, dotRadius, panViewBox, zoomViewBox } from './view';
+import { MAP_VIEWBOX, projectPoint, viewBoxAround } from './project';
+import { LOCAL_MIN_WIDTH, MAX_RING_WIDTH, MIN_ZOOM_WIDTH, buildMapDots, countInView, dotRadius, localViewBox, panViewBox, ringsVisible, zoomViewBox } from './view';
 
 const checked = (id: string, metres: number, lat = -37.81, lng = 144.96): RankedPlace => ({
   place: { id, name: id, kind: 'market', lat, lng, address: '1 A St' } as Place,
@@ -69,5 +69,68 @@ describe('panViewBox and dotRadius', () => {
     const a = { ...MAP_VIEWBOX };
     const b = { ...MAP_VIEWBOX, w: MAP_VIEWBOX.w / 4 };
     expect(dotRadius(b, 0.01) * 4).toBeCloseTo(dotRadius(a, 0.01));
+  });
+});
+
+describe('localViewBox', () => {
+  const user = { lat: -37.8136, lng: 144.9631 };
+  const near = (n: number, step = 0.002) => Array.from({ length: n }, (_, i) => ({ lat: user.lat + 0.003 + i * step, lng: user.lng + (i % 3) * 0.002 }));
+  const contains = (vb: { x: number; y: number; w: number; h: number }, p: { lat: number; lng: number }) => {
+    const { x, y } = projectPoint(p.lat, p.lng);
+    return x >= vb.x && x <= vb.x + vb.w && y >= vb.y && y <= vb.y + vb.h;
+  };
+
+  it('is a local window, never the whole map, even when there are hundreds of places', () => {
+    const far = Array.from({ length: 150 }, (_, i) => ({ lat: -38.4 + (i % 10) * 0.01, lng: 145.8 - (i % 7) * 0.01 }));
+    const vb = localViewBox(user, [...near(25), ...far]);
+    expect(vb.w).toBeLessThan(200);
+    expect(vb.w).toBeLessThan(MAP_VIEWBOX.w / 4);
+  });
+  it('keeps the user and the nearest 25 checked places inside, with the map aspect ratio', () => {
+    const list = near(30, 0.003);
+    const vb = localViewBox(user, list);
+    expect(contains(vb, user)).toBe(true);
+    list.slice(0, 25).forEach((p) => expect(contains(vb, p)).toBe(true));
+    expect(vb.w / vb.h).toBeCloseTo(MAP_VIEWBOX.w / MAP_VIEWBOX.h, 1);
+  });
+  it('ignores places beyond the count', () => {
+    const wide = localViewBox(user, near(30, 0.003), 30);
+    const tight = localViewBox(user, near(30, 0.003), 5);
+    expect(tight.w).toBeLessThan(wide.w);
+  });
+  it('is never tighter than about 8 km wide', () => {
+    expect(LOCAL_MIN_WIDTH).toBeGreaterThan(55);
+    expect(LOCAL_MIN_WIDTH).toBeLessThan(75);
+    expect(localViewBox(user, []).w).toBeGreaterThanOrEqual(LOCAL_MIN_WIDTH);
+    expect(localViewBox(user, near(2, 0.0005)).w).toBeGreaterThanOrEqual(LOCAL_MIN_WIDTH);
+  });
+  it('stays on the map near an edge', () => {
+    const edge = { lat: -37.31, lng: 145.89 };
+    const vb = localViewBox(edge, [{ lat: -37.32, lng: 145.88 }]);
+    expect(vb.x).toBeGreaterThanOrEqual(0);
+    expect(vb.y).toBeGreaterThanOrEqual(0);
+    expect(vb.x + vb.w).toBeLessThanOrEqual(MAP_VIEWBOX.w);
+    expect(vb.y + vb.h).toBeLessThanOrEqual(MAP_VIEWBOX.h);
+  });
+  it('uses the nearest places alone when the user is off the map, and the whole map when nothing is usable', () => {
+    expect(localViewBox({ lat: 0, lng: 0 }, near(3)).w).toBeLessThan(MAP_VIEWBOX.w);
+    expect(localViewBox({ lat: 0, lng: 0 }, [])).toEqual(MAP_VIEWBOX);
+    expect(localViewBox(null, [])).toEqual(MAP_VIEWBOX);
+  });
+});
+
+describe('ringsVisible and countInView', () => {
+  it('draws rings only when the window is under about 40 km wide', () => {
+    expect(MAX_RING_WIDTH).toBeGreaterThan(250);
+    expect(MAX_RING_WIDTH).toBeLessThan(400);
+    expect(ringsVisible({ ...MAP_VIEWBOX })).toBe(false);
+    expect(ringsVisible({ x: 0, y: 0, w: 150, h: 150 / (MAP_VIEWBOX.w / MAP_VIEWBOX.h) })).toBe(true);
+  });
+  it('counts the dots whose position falls inside the window', () => {
+    const a = projectPoint(-37.81, 144.96);
+    const vb = { x: a.x - 30, y: a.y - 20, w: 60, h: 40 };
+    const dots = [{ lat: -37.81, lng: 144.96 }, { lat: -38.4, lng: 145.8 }] as Parameters<typeof countInView>[1];
+    expect(countInView(vb, dots)).toBe(1);
+    expect(countInView({ ...MAP_VIEWBOX }, dots)).toBe(2);
   });
 });

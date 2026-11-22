@@ -49,9 +49,9 @@ async function open(opts: { n?: number; bulk?: number | null; typed?: string; em
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Use my location' })); });
   }
 }
-const toMap = async () => { fireEvent.click(screen.getByRole('radio', { name: 'Map' })); return screen.findByRole('img', { name: /on a map of Melbourne/ }); };
+const toMap = async () => { fireEvent.click(screen.getByRole('radio', { name: 'Map' })); return screen.findByRole('img', { name: /places near you/ }); };
 const checkedDots = () => screen.getAllByRole('button').filter((b) => b.getAttribute('data-dot') === 'checked');
-const viewBox = () => screen.getByRole('img', { name: /map of Melbourne/ }).getAttribute('viewBox')!.split(' ').map(Number);
+const viewBox = () => screen.getByRole('img', { name: /places near you/ }).getAttribute('viewBox')!.split(' ').map(Number);
 
 afterEach(() => { cleanup(); localStorage.clear(); sessionStorage.clear(); });
 
@@ -60,7 +60,7 @@ describe('List | Map switch', () => {
     await open();
     expect(screen.getByRole('radio', { name: 'List' })).toBeChecked();
     expect(screen.getByRole('list', { name: 'Places near you' })).toBeInTheDocument();
-    expect(screen.queryByRole('img', { name: /map of Melbourne/ })).toBeNull();
+    expect(screen.queryByRole('img', { name: /places near you/ })).toBeNull();
     await toMap();
     expect(screen.getByRole('radio', { name: 'Map' })).toBeChecked();
     expect(screen.queryByRole('list', { name: 'Places near you' })).toBeNull();
@@ -70,12 +70,12 @@ describe('List | Map switch', () => {
   it('has no switch and no map when nothing is found', async () => {
     await open({ empty: true });
     expect(screen.queryByRole('radiogroup')).toBeNull();
-    expect(screen.queryByRole('img', { name: /map of Melbourne/ })).toBeNull();
+    expect(screen.queryByRole('img', { name: /places near you/ })).toBeNull();
   });
   it('shows no switch before there is a position', async () => {
     await open({ noPosition: true });
     expect(screen.queryByRole('radiogroup')).toBeNull();
-    expect(screen.queryByRole('img', { name: /map of Melbourne/ })).toBeNull();
+    expect(screen.queryByRole('img', { name: /places near you/ })).toBeNull();
   });
 });
 
@@ -83,7 +83,7 @@ describe('map dots', () => {
   it('summarises in the label and draws one focusable button per checked place, in distance order', async () => {
     await open({ n: 5, bulk: 3 });
     const map = await toMap();
-    expect(map).toHaveAccessibleName('8 places on a map of Melbourne. You are here');
+    expect(map).toHaveAccessibleName('8 places near you. You are here');
     const dots = checkedDots();
     expect(dots.map((d) => d.getAttribute('aria-label')!.split(',')[0])).toEqual(['Place 00', 'Place 01', 'Place 02', 'Place 03', 'Place 04']);
     dots.forEach((d) => expect(d).toHaveAttribute('tabindex', '0'));
@@ -112,19 +112,76 @@ describe('map dots', () => {
     fireEvent.click(screen.getByRole('checkbox', { name: 'Meals' }));
     await toMap();
     expect(checkedDots()).toHaveLength(3);
-    expect(screen.getByRole('img', { name: /map of Melbourne/ })).toHaveAccessibleName(/^3 places on a map/);
+    expect(screen.getByRole('img', { name: /places near you/ })).toHaveAccessibleName(/^3 places near you/);
   });
   it('caps not-checked dots to the nearest 300 but draws every checked dot', async () => {
     await open({ n: 14, bulk: 320 });
     const map = await toMap();
     expect(checkedDots()).toHaveLength(14);
-    expect(map.querySelectorAll('[data-dot="unchecked"]')).toHaveLength(300);
+    fireEvent.click(screen.getByRole('button', { name: 'Whole map' }));
+    expect(map.querySelectorAll('[data-dot="unchecked"]')).toHaveLength(0);
   });
   it('draws the user dot only when there is a position, and says where it is', async () => {
     await open({ typed: 'Footscray' });
     const map = await toMap();
-    expect(map.querySelector('[data-testid="map-you"]')).not.toBeNull();
+    expect(document.querySelector('[data-testid="map-you"]')).not.toBeNull();
     expect(map).toHaveAccessibleName(/You are here \(middle of Footscray\)/);
+  });
+});
+
+const inWindow = (map: Element, el: Element) => {
+  const [x, y, w, h] = map.getAttribute('viewBox')!.split(' ').map(Number);
+  const cx = Number(el.getAttribute('cx'));
+  const cy = Number(el.getAttribute('cy'));
+  return cx >= x && cx <= x + w && cy >= y && cy <= y + h;
+};
+
+describe('local view', () => {
+  it('opens on a local window, not the whole of Melbourne, and says how many dots are in view', async () => {
+    await open({ n: 30, bulk: 320 });
+    const map = await toMap();
+    expect(viewBox()[2]).toBeLessThan(200);
+    expect(map.getAttribute('aria-label')).toMatch(/^\d+ of 330 places near you/);
+  });
+  it('Whole map shows everything and zooming in from the local view still works', async () => {
+    await open({ n: 4 });
+    await toMap();
+    expect(viewBox()[2]).toBeLessThan(200);
+    fireEvent.click(screen.getByRole('button', { name: 'Whole map' }));
+    expect(viewBox()[2]).toBe(1000);
+  });
+  it('draws the hollow rings for the not-checked tier inside the window, thick enough to read', async () => {
+    await open({ n: 3, bulk: 6 });
+    const map = await toMap();
+    const rings = [...map.querySelectorAll('[data-dot="unchecked"]')];
+    expect(rings).toHaveLength(6);
+    rings.forEach((r) => expect(inWindow(map, r)).toBe(true));
+    const w = viewBox()[2];
+    expect(Number(rings[0].getAttribute('stroke-width')) / w).toBeGreaterThanOrEqual(0.004);
+    expect(Number(rings[0].getAttribute('r')) / w).toBeGreaterThanOrEqual(0.012);
+    expect(rings[0]).toHaveAttribute('stroke', 'var(--ink)');
+  });
+});
+
+describe('your position', () => {
+  it('is a filled accent dot with a larger ring, drawn on top of every other dot and inside the window', async () => {
+    await open({ n: 5, bulk: 3 });
+    const map = await toMap();
+    const you = map.ownerDocument.querySelector('[data-testid="map-you"]')!;
+    expect(you).not.toBeNull();
+    const [outer, dot] = [...you.querySelectorAll('circle')];
+    expect(dot).toHaveAttribute('fill', 'var(--accent)');
+    expect(Number(outer.getAttribute('r'))).toBeGreaterThan(Number(dot.getAttribute('r')));
+    const solid = checkedDots()[0].querySelectorAll('circle')[2];
+    expect(Number(dot.getAttribute('r'))).toBeGreaterThan(Number(solid.getAttribute('r')));
+    expect(inWindow(map, dot)).toBe(true);
+    // Later in document order than every checked dot and every ring, so it paints over them.
+    const all = [...map.ownerDocument.querySelectorAll('[data-dot], [data-testid="map-you"]')];
+    expect(all[all.length - 1]).toBe(you);
+    // The map has two stacked svgs; yours is in the upper one.
+    const svgs = [...map.ownerDocument.querySelectorAll('svg[viewBox]')].filter((s) => s.getAttribute('aria-label'));
+    expect(svgs[svgs.length - 1].contains(you)).toBe(true);
+    expect(you.querySelector('text')?.textContent).toBe('You');
   });
 });
 

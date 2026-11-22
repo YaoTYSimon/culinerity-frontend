@@ -152,7 +152,7 @@ describe('full flow (spec 23, 24)', () => {
     const { container } = await walkFlow();
     const requestsBefore = fetchSpy.mock.calls.length;
     fireEvent.click(screen.getByRole('radio', { name: 'Map' }));
-    const map = await screen.findByRole('img', { name: /map of Melbourne/ });
+    const map = await screen.findByRole('img', { name: /places near you/ });
     fireEvent.click(screen.getByRole('button', { name: 'Zoom in' }));
     fireEvent.click(screen.getByRole('button', { name: 'Zoom out' }));
     fireEvent.click(screen.getByRole('button', { name: 'Whole map' }));
