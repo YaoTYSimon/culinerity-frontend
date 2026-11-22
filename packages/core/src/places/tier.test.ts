@@ -32,7 +32,7 @@ describe('place tiers', () => {
     expect(bulkRowNotes('food-relief').hours).not.toMatch(/free|cheap|\$|price/i);
   });
   it('credits the release and says the place is not checked', () => {
-    expect(bulkSourceLine('2026-09-17.0')).toBe('Listed by Overture Maps, release 2026-09-17.0. Not checked by us: a sample check did not confirm that these places are open and in the right spot, so some may have closed or moved.');
+    expect(bulkSourceLine('2026-09-17.0')).toBe('Overture Maps, release 2026-09-17.0. Not checked by us: some places may have closed or moved.');
   });
   it('allows only the permissive licences (no Apache-2.0, so no Foursquare records)', () => {
     expect([...BULK_LICENCES]).toEqual(['CDLA-Permissive-2.0', 'CC0-1.0']);

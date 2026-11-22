@@ -38,6 +38,8 @@ export interface BulkPlace {
 export const CHECKED_TIER_LABEL = 'Checked by us';
 export const BULK_TIER_LABEL = 'Not checked by us';
 export const BULK_PRICE_TEXT = 'Price not known';
+/** Said once above a group of not-checked rows, not on every row. */
+export const BULK_GROUP_TEXT = 'Hours and prices not checked';
 export const BULK_HOURS_TEXT = 'Check hours before you go';
 /** Food relief rows state no price (a food bank may be free, may need a referral, may charge a small fee: the source does not say). */
 export const BULK_RELIEF_NOTE = 'Check opening hours and who it is for before you go';
@@ -69,5 +71,5 @@ export function bulkRowNotes(kind: BulkKind): { price: string | null; hours: str
 }
 
 export function bulkSourceLine(release: string): string {
-  return `Listed by Overture Maps, release ${release}. Not checked by us: a sample check did not confirm that these places are open and in the right spot, so some may have closed or moved.`;
+  return `Overture Maps, release ${release}. Not checked by us: some places may have closed or moved.`;
 }

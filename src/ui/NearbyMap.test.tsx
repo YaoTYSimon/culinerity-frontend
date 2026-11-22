@@ -41,7 +41,7 @@ async function open(opts: { n?: number; bulk?: number | null; typed?: string; em
       </LocationProviderContext.Provider>
     </ServicesProvider>,
   );
-  await screen.findByText(/^Press Use my location/);
+  await screen.findByText(/^Use your location/);
   if (opts.typed) {
     fireEvent.change(screen.getByLabelText('Type a suburb or postcode'), { target: { value: opts.typed } });
     fireEvent.click(screen.getByRole('button', { name: 'Use this suburb' }));

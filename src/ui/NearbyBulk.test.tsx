@@ -116,7 +116,9 @@ describe('Nearby not-checked tier', () => {
     const list = await screen.findByRole('list', { name: 'Not checked by us places near you' });
     const rows = within(list).getAllByRole('listitem');
     expect(rows).toHaveLength(6);
-    for (const row of rows) expect(row.textContent).toMatch(/Cafe or restaurant · ovt-c\d High St 3000 · under\u00A0100\u00A0m/);
+    for (const row of rows) {
+      expect(row.textContent).toMatch(/3000 · under\u00A0100\u00A0m/);
+    }
     expect(within(list).getAllByRole('heading', { level: 3 }).map((h) => h.textContent)).toEqual(['Alpha Cafe', 'Bravo Cafe', 'Charlie Cafe', 'Delta Cafe', 'Echo Cafe', 'Foxtrot Cafe']);
   });
 
@@ -178,10 +180,15 @@ describe('Nearby not-checked tier', () => {
     const list = screen.getByRole('list', { name: 'Not checked by us places near you' });
     const relief = within(group).getByRole('listitem');
     expect(relief.textContent).toMatch(/Bulk Food Bank/);
+    expect(relief.textContent).toMatch(/Food relief/);
+    fireEvent.click(within(relief).getByRole('button', { name: 'Details for Bulk Food Bank' }));
     expect(relief.textContent).toMatch(/Food relief \(listing not checked\)/);
     expect(relief.textContent).not.toMatch(/Price not known/);
-    expect(within(relief).getByText('Check opening hours and who it is for before you go')).toBeInTheDocument();
-    expect(within(within(list).getByRole('listitem')).getByText('Price not known')).toBeInTheDocument();
+    // The check line is said once for the group, not on the row.
+    expect(within(group).getByText('Check opening hours and who it is for before you go')).toBeInTheDocument();
+    expect(within(relief).queryByText('Check opening hours and who it is for before you go')).toBeNull();
+    expect(screen.getAllByText('Hours and prices not checked')).toHaveLength(1);
+    expect(list.textContent).not.toMatch(/Price not known/);
     expect(group.textContent + list.textContent).not.toMatch(/\bfree\b|\$/i);
   });
 
@@ -199,12 +206,12 @@ describe('Nearby not-checked tier', () => {
     const group = await screen.findByTestId('bulk-relief');
     expect(within(group).getByRole('heading', { level: 3, name: 'Food relief (listings not checked)' })).toBeInTheDocument();
     expect(within(group).getAllByRole('heading', { level: 4 }).map((h) => h.textContent)).toEqual(['Close Pantry', 'Far Pantry']);
-    expect(within(group).queryByRole('button')).toBeNull();
+    expect(within(group).queryByRole('button', { name: /Show more/ })).toBeNull();
     const tier = screen.getByRole('heading', { level: 2, name: 'Not checked by us' }).closest('section') as HTMLElement;
     const order = within(tier).getAllByRole('heading').map((h) => h.textContent);
     expect(order.slice(0, 6)).toEqual(['Not checked by us', 'Food relief (listings not checked)', 'Close Pantry', 'Far Pantry', 'Shops, cafes and takeaways', 'Near Cafe']);
     expect(within(tier).getAllByText('Close Pantry')).toHaveLength(1);
-    expect(within(group).getAllByText('Check opening hours and who it is for before you go')).toHaveLength(2);
+    expect(within(group).getAllByText('Check opening hours and who it is for before you go')).toHaveLength(1);
     expect(tier.textContent).not.toMatch(/better|worse|\bAI\b|verified/i);
   });
 
@@ -214,7 +221,7 @@ describe('Nearby not-checked tier', () => {
     expect(within(group).getAllByRole('listitem')).toHaveLength(5);
     fireEvent.click(within(group).getByRole('button', { name: 'Show more food relief' }));
     expect(within(group).getAllByRole('listitem')).toHaveLength(7);
-    expect(within(group).queryByRole('button')).toBeNull();
+    expect(within(group).queryByRole('button', { name: /Show more/ })).toBeNull();
   });
 
   it('F2: no relief nearby means no group and no empty heading, and the list reads as before', async () => {
@@ -237,8 +244,10 @@ describe('Nearby not-checked tier', () => {
     const list = await screen.findByRole('list', { name: 'Not checked by us places near you' });
     expect(list.textContent).not.toMatch(/cheap|healthy|budget|\$/i);
     expect(list.textContent).not.toMatch(/\bHours\b/);
-    expect(within(list).getAllByText('Price not known').length).toBe(2);
-    expect(within(list).getAllByText('Check hours before you go').length).toBe(2);
+    // Said once above the group, not on each of the two rows.
+    expect(within(list).getAllByRole('listitem')).toHaveLength(2);
+    expect(screen.getAllByText('Hours and prices not checked')).toHaveLength(1);
+    expect(list.textContent).not.toMatch(/Price not known|Check hours before you go/);
     expect(localStorage.length + sessionStorage.length).toBe(0);
   });
 });

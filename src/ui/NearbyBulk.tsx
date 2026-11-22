@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BULK_TIER_LABEL, bulkSourceLine, splitReliefFirst } from '@culinerity/core';
+import { BULK_GROUP_TEXT, BULK_RELIEF_NOTE, BULK_TIER_LABEL, bulkSourceLine, splitReliefFirst } from '@culinerity/core';
 import { buildDataLicences } from '../content/dataLicences';
 import { Disclosure } from './Disclosure';
 import { ExternalLink } from './ExternalLink';
@@ -8,6 +8,11 @@ import { NearbyBulkRow } from './NearbyBulkRow';
 import { PillButton } from './PillButton';
 
 const PAGE = 12;
+
+/** Said once above a group, not on every row. */
+function GroupNote({ text }: { text: string }) {
+  return <p className="flex items-center gap-1.5 text-sm text-muted"><span aria-hidden="true" className="inline-block size-2 shrink-0 rounded-full bg-muted" />{text}</p>;
+}
 const RELIEF_PAGE = 5;
 
 export const BULK_RELIEF_HEADING = 'Food relief (listings not checked)';
@@ -56,7 +61,8 @@ function BulkTier({ view, reportContact }: { view: Shown; reportContact?: string
       {grouped && (
         <div className="grid gap-4 pb-6" data-testid="bulk-relief">
           <h3 id="nearby-relief-h" className="font-display text-xl leading-tight font-bold text-balance">{BULK_RELIEF_HEADING}</h3>
-          <ul aria-labelledby="nearby-relief-h" className="grid gap-10">
+          <GroupNote text={BULK_RELIEF_NOTE} />
+          <ul aria-labelledby="nearby-relief-h" className="grid gap-6">
             {relief.slice(0, reliefShown).map((r) => <NearbyBulkRow key={r.place.id} item={r} reportContact={reportContact} level={4} />)}
           </ul>
           {reliefShown < relief.length && (
@@ -67,7 +73,8 @@ function BulkTier({ view, reportContact }: { view: Shown; reportContact?: string
       {rest.length > 0 && (
         <div className="grid gap-4">
           {grouped && <h3 id="nearby-rest-h" className="font-display text-xl leading-tight font-bold text-balance">{BULK_REST_HEADING}</h3>}
-          <ul aria-label={`${BULK_TIER_LABEL} places near you`} className="grid gap-10">
+          <GroupNote text={BULK_GROUP_TEXT} />
+          <ul aria-label={`${BULK_TIER_LABEL} places near you`} className="grid gap-6">
             {visible.map((r) => <NearbyBulkRow key={r.place.id} item={r} reportContact={reportContact} level={level} />)}
           </ul>
           {visible.length < rest.length && (

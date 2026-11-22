@@ -80,12 +80,22 @@ describe('Nearby end-dated places', () => {
 });
 
 describe('Nearby', () => {
+  it('the rank sentence and the starter-list line sit in the closed About disclosure, not in the list', async () => {
+    renderNearby(fake(OK), { score: 20 });
+    await press();
+    const about = screen.getByText('About this list').closest('details')!;
+    expect(about).not.toHaveAttribute('open');
+    expect(within(about).getByText(rankSentence(20))).toBeInTheDocument();
+    expect(within(screen.getByRole('list', { name: 'Places near you' })).queryByText(rankSentence(20))).toBeNull();
+    expect(screen.getByText('Where this comes from').closest('details')).not.toHaveAttribute('open');
+  });
+
   it('has one h1, shows the privacy sentence first, and does not ask for location on mount', async () => {
     const provider = fake(OK);
     renderNearby(provider);
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1, name: 'Close to you.' })).toBeInTheDocument();
-    expect(screen.getByText('Your location stays on this device. It is not saved or sent anywhere.')).toBeInTheDocument();
+    expect(screen.getByText('Your location stays on this device.')).toBeInTheDocument();
     await screen.findByText(/starter list/i);
     expect(provider.locate).not.toHaveBeenCalled();
   });
@@ -492,28 +502,81 @@ describe('NearbyPlaceRow', () => {
     sourceId: 's', verification: 'primary', checked: '2026-10-27', note: 'Call first.',
     notices: [{ text: 'Closed for renovation', until: '2026-11-30' }, { text: 'Old news', until: '2026-01-01' }],
   };
-  const row = (p: Place) => render(<ul><NearbyPlaceRow item={{ place: p, metres: 350 }} today="2026-10-28" /></ul>);
+  const src = { id: 's', publisher: 'Row Charity', title: 'Row page', url: 'https://row.example/help', licence: 'x', accessed: '2026-10-27' };
+  const row = (p: Place, today = '2026-10-28') => render(<ul><NearbyPlaceRow item={{ place: p, metres: 350 }} today={today} source={src} /></ul>);
+  const toggle = () => screen.getByRole('button', { name: 'Details for Row Test Pantry' });
 
-  it('shows the details, honest labels, live notices only, and a safe Maps link', () => {
+  it('collapsed: name, one meta line, price, food, access, hours and the Maps button, with safety words visible', () => {
     row(base);
     expect(screen.getByRole('heading', { level: 2, name: 'Row Test Pantry' })).toBeInTheDocument();
-    expect(screen.getByText('Typically free')).toBeInTheDocument();
-    expect(screen.getByText(/Packaged/)).toBeInTheDocument();
-    expect(screen.getByText('Referral needed')).toBeInTheDocument();
-    expect(screen.getByText('Hours not listed')).toBeInTheDocument();
-    expect(screen.getByText('Call first.')).toBeInTheDocument();
-    expect(screen.getByText('Closed for renovation')).toBeInTheDocument();
-    expect(screen.queryByText('Old news')).not.toBeInTheDocument();
-    expect(screen.getByText(/Last checked/)).toHaveTextContent('2026');
+    expect(screen.getByText(/^Rowville · /)).toBeInTheDocument();
+    expect(screen.getByText('Typically free')).toBeVisible();
+    expect(screen.getByText('Packaged')).toBeVisible();
+    expect(screen.getByText('Meals')).toBeVisible();
+    expect(screen.getByText('Referral')).toBeVisible();
+    expect(screen.getByText('Hours not listed')).toBeVisible();
     const link = screen.getByRole('link', { name: 'Open Row Test Pantry in Maps' });
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     expect(link.getAttribute('href')).toContain(encodeURIComponent('Row Test Pantry'));
+    expect(link.className).toContain('size-11');
+    expect(link).toHaveTextContent('');
   });
 
-  it('shows hours when the source gives them, and nothing for open access', () => {
+  it('collapsed hides the note, full notices, last checked and source until Details opens', () => {
+    row(base);
+    expect(toggle()).toHaveAttribute('aria-expanded', 'false');
+    for (const t of [/Call first\./, /Last checked/, 'Row Charity']) expect(screen.getByText(t, { exact: false })).not.toBeVisible();
+    fireEvent.click(toggle());
+    expect(toggle()).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByText('Call first.')).toBeVisible();
+    expect(screen.getByText(/Last checked/)).toHaveTextContent('2026');
+    expect(screen.getByRole('link', { name: /Row Charity/ })).toHaveAttribute('href', 'https://row.example/help');
+    expect(screen.getByText('Closed for renovation')).toBeVisible();
+    expect(screen.queryByText('Old news')).not.toBeInTheDocument();
+  });
+
+  it('Details is a button whose aria-controls points at the details region', () => {
+    row(base);
+    const panel = document.getElementById(toggle().getAttribute('aria-controls')!)!;
+    expect(panel).not.toBeNull();
+    expect(panel).not.toBeVisible();
+    fireEvent.click(toggle());
+    expect(panel).toBeVisible();
+    fireEvent.click(toggle());
+    expect(toggle()).toHaveAttribute('aria-expanded', 'false');
+    expect(panel).not.toBeVisible();
+  });
+
+  it('a notice ending within 30 days shows a short warning line when collapsed; a later one does not', () => {
+    const soon = { ...base, notices: [{ text: 'Closed for renovation until the new year', until: '2026-11-30' }] };
+    const { unmount } = row(soon, '2026-11-10');
+    expect(screen.getByText('Closed for renovation until the new…')).toBeVisible();
+    unmount();
+    row(soon, '2026-10-01'); // 60 days out
+    expect(screen.queryByText('Closed for renovation until the new…')).toBeNull();
+  });
+
+  it('shows one short hours line collapsed and the full hours behind Details', () => {
+    const hours = 'Monday 9am to 12pm; Tuesday 9am to 12pm; Wednesday 9am to 12pm; Thursday 9am to 12pm';
+    row({ ...base, hours });
+    expect(screen.getByText('Monday 9am to 12pm; Tuesday 9am to 12pm; Wednesday 9am to…')).toBeVisible();
+    fireEvent.click(toggle());
+    expect(screen.getByText('Thursday 9am to 12pm')).toBeVisible();
+  });
+
+  it('says Walk in for open access, with the stated price and hours', () => {
     row({ ...base, access: 'open', hours: 'Tuesdays 10-12', priceBasis: 'stated' });
-    expect(screen.getByText(/Tuesdays 10-12/)).toBeInTheDocument();
-    expect(screen.getByText('Free')).toBeInTheDocument();
-    expect(screen.queryByText(/Referral|Membership/)).not.toBeInTheDocument();
+    expect(screen.getAllByText('Tuesdays 10-12')[0]).toBeVisible();
+    expect(screen.getByText('Free')).toBeVisible();
+    expect(screen.getByText('Walk in')).toBeVisible();
+    expect(screen.queryByText(/Referral|Member/)).not.toBeInTheDocument();
+  });
+
+  it('shows far fewer words collapsed than the old row showed', () => {
+    const note = Array.from({ length: 60 }, (_, i) => `word${i}`).join(' ');
+    const { container } = row({ ...base, note });
+    const visible = [...container.querySelectorAll('li *')].filter((e) => e.children.length === 0 && !e.closest('[hidden]') && !e.classList.contains('sr-only'))
+      .reduce((n, e) => n + (e.textContent ?? '').split(/\s+/).filter(Boolean).length, 0);
+    expect(visible).toBeLessThan(30);
   });
 });

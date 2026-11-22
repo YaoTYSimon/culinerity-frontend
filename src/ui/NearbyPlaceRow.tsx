@@ -1,5 +1,8 @@
-import { activeNotices, formatDistance, priceLabel, type PlaceFit, type PlaceKind, type RankedPlace } from '@culinerity/core';
+import { useId, useState } from 'react';
+import { activeNotices, endsSoon, formatDistance, hoursSummary, noticeHeadline, priceLabel, type PlaceFit, type PlaceKind, type PlaceSourceRecord, type RankedPlace } from '@culinerity/core';
+import { ExternalLink } from './ExternalLink';
 import { NearbyMapsLink } from './NearbyMapsLink';
+import { AccessGlyph, Chevron, ClockGlyph, FitGlyph, KindGlyph, PriceDots, WarnGlyph } from './placeIcons';
 
 export const KIND: Record<PlaceKind, string> = {
   market: 'Market',
@@ -9,8 +12,8 @@ export const KIND: Record<PlaceKind, string> = {
   'food-relief': 'Food relief',
   'co-op': 'Food co-op',
 };
-const FIT: Record<PlaceFit, string> = { fresh: 'Fresh produce', packaged: 'Packaged', meals: 'Meals' };
-const ACCESS = { open: '', referral: 'Referral needed', membership: 'Membership' } as const;
+const FIT: Record<PlaceFit, string> = { fresh: 'Fresh', packaged: 'Packaged', meals: 'Meals' };
+const ACCESS = { open: 'Walk in', referral: 'Referral', membership: 'Member' } as const;
 
 /** A stable id for a checked place's row, so the map can move focus to it. */
 export const nearbyRowId = (placeId: string) => `nearby-place-${placeId}`;
@@ -37,38 +40,76 @@ export function hourLines(hours: string): string[] {
   return out.filter(Boolean);
 }
 
-/** One place: the facts the source gave, in plain words. The Maps link names the place only, never the person. */
-export function NearbyPlaceRow({ item, today, level = 2 }: { item: RankedPlace; today?: string; level?: 2 | 3 }) {
+/**
+ * One place, short by default: name, one meta line, price, food and access as icon plus one word, one hours line,
+ * and a round Maps button. Details opens the note, full hours, notices, the check date and the source.
+ * The Maps link names the place only, never the person.
+ */
+export function NearbyPlaceRow({ item, today, level = 2, source }: { item: RankedPlace; today?: string; level?: 2 | 3; source?: PlaceSourceRecord }) {
   const Heading = level === 3 ? 'h3' : 'h2';
   const { place: p, metres } = item;
-  const notices = activeNotices(p, today ?? melbourneToday());
-  const access = ACCESS[p.access];
+  const now = today ?? melbourneToday();
+  const notices = activeNotices(p, now);
+  const soon = notices.find((n) => endsSoon(n, now));
+  const [open, setOpen] = useState(false);
+  const detailsId = useId();
   return (
-    <li id={nearbyRowId(p.id)} tabIndex={-1} className="grid justify-items-start gap-1.5 outline-none">
-      <Heading className="text-base font-semibold text-pretty break-words">{p.name}</Heading>
-      <p className="text-sm text-muted">{KIND[p.kind]} · {p.suburb} · {formatDistance(metres)}</p>
-      <p className="text-sm font-semibold">
-        <span>{priceLabel(p)}</span>
-        {p.fit.length > 0 && <span className="font-normal"> · {p.fit.map((f) => FIT[f]).join(', ')}</span>}
-      </p>
-      {access && <p className="text-sm font-semibold">{access}</p>}
-      {p.note && <p className="text-sm text-pretty">{p.note}</p>}
-      {notices.map((n) => (
-        <p key={n.text} className="text-sm text-pretty">
-          <span className="font-bold">Until {checkedOn(n.until)}: </span>
-          <span className="font-semibold">{n.text}</span>
-        </p>
-      ))}
-      {p.hours ? (
-        <div className="grid gap-0.5 text-sm text-pretty">
-          <p className="font-semibold">Hours <span className="font-normal text-muted">(check before you go)</span></p>
-          {hourLines(p.hours).map((line) => <p key={line}>{line}</p>)}
+    <li id={nearbyRowId(p.id)} tabIndex={-1} className="grid gap-1.5 outline-none">
+      <div className="flex items-start justify-between gap-3">
+        <div className="grid min-w-0 gap-0.5">
+          <Heading className="line-clamp-2 text-base font-semibold text-pretty break-words">{p.name}</Heading>
+          <p className="flex items-center gap-1.5 text-sm text-muted">
+            <KindGlyph kind={p.kind} />
+            <span><span className="sr-only">{KIND[p.kind]}, </span>{p.suburb} · {formatDistance(metres)}</span>
+          </p>
         </div>
-      ) : (
-        <p className="text-sm text-muted">Hours not listed</p>
+        <NearbyMapsLink name={p.name} address={p.address} compact />
+      </div>
+      <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold">
+        <span className="inline-flex items-center gap-1.5"><PriceDots band={p.priceBand} />{priceLabel(p)}</span>
+        {p.fit.map((f) => <span key={f} className="inline-flex items-center gap-1"><FitGlyph fit={f} />{FIT[f]}</span>)}
+        <span className="inline-flex items-center gap-1"><AccessGlyph access={p.access} />{ACCESS[p.access]}</span>
+      </p>
+      <p className="flex items-center gap-1.5 text-sm">
+        <ClockGlyph />
+        {p.hours ? <span><span className="sr-only">Hours, check before you go: </span>{hoursSummary(p.hours)}</span> : <span className="text-muted">Hours not listed</span>}
+      </p>
+      {soon && (
+        <p className="flex items-center gap-1.5 text-sm font-semibold">
+          <WarnGlyph />
+          <span><span className="sr-only">Notice: </span>{noticeHeadline(soon.text)}</span>
+        </p>
       )}
-      <NearbyMapsLink name={p.name} address={p.address} />
-      <p className="text-xs text-muted">Last checked {checkedOn(p.checked)}</p>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={detailsId}
+        aria-label={`Details for ${p.name}`}
+        onClick={() => setOpen((o) => !o)}
+        className="focus-ring motion-colors inline-flex min-h-11 items-center gap-2 justify-self-start rounded-full text-sm font-semibold"
+      >
+        Details
+        <span className="inline-flex size-11 items-center justify-center rounded-full bg-surface"><Chevron open={open} /></span>
+      </button>
+      <div id={detailsId} hidden={!open}>
+        <div className="grid justify-items-start gap-2 pb-2 text-sm text-pretty">
+          {p.note && <p>{p.note}</p>}
+          {notices.map((n) => (
+            <p key={n.text}>
+              <span className="font-bold">Until {checkedOn(n.until)}: </span>
+              <span className="font-semibold">{n.text}</span>
+            </p>
+          ))}
+          {p.hours && (
+            <div className="grid gap-0.5">
+              <p className="font-semibold">Hours <span className="font-normal text-muted">(check before you go)</span></p>
+              {hourLines(p.hours).map((line) => <p key={line}>{line}</p>)}
+            </div>
+          )}
+          <p className="text-xs text-muted">Last checked {checkedOn(p.checked)}</p>
+          {source && <ExternalLink href={source.url}>{source.publisher}</ExternalLink>}
+        </div>
+      </div>
     </li>
   );
 }

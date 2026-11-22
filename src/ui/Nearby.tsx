@@ -165,6 +165,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   // The two tier headings appear together, only when the not-checked tier is on the page.
   const tiered = bulk.mode === 'shown';
 
+  const sourceById = useMemo(() => new Map(sources.map((s) => [s.id, s])), [sources]);
   const stats = useMemo(() => (running ? coverage(running) : null), [running]);
 
   const rows = view?.rows ?? [];
@@ -193,7 +194,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
     <section aria-labelledby="nearby-h" className="grid gap-5">
       <PageHeader photo="nearby-market">
         <h1 id="nearby-h" tabIndex={-1} className="font-display text-[30px] leading-tight font-bold text-balance outline-none">Close to you.</h1>
-        <p className="text-base text-pretty text-muted">Your location stays on this device. It is not saved or sent anywhere.</p>
+        <p className="text-base text-pretty text-muted">Your location stays on this device.</p>
       </PageHeader>
 
       <div className="flex flex-wrap items-center gap-3">
@@ -254,7 +255,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
       )}
 
       {places && !origin && (
-        <p className="text-base text-pretty">Press Use my location, or type a suburb or postcode, to see places close to you.</p>
+        <p className="text-base text-pretty">Use your location, or type a suburb or postcode.</p>
       )}
 
       {places && origin && (
@@ -272,14 +273,13 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
           {!mapOn && view?.note && <p className="text-base font-semibold text-pretty">{view.note}</p>}
           {!mapOn && rows.length > 0 && (
             <>
-              <p className="text-sm text-pretty">{rankSentence(score)}</p>
-              <ul aria-label="Places near you" className="grid gap-10">
-                {visible.map((r) => <NearbyPlaceRow key={r.place.id} item={r} level={tiered ? 3 : 2} />)}
+              <ul aria-label="Places near you" className="grid gap-7">
+                {visible.map((r) => <NearbyPlaceRow key={r.place.id} item={r} level={tiered ? 3 : 2} source={sourceById.get(r.place.sourceId)} />)}
               </ul>
               {view?.paged && visible.length < rows.length && (
                 <PillButton variant="surface" onClick={() => setShown((n) => n + PAGE)} className="justify-self-start">Show more</PillButton>
               )}
-              <p className="text-sm text-muted">Straight-line distance, not walking time. Price bands are typical for this kind of place.</p>
+              <p className="text-sm text-muted">Straight-line distances. Check hours before you go.</p>
             </>
           )}
           {!mapOn && <div className={tiered ? 'mt-8' : undefined}><NearbyBulk view={bulk} /></div>}
@@ -288,9 +288,10 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
 
       {stats && stats.count > 0 && (
         <Disclosure summary="About this list">
-          <p className="pb-2 text-sm text-pretty text-muted">
-            A starter list of {stats.count} places we could check, in {stats.suburbs.join(', ')}. It is not every place.
-          </p>
+          <div className="grid gap-1 pb-2 text-sm text-pretty text-muted">
+            <p>A starter list of {stats.count} places we could check. It is not every place.</p>
+            <p>{rankSentence(score)}</p>
+          </div>
         </Disclosure>
       )}
 
