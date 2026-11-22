@@ -41,6 +41,7 @@ export * from './budget/entries';
 export * from './budget/summary';
 export * from './places/distance';
 export * from './places/rank';
+export * from './places/filters';
 export * from './places/centroid';
 export * from './places/location';
 export * from './food/types';

@@ -1,5 +1,5 @@
 import { haversineMetres, type LatLng } from './distance';
-import type { PlaceFilter } from './rank';
+import { NO_FILTERS, bulkMatches, type PlaceFilters } from './filters';
 import { BULK_KINDS, type BulkKind, type BulkPlace } from './tier';
 
 /*
@@ -101,25 +101,6 @@ export async function loadBulkFor(pos: LatLng, fetcher: CellFetcher): Promise<Bu
   return { places, failedCells, release };
 }
 
-/** Kinds whose category says fresh food. A supermarket is not claimed to be fresh. */
-const FRESH_KINDS: ReadonlySet<BulkKind> = new Set(['greengrocer', 'butcher', 'fishmonger']);
-
-/*
- * Every bulk price is unknown, and the Free and Low cost filters only match a stated price, so they match nothing.
- * Typed on PlaceFilter so a new filter forces a decision here.
- */
-const FILTERS: Record<PlaceFilter, (p: BulkPlace) => boolean> = {
-  all: () => true,
-  fresh: (p) => FRESH_KINDS.has(p.kind),
-  free: () => false,
-  'low-cost': () => false,
-};
-
-export const bulkMatchesFilter = (p: BulkPlace, filter: PlaceFilter): boolean => FILTERS[filter](p);
-
-/** False for a filter no bulk place can ever match (Free, Low cost), so the page leaves the tier out instead of showing it empty. */
-export const bulkCanMatch = (filter: PlaceFilter): boolean => BULK_KINDS.some((kind) => FILTERS[filter]({ kind } as BulkPlace));
-
 export interface RankedBulk {
   place: BulkPlace;
   distanceM: number;
@@ -129,9 +110,9 @@ export interface RankedBulk {
  * Nearest first, then name, then id. The distance is the whole order: a bulk place has no price or fit to nudge with,
  * so distance bands cannot be overridden. The page shows this list after the checked tier, under its own heading.
  */
-export function rankBulk(places: BulkPlace[], pos: LatLng, filter: PlaceFilter = 'all'): RankedBulk[] {
+export function rankBulk(places: BulkPlace[], pos: LatLng, filters: PlaceFilters = NO_FILTERS): RankedBulk[] {
   return places
-    .filter((p) => bulkMatchesFilter(p, filter))
+    .filter((p) => bulkMatches(p, filters))
     .map((place) => ({ place, distanceM: haversineMetres(pos, place) }))
     .filter((r) => Number.isFinite(r.distanceM))
     .sort(

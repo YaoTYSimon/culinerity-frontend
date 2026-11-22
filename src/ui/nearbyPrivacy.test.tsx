@@ -116,8 +116,8 @@ describe('full flow (spec 23, 24)', () => {
     );
     await screen.findByText(/starter list/i);
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Use my location' })); });
-    fireEvent.click(screen.getByRole('radio', { name: /Fresh produce/ }));
-    fireEvent.click(screen.getByRole('radio', { name: /All/ }));
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Fresh produce' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Clear' }));
     fireEvent.change(screen.getByLabelText('Type a suburb or postcode'), { target: { value: 'Footscray' } });
     fireEvent.click(screen.getByRole('button', { name: 'Use this suburb' }));
     const links = screen.getAllByRole('link', { name: /in Maps/ });

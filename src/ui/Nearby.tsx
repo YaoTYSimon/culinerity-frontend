@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import {
-  CHECKED_TIER_LABEL, centroidTable, coverage, rankPlaces, runningPlaces, rankSentence, roundOrigin, suburbCentroid,
-  type LatLng, type Place, type PlaceFilter, type PlaceSourceRecord,
+  CHECKED_TIER_LABEL, NO_FILTERS, centroidTable, coverage, hasActiveFilters, rankPlaces, runningPlaces, rankSentence, roundOrigin, suburbCentroid,
+  type LatLng, type Place, type PlaceFilters, type PlaceSourceRecord,
 } from '@culinerity/core';
 import { useBulkSource } from '../location/BulkContext';
 import { useLocationProvider } from '../location/LocationContext';
@@ -40,6 +40,7 @@ function LiveCount({ text }: { text: string }) {
   return <div aria-live="polite" className="text-base font-semibold">{said}</div>;
 }
 
+const NOTHING_TEXT = 'Nothing matches';
 const plural = (n: number) => `${n} ${n === 1 ? 'place' : 'places'}`;
 
 interface Props {
@@ -62,7 +63,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   const [attempt, setAttempt] = useState(0);
   const [origin, setOrigin] = useState<Origin | null>(null);
   const [phase, setPhase] = useState<Phase>({ kind: 'idle' });
-  const [filter, setFilter] = useState<PlaceFilter>('all');
+  const [filter, setFilter] = useState<PlaceFilters>(NO_FILTERS);
   const [typed, setTyped] = useState(profileSuburb ?? '');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [noMatch, setNoMatch] = useState(false);
@@ -145,7 +146,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   const view = useMemo(() => {
     if (!origin || !running) return null;
     const ranked = rankPlaces(running, origin, score, filter);
-    if (ranked.length === 0) return { rows: [], note: 'Nothing matches that filter nearby. Try All.', paged: false };
+    if (ranked.length === 0) return { rows: [], note: '', paged: false };
     if (ranked.some((r) => r.metres < NEAR_M)) return { rows: ranked, note: '', paged: true };
     const closest = [...ranked].sort((a, b) => a.metres - b.metres).slice(0, FALLBACK_COUNT);
     const far = closest[0].metres > FAR_M;
@@ -163,6 +164,8 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   const stats = useMemo(() => (running ? coverage(running) : null), [running]);
 
   const rows = view?.rows ?? [];
+  const filtering = hasActiveFilters(filter);
+  const nothing = filtering && rows.length === 0 && (bulk.mode !== 'shown' || bulk.ranked.length === 0);
   const visible = view?.paged ? rows.slice(0, shown) : rows;
   const locating = phase.kind === 'locating';
   const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
@@ -237,10 +240,14 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
 
       {places && origin && (
         <div className="grid gap-4">
-          <NearbyFilters value={filter} onChange={(v) => { setFilter(v); setShown(PAGE); }} />
-          <LiveCount text={plural(rows.length) + (bulk.mode === 'shown' ? `, ${bulk.ranked.length} not checked by us` : '')} />
+          <NearbyFilters
+            value={filter}
+            onChange={(v) => { setFilter(v); setShown(PAGE); }}
+            onClear={() => { setFilter(NO_FILTERS); setShown(PAGE); }}
+            status={<LiveCount text={nothing ? NOTHING_TEXT : plural(rows.length) + (bulk.mode === 'shown' ? `, ${bulk.ranked.length} not checked by us` : '')} />}
+          />
           {origin.label && <p className="text-sm text-muted">from the middle of {origin.label}</p>}
-          {tiered && <h2 className="mt-2 font-display text-2xl leading-tight font-bold text-balance">{CHECKED_TIER_LABEL}</h2>}
+          {tiered && rows.length > 0 && <h2 className="mt-2 font-display text-2xl leading-tight font-bold text-balance">{CHECKED_TIER_LABEL}</h2>}
           {view?.note && <p className="text-base font-semibold text-pretty">{view.note}</p>}
           {rows.length > 0 && (
             <>

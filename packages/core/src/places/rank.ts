@@ -1,8 +1,7 @@
 import { rankNudge, type RankNudge } from '../domain/bands';
 import { haversineMetres, type LatLng } from './distance';
+import { NO_FILTERS, placeMatches, type PlaceFilters } from './filters';
 import type { Place, PriceBand } from './types';
-
-export type PlaceFilter = 'all' | 'fresh' | 'free' | 'low-cost';
 
 export interface RankedPlace {
   place: Place;
@@ -39,13 +38,6 @@ export function rankSentence(score: number | undefined): string {
   return SENTENCES[nudgeFor(score)];
 }
 
-const FILTERS: Record<PlaceFilter, (p: Place) => boolean> = {
-  all: () => true,
-  fresh: (p) => p.fit.includes('fresh'),
-  free: (p) => p.priceBasis === 'stated' && p.priceBand === 'free',
-  'low-cost': (p) => p.priceBasis === 'stated' && (p.priceBand === 'free' || p.priceBand === 'budget'),
-};
-
 const distanceBand = (m: number) => {
   const i = BAND_LIMITS_M.findIndex((limit) => m < limit);
   return i === -1 ? BAND_LIMITS_M.length : i;
@@ -66,11 +58,11 @@ export function rankPlaces(
   places: Place[],
   origin: LatLng,
   score: number | undefined,
-  filter: PlaceFilter,
+  filters: PlaceFilters = NO_FILTERS,
 ): RankedPlace[] {
   const keys: Key[] = [(r) => distanceBand(r.metres), ...NUDGE_KEYS[nudgeFor(score)], dist];
   return places
-    .filter(FILTERS[filter])
+    .filter((p) => placeMatches(p, filters))
     .map((place) => ({ place, metres: haversineMetres(origin, place) }))
     .filter((r) => Number.isFinite(r.metres))
     .sort((a, b) => {

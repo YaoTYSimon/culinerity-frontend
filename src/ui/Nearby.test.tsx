@@ -1,4 +1,5 @@
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   MockPlaceSource, StaticPlaceSource, formatDistance, haversineMetres, placeData, rankSentence, roundOrigin,
@@ -194,20 +195,80 @@ describe('Nearby', () => {
     expect(localStorage.length + sessionStorage.length).toBe(0);
   });
 
-  it('filters change the list and the live count without moving focus', async () => {
+  it('filter pills change the list and the live count without moving focus', async () => {
     renderNearby(fake(OK));
     await press();
     const live = screen.getByText('3 places');
     expect(live.closest('[aria-live="polite"]')).not.toBeNull();
-    const group = screen.getByRole('group', { name: 'Show' });
-    const free = within(group).getByRole('radio', { name: /Free/ });
+    const free = screen.getByRole('checkbox', { name: 'Free' });
     free.focus();
     fireEvent.click(free);
     expect(screen.getByText('2 places')).toBeInTheDocument();
     expect(names().sort()).toEqual(['Test Kitchen', 'Test Pantry']);
     expect(free).toHaveFocus();
-    fireEvent.click(within(group).getByRole('radio', { name: /Fresh produce/ }));
-    expect(screen.getByText('1 place')).toBeInTheDocument();
+    expect(free).toBeChecked();
+  });
+
+  it('groups are fieldsets with one-word legends, and every pill is a checkbox with its own name', async () => {
+    renderNearby(fake(OK));
+    await press();
+    for (const label of ['Type', 'Cost', 'Food', 'Access', 'Checked']) expect(screen.getByRole('group', { name: label })).toBeInTheDocument();
+    const type = screen.getByRole('group', { name: 'Type' });
+    expect(within(type).getAllByRole('checkbox').map((c) => c.getAttribute('aria-label') ?? c.closest('label')?.textContent)).toEqual(
+      ['Markets', 'Grocers', 'Food relief', 'Community meals', 'Cafes and takeaway']);
+    expect(within(screen.getByRole('group', { name: 'Food' })).getAllByRole('checkbox')).toHaveLength(3);
+    expect(within(screen.getByRole('group', { name: 'Access' })).getByRole('checkbox', { name: 'Referral or appointment' })).toBeInTheDocument();
+    expect(within(screen.getByRole('group', { name: 'Checked' })).getByRole('checkbox', { name: 'Checked by us only' })).toBeInTheDocument();
+  });
+
+  it('picks in one group are OR, and picks across groups are AND', async () => {
+    renderNearby(fake(OK));
+    await press();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Markets' }));
+    expect(names()).toEqual(['Test Market']);
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Community meals' }));
+    expect(names().sort()).toEqual(['Test Kitchen', 'Test Market']);
+    expect(screen.getByText('2 places')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Free' }));
+    expect(names()).toEqual(['Test Kitchen']);
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Packaged' }));
+    expect(screen.getByText('Nothing matches')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Meals' }));
+    expect(names()).toEqual(['Test Kitchen']);
+  });
+
+  it('Space toggles a pill from the keyboard', async () => {
+    const user = userEvent.setup();
+    renderNearby(fake(OK));
+    await press();
+    const free = screen.getByRole('checkbox', { name: 'Free' });
+    free.focus();
+    await user.keyboard(' ');
+    expect(free).toBeChecked();
+    expect(screen.getByText('2 places')).toBeInTheDocument();
+    await user.keyboard(' ');
+    expect(free).not.toBeChecked();
+    expect(screen.getByText('3 places')).toBeInTheDocument();
+  });
+
+  it('shows Clear only while a pill is on, and Clear switches every pill off and returns focus to the pills', async () => {
+    renderNearby(fake(OK));
+    await press();
+    expect(screen.queryByRole('button', { name: 'Clear' })).toBeNull();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Free' }));
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Walk in' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Clear' }));
+    for (const c of screen.getAllByRole('checkbox')) expect(c).not.toBeChecked();
+    expect(screen.getByText('3 places')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Clear' })).toBeNull();
+    await waitFor(() => expect(screen.getAllByRole('checkbox')[0]).toHaveFocus());
+  });
+
+  it('keeps the filters in memory only', async () => {
+    renderNearby(fake(OK));
+    await press();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Free' }));
+    expect(localStorage.length + sessionStorage.length).toBe(0);
   });
 
   it('mounts the places count region empty, then fills it so the first result is announced', async () => {
@@ -233,11 +294,15 @@ describe('Nearby', () => {
     expect(filledLater).toBe(true);
   });
 
-  it('an empty filter result says so', async () => {
+  it('an empty filter result is one short line with the Clear action', async () => {
     renderNearby(fake(OK), {}, many(3));
     await press();
-    fireEvent.click(screen.getByRole('radio', { name: /Free/ }));
-    expect(screen.getByText('Nothing matches that filter nearby. Try All.')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Free' }));
+    expect(screen.getByText('Nothing matches')).toBeInTheDocument();
+    expect(screen.queryByRole('list', { name: 'Places near you' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Clear' }));
+    expect(screen.getByText('3 places')).toBeInTheDocument();
+    expect(names()).toHaveLength(3);
   });
 
   it('a Sydney origin is honest and shows the closest five', async () => {

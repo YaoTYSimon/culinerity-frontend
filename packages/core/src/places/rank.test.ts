@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Place, PriceBand } from './types';
+import { NO_FILTERS, type PlaceFilters } from './filters';
 import { nudgeFor, priceLabel, rankPlaces, rankSentence, PRICE_LABEL } from './rank';
 
 const origin = { lat: -37.8, lng: 144.9 };
@@ -39,7 +40,7 @@ describe('distance bands dominate', () => {
   it('a free place at 3 km never beats a pricier one at 800 m', () => {
     const list = [place('far-free', 3000, 'free', true), place('near-pricey', 800, 'pricier', false)];
     for (const score of [10, 50, 90]) {
-      expect(ids(rankPlaces(list, origin, score, 'all'))).toEqual(['near-pricey', 'far-free']);
+      expect(ids(rankPlaces(list, origin, score, NO_FILTERS))).toEqual(['near-pricey', 'far-free']);
     }
   });
   it('orders all five bands', () => {
@@ -50,7 +51,7 @@ describe('distance bands dominate', () => {
       place('b', 1500, 'free', true),
       place('a', 500, 'free', true),
     ];
-    expect(ids(rankPlaces(list, origin, 10, 'all'))).toEqual(['a', 'b', 'c', 'd', 'e']);
+    expect(ids(rankPlaces(list, origin, 10, NO_FILTERS))).toEqual(['a', 'b', 'c', 'd', 'e']);
   });
 });
 
@@ -62,7 +63,7 @@ describe('in-band order per nudge', () => {
     place('free-fresh-far', 800, 'free', true),
   ];
   it('cheapest: price, fresh, distance', () => {
-    expect(ids(rankPlaces(list, origin, 10, 'all'))).toEqual([
+    expect(ids(rankPlaces(list, origin, 10, NO_FILTERS))).toEqual([
       'free-fresh-far',
       'free-nofresh-far',
       'budget-fresh-mid',
@@ -70,7 +71,7 @@ describe('in-band order per nudge', () => {
     ]);
   });
   it('balanced: fresh, distance, price', () => {
-    expect(ids(rankPlaces(list, origin, 50, 'all'))).toEqual([
+    expect(ids(rankPlaces(list, origin, 50, NO_FILTERS))).toEqual([
       'mid-fresh-near',
       'budget-fresh-mid',
       'free-fresh-far',
@@ -78,7 +79,7 @@ describe('in-band order per nudge', () => {
     ]);
   });
   it('healthiest: fresh, price, distance', () => {
-    expect(ids(rankPlaces(list, origin, 90, 'all'))).toEqual([
+    expect(ids(rankPlaces(list, origin, 90, NO_FILTERS))).toEqual([
       'free-fresh-far',
       'budget-fresh-mid',
       'mid-fresh-near',
@@ -86,7 +87,7 @@ describe('in-band order per nudge', () => {
     ]);
   });
   it('undefined score behaves as balanced', () => {
-    expect(ids(rankPlaces(list, origin, undefined, 'all'))).toEqual(ids(rankPlaces(list, origin, 50, 'all')));
+    expect(ids(rankPlaces(list, origin, undefined, NO_FILTERS))).toEqual(ids(rankPlaces(list, origin, 50, NO_FILTERS)));
   });
 });
 
@@ -99,11 +100,11 @@ describe('tie-breaks', () => {
       place('0', 299.9, 'mid', true, 'Zed'),
     ];
     // distances for 300 m entries are equal (same coordinates)
-    expect(ids(rankPlaces(list, origin, 50, 'all'))).toEqual(['0', '1', '2', '3']);
+    expect(ids(rankPlaces(list, origin, 50, NO_FILTERS))).toEqual(['0', '1', '2', '3']);
   });
   it('sorts names with en-AU locale compare', () => {
     const list = [place('x', 300, 'mid', true, 'b'), place('y', 300, 'mid', true, 'A')];
-    expect(ids(rankPlaces(list, origin, 50, 'all'))).toEqual(['y', 'x']);
+    expect(ids(rankPlaces(list, origin, 50, NO_FILTERS))).toEqual(['y', 'x']);
   });
 });
 
@@ -114,21 +115,24 @@ describe('filters', () => {
     place('mid-fresh', 300, 'mid', true),
     place('pricier', 400, 'pricier', false),
   ];
-  it('all', () => expect(rankPlaces(list, origin, 50, 'all')).toHaveLength(4));
-  it('fresh', () => expect(ids(rankPlaces(list, origin, 50, 'fresh')).sort()).toEqual(['free-fresh', 'mid-fresh']));
-  it('free', () => expect(ids(rankPlaces(list, origin, 50, 'free'))).toEqual(['free-fresh']));
-  it('low-cost is free or budget', () =>
-    expect(ids(rankPlaces(list, origin, 50, 'low-cost')).sort()).toEqual(['budget', 'free-fresh']));
+  const on = (over: Partial<PlaceFilters>): PlaceFilters => ({ ...NO_FILTERS, ...over });
+  it('no pills keeps everything', () => expect(rankPlaces(list, origin, 50, NO_FILTERS)).toHaveLength(4));
+  it('Fresh produce', () => expect(ids(rankPlaces(list, origin, 50, on({ food: ['fresh'] }))).sort()).toEqual(['free-fresh', 'mid-fresh']));
+  it('Free', () => expect(ids(rankPlaces(list, origin, 50, on({ cost: ['free'] })))).toEqual(['free-fresh']));
+  it('Low cost is free or budget', () =>
+    expect(ids(rankPlaces(list, origin, 50, on({ cost: ['low'] }))).sort()).toEqual(['budget', 'free-fresh']));
+  it('Cost and Food together must both match', () =>
+    expect(ids(rankPlaces(list, origin, 50, on({ cost: ['low'], food: ['fresh'] })))).toEqual(['free-fresh']));
   it('never claims typical-basis prices as free or low cost', () => {
     const kcnh = place('kcnh', 50, 'free', true, 'kcnh', 'typical');
     const typicalBudget = place('tb', 60, 'budget', false, 'tb', 'typical');
     const all = [kcnh, typicalBudget, ...list];
-    expect(ids(rankPlaces(all, origin, 50, 'free'))).toEqual(['free-fresh']);
-    expect(ids(rankPlaces(all, origin, 50, 'low-cost')).sort()).toEqual(['budget', 'free-fresh']);
-    expect(ids(rankPlaces(all, origin, 50, 'all'))).toContain('kcnh');
+    expect(ids(rankPlaces(all, origin, 50, on({ cost: ['free'] })))).toEqual(['free-fresh']);
+    expect(ids(rankPlaces(all, origin, 50, on({ cost: ['low'] }))).sort()).toEqual(['budget', 'free-fresh']);
+    expect(ids(rankPlaces(all, origin, 50, NO_FILTERS))).toContain('kcnh');
   });
   it('returns true distances', () => {
-    const r = rankPlaces(list, origin, 50, 'all');
+    const r = rankPlaces(list, origin, 50, NO_FILTERS);
     expect(r[0]!.metres).toBeGreaterThan(95);
     expect(r[0]!.metres).toBeLessThan(105);
   });
@@ -138,14 +142,14 @@ describe('purity', () => {
   it('does not mutate input and is deterministic', () => {
     const list = [place('b', 900, 'mid', false), place('a', 100, 'free', true)];
     const copy = structuredClone(list);
-    const one = rankPlaces(list, origin, 20, 'all');
-    const two = rankPlaces(list, origin, 20, 'all');
+    const one = rankPlaces(list, origin, 20, NO_FILTERS);
+    const two = rankPlaces(list, origin, 20, NO_FILTERS);
     expect(list).toEqual(copy);
     expect(one).toEqual(two);
   });
   it('drops places with non-finite distance', () => {
     const bad = { ...place('bad', 100, 'free', true), lat: NaN };
-    expect(ids(rankPlaces([bad, place('ok', 100, 'free', true)], origin, 50, 'all'))).toEqual(['ok']);
+    expect(ids(rankPlaces([bad, place('ok', 100, 'free', true)], origin, 50, NO_FILTERS))).toEqual(['ok']);
   });
 });
 

@@ -124,17 +124,36 @@ describe('Nearby not-checked tier', () => {
     expect(BULK_EMPTY_TEXT).toBe('No places in this list close to here.');
   });
 
-  it('leaves the tier out for Free and Low cost, and Fresh produce keeps only fresh kinds', async () => {
+  it('Fresh produce keeps only fresh kinds; any Cost, Access or Checked pill leaves the tier out', async () => {
     await open(source());
     await screen.findByText('Bulk Bakery');
-    fireEvent.click(screen.getByRole('radio', { name: /Fresh produce/ }));
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Fresh produce' }));
     expect(screen.queryByText('Bulk Bakery')).toBeNull();
     expect(screen.getByText('Bulk Greens')).toBeInTheDocument();
-    for (const f of [/Free/, /Low cost/]) {
-      fireEvent.click(screen.getByRole('radio', { name: f }));
-      expect(screen.queryByRole('heading', { name: 'Not checked by us' })).toBeNull();
-      expect(screen.queryByText('Bulk Greens')).toBeNull();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Fresh produce' }));
+    for (const name of ['Free', 'Low cost', 'Walk in', 'Referral or appointment', 'Checked by us only']) {
+      fireEvent.click(screen.getByRole('checkbox', { name }));
+      expect(screen.queryByRole('heading', { name: 'Not checked by us' }), name).toBeNull();
+      expect(screen.queryByText('Bulk Greens'), name).toBeNull();
+      fireEvent.click(screen.getByRole('checkbox', { name }));
+      expect(screen.getByText('Bulk Greens'), name).toBeInTheDocument();
     }
+  });
+
+  it('Type pills pick bulk kinds: Grocers keeps both, Cafes and takeaway keeps neither, Markets leaves the tier out', async () => {
+    await open(source());
+    await screen.findByText('Bulk Bakery');
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Grocers' }));
+    expect(screen.getByText('Bulk Bakery')).toBeInTheDocument();
+    expect(screen.getByText('Bulk Greens')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Grocers' }));
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Cafes and takeaway' }));
+    expect(screen.queryByText('Bulk Bakery')).toBeNull();
+    expect(screen.getByText('Nothing matches')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Cafes and takeaway' }));
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Markets' }));
+    expect(screen.queryByRole('heading', { name: 'Not checked by us' })).toBeNull();
+    expect(screen.getByRole('list', { name: 'Places near you' })).toBeInTheDocument();
   });
 
   it('a food relief row shows its label, no price line, and the check line; other rows are unchanged', async () => {

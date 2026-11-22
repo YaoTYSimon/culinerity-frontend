@@ -1,8 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   BULK_CELL_DEG,
-  bulkCanMatch,
-  bulkMatchesFilter,
   bulkStaleness,
   cellKey,
   cellPath,
@@ -13,7 +11,7 @@ import {
   type CellShard,
 } from './bulk';
 import type { BulkKind } from './tier';
-import type { PlaceFilter } from './rank';
+import { NO_FILTERS, type PlaceFilters } from './filters';
 
 const here = { lat: -37.8136, lng: 144.9631 };
 const north = (m: number) => ({ lat: here.lat + m / 111195, lng: here.lng });
@@ -142,30 +140,20 @@ describe('splitReliefFirst (ruling F2)', () => {
   });
 });
 
-describe('bulkMatchesFilter', () => {
-  const one = async (kind: BulkKind) =>
-    (await loadBulkFor(here, async (k) => (k === cellKey(here.lat, here.lng) ? shard(shardPlace('a', 10, 'A', kind)) : shard()))).places[0];
-  it('never returns a bulk place from Free or Low cost: its price is unknown', async () => {
-    const kinds: BulkKind[] = ['supermarket', 'greengrocer', 'bakery', 'takeaway', 'cafe-restaurant', 'butcher', 'fishmonger', 'deli', 'food-relief'];
-    for (const k of kinds) {
-      const p = await one(k);
-      expect(p.price).toBe('unknown');
-      expect(bulkMatchesFilter(p, 'free')).toBe(false);
-      expect(bulkMatchesFilter(p, 'low-cost')).toBe(false);
-      expect(bulkMatchesFilter(p, 'all')).toBe(true);
-    }
+describe('rankBulk filters', () => {
+  const on = (over: Partial<PlaceFilters>): PlaceFilters => ({ ...NO_FILTERS, ...over });
+  const places = async () =>
+    (await loadBulkFor(here, async (k) => (k === cellKey(here.lat, here.lng) ? shard(shardPlace('a', 10, 'A', 'butcher'), shardPlace('b', 20, 'B', 'bakery')) : shard()))).places;
+  it('applies Food and Type pills', async () => {
+    expect(rankBulk(await places(), here, on({ food: ['fresh'] })).map((r) => r.place.id)).toEqual(['ovt-a']);
+    expect(rankBulk(await places(), here, on({ type: ['grocer'] }))).toHaveLength(2);
   });
-  it('treats only produce, butcher and fish shops as fresh', async () => {
-    const fresh: Record<BulkKind, boolean> = {
-      supermarket: false, greengrocer: true, bakery: false, takeaway: false, 'cafe-restaurant': false, butcher: true, fishmonger: true, deli: false, 'food-relief': false,
-    };
-    for (const [k, want] of Object.entries(fresh)) expect(bulkMatchesFilter(await one(k as BulkKind), 'fresh' as PlaceFilter)).toBe(want);
+  it('leaves out every row under a Cost pill: the price is unknown', async () => {
+    expect(rankBulk(await places(), here, on({ cost: ['free'] }))).toEqual([]);
+    expect(rankBulk(await places(), here, on({ cost: ['low'] }))).toEqual([]);
   });
-  it('rankBulk applies the filter', async () => {
-    const places = (await loadBulkFor(here, async (k) => (k === cellKey(here.lat, here.lng) ? shard(shardPlace('a', 10, 'A', 'butcher'), shardPlace('b', 20, 'B', 'bakery')) : shard()))).places;
-    expect(rankBulk(places, here, 'fresh').map((r) => r.place.id)).toEqual(['ovt-a']);
-    expect(rankBulk(places, here, 'free')).toEqual([]);
-    expect(rankBulk(places, here, 'low-cost')).toEqual([]);
+  it('keeps all rows with no pills', async () => {
+    expect(rankBulk(await places(), here)).toHaveLength(2);
   });
 });
 
@@ -195,14 +183,5 @@ describe('bulkStaleness (Ruling D4b)', () => {
   it('hides the tier when a date cannot be read', () => {
     expect(bulkStaleness('nonsense', '2026-11-03')).toBe('hidden');
     expect(bulkStaleness(r, 'today')).toBe('hidden');
-  });
-});
-
-describe('bulkCanMatch', () => {
-  it('is false for Free and Low cost, true for All and Fresh produce', () => {
-    expect(bulkCanMatch('free')).toBe(false);
-    expect(bulkCanMatch('low-cost')).toBe(false);
-    expect(bulkCanMatch('all')).toBe(true);
-    expect(bulkCanMatch('fresh')).toBe(true);
   });
 });
