@@ -8,6 +8,7 @@ import { LocationProviderContext } from '../location/LocationContext';
 import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { Nearby } from './Nearby';
+import { pickMenuItem } from '../test/menu';
 
 /** The filter groups live behind the Filters pill; open it (once) before reaching for a pill. */
 const openFilters = () => {
@@ -245,7 +246,7 @@ describe('share text (spec 24)', () => {
     );
     const go = async (item: string) => {
       fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-      fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: item }));
+      pickMenuItem(item);
       await screen.findByRole('heading', { level: 1 }); // lazy views: wait for the view's h1
     };
     if (withOrigin) {
@@ -283,7 +284,7 @@ describe('profile stays untouched (spec 24)', () => {
     );
     const savesBefore = store.saved.length;
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: 'Nearby' }));
+    pickMenuItem('Nearby');
     const field = await screen.findByLabelText('Type a suburb or postcode');
     expect(field).toHaveValue('Carlton');
     fireEvent.change(field, { target: { value: 'Footscray' } });

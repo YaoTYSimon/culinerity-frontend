@@ -9,6 +9,7 @@ import { Gate } from './Gate';
 import { LocalAuthService } from './LocalAuthService';
 import { KEYS, profileKey } from './storageKeys';
 import { useAuth, type AuthState } from './useAuth';
+import { pickMenuItem } from '../test/menu';
 
 const WELCOME_H1 = 'How much is food on your mind?';
 const at = () => new Date().toISOString();
@@ -45,7 +46,7 @@ function mount(service: AuthService = new LocalAuthService()) {
 
 function openWeek() {
   fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-  fireEvent.click(screen.getByRole('button', { name: 'My week' }));
+  pickMenuItem('My week');
 }
 
 beforeEach(() => {

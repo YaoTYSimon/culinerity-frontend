@@ -8,6 +8,7 @@ import { LocalAuthService } from '../auth/LocalAuthService';
 import { KEYS, profileKey } from '../auth/storageKeys';
 import { ServicesProvider } from '../services/ServicesContext';
 import { LocalProfileStore } from '../storage/localProfileStore';
+import { pickMenuItem } from '../test/menu';
 
 // Same method as foodPrivacy.test.tsx: spies installed before the flow, detectors proven live.
 // If an assertion here fails, fix the code, not the test.
@@ -99,7 +100,7 @@ describe('full flow with every channel spied before it starts', () => {
   // Views load lazily: wait for the new view's h1 (the old view is hidden while the fallback shows).
   const nav = async (item: string) => {
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: item }));
+    pickMenuItem(item);
     await screen.findByRole('heading', { level: 1 });
   };
 

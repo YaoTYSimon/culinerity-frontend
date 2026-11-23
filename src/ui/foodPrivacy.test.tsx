@@ -18,6 +18,7 @@ import { LocalAuthService } from '../auth/LocalAuthService';
 import { KEYS, profileKey } from '../auth/storageKeys';
 import { ServicesProvider } from '../services/ServicesContext';
 import { LocalProfileStore } from '../storage/localProfileStore';
+import { pickMenuItem } from '../test/menu';
 
 // ---- shared helpers -------------------------------------------------------------------------
 
@@ -118,7 +119,7 @@ describe('(a) share text', () => {
     const services = { ...createCoreServices(new InMemoryProfileStore(FULL_PROFILE)) };
     render(<ServicesProvider services={services}><App now={() => NOW_ISO} /></ServicesProvider>);
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'My week' }));
+    pickMenuItem('My week');
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Share' })); });
     expect(share).toHaveBeenCalledTimes(1);
     const text = share.mock.calls[0][0].text as string;
@@ -208,7 +209,7 @@ describe('full flow: setup, search, rank, add meal, remove, clear', () => {
 
   const openMenu = (item: string) => {
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: item }));
+    pickMenuItem(item);
   };
   const next = () => fireEvent.click(screen.getByRole('button', { name: 'Next' }));
   const tag = (label: RegExp | string, text: string) => {
@@ -372,7 +373,7 @@ describe('(e) clear, delete and migrate', () => {
     localStorage.setItem(PROFILE_KEY, JSON.stringify(FULL_PROFILE));
     render(<ServicesProvider services={createCoreServices(new LocalProfileStore())}><App now={clock} /></ServicesProvider>);
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'My food' }));
+    pickMenuItem('My food');
     fireEvent.click(screen.getByRole('button', { name: 'Clear my meals' }));
     fireEvent.click(screen.getByRole('button', { name: 'Clear my food settings' }));
     const after = JSON.parse(localStorage.getItem(PROFILE_KEY) ?? '{}');

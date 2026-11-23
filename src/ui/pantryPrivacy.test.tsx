@@ -13,6 +13,7 @@ import { ServicesProvider } from '../services/ServicesContext';
 import { LocalProfileStore } from '../storage/localProfileStore';
 import { LocalThemeStore } from '../storage/localThemeStore';
 import { ThemeProvider } from '../theme/ThemeProvider';
+import { pickMenuItem } from '../test/menu';
 
 // ---- shared helpers -------------------------------------------------------------------------
 
@@ -130,7 +131,7 @@ describe('full flow: add, cook, add to list, share the week', () => {
   // Views load lazily: wait for the new view's h1 (the old view is hidden while the fallback shows).
   const openMenu = async (item: string) => {
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: item }));
+    pickMenuItem(item);
     await screen.findByRole('heading', { level: 1 });
   };
   const addByName = (text: string) => {
@@ -272,14 +273,14 @@ describe('switching profiles never shows the other pantry', () => {
     );
     await act(async () => void (await auth.signIn('aaa')));
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'My pantry' }));
+    pickMenuItem('My pantry');
     expect(await screen.findByText(MARKER, { selector: 'span.block' })).toBeInTheDocument();
 
     act(() => auth.lock());
     expect(document.body.textContent).not.toContain(MARKER);
     await act(async () => void (await auth.signIn('bbb')));
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'My pantry' }));
+    pickMenuItem('My pantry');
     expect(screen.getByRole('heading', { level: 1, name: 'My pantry' })).toBeInTheDocument();
     expect(document.body.textContent).not.toContain(MARKER);
     expect(within(screen.getByRole('main')).queryByText(/Zzquince/i)).not.toBeInTheDocument();

@@ -7,6 +7,7 @@ import { createServices } from './services/container';
 import { ServicesProvider } from './services/ServicesContext';
 import { AuthContext, type AuthState } from './auth/useAuth';
 import { LocalProfileStore } from './storage/localProfileStore';
+import { pickMenuItem } from './test/menu';
 
 const SUPPORT = { name: 'Free food near you.' };
 const SEEN = { welcomeSeen: true };
@@ -14,7 +15,7 @@ const WELCOME_H1 = 'How much is food on your mind?';
 
 function openMenu(item: string) {
   fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-  fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: item }));
+  pickMenuItem(item);
 }
 
 function renderApp(store: ProfileStore = new InMemoryProfileStore(), now?: () => string) {
@@ -185,10 +186,10 @@ describe('App', () => {
     fireEvent.click(within(screen.getByRole('contentinfo')).getByRole('button', { name: 'Data and policy' }));
     expect(await screen.findByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Swaps' }));
+    pickMenuItem('Swaps');
     expect(screen.queryByRole('heading', { name: 'What we know about food insecurity.' })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: 'Data and policy' }));
+    pickMenuItem('Data and policy');
     expect(await screen.findByRole('heading', { level: 1, name: 'What we know about food insecurity.' })).toBeInTheDocument();
   });
 

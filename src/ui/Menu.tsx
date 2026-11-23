@@ -1,4 +1,4 @@
-import { useContext, useEffect, useId, useRef, useState, type KeyboardEvent } from 'react';
+import { useContext, useEffect, useId, useRef, useState, type KeyboardEvent, type RefObject } from 'react';
 import { AuthContext } from '../auth/useAuth';
 import { Avatar } from './Avatar';
 import { PillButton } from './PillButton';
@@ -115,7 +115,7 @@ export function Menu({ current, onNavigate, open: controlled, onOpenChange, onCr
         Menu
       </PillButton>
       {open && (
-        <div id={panelId} className="absolute inset-x-0 top-full z-10 grid gap-2 bg-surface px-4 pb-4 pt-1">
+        <div id={panelId} className="absolute inset-x-0 top-full z-10 grid max-h-[calc(100dvh-7rem-var(--dock-h))] content-start gap-2 overflow-y-auto overscroll-contain bg-surface px-4 pb-4 pt-1">
           {auth && (
             <ProfileBlock
               auth={auth}
@@ -125,36 +125,98 @@ export function Menu({ current, onNavigate, open: controlled, onOpenChange, onCr
               onCreateProfile={onCreateProfile}
             />
           )}
-          <nav aria-label="Menu" className="grid gap-2">
-            {GROUPS.map(({ heading, items }) => (
-              <div key={heading}>
-                <p id={`${panelId}-${heading}`} className="px-4 pb-0.5 text-sm text-muted">
-                  {heading}
-                </p>
-                <ul aria-labelledby={`${panelId}-${heading}`} className="grid grid-cols-2 items-start gap-x-1">
-                  {items.map(({ to, label }) => (
-                    <li key={to}>
-                      <button
-                        ref={to === 'home' ? homeItem : undefined}
-                        type="button"
-                        aria-current={to === current || (to === 'home' && current === 'number') ? 'page' : undefined}
-                        onClick={() => {
-                          onNavigate(to);
-                          close();
-                        }}
-                        className="focus-ring motion-colors flex min-h-11 w-full items-center rounded-full px-4 text-left text-base font-semibold leading-tight hover:bg-bg aria-[current=page]:bg-bg"
-                      >
-                        {label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
+          <MenuGroups
+            current={current}
+            panelId={panelId}
+            homeItem={homeItem}
+            onPick={(to) => {
+              onNavigate(to);
+              close();
+            }}
+          />
         </div>
       )}
       {deleting && person && <DeleteDialog auth={auth!} account={person} onClose={() => setDeleting(false)} />}
     </div>
+  );
+}
+
+const groupOf = (current: View) => {
+  const view = current === 'number' ? 'home' : current;
+  return GROUPS.find((g) => g.items.some((i) => i.to === view))?.heading;
+};
+
+/**
+ * The destination groups. Each heading is a disclosure button (round chevron, `aria-expanded`,
+ * `aria-controls`). Today and the group holding the current page start open. The open state lives here only,
+ * so it is forgotten whenever the panel closes (this component unmounts with it); nothing is stored.
+ */
+function MenuGroups({
+  current,
+  panelId,
+  homeItem,
+  onPick,
+}: {
+  current: View;
+  panelId: string;
+  homeItem: RefObject<HTMLButtonElement | null>;
+  onPick: (to: NavTarget) => void;
+}) {
+  const [opened, setOpened] = useState<Set<string>>(() => new Set(['Today', groupOf(current) ?? 'Today']));
+  const toggle = (heading: string) =>
+    setOpened((prev) => {
+      const next = new Set(prev);
+      if (!next.delete(heading)) next.add(heading);
+      return next;
+    });
+  return (
+    <nav aria-label="Menu" className="grid gap-1">
+      {GROUPS.map(({ heading, items }) => {
+        const isOpen = opened.has(heading);
+        const listId = `${panelId}-${heading}-list`;
+        return (
+          <div key={heading}>
+            <button
+              type="button"
+              id={`${panelId}-${heading}`}
+              aria-expanded={isOpen}
+              aria-controls={listId}
+              onClick={() => toggle(heading)}
+              className="focus-ring motion-colors flex min-h-11 w-full items-center justify-between gap-2 rounded-full px-4 text-left text-sm font-semibold text-muted hover:bg-bg"
+            >
+              {heading}
+              <span aria-hidden className="grid size-6 place-items-center rounded-full bg-bg">
+                <svg
+                  viewBox="0 0 12 12"
+                  className={`size-3 motion-safe:transition-transform motion-safe:duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M2.5 4.5 6 8l3.5-3.5" />
+                </svg>
+              </span>
+            </button>
+            <ul id={listId} hidden={!isOpen} aria-labelledby={`${panelId}-${heading}`} className="grid grid-cols-2 items-start gap-x-1">
+              {items.map(({ to, label }) => (
+                <li key={to}>
+                  <button
+                    ref={to === 'home' ? homeItem : undefined}
+                    type="button"
+                    aria-current={to === current || (to === 'home' && current === 'number') ? 'page' : undefined}
+                    onClick={() => onPick(to)}
+                    className="focus-ring motion-colors flex min-h-11 w-full items-center rounded-full px-4 text-left text-base font-semibold leading-tight hover:bg-bg aria-[current=page]:bg-bg"
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </nav>
   );
 }
