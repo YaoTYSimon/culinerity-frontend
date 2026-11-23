@@ -20,11 +20,14 @@ function siteHost(url: string | undefined): { href: string; host: string } | nul
  * One not-checked place, short: name, kind icon, postcode and distance, and a round Maps button. The group says once
  * that hours and prices are not checked; the address, website and Report a problem sit behind Details.
  */
-export function NearbyBulkRow({ item, reportContact = REPORT_PROBLEM_CONTACT, level = 3 }: { item: RankedBulk; reportContact?: string; level?: 3 | 4 }) {
+export function NearbyBulkRow({ item, reportContact = REPORT_PROBLEM_CONTACT, level = 3, showDetails }: { item: RankedBulk; reportContact?: string; level?: 3 | 4; showDetails?: boolean }) {
   const { place: p, distanceM } = item;
   const report = reportProblemHref(p, reportContact);
   const site = siteHost(p.website);
-  const [open, setOpen] = useState(false);
+  const [ownOpen, setOpen] = useState(false);
+  /** When the parent passes `showDetails`, it owns the toggle for every row and this row shows none of its own. */
+  const controlled = showDetails !== undefined;
+  const open = controlled ? showDetails : ownOpen;
   const detailsId = useId();
   const hasDetails = Boolean(p.address || site || report);
   const kind = p.kind === 'food-relief' ? 'Food relief' : bulkKindLabel(p.kind);
@@ -42,7 +45,7 @@ export function NearbyBulkRow({ item, reportContact = REPORT_PROBLEM_CONTACT, le
       </div>
       {hasDetails && (
         <>
-          <button
+          {!controlled && <button
             type="button"
             aria-expanded={open}
             aria-controls={detailsId}
@@ -52,7 +55,7 @@ export function NearbyBulkRow({ item, reportContact = REPORT_PROBLEM_CONTACT, le
           >
             Details
             <span className="inline-flex size-11 items-center justify-center rounded-full bg-surface"><Chevron open={open} /></span>
-          </button>
+          </button>}
           <div id={detailsId} hidden={!open}>
             <div className="grid justify-items-start gap-1 pb-2 text-sm text-pretty">
               <p>{[bulkKindLabel(p.kind), p.address, p.postcode].filter(Boolean).join(' · ')}</p>

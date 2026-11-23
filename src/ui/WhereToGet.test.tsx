@@ -18,6 +18,8 @@ const SHARD = {
     sp('2', 'Pigalle Grocer', 'supermarket', 0.0005),
     sp('3', 'IGA Express', 'supermarket', 0.003),
     sp('4', 'Nugget Shop', 'takeaway', 0.001),
+    sp('5', "Domino's Pizza", 'takeaway', 0.0008),
+    sp('6', 'House of Injera', 'cafe-restaurant', 0.0009),
   ],
 } as unknown as CellShard;
 const manifest: BulkManifest = { release: RELEASE, cells: {} };
@@ -80,5 +82,37 @@ describe('WhereToGet', () => {
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Use this suburb' })); });
     const list = await screen.findByRole('list', { name: 'Supermarkets' });
     expect(within(list).getAllByRole('listitem').length).toBeGreaterThan(0);
+  });
+
+  it('lists only takeaways that fit the craving', async () => {
+    mount('chicken-nuggets');
+    openIt();
+    await locate();
+    expect(await screen.findByText('Nugget Shop')).toBeInTheDocument();
+    expect(screen.queryByText("Domino's Pizza")).toBeNull();
+    expect(screen.queryByText('House of Injera')).toBeNull();
+  });
+
+  it('shows no takeaway heading when nothing fits', async () => {
+    mount('burger');
+    openIt();
+    await locate();
+    expect(await screen.findByText('Coles Central')).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Takeaway' })).toBeNull();
+  });
+
+  it('has one Show details toggle for the section, not one per row', async () => {
+    mount('chicken-nuggets');
+    openIt();
+    await locate();
+    expect(await screen.findByText('Coles Central')).toBeInTheDocument();
+    expect(screen.queryAllByRole('button', { name: /^Details for/ })).toEqual([]);
+    expect(screen.getAllByRole('link', { name: /^Open .* in Maps$/ }).length).toBeGreaterThan(1);
+    expect(screen.getAllByText(/1 High St/)[0]).not.toBeVisible();
+    const t = screen.getByRole('button', { name: 'Show details' });
+    expect(t).toHaveAttribute('aria-expanded', 'false');
+    fireEvent.click(t);
+    expect(screen.getByRole('button', { name: 'Hide details' })).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getAllByText(/1 High St/)[0]).toBeVisible();
   });
 });
