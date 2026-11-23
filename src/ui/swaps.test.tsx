@@ -28,6 +28,14 @@ describe('CravingSearch', () => {
     expect(screen.queryByText(/\$0(\.00)?(?![.\d])/)).not.toBeInTheDocument();
   });
 
+  it('credits the source recipe with one link beside a nuggets swap', async () => {
+    renderSearch();
+    search('chicken nuggets');
+    const link = await screen.findByRole('link', { name: /recipe: chicken and veg nuggets \(health and wellbeing queensland\)/i });
+    expect(link).toHaveAttribute('href', 'https://hw.qld.gov.au/healthy-recipes/chicken-and-veg-nuggets/');
+    expect(link).toHaveAttribute('target', '_blank');
+  });
+
   it('shows only the picklist for whitespace input', () => {
     renderSearch();
     search('   ');
@@ -58,6 +66,11 @@ describe('SwapResults', () => {
     candidate: { craving, alternative: alt, note: 'n' },
     price: null, cost: null, health: 70, withinBudget: null, value: null,
   };
+
+  it('shows no recipe link when a swap has no credit', () => {
+    render(<SwapResults swaps={[base]} cravingHealth={40} />);
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
 
   it('says Price unavailable, never $0, when cost is null', () => {
     render(<SwapResults swaps={[base]} cravingHealth={40} />);

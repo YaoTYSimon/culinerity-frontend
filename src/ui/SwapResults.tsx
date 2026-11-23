@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { type RankedSwap, healthLabel } from '@culinerity/core';
+import { type RankedSwap, type RecipeCredit, healthLabel } from '@culinerity/core';
 import { savingVsCraving } from './savings';
 import { noBreak } from './noBreak';
 import { FoodFitNotes } from './FoodFitNotes';
@@ -36,6 +36,8 @@ interface Props {
   cravingHealth?: number | null;
   /** Cheapest per-serve price of the craving itself, used only for the "Saves" line. Null hides it. */
   cravingCost?: number | null;
+  /** Credit for the published recipe behind a swap, keyed by the swap's item id. Absent means no link. */
+  recipes?: Record<string, RecipeCredit>;
   /** Called when a person taps "Add to my week" on a row with a positive saving. */
   onAddToWeek?: (swap: WeekSwapInput) => void;
 }
@@ -46,7 +48,7 @@ function formatDate(iso: string): string | null {
   return noBreak(d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }));
 }
 
-export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies = [], nutritionNote = false, cravingHealth = null, cravingCost = null, onAddToWeek }: Props) {
+export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies = [], nutritionNote = false, cravingHealth = null, cravingCost = null, recipes, onAddToWeek }: Props) {
   const [added, setAdded] = useState<Record<string, number>>({});
   const anySample = swaps.some((s) => s.price?.isSample);
   return (
@@ -66,6 +68,7 @@ export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies 
           const date = s.price ? (formatDate(s.price.observedAt) ?? 'date unknown') : null;
           const food = notes?.[alternative.id];
           const saving = s.price ? savingVsCraving(cravingCost, s.cost) : null;
+          const recipe = recipes?.[alternative.id];
           return (
             <li key={alternative.id} className="flex items-center gap-3">
               <RoundPhoto itemId={alternative.id} size={58} />
@@ -79,6 +82,13 @@ export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies 
                   {s.withinBudget !== null && <span>{s.withinBudget ? 'Within budget' : 'Over budget'}</span>}
                 </p>
                 {date && <p className="text-xs text-muted">Price seen {date}</p>}
+                {recipe && (
+                  <p className="text-xs text-muted">
+                    <a href={recipe.url} target="_blank" rel="noopener noreferrer" className="focus-ring rounded-full underline underline-offset-2 hover:text-ink" aria-label={`Recipe: ${recipe.title} (${recipe.publisher}), opens in a new tab`}>
+                      Recipe: {recipe.title} ({recipe.publisher})
+                    </a>
+                  </p>
+                )}
                 <span role="status" className="block text-xs font-semibold empty:hidden">
                   {added[alternative.id] ? (added[alternative.id] > 1 ? `Added to your week (${added[alternative.id]})` : 'Added to your week') : ''}
                 </span>

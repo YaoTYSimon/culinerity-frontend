@@ -672,6 +672,15 @@ export const culturalData: CulturalData = {
       "licence": "CC BY-SA 4.0 (facts only, no text copied)",
       "accessed": "2026-10-28",
       "verification": "secondary"
+    },
+    {
+      "id": "hwq-chicken-and-veg-nuggets",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Chicken and Veg Nuggets",
+      "url": "https://hw.qld.gov.au/healthy-recipes/chicken-and-veg-nuggets/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-23",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1874,6 +1883,19 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "chicken-veg-nuggets",
+        "name": "Chicken and veg nuggets with yoghurt dip",
+        "category": "home cooking",
+        "keywords": [
+          "chicken nuggets",
+          "veg nuggets",
+          "chicken mince nuggets",
+          "nuggets"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -1898,6 +1920,19 @@ export const culturalData: CulturalData = {
           "frozen meal"
         ],
         "unitLabel": "1 tray (300 g)",
+        "kind": "craving"
+      },
+      {
+        "id": "chicken-nuggets",
+        "name": "Chicken nuggets",
+        "category": "fast food",
+        "keywords": [
+          "chicken nuggets",
+          "nuggets",
+          "crumbed chicken",
+          "chicken bites"
+        ],
+        "unitLabel": "6 nuggets",
         "kind": "craving"
       }
     ],
@@ -2687,6 +2722,22 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "chicken-veg-nuggets",
+        "store": "Coles",
+        "pricePerServe": 1.8,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-veg-nuggets",
+        "store": "Woolworths",
+        "pricePerServe": 1.9,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -2715,6 +2766,22 @@ export const culturalData: CulturalData = {
         "store": "Woolworths",
         "pricePerServe": 4.1,
         "unitLabel": "1 tray (300 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-nuggets",
+        "store": "Coles",
+        "pricePerServe": 5.5,
+        "unitLabel": "6 nuggets",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-nuggets",
+        "store": "Woolworths",
+        "pricePerServe": 5.5,
+        "unitLabel": "6 nuggets",
         "observedAt": "2026-10-28",
         "isSample": true
       }
@@ -3162,6 +3229,15 @@ export const culturalData: CulturalData = {
         "sodiumModelled": false
       },
       {
+        "itemId": "chicken-veg-nuggets",
+        "energyKj": 553,
+        "proteinG": 20,
+        "fibreG": 2.2,
+        "sugarG": 3.2,
+        "sodiumMg": 91,
+        "sodiumModelled": false
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -3176,6 +3252,15 @@ export const culturalData: CulturalData = {
         "fibreG": 6.3,
         "sugarG": 4.8,
         "sodiumMg": 870
+      },
+      {
+        "itemId": "chicken-nuggets",
+        "energyKj": 639,
+        "proteinG": 22,
+        "fibreG": 0.3,
+        "sugarG": 0.3,
+        "sodiumMg": 60,
+        "sodiumModelled": false
       }
     ],
     "swaps": [
@@ -3463,6 +3548,11 @@ export const culturalData: CulturalData = {
         "cravingId": "lasagne-frozen",
         "alternativeId": "chicken-cabbage-dumplings",
         "note": "A chicken and cabbage filling wrapped in a plain flour dough and boiled or pan-fried instead of deep-fried."
+      },
+      {
+        "cravingId": "chicken-nuggets",
+        "alternativeId": "chicken-veg-nuggets",
+        "note": "Chicken mince and grated veg shaped into nuggets, with a yoghurt and parsley dip."
       }
     ],
     "foodInfo": [
@@ -4820,6 +4910,30 @@ export const culturalData: CulturalData = {
         }
       },
       {
+        "itemId": "chicken-veg-nuggets",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        },
+        "recipe": {
+          "title": "Chicken and Veg Nuggets",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/chicken-and-veg-nuggets/"
+        }
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "traditions": [
           "indian-north"
@@ -4856,11 +4970,32 @@ export const culturalData: CulturalData = {
           "allergensKnown": false,
           "certifiedMeat": false
         }
+      },
+      {
+        "itemId": "chicken-nuggets",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        }
       }
     ],
     "cravingIds": [
       "butter-chicken-jar-sauce",
-      "lasagne-frozen"
+      "lasagne-frozen",
+      "chicken-nuggets"
     ]
   },
   "notFound": [

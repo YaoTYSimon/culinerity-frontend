@@ -36,11 +36,20 @@ export interface RuleFlags {
   certifiedMeat: boolean;
 }
 
+/** Where a recipe's ingredient list came from: shown as one small credit link beside the swap. */
+export interface RecipeCredit {
+  title: string;
+  publisher: string;
+  url: string;
+}
+
 export interface FoodInfo {
   itemId: string;
   traditions: string[];
   flags: RuleFlags;
   significance?: string;
+  /** Credit for the published recipe the ingredient list is taken from, when there is one. */
+  recipe?: RecipeCredit;
 }
 
 export interface FoodProfile {

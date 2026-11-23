@@ -245,7 +245,8 @@ function validateCatalogue(d, sourceIds, traditionIds) {
     if (typeof f.sodiumModelled !== 'boolean') errs.push(`${tag}: sodiumModelled must be true or false`);
     if (!Array.isArray(f.keywords) || f.keywords.some((k) => !nonEmpty(k))) errs.push(`${tag}: keywords must be non-empty strings`);
     const trads = f.traditions ?? [];
-    if (kind === 'food' && trads.length === 0) errs.push(`${tag}: needs at least one tradition`);
+    if (f.recipeSourceId !== undefined && !sourceIds.has(f.recipeSourceId)) errs.push(`${tag}: recipeSourceId references unknown source ${f.recipeSourceId}`);
+    if (kind === 'food' && trads.length === 0 && f.recipeSourceId === undefined) errs.push(`${tag}: needs at least one tradition (or a recipeSourceId)`);
     for (const t of trads) if (!traditionIds.has(t)) errs.push(`${tag}: tradition ${t} does not exist`);
     if (trads.length > 0) {
       if (!nonEmpty(f.traditionSourceId)) errs.push(`${tag}: traditions need a traditionSourceId`);
@@ -360,16 +361,19 @@ function guessedListFlags(f) {
 
 /** The catalogue records the app consumes: items, sample prices, computed nutrition, swaps and derived FoodInfo. */
 export function buildCatalogue(d) {
+  const sources = new Map((d.sources ?? []).map((s) => [s.id, s]));
   const table = new Map((d.ingredients ?? []).map((i) => [i.id, i]));
   const lookup = (id) => table.get(id);
   const made = [...(d.foods ?? []).map((f) => ({ f, kind: 'alternative' })), ...(d.cravings ?? []).map((f) => ({ f, kind: 'craving' }))];
   const foodInfo = (d.existingAlternatives ?? []).map((a) => ({ itemId: a.itemId, traditions: [], flags: guessedListFlags(deriveFlags(a.ingredients, lookup)) }));
   for (const { f } of made) {
+    const src = f.recipeSourceId !== undefined ? sources.get(f.recipeSourceId) : undefined;
     foodInfo.push({
       itemId: f.id,
       traditions: [...(f.traditions ?? [])],
       flags: deriveFlags(f.recipe.map((r) => r.ingredient), lookup),
       ...(f.significance !== undefined ? { significance: f.significance } : {}),
+      ...(src ? { recipe: { title: src.title, publisher: src.publisher, url: src.url } } : {}),
     });
   }
   return {
