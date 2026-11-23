@@ -1,4 +1,4 @@
-export type PlaceKind = 'market' | 'grocer' | 'social-supermarket' | 'community-meal' | 'food-relief' | 'co-op';
+export type PlaceKind = 'market' | 'grocer' | 'social-supermarket' | 'community-meal' | 'food-relief' | 'co-op' | 'takeaway' | 'cafe-restaurant';
 export type PriceBand = 'free' | 'budget' | 'mid' | 'pricier';
 export type PlaceFit = 'fresh' | 'packaged' | 'meals';
 export type PlaceAccess = 'open' | 'referral' | 'membership';

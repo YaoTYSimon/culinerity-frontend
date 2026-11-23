@@ -52,7 +52,7 @@ function SkeletonRows() {
 
 type SwapsOutcomeData = Extract<Outcome, { kind: 'swaps' }>;
 
-function SwapsOutcome({ outcome, rulesOn, onAddToWeek, onChangeFoodRules }: { outcome: SwapsOutcomeData; rulesOn: boolean; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void }) {
+function SwapsOutcome({ outcome, rulesOn, profileSuburb, onAddToWeek, onChangeFoodRules }: { outcome: SwapsOutcomeData; rulesOn: boolean; profileSuburb?: string; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void }) {
   const { craving, profiled, hidden } = outcome;
   const { catalogue } = useServices();
   const swaps = profiled.map((p) => p.swap);
@@ -92,7 +92,7 @@ function SwapsOutcome({ outcome, rulesOn, onAddToWeek, onChangeFoodRules }: { ou
       {swaps.length > 0 && (
         <SwapResults
           swaps={swaps} notes={notes} rulesOn={rulesOn} unmatchedAllergies={outcome.unmatchedAllergies} nutritionNote={outcome.cultural}
-          cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} recipes={recipes} onAddToWeek={onAddToWeek}
+          cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} recipes={recipes} cravingId={craving.id} profileSuburb={profileSuburb} onAddToWeek={onAddToWeek}
         />
       )}
     </>
@@ -265,7 +265,7 @@ export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules }: { pro
             </div>
           </div>
         )}
-        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} onAddToWeek={onAddToWeek} onChangeFoodRules={onChangeFoodRules} />}
+        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} profileSuburb={profile.suburb} onAddToWeek={onAddToWeek} onChangeFoodRules={onChangeFoodRules} />}
       </div>
     </div>
   );

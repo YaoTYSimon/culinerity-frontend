@@ -5,6 +5,7 @@ import { noBreak } from './noBreak';
 import { FoodFitNotes } from './FoodFitNotes';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
+import { WhereToGet } from './WhereToGet';
 
 export interface WeekSwapInput {
   itemId: string;
@@ -38,6 +39,10 @@ interface Props {
   cravingCost?: number | null;
   /** Credit for the published recipe behind a swap, keyed by the swap's item id. Absent means no link. */
   recipes?: Record<string, RecipeCredit>;
+  /** The craving these swaps replace. With it, a collapsed "Where to get it" section shows under the list. */
+  cravingId?: string;
+  /** The suburb saved in the profile, offered as the starting text of the suburb box. */
+  profileSuburb?: string;
   /** Called when a person taps "Add to my week" on a row with a positive saving. */
   onAddToWeek?: (swap: WeekSwapInput) => void;
 }
@@ -48,7 +53,7 @@ function formatDate(iso: string): string | null {
   return noBreak(d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }));
 }
 
-export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies = [], nutritionNote = false, cravingHealth = null, cravingCost = null, recipes, onAddToWeek }: Props) {
+export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies = [], nutritionNote = false, cravingHealth = null, cravingCost = null, recipes, cravingId, profileSuburb, onAddToWeek }: Props) {
   const [added, setAdded] = useState<Record<string, number>>({});
   const anySample = swaps.some((s) => s.price?.isSample);
   return (
@@ -118,6 +123,7 @@ export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies 
           );
         })}
       </ul>
+      {cravingId && <WhereToGet cravingId={cravingId} profileSuburb={profileSuburb} />}
       {nutritionNote && <p className="text-xs text-muted">{NUTRITION_NOTE}</p>}
       {anySample && (
         <p className="text-xs text-muted">

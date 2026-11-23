@@ -69,6 +69,7 @@ export function toggleFilter(f: PlaceFilters, group: FilterGroupId, value: strin
 
 const CHECKED_TYPE: Record<PlaceKind, TypeFilter> = {
   market: 'market', grocer: 'grocer', 'co-op': 'grocer', 'social-supermarket': 'grocer', 'food-relief': 'relief', 'community-meal': 'meal',
+  takeaway: 'eatery', 'cafe-restaurant': 'eatery',
 };
 const BULK_TYPE: Record<BulkKind, TypeFilter> = {
   supermarket: 'grocer', greengrocer: 'grocer', butcher: 'grocer', fishmonger: 'grocer', deli: 'grocer', bakery: 'grocer',

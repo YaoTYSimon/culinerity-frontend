@@ -91,9 +91,9 @@ describe('melbourneToday', () => {
   });
   it('is the default basis for the future-date check', () => {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date('2026-11-20T15:00:00Z'));
-    expect(errorsFor((d) => (d.places[0].checked = '2026-11-21'))).toBe('');
-    expect(errorsFor((d) => (d.places[0].checked = '2026-11-22'))).toMatch(/checked/);
+    vi.setSystemTime(new Date('2026-11-23T15:00:00Z'));
+    expect(errorsFor((d) => (d.places[0].checked = '2026-11-24'))).toBe('');
+    expect(errorsFor((d) => (d.places[0].checked = '2026-11-25'))).toMatch(/checked/);
   });
 });
 
