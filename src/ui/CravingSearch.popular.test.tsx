@@ -81,8 +81,8 @@ describe('browse cravings by type', () => {
     show();
     fireEvent.click(screen.getByRole('button', { name: 'Salty and crunchy' }));
     expect(screen.getByRole('button', { name: 'Salty and crunchy' })).toHaveAttribute('aria-pressed', 'true');
-    expect(tiles().map((t) => t.textContent)).toEqual(expect.arrayContaining(['Nachos (takeaway)', 'Chicken nuggets', 'Hot chips']));
-    expect(screen.getByText('3 cravings')).toBeInTheDocument();
+    expect(tiles().map((t) => t.textContent)).toEqual(expect.arrayContaining(['Nachos (takeaway)', 'Chicken nuggets', 'Hot chips', 'Cheese puffs (Cheezels style)']));
+    expect(screen.getByText('4 cravings')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'All' }));
     expect(tiles()).toHaveLength(10);
   });

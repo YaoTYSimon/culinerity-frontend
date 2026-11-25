@@ -52,6 +52,9 @@ describe('CravingSearch', () => {
     ['nachos', /recipe: cookbook:simple nachos \(wikibooks\)/i],
     ['fish and chips', /recipe: baked fish \(health and wellbeing queensland\)/i],
     ['milkshake', /recipe: banana and blueberry smoothie \(health and wellbeing queensland\)/i],
+    ['pad thai', /recipe: tofu, noodle and vegetable stir fry \(health and wellbeing queensland\)/i],
+    ['ice cream', /recipe: tropical frozen yoghurt bites \(health and wellbeing queensland\)/i],
+    ['garlic bread', /recipe: pizza scrolls \(health and wellbeing queensland\)/i],
   ])('finds the %s craving and credits the recipe', async (query, name) => {
     renderSearch();
     search(query);

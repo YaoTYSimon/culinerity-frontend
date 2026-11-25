@@ -18,11 +18,12 @@ export type CravingTypeId = (typeof CRAVING_TYPES)[number]['id'];
 export const CRAVING_TYPE_OF: Readonly<Record<string, CravingTypeId>> = {
   burger: 'fast-food', pizza: 'fast-food', 'fried-chicken': 'fast-food', kebab: 'fast-food',
   'fish-and-chips': 'fast-food', 'tacos-burritos': 'fast-food',
-  chocolate: 'sweet', 'anzac-biscuits': 'sweet',
-  'hot-chips': 'salty-crunchy', nachos: 'salty-crunchy', 'chicken-nuggets': 'salty-crunchy',
+  chocolate: 'sweet', 'anzac-biscuits': 'sweet', 'ice-cream': 'sweet', 'tim-tams': 'sweet',
+  'hot-chips': 'salty-crunchy', nachos: 'salty-crunchy', 'chicken-nuggets': 'salty-crunchy', 'savoury-snacks': 'salty-crunchy',
   'instant-noodles': 'hot-meals', 'butter-chicken-jar-sauce': 'hot-meals', 'lasagne-frozen': 'hot-meals', 'chinese-takeaway': 'hot-meals',
+  'pad-thai': 'hot-meals', 'takeaway-curry': 'hot-meals', 'creamy-pasta': 'hot-meals', 'bacon-and-egg-roll': 'hot-meals',
   'bubble-tea': 'drinks', 'soft-drink': 'drinks', milkshake: 'drinks',
-  pastry: 'bakery', 'sausage-roll': 'bakery',
+  pastry: 'bakery', 'sausage-roll': 'bakery', 'pancakes-and-donuts': 'bakery', 'garlic-bread': 'bakery',
 };
 
 export function cravingTypeOf(cravingId: string): CravingTypeId | undefined {

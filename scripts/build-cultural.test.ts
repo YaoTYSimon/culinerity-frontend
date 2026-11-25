@@ -403,6 +403,20 @@ describe('generated catalogue', () => {
     // Dropped because the generator's rules say they are not better: sweet potato chips, sweet potato nachos, chickpea fritters.
     for (const id of ['sweet-potato-chips-oven', 'sweet-potato-nachos', 'chickpea-corn-zucchini-fritters']) expect(c.items.some((i: any) => i.id === id), id).toBe(false);
   });
+  it('has the batch 2 cravings, each with a recipe-credited swap, and the dropped ones absent', () => {
+    const c = built();
+    const credited = new Map(c.foodInfo.filter((f: any) => f.recipe).map((f: any) => [f.itemId, f.recipe]));
+    const expected: Record<string, number> = { 'pad-thai': 1, 'takeaway-curry': 1, 'creamy-pasta': 2, 'bacon-and-egg-roll': 2, 'ice-cream': 1, 'tim-tams': 2, 'savoury-snacks': 2, 'pancakes-and-donuts': 1, 'garlic-bread': 1 };
+    for (const [id, n] of Object.entries(expected)) {
+      const swaps = c.swaps.filter((s: any) => s.cravingId === id);
+      expect(swaps.length, id).toBe(n);
+      for (const s of swaps) expect(credited.has(s.alternativeId), s.alternativeId).toBe(true);
+    }
+    // Dropped because the generator's rules say they are not better, or no recipe was recorded: never added, not tuned.
+    for (const id of ['chicken-parmigiana', 'chicken-wings', 'laksa', 'pad-thai-home', 'chicken-parmesan-home', 'miso-roast-chicken', 'spanish-chicken-veg-skewers', 'coconut-lentil-soup', 'bean-quesadillas']) {
+      expect(c.items.some((i: any) => i.id === id), id).toBe(false);
+    }
+  });
   it('every cultural price is sample-flagged and between 0.2 and 15', () => {
     const c = built();
     expect(c.prices.length).toBeGreaterThan(0);
