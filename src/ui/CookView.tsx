@@ -10,6 +10,7 @@ import {
 import { withPantry, withShopping } from './pantryProfile';
 import { PillButton } from './PillButton';
 import { RecipePage } from './RecipePage';
+import { RecipePicks } from './RecipePicks';
 import { RecipeRow } from './RecipeRow';
 import { ServesStepper } from './ServesStepper';
 import { UndoStatus } from './UndoStatus';
@@ -127,6 +128,7 @@ export function CookView({ profile, onProfile, now, onNavigate, newId = defaultI
         {!hasNow && (suggestions.length > 0
           ? <p className="text-base text-pretty">{`${COOK_NOTHING_NOW} Adding one or two more things would help: ${suggestions.join('; ')}.`}</p>
           : <Nothing text={`${COOK_NOTHING_NOW} Add a few more things to My pantry and we will look again.`} linkLabel="Go to My pantry" onLink={goPantry} />)}
+        <RecipePicks matches={result.matches} byId={byId} onOpen={setOpenId} />
         {TIERS.map((tier) => {
           const rows = result.matches.filter((m) => m.tier === tier);
           if (rows.length === 0) return null;

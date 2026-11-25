@@ -31,6 +31,7 @@ export const COOK_ALL_HIDDEN = 'Every recipe near what you have is hidden becaus
 export const COOK_NOTHING_NOW = 'Nothing you can cook right now.';
 export const COOK_NOTHING_CLOSE = 'Nothing close yet. Add a few more things to My pantry and we will look again.';
 export const SECTION_LABELS = { now: 'You can cook this now', one: 'Need one more thing', few: 'Need a few more things' } as const;
+export const PICKS_LABEL = 'Good with what you have';
 export const STATUS_LABELS = { one: 'Need one more thing', few: 'Need a few more things' } as const;
 export const ADD_MISSING = 'Add missing to my shopping list';
 export const SALT_NOTE = "Salt isn't counted.";
