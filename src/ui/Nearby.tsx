@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
-  CHECKED_TIER_LABEL, NO_FILTERS, buildMapDots, centroidTable, coverage, hasActiveFilters, rankPlaces, runningPlaces, rankSentence, roundOrigin, suburbCentroid,
-  type LatLng, type Place, type PlaceFilters, type PlaceSourceRecord,
+  CHECKED_TIER_LABEL, NO_FILTERS, buildMapDots, centroidTable, coverage, hasActiveFilters, rankPlaces, runningPlaces, rankSentence,
+  type Place, type PlaceFilters, type PlaceSourceRecord,
 } from '@culinerity/core';
 import { useBulkSource } from '../location/BulkContext';
-import { useLocationProvider } from '../location/LocationContext';
 import { useServices } from '../services/ServicesContext';
 import { Disclosure } from './Disclosure';
 import { ExternalLink } from './ExternalLink';
-import { INPUT_CLASS } from './formParts';
 import { NearbyBulk } from './NearbyBulk';
+import { OriginControls } from './OriginControls';
+import { useOrigin } from './useOrigin';
 import { NearbyFilters } from './NearbyFilters';
 import { NearbyMap } from './NearbyMap';
 import { NearbyPlaceRow, melbourneToday, nearbyRowId } from './NearbyPlaceRow';
@@ -20,20 +20,10 @@ import { bulkView } from './bulkView';
 import { useBulkPlaces } from './useBulkPlaces';
 import type { View } from './views';
 
-/** Held in memory for this view only: rounded to about 100 m, never stored or sent. */
-type Origin = LatLng & { label?: string };
-type Phase = { kind: 'idle' } | { kind: 'locating' } | { kind: 'failed'; reason: 'denied' | 'unavailable' | 'timeout' };
-
 const PAGE = 12;
 const NEAR_M = 10_000;
 const FAR_M = 50_000;
 const FALLBACK_COUNT = 5;
-
-const MESSAGE = {
-  denied: 'Location is off for this site. You can type a suburb instead, or turn it on in your browser settings.',
-  unavailable: "We couldn't work out where you are. Type a suburb instead.",
-  timeout: 'That took too long. Try again, or type a suburb.',
-} as const;
 
 /** A polite live region that mounts empty and is filled after mount, so the first result is announced. */
 function LiveCount({ text }: { text: string }) {
@@ -56,26 +46,17 @@ interface Props {
 
 export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
   const { places: source } = useServices();
-  const provider = useLocationProvider();
   const bulkSource = useBulkSource();
+  const o = useOrigin(profileSuburb);
+  const { origin } = o;
   const [places, setPlaces] = useState<Place[] | null>(null);
   const [sources, setSources] = useState<PlaceSourceRecord[]>([]);
-  const [used, setUsed] = useState(false);
   const [loadFailed, setLoadFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
-  const [origin, setOrigin] = useState<Origin | null>(null);
-  const [phase, setPhase] = useState<Phase>({ kind: 'idle' });
   const [filter, setFilter] = useState<PlaceFilters>(NO_FILTERS);
-  const [typed, setTyped] = useState(profileSuburb ?? '');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [noMatch, setNoMatch] = useState(false);
   const [shown, setShown] = useState(PAGE);
   const [mode, setMode] = useState<NearbyMode>('list');
   const [focusRow, setFocusRow] = useState<string | null>(null);
-  const token = useRef(0);
-  const busy = useRef(false);
-  const field = useRef<HTMLInputElement>(null);
-  const locateButton = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     let live = true;
@@ -87,62 +68,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
     return () => { live = false; };
   }, [source, attempt]);
 
-  // Leaving the view drops the position and any answer still on its way.
-  useEffect(() => () => { token.current += 1; }, []);
-
-  useEffect(() => {
-    if (phase.kind === 'failed' && phase.reason === 'denied') field.current?.focus();
-  }, [phase]);
-
-  const cancel = useCallback(() => {
-    token.current += 1;
-    busy.current = false;
-  }, []);
-
-  const locate = async () => {
-    if (busy.current) return;
-    busy.current = true;
-    const mine = ++token.current;
-    setPhase({ kind: 'locating' });
-    const result = await provider.locate().catch(() => ({ ok: false, reason: 'unavailable' }) as const);
-    if (mine !== token.current) return;
-    busy.current = false;
-    if (result.ok) {
-      setOrigin(roundOrigin(result));
-      setPhase({ kind: 'idle' });
-      setSuggestions([]);
-      setNoMatch(false);
-      setShown(PAGE);
-    } else {
-      setPhase({ kind: 'failed', reason: result.reason });
-    }
-  };
-
-  const useText = (text: string) => {
-    cancel();
-    setUsed(true);
-    setPhase({ kind: 'idle' });
-    const found = suburbCentroid(text);
-    setSuggestions(found.kind === 'suggest' ? found.options : []);
-    setNoMatch(found.kind === 'none');
-    if (found.kind === 'match') {
-      setOrigin({ lat: found.lat, lng: found.lng, label: found.label });
-      setShown(PAGE);
-    }
-  };
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    useText(typed);
-  };
-  const clear = () => {
-    cancel();
-    setOrigin(null);
-    setTyped('');
-    setSuggestions([]);
-    setNoMatch(false);
-    setPhase({ kind: 'idle' });
-    queueMicrotask(() => locateButton.current?.focus());
-  };
+  useEffect(() => { setShown(PAGE); }, [origin]);
 
   // A place whose source-stated end date has passed is never listed as open.
   const running = useMemo(() => (places ? runningPlaces(places, today ?? melbourneToday()) : null), [places, today]);
@@ -187,8 +113,6 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
       setFocusRow(null);
     }
   }, [focusRow, mode, shown]);
-  const locating = phase.kind === 'locating';
-  const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
 
   return (
     <section aria-labelledby="nearby-h" className="grid gap-5">
@@ -197,54 +121,7 @@ export function Nearby({ score, profileSuburb, onNavigate, today }: Props) {
         <p className="text-base text-pretty text-muted">Your location stays on this device.</p>
       </PageHeader>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <PillButton ref={locateButton} aria-disabled={locating} onClick={locate}>Use my location</PillButton>
-        {locating && <PillButton variant="surface" onClick={() => { cancel(); setPhase({ kind: 'idle' }); locateButton.current?.focus(); }}>Cancel</PillButton>}
-        {origin && <PillButton variant="text" className="-ml-3" onClick={clear}>Clear my location</PillButton>}
-      </div>
-
-      <div aria-live="polite" className="empty:hidden grid justify-items-start gap-3 text-base font-semibold text-pretty">
-        {locating && <p>Finding you…</p>}
-        {phase.kind === 'failed' && (
-          <>
-            <p>{MESSAGE[phase.reason]}{phase.reason === 'unavailable' && offline ? ' You also look to be offline; the list still works.' : ''}</p>
-            {phase.reason === 'timeout' && <PillButton variant="surface" onClick={locate}>Try again</PillButton>}
-          </>
-        )}
-      </div>
-
-      <form onSubmit={onSubmit} className="grid gap-2">
-        <label htmlFor="nearby-suburb" className="text-sm font-semibold text-muted">Type a suburb or postcode</label>
-        <div className="flex gap-2">
-          <input
-            id="nearby-suburb"
-            ref={field}
-            type="text"
-            inputMode="text"
-            autoComplete="off"
-            value={typed}
-            onChange={(e) => setTyped(e.target.value)}
-            className={INPUT_CLASS}
-          />
-          <PillButton type="submit" variant="surface" className="shrink-0">Use this suburb</PillButton>
-        </div>
-        {typed !== '' && typed === profileSuburb && !used && (
-          <p className="text-sm text-muted">Press Use this suburb to see places near it.</p>
-        )}
-        <div aria-live="polite" className="empty:hidden grid gap-2 text-base text-pretty">
-          {noMatch && <p className="font-semibold">We don't have that suburb yet. Try one nearby.</p>}
-          {suggestions.length > 0 && (
-            <>
-              <p className="font-semibold">Did you mean</p>
-              <div className="flex flex-wrap gap-2">
-                {suggestions.map((s) => (
-                  <PillButton key={s} variant="surface" onClick={() => { setTyped(s); useText(s); }}>{s}</PillButton>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </form>
+      <OriginControls state={o} idPrefix="nearby" profileSuburb={profileSuburb} />
 
       {places === null && !loadFailed && <p role="status" className="text-base text-muted">Loading places…</p>}
       {loadFailed && (

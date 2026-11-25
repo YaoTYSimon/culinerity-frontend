@@ -12,6 +12,7 @@ import { KEYS, profileKey } from '../auth/storageKeys';
 import { ServicesProvider } from '../services/ServicesContext';
 import { LocalProfileStore } from '../storage/localProfileStore';
 import { SupportCard } from './SupportCard';
+import { pickMenuItem } from '../test/menu';
 
 // Same method as foodPrivacy.test.tsx: spies installed before the flow, detectors proven live.
 // If an assertion here fails, fix the code, not the test.
@@ -122,7 +123,7 @@ describe('(a) share text, score, band and budget', () => {
       render(<ServicesProvider services={createCoreServices(new InMemoryProfileStore(profile))}><App now={clock} /></ServicesProvider>);
       const home = document.body.textContent;
       fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-      fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: item }));
+      pickMenuItem(item);
       await screen.findByRole('heading', { level: 1 }); // lazy views: wait for the real view, not the fallback
       const view = document.body.textContent;
       cleanup();
@@ -139,7 +140,7 @@ describe('(a) share text, score, band and budget', () => {
     Object.defineProperty(navigator, 'share', { value: share, configurable: true });
     render(<ServicesProvider services={createCoreServices(new InMemoryProfileStore(FULL_PROFILE))}><App now={() => NOW_ISO} /></ServicesProvider>);
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'My week' }));
+    pickMenuItem('My week');
     fireEvent.click(screen.getByRole('button', { name: 'Share' }));
     await waitFor(() => expect(share).toHaveBeenCalledTimes(1));
     expect(share.mock.calls[0][0].text).toBe(shareText(weekSummary(WEEK, NOW_ISO)));
@@ -246,7 +247,7 @@ describe('full flow: log, note, remove, undo, clear, support card', () => {
     const services = await createHttpServices(new LocalProfileStore(), stubFetch);
     render(<ServicesProvider services={services}><App now={clock} /></ServicesProvider>);
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Trade-offs' }));
+    pickMenuItem('Trade-offs');
     await screen.findByRole('heading', { level: 1, name: 'What we went without' });
 
     pick(TRADEOFF_LABELS['meal-skipped']);
@@ -383,7 +384,7 @@ describe('(e) clear, delete and migrate', () => {
     localStorage.setItem(PROFILE_KEY, JSON.stringify(FULL_PROFILE));
     render(<ServicesProvider services={createCoreServices(new LocalProfileStore())}><App now={clock} /></ServicesProvider>);
     fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Trade-offs' }));
+    pickMenuItem('Trade-offs');
     fireEvent.click(await screen.findByRole('button', { name: 'Clear all my trade-offs' }));
     const raw = localStorage.getItem(PROFILE_KEY) ?? '';
     expect(Object.keys(JSON.parse(raw)).sort()).toEqual(['foodBudgetWeekly', 'score', 'spendEntries', 'suburb', 'weekSwaps', 'welcomeSeen']);

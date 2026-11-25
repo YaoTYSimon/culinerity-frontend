@@ -10,7 +10,7 @@ import { PillButton } from './PillButton';
 const PAGE = 12;
 
 /** Said once above a group, not on every row. */
-function GroupNote({ text }: { text: string }) {
+export function GroupNote({ text }: { text: string }) {
   return <p className="flex items-center gap-1.5 text-sm text-muted"><span aria-hidden="true" className="inline-block size-2 shrink-0 rounded-full bg-muted" />{text}</p>;
 }
 const RELIEF_PAGE = 5;

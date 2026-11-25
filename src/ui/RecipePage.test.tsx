@@ -155,3 +155,13 @@ describe('RecipePage actions', () => {
     expect(screen.queryByText(/log as a meal/i)).not.toBeInTheDocument();
   });
 });
+
+describe('RecipePage icon', () => {
+  it('shows one decorative round food icon beside the name', () => {
+    const r = stew();
+    show(r, all(r));
+    const svgs = document.querySelectorAll('article svg[aria-hidden="true"]');
+    expect(svgs.length).toBeGreaterThan(0);
+    expect(document.querySelector('article .rounded-full svg')).not.toBeNull();
+  });
+});

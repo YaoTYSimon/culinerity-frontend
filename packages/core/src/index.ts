@@ -34,6 +34,7 @@ export * from './places/types';
 export * from './places/tier';
 export * from './places/rowSummary';
 export * from './places/bulk';
+export * from './places/whereToGet';
 export * from './places/source';
 export * from './sources/mock/mockPlaceSource';
 export * from './budget/money';

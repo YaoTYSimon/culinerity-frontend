@@ -41,6 +41,8 @@ const KIND_PATH: Record<PlaceKind, string> = {
   'co-op': 'M4 10h16l-2 9H6zM9 10l3-6 3 6',
   'community-meal': 'M3 11h18a9 9 0 01-18 0zM8 7c0-2 2-2 2-4M14 7c0-2 2-2 2-4',
   'food-relief': 'M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z',
+  takeaway: 'M6 8h12l1 12H5zM9 8a3 3 0 016 0',
+  'cafe-restaurant': 'M3 11h18a9 9 0 01-18 0zM8 7c0-2 2-2 2-4M14 7c0-2 2-2 2-4',
 };
 
 function KindIcon({ kind }: { kind: PlaceKind }) {

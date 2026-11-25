@@ -9,7 +9,7 @@ const STALL = 'M3 10l1.5-5h15L21 10v1a3 3 0 01-6 0 3 3 0 01-6 0 3 3 0 01-6 0zM5 
 const BAG = 'M6 8h12l1 12H5zM9 8a3 3 0 016 0';
 
 const KIND: Record<PlaceKind, string> = {
-  market: STALL, grocer: BASKET, 'social-supermarket': BASKET, 'co-op': BASKET, 'community-meal': BOWL, 'food-relief': HEART,
+  market: STALL, grocer: BASKET, 'social-supermarket': BASKET, 'co-op': BASKET, 'community-meal': BOWL, 'food-relief': HEART, takeaway: BAG, 'cafe-restaurant': BOWL,
 };
 const BULK: Record<BulkKind, string> = {
   supermarket: BASKET, greengrocer: BASKET, bakery: BAG, takeaway: BAG, 'cafe-restaurant': BOWL, butcher: BAG, fishmonger: BAG, deli: BAG, 'food-relief': HEART,

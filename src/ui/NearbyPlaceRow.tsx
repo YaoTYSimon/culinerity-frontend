@@ -11,6 +11,8 @@ export const KIND: Record<PlaceKind, string> = {
   'community-meal': 'Community meal',
   'food-relief': 'Food relief',
   'co-op': 'Food co-op',
+  takeaway: 'Takeaway',
+  'cafe-restaurant': 'Cafe or restaurant',
 };
 const FIT: Record<PlaceFit, string> = { fresh: 'Fresh', packaged: 'Packaged', meals: 'Meals' };
 const ACCESS = { open: 'Walk in', referral: 'Referral', membership: 'Member' } as const;

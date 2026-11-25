@@ -12,6 +12,8 @@ const TYPICAL_BAND: Record<PlaceKind, PriceBand> = {
   'co-op': 'budget',
   market: 'mid',
   grocer: 'mid',
+  takeaway: 'mid',
+  'cafe-restaurant': 'mid',
 };
 // Other bands are allowed only where the operator's own words say so (recorded in the source title).
 // Food relief and community meals may be 'budget' where the operator states a small charge or donation
@@ -23,6 +25,8 @@ const DEFAULT_BAND: Record<PlaceKind, PriceBand[]> = {
   'co-op': ['budget'],
   market: ['budget', 'mid', 'pricier'],
   grocer: ['budget', 'mid'],
+  takeaway: ['mid'],
+  'cafe-restaurant': ['mid'],
 };
 
 describe('PlaceSource.sources', () => {

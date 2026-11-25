@@ -6,7 +6,7 @@ import { buildCatalogue, buildCultural, calendarWarning, computeNutrition, deriv
 
 const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
 /** A fixed date, so no test depends on when it runs. */
-const PINNED_TODAY = '2026-10-28';
+const PINNED_TODAY = '2026-11-23';
 const errorsFor = (mut: (d: any) => void, today: string = PINNED_TODAY) => {
   const d = data();
   mut(d);
@@ -42,7 +42,7 @@ describe('build-cultural', () => {
   });
   it('rejects a checked date after today in Melbourne', () => {
     expect(errorsFor((d) => (d.calendar[0].checked = '2999-01-01'))).toMatch(/checked/);
-    expect(errorsFor((d) => (d.calendar[0].checked = '2026-10-29'), '2026-10-28')).toMatch(/checked/);
+    expect(errorsFor((d) => (d.calendar[0].checked = '2026-11-24'), '2026-11-23')).toMatch(/checked/);
   });
   it('rejects a row with approx missing or not boolean', () => {
     expect(errorsFor((d) => delete d.calendar[0].approx)).toMatch(/approx/);
@@ -64,14 +64,14 @@ describe('build-cultural', () => {
   });
   it('fails freshness when the calendar ends less than 12 months after today', () => {
     expect(errorsFor(() => {}, '2028-09-20')).toMatch(/calendar needs refreshing/);
-    expect(errorsFor(() => {}, '2026-10-28')).not.toMatch(/calendar needs refreshing/);
+    expect(errorsFor(() => {}, '2026-11-23')).not.toMatch(/calendar needs refreshing/);
   });
   it('building never fails on the clock: an expired calendar is a warning, not an error', () => {
     expect(() => buildCultural(data(), '2031-01-01')).not.toThrow();
-    expect(buildCultural(data(), '2031-01-01')).toBe(buildCultural(data(), '2026-10-28'));
-    expect(calendarWarning(data(), '2026-10-28')).toBeNull();
+    expect(buildCultural(data(), '2031-01-01')).toBe(buildCultural(data(), '2026-11-23'));
+    expect(calendarWarning(data(), '2026-11-23')).toBeNull();
     expect(calendarWarning(data(), '2028-09-20')).toMatch(/less than 12 months of calendar remain.*README/s);
-    expect(calendarWarning({ ...data(), calendar: [] }, '2026-10-28')).toMatch(/less than 12 months/);
+    expect(calendarWarning({ ...data(), calendar: [] }, '2026-11-23')).toMatch(/less than 12 months/);
   });
   it('rejects a computed row that differs from the algorithm', () => {
     expect(errorsFor((d) => (d.calendar.find((r: any) => r.occasion === 'easter').start = '2027-03-27'))).toMatch(/computed/i);
@@ -249,6 +249,23 @@ describe('catalogue validation', () => {
     expect(errs((d) => withFood(d, (f) => delete f.traditionSourceId))).toMatch(/traditionSourceId/);
     expect(errs((d) => withFood(d, (f) => (f.traditionSourceId = 'nope')))).toMatch(/nope/);
   });
+  it('needs a tradition or a recipe credit for a food, and a recipe credit must name a known source', () => {
+    expect(errs((d) => withFood(d, (f) => { f.traditions = []; delete f.traditionSourceId; }))).toMatch(/needs at least one tradition/);
+    expect(errs((d) => withFood(d, (f) => { f.traditions = []; delete f.traditionSourceId; f.recipeSourceId = 'afcd-r3'; }))).toBe('');
+    expect(errs((d) => withFood(d, (f) => (f.recipeSourceId = 'nope')))).toMatch(/recipeSourceId references unknown source nope/);
+  });
+  it('carries the recipe credit (title, publisher, url) onto the food info of the item', () => {
+    const d = data();
+    d.ingredients.push(ing('ing-a'));
+    const f = { ...food(), traditions: [], recipeSourceId: 'afcd-r3' } as any;
+    delete f.traditionSourceId;
+    d.foods.push(f);
+    d.swaps.push({ cravingId: d.existing.cravings[0], alternativeId: f.id, note: 'A plain note.' });
+    const src = d.sources.find((s: any) => s.id === 'afcd-r3');
+    const item = buildCatalogue(d).foodInfo.find((i: any) => i.itemId === 'test-food');
+    expect(item.recipe).toEqual({ title: src.title, publisher: src.publisher, url: src.url });
+    expect(buildCatalogue(data()).foodInfo.find((i: any) => i.itemId === 'butter-chicken-jar-sauce').recipe).toBeUndefined();
+  });
   it('rejects a tradition id that does not exist', () => {
     expect(errs((d) => withFood(d, (f) => (f.traditions = ['atlantis'])))).toMatch(/atlantis/);
   });
@@ -326,8 +343,11 @@ describe('review fixes: swaps, words, sodium, flags', () => {
   it('requires sodiumModelled to be a boolean and marks every cultural food as not modelled', () => {
     expect(errs((d) => addFood(d, { sodiumModelled: undefined }))).toMatch(/sodiumModelled/);
     const c = buildCatalogue(data());
-    const foods = new Set(data().foods.map((f: any) => f.id));
-    for (const n of c.nutrition) expect(n.sodiumModelled === false, n.itemId).toBe(foods.has(n.itemId));
+    const d = data();
+    // Every food, plus any craving whose recipe adds no salt (so its sodium is not an estimate either).
+    const unmodelled = new Set([...d.foods, ...d.cravings.filter((f: any) => f.sodiumModelled === false)].map((f: any) => f.id));
+    for (const n of c.nutrition) expect(n.sodiumModelled === false, n.itemId).toBe(unmodelled.has(n.itemId));
+    for (const f of d.foods) expect(f.sodiumModelled, f.id).toBe(false);
   });
   it('sets halal and vegan unknown for processed or packaged ingredients', () => {
     const rows = new Map<string, any>(data().ingredients.map((i: any) => [i.id, i]));
@@ -408,7 +428,7 @@ describe('generated catalogue', () => {
   });
   it('has at least five traditions with at least five foods each', () => {
     const counts = new Map<string, number>();
-    for (const f of data().foods) for (const t of f.traditions) counts.set(t, (counts.get(t) ?? 0) + 1);
+    for (const f of data().foods) for (const t of f.traditions ?? []) counts.set(t, (counts.get(t) ?? 0) + 1);
     expect([...counts.values()].filter((n) => n >= 5).length).toBeGreaterThanOrEqual(5);
   });
   it('never marks halal or kosher yes for a food with an unknown ingredient (unknown never passes)', () => {

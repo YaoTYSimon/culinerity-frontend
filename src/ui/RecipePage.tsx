@@ -7,6 +7,7 @@ import { FoodFitNotes } from './FoodFitNotes';
 import { NutritionCredit } from './NutritionCredit';
 import { ADD_MISSING, NSW_ATTRIBUTION, SAFETY_HEADING, SALT_NOTE } from './pantryCopy';
 import { PillButton } from './PillButton';
+import { iconKindFor, RecipeIcon } from './recipeIcons';
 
 interface Props {
   recipe: Recipe;
@@ -36,6 +37,7 @@ export function RecipePage({ recipe, match, serves, onBack, onAddMissing, notes 
     <article className="grid grid-cols-[minmax(0,1fr)] gap-6 pb-2">
       <div className="grid justify-items-start gap-3">
         <PillButton variant="text" className="-ml-3" onClick={onBack}>Back to recipes</PillButton>
+        <RecipeIcon kind={iconKindFor(recipe.id)} size="lg" />
         <FocusHeading>{recipe.name}</FocusHeading>
         <p className="text-base text-pretty text-muted">{recipe.blurb}</p>
         <p className="text-base font-semibold">{timeAndServes(recipe, serves)}</p>

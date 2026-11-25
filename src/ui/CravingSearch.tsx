@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { type FoodItem, type Profile, type ProfiledSwap, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
+import { type FoodItem, type Profile, type ProfiledSwap, type RecipeCredit, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
 import { hasFoodRules } from './foodCopy';
 import { SwapResults, type SwapNote, type WeekSwapInput } from './SwapResults';
@@ -52,8 +52,9 @@ function SkeletonRows() {
 
 type SwapsOutcomeData = Extract<Outcome, { kind: 'swaps' }>;
 
-function SwapsOutcome({ outcome, rulesOn, onAddToWeek, onChangeFoodRules }: { outcome: SwapsOutcomeData; rulesOn: boolean; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void }) {
+function SwapsOutcome({ outcome, rulesOn, profileSuburb, onAddToWeek, onChangeFoodRules }: { outcome: SwapsOutcomeData; rulesOn: boolean; profileSuburb?: string; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void }) {
   const { craving, profiled, hidden } = outcome;
+  const { catalogue } = useServices();
   const swaps = profiled.map((p) => p.swap);
   // Nothing fits the person's rules: say so kindly and list nothing else.
   if (swaps.length === 0 && hidden > 0) return (
@@ -65,6 +66,11 @@ function SwapsOutcome({ outcome, rulesOn, onAddToWeek, onChangeFoodRules }: { ou
   const notes: Record<string, SwapNote> = Object.fromEntries(
     profiled.map((p) => [p.swap.candidate.alternative.id, { fit: p.fit, kitchen: p.kitchen, certifiedMeat: p.certifiedMeat }]),
   );
+  const recipes: Record<string, RecipeCredit> = {};
+  for (const p of profiled) {
+    const credit = catalogue.foodInfo(p.swap.candidate.alternative.id)?.recipe;
+    if (credit) recipes[p.swap.candidate.alternative.id] = credit;
+  }
   return (
     <>
       <div className="grid grid-cols-[auto_1fr] items-center gap-x-3">
@@ -86,7 +92,7 @@ function SwapsOutcome({ outcome, rulesOn, onAddToWeek, onChangeFoodRules }: { ou
       {swaps.length > 0 && (
         <SwapResults
           swaps={swaps} notes={notes} rulesOn={rulesOn} unmatchedAllergies={outcome.unmatchedAllergies} nutritionNote={outcome.cultural}
-          cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} onAddToWeek={onAddToWeek}
+          cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} recipes={recipes} cravingId={craving.id} profileSuburb={profileSuburb} onAddToWeek={onAddToWeek}
         />
       )}
     </>
@@ -259,7 +265,7 @@ export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules }: { pro
             </div>
           </div>
         )}
-        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} onAddToWeek={onAddToWeek} onChangeFoodRules={onChangeFoodRules} />}
+        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} profileSuburb={profile.suburb} onAddToWeek={onAddToWeek} onChangeFoodRules={onChangeFoodRules} />}
       </div>
     </div>
   );

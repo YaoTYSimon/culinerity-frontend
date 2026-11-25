@@ -179,3 +179,27 @@ describe('opening a recipe', () => {
     expect(screen.getByRole('status')).toHaveTextContent('Already on your list.');
   });
 });
+
+describe('Good with what you have', () => {
+  it('shows the section first, with round tiles that say what they use', () => {
+    show({ initial: pantryOf(dal) });
+    const picks = section('Good with what you have');
+    const headings = screen.getAllByRole('heading', { level: 2 });
+    expect(headings[0]).toHaveTextContent('Good with what you have');
+    expect(within(picks).getByRole('button', { name: /^Spinach dal, uses \d+ of your items$/ })).toBeInTheDocument();
+    expect(screen.queryByText(/popular/i)).toBeNull();
+  });
+  it('opens the recipe from a tile', async () => {
+    const user = show({ initial: pantryOf(dal) });
+    await user.click(within(section('Good with what you have')).getByRole('button', { name: /^Spinach dal/ }));
+    expect(screen.getByRole('heading', { level: 1, name: 'Spinach dal' })).toBeInTheDocument();
+  });
+  it('is absent without a usable pantry', () => {
+    show({ initial: {} });
+    expect(screen.queryByRole('region', { name: 'Good with what you have' })).toBeNull();
+  });
+  it('shows at most five tiles', () => {
+    show({ initial: pantryOf(dal) });
+    expect(within(section('Good with what you have')).getAllByRole('button').length).toBeLessThanOrEqual(5);
+  });
+});

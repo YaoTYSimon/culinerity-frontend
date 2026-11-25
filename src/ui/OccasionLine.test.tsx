@@ -7,6 +7,7 @@ import App from '../App';
 import { createServices } from '../services/container';
 import { ServicesProvider } from '../services/ServicesContext';
 import { OccasionLine } from './OccasionLine';
+import { pickMenuItem } from '../test/menu';
 
 const at = (iso: string) => {
   const [y, m, d] = iso.split('-').map(Number);
@@ -83,7 +84,7 @@ function renderApp(profile: Profile, day: string, store = new InMemoryProfileSto
 }
 const openMenu = (item: string) => {
   fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
-  fireEvent.click(within(screen.getByRole('navigation', { name: 'Menu' })).getByRole('button', { name: item }));
+  pickMenuItem(item);
 };
 const RAMADAN_LINE = /Ramadan starts about Mon 8 Feb/;
 

@@ -10,7 +10,7 @@ const root = new URL('../', import.meta.url);
 export const DATA_PATH = fileURLToPath(new URL('docs/superpowers/research/2026-10-27-nearby-places.json', root));
 export const OUT_PATH = fileURLToPath(new URL('packages/core/src/places/generated/places.generated.ts', root));
 
-const KINDS = ['market', 'grocer', 'social-supermarket', 'community-meal', 'food-relief', 'co-op'];
+const KINDS = ['market', 'grocer', 'social-supermarket', 'community-meal', 'food-relief', 'co-op', 'takeaway', 'cafe-restaurant'];
 const BANDS = ['free', 'budget', 'mid', 'pricier'];
 const BASIS = ['stated', 'typical'];
 const FITS = ['fresh', 'packaged', 'meals'];
