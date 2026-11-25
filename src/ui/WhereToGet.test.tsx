@@ -94,7 +94,7 @@ describe('WhereToGet', () => {
   });
 
   it('shows no takeaway heading when nothing fits', async () => {
-    mount('burger');
+    mount('bubble-tea');
     openIt();
     await locate();
     expect(await screen.findByText('Coles Central')).toBeInTheDocument();
