@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { type FoodItem, type Profile, type ProfiledSwap, type RecipeCredit, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
+import { recipeById, type FoodItem, type Profile, type ProfiledSwap, type RecipeCredit, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
 import { hasFoodRules } from './foodCopy';
 import { SwapResults, type SwapNote, type WeekSwapInput } from './SwapResults';
@@ -52,7 +52,7 @@ function SkeletonRows() {
 
 type SwapsOutcomeData = Extract<Outcome, { kind: 'swaps' }>;
 
-function SwapsOutcome({ outcome, rulesOn, profileSuburb, onAddToWeek, onChangeFoodRules }: { outcome: SwapsOutcomeData; rulesOn: boolean; profileSuburb?: string; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void }) {
+function SwapsOutcome({ outcome, rulesOn, profileSuburb, onAddToWeek, onChangeFoodRules, onCook }: { outcome: SwapsOutcomeData; rulesOn: boolean; profileSuburb?: string; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void; onCook?: (recipeId: string) => void }) {
   const { craving, profiled, hidden } = outcome;
   const { catalogue } = useServices();
   const swaps = profiled.map((p) => p.swap);
@@ -71,6 +71,7 @@ function SwapsOutcome({ outcome, rulesOn, profileSuburb, onAddToWeek, onChangeFo
     const credit = catalogue.foodInfo(p.swap.candidate.alternative.id)?.recipe;
     if (credit) recipes[p.swap.candidate.alternative.id] = credit;
   }
+  const cookable = new Set(profiled.map((p) => p.swap.candidate.alternative.id).filter((id) => recipeById(id) !== undefined));
   return (
     <>
       <div className="grid grid-cols-[auto_1fr] items-center gap-x-3">
@@ -92,14 +93,14 @@ function SwapsOutcome({ outcome, rulesOn, profileSuburb, onAddToWeek, onChangeFo
       {swaps.length > 0 && (
         <SwapResults
           swaps={swaps} notes={notes} rulesOn={rulesOn} unmatchedAllergies={outcome.unmatchedAllergies} nutritionNote={outcome.cultural}
-          cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} recipes={recipes} cravingId={craving.id} profileSuburb={profileSuburb} onAddToWeek={onAddToWeek}
+          cravingHealth={outcome.cravingHealth} cravingCost={outcome.cravingCost} recipes={recipes} cookable={cookable} onCook={onCook} cravingId={craving.id} profileSuburb={profileSuburb} onAddToWeek={onAddToWeek}
         />
       )}
     </>
   );
 }
 
-export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules }: { profile: Profile; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void }) {
+export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules, onCook }: { profile: Profile; onAddToWeek: (swap: WeekSwapInput) => void; onChangeFoodRules?: () => void; onCook?: (recipeId: string) => void }) {
   const services = useServices();
   const catalogue = useCatalogueStatus();
   const [text, setText] = useState('');
@@ -265,7 +266,7 @@ export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules }: { pro
             </div>
           </div>
         )}
-        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} profileSuburb={profile.suburb} onAddToWeek={onAddToWeek} onChangeFoodRules={onChangeFoodRules} />}
+        {!loading && outcome.kind === 'swaps' && <SwapsOutcome outcome={outcome} rulesOn={rulesOn} profileSuburb={profile.suburb} onAddToWeek={onAddToWeek} onChangeFoodRules={onChangeFoodRules} onCook={onCook} />}
       </div>
     </div>
   );

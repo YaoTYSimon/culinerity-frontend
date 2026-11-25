@@ -452,6 +452,13 @@
   }
  ],
  "highRiskIngredients": [
+  "milk-reduced-fat",
+  "sour-cream",
+  "sour-cream-light",
+  "fish-flathead",
+  "pork-mince",
+  "beef-mince-lean",
+  "chicken-breast-baked",
   "egg",
   "milk",
   "yoghurt",
@@ -468,6 +475,8 @@
   "salmon-canned"
  ],
  "rawCookThroughIngredients": [
+  "beef-mince-lean",
+  "pork-mince",
   "chicken-breast",
   "chicken-thigh",
   "chicken-drumstick",
@@ -931,6 +940,186 @@
   {
    "ingredient": "yoghurt",
    "perKg": 4.5
+  },
+  {
+   "ingredient": "chicken-mince",
+   "perKg": 11
+  },
+  {
+   "ingredient": "zucchini",
+   "perKg": 5
+  },
+  {
+   "ingredient": "fish-flathead",
+   "perKg": 30
+  },
+  {
+   "ingredient": "oregano-dried",
+   "perKg": 60
+  },
+  {
+   "ingredient": "capsicum-red",
+   "perKg": 9
+  },
+  {
+   "ingredient": "shallot",
+   "perKg": 12
+  },
+  {
+   "ingredient": "basil",
+   "perKg": 40
+  },
+  {
+   "ingredient": "pumpkin-butternut",
+   "perKg": 3.5
+  },
+  {
+   "ingredient": "walnuts",
+   "perKg": 28
+  },
+  {
+   "ingredient": "beef-mince-lean",
+   "perKg": 14
+  },
+  {
+   "ingredient": "puff-pastry",
+   "perKg": 9
+  },
+  {
+   "ingredient": "sweet-potato-orange",
+   "perKg": 4.5
+  },
+  {
+   "ingredient": "lentils-boiled",
+   "perKg": 6
+  },
+  {
+   "ingredient": "flour-wholemeal",
+   "perKg": 2.5
+  },
+  {
+   "ingredient": "bok-choy",
+   "perKg": 9
+  },
+  {
+   "ingredient": "brown-rice",
+   "perKg": 4
+  },
+  {
+   "ingredient": "sesame-oil",
+   "perKg": 24
+  },
+  {
+   "ingredient": "soy-sauce-reduced",
+   "perKg": 8
+  },
+  {
+   "ingredient": "pork-mince",
+   "perKg": 12
+  },
+  {
+   "ingredient": "water-chestnut",
+   "perKg": 12
+  },
+  {
+   "ingredient": "taco-seasoning",
+   "perKg": 55
+  },
+  {
+   "ingredient": "sour-cream",
+   "perKg": 7.5
+  },
+  {
+   "ingredient": "corn-chips",
+   "perKg": 12
+  },
+  {
+   "ingredient": "tortilla",
+   "perKg": 10
+  },
+  {
+   "ingredient": "chicken-breast-baked",
+   "perKg": 13
+  },
+  {
+   "ingredient": "beans-kidney-tinned",
+   "perKg": 4
+  },
+  {
+   "ingredient": "avocado",
+   "perKg": 9
+  },
+  {
+   "ingredient": "red-onion",
+   "perKg": 4
+  },
+  {
+   "ingredient": "cheddar-reduced-fat",
+   "perKg": 13
+  },
+  {
+   "ingredient": "sour-cream-light",
+   "perKg": 8
+  },
+  {
+   "ingredient": "tomato-paste",
+   "perKg": 9
+  },
+  {
+   "ingredient": "corn-kernels-tinned",
+   "perKg": 5
+  },
+  {
+   "ingredient": "salsa",
+   "perKg": 8
+  },
+  {
+   "ingredient": "sugar-white",
+   "perKg": 2
+  },
+  {
+   "ingredient": "oats-rolled",
+   "perKg": 3.5
+  },
+  {
+   "ingredient": "desiccated-coconut",
+   "perKg": 11
+  },
+  {
+   "ingredient": "golden-syrup",
+   "perKg": 7
+  },
+  {
+   "ingredient": "butter",
+   "perKg": 11
+  },
+  {
+   "ingredient": "dates",
+   "perKg": 12
+  },
+  {
+   "ingredient": "cinnamon",
+   "perKg": 60
+  },
+  {
+   "ingredient": "sugar-brown",
+   "perKg": 3.5
+  },
+  {
+   "ingredient": "almonds",
+   "perKg": 20
+  },
+  {
+   "ingredient": "blueberries-frozen",
+   "perKg": 15
+  },
+  {
+   "ingredient": "milk-reduced-fat",
+   "perKg": 1.7
+  },
+  {
+   "ingredient": "strawberries",
+   "perKg": 12
   }
  ],
  "substitutions": [
@@ -3424,7 +3613,242 @@
    "basis": "Author's own simple recipe: weights are for the whole recipe and nutrition is computed from them (raw or dry unless the food-table row says boiled or canned); cooking changes are not modelled. Salt and pepper are to taste and not counted, so sodium is not modelled."
   }
  ],
+ "swapRecipes": [
+  {
+   "id": "chicken-veg-nuggets",
+   "serves": 5,
+   "minutes": 35,
+   "blurb": "Chicken and vegetable nuggets, fried until golden, with a garlicky yoghurt dip.",
+   "drop": [],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps",
+   "steps": [
+    "Chop the spinach, spring onion and parsley (keep some parsley for the dip) and grate the zucchini and carrot.",
+    "Mix the chicken mince with the vegetables and most of the garlic.",
+    "Shape the mixture into small flat nuggets.",
+    "Fry the nuggets in the oil over medium heat, turning, until golden on both sides.",
+    "Check with a food thermometer in the thickest part of a nugget. Chicken needs 74°C. No pink inside is only a second sign.",
+    "Stir the rest of the garlic and parsley through the yoghurt for a dip."
+   ]
+  },
+  {
+   "id": "beef-veg-sausage-rolls",
+   "serves": 4,
+   "minutes": 50,
+   "blurb": "Beef mince and grated vegetables rolled in puff pastry and baked.",
+   "drop": [],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps",
+   "steps": [
+    "Heat the oven to hot. Grate the carrot, pumpkin and zucchini and finely chop the onion, garlic and walnuts.",
+    "Mix the beef mince with the vegetables and walnuts.",
+    "Cut the pastry into strips, spoon the mixture along each strip, then roll up and seal the edge.",
+    "Bake the rolls on a lined tray until the pastry is puffed and golden.",
+    "Check with a food thermometer in the middle of a roll. Minced meat needs 71°C. No pink inside is only a second sign."
+   ]
+  },
+  {
+   "id": "lentil-sweet-potato-patties",
+   "serves": 6,
+   "minutes": 40,
+   "blurb": "Mashed sweet potato, lentils and spinach pan-fried into soft patties.",
+   "drop": [],
+   "seasonings": [
+    "salt",
+    "pepper"
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "steps": [
+    "Peel and cube the sweet potato, boil until soft, drain and mash.",
+    "Chop the spinach. Use lentils that are already cooked (boiled, or tinned and drained).",
+    "Mix the mash, lentils, spinach, flour, cumin and paprika.",
+    "Shape into patties.",
+    "Fry the patties in the oil over medium heat until golden on both sides and hot right through."
+   ]
+  },
+  {
+   "id": "ginger-chicken-veg-stir-fry",
+   "serves": 4,
+   "minutes": 35,
+   "blurb": "Chicken, bok choy, broccoli and carrot stir-fried with ginger, on brown rice.",
+   "drop": [
+    "chilli-ground",
+    "sesame-oil",
+    "garlic",
+    "vinegar"
+   ],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps",
+   "steps": [
+    "Cook the brown rice as the packet says, drain and keep warm.",
+    "Slice the chicken thinly. Cut the vegetables into small pieces and grate the ginger.",
+    "Stir-fry the chicken in the oil over high heat until browned, adding the ginger, a little garlic and a pinch of chilli near the end.",
+    "Check with a food thermometer in the thickest piece. Chicken needs 74°C. No pink inside is only a second sign.",
+    "Add the vegetables and soy sauce with a splash of water and toss until tender but still bright. Finish with a few drops of sesame oil and vinegar.",
+    "Serve over the rice."
+   ]
+  },
+  {
+   "id": "san-choy-bow",
+   "serves": 5,
+   "minutes": 30,
+   "blurb": "Pork mince and chopped vegetables spooned into crisp lettuce cups.",
+   "drop": [
+    "coriander-fresh",
+    "ginger",
+    "chilli-green",
+    "spring-onion"
+   ],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps",
+   "steps": [
+    "Finely chop the carrot, onion, capsicum and water chestnuts. Separate the lettuce leaves into cups.",
+    "Fry the pork mince in the sesame oil over high heat, breaking it up, until browned.",
+    "Check with a food thermometer in the thickest part. Minced meat needs 71°C. No pink inside is only a second sign.",
+    "Stir in the vegetables, garlic, soy sauce and a little grated ginger and chilli, and stir-fry until just tender.",
+    "Spoon into the lettuce cups and top with chopped spring onion and coriander."
+   ]
+  },
+  {
+   "id": "simple-beef-nachos",
+   "serves": 4,
+   "minutes": 25,
+   "blurb": "Spiced beef and tomato over corn chips, warmed in the oven, with sour cream.",
+   "drop": [],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps",
+   "steps": [
+    "Brown the beef mince in a frying pan over medium-high heat, breaking it up.",
+    "Check with a food thermometer in the thickest part. Minced meat needs 71°C. No pink inside is only a second sign.",
+    "Stir in the tinned tomatoes and taco seasoning and simmer until thick.",
+    "Spread the corn chips on a tray, spoon the beef over them and warm in a hot oven until hot right through.",
+    "Serve with the sour cream on top."
+   ]
+  },
+  {
+   "id": "chicken-avocado-soft-tacos",
+   "serves": 4,
+   "minutes": 20,
+   "blurb": "Soft tortillas filled with shredded chicken, beans, salad and avocado.",
+   "drop": [
+    "red-onion"
+   ],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "steps": [
+    "Shred cooked chicken breast that has been kept in the fridge, then warm it in a pan until steaming hot.",
+    "Drain and rinse the beans. Slice the avocado, tomato and cucumber, tear the lettuce and grate the cheese.",
+    "Warm the tortillas in a dry pan until soft.",
+    "Fill each tortilla with chicken, beans, salad, avocado and cheese, add a few thin slices of red onion if you have it, and top with a spoonful of sour cream."
+   ]
+  },
+  {
+   "id": "anzac-biscuits-home",
+   "serves": 6,
+   "minutes": 30,
+   "blurb": "Chewy oat and coconut biscuits sweetened with golden syrup. Six biscuits.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [],
+   "steps": [
+    "Heat the oven to moderate and line a tray with baking paper.",
+    "Mix the flour, sugar, oats and coconut in a bowl.",
+    "Melt the butter and golden syrup together, then stir in a little bicarbonate of soda mixed with a splash of hot water.",
+    "Pour into the dry mix and stir to a stiff dough, then roll into balls and flatten them on the tray with room to spread.",
+    "Bake until golden brown, then cool on the tray. They crisp up as they cool."
+   ]
+  },
+  {
+   "id": "carrot-date-oat-biscuit",
+   "serves": 6,
+   "minutes": 30,
+   "blurb": "Soft biscuits of oats, dates, carrot and banana. Six biscuits.",
+   "drop": [
+    "cinnamon"
+   ],
+   "seasonings": [],
+   "safety": [],
+   "safetySourceId": "nsw-fa-eggs",
+   "steps": [
+    "Heat the oven to moderate and line a tray with baking paper.",
+    "Chop the dates and almonds, grate the carrot and mash the banana.",
+    "Whisk one egg and use about half. Beat it with the oil and brown sugar, then stir in the banana, carrot, dates, almonds, oats, flour and a little cinnamon.",
+    "Spoon into six mounds on the tray and flatten them a little.",
+    "Bake until the biscuits are golden and firm and the egg is completely cooked."
+   ]
+  },
+  {
+   "id": "banana-blueberry-smoothie",
+   "serves": 4,
+   "minutes": 5,
+   "blurb": "A thick banana, blueberry and yoghurt smoothie made with milk.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [
+    "leftovers"
+   ],
+   "steps": [
+    "Break the banana into chunks and put it in a blender with the frozen blueberries.",
+    "Add the yoghurt and milk.",
+    "Blend until smooth, adding a splash more milk if it is too thick. Drink soon, or keep it in the fridge and drink it the same day."
+   ]
+  },
+  {
+   "id": "strawberry-yoghurt-smoothie",
+   "serves": 4,
+   "minutes": 5,
+   "blurb": "Strawberries, yoghurt and milk blended into a quick pink smoothie.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [
+    "leftovers"
+   ],
+   "steps": [
+    "Wash the strawberries and cut off the green tops.",
+    "Put them in a blender with the yoghurt and milk.",
+    "Blend until smooth. Drink soon, or keep it in the fridge and drink it the same day."
+   ]
+  }
+ ],
  "notFound": [
+  "Swap recipes not made into Cook recipes: baked-fish-capsicum (sample cost about $6 a serve, above the $4.00 Cook limit) and beef-taco-roll (13 ingredient rows; only olive oil, tomato paste and taco seasoning are minor seasonings, so it cannot get down to 9 counted rows).",
   "Soak-and-boil dried bean recipes (including dried chickpeas, haricot and kidney beans) are not shipped: no official boiling or soaking source was read. Canned beans, chickpeas and split lentils are used instead.",
   "Raw seafood and raw fish recipes are not shipped; only fully cooked or tinned fish (tinned tuna and salmon) is used. No official source for cooking fish at home was recorded for the recipes.",
   "NSW Food Authority \"Food risk and you: what to eat with a weakened immune system\" (PDF, https://www.foodauthority.nsw.gov.au/media/8789) downloaded but its text could not be extracted (embedded fonts), so it was not read and the pregnancy and immune-system line stays omitted.",
@@ -3445,6 +3869,8 @@
   "chicken-drumstick": 74,
   "chicken-mince": 74,
   "beef-mince": 71,
-  "lamb-mince": 71
+  "lamb-mince": 71,
+  "beef-mince-lean": 71,
+  "pork-mince": 71
  }
 }

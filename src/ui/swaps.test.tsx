@@ -36,6 +36,18 @@ describe('CravingSearch', () => {
     expect(link).toHaveAttribute('target', '_blank');
   });
 
+  it('shows a Cook it button for a swap that is also a Cook recipe and passes its id', async () => {
+    const onCook = vi.fn();
+    render(
+      <ServicesProvider services={createServices()}>
+        <CravingSearch profile={{}} onAddToWeek={onAdd} onCook={onCook} />
+      </ServicesProvider>,
+    );
+    search('chicken nuggets');
+    fireEvent.click(await screen.findByRole('button', { name: /cook it: chicken and veg nuggets/i }));
+    expect(onCook).toHaveBeenCalledWith('chicken-veg-nuggets');
+  });
+
   it.each([
     ['nachos', /recipe: cookbook:simple nachos \(wikibooks\)/i],
     ['fish and chips', /recipe: baked fish \(health and wellbeing queensland\)/i],

@@ -59,6 +59,21 @@ describe('pantry recipes data', () => {
     pantryIngredients()[0].name = 'x';
     expect(pantryIngredients()[0].name).not.toBe('x');
   });
+  it('has the swap foods as Cook recipes with the swap food weights, nutrition and a credit', () => {
+    const ids = ['chicken-veg-nuggets', 'beef-veg-sausage-rolls', 'lentil-sweet-potato-patties', 'ginger-chicken-veg-stir-fry', 'san-choy-bow', 'simple-beef-nachos', 'chicken-avocado-soft-tacos', 'anzac-biscuits-home', 'carrot-date-oat-biscuit', 'banana-blueberry-smoothie', 'strawberry-yoghurt-smoothie'];
+    for (const id of ids) {
+      const r = recipeById(id)!;
+      const n = culturalData.catalogue.nutrition.find((x) => x.itemId === id)!;
+      expect(r, id).toBeDefined();
+      expect(r.nutrition.perServe.energyKj, id).toBe(n.energyKj);
+      expect(r.nutrition.perServe.proteinG, id).toBe(n.proteinG);
+      expect(r.ingredients.length).toBeLessThanOrEqual(9);
+      expect(r.credit, id).toMatch(/Method written by us\.$/);
+      expect(r.steps.length).toBeLessThanOrEqual(6);
+    }
+    expect(recipeById('san-choy-bow')!.cookThroughSourceId).toBe('nsw-fa-cooking-temps');
+    expect(recipeById('beef-taco-roll')).toBeUndefined();
+  });
   it('does not change the cultural data: the cultural catalogue still has its 49 foods plus cravings', () => {
     expect(culturalData.catalogue.items.length).toBeGreaterThanOrEqual(51);
   });

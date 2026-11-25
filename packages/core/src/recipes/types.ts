@@ -25,6 +25,10 @@ export interface Recipe {
   /** Drives the fixed NSW Food Authority lines. */
   safety: Array<'rice' | 'pasta' | 'leftovers'>;
   basis: string;
+  /** Swap recipes only: the credit for the ingredient list, ending "Method written by us." */
+  credit?: string;
+  /** Minor seasoning ingredient ids left out of the counted rows; still in the nutrition. Shown as a line of text. */
+  uncounted?: string[];
   /** Set on recipes with raw poultry or mince: the source for the "cook right through" step. */
   cookThroughSourceId?: string;
   /** Set when a step prints a temperature or a time for food safety. */

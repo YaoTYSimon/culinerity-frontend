@@ -57,6 +57,7 @@ export function RecipePage({ recipe, match, serves, onBack, onAddMissing, notes 
           ))}
         </ul>
         {recipe.seasonings.length > 0 && <p className="text-sm text-muted">{`Season with ${recipe.seasonings.join(' and ')} to taste.`}</p>}
+        {recipe.uncounted && recipe.uncounted.length > 0 && <p className="text-sm text-muted">{`Also a little: ${recipe.uncounted.map((id) => ingredientName(id).toLowerCase()).join(', ')} (not counted above).`}</p>}
         {match.missing.length > 0 && <div><PillButton variant="surface" onClick={onAddMissing}>{ADD_MISSING}</PillButton></div>}
         {status}
       </section>
@@ -91,6 +92,7 @@ export function RecipePage({ recipe, match, serves, onBack, onAddMissing, notes 
         <p className="text-sm text-muted">{SALT_NOTE}</p>
         {perServeCents !== null && <p className="text-base font-semibold">{`About ${dollars(perServeCents)} a serve (sample data)`}</p>}
         <div className="text-sm text-muted"><NutritionCredit /></div>
+        {recipe.credit && <p className="text-sm text-pretty text-muted">{recipe.credit}</p>}
       </section>
     </article>
   );

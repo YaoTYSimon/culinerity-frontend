@@ -41,6 +41,44 @@ export function recipeCostPerServe(recipe, prices) {
   return total / recipe.serves;
 }
 
+const roundGrams = (g) => (g < 10 ? Math.round(g * 100) / 100 : Math.round(g * 10) / 10);
+
+/**
+ * Cook recipes made from swap foods. The swap food in the cultural file is the single source of the
+ * ingredient weights (per serve, times `serves`) and the nutrition; `swapRecipes` in the recipe file only adds
+ * the method, time and safety flags. Rows named in `drop` are minor seasonings left out of the 9 counted rows:
+ * they are listed as `uncounted` and still count in the nutrition, which is the swap food's own.
+ * Returns the recipes (same shape as `recipes`, plus `nutritionRows`) and any problems.
+ */
+export function expandSwapRecipes(d, cultural) {
+  const foods = new Map((cultural.foods ?? []).map((f) => [f.id, f]));
+  const sources = new Map((cultural.sources ?? []).map((s) => [s.id, s]));
+  const errs = [];
+  const recipes = [];
+  for (const s of d.swapRecipes ?? []) {
+    const food = foods.get(s.id);
+    const src = food ? sources.get(food.recipeSourceId) : undefined;
+    if (!food) { errs.push(`swap recipe ${s.id}: no swap food with that id`); continue; }
+    if (!src) { errs.push(`swap recipe ${s.id}: the swap food has no recipe credit`); continue; }
+    const drop = new Set(s.drop ?? []);
+    for (const id of drop) if (!food.recipe.some((r) => r.ingredient === id)) errs.push(`swap recipe ${s.id}: drops ${id}, which is not in the swap food`);
+    recipes.push({
+      id: s.id, name: food.name, blurb: s.blurb, traditions: [], serves: s.serves, minutes: s.minutes,
+      ingredients: food.recipe.filter((r) => !drop.has(r.ingredient)).map((r) => ({ ingredient: r.ingredient, grams: roundGrams(r.grams * s.serves) })),
+      uncounted: [...drop], seasonings: [...s.seasonings], steps: [...s.steps], safety: [...s.safety],
+      basis: `Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times ${s.serves} serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.`,
+      credit: `Ingredient list from "${src.title}", ${src.publisher}, ${src.url}. ${src.licence} Method written by us.`,
+      ...(s.cookThroughSourceId ? { cookThroughSourceId: s.cookThroughSourceId } : {}),
+      ...(s.safetySourceId ? { safetySourceId: s.safetySourceId } : {}),
+      nutritionRows: food.recipe,
+    });
+  }
+  return { recipes, errs };
+}
+
+/** The dataset's own recipes followed by the swap recipes. */
+const allRecipeRows = (d, cultural) => [...(d.recipes ?? []), ...expandSwapRecipes(d, cultural).recipes];
+
 const sameFlags = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 function validateSources(d, culturalSourceIds, today) {
@@ -86,7 +124,7 @@ function validateIngredients(d, cultural, sourceIds) {
 export function validateRecipes(d, cultural, today = melbourneToday()) {
   const src = validateSources(d, (cultural.sources ?? []).map((s) => s.id), today);
   const ing = validateIngredients(d, cultural, src.ids);
-  const errs = [...src.errs, ...ing.errs];
+  const errs = [...src.errs, ...ing.errs, ...expandSwapRecipes(d, cultural).errs];
   const { table } = ing;
   const traditionIds = new Set((cultural.traditions ?? []).map((t) => t.id));
   const prices = new Map();
@@ -103,7 +141,7 @@ export function validateRecipes(d, cultural, today = melbourneToday()) {
 
   const ids = new Set();
   const perTradition = new Map();
-  for (const r of d.recipes ?? []) {
+  for (const r of allRecipeRows(d, cultural)) {
     const tag = `recipe ${r.id}`;
     if (typeof r.id !== 'string' || !SLUG.test(r.id)) errs.push(`${tag}: id must be a lowercase slug`);
     if (ids.has(r.id)) errs.push(`duplicate recipe id ${r.id}`);
@@ -113,6 +151,8 @@ export function validateRecipes(d, cultural, today = melbourneToday()) {
     if (!(isPosInt(r.serves) && r.serves <= 6)) errs.push(`${tag}: serves must be 1 to 6`);
     if (!(isPosInt(r.minutes) && r.minutes >= 5 && r.minutes <= 60)) errs.push(`${tag}: minutes must be 5 to 60`);
     if (!nonEmpty(r.basis) || !r.basis.startsWith("Author's own simple recipe")) errs.push(`${tag}: basis must start with "Author's own simple recipe"`);
+    if (r.credit !== undefined && !/Method written by us\.$/.test(r.credit)) errs.push(`${tag}: credit must end with "Method written by us."`);
+    for (const u of r.uncounted ?? []) if (!table.has(u)) errs.push(`${tag}: uncounted ingredient ${u} is not in the ingredient table`);
     for (const t of r.traditions ?? []) if (!traditionIds.has(t)) errs.push(`${tag}: tradition ${t} does not exist`);
     for (const t of r.traditions ?? []) perTradition.set(t, (perTradition.get(t) ?? 0) + 1);
     for (const s of r.seasonings ?? []) if (!SEASONINGS.includes(s)) errs.push(`${tag}: seasoning ${s} must be salt or pepper`);
@@ -166,7 +206,7 @@ export function validateRecipes(d, cultural, today = melbourneToday()) {
       errs.push(`${tag}: sample cost per serve is above $4.00`);
     }
   }
-  const total = (d.recipes ?? []).length;
+  const total = allRecipeRows(d, cultural).length;
   if (total < MIN_RECIPES) errs.push(`needs at least ${MIN_RECIPES} recipes, has ${total}`);
   const traditionsCovered = [...perTradition.values()].filter((n) => n >= 2).length;
   if (traditionsCovered < MIN_TRADITIONS) errs.push(`needs at least ${MIN_TRADITIONS} traditions with 2 recipes, has ${traditionsCovered}`);
@@ -198,13 +238,14 @@ export function buildRecipes(d, cultural, today = melbourneToday()) {
   const ingredients = mergedIngredients(d, cultural);
   const table = new Map(ingredients.map((i) => [i.id, i]));
   const lookup = (id) => table.get(id);
-  const recipes = d.recipes.map((r) => {
-    const perServe = computeNutrition({ recipe: r.ingredients.map((i) => ({ ingredient: i.ingredient, grams: i.grams / r.serves })) }, table);
-    const flags = deriveFlags(r.ingredients.map((i) => i.ingredient), lookup);
+  const recipes = allRecipeRows(d, cultural).map((r) => {
+    const perServe = computeNutrition({ recipe: r.nutritionRows ?? r.ingredients.map((i) => ({ ingredient: i.ingredient, grams: i.grams / r.serves })) }, table);
+    const flags = deriveFlags((r.nutritionRows ?? r.ingredients).map((i) => i.ingredient), lookup);
     return {
       id: r.id, name: r.name, blurb: r.blurb, traditions: [...r.traditions], serves: r.serves, minutes: r.minutes,
       ingredients: r.ingredients.map((i) => ({ ingredient: i.ingredient, grams: i.grams, ...(i.optional ? { optional: true } : {}) })),
-      seasonings: [...r.seasonings], steps: [...r.steps], safety: [...r.safety], basis: r.basis,
+      seasonings: [...r.seasonings], ...(r.uncounted?.length ? { uncounted: [...r.uncounted] } : {}), steps: [...r.steps], safety: [...r.safety], basis: r.basis,
+      ...(r.credit ? { credit: r.credit } : {}),
       ...(r.cookThroughSourceId ? { cookThroughSourceId: r.cookThroughSourceId } : {}),
       ...(r.safetySourceId ? { safetySourceId: r.safetySourceId } : {}),
       nutrition: { perServe, sodiumModelled: false },

@@ -78,6 +78,8 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
   const [creating, setCreating] = useState(false);
   // Welcome's food button opens the setup even if settings exist; any other navigation resets it.
   const [foodWizard, setFoodWizard] = useState(false);
+  // A swap's 'Cook it' opens that recipe on Cook; CookView reads it once when it opens.
+  const [cookRecipeId, setCookRecipeId] = useState<string | null>(null);
   const [requested, setView] = useState<View>(() => (profile.welcomeSeen === true ? homeFor(profile) : 'welcome'));
 
   const update = (next: Profile) => {
@@ -185,7 +187,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
           )}
 
           {!creating && view === 'cook' && (
-            <CookView key={auth?.current?.id ?? 'guest'} profile={profile} onProfile={update} now={clockNow} onNavigate={go} />
+            <CookView key={auth?.current?.id ?? 'guest'} profile={profile} onProfile={update} now={clockNow} onNavigate={go} openRecipeId={cookRecipeId} onOpened={() => setCookRecipeId(null)} />
           )}
 
           {!creating && view === 'tradeoffs' && (
@@ -279,7 +281,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
                 onBudget={() => setView('budget')}
                 onDismiss={(key) => food && update(withOptional(profile, 'foodProfile', dismissOccasion(food, key, clockNow)))}
               />
-              <CravingSearch profile={profile} onAddToWeek={addToWeek} onChangeFoodRules={() => setView('food')} />
+              <CravingSearch profile={profile} onAddToWeek={addToWeek} onChangeFoodRules={() => setView('food')} onCook={(id) => { setCookRecipeId(id); setView('cook'); }} />
               <BudgetDisclosure value={profile} onChange={update} />
             </div>
           )}

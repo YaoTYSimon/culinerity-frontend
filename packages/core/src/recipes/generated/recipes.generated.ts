@@ -3416,7 +3416,8 @@ export const recipesData: RecipesData = {
         "gluten": "coeliac-au-gluten-free-diet",
         "allergens": "fsanz-allergen-labelling"
       },
-      "basis": "Raw white fish fillet: flathead stands in for the \"fish fillets\" a recipe names"
+      "basis": "Raw white fish fillet: flathead stands in for the \"fish fillets\" a recipe names",
+      "highRisk": true
     },
     {
       "id": "shallot",
@@ -3687,7 +3688,8 @@ export const recipesData: RecipesData = {
         "gluten": "coeliac-au-gluten-free-diet",
         "allergens": "fsanz-allergen-labelling"
       },
-      "basis": "Raw lower fat beef mince"
+      "basis": "Raw lower fat beef mince",
+      "highRisk": true
     },
     {
       "id": "lentils-boiled",
@@ -3892,7 +3894,8 @@ export const recipesData: RecipesData = {
         "gluten": "coeliac-au-gluten-free-diet",
         "allergens": "fsanz-allergen-labelling"
       },
-      "basis": "Raw pork mince"
+      "basis": "Raw pork mince",
+      "highRisk": true
     },
     {
       "id": "water-chestnut",
@@ -4138,7 +4141,8 @@ export const recipesData: RecipesData = {
         "vegan": "vegan-australia-pledge",
         "allergens": "fsanz-allergen-labelling"
       },
-      "basis": "Bought light sour cream: dairy, other ingredients not known here"
+      "basis": "Bought light sour cream: dairy, other ingredients not known here",
+      "highRisk": true
     },
     {
       "id": "sour-cream",
@@ -4169,7 +4173,8 @@ export const recipesData: RecipesData = {
         "vegan": "vegan-australia-pledge",
         "allergens": "fsanz-allergen-labelling"
       },
-      "basis": "Bought sour cream: dairy, other ingredients not known here"
+      "basis": "Bought sour cream: dairy, other ingredients not known here",
+      "highRisk": true
     },
     {
       "id": "corn-chips",
@@ -4345,7 +4350,8 @@ export const recipesData: RecipesData = {
         "gluten": "coeliac-au-gluten-free-diet",
         "allergens": "fsanz-allergen-labelling"
       },
-      "basis": "Baked chicken breast, lean flesh (a roast chicken stand-in)"
+      "basis": "Baked chicken breast, lean flesh (a roast chicken stand-in)",
+      "highRisk": true
     },
     {
       "id": "oats-rolled",
@@ -4741,7 +4747,8 @@ export const recipesData: RecipesData = {
         "gluten": "coeliac-au-gluten-free-diet",
         "allergens": "fsanz-allergen-labelling"
       },
-      "basis": "Reduced fat cow milk"
+      "basis": "Reduced fat cow milk",
+      "highRisk": true
     },
     {
       "id": "ice-cream",
@@ -5664,6 +5671,186 @@ export const recipesData: RecipesData = {
     {
       "ingredient": "yoghurt",
       "perKg": 4.5
+    },
+    {
+      "ingredient": "chicken-mince",
+      "perKg": 11
+    },
+    {
+      "ingredient": "zucchini",
+      "perKg": 5
+    },
+    {
+      "ingredient": "fish-flathead",
+      "perKg": 30
+    },
+    {
+      "ingredient": "oregano-dried",
+      "perKg": 60
+    },
+    {
+      "ingredient": "capsicum-red",
+      "perKg": 9
+    },
+    {
+      "ingredient": "shallot",
+      "perKg": 12
+    },
+    {
+      "ingredient": "basil",
+      "perKg": 40
+    },
+    {
+      "ingredient": "pumpkin-butternut",
+      "perKg": 3.5
+    },
+    {
+      "ingredient": "walnuts",
+      "perKg": 28
+    },
+    {
+      "ingredient": "beef-mince-lean",
+      "perKg": 14
+    },
+    {
+      "ingredient": "puff-pastry",
+      "perKg": 9
+    },
+    {
+      "ingredient": "sweet-potato-orange",
+      "perKg": 4.5
+    },
+    {
+      "ingredient": "lentils-boiled",
+      "perKg": 6
+    },
+    {
+      "ingredient": "flour-wholemeal",
+      "perKg": 2.5
+    },
+    {
+      "ingredient": "bok-choy",
+      "perKg": 9
+    },
+    {
+      "ingredient": "brown-rice",
+      "perKg": 4
+    },
+    {
+      "ingredient": "sesame-oil",
+      "perKg": 24
+    },
+    {
+      "ingredient": "soy-sauce-reduced",
+      "perKg": 8
+    },
+    {
+      "ingredient": "pork-mince",
+      "perKg": 12
+    },
+    {
+      "ingredient": "water-chestnut",
+      "perKg": 12
+    },
+    {
+      "ingredient": "taco-seasoning",
+      "perKg": 55
+    },
+    {
+      "ingredient": "sour-cream",
+      "perKg": 7.5
+    },
+    {
+      "ingredient": "corn-chips",
+      "perKg": 12
+    },
+    {
+      "ingredient": "tortilla",
+      "perKg": 10
+    },
+    {
+      "ingredient": "chicken-breast-baked",
+      "perKg": 13
+    },
+    {
+      "ingredient": "beans-kidney-tinned",
+      "perKg": 4
+    },
+    {
+      "ingredient": "avocado",
+      "perKg": 9
+    },
+    {
+      "ingredient": "red-onion",
+      "perKg": 4
+    },
+    {
+      "ingredient": "cheddar-reduced-fat",
+      "perKg": 13
+    },
+    {
+      "ingredient": "sour-cream-light",
+      "perKg": 8
+    },
+    {
+      "ingredient": "tomato-paste",
+      "perKg": 9
+    },
+    {
+      "ingredient": "corn-kernels-tinned",
+      "perKg": 5
+    },
+    {
+      "ingredient": "salsa",
+      "perKg": 8
+    },
+    {
+      "ingredient": "sugar-white",
+      "perKg": 2
+    },
+    {
+      "ingredient": "oats-rolled",
+      "perKg": 3.5
+    },
+    {
+      "ingredient": "desiccated-coconut",
+      "perKg": 11
+    },
+    {
+      "ingredient": "golden-syrup",
+      "perKg": 7
+    },
+    {
+      "ingredient": "butter",
+      "perKg": 11
+    },
+    {
+      "ingredient": "dates",
+      "perKg": 12
+    },
+    {
+      "ingredient": "cinnamon",
+      "perKg": 60
+    },
+    {
+      "ingredient": "sugar-brown",
+      "perKg": 3.5
+    },
+    {
+      "ingredient": "almonds",
+      "perKg": 20
+    },
+    {
+      "ingredient": "blueberries-frozen",
+      "perKg": 15
+    },
+    {
+      "ingredient": "milk-reduced-fat",
+      "perKg": 1.7
+    },
+    {
+      "ingredient": "strawberries",
+      "perKg": 12
     }
   ],
   "substitutions": [
@@ -9557,6 +9744,935 @@ export const recipesData: RecipesData = {
           "certifiedMeat": false
         }
       }
+    },
+    {
+      "id": "chicken-veg-nuggets",
+      "name": "Chicken and veg nuggets with yoghurt dip",
+      "blurb": "Chicken and vegetable nuggets, fried until golden, with a garlicky yoghurt dip.",
+      "traditions": [],
+      "serves": 5,
+      "minutes": 35,
+      "ingredients": [
+        {
+          "ingredient": "chicken-mince",
+          "grams": 400
+        },
+        {
+          "ingredient": "spinach",
+          "grams": 125
+        },
+        {
+          "ingredient": "zucchini",
+          "grams": 200
+        },
+        {
+          "ingredient": "carrot",
+          "grams": 60
+        },
+        {
+          "ingredient": "spring-onion",
+          "grams": 30
+        },
+        {
+          "ingredient": "parsley",
+          "grams": 30
+        },
+        {
+          "ingredient": "garlic",
+          "grams": 9
+        },
+        {
+          "ingredient": "olive-oil",
+          "grams": 9
+        },
+        {
+          "ingredient": "yoghurt",
+          "grams": 122.5
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "steps": [
+        "Chop the spinach, spring onion and parsley (keep some parsley for the dip) and grate the zucchini and carrot.",
+        "Mix the chicken mince with the vegetables and most of the garlic.",
+        "Shape the mixture into small flat nuggets.",
+        "Fry the nuggets in the oil over medium heat, turning, until golden on both sides.",
+        "Check with a food thermometer in the thickest part of a nugget. Chicken needs 74°C. No pink inside is only a second sign.",
+        "Stir the rest of the garlic and parsley through the yoghurt for a dip."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 5 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Chicken and Veg Nuggets\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/chicken-and-veg-nuggets/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "cookThroughSourceId": "nsw-fa-cooking-temps",
+      "safetySourceId": "nsw-fa-cooking-temps",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 553,
+          "proteinG": 20,
+          "fibreG": 2.2,
+          "sugarG": 3.2,
+          "sodiumMg": 91
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "chicken-veg-nuggets",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": true
+        }
+      }
+    },
+    {
+      "id": "beef-veg-sausage-rolls",
+      "name": "Beef and vegetable sausage rolls",
+      "blurb": "Beef mince and grated vegetables rolled in puff pastry and baked.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 50,
+      "ingredients": [
+        {
+          "ingredient": "carrot",
+          "grams": 24.4
+        },
+        {
+          "ingredient": "pumpkin-butternut",
+          "grams": 160
+        },
+        {
+          "ingredient": "zucchini",
+          "grams": 47.2
+        },
+        {
+          "ingredient": "onion",
+          "grams": 28
+        },
+        {
+          "ingredient": "garlic",
+          "grams": 3.6
+        },
+        {
+          "ingredient": "walnuts",
+          "grams": 23.4
+        },
+        {
+          "ingredient": "beef-mince-lean",
+          "grams": 200
+        },
+        {
+          "ingredient": "puff-pastry",
+          "grams": 150
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "steps": [
+        "Heat the oven to hot. Grate the carrot, pumpkin and zucchini and finely chop the onion, garlic and walnuts.",
+        "Mix the beef mince with the vegetables and walnuts.",
+        "Cut the pastry into strips, spoon the mixture along each strip, then roll up and seal the edge.",
+        "Bake the rolls on a lined tray until the pastry is puffed and golden.",
+        "Check with a food thermometer in the middle of a roll. Minced meat needs 71°C. No pink inside is only a second sign."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Healthy Sausage Roll\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/healthy-sausage-roll/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "cookThroughSourceId": "nsw-fa-cooking-temps",
+      "safetySourceId": "nsw-fa-cooking-temps",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 1043,
+          "proteinG": 15.5,
+          "fibreG": 3,
+          "sugarG": 3.7,
+          "sodiumMg": 183
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "beef-veg-sausage-rolls",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "walnut",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      }
+    },
+    {
+      "id": "lentil-sweet-potato-patties",
+      "name": "Lentil and sweet potato patties",
+      "blurb": "Mashed sweet potato, lentils and spinach pan-fried into soft patties.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 40,
+      "ingredients": [
+        {
+          "ingredient": "sweet-potato-orange",
+          "grams": 260
+        },
+        {
+          "ingredient": "cumin",
+          "grams": 1.08
+        },
+        {
+          "ingredient": "paprika",
+          "grams": 1.14
+        },
+        {
+          "ingredient": "lentils-boiled",
+          "grams": 240
+        },
+        {
+          "ingredient": "spinach",
+          "grams": 60
+        },
+        {
+          "ingredient": "flour-wholemeal",
+          "grams": 30
+        },
+        {
+          "ingredient": "olive-oil",
+          "grams": 9
+        }
+      ],
+      "seasonings": [
+        "salt",
+        "pepper"
+      ],
+      "steps": [
+        "Peel and cube the sweet potato, boil until soft, drain and mash.",
+        "Chop the spinach. Use lentils that are already cooked (boiled, or tinned and drained).",
+        "Mix the mash, lentils, spinach, flour, cumin and paprika.",
+        "Shape into patties.",
+        "Fry the patties in the oil over medium heat until golden on both sides and hot right through."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Lentil and Sweet Potato Patties\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/lentil-and-sweet-potato-patties/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 409,
+          "proteinG": 4.4,
+          "fibreG": 3.5,
+          "sugarG": 2.8,
+          "sodiumMg": 12
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "lentil-sweet-potato-patties",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "unknown",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "ginger-chicken-veg-stir-fry",
+      "name": "Ginger vegetable and chicken stir fry with brown rice",
+      "blurb": "Chicken, bok choy, broccoli and carrot stir-fried with ginger, on brown rice.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 35,
+      "ingredients": [
+        {
+          "ingredient": "carrot",
+          "grams": 61
+        },
+        {
+          "ingredient": "bok-choy",
+          "grams": 350
+        },
+        {
+          "ingredient": "onion",
+          "grams": 110
+        },
+        {
+          "ingredient": "broccoli",
+          "grams": 150
+        },
+        {
+          "ingredient": "chicken-thigh",
+          "grams": 400
+        },
+        {
+          "ingredient": "brown-rice",
+          "grams": 300
+        },
+        {
+          "ingredient": "ginger",
+          "grams": 18
+        },
+        {
+          "ingredient": "olive-oil",
+          "grams": 4.48
+        },
+        {
+          "ingredient": "soy-sauce-reduced",
+          "grams": 64
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "uncounted": [
+        "chilli-ground",
+        "sesame-oil",
+        "garlic",
+        "vinegar"
+      ],
+      "steps": [
+        "Cook the brown rice as the packet says, drain and keep warm.",
+        "Slice the chicken thinly. Cut the vegetables into small pieces and grate the ginger.",
+        "Stir-fry the chicken in the oil over high heat until browned, adding the ginger, a little garlic and a pinch of chilli near the end.",
+        "Check with a food thermometer in the thickest piece. Chicken needs 74°C. No pink inside is only a second sign.",
+        "Add the vegetables and soy sauce with a splash of water and toss until tender but still bright. Finish with a few drops of sesame oil and vinegar.",
+        "Serve over the rice."
+      ],
+      "safety": [
+        "rice",
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Ginger Vegetable and Chicken Stir fry\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/ginger-veggie-stir-fry-recipe/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "cookThroughSourceId": "nsw-fa-cooking-temps",
+      "safetySourceId": "nsw-fa-cooking-temps",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 1843,
+          "proteinG": 30.2,
+          "fibreG": 7.7,
+          "sugarG": 4.8,
+          "sodiumMg": 763
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "ginger-chicken-veg-stir-fry",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "sesame"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      }
+    },
+    {
+      "id": "san-choy-bow",
+      "name": "San choy bow (pork mince in lettuce cups)",
+      "blurb": "Pork mince and chopped vegetables spooned into crisp lettuce cups.",
+      "traditions": [],
+      "serves": 5,
+      "minutes": 30,
+      "ingredients": [
+        {
+          "ingredient": "lettuce",
+          "grams": 270
+        },
+        {
+          "ingredient": "sesame-oil",
+          "grams": 13.5
+        },
+        {
+          "ingredient": "carrot",
+          "grams": 122
+        },
+        {
+          "ingredient": "onion",
+          "grams": 110
+        },
+        {
+          "ingredient": "capsicum-red",
+          "grams": 119
+        },
+        {
+          "ingredient": "garlic",
+          "grams": 12
+        },
+        {
+          "ingredient": "pork-mince",
+          "grams": 500
+        },
+        {
+          "ingredient": "water-chestnut",
+          "grams": 200
+        },
+        {
+          "ingredient": "soy-sauce-reduced",
+          "grams": 32
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "uncounted": [
+        "coriander-fresh",
+        "ginger",
+        "chilli-green",
+        "spring-onion"
+      ],
+      "steps": [
+        "Finely chop the carrot, onion, capsicum and water chestnuts. Separate the lettuce leaves into cups.",
+        "Fry the pork mince in the sesame oil over high heat, breaking it up, until browned.",
+        "Check with a food thermometer in the thickest part. Minced meat needs 71°C. No pink inside is only a second sign.",
+        "Stir in the vegetables, garlic, soy sauce and a little grated ginger and chilli, and stir-fry until just tender.",
+        "Spoon into the lettuce cups and top with chopped spring onion and coriander."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 5 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"San Choy Bow\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/san-choy-bow/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "cookThroughSourceId": "nsw-fa-cooking-temps",
+      "safetySourceId": "nsw-fa-cooking-temps",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 1102,
+          "proteinG": 23.2,
+          "fibreG": 4.3,
+          "sugarG": 7.5,
+          "sodiumMg": 336
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "san-choy-bow",
+        "traditions": [],
+        "flags": {
+          "halal": "no",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "yes",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "sesame"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "simple-beef-nachos",
+      "name": "Simple beef nachos",
+      "blurb": "Spiced beef and tomato over corn chips, warmed in the oven, with sour cream.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 25,
+      "ingredients": [
+        {
+          "ingredient": "beef-mince-lean",
+          "grams": 450
+        },
+        {
+          "ingredient": "tomatoes-tinned",
+          "grams": 283
+        },
+        {
+          "ingredient": "taco-seasoning",
+          "grams": 6
+        },
+        {
+          "ingredient": "sour-cream",
+          "grams": 29
+        },
+        {
+          "ingredient": "corn-chips",
+          "grams": 200
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "steps": [
+        "Brown the beef mince in a frying pan over medium-high heat, breaking it up.",
+        "Check with a food thermometer in the thickest part. Minced meat needs 71°C. No pink inside is only a second sign.",
+        "Stir in the tinned tomatoes and taco seasoning and simmer until thick.",
+        "Spread the corn chips on a tray, spoon the beef over them and warm in a hot oven until hot right through.",
+        "Serve with the sour cream on top."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Cookbook:Simple Nachos\", Wikibooks, https://en.wikibooks.org/wiki/Cookbook:Simple_Nachos. Wikibooks Cookbook, Creative Commons Attribution-ShareAlike (CC BY-SA) as stated in the page footer. Only the ingredient list (facts) is used, no text is copied. Method written by us.",
+      "cookThroughSourceId": "nsw-fa-cooking-temps",
+      "safetySourceId": "nsw-fa-cooking-temps",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 1814,
+          "proteinG": 30.4,
+          "fibreG": 3.4,
+          "sugarG": 3,
+          "sodiumMg": 418
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "simple-beef-nachos",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      }
+    },
+    {
+      "id": "chicken-avocado-soft-tacos",
+      "name": "Chicken and avocado soft tacos",
+      "blurb": "Soft tortillas filled with shredded chicken, beans, salad and avocado.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 20,
+      "ingredients": [
+        {
+          "ingredient": "tortilla",
+          "grams": 256
+        },
+        {
+          "ingredient": "chicken-breast-baked",
+          "grams": 300
+        },
+        {
+          "ingredient": "beans-kidney-tinned",
+          "grams": 96
+        },
+        {
+          "ingredient": "cos-lettuce",
+          "grams": 48
+        },
+        {
+          "ingredient": "avocado",
+          "grams": 163.2
+        },
+        {
+          "ingredient": "tomato",
+          "grams": 99.2
+        },
+        {
+          "ingredient": "cucumber",
+          "grams": 40
+        },
+        {
+          "ingredient": "cheddar-reduced-fat",
+          "grams": 40
+        },
+        {
+          "ingredient": "sour-cream-light",
+          "grams": 40
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "uncounted": [
+        "red-onion"
+      ],
+      "steps": [
+        "Shred cooked chicken breast that has been kept in the fridge, then warm it in a pan until steaming hot.",
+        "Drain and rinse the beans. Slice the avocado, tomato and cucumber, tear the lettuce and grate the cheese.",
+        "Warm the tortillas in a dry pan until soft.",
+        "Fill each tortilla with chicken, beans, salad, avocado and cheese, add a few thin slices of red onion if you have it, and top with a spoonful of sour cream."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Chicken and Avocado Soft Tacos\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/chicken-and-avocado-soft-tacos/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 1919,
+          "proteinG": 32.2,
+          "fibreG": 5.9,
+          "sugarG": 5.1,
+          "sodiumMg": 655
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "chicken-avocado-soft-tacos",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      }
+    },
+    {
+      "id": "anzac-biscuits-home",
+      "name": "Home-baked Anzac biscuits",
+      "blurb": "Chewy oat and coconut biscuits sweetened with golden syrup. Six biscuits.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 30,
+      "ingredients": [
+        {
+          "ingredient": "flour-wheat",
+          "grams": 60
+        },
+        {
+          "ingredient": "sugar-white",
+          "grams": 48
+        },
+        {
+          "ingredient": "oats-rolled",
+          "grams": 38.9
+        },
+        {
+          "ingredient": "desiccated-coconut",
+          "grams": 22.3
+        },
+        {
+          "ingredient": "golden-syrup",
+          "grams": 20.2
+        },
+        {
+          "ingredient": "butter",
+          "grams": 54
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Heat the oven to moderate and line a tray with baking paper.",
+        "Mix the flour, sugar, oats and coconut in a bowl.",
+        "Melt the butter and golden syrup together, then stir in a little bicarbonate of soda mixed with a splash of hot water.",
+        "Pour into the dry mix and stir to a stiff dough, then roll into balls and flatten them on the tray with room to spread.",
+        "Bake until golden brown, then cool on the tray. They crisp up as they cool."
+      ],
+      "safety": [],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Cookbook:Anzac Biscuits I\", Wikibooks, https://en.wikibooks.org/wiki/Cookbook:Anzac_Biscuits_I. Wikibooks Cookbook, Creative Commons Attribution-ShareAlike (CC BY-SA) as stated in the page footer. Only the ingredient list (facts) is used, no text is copied. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 797,
+          "proteinG": 2.2,
+          "fibreG": 1.4,
+          "sugarG": 11.1,
+          "sodiumMg": 75
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "anzac-biscuits-home",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "oats",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "carrot-date-oat-biscuit",
+      "name": "Carrot, date and oat biscuit",
+      "blurb": "Soft biscuits of oats, dates, carrot and banana. Six biscuits.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 30,
+      "ingredients": [
+        {
+          "ingredient": "dates",
+          "grams": 24.5
+        },
+        {
+          "ingredient": "oats-rolled",
+          "grams": 40.5
+        },
+        {
+          "ingredient": "flour-wholemeal",
+          "grams": 45
+        },
+        {
+          "ingredient": "olive-oil",
+          "grams": 13.5
+        },
+        {
+          "ingredient": "egg",
+          "grams": 25
+        },
+        {
+          "ingredient": "sugar-brown",
+          "grams": 20.5
+        },
+        {
+          "ingredient": "carrot",
+          "grams": 61
+        },
+        {
+          "ingredient": "banana",
+          "grams": 59
+        },
+        {
+          "ingredient": "almonds",
+          "grams": 12.5
+        }
+      ],
+      "seasonings": [],
+      "uncounted": [
+        "cinnamon"
+      ],
+      "steps": [
+        "Heat the oven to moderate and line a tray with baking paper.",
+        "Chop the dates and almonds, grate the carrot and mash the banana.",
+        "Whisk one egg and use about half. Beat it with the oil and brown sugar, then stir in the banana, carrot, dates, almonds, oats, flour and a little cinnamon.",
+        "Spoon into six mounds on the tray and flatten them a little.",
+        "Bake until the biscuits are golden and firm and the egg is completely cooked."
+      ],
+      "safety": [],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Carrot, Date and Oat Biscuit\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/carrot-date-and-oat-biscuit/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "safetySourceId": "nsw-fa-eggs",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 523,
+          "proteinG": 2.9,
+          "fibreG": 2.6,
+          "sugarG": 8.3,
+          "sodiumMg": 13
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "carrot-date-oat-biscuit",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "oats",
+            "wheat",
+            "egg",
+            "almond"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "banana-blueberry-smoothie",
+      "name": "Banana and blueberry yoghurt smoothie",
+      "blurb": "A thick banana, blueberry and yoghurt smoothie made with milk.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 5,
+      "ingredients": [
+        {
+          "ingredient": "banana",
+          "grams": 118
+        },
+        {
+          "ingredient": "blueberries-frozen",
+          "grams": 155
+        },
+        {
+          "ingredient": "yoghurt",
+          "grams": 245
+        },
+        {
+          "ingredient": "milk-reduced-fat",
+          "grams": 244
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Break the banana into chunks and put it in a blender with the frozen blueberries.",
+        "Add the yoghurt and milk.",
+        "Blend until smooth, adding a splash more milk if it is too thick. Drink soon, or keep it in the fridge and drink it the same day."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Banana and Blueberry Smoothie\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/banana-and-blueberry-smoothie/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 496,
+          "proteinG": 5.7,
+          "fibreG": 1.9,
+          "sugarG": 13.9,
+          "sodiumMg": 58
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "banana-blueberry-smoothie",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "strawberry-yoghurt-smoothie",
+      "name": "Strawberry and yoghurt smoothie",
+      "blurb": "Strawberries, yoghurt and milk blended into a quick pink smoothie.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 5,
+      "ingredients": [
+        {
+          "ingredient": "strawberries",
+          "grams": 300
+        },
+        {
+          "ingredient": "milk-reduced-fat",
+          "grams": 244
+        },
+        {
+          "ingredient": "yoghurt",
+          "grams": 245
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Wash the strawberries and cut off the green tops.",
+        "Put them in a blender with the yoghurt and milk.",
+        "Blend until smooth. Drink soon, or keep it in the fridge and drink it the same day."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Strawberry Smoothie\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/strawberry-smoothie/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 397,
+          "proteinG": 5.7,
+          "fibreG": 1.6,
+          "sugarG": 10.1,
+          "sodiumMg": 57
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "strawberry-yoghurt-smoothie",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      }
     }
   ],
   "starters": [
@@ -9576,6 +10692,7 @@ export const recipesData: RecipesData = {
     "canola-oil"
   ],
   "notFound": [
+    "Swap recipes not made into Cook recipes: baked-fish-capsicum (sample cost about $6 a serve, above the $4.00 Cook limit) and beef-taco-roll (13 ingredient rows; only olive oil, tomato paste and taco seasoning are minor seasonings, so it cannot get down to 9 counted rows).",
     "Soak-and-boil dried bean recipes (including dried chickpeas, haricot and kidney beans) are not shipped: no official boiling or soaking source was read. Canned beans, chickpeas and split lentils are used instead.",
     "Raw seafood and raw fish recipes are not shipped; only fully cooked or tinned fish (tinned tuna and salmon) is used. No official source for cooking fish at home was recorded for the recipes.",
     "NSW Food Authority \"Food risk and you: what to eat with a weakened immune system\" (PDF, https://www.foodauthority.nsw.gov.au/media/8789) downloaded but its text could not be extracted (embedded fonts), so it was not read and the pregnancy and immune-system line stays omitted.",
