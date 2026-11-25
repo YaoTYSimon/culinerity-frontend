@@ -292,7 +292,7 @@ export default function App({ now = () => new Date().toISOString() }: { now?: ()
         <Dock current={view} onNavigate={go} />
 
         <footer className="pb-[calc(1.5rem+var(--dock-h))] px-4 text-[13px] text-muted">
-          Not medical advice. Sample prices and places. Swap pictures are drawn.
+          Not medical advice. Sample prices and places.
           <PhotoCredits />
           <details>
             <summary className="inline-flex min-h-11 cursor-pointer items-center rounded-full focus-ring">Data credits</summary>

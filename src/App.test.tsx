@@ -174,7 +174,7 @@ describe('App', () => {
     const footer = screen.getByRole('contentinfo');
     expect(footer).toHaveTextContent(/not medical advice/i);
     expect(footer).toHaveTextContent(/sample prices and places/i);
-    expect(footer).toHaveTextContent('Swap pictures are drawn.');
+    expect(footer).not.toHaveTextContent('drawn');
     expect(within(footer).getByText(`Photo credits (${PHOTO_CREDITS.length})`)).toBeInTheDocument();
     const details = footer.querySelector('details');
     expect(details).not.toBeNull();
