@@ -1,5 +1,5 @@
 import type { Recipe, RecipeMatch } from '@culinerity/core';
-import { iconKindFor, RecipeIcon } from './recipeIcons';
+import { RecipeImage } from './RecipeImage';
 import { PICKS_LABEL } from './pantryCopy';
 
 const MAX_PICKS = 5;
@@ -18,7 +18,7 @@ export function RecipePicks({ matches, byId, onOpen }: { matches: RecipeMatch[];
           return (
             <li key={m.recipeId} className="w-28 shrink-0">
               <button type="button" data-pick-id={m.recipeId} aria-label={`${recipe.name}, uses ${m.have} of your items`} onClick={() => onOpen(m.recipeId)} className="focus-ring motion-colors grid w-full justify-items-center gap-1.5 rounded-3xl p-1 text-center">
-                <RecipeIcon kind={iconKindFor(recipe.id)} size="lg" />
+                <RecipeImage recipeId={recipe.id} size="lg" />
                 <span className="text-sm font-semibold text-pretty [overflow-wrap:anywhere]">{recipe.name}</span>
                 <span className="text-xs text-muted">{`Uses ${m.have} of your items`}</span>
                 <span aria-hidden="true" className="flex gap-0.5">
