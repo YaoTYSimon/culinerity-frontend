@@ -3,6 +3,7 @@ import { AuthContext } from '../auth/useAuth';
 import { Avatar } from './Avatar';
 import { GROUP_ICONS } from './menuIcons';
 import { PillButton } from './PillButton';
+import { ThemeSwatches } from './ThemeSwatches';
 import { DeleteDialog, GuestAvatar, ProfileBlock } from './ProfileMenu';
 import type { NavTarget, View } from './views';
 
@@ -177,58 +178,79 @@ function MenuGroups({
     });
   return (
     <nav aria-label="Menu" className="grid gap-1">
-      {GROUPS.map(({ id, heading, items }) => {
-        const isOpen = opened.has(id);
-        const listId = `${panelId}-${id}-list`;
-        const GroupIcon = GROUP_ICONS[id];
-        return (
-          <div key={id}>
-            <button
-              type="button"
-              id={`${panelId}-${id}`}
-              aria-expanded={isOpen}
-              aria-controls={listId}
-              onClick={() => toggle(id)}
-              className="focus-ring motion-colors flex min-h-11 w-full items-center justify-between gap-2 rounded-full px-4 text-left text-sm font-semibold text-muted hover:bg-bg"
-            >
-              <span className="flex items-center gap-2.5">
-                <span aria-hidden className="grid size-6 place-items-center rounded-full bg-bg">
-                  <GroupIcon />
-                </span>
-                {heading}
-              </span>
-              <span aria-hidden className="grid size-6 place-items-center rounded-full bg-bg">
-                <svg
-                  viewBox="0 0 12 12"
-                  className={`size-3 motion-safe:transition-transform motion-safe:duration-200 ${isOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+      {GROUPS.map(({ id, heading, items }) => (
+        <div key={id}>
+          <GroupToggle id={id} heading={heading} panelId={panelId} isOpen={opened.has(id)} onToggle={toggle} />
+          <ul id={`${panelId}-${id}-list`} hidden={!opened.has(id)} aria-labelledby={`${panelId}-${id}`} className="grid grid-cols-2 items-start gap-x-1">
+            {items.map(({ to, label }) => (
+              <li key={to}>
+                <button
+                  ref={to === 'home' ? homeItem : undefined}
+                  type="button"
+                  aria-current={to === current || (to === 'home' && current === 'number') ? 'page' : undefined}
+                  onClick={() => onPick(to)}
+                  className="focus-ring motion-colors flex min-h-11 w-full items-center rounded-full px-4 text-left text-base font-semibold leading-tight hover:bg-bg aria-[current=page]:bg-bg"
                 >
-                  <path d="M2.5 4.5 6 8l3.5-3.5" />
-                </svg>
-              </span>
-            </button>
-            <ul id={listId} hidden={!isOpen} aria-labelledby={`${panelId}-${id}`} className="grid grid-cols-2 items-start gap-x-1">
-              {items.map(({ to, label }) => (
-                <li key={to}>
-                  <button
-                    ref={to === 'home' ? homeItem : undefined}
-                    type="button"
-                    aria-current={to === current || (to === 'home' && current === 'number') ? 'page' : undefined}
-                    onClick={() => onPick(to)}
-                    className="focus-ring motion-colors flex min-h-11 w-full items-center rounded-full px-4 text-left text-base font-semibold leading-tight hover:bg-bg aria-[current=page]:bg-bg"
-                  >
-                    {label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        );
-      })}
+                  {label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <div>
+        <GroupToggle id="colours" heading="Colours" panelId={panelId} isOpen={opened.has('colours')} onToggle={toggle} />
+        <div id={`${panelId}-colours-list`} hidden={!opened.has('colours')} role="group" aria-labelledby={`${panelId}-colours`}>
+          <ThemeSwatches />
+        </div>
+      </div>
     </nav>
+  );
+}
+
+/** A group heading: a disclosure button with the round icon and round chevron (`aria-expanded`, `aria-controls`). */
+function GroupToggle({
+  id,
+  heading,
+  panelId,
+  isOpen,
+  onToggle,
+}: {
+  id: string;
+  heading: string;
+  panelId: string;
+  isOpen: boolean;
+  onToggle: (id: string) => void;
+}) {
+  const GroupIcon = GROUP_ICONS[id];
+  return (
+    <button
+      type="button"
+      id={`${panelId}-${id}`}
+      aria-expanded={isOpen}
+      aria-controls={`${panelId}-${id}-list`}
+      onClick={() => onToggle(id)}
+      className="focus-ring motion-colors flex min-h-11 w-full items-center justify-between gap-2 rounded-full px-4 text-left text-sm font-semibold text-muted hover:bg-bg"
+    >
+      <span className="flex items-center gap-2.5">
+        <span aria-hidden className="grid size-6 place-items-center rounded-full bg-bg">
+          <GroupIcon />
+        </span>
+        {heading}
+      </span>
+      <span aria-hidden className="grid size-6 place-items-center rounded-full bg-bg">
+        <svg
+          viewBox="0 0 12 12"
+          className={`size-3 motion-safe:transition-transform motion-safe:duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M2.5 4.5 6 8l3.5-3.5" />
+        </svg>
+      </span>
+    </button>
   );
 }

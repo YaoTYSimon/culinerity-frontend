@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /*
- * Four themes (spec: welcome-themes-plate-redesign). The six role variables below are the only place colour
+ * Nine themes (spec: welcome-themes-plate-redesign). The six role variables below are the only place colour
  * values live; @theme maps them to Tailwind names (bg-bg, bg-surface, text-ink, text-muted, bg-accent, text-accent-ink).
  * Flat colour and tone steps only: no shadows at rest, no gradients, no hairlines.
  * scripts/contrast.mjs reads these blocks, so keep one declaration per line in `--name: #hex;` form.
@@ -44,6 +44,51 @@
   --muted: #5b4540;
   --accent: #8f1d37;
   --accent-ink: #ffffff;
+}
+[data-theme='ink'] {
+  color-scheme: dark;
+  --bg: #14202e;
+  --surface: #1f3045;
+  --ink: #e3e9f0;
+  --muted: #b4c2d3;
+  --accent: #7fb5e6;
+  --accent-ink: #14202e;
+}
+[data-theme='sage'] {
+  color-scheme: light;
+  --bg: #e3eadb;
+  --surface: #d3ddc8;
+  --ink: #1f2a1f;
+  --muted: #4a5a45;
+  --accent: #3b6b3e;
+  --accent-ink: #f4f8ee;
+}
+[data-theme='clay'] {
+  color-scheme: dark;
+  --bg: #3a1f18;
+  --surface: #4e2c22;
+  --ink: #f1e3d8;
+  --muted: #d9bfae;
+  --accent: #e0875f;
+  --accent-ink: #3a1f18;
+}
+[data-theme='sunrise'] {
+  color-scheme: light;
+  --bg: #fbe6d6;
+  --surface: #f3d3bc;
+  --ink: #3b2214;
+  --muted: #6a4a38;
+  --accent: #b0431a;
+  --accent-ink: #ffffff;
+}
+[data-theme='mono'] {
+  color-scheme: dark;
+  --bg: #000000;
+  --surface: #1c1c1c;
+  --ink: #ffffff;
+  --muted: #d4d4d4;
+  --accent: #ffd60a;
+  --accent-ink: #000000;
 }
 
 @theme inline {

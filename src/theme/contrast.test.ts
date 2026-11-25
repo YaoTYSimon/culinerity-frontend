@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { THEME_IDS } from '@culinerity/core';
 import { describe, expect, it } from 'vitest';
 import { checkThemes, contrastRatio } from '../../scripts/contrast.mjs';
 
@@ -14,8 +15,8 @@ describe('contrastRatio', () => {
 
 describe('theme contrast (WCAG AA)', () => {
   const results = checkThemes(css);
-  it('covers all four themes', () => {
-    expect(Object.keys(results).sort()).toEqual(['cream', 'sand', 'tobacco', 'walnut']);
+  it('covers every theme in the one theme list', () => {
+    expect(Object.keys(results).sort()).toEqual([...THEME_IDS].sort());
   });
   for (const [theme, pairs] of Object.entries(results)) {
     for (const p of pairs) {

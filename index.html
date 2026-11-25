@@ -10,7 +10,7 @@
     <script>
       // Runs before first paint so the chosen theme never flashes. Keep ids/key in step with @culinerity/core and localThemeStore.ts.
       (function () {
-        var themes = { tobacco: '#472913', sand: '#ddd6c6', walnut: '#2b2216', cream: '#f6efe6' };
+        var themes = { tobacco: '#472913', sand: '#ddd6c6', walnut: '#2b2216', cream: '#f6efe6', ink: '#14202e', sage: '#e3eadb', clay: '#3a1f18', sunrise: '#fbe6d6', mono: '#000000' };
         try {
           var id = localStorage.getItem('culinerity.theme.v1');
           if (Object.prototype.hasOwnProperty.call(themes, id)) {

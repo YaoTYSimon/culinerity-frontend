@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-// WCAG 2.x contrast check for the four themes, computed from the CSS tokens in src/index.css.
+// WCAG 2.x contrast check for every theme, computed from the CSS tokens in src/index.css.
 // Usage: node scripts/contrast.mjs   (exits 1 when a required pair fails)
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-const THEMES = ['tobacco', 'sand', 'walnut', 'cream'];
 const TEXT = 4.5;
 const CONTROL = 3;
 
@@ -27,12 +26,10 @@ export function contrastRatio(a, b) {
 /** Reads `--name: #hex;` declarations from the `:root` (tobacco) and `[data-theme='x']` blocks. */
 export function readThemes(css) {
   const out = {};
-  for (const theme of THEMES) {
-    const selector = theme === 'tobacco' ? ':root' : `\\[data-theme=['"]${theme}['"]\\]`;
-    const block = new RegExp(`${selector}\\s*\\{([^}]*)\\}`).exec(css);
-    if (!block) throw new Error(`No token block for theme "${theme}"`);
+  for (const block of css.matchAll(/(:root|\[data-theme=['"](\w+)['"]\])\s*\{([^}]*)\}/g)) {
+    const theme = block[2] ?? 'tobacco';
     out[theme] = {};
-    for (const m of block[1].matchAll(/--([\w-]+):\s*(#[0-9a-fA-F]{6})\s*;/g)) out[theme][m[1]] = m[2];
+    for (const m of block[3].matchAll(/--([\w-]+):\s*(#[0-9a-fA-F]{6})\s*;/g)) out[theme][m[1]] = m[2];
   }
   return out;
 }

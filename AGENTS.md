@@ -100,7 +100,7 @@ Cheaper, healthier swaps for what you crave, for anyone in Melbourne. React 19 +
 
 ## Themes
 
-Four themes: tobacco (default), sand, walnut, cream, switched by the dots in the header. The palettes live in `src/theme/tokens.ts` (single TypeScript source, used by `ThemeDots`); `src/index.css` must hold the same six values (and the no-flash script in `index.html` the `bg` colour), and `src/theme/tokens.test.ts` fails when they drift. `src/theme/contrast.test.ts` enforces contrast.
+Nine themes: tobacco (default), sand, walnut, cream, ink, sage, clay, sunrise, mono, chosen from the "Colours" group in the Menu (`ThemeSwatches`). The one list is `THEMES` in `packages/core/src/theme/theme.ts` (ids and names; ids, names and types derive from it); adding a theme means adding it there, in `tokens.ts`, `src/index.css` and the `index.html` no-flash map. The palettes live in `src/theme/tokens.ts` (single TypeScript source, used by `ThemeSwatches`); `src/index.css` must hold the same six values (and the no-flash script in `index.html` the `bg` colour), and `src/theme/tokens.test.ts` fails when they drift. `src/theme/contrast.test.ts` enforces contrast.
 
 To add a theme: add its id to `ThemeId` and `THEME_IDS`/`THEME_NAMES` in `packages/core/src/theme/theme.ts`; add its six values to `THEME_TOKENS` in `src/theme/tokens.ts`, a `[data-theme='id']` block in `src/index.css`, and the `themes` map (bg colour) in `index.html`; then run `npm test` and `node scripts/contrast.mjs`.
 
