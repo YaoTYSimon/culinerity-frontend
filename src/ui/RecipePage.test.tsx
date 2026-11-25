@@ -157,11 +157,11 @@ describe('RecipePage actions', () => {
 });
 
 describe('RecipePage icon', () => {
-  it('shows one decorative round food icon beside the name', () => {
+  it('shows one decorative round dish photo beside the name', () => {
     const r = stew();
     show(r, all(r));
-    const svgs = document.querySelectorAll('article svg[aria-hidden="true"]');
-    expect(svgs.length).toBeGreaterThan(0);
-    expect(document.querySelector('article .rounded-full svg')).not.toBeNull();
+    const img = document.querySelector('article img.rounded-full');
+    expect(img).not.toBeNull();
+    expect(img).toHaveAttribute('alt', '');
   });
 });

@@ -1,4 +1,5 @@
 import { isIsoDateTime } from '../budget/entries';
+import { cleanEquipment } from '../recipes/equipment';
 import { isIsoDay } from './dates';
 import {
   DATE_KINDS,
@@ -82,7 +83,9 @@ export function sanitizePantry(value: unknown): PantryState | undefined {
       staples: cleanStaples(value.staples),
       serves: isServes(value.serves) ? value.serves : DEFAULT_SERVES,
     };
-    return state.items.length === 0 && state.staples.length === 0 && state.serves === DEFAULT_SERVES ? undefined : state;
+    const equipment = cleanEquipment(value.equipment);
+    if (equipment.length > 0) state.equipment = equipment;
+    return state.items.length === 0 && state.staples.length === 0 && state.serves === DEFAULT_SERVES && !state.equipment ? undefined : state;
   } catch {
     return undefined;
   }

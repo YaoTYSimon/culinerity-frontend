@@ -60,6 +60,7 @@ export * from './tradeoffs/categories';
 export * from './tradeoffs/entries';
 export * from './cultural/source';
 export * from './recipes/types';
+export * from './recipes/equipment';
 export * from './recipes/source';
 export * from './pantry/types';
 export * from './pantry/sanitize';

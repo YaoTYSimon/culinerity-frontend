@@ -15,11 +15,15 @@ describe('popular craving tiles', () => {
     fireEvent.click(tile);
     const heading = await screen.findByRole('heading', { name: /swaps? for takeaway burger/i });
     expect(heading.parentElement!.querySelector('img')).not.toBeNull();
-    // swap ideas stay drawn
+    // swap ideas show their dish photo, round and decorative
     const list = screen.getAllByRole('list')[0];
     expect(list.querySelectorAll('li').length).toBeGreaterThan(0);
-    expect(list.querySelectorAll('img')).toHaveLength(0);
-    expect(list.querySelectorAll('svg').length).toBeGreaterThan(0);
+    const imgs = list.querySelectorAll('img');
+    expect(imgs.length).toBe(list.querySelectorAll('li').length);
+    for (const img of imgs) {
+      expect(img).toHaveAttribute('alt', '');
+      expect(img.className).toMatch(/rounded-full/);
+    }
   });
 });
 

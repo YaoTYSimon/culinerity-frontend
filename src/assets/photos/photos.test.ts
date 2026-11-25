@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { photoFor, photoUrl, PHOTO_CREDITS } from './index';
+import { allRecipes, SEED_DATA } from '@culinerity/core';
+import { DISH_PHOTO, photoFor, photoUrl, PHOTO_CREDITS, PHOTO_IDS } from './index';
 
 const IDS = ['burger', 'hot-chips', 'bubble-tea', 'instant-noodles', 'pizza', 'fried-chicken', 'kebab', 'pastry', 'soft-drink', 'chocolate'];
 
@@ -7,10 +8,29 @@ describe('photoFor', () => {
   it('resolves every photographed craving', () => {
     for (const id of IDS) expect(photoFor(id), id).toMatch(/\.jpg/);
   });
-  it('returns undefined for swaps and unknown ids', () => {
-    expect(photoFor('smash-burger')).toBeUndefined();
+  it('resolves swaps and recipes through their dish photo', () => {
+    expect(photoFor('smash-burger')).toBe(photoFor('burger'));
+    expect(photoFor('scrambled-eggs-toast')).toBe(photoFor('eggs-on-toast'));
+  });
+  it('returns undefined for unknown ids', () => {
     expect(photoFor('nope')).toBeUndefined();
     expect(photoFor('toString')).toBeUndefined();
+  });
+});
+
+describe('dish photos', () => {
+  const ids = [...new Set([...SEED_DATA.allCravingIds, ...SEED_DATA.swaps.map((s) => s.alternativeId), ...allRecipes().map((r) => r.id)])];
+  it('gives every craving, swap food and recipe a photo', () => {
+    const missing = ids.filter((id) => !photoFor(id));
+    expect(missing, `add a row to DISH_PHOTO for: ${missing.join(', ')}`).toEqual([]);
+  });
+  it('points every row at a photo file', () => {
+    const bad = Object.entries(DISH_PHOTO).filter(([, dish]) => !PHOTO_IDS.includes(dish));
+    expect(bad).toEqual([]);
+  });
+  it('has no stale ids and no row that hides an id own photo', () => {
+    expect(Object.keys(DISH_PHOTO).filter((id) => !ids.includes(id))).toEqual([]);
+    expect(Object.keys(DISH_PHOTO).filter((id) => PHOTO_IDS.includes(id))).toEqual([]);
   });
 });
 
@@ -32,8 +52,8 @@ describe('photoUrl (screen headers)', () => {
 
 describe('PHOTO_CREDITS', () => {
   it('has one complete entry per photo', () => {
-    expect(PHOTO_CREDITS).toHaveLength(17);
-    expect(PHOTO_CREDITS.map((c) => c.itemId).sort()).toEqual([...IDS, ...WELCOME, ...HEADERS].sort());
+    expect(PHOTO_CREDITS).toHaveLength(PHOTO_IDS.length);
+    expect(PHOTO_CREDITS.map((c) => c.itemId).sort()).toEqual([...PHOTO_IDS].sort());
     for (const c of PHOTO_CREDITS) {
       expect(c.title, c.itemId).toBeTruthy();
       expect(c.licence, c.itemId).toBe('CC0');
