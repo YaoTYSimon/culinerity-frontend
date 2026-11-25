@@ -21,6 +21,9 @@ interface Props {
   onProfile: (next: Profile) => void;
   now: Date;
   onNavigate: (to: NavTarget) => void;
+  /** Open this recipe straight away (from a swap's 'Cook it'); read once when the view opens. */
+  openRecipeId?: string | null;
+  onOpened?: () => void;
   /** Injected in tests. */
   newId?: () => string;
 }
@@ -39,14 +42,15 @@ function Nothing({ text, linkLabel, onLink }: { text: string; linkLabel: string;
 }
 
 /** Cook with what you have: recipes ranked by what the pantry covers, and the recipe page. All matching happens on this device. */
-export function CookView({ profile, onProfile, now, onNavigate, newId = defaultId }: Props) {
+export function CookView({ profile, onProfile, now, onNavigate, openRecipeId = null, onOpened, newId = defaultId }: Props) {
   const pantry = profile.pantry ?? EMPTY;
   const shopping = profile.shoppingList ?? [];
   const food = profile.foodProfile;
   const recipes = useMemo(() => allRecipes(), []);
   const highRisk = useMemo(() => new Set(pantryIngredients().filter((i) => i.highRisk).map((i) => i.id)), []);
   const prices = useMemo(() => priceTable(), []);
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [openId, setOpenId] = useState<string | null>(openRecipeId);
+  useEffect(() => { if (openRecipeId !== null) onOpened?.(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const result = useMemo(
     () => matchRecipes({ recipes, pantry, food, now, prices, substitutions: allSubstitutions(), highRisk, keep: openId ?? undefined }),
     [recipes, pantry, food, now, prices, highRisk, openId],

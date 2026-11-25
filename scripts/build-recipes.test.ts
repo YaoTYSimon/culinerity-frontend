@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { DATA_PATH as CULTURAL_PATH, deriveFlags } from './build-cultural.mjs';
-import { DATA_PATH, OUT_PATH, buildRecipes, mergedIngredients, recipeCostPerServe, validateRecipes } from './build-recipes.mjs';
+import { DATA_PATH, OUT_PATH, buildRecipes, expandSwapRecipes, mergedIngredients, recipeCostPerServe, validateRecipes } from './build-recipes.mjs';
 
 const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
 const cultural = () => JSON.parse(readFileSync(CULTURAL_PATH, 'utf8'));
@@ -58,7 +58,7 @@ describe('build-recipes validator', () => {
     expect(errorsFor((d) => { delete chicken(d).safetySourceId; chicken(d).steps[0] = 'Cook for 12 minutes.'; })).toMatch(/safetySourceId/);
   });
   it('rejects fewer than 40 recipes and fewer than 10 traditions with 2 recipes', () => {
-    expect(errorsFor((d) => (d.recipes = d.recipes.slice(0, 39)))).toMatch(/at least 40 recipes/);
+    expect(errorsFor((d) => { d.recipes = d.recipes.slice(0, 39); d.swapRecipes = []; })).toMatch(/at least 40 recipes/);
     expect(errorsFor((d) => d.recipes.forEach((r: any) => { if (r.traditions[0] === 'turkish') r.traditions = []; }))).toMatch(/10 traditions/);
   });
   it('rejects a raw poultry or mince recipe without cookThroughSourceId', () => {
@@ -126,5 +126,38 @@ describe('build-recipes output', () => {
     const price = (id: string) => d.ingredientPrices.find((p: any) => p.ingredient === id).perKg;
     const want = (r.ingredients.reduce((s: number, i: any) => s + (i.grams * price(i.ingredient)) / 1000, 0)) / r.serves;
     expect(recipeCostPerServe(r, new Map(d.ingredientPrices.map((p: any) => [p.ingredient, p.perKg])))).toBeCloseTo(want, 6);
+  });
+
+  describe('swap recipes', () => {
+    it('derives weights and nutrition from the swap food, never typed by hand', () => {
+      const d = data();
+      const c = cultural();
+      const { recipes, errs } = expandSwapRecipes(d, c);
+      expect(errs).toEqual([]);
+      expect(recipes.length).toBe(d.swapRecipes.length);
+      const nuggets = recipes.find((r: any) => r.id === 'chicken-veg-nuggets');
+      const food = c.foods.find((f: any) => f.id === 'chicken-veg-nuggets');
+      expect(nuggets.ingredients.find((i: any) => i.ingredient === 'chicken-mince').grams).toBe(400);
+      expect(nuggets.nutritionRows).toBe(food.recipe);
+      expect(nuggets.credit).toContain('Chicken and Veg Nuggets');
+      expect(nuggets.credit).toContain('https://hw.qld.gov.au/healthy-recipes/chicken-and-veg-nuggets/');
+      expect(nuggets.credit).toMatch(/CC BY 4\.0.*Method written by us\.$/);
+    });
+    it('keeps the swap food nutrition even when minor rows are not counted', () => {
+      const out = buildRecipes(data(), cultural(), TODAY);
+      expect(out).toContain('"uncounted"');
+      const recipes = JSON.parse(out.slice(out.indexOf('= {') + 2).replace(/;\s*$/, '')).recipes;
+      const r = recipes.find((x: any) => x.id === 'san-choy-bow');
+      expect(r.ingredients.length).toBe(9);
+      expect(r.uncounted).toEqual(['coriander-fresh', 'ginger', 'chilli-green', 'spring-onion']);
+    });
+    it('rejects an unknown swap food, a dropped row that is not in it, and a missing price', () => {
+      expect(errorsFor((d) => (d.swapRecipes[0].id = 'no-such-food'))).toMatch(/no swap food with that id/);
+      expect(errorsFor((d) => (d.swapRecipes[0].drop = ['unobtainium']))).toMatch(/drops unobtainium/);
+      expect(errorsFor((d) => (d.ingredientPrices = d.ingredientPrices.filter((p: any) => p.ingredient !== 'chicken-mince')))).toMatch(/chicken-mince has no price/);
+    });
+    it('needs the thermometer step for raw mince in a swap recipe', () => {
+      expect(errorsFor((d) => (d.swapRecipes.find((r: any) => r.id === 'simple-beef-nachos').steps = ['Brown the mince.', 'Add tomatoes and simmer.']))).toMatch(/thermometer/);
+    });
   });
 });

@@ -39,6 +39,9 @@ interface Props {
   cravingCost?: number | null;
   /** Credit for the published recipe behind a swap, keyed by the swap's item id. Absent means no link. */
   recipes?: Record<string, RecipeCredit>;
+  /** Swap ids that are also a Cook recipe, and what to do when 'Cook it' is chosen. Absent means no link. */
+  cookable?: ReadonlySet<string>;
+  onCook?: (recipeId: string) => void;
   /** The craving these swaps replace. With it, a collapsed "Where to get it" section shows under the list. */
   cravingId?: string;
   /** The suburb saved in the profile, offered as the starting text of the suburb box. */
@@ -53,7 +56,7 @@ function formatDate(iso: string): string | null {
   return noBreak(d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }));
 }
 
-export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies = [], nutritionNote = false, cravingHealth = null, cravingCost = null, recipes, cravingId, profileSuburb, onAddToWeek }: Props) {
+export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies = [], nutritionNote = false, cravingHealth = null, cravingCost = null, recipes, cookable, onCook, cravingId, profileSuburb, onAddToWeek }: Props) {
   const [added, setAdded] = useState<Record<string, number>>({});
   const anySample = swaps.some((s) => s.price?.isSample);
   return (
@@ -92,6 +95,11 @@ export function SwapResults({ swaps, notes, rulesOn = false, unmatchedAllergies 
                     <a href={recipe.url} target="_blank" rel="noopener noreferrer" className="focus-ring rounded-full underline underline-offset-2 hover:text-ink" aria-label={`Recipe: ${recipe.title} (${recipe.publisher}), opens in a new tab`}>
                       Recipe: {recipe.title} ({recipe.publisher})
                     </a>
+                  </p>
+                )}
+                {onCook && cookable?.has(alternative.id) && (
+                  <p className="text-xs">
+                    <button type="button" onClick={() => onCook(alternative.id)} className="focus-ring rounded-full font-semibold underline underline-offset-2" aria-label={`Cook it: ${alternative.name}`}>Cook it</button>
                   </p>
                 )}
                 <span role="status" className="block text-xs font-semibold empty:hidden">
