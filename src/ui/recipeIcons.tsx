@@ -20,6 +20,9 @@ export const RECIPE_ICON: Record<string, IconKind> = {
   'chicken-veg-nuggets': 'plate', 'beef-veg-sausage-rolls': 'plate', 'lentil-sweet-potato-patties': 'plate',
   'ginger-chicken-veg-stir-fry': 'rice', 'san-choy-bow': 'salad', 'simple-beef-nachos': 'tray', 'chicken-avocado-soft-tacos': 'sandwich',
   'anzac-biscuits-home': 'plate', 'carrot-date-oat-biscuit': 'plate', 'banana-blueberry-smoothie': 'bowl', 'strawberry-yoghurt-smoothie': 'bowl',
+  'avocado-salsa-pita-chips': 'plate', 'spiced-mixed-nuts': 'bowl', 'tropical-frozen-yoghurt-bites': 'bowl', 'mini-omelettes': 'egg',
+  'spinach-egg-roll-ups': 'sandwich', 'banana-bread-slice': 'plate', 'banana-blueberry-pikelets': 'plate', 'pizza-scrolls': 'plate',
+  'creamy-vegetable-pasta': 'pasta', 'chicken-pesto-pasta': 'pasta', 'tofu-noodle-veg-stir-fry': 'noodles', 'pumpkin-chickpea-coconut-curry': 'curry',
   'eggplant-chickpea-stew': 'curry', 'coconut-dhal': 'curry', 'green-bean-coconut-curry': 'curry', 'pumpkin-coconut-curry': 'curry',
 };
 

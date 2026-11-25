@@ -60,7 +60,9 @@ describe('pantry recipes data', () => {
     expect(pantryIngredients()[0].name).not.toBe('x');
   });
   it('has the swap foods as Cook recipes with the swap food weights, nutrition and a credit', () => {
-    const ids = ['chicken-veg-nuggets', 'beef-veg-sausage-rolls', 'lentil-sweet-potato-patties', 'ginger-chicken-veg-stir-fry', 'san-choy-bow', 'simple-beef-nachos', 'chicken-avocado-soft-tacos', 'anzac-biscuits-home', 'carrot-date-oat-biscuit', 'banana-blueberry-smoothie', 'strawberry-yoghurt-smoothie'];
+    const ids = ['chicken-veg-nuggets', 'beef-veg-sausage-rolls', 'lentil-sweet-potato-patties', 'ginger-chicken-veg-stir-fry', 'san-choy-bow', 'simple-beef-nachos', 'chicken-avocado-soft-tacos', 'anzac-biscuits-home', 'carrot-date-oat-biscuit', 'banana-blueberry-smoothie', 'strawberry-yoghurt-smoothie',
+      // batch 2 swap foods
+      'avocado-salsa-pita-chips', 'spiced-mixed-nuts', 'tropical-frozen-yoghurt-bites', 'mini-omelettes', 'spinach-egg-roll-ups', 'banana-bread-slice', 'banana-blueberry-pikelets', 'pizza-scrolls', 'creamy-vegetable-pasta', 'chicken-pesto-pasta', 'tofu-noodle-veg-stir-fry', 'pumpkin-chickpea-coconut-curry'];
     for (const id of ids) {
       const r = recipeById(id)!;
       const n = culturalData.catalogue.nutrition.find((x) => x.itemId === id)!;
@@ -72,6 +74,10 @@ describe('pantry recipes data', () => {
       expect(r.steps.length).toBeLessThanOrEqual(6);
     }
     expect(recipeById('san-choy-bow')!.cookThroughSourceId).toBe('nsw-fa-cooking-temps');
+    expect(recipeById('chicken-pesto-pasta')!.cookThroughSourceId).toBe('nsw-fa-cooking-temps');
+    expect(recipeById('mini-omelettes')!.safetySourceId).toBe('nsw-fa-eggs');
+    // still too costly (about $5.80 a serve) and too many rows (13, only 3 minor)
+    expect(recipeById('baked-fish-capsicum')).toBeUndefined();
     expect(recipeById('beef-taco-roll')).toBeUndefined();
   });
   it('does not change the cultural data: the cultural catalogue still has its 49 foods plus cravings', () => {
