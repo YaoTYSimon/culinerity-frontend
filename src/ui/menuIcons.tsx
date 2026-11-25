@@ -52,6 +52,13 @@ const Leaf = () => (
   </Glyph>
 );
 
+const Palette = () => (
+  <Glyph>
+    <path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.4 0 2-.9 2-1.8 0-1.2-1-1.5-1-2.7 0-.9.7-1.5 1.7-1.5H17a3.5 3.5 0 0 0 3.5-3.5C20.5 6.7 16.7 3.5 12 3.5Z" />
+    <path d="M7.5 11h.01M10 7.5h.01M14.5 7.5h.01" />
+  </Glyph>
+);
+
 /** One icon per menu group, keyed by the group id in `GROUPS`. */
 export const GROUP_ICONS: Record<string, () => ReactNode> = {
   today: Sun,
@@ -59,4 +66,5 @@ export const GROUP_ICONS: Record<string, () => ReactNode> = {
   food: Pot,
   find: Basket,
   about: Leaf,
+  colours: Palette,
 };

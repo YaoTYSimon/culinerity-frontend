@@ -1,13 +1,21 @@
-export type ThemeId = 'tobacco' | 'sand' | 'walnut' | 'cream';
+/** The one list of themes: ids and short names. Everything else (types, ids, names, switcher) derives from it. */
+export const THEMES = [
+  { id: 'tobacco', name: 'Tobacco' },
+  { id: 'sand', name: 'Sand' },
+  { id: 'walnut', name: 'Walnut' },
+  { id: 'cream', name: 'Cream' },
+  { id: 'ink', name: 'Ink' },
+  { id: 'sage', name: 'Sage' },
+  { id: 'clay', name: 'Clay' },
+  { id: 'sunrise', name: 'Sunrise' },
+  { id: 'mono', name: 'Mono' },
+] as const;
 
-export const THEME_IDS: readonly ThemeId[] = ['tobacco', 'sand', 'walnut', 'cream'];
+export type ThemeId = (typeof THEMES)[number]['id'];
+
+export const THEME_IDS: readonly ThemeId[] = THEMES.map((t) => t.id);
 export const DEFAULT_THEME: ThemeId = 'tobacco';
-export const THEME_NAMES: Record<ThemeId, string> = {
-  tobacco: 'Tobacco',
-  sand: 'Sand',
-  walnut: 'Walnut',
-  cream: 'Cream',
-};
+export const THEME_NAMES = Object.fromEntries(THEMES.map((t) => [t.id, t.name])) as Record<ThemeId, string>;
 
 /** Unknown or corrupt values fall back to the default theme. */
 export function parseTheme(v: unknown): ThemeId {

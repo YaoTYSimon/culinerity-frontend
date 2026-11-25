@@ -187,5 +187,17 @@ describe('Menu', () => {
       fireEvent.click(button);
       expect(heading('About')).toHaveAttribute('aria-expanded', 'false');
     });
+
+    it('Colours is a closed group with an icon that holds one swatch button per theme', () => {
+      render(<Menu current="swaps" onNavigate={() => {}} open />);
+      const colours = heading('Colours');
+      expect(colours).toHaveAttribute('aria-expanded', 'false');
+      expect(colours.querySelector('svg[aria-hidden="true"]')).not.toBeNull();
+      expect(screen.queryByRole('button', { name: 'Mono' })).not.toBeInTheDocument();
+      fireEvent.click(colours);
+      expect(colours).toHaveAttribute('aria-expanded', 'true');
+      expect(screen.getAllByRole('button', { pressed: true })).toHaveLength(1);
+      expect(screen.getByRole('button', { name: 'Mono' })).toBeInTheDocument();
+    });
   });
 });

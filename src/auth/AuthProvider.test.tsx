@@ -171,7 +171,9 @@ describe('theme', () => {
     seed('bbb', 'Alex', 'y two', 72);
     mount();
     await act(async () => void (await auth.signIn('aaa')));
-    fireEvent.click(screen.getByRole('button', { name: /walnut/i }));
+    fireEvent.click(screen.getByRole('button', { name: /^menu$/i }));
+    fireEvent.click(screen.getByRole('button', { name: 'Colours' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Walnut' }));
     expect(document.documentElement.dataset.theme).toBe('walnut');
     await act(async () => void (await auth.signIn('bbb')));
     expect(document.documentElement.dataset.theme).toBe('walnut');
