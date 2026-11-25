@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { addMissingToList, allRecipes, allSubstitutions, DEFAULT_SERVES, ingredientName, matchRecipes, pantryIngredients, priceTable, suggestAdditions, type PantryState, type Profile, type RecipeMatch } from '@culinerity/core';
+import { addMissingToList, allRecipes, allSubstitutions, DEFAULT_SERVES, equipmentPhrase, ingredientName, matchRecipes, pantryIngredients, priceTable, suggestAdditions, type EquipmentId, type PantryState, type Profile, type RecipeMatch } from '@culinerity/core';
 import { defaultId } from './AddSpend';
+import { Disclosure } from './Disclosure';
+import { KitchenPicker } from './KitchenPicker';
 import { hasFoodRules, noteLines } from './cookNotes';
 import { FocusHeading } from './FocusHeading';
 import { PageHeader } from './PageHeader';
 import {
-  COOK_ALL_HIDDEN, COOK_FREE_TEXT_ONLY, COOK_NO_PANTRY, COOK_NOTHING_CLOSE, COOK_NOTHING_NOW, COOK_RULES_LINE, SECTION_LABELS,
+  COOK_ALL_HIDDEN, COOK_BLOCKED, COOK_FREE_TEXT_ONLY, COOK_NO_PANTRY, COOK_NOTHING_CLOSE, COOK_NOTHING_KITCHEN, COOK_NOTHING_NOW, COOK_RULES_LINE, SECTION_LABELS,
 } from './pantryCopy';
 import { withPantry, withShopping } from './pantryProfile';
 import { PillButton } from './PillButton';
@@ -72,7 +74,7 @@ export function CookView({ profile, onProfile, now, onNavigate, openRecipeId = n
   const byId = new Map(recipes.map((r) => [r.id, r]));
   const notesFor = (m: RecipeMatch) => noteLines(m, pantry.items);
 
-  const open = openId ? result.matches.find((m) => m.recipeId === openId) : undefined;
+  const open = openId ? [...result.matches, ...result.blocked].find((m) => m.recipeId === openId) : undefined;
   const openRecipe = open ? byId.get(open.recipeId) : undefined;
   if (open && openRecipe) {
     const addMissing = () => {
@@ -118,10 +120,23 @@ export function CookView({ profile, onProfile, now, onNavigate, openRecipeId = n
   const hasNow = result.matches.some((m) => m.tier === 'now');
   const suggestions = suggestAdditions(result.matches).map((id) => ingredientName(id));
   const goPantry = () => onNavigate('pantry');
+  const setEquipment = (equipment: EquipmentId[]) => onProfile(withPantry(profile, { ...pantry, equipment }));
+  const blocked = result.blocked.length > 0 && (
+    <section aria-label={COOK_BLOCKED}>
+      <Disclosure printOpen={false} summary={<>{COOK_BLOCKED} <span className="font-normal text-muted">{result.blocked.length}</span></>}>
+        <ul className="grid">
+          {result.blocked.map((m) => (
+            <RecipeRow key={m.recipeId} recipe={byId.get(m.recipeId)!} match={m} serves={pantry.serves} notes={[`Needs ${equipmentPhrase(m.lacks)}`, ...notesFor(m)]} onOpen={setOpenId} />
+          ))}
+        </ul>
+      </Disclosure>
+    </section>
+  );
 
   let body;
   if (noPantry) body = <Nothing text={COOK_NO_PANTRY} linkLabel="Go to My pantry" onLink={goPantry} />;
   else if (freeTextOnly) body = <Nothing text={COOK_FREE_TEXT_ONLY} linkLabel="Search the ingredient list" onLink={goPantry} />;
+  else if (result.matches.length === 0 && result.blocked.length > 0) body = <p className="text-base text-pretty">{COOK_NOTHING_KITCHEN}</p>;
   else if (result.matches.length === 0) {
     body = result.hidden > 0
       ? <Nothing text={COOK_ALL_HIDDEN} linkLabel="Change my food settings" onLink={() => onNavigate('food')} />
@@ -165,7 +180,9 @@ export function CookView({ profile, onProfile, now, onNavigate, openRecipeId = n
           <p className="text-sm text-pretty text-muted">{`${result.hidden} ${result.hidden === 1 ? 'recipe is' : 'recipes are'} hidden because of what you told us to avoid.`}</p>
         )}
       </div>
+      <KitchenPicker have={pantry.equipment ?? []} onChange={setEquipment} />
       {body}
+      {blocked}
     </div>
   );
 }
