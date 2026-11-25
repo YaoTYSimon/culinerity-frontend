@@ -1,6 +1,7 @@
 import { useContext, useEffect, useId, useRef, useState, type KeyboardEvent, type RefObject } from 'react';
 import { AuthContext } from '../auth/useAuth';
 import { Avatar } from './Avatar';
+import { GROUP_ICONS } from './menuIcons';
 import { PillButton } from './PillButton';
 import { DeleteDialog, GuestAvatar, ProfileBlock } from './ProfileMenu';
 import type { NavTarget, View } from './views';
@@ -15,8 +16,9 @@ interface Props {
   onCreateProfile?: () => void;
 }
 
-export const GROUPS: { heading: string; items: { to: NavTarget; label: string }[] }[] = [
+export const GROUPS: { id: string; heading: string; items: { to: NavTarget; label: string }[] }[] = [
   {
+    id: 'today',
     heading: 'Today',
     items: [
       { to: 'home', label: 'Home' },
@@ -26,6 +28,7 @@ export const GROUPS: { heading: string; items: { to: NavTarget; label: string }[
     ],
   },
   {
+    id: 'money',
     heading: 'Money',
     items: [
       { to: 'budget', label: 'Budget' },
@@ -34,6 +37,7 @@ export const GROUPS: { heading: string; items: { to: NavTarget; label: string }[
     ],
   },
   {
+    id: 'food',
     heading: 'Food',
     items: [
       { to: 'cook', label: 'Cook with what you have' },
@@ -44,13 +48,15 @@ export const GROUPS: { heading: string; items: { to: NavTarget; label: string }[
     ],
   },
   {
-    heading: 'Help',
+    id: 'find',
+    heading: 'Find food',
     items: [
       { to: 'nearby', label: 'Nearby' },
       { to: 'support', label: 'Food support' },
     ],
   },
   {
+    id: 'about',
     heading: 'About',
     items: [
       { to: 'welcome', label: 'Welcome' },
@@ -143,7 +149,7 @@ export function Menu({ current, onNavigate, open: controlled, onOpenChange, onCr
 
 const groupOf = (current: View) => {
   const view = current === 'number' ? 'home' : current;
-  return GROUPS.find((g) => g.items.some((i) => i.to === view))?.heading;
+  return GROUPS.find((g) => g.items.some((i) => i.to === view))?.id;
 };
 
 /**
@@ -162,29 +168,35 @@ function MenuGroups({
   homeItem: RefObject<HTMLButtonElement | null>;
   onPick: (to: NavTarget) => void;
 }) {
-  const [opened, setOpened] = useState<Set<string>>(() => new Set(['Today', groupOf(current) ?? 'Today']));
-  const toggle = (heading: string) =>
+  const [opened, setOpened] = useState<Set<string>>(() => new Set(['today', groupOf(current) ?? 'today']));
+  const toggle = (id: string) =>
     setOpened((prev) => {
       const next = new Set(prev);
-      if (!next.delete(heading)) next.add(heading);
+      if (!next.delete(id)) next.add(id);
       return next;
     });
   return (
     <nav aria-label="Menu" className="grid gap-1">
-      {GROUPS.map(({ heading, items }) => {
-        const isOpen = opened.has(heading);
-        const listId = `${panelId}-${heading}-list`;
+      {GROUPS.map(({ id, heading, items }) => {
+        const isOpen = opened.has(id);
+        const listId = `${panelId}-${id}-list`;
+        const GroupIcon = GROUP_ICONS[id];
         return (
-          <div key={heading}>
+          <div key={id}>
             <button
               type="button"
-              id={`${panelId}-${heading}`}
+              id={`${panelId}-${id}`}
               aria-expanded={isOpen}
               aria-controls={listId}
-              onClick={() => toggle(heading)}
+              onClick={() => toggle(id)}
               className="focus-ring motion-colors flex min-h-11 w-full items-center justify-between gap-2 rounded-full px-4 text-left text-sm font-semibold text-muted hover:bg-bg"
             >
-              {heading}
+              <span className="flex items-center gap-2.5">
+                <span aria-hidden className="grid size-6 place-items-center rounded-full bg-bg">
+                  <GroupIcon />
+                </span>
+                {heading}
+              </span>
               <span aria-hidden className="grid size-6 place-items-center rounded-full bg-bg">
                 <svg
                   viewBox="0 0 12 12"
@@ -199,7 +211,7 @@ function MenuGroups({
                 </svg>
               </span>
             </button>
-            <ul id={listId} hidden={!isOpen} aria-labelledby={`${panelId}-${heading}`} className="grid grid-cols-2 items-start gap-x-1">
+            <ul id={listId} hidden={!isOpen} aria-labelledby={`${panelId}-${id}`} className="grid grid-cols-2 items-start gap-x-1">
               {items.map(({ to, label }) => (
                 <li key={to}>
                   <button

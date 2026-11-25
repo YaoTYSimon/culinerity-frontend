@@ -54,7 +54,7 @@ Files: the home views (`src/ui/CravingSearch.tsx` page or `NumberScreen.tsx`), `
 Run after the craving expansion and the "where to get it" view. Keep working down this list without waiting for a verdict.
 
 ### Task 8: collapsible menu groups
-Files: `src/ui/Menu.tsx` (exports `GROUPS`), its tests. Each group heading (Today, Money, Food, Help, About) becomes a disclosure button (`aria-expanded`, keyboard operable, round Plate styling, no cards or borders). Default: Today open, others closed; remember nothing sensitive (open state may live in memory only). Re-verify with Playwright at 390 and 1280 px.
+Files: `src/ui/Menu.tsx` (exports `GROUPS`), its tests. Each group heading (Today, Money, Food, Find food, About; "Find food" was "Help", renamed because Help reads as app support) becomes a disclosure button (`aria-expanded`, keyboard operable, round Plate styling, no cards or borders). Default: Today open, others closed; remember nothing sensitive (open state may live in memory only). Re-verify with Playwright at 390 and 1280 px.
 
 ### Task 9: pantry results show popular suggestions with pictures
 Files: the Cook with what you have screens (`src/ui/` pantry and recipe views), `packages/core/src/recipes/`. After a person enters what they have, show popular recipe suggestions first, each with a picture. Pictures: not hotlinked or copied from recipe sites (copyright, and the app makes no third-party requests). Use a round sample icon per recipe by default; real photos only if CC0 from Wikimedia Commons via the taste skill's assets.mjs, previewed to the user first, and bundled locally. "Popular" needs a cited basis or stays an editorial pick labelled as such; no invented counts.
