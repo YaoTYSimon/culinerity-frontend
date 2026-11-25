@@ -1684,6 +1684,70 @@ export const placeData: PlaceData = {
       "url": "https://carloscantina.com.au/",
       "licence": "Operator page, rights not stated; facts only (Carlos Cantina Blackburn: name, address, dish names). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
       "accessed": "2026-11-25"
+    },
+    {
+      "id": "boroondara-farmers-market-src",
+      "publisher": "City of Boroondara",
+      "title": "Boroondara Farmers Market dates 2026 event page and market page (held on the 3rd and 5th Saturday of each month at Patterson Reserve, 484 Auburn Road, Hawthorn; 8:00am to 12:30pm; 2026 sessions listed Saturday 21 November and Saturday 19 December; '$2 donation' in the event details; the market page says it does not run when there is a 5th Saturday in December; phone 9278 4444; footer '© City of Boroondara 2026, All Rights Reserved', no update date). Coordinates: exact match for 484 AUBURN ROAD HAWTHORN 3122 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-25; the page gives no coordinates",
+      "url": "https://www.boroondara.vic.gov.au/events/boroondara-farmers-market-dates-2026",
+      "licence": "City of Boroondara council event page, rights reserved; facts only (name, address, days, hours, donation). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-25"
+    },
+    {
+      "id": "abbotsford-convent-regional-farmers-market-src",
+      "publisher": "Abbotsford Convent",
+      "title": "Event page 'Regional Farmers Market at Abbotsford Convent' (second Saturday of the month, 9am to 2pm, Abbotsford Convent precinct, 1 St Heliers Street, Abbotsford VIC 3067, cost '$2, with proceeds going to the Abbotsford Convent'; no update date, the only year on the page is a 2023 photo credit) and the Convent's What's on page, which lists 'Regional Farmers Market at Abbotsford Convent' on 12 Dec 2026 with no time or price. Coordinates: exact match for 1 ST HELIERS STREET ABBOTSFORD 3067 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-25; the page gives no coordinates",
+      "url": "https://abbotsfordconvent.com.au/event/regional-farmers-market/",
+      "licence": "Operator page (Abbotsford Convent), rights not stated; facts only (name, address, day pattern, hours, entry cost). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-25"
+    },
+    {
+      "id": "alphington-farmers-market-src",
+      "publisher": "Melbourne Farmers Markets",
+      "title": "Alphington Farmers Market page (2 Wingrove St, Alphington, 'directly opposite Alphington Train Station'; every Sunday 9am to 1pm; 'voluntary $2 donation, card only', donations go back into running the market; the page still carries a 2025-26 holiday notice; site footer '© 2026, Melbourne Farmers Markets'; the mfm.com.au address redirects to this site). Coordinates: exact match for 2 WINGROVE STREET ALPHINGTON 3078 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-25; the page gives no coordinates",
+      "url": "https://melbourne-farmers-markets-mfm.myshopify.com/pages/alphington-farmers-market",
+      "licence": "Operator page (Melbourne Farmers Markets, Alphington page), rights not stated; facts only (name, address, days, hours, donation). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-25"
+    },
+    {
+      "id": "coburg-farmers-market-src",
+      "publisher": "Melbourne Farmers Markets",
+      "title": "Coburg Farmers Market page (held at Coburg Primary School, 92 Bell St, Coburg, entry from Urquhart Street; every Saturday 8am to 1pm; 'voluntary $2 donation, card only', donations fund school projects and the market's running costs; no holiday notice; site footer '© 2026, Melbourne Farmers Markets'). Coordinates: exact match for 92 BELL STREET COBURG 3058 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-25; the page gives no coordinates",
+      "url": "https://melbourne-farmers-markets-mfm.myshopify.com/pages/coburg-farmers-market",
+      "licence": "Operator page (Melbourne Farmers Markets, Coburg page), rights not stated; facts only (name, address, days, hours, donation). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-25"
+    },
+    {
+      "id": "st-johns-diamond-creek-food-support-src",
+      "publisher": "St John's Diamond Creek",
+      "title": "Food Support page (pantry 'located inside the portable building at the top of the carpark', 61 Main St, Diamond Creek; Monday 1:30 to 3:00 PM; 'finding the cost of living tough right now', 'Everyone is welcome!'; phone (03) 9438 1264; footer '© 2026 St John's Diamond Creek'). Coordinates: exact match for 61 MAIN STREET DIAMOND CREEK 3089 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-25; the page gives no coordinates",
+      "url": "https://stjohnsdc.org.au/food-support/",
+      "licence": "Operator page (St John's Diamond Creek), rights not stated; facts only (name, address, day, hours, welcome, phone). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-25"
+    },
+    {
+      "id": "millgrove-baptist-linc-social-supermarket-src",
+      "publisher": "LinC Yarra Valley Inc",
+      "title": "LinC Yarra Valley social supermarket page, Millgrove entry (Fridays 10:30am, Millgrove Baptist Church, 4 Cavanagh Road; 'no registration' needed for a first visit; page title 'free fresh food and groceries' but body text says paying a small amount helps preserve dignity; most sites close the Friday before Christmas and reopen in the new year; footer 'Copyright LinC Yarra Valley Inc.', no year or update date). Agreeing sources: Yarra Ranges Council food relief page (footer '© 2026 Yarra Ranges Council') lists Millgrove Baptist Church, 4 Cavanagh Road, Fridays 10.30 am to 11.30 am, food boxes (mostly fresh food), phone 03 5966 9482; the church's own activities page (footer '© 2021') says fresh vegetables, fruit and other food are given out every Friday at 10.30 am at the church. Coordinates: exact match for 4 CAVANAGH ROAD MILLGROVE 3799 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-25; the page gives no coordinates",
+      "url": "https://www.lincyarravalley.org.au/fresh-food-program/",
+      "licence": "Operator page (LinC Yarra Valley), rights not stated; facts only (name, address, day, time, registration). Council page: facts only. Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-25"
+    },
+    {
+      "id": "eltham-lions-pantry-dvcs-src",
+      "publisher": "Diamond Valley Community Support Inc",
+      "title": "Community Pantries page (Eltham Lions Club, 2 Youth Road, Eltham, 'Open 24/7'; 'Give what you can, take what you need'; 'Each Community Pantry is managed by local community groups'; no date or copyright on the page). Second source: Banyule Hardship and Emergency Relief Guide (cover 'Updated May 2026', title 'October 2026'), community pantries list 'Eltham Lions Club: 2 Youth Road, Eltham' with no days or times. Coordinates: exact match for 2 YOUTH ROAD ELTHAM 3095 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-25; the page gives no coordinates",
+      "url": "https://www.dvsupport.org.au/communitypantries",
+      "licence": "Diamond Valley Community Support web page, rights not stated; facts only (name, address, access hours). Banyule Council guide (PDF): facts only. Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-25"
+    },
+    {
+      "id": "food-is-free-ringwood-east-src",
+      "publisher": "Maroondah City Council",
+      "title": "Community directory entry 'Food is Free Ringwood East' (27 Rosedale Crescent, Ringwood East VIC 3135; volunteer-run free food cupboard, 'Give what you can. Take what you can use.'; open 24 hours a day, 7 days a week; footer '© 2026 Maroondah City Council', no update date; the page links a Facebook page, not opened). Coordinates: exact match for 27 ROSEDALE CRESCENT RINGWOOD EAST 3135 in Vicmap Address (State of Victoria, CC BY 4.0, open ArcGIS service Vicmap_Address), read 2026-11-25; the page gives no coordinates",
+      "url": "https://www.maroondah.vic.gov.au/Community-support-business/Community-Directory/Food-is-Free-Ringwood-East-1",
+      "licence": "Maroondah City Council community directory entry (council page), rights not stated; facts only (name, address, hours). Coordinates: Vicmap Address, CC BY 4.0 (State of Victoria)",
+      "accessed": "2026-11-25"
     }
   ],
   "places": [
@@ -5960,6 +6024,152 @@ export const placeData: PlaceData = {
       "checked": "2026-11-25",
       "sourceId": "carlos-cantina-blackburn-src",
       "verification": "primary"
+    },
+    {
+      "id": "boroondara-farmers-market-hawthorn",
+      "name": "Boroondara Farmers Market, Hawthorn",
+      "kind": "market",
+      "lat": -37.83566513731019,
+      "lng": 145.0336359486434,
+      "address": "Patterson Reserve, 484 Auburn Road, Hawthorn VIC 3122",
+      "suburb": "Hawthorn",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Third and fifth Saturday of each month, 8:00am to 12:30pm (not on a fifth Saturday in December)",
+      "note": "City of Boroondara's events page (copyright 2026, no update date) lists the 2026 sessions, including Saturday 21 November and Saturday 19 December, and a $2 donation. Product prices and what is sold are not stated on the page. Phone 9278 4444. Check Christmas and January dates before you go.",
+      "checked": "2026-11-25",
+      "sourceId": "boroondara-farmers-market-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "abbotsford-convent-regional-farmers-market",
+      "name": "Regional Farmers Market at Abbotsford Convent",
+      "kind": "market",
+      "lat": -37.80240613797601,
+      "lng": 145.00428985501037,
+      "address": "Abbotsford Convent, 1 St Heliers Street, Abbotsford VIC 3067",
+      "suburb": "Abbotsford",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Second Saturday of each month, 9am to 2pm",
+      "note": "Sources undated: the Convent's event page has no update date (its only year is a 2023 photo credit), but its What's on page lists the market on 12 December 2026. Entry is $2, with proceeds going to the Abbotsford Convent. Product prices and what is sold are not stated. Check the date before you go.",
+      "checked": "2026-11-25",
+      "sourceId": "abbotsford-convent-regional-farmers-market-src",
+      "verification": "primary"
+    },
+    {
+      "id": "alphington-farmers-market",
+      "name": "Alphington Farmers Market",
+      "kind": "market",
+      "lat": -37.77752151901389,
+      "lng": 145.0322897261721,
+      "address": "2 Wingrove Street, Alphington VIC 3078",
+      "suburb": "Alphington",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Sundays 9am to 1pm",
+      "note": "Entry is a voluntary $2 donation, card only, per the operator. Product prices and what is sold are not stated. The page's holiday notice is for the 2025-26 break, so check Christmas and New Year dates before you go.",
+      "checked": "2026-11-25",
+      "sourceId": "alphington-farmers-market-src",
+      "verification": "primary"
+    },
+    {
+      "id": "coburg-farmers-market",
+      "name": "Coburg Farmers Market",
+      "kind": "market",
+      "lat": -37.741185333217395,
+      "lng": 144.96816788327533,
+      "address": "Coburg Primary School, 92 Bell Street, Coburg VIC 3058",
+      "suburb": "Coburg",
+      "priceBand": "mid",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Saturdays 8am to 1pm (entry from Urquhart Street)",
+      "note": "Entry is a voluntary $2 donation, card only, per the operator. Product prices and what is sold are not stated. No Christmas notice on the page, so check holiday dates before you go.",
+      "checked": "2026-11-25",
+      "sourceId": "coburg-farmers-market-src",
+      "verification": "primary"
+    },
+    {
+      "id": "st-johns-diamond-creek-food-pantry",
+      "name": "St John's Diamond Creek Food Support Pantry",
+      "kind": "food-relief",
+      "lat": -37.6735756646893,
+      "lng": 145.14943494042947,
+      "address": "61 Main Street, Diamond Creek VIC 3089",
+      "suburb": "Diamond Creek",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Mondays 1:30pm to 3:00pm",
+      "note": "Cost not stated. The church's page says everyone is welcome and that the pantry is for people finding the cost of living tough; no referral or eligibility rule is stated. The pantry is inside the portable building at the top of the carpark. Phone (03) 9438 1264. Not listed: what food is offered; check Christmas and January dates before you go.",
+      "checked": "2026-11-25",
+      "sourceId": "st-johns-diamond-creek-food-support-src",
+      "verification": "primary"
+    },
+    {
+      "id": "millgrove-baptist-friday-food",
+      "name": "Millgrove Baptist Church Friday food (LinC social supermarket), Millgrove",
+      "kind": "food-relief",
+      "lat": -37.75294054286228,
+      "lng": 145.65299634014968,
+      "address": "Millgrove Baptist Church, 4 Cavanagh Road, Millgrove VIC 3799",
+      "suburb": "Millgrove",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [
+        "fresh"
+      ],
+      "access": "open",
+      "hours": "Fridays 10:30am to 11:30am, no registration needed for a first visit",
+      "note": "Cost not stated: LinC's page title says free fresh food, but its text says paying a small amount helps preserve dignity. LinC's page is undated; the Yarra Ranges Council page (copyright 2026) and the church's own page agree on the address and Friday 10:30am. LinC says most of its sites close the Friday before Christmas and reopen in the new year. Church office 03 5966 9482.",
+      "checked": "2026-11-25",
+      "sourceId": "millgrove-baptist-linc-social-supermarket-src",
+      "verification": "primary"
+    },
+    {
+      "id": "eltham-lions-club-community-pantry",
+      "name": "Eltham Lions Club community pantry",
+      "kind": "food-relief",
+      "lat": -37.71289645527696,
+      "lng": 145.14699955289697,
+      "address": "2 Youth Road, Eltham VIC 3095",
+      "suburb": "Eltham",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Open 24/7 (stated by Diamond Valley Community Support only)",
+      "note": "Cost not stated. Diamond Valley Community Support's pantry list says the pantry is open 24/7 on a give what you can, take what you need basis, but that page is undated and does not say what is stocked. Banyule Council's 2026 guide confirms the address only and gives no times. Check the pantry before you go.",
+      "checked": "2026-11-25",
+      "sourceId": "eltham-lions-pantry-dvcs-src",
+      "verification": "secondary"
+    },
+    {
+      "id": "food-is-free-ringwood-east",
+      "name": "Food is Free Ringwood East",
+      "kind": "food-relief",
+      "lat": -37.81321432374856,
+      "lng": 145.24162115622036,
+      "address": "27 Rosedale Crescent, Ringwood East VIC 3135",
+      "suburb": "Ringwood East",
+      "priceBand": "free",
+      "priceBasis": "typical",
+      "fit": [],
+      "access": "open",
+      "hours": "Open 24 hours a day, 7 days a week",
+      "note": "Cost not stated. The council's directory entry (copyright 2026, no update date) describes a volunteer-run free food cupboard where you can leave surplus food or take what you can use. No operator page was found, so check before you go.",
+      "checked": "2026-11-25",
+      "sourceId": "food-is-free-ringwood-east-src",
+      "verification": "secondary"
     }
   ],
   "notFound": [
@@ -6008,6 +6218,7 @@ export const placeData: PlaceData = {
     "Twenty-second pass, outer growth corridors (read 2026-11-21), 0 places added. Left out, with reasons: Gethsemane Church and Charity food pantry (Cranbourne, 1/8 Smethurst Street): its own page says everything is complimentary, no ID or health card needed, but gives no days or hours and no map, and the page was last modified 2020-10-02 (WordPress REST field); Shepherd's Table (Our Lady Help of Christians, 496 Princes Highway, Narre Warren): the parish page (modified 2025-10-08) gives only first and third Saturday meals with no time, cost or map, and the Diocese of Sale article is dated 24 January 2023; Whittlesea Community Connections food boxes (page carries a 2026 copyright and says everything is free for City of Whittlesea residents, Tuesdays and Fridays) because it gives no pick-up address, only delivery or pick-up by arrangement, and pantry items are referred on to Encompass Care; Hume Homestead Community Lunch (Roxburgh Park, free, Wednesdays 10:30am to 2pm): the council page lists only 28 January to 1 April 2026 dates, all ended; Thomastown Neighbourhood House (112 Main Street): the page describes no food service (mobile supermarket and pantry claims are on third-party pages only); Gurdwaras in Officer and Craigieburn, Kali Mata Mandir Craigieburn, Pataka community pantries (Kings Park, Deer Park, Sunshine West, Taylors Hill), BK 2 Basics (Narre Warren), Cranbourne Community House, Cranbourne Information and Support Service, NewStart Church Manor Lakes foodbank, Caroline Springs Stevenson House and Sunbury Community Centre lunch: no operator page or dated official listing with address, hours and a usable coordinate was found or reachable (search results were news, 2022-2023 Casey and Cardinia directories, undated listings or blocked Wyndham node pages, not used); the Salvation Army Whittlesea and Sunbury location pages returned 404. No mosque, temple or gurdwara in the target suburbs published an open-to-all meal on a current operator page. Pages that did not resolve or were the wrong site: blesscollective.org.au, cranbournecommunityhouse.org.au, gethsemanechurch.com.au, patakamovement.org (host not found), durgatemple.org and gurunanakdarbar.org (other countries).",
     "Twenty-third pass, eased source rule (read 2026-11-21; the user chose to accept council and operator pages with no date if two independent sources agree on address, days and times; 2023-or-earlier sources, conflicts and social, news or aggregator pages still excluded), 2 places added: Repurpose And Serve (South Morang) now has its own operator page (Get Food Relief, copyright 2026, modified 2026-10-24), so it is `primary`, re-added after the twelfth-pass removal, and Whitehorse Farmers' Market (Nunawading), re-added after the nineteenth-pass skip as `secondary` from the undated operator page plus the undated Whitehorse council directory entry. Left out, with reasons: Northpoint Centre Tullamarine (its operator Locations and Contact pages agree on Tuesday to Thursday 9am to 11:30am and 12pm to 2pm at 3 Trade Park Drive, but both footers say 2019 and the 2026 Brimbank list gives Monday to Thursday 9am to 4pm and Friday 9am to 1pm, a conflict, and the 2026 Merri-bek list confirms only the address) and its Craigieburn and Goonawarra satellites (the operator Locations page is the only source; no council or other listing carries them); Salvation Army Altona (the Hobsons Bay Corps location page gives only the address and phone, no hours, so there is no second source); Hope Centre Bundoora (its own page, modified 2026-10-31, says 5/19 Enterprise Drive with a main entrance at 30 Graduate Road and a map pin near 20 Graduate Road, while the Whittlesea list says 5/17 Enterprise Drive; the sources conflict on address and the pin is about 160 m from the nearest Enterprise Drive point); Warrandyte Riverside Market (the operator site and Warrandyte Community Association agree on the first Saturday 8am to 1pm at Stiggants Reserve, Yarra Street, but neither gives a street number, the market runs along a riverbank strip from Anderson's Creek Bridge to Police Road and its map link is a view centre, not a pin; Manningham's council page is on the do-not-retry list); Lilydale Rotary market (the Yarra Ranges event page returned 404 and the Rotary club site returned a 403 challenge, not worked around); Sikh Volunteers Langwarrin tiffin (no map, no second source); Watsonia Neighbourhood House lunch and Open Table pantry (no second source with a time and venue found); Noble Park Community Centre (the operator pages give no street number, the council PDFs do not count alone); Compass Community Care Bentleigh East, Gethsemane Church Cranbourne and Shepherd's Table Narre Warren (still no hours or time on any page); Helping Hands Mission Sunshine pantry (the conflict between the Brimbank list's $5 and the operator's no-cost wording is unresolved, and no pantry address); Whittlesea Community Connections food boxes (no pick-up address in either source).",
     "Craving restaurants pass (operator pages read 2026-11-23, research file 2026-11-23-craving-restaurants.md), 12 of 17 venues added as checked places, sources undated (operator page only). Left out, with reasons: Sahar Takeaway (252-254 Thomas St, Dandenong): Vicmap Address has no point for 252 or 254 Thomas Street Dandenong, so no coordinate within 50 m could be confirmed; Broadway Fish and Chips (232 Broadway, Reservoir): Vicmap Address has no point for 232 Broadway Reservoir (242 exists, 10 numbers away, not used); Hoa Tran (246A Springvale Road, at the rear, Springvale): no Vicmap point for 246A (a point exists for 246, but the rear unit is not it); Saigon Rex (1/17 Balmoral Avenue, Springvale): no Vicmap point for 17 Balmoral Avenue; Gabbies Pizza-Pasta-Kitchen (Glenroy): the printed address '796m Pascoe Vale Rd' is incomplete, so it was skipped. Hours are not stated for any added venue (the research file recorded only whether hours were present).",
-    "Craving restaurants pass 2 (operator pages read 2026-11-25, research file 2026-11-25-craving-restaurants-2.md), 24 of 28 venues added as checked places, sources undated (operator page only). Left out, with reasons: Off The Boat Fish & Chippery & Kebab (2-10 William Thwaites Blvd, Cranbourne): Vicmap Address has a point only for number 2 (in Cranbourne North), none for 4, 6, 8 or 10, so a coordinate within 50 m of the whole printed 2-10 range could not be confirmed; St Albans Pizza Point (171 Main Rd W, St Albans): Vicmap Address has no point for 171 Main Road West (171 Main Road East is a different road, not used); Hola Mexico (Karingal Hub, S205/197 Karingal Dr, Frankston): the printed address has no street number of its own and the page names a branch elsewhere, so it was skipped; Dakao Hoang Restaurant (6/17 Balmoral Avenue, Springvale): the page shows only (c) 2022, marked weak in the research file, and Vicmap Address has no point for 17 Balmoral Avenue (seen in pass 1). Hours are not stated for any added venue (the research file recorded only whether hours were present)."
+    "Craving restaurants pass 2 (operator pages read 2026-11-25, research file 2026-11-25-craving-restaurants-2.md), 24 of 28 venues added as checked places, sources undated (operator page only). Left out, with reasons: Off The Boat Fish & Chippery & Kebab (2-10 William Thwaites Blvd, Cranbourne): Vicmap Address has a point only for number 2 (in Cranbourne North), none for 4, 6, 8 or 10, so a coordinate within 50 m of the whole printed 2-10 range could not be confirmed; St Albans Pizza Point (171 Main Rd W, St Albans): Vicmap Address has no point for 171 Main Road West (171 Main Road East is a different road, not used); Hola Mexico (Karingal Hub, S205/197 Karingal Dr, Frankston): the printed address has no street number of its own and the page names a branch elsewhere, so it was skipped; Dakao Hoang Restaurant (6/17 Balmoral Avenue, Springvale): the page shows only (c) 2022, marked weak in the research file, and Vicmap Address has no point for 17 Balmoral Avenue (seen in pass 1). Hours are not stated for any added venue (the research file recorded only whether hours were present).",
+    "Twenty-sixth pass (operator and council pages read 2026-11-25), 8 places added: Boroondara Farmers Market (Hawthorn), Regional Farmers Market at Abbotsford Convent (Abbotsford), Alphington and Coburg farmers markets (Melbourne Farmers Markets), St John's Diamond Creek Food Support Pantry, Millgrove Baptist Church Friday food (LinC), Eltham Lions Club community pantry and Food is Free Ringwood East. Left out, with reasons: Rosanna Fire Station Community House pantry (232 Lower Plenty Road; operator page, Banyule guide and Diamond Valley Community Support list agree, but Vicmap Address has no point for 232, only 230, 231, 233 and 236); LCIS Community Cafe Friday session at Altona Meadows Community Centre (28-36 Trafalgar Avenue; no Vicmap point for 28-36); Discovery Community Care food relief, Mount Evelyn (87 Monbulk Road, Wednesdays 3pm to 6pm on the operator page; no Vicmap point for 87, only 81-85 and 89); Dandenong Ranges Emergency Relief Service, Belgrave (1616-1624 Burwood Highway; no Vicmap point in that range); Montrose Church of Christ (7 Leith Road) and Hope on Friday, Tecoma (3 Clifford Grove): no Vicmap point, and the Tecoma church page does not mention the program; Koha Community Cafe, Warburton (25A Dammans Road has a Vicmap point, but only a news report and an events listing give the meal and pantry times, no operator page was found); LinC Yarra Valley sites other than Millgrove: Wandin North (LinC says Fridays 10:30am, Yarra Ranges Council lists the Wandin Senior Citizens' site at 11am, a conflict), Woori Yallock, Yarra Junction (Wednesday at Zac's Place; Friday at the Yarraburn Centre until February 2027) have only the undated LinC page; Hurstbridge Hub pantry (Vines Baptist Church, 50 Graysharps Road) and Eltham LinC pantry (conflicting street numbers 29-31 and 79-81 Pitt Street, dropped earlier for that reason): one undated list only; Rotary Diamond Creek Pantry (the Diamond Creek Traders page gives Diamond Creek Community Centre, Main Hurstbridge Road, Saturdays from 9am, no street number; the Rotary page returned HTTP 500); Foothills Community Care Upwey meal (operator page now says the Foothills Hub, 62-64 Main Street, above the IGA, while the council page and Feed One Feed All say Upwey Baptist Church, 21 Darling Avenue; its footer says 2019); ADRA Community Pantry, Upper Ferntree Gully (operator Monday 1pm to 4pm against Knox council Monday 1pm to 3pm by appointment); Compass Community Care Pantry, Bentleigh East (footer 2021, no hours); Banksia Gardens pantry at Kenley Court, Meadow Heights (footer 2021); Kingsbury Drive Community Market, Bundoora (footer 2021, Carpark 3 with no street number); Carlton Farmers Market (Melbourne Farmers Markets; no street number); Essendon Farmers Market (no operator page found); Fitzroy Market (mixed craft and vintage market, not added); Magpie Nest Cafe (the Collingwood Football Club page gives no address or hours); Port Phillip free food directory and South Melbourne Market visit page (HTTP 429, not retried); Yarra City Council food relief page (HTTP 403, not worked around); Lentil as Anything (the old domain redirects to an unrelated site); Darebin Food Guide May 2026 and Merri-bek community meals PDFs (text could not be read by the fetch tool); Local 2 Community, Frankston North (its site has no pantry details) and Project Fresh Start community fridges (conflicting restock days, Frankston already has four places)."
   ]
 };
