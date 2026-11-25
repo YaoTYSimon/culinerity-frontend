@@ -18,6 +18,15 @@ describe('cleanName', () => {
   it('empty is empty', () => expect(cleanName('   ')).toBe(''));
 });
 
+describe('sanitizePantry equipment', () => {
+  it('keeps known equipment even with nothing else, drops the rest', () => {
+    expect(sanitizePantry({ items: [], staples: [], serves: 2, equipment: ['oven', 'spoon', 'oven'] })).toEqual({ items: [], staples: [], serves: 2, equipment: ['oven'] });
+  });
+  it('omits an empty or invalid list', () => {
+    expect(sanitizePantry({ items: [], staples: [], serves: 3, equipment: 'oven' })).toEqual({ items: [], staples: [], serves: 3 });
+  });
+});
+
 describe('sanitizePantry', () => {
   it.each([['str', 'x'], ['array', []], ['null', null], ['number', 3]])('%s is undefined', (_n, v) => {
     expect(sanitizePantry(v)).toBeUndefined();

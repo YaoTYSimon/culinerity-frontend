@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { EQUIPMENT_IDS } from '../packages/core/src/recipes/equipment';
 import { DATA_PATH as CULTURAL_PATH, deriveFlags } from './build-cultural.mjs';
 import { DATA_PATH, OUT_PATH, buildRecipes, expandSwapRecipes, mergedIngredients, recipeCostPerServe, validateRecipes } from './build-recipes.mjs';
 
@@ -24,6 +25,17 @@ describe('build-recipes validator', () => {
   });
   it('the committed generated file is up to date', () => {
     expect(readFileSync(OUT_PATH, 'utf8')).toBe(buildRecipes(data(), cultural(), TODAY));
+  });
+  it('rejects missing, unknown or repeated equipment, for recipes and swap recipes', () => {
+    expect(errorsFor((d) => delete first(d).needs)).toMatch(/needs must be a list/);
+    expect(errorsFor((d) => (first(d).needs = ['spoon']))).toMatch(/equipment spoon is unknown/);
+    expect(errorsFor((d) => (first(d).needs = ['stove', 'stove']))).toMatch(/listed twice/);
+    expect(errorsFor((d) => delete d.swapRecipes[0].needs)).toMatch(/needs must be a list/);
+  });
+  it('knows the same equipment ids as the core table', () => {
+    const used = new Set<string>(data().recipes.concat(data().swapRecipes).flatMap((r: any) => r.needs));
+    for (const id of used) expect(EQUIPMENT_IDS).toContain(id);
+    expect(errorsFor((d) => (first(d).needs = [...EQUIPMENT_IDS]))).not.toMatch(/equipment .* is unknown/);
   });
   it('rejects an ingredient id that is not in the table', () => {
     expect(errorsFor((d) => (first(d).ingredients[0].ingredient = 'unobtainium'))).toMatch(/unobtainium.*not in the ingredient table/);

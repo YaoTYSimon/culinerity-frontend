@@ -203,3 +203,43 @@ describe('Good with what you have', () => {
     expect(within(section('Good with what you have')).getAllByRole('button').length).toBeLessThanOrEqual(5);
   });
 });
+
+describe('CookView equipment', () => {
+  it('offers everything and shows no "Can\'t make yet" when no equipment is chosen', () => {
+    show({ initial: pantryOf(dal) });
+    expect(within(section('You can cook this now')).getByRole('button', { name: 'Spinach dal' })).toBeInTheDocument();
+    expect(screen.queryByText("Can't make yet")).not.toBeInTheDocument();
+  });
+
+  it('saves the kitchen with the pantry, on this device only', async () => {
+    const onSave = vi.fn();
+    const user = show({ initial: pantryOf(dal), onSave });
+    await user.click(screen.getByText('My kitchen'));
+    await user.click(screen.getByRole('button', { name: 'Stove' }));
+    expect(onSave.mock.lastCall?.[0].pantry.equipment).toEqual(['stove']);
+    expect(within(section('You can cook this now')).getByRole('button', { name: 'Spinach dal' })).toBeInTheDocument();
+  });
+
+  it('moves recipes that need missing equipment under "Can\'t make yet" with a short reason', async () => {
+    const user = show({ initial: pantryOf(dal, { equipment: ['oven'] }) });
+    expect(screen.queryByRole('region', { name: 'You can cook this now' })).not.toBeInTheDocument();
+    await user.click(screen.getByText("Can't make yet"));
+    const blocked = screen.getByRole('region', { name: "Can't make yet" });
+    expect(within(blocked).getByRole('button', { name: 'Spinach dal' })).toBeInTheDocument();
+    expect(within(blocked).getAllByText('Needs a stove').length).toBeGreaterThan(0);
+  });
+
+  it('puts a recipe back as soon as the equipment is ticked', async () => {
+    const user = show({ initial: pantryOf(dal, { equipment: ['oven'] }) });
+    await user.click(screen.getByText('My kitchen'));
+    await user.click(screen.getByRole('button', { name: 'Stove' }));
+    expect(within(section('You can cook this now')).getByRole('button', { name: 'Spinach dal' })).toBeInTheDocument();
+  });
+
+  it('can still open a recipe from "Can\'t make yet"', async () => {
+    const user = show({ initial: pantryOf(dal, { equipment: ['oven'] }) });
+    await user.click(screen.getByText("Can't make yet"));
+    await user.click(within(screen.getByRole('region', { name: "Can't make yet" })).getByRole('button', { name: 'Spinach dal' }));
+    expect(screen.getByRole('heading', { level: 1, name: 'Spinach dal' })).toBeInTheDocument();
+  });
+});

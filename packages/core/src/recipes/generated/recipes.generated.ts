@@ -6624,6 +6624,10 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 1,
       "minutes": 10,
+      "needs": [
+        "stove",
+        "toaster"
+      ],
       "ingredients": [
         {
           "ingredient": "egg",
@@ -6695,6 +6699,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 2,
       "minutes": 25,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "rice",
@@ -6770,6 +6777,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "pasta-dry",
@@ -6849,6 +6859,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 3,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "lentil-red",
@@ -6920,6 +6933,10 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 2,
       "minutes": 10,
+      "needs": [
+        "stove",
+        "toaster"
+      ],
       "ingredients": [
         {
           "ingredient": "baked-beans",
@@ -6984,6 +7001,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 2,
       "minutes": 10,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "rolled-oats",
@@ -7047,6 +7067,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "chickpeas-canned",
@@ -7121,6 +7144,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 2,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "potato",
@@ -7189,6 +7215,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "corn-canned",
@@ -7265,6 +7294,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 3,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "salmon-canned",
@@ -7340,6 +7372,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 3,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "rice",
@@ -7420,6 +7455,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 2,
       "minutes": 10,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "bread-white",
@@ -7485,6 +7523,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "chickpeas-canned",
@@ -7575,6 +7616,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "potato",
@@ -7661,6 +7705,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "lentil-red",
@@ -7743,6 +7790,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 40,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "chicken-thigh",
@@ -7835,6 +7885,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "cabbage-white",
@@ -7911,6 +7964,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "rice",
@@ -7998,6 +8054,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "egg",
@@ -8091,6 +8150,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "potato",
@@ -8177,6 +8239,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "egg",
@@ -8255,6 +8320,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 25,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "tofu-firm",
@@ -8336,6 +8404,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "rice-noodles-boiled",
@@ -8416,6 +8487,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "chicken-breast",
@@ -8498,6 +8572,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "pasta-dry",
@@ -8576,6 +8653,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 40,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "carrot",
@@ -8665,6 +8745,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "spaghetti",
@@ -8743,6 +8826,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 45,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "beef-mince",
@@ -8831,6 +8917,7 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 10,
+      "needs": [],
       "ingredients": [
         {
           "ingredient": "cucumber",
@@ -8908,6 +8995,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "rice",
@@ -8983,6 +9073,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 45,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "lentil-green",
@@ -9061,6 +9154,10 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 60,
+      "needs": [
+        "stove",
+        "oven"
+      ],
       "ingredients": [
         {
           "ingredient": "chicken-drumstick",
@@ -9138,6 +9235,10 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 10,
+      "needs": [
+        "stove",
+        "blender"
+      ],
       "ingredients": [
         {
           "ingredient": "chickpeas-canned",
@@ -9217,6 +9318,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 45,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "lentil-green",
@@ -9292,6 +9396,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 15,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "pita-bread",
@@ -9378,6 +9485,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "lamb-mince",
@@ -9467,6 +9577,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "rice-noodles-boiled",
@@ -9550,6 +9663,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "chicken-breast",
@@ -9638,6 +9754,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 25,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "tofu-firm",
@@ -9719,6 +9838,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 45,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "chicken-thigh",
@@ -9797,6 +9919,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "eggplant",
@@ -9875,6 +10000,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 25,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "cabbage-white",
@@ -9961,6 +10089,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "egg",
@@ -10042,6 +10173,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "bulgur",
@@ -10118,6 +10252,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 45,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "eggplant",
@@ -10196,6 +10333,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "lentil-red",
@@ -10274,6 +10414,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 2,
       "minutes": 25,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "green-beans",
@@ -10352,6 +10495,9 @@ export const recipesData: RecipesData = {
       ],
       "serves": 3,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "pumpkin",
@@ -10428,6 +10574,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 5,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "chicken-mince",
@@ -10521,6 +10670,10 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 4,
       "minutes": 50,
+      "needs": [
+        "stove",
+        "oven"
+      ],
       "ingredients": [
         {
           "ingredient": "carrot",
@@ -10610,6 +10763,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 6,
       "minutes": 40,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "sweet-potato-orange",
@@ -10693,6 +10849,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 4,
       "minutes": 35,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "carrot",
@@ -10793,6 +10952,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 5,
       "minutes": 30,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "lettuce",
@@ -10891,6 +11053,10 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 4,
       "minutes": 25,
+      "needs": [
+        "stove",
+        "oven"
+      ],
       "ingredients": [
         {
           "ingredient": "beef-mince-lean",
@@ -10967,6 +11133,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 4,
       "minutes": 20,
+      "needs": [
+        "stove"
+      ],
       "ingredients": [
         {
           "ingredient": "tortilla",
@@ -11060,6 +11229,10 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 6,
       "minutes": 30,
+      "needs": [
+        "stove",
+        "oven"
+      ],
       "ingredients": [
         {
           "ingredient": "flour-wheat",
@@ -11136,6 +11309,10 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 6,
       "minutes": 30,
+      "needs": [
+        "stove",
+        "oven"
+      ],
       "ingredients": [
         {
           "ingredient": "dates",
@@ -11229,6 +11406,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 4,
       "minutes": 5,
+      "needs": [
+        "blender"
+      ],
       "ingredients": [
         {
           "ingredient": "banana",
@@ -11295,6 +11475,9 @@ export const recipesData: RecipesData = {
       "traditions": [],
       "serves": 4,
       "minutes": 5,
+      "needs": [
+        "blender"
+      ],
       "ingredients": [
         {
           "ingredient": "strawberries",

@@ -1,5 +1,6 @@
 import { certifiedMeatNote, fitsProfile, type Fit } from '../food/rules';
 import type { FoodProfile } from '../food/types';
+import { lackedEquipment, type EquipmentId } from '../recipes/equipment';
 import type { Recipe, Substitution } from '../recipes/types';
 import { dateStatus, type DateStatus } from './dates';
 import type { PantryItem, PantryState } from './types';
@@ -30,6 +31,8 @@ export interface RecipeMatch {
   usesSoon: string[];
   fit: 'fits' | 'check';
   kitchen: boolean;
+  /** Equipment the recipe needs that the person has not ticked; empty when they have it all or have not said. */
+  lacks: EquipmentId[];
   certifiedMeat: 'halal' | 'kosher' | null;
   /** Pantry item ids past a best-before that this recipe uses: show the "look and smell" line. */
   checkDates: string[];
@@ -183,7 +186,8 @@ function compareMatches(nameOf: (id: string) => string) {
     nameOf(a.recipeId).localeCompare(nameOf(b.recipeId));
 }
 
-export function matchRecipes(input: MatchInput): { matches: RecipeMatch[]; hidden: number; setAside: PantryItem[] } {
+/** `matches` are what can be made with the kit the person has; `blocked` are near matches that need kit they have not ticked (never offered as makeable, but listed so nothing vanishes). */
+export function matchRecipes(input: MatchInput): { matches: RecipeMatch[]; blocked: RecipeMatch[]; hidden: number; setAside: PantryItem[] } {
   const usable = usableItems(input.pantry, input.now, input.highRisk);
   const matches: RecipeMatch[] = [];
   let hidden = 0;
@@ -208,13 +212,15 @@ export function matchRecipes(input: MatchInput): { matches: RecipeMatch[]; hidde
       usesSoon: used.filter((u) => SOON_STATUSES.has(u.status.status)).map((u) => u.item.id),
       fit,
       kitchen: sameTradition(recipe, input.food),
+      lacks: lackedEquipment(recipe.needs, input.pantry.equipment),
       certifiedMeat: input.food ? certifiedMeatNote(recipe.info, input.food.rules) : null,
       checkDates: used.filter((u) => u.status.status === 'check-look').map((u) => u.item.id),
     });
   }
   const names = new Map(input.recipes.map((r) => [r.id, r.name]));
   matches.sort(compareMatches((id) => names.get(id) ?? id));
-  return { matches, hidden, setAside: usable.setAside };
+  const blocked = matches.filter((m) => m.lacks.length > 0);
+  return { matches: matches.filter((m) => m.lacks.length === 0), blocked, hidden, setAside: usable.setAside };
 }
 
 /** The single missing ingredients that unlock the most `one`-tier recipes; ties by id. */
