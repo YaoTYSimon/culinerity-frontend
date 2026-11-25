@@ -48,6 +48,21 @@ describe('CravingSearch', () => {
     expect(onCook).toHaveBeenCalledWith('chicken-veg-nuggets');
   });
 
+  it('shows Cook it for a batch 2 swap and none for the two that cannot be recipes', async () => {
+    const onCook = vi.fn();
+    render(
+      <ServicesProvider services={createServices()}>
+        <CravingSearch profile={{}} onAddToWeek={onAdd} onCook={onCook} />
+      </ServicesProvider>,
+    );
+    search('pad thai');
+    fireEvent.click(await screen.findByRole('button', { name: /cook it: tofu, noodle and vegetable stir fry/i }));
+    expect(onCook).toHaveBeenCalledWith('tofu-noodle-veg-stir-fry');
+    search('fish and chips');
+    await screen.findByText(/recipe: baked fish/i);
+    expect(screen.queryByRole('button', { name: /cook it: baked fish/i })).not.toBeInTheDocument();
+  });
+
   it.each([
     ['nachos', /recipe: cookbook:simple nachos \(wikibooks\)/i],
     ['fish and chips', /recipe: baked fish \(health and wellbeing queensland\)/i],

@@ -1120,6 +1120,54 @@
   {
    "ingredient": "strawberries",
    "perKg": 12
+  },
+  {
+   "ingredient": "pasta-sauce-tomato",
+   "perKg": 4
+  },
+  {
+   "ingredient": "parmesan",
+   "perKg": 30
+  },
+  {
+   "ingredient": "mushroom-button",
+   "perKg": 9
+  },
+  {
+   "ingredient": "mayonnaise-low-fat",
+   "perKg": 9
+  },
+  {
+   "ingredient": "hummus",
+   "perKg": 12
+  },
+  {
+   "ingredient": "passionfruit-pulp",
+   "perKg": 30
+  },
+  {
+   "ingredient": "pineapple-canned-juice",
+   "perKg": 5
+  },
+  {
+   "ingredient": "flour-self-raising",
+   "perKg": 2
+  },
+  {
+   "ingredient": "flour-wholemeal-self-raising",
+   "perKg": 2.5
+  },
+  {
+   "ingredient": "soy-sauce-nutrition",
+   "perKg": 8
+  },
+  {
+   "ingredient": "noodle-soba-dry",
+   "perKg": 9
+  },
+  {
+   "ingredient": "honey",
+   "perKg": 12
   }
  ],
  "substitutions": [
@@ -3904,10 +3952,267 @@
     "Put them in a blender with the yoghurt and milk.",
     "Blend until smooth. Drink soon, or keep it in the fridge and drink it the same day."
    ]
+  },
+  {
+   "id": "avocado-salsa-pita-chips",
+   "serves": 4,
+   "minutes": 20,
+   "needs": ["oven"],
+   "blurb": "Chunky avocado, tomato and corn salsa with crisp baked pita wedges.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [],
+   "steps": [
+    "Heat the oven to moderate. Cut the pita into wedges, spread them on a tray and bake until crisp and lightly golden.",
+    "Chop the tomato, chilli, coriander and red onion finely and drain the corn.",
+    "Mash the avocado roughly with a fork and stir in the chopped salad and the corn.",
+    "Serve the salsa with the pita chips. Eat it the same day, as avocado darkens."
+   ]
+  },
+  {
+   "id": "spiced-mixed-nuts",
+   "serves": 6,
+   "minutes": 20,
+   "needs": ["oven"],
+   "blurb": "Almonds baked with honey and cinnamon for a small crunchy handful.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [],
+   "steps": [
+    "Heat the oven to moderate and line a tray with baking paper.",
+    "Warm the honey and oil together, then stir in the cinnamon and toss the almonds through until coated.",
+    "Spread the nuts in one layer and bake, stirring once, until they smell toasty and look lightly golden.",
+    "Cool completely on the tray, then break up any clumps and keep in a jar."
+   ]
+  },
+  {
+   "id": "tropical-frozen-yoghurt-bites",
+   "serves": 6,
+   "minutes": 15,
+   "needs": [],
+   "blurb": "Banana, pineapple, passionfruit and yoghurt spooned out and frozen into cool bites.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [
+    "leftovers"
+   ],
+   "steps": [
+    "Mash the banana well with a fork, then stir in the yoghurt until smooth.",
+    "Drain the pineapple lightly and fold it through with the passionfruit pulp.",
+    "Spoon small mounds onto a lined tray, or into a mini muffin tray.",
+    "Freeze until firm, a few hours or overnight, then move them to a container and keep them frozen."
+   ]
+  },
+  {
+   "id": "mini-omelettes",
+   "serves": 3,
+   "minutes": 25,
+   "needs": ["oven"],
+   "blurb": "Egg baked in a muffin tray with capsicum, carrot and mushroom. Two per serve.",
+   "drop": [],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "leftovers"
+   ],
+   "safetySourceId": "nsw-fa-eggs",
+   "steps": [
+    "Heat the oven to moderate and grease a six-hole muffin tray. Grate the carrot and finely chop the capsicum and mushrooms.",
+    "Beat the eggs in a jug and stir in the vegetables and a little pepper.",
+    "Pour the mixture evenly into the six holes.",
+    "Bake until puffed and the eggs are cooked until completely firm all the way through. Cool a little before lifting out."
+   ]
+  },
+  {
+   "id": "spinach-egg-roll-ups",
+   "serves": 4,
+   "minutes": 25,
+   "needs": ["stove"],
+   "blurb": "Hard-boiled egg mashed with mayonnaise, rolled up in flatbread with hummus and salad.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [
+    "leftovers"
+   ],
+   "safetySourceId": "nsw-fa-eggs",
+   "steps": [
+    "Put the eggs in a pot of cold water, bring to the boil and simmer until the eggs are completely firm right through, white and yolk. Cool in cold water.",
+    "Peel and mash the eggs with the mayonnaise.",
+    "Grate the carrot, slice the cucumber into strips and shred the spinach.",
+    "Spread the hummus over each flatbread, add the egg, then the vegetables and roll up tightly. Cut in half."
+   ]
+  },
+  {
+   "id": "banana-bread-slice",
+   "serves": 6,
+   "minutes": 60,
+   "needs": ["oven"],
+   "blurb": "A small, soft banana loaf with dates and a little wholemeal flour. Cut into six slices.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [
+    "leftovers"
+   ],
+   "safetySourceId": "nsw-fa-eggs",
+   "steps": [
+    "Heat the oven to moderate and line a small loaf tin with baking paper. Chop the dates.",
+    "Mash the bananas well, then beat in about three-quarters of a beaten egg, the milk and the oil.",
+    "Stir in both flours, the cinnamon and the dates until just mixed.",
+    "Spoon into the tin and bake until a skewer comes out clean and the egg is cooked until completely firm. Cool before slicing."
+   ]
+  },
+  {
+   "id": "banana-blueberry-pikelets",
+   "serves": 6,
+   "minutes": 25,
+   "needs": ["stove"],
+   "blurb": "Thick banana and blueberry pikelets cooked in a pan. Makes a stack for six.",
+   "drop": [],
+   "seasonings": [],
+   "safety": [
+    "leftovers"
+   ],
+   "safetySourceId": "nsw-fa-eggs",
+   "steps": [
+    "Mash the banana well, then whisk in the milk and about three-quarters of a beaten egg.",
+    "Stir in the flour until just combined, then fold through the blueberries.",
+    "Heat a non-stick pan with a thin film of oil on medium heat and drop in spoonfuls of batter.",
+    "Cook until bubbles show, flip, and cook until golden with the egg completely firm in the middle. Keep warm while you cook the rest."
+   ]
+  },
+  {
+   "id": "pizza-scrolls",
+   "serves": 6,
+   "minutes": 45,
+   "needs": ["oven"],
+   "blurb": "Yoghurt dough spread with tomato paste, vegetables and cheese, rolled and baked.",
+   "drop": [
+    "oregano-dried"
+   ],
+   "seasonings": [],
+   "safety": [
+    "leftovers"
+   ],
+   "steps": [
+    "Heat the oven to moderate and line a tray. Finely chop the tomato, capsicum and red onion.",
+    "Mix both flours with the yoghurt and a splash of milk to a soft dough, then roll it into a rectangle.",
+    "Spread with tomato paste, scatter over the vegetables, cheese and a pinch of oregano, then roll up from the long side.",
+    "Cut into six slices, lay them flat on the tray and bake until golden and the cheese is bubbling."
+   ]
+  },
+  {
+   "id": "creamy-vegetable-pasta",
+   "serves": 6,
+   "minutes": 35,
+   "needs": ["stove"],
+   "blurb": "Pasta in a creamy tomato sauce full of grated and chopped vegetables.",
+   "drop": [
+    "garlic",
+    "olive-oil",
+    "capsicum-red",
+    "cauliflower"
+   ],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "pasta",
+    "leftovers"
+   ],
+   "steps": [
+    "Cook the pasta as the packet says, drain and keep warm.",
+    "Grate the carrot and sweet potato and chop the zucchini and tomato. Chop the capsicum and cauliflower small, with a little garlic.",
+    "Soften the garlic and vegetables in the oil in a large pan, then add the pasta sauce and simmer until the vegetables are tender.",
+    "Stir in the milk and sour cream, warm through without boiling, then mix through the pasta and top with the cheese."
+   ]
+  },
+  {
+   "id": "chicken-pesto-pasta",
+   "serves": 4,
+   "minutes": 40,
+   "needs": ["stove"],
+   "blurb": "Chicken, zucchini and tomato tossed through penne with a fresh basil and parmesan pesto.",
+   "drop": [
+    "parsley",
+    "pine-nuts",
+    "garlic",
+    "chilli-green"
+   ],
+   "seasonings": [
+    "pepper"
+   ],
+   "safety": [
+    "pasta",
+    "leftovers"
+   ],
+   "cookThroughSourceId": "nsw-fa-cooking-temps",
+   "safetySourceId": "nsw-fa-cooking-temps",
+   "steps": [
+    "Cook the pasta as the packet says, drain and keep warm.",
+    "Chop the basil very finely and mix with the grated parmesan, chopped pine nuts and a little oil to make a rough pesto.",
+    "Cut the chicken into small pieces and fry in the oil over medium-high heat with the onion, a little garlic and chilli until browned.",
+    "Check with a food thermometer in the thickest piece. Chicken needs 74°C. No pink inside is only a second sign.",
+    "Add the zucchini, tomato and spinach and stir until the spinach wilts, then toss through the pasta and pesto with a little chopped parsley."
+   ]
+  },
+  {
+   "id": "tofu-noodle-veg-stir-fry",
+   "serves": 4,
+   "minutes": 30,
+   "needs": ["stove"],
+   "blurb": "Crisp tofu and plenty of vegetables stir-fried with soba noodles and soy sauce.",
+   "drop": [
+    "cornflour",
+    "sesame-oil",
+    "garlic",
+    "ginger",
+    "honey",
+    "chilli-green"
+   ],
+   "seasonings": [],
+   "safety": [
+    "leftovers"
+   ],
+   "steps": [
+    "Cook the soba noodles as the packet says, drain and rinse.",
+    "Pat the tofu dry, cut into cubes and toss in a little cornflour. Cut the vegetables into thin strips.",
+    "Fry the tofu in a hot pan with a little sesame oil until golden, then lift out.",
+    "Stir-fry the onion and hard vegetables with the garlic, ginger and chilli, then add the soft vegetables, noodles, tofu, soy sauce and a little honey.",
+    "Toss until hot and top with chopped coriander."
+   ]
+  },
+  {
+   "id": "pumpkin-chickpea-coconut-curry",
+   "serves": 4,
+   "minutes": 40,
+   "needs": ["stove"],
+   "blurb": "Pumpkin and chickpeas simmered in coconut milk and tomato, served over rice.",
+   "drop": [
+    "turmeric",
+    "cumin",
+    "coriander-ground",
+    "garlic",
+    "ginger"
+   ],
+   "seasonings": [
+    "salt"
+   ],
+   "safety": [
+    "rice",
+    "leftovers"
+   ],
+   "steps": [
+    "Cook the rice as the packet says, drain and keep warm.",
+    "Cut the pumpkin into small cubes and chop the onion. Chop the chilli, garlic and ginger.",
+    "Soften the onion in the oil, then stir in the garlic, ginger, chilli, turmeric, cumin and ground coriander until fragrant.",
+    "Add the tomatoes, coconut milk, pumpkin and chickpeas and simmer until the pumpkin is soft.",
+    "Serve over the rice with chopped coriander."
+   ]
   }
  ],
  "notFound": [
-  "Swap recipes not made into Cook recipes: baked-fish-capsicum (sample cost about $6 a serve, above the $4.00 Cook limit) and beef-taco-roll (13 ingredient rows; only olive oil, tomato paste and taco seasoning are minor seasonings, so it cannot get down to 9 counted rows).",
+  "Swap recipes not made into Cook recipes: baked-fish-capsicum (sample cost about $5.80 a serve, above the $4.00 Cook limit) and beef-taco-roll (13 ingredient rows; only olive oil, tomato paste and taco seasoning are minor seasonings, so at most 3 can be uncounted and 10 rows would be counted, above the limit of 9). Both were re-checked on 2026-11-25 and still break those limits.",
   "Soak-and-boil dried bean recipes (including dried chickpeas, haricot and kidney beans) are not shipped: no official boiling or soaking source was read. Canned beans, chickpeas and split lentils are used instead.",
   "Raw seafood and raw fish recipes are not shipped; only fully cooked or tinned fish (tinned tuna and salmon) is used. No official source for cooking fish at home was recorded for the recipes.",
   "NSW Food Authority \"Food risk and you: what to eat with a weakened immune system\" (PDF, https://www.foodauthority.nsw.gov.au/media/8789) downloaded but its text could not be extracted (embedded fonts), so it was not read and the pregnancy and immune-system line stays omitted.",

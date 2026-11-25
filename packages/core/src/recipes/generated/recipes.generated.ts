@@ -6527,6 +6527,54 @@ export const recipesData: RecipesData = {
     {
       "ingredient": "strawberries",
       "perKg": 12
+    },
+    {
+      "ingredient": "pasta-sauce-tomato",
+      "perKg": 4
+    },
+    {
+      "ingredient": "parmesan",
+      "perKg": 30
+    },
+    {
+      "ingredient": "mushroom-button",
+      "perKg": 9
+    },
+    {
+      "ingredient": "mayonnaise-low-fat",
+      "perKg": 9
+    },
+    {
+      "ingredient": "hummus",
+      "perKg": 12
+    },
+    {
+      "ingredient": "passionfruit-pulp",
+      "perKg": 30
+    },
+    {
+      "ingredient": "pineapple-canned-juice",
+      "perKg": 5
+    },
+    {
+      "ingredient": "flour-self-raising",
+      "perKg": 2
+    },
+    {
+      "ingredient": "flour-wholemeal-self-raising",
+      "perKg": 2.5
+    },
+    {
+      "ingredient": "soy-sauce-nutrition",
+      "perKg": 8
+    },
+    {
+      "ingredient": "noodle-soba-dry",
+      "perKg": 9
+    },
+    {
+      "ingredient": "honey",
+      "perKg": 12
     }
   ],
   "substitutions": [
@@ -11532,6 +11580,1047 @@ export const recipesData: RecipesData = {
           "certifiedMeat": false
         }
       }
+    },
+    {
+      "id": "avocado-salsa-pita-chips",
+      "name": "Avocado salsa with baked pita chips",
+      "blurb": "Chunky avocado, tomato and corn salsa with crisp baked pita wedges.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 20,
+      "needs": [
+        "oven"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "pita-bread",
+          "grams": 160
+        },
+        {
+          "ingredient": "avocado",
+          "grams": 136
+        },
+        {
+          "ingredient": "tomato",
+          "grams": 41
+        },
+        {
+          "ingredient": "chilli-green",
+          "grams": 13.3
+        },
+        {
+          "ingredient": "coriander-fresh",
+          "grams": 10
+        },
+        {
+          "ingredient": "red-onion",
+          "grams": 18.3
+        },
+        {
+          "ingredient": "corn-kernels-tinned",
+          "grams": 27.3
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Heat the oven to moderate. Cut the pita into wedges, spread them on a tray and bake until crisp and lightly golden.",
+        "Chop the tomato, chilli, coriander and red onion finely and drain the corn.",
+        "Mash the avocado roughly with a fork and stir in the chopped salad and the corn.",
+        "Serve the salsa with the pita chips. Eat it the same day, as avocado darkens."
+      ],
+      "safety": [],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Avocado Salsa and Pita Chips\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/avocado-salsa-and-pita-chips/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 712,
+          "proteinG": 4.8,
+          "fibreG": 4.4,
+          "sugarG": 2.1,
+          "sodiumMg": 215
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "avocado-salsa-pita-chips",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "spiced-mixed-nuts",
+      "name": "Honey and cinnamon spiced nuts",
+      "blurb": "Almonds baked with honey and cinnamon for a small crunchy handful.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 20,
+      "needs": [
+        "oven"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "almonds",
+          "grams": 128.7
+        },
+        {
+          "ingredient": "honey",
+          "grams": 9.6
+        },
+        {
+          "ingredient": "olive-oil",
+          "grams": 4.08
+        },
+        {
+          "ingredient": "cinnamon",
+          "grams": 0.78
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Heat the oven to moderate and line a tray with baking paper.",
+        "Warm the honey and oil together, then stir in the cinnamon and toss the almonds through until coated.",
+        "Spread the nuts in one layer and bake, stirring once, until they smell toasty and look lightly golden.",
+        "Cool completely on the tray, then break up any clumps and keep in a jar."
+      ],
+      "safety": [],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Spiced Mixed Nuts\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/spiced-mixed-nuts/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 557,
+          "proteinG": 4.2,
+          "fibreG": 2.4,
+          "sugarG": 2.3,
+          "sodiumMg": 0
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "spiced-mixed-nuts",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "almond"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "tropical-frozen-yoghurt-bites",
+      "name": "Tropical frozen yoghurt bites",
+      "blurb": "Banana, pineapple, passionfruit and yoghurt spooned out and frozen into cool bites.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 15,
+      "needs": [],
+      "ingredients": [
+        {
+          "ingredient": "banana",
+          "grams": 354
+        },
+        {
+          "ingredient": "passionfruit-pulp",
+          "grams": 36
+        },
+        {
+          "ingredient": "pineapple-canned-juice",
+          "grams": 227
+        },
+        {
+          "ingredient": "yoghurt",
+          "grams": 367.5
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Mash the banana well with a fork, then stir in the yoghurt until smooth.",
+        "Drain the pineapple lightly and fold it through with the passionfruit pulp.",
+        "Spoon small mounds onto a lined tray, or into a mini muffin tray.",
+        "Freeze until firm, a few hours or overnight, then move them to a container and keep them frozen."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Tropical Frozen Yoghurt Bites\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/tropical-frozen-yoghurt-bites/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 533,
+          "proteinG": 4.3,
+          "fibreG": 2.3,
+          "sugarG": 15.9,
+          "sodiumMg": 38
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "tropical-frozen-yoghurt-bites",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "mini-omelettes",
+      "name": "Mini omelettes with vegetables",
+      "blurb": "Egg baked in a muffin tray with capsicum, carrot and mushroom. Two per serve.",
+      "traditions": [],
+      "serves": 3,
+      "minutes": 25,
+      "needs": [
+        "oven"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "egg",
+          "grams": 300
+        },
+        {
+          "ingredient": "capsicum-red",
+          "grams": 59.5
+        },
+        {
+          "ingredient": "carrot",
+          "grams": 61
+        },
+        {
+          "ingredient": "mushroom-button",
+          "grams": 108
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "steps": [
+        "Heat the oven to moderate and grease a six-hole muffin tray. Grate the carrot and finely chop the capsicum and mushrooms.",
+        "Beat the eggs in a jug and stir in the vegetables and a little pepper.",
+        "Pour the mixture evenly into the six holes.",
+        "Bake until puffed and the eggs are cooked until completely firm all the way through. Cool a little before lifting out."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 3 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Mini Omelettes\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/mini-omelettes/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "safetySourceId": "nsw-fa-eggs",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 626,
+          "proteinG": 13.7,
+          "fibreG": 1.4,
+          "sugarG": 2.7,
+          "sodiumMg": 163
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "mini-omelettes",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "spinach-egg-roll-ups",
+      "name": "Spinach and egg roll ups",
+      "blurb": "Hard-boiled egg mashed with mayonnaise, rolled up in flatbread with hummus and salad.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 25,
+      "needs": [
+        "stove"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "egg",
+          "grams": 200
+        },
+        {
+          "ingredient": "mayonnaise-low-fat",
+          "grams": 28
+        },
+        {
+          "ingredient": "pita-bread",
+          "grams": 240
+        },
+        {
+          "ingredient": "hummus",
+          "grams": 82
+        },
+        {
+          "ingredient": "carrot",
+          "grams": 61
+        },
+        {
+          "ingredient": "cucumber",
+          "grams": 50
+        },
+        {
+          "ingredient": "spinach",
+          "grams": 45
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Put the eggs in a pot of cold water, bring to the boil and simmer until the eggs are completely firm right through, white and yolk. Cool in cold water.",
+        "Peel and mash the eggs with the mayonnaise.",
+        "Grate the carrot, slice the cucumber into strips and shred the spinach.",
+        "Spread the hummus over each flatbread, add the egg, then the vegetables and roll up tightly. Cut in half."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Spinach and Egg Roll Ups\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/spinach-and-egg-roll-ups/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "safetySourceId": "nsw-fa-eggs",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 1212,
+          "proteinG": 13.9,
+          "fibreG": 3.9,
+          "sugarG": 4.8,
+          "sodiumMg": 524
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "spinach-egg-roll-ups",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "egg",
+            "wheat",
+            "sesame"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "banana-bread-slice",
+      "name": "Banana bread",
+      "blurb": "A small, soft banana loaf with dates and a little wholemeal flour. Cut into six slices.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 60,
+      "needs": [
+        "oven"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "banana",
+          "grams": 177
+        },
+        {
+          "ingredient": "egg",
+          "grams": 37.5
+        },
+        {
+          "ingredient": "milk-reduced-fat",
+          "grams": 45.7
+        },
+        {
+          "ingredient": "canola-oil",
+          "grams": 10.1
+        },
+        {
+          "ingredient": "flour-self-raising",
+          "grams": 46.9
+        },
+        {
+          "ingredient": "flour-wholemeal-self-raising",
+          "grams": 45
+        },
+        {
+          "ingredient": "cinnamon",
+          "grams": 0.96
+        },
+        {
+          "ingredient": "dates",
+          "grams": 46.9
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Heat the oven to moderate and line a small loaf tin with baking paper. Chop the dates.",
+        "Mash the bananas well, then beat in about three-quarters of a beaten egg, the milk and the oil.",
+        "Stir in both flours, the cinnamon and the dates until just mixed.",
+        "Spoon into the tin and bake until a skewer comes out clean and the egg is cooked until completely firm. Cool before slicing."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Banana Bread\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/banana-bread/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "safetySourceId": "nsw-fa-eggs",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 549,
+          "proteinG": 3.3,
+          "fibreG": 2.5,
+          "sugarG": 9.7,
+          "sodiumMg": 120
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "banana-bread-slice",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "egg",
+            "milk",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "banana-blueberry-pikelets",
+      "name": "Banana and blueberry pikelets",
+      "blurb": "Thick banana and blueberry pikelets cooked in a pan. Makes a stack for six.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 25,
+      "needs": [
+        "stove"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "milk-reduced-fat",
+          "grams": 183
+        },
+        {
+          "ingredient": "egg",
+          "grams": 37.5
+        },
+        {
+          "ingredient": "banana",
+          "grams": 265.5
+        },
+        {
+          "ingredient": "flour-wheat",
+          "grams": 140.6
+        },
+        {
+          "ingredient": "blueberries-frozen",
+          "grams": 174.4
+        },
+        {
+          "ingredient": "canola-oil",
+          "grams": 3.36
+        }
+      ],
+      "seasonings": [],
+      "steps": [
+        "Mash the banana well, then whisk in the milk and about three-quarters of a beaten egg.",
+        "Stir in the flour until just combined, then fold through the blueberries.",
+        "Heat a non-stick pan with a thin film of oil on medium heat and drop in spoonfuls of batter.",
+        "Cook until bubbles show, flip, and cook until golden with the egg completely firm in the middle. Keep warm while you cook the rest."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Banana and Blueberry Pikelets\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/banana-and-blueberry-pikelets/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "safetySourceId": "nsw-fa-eggs",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 693,
+          "proteinG": 4.9,
+          "fibreG": 2.4,
+          "sugarG": 10.9,
+          "sodiumMg": 22
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "banana-blueberry-pikelets",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "milk",
+            "egg",
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "pizza-scrolls",
+      "name": "Pizza scrolls",
+      "blurb": "Yoghurt dough spread with tomato paste, vegetables and cheese, rolled and baked.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 45,
+      "needs": [
+        "oven"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "flour-wholemeal-self-raising",
+          "grams": 72
+        },
+        {
+          "ingredient": "flour-self-raising",
+          "grams": 37.5
+        },
+        {
+          "ingredient": "yoghurt",
+          "grams": 110.3
+        },
+        {
+          "ingredient": "tomato-paste",
+          "grams": 38.4
+        },
+        {
+          "ingredient": "cheddar-reduced-fat",
+          "grams": 51
+        },
+        {
+          "ingredient": "tomato",
+          "grams": 147.6
+        },
+        {
+          "ingredient": "capsicum-green",
+          "grams": 71.4
+        },
+        {
+          "ingredient": "red-onion",
+          "grams": 16.5
+        },
+        {
+          "ingredient": "milk-reduced-fat",
+          "grams": 9
+        }
+      ],
+      "seasonings": [],
+      "uncounted": [
+        "oregano-dried"
+      ],
+      "steps": [
+        "Heat the oven to moderate and line a tray. Finely chop the tomato, capsicum and red onion.",
+        "Mix both flours with the yoghurt and a splash of milk to a soft dough, then roll it into a rectangle.",
+        "Spread with tomato paste, scatter over the vegetables, cheese and a pinch of oregano, then roll up from the long side.",
+        "Cut into six slices, lay them flat on the tray and bake until golden and the cheese is bubbling."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Pizza Scrolls\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/pizza-scrolls/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 491,
+          "proteinG": 5.8,
+          "fibreG": 2.3,
+          "sugarG": 2.9,
+          "sodiumMg": 224
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "pizza-scrolls",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "creamy-vegetable-pasta",
+      "name": "Creamy vegetable pasta",
+      "blurb": "Pasta in a creamy tomato sauce full of grated and chopped vegetables.",
+      "traditions": [],
+      "serves": 6,
+      "minutes": 35,
+      "needs": [
+        "stove"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "zucchini",
+          "grams": 98
+        },
+        {
+          "ingredient": "tomato",
+          "grams": 123
+        },
+        {
+          "ingredient": "sweet-potato-orange",
+          "grams": 65
+        },
+        {
+          "ingredient": "carrot",
+          "grams": 61
+        },
+        {
+          "ingredient": "pasta-sauce-tomato",
+          "grams": 175
+        },
+        {
+          "ingredient": "milk-reduced-fat",
+          "grams": 122
+        },
+        {
+          "ingredient": "sour-cream-light",
+          "grams": 57.5
+        },
+        {
+          "ingredient": "pasta-dry",
+          "grams": 375
+        },
+        {
+          "ingredient": "cheddar-reduced-fat",
+          "grams": 113
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "uncounted": [
+        "garlic",
+        "olive-oil",
+        "capsicum-red",
+        "cauliflower"
+      ],
+      "steps": [
+        "Cook the pasta as the packet says, drain and keep warm.",
+        "Grate the carrot and sweet potato and chop the zucchini and tomato. Chop the capsicum and cauliflower small, with a little garlic.",
+        "Soften the garlic and vegetables in the oil in a large pan, then add the pasta sauce and simmer until the vegetables are tender.",
+        "Stir in the milk and sour cream, warm through without boiling, then mix through the pasta and top with the cheese."
+      ],
+      "safety": [
+        "pasta",
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 6 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Creamy Vegetable Pasta\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/creamy-vegetable-pasta/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 1466,
+          "proteinG": 15.4,
+          "fibreG": 3.7,
+          "sugarG": 5.8,
+          "sodiumMg": 235
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "creamy-vegetable-pasta",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "milk",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "chicken-pesto-pasta",
+      "name": "Chicken pesto pasta",
+      "blurb": "Chicken, zucchini and tomato tossed through penne with a fresh basil and parmesan pesto.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 40,
+      "needs": [
+        "stove"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "pasta-dry",
+          "grams": 300
+        },
+        {
+          "ingredient": "olive-oil",
+          "grams": 20.2
+        },
+        {
+          "ingredient": "onion",
+          "grams": 110
+        },
+        {
+          "ingredient": "zucchini",
+          "grams": 196
+        },
+        {
+          "ingredient": "chicken-breast",
+          "grams": 400
+        },
+        {
+          "ingredient": "spinach",
+          "grams": 60
+        },
+        {
+          "ingredient": "tomato",
+          "grams": 200
+        },
+        {
+          "ingredient": "basil",
+          "grams": 72
+        },
+        {
+          "ingredient": "parmesan",
+          "grams": 25
+        }
+      ],
+      "seasonings": [
+        "pepper"
+      ],
+      "uncounted": [
+        "parsley",
+        "pine-nuts",
+        "garlic",
+        "chilli-green"
+      ],
+      "steps": [
+        "Cook the pasta as the packet says, drain and keep warm.",
+        "Chop the basil very finely and mix with the grated parmesan, chopped pine nuts and a little oil to make a rough pesto.",
+        "Cut the chicken into small pieces and fry in the oil over medium-high heat with the onion, a little garlic and chilli until browned.",
+        "Check with a food thermometer in the thickest piece. Chicken needs 74°C. No pink inside is only a second sign.",
+        "Add the zucchini, tomato and spinach and stir until the spinach wilts, then toss through the pasta and pesto with a little chopped parsley."
+      ],
+      "safety": [
+        "pasta",
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Chicken Pesto Pasta\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/chicken-pesto-pasta/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "cookThroughSourceId": "nsw-fa-cooking-temps",
+      "safetySourceId": "nsw-fa-cooking-temps",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 2017,
+          "proteinG": 36.7,
+          "fibreG": 6.4,
+          "sugarG": 4.1,
+          "sodiumMg": 135
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "chicken-pesto-pasta",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "pine-nut",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      }
+    },
+    {
+      "id": "tofu-noodle-veg-stir-fry",
+      "name": "Tofu, noodle and vegetable stir fry",
+      "blurb": "Crisp tofu and plenty of vegetables stir-fried with soba noodles and soy sauce.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 30,
+      "needs": [
+        "stove"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "tofu-firm",
+          "grams": 400
+        },
+        {
+          "ingredient": "onion",
+          "grams": 110
+        },
+        {
+          "ingredient": "capsicum-red",
+          "grams": 119
+        },
+        {
+          "ingredient": "carrot",
+          "grams": 61
+        },
+        {
+          "ingredient": "zucchini",
+          "grams": 196
+        },
+        {
+          "ingredient": "broccoli",
+          "grams": 300
+        },
+        {
+          "ingredient": "noodle-soba-dry",
+          "grams": 180
+        },
+        {
+          "ingredient": "soy-sauce-nutrition",
+          "grams": 24
+        },
+        {
+          "ingredient": "coriander-fresh",
+          "grams": 30
+        }
+      ],
+      "seasonings": [],
+      "uncounted": [
+        "cornflour",
+        "sesame-oil",
+        "garlic",
+        "ginger",
+        "honey",
+        "chilli-green"
+      ],
+      "steps": [
+        "Cook the soba noodles as the packet says, drain and rinse.",
+        "Pat the tofu dry, cut into cubes and toss in a little cornflour. Cut the vegetables into thin strips.",
+        "Fry the tofu in a hot pan with a little sesame oil until golden, then lift out.",
+        "Stir-fry the onion and hard vegetables with the garlic, ginger and chilli, then add the soft vegetables, noodles, tofu, soy sauce and a little honey.",
+        "Toss until hot and top with chopped coriander."
+      ],
+      "safety": [
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Tofu, Noodle and Vegetable Stir Fry\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/tofu-noodle-and-vegetable-stir-fry/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 1712,
+          "proteinG": 23.4,
+          "fibreG": 9.4,
+          "sugarG": 10,
+          "sodiumMg": 642
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "tofu-noodle-veg-stir-fry",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "soy",
+            "sesame"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
+    },
+    {
+      "id": "pumpkin-chickpea-coconut-curry",
+      "name": "Pumpkin, chickpea and coconut curry",
+      "blurb": "Pumpkin and chickpeas simmered in coconut milk and tomato, served over rice.",
+      "traditions": [],
+      "serves": 4,
+      "minutes": 40,
+      "needs": [
+        "stove"
+      ],
+      "ingredients": [
+        {
+          "ingredient": "olive-oil",
+          "grams": 13.5
+        },
+        {
+          "ingredient": "onion",
+          "grams": 110
+        },
+        {
+          "ingredient": "chilli-green",
+          "grams": 20
+        },
+        {
+          "ingredient": "coriander-fresh",
+          "grams": 30
+        },
+        {
+          "ingredient": "tomatoes-tinned",
+          "grams": 400
+        },
+        {
+          "ingredient": "coconut-milk",
+          "grams": 400
+        },
+        {
+          "ingredient": "pumpkin-butternut",
+          "grams": 800
+        },
+        {
+          "ingredient": "chickpeas-canned",
+          "grams": 252
+        },
+        {
+          "ingredient": "rice",
+          "grams": 185
+        }
+      ],
+      "seasonings": [
+        "salt"
+      ],
+      "uncounted": [
+        "turmeric",
+        "cumin",
+        "coriander-ground",
+        "garlic",
+        "ginger"
+      ],
+      "steps": [
+        "Cook the rice as the packet says, drain and keep warm.",
+        "Cut the pumpkin into small cubes and chop the onion. Chop the chilli, garlic and ginger.",
+        "Soften the onion in the oil, then stir in the garlic, ginger, chilli, turmeric, cumin and ground coriander until fragrant.",
+        "Add the tomatoes, coconut milk, pumpkin and chickpeas and simmer until the pumpkin is soft.",
+        "Serve over the rice with chopped coriander."
+      ],
+      "safety": [
+        "rice",
+        "leftovers"
+      ],
+      "basis": "Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times 4 serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.",
+      "credit": "Ingredient list from \"Pumpkin, Chickpea and Coconut Curry\", Health and Wellbeing Queensland, https://hw.qld.gov.au/healthy-recipes/pumpkin-chickpea-and-coconut-curry/. Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own. Method written by us.",
+      "nutrition": {
+        "perServe": {
+          "energyKj": 2283,
+          "proteinG": 15.1,
+          "fibreG": 11.5,
+          "sugarG": 17.4,
+          "sodiumMg": 247
+        },
+        "sodiumModelled": false
+      },
+      "info": {
+        "itemId": "pumpkin-chickpea-coconut-curry",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "unknown",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      }
     }
   ],
   "starters": [
@@ -11551,7 +12640,7 @@ export const recipesData: RecipesData = {
     "canola-oil"
   ],
   "notFound": [
-    "Swap recipes not made into Cook recipes: baked-fish-capsicum (sample cost about $6 a serve, above the $4.00 Cook limit) and beef-taco-roll (13 ingredient rows; only olive oil, tomato paste and taco seasoning are minor seasonings, so it cannot get down to 9 counted rows).",
+    "Swap recipes not made into Cook recipes: baked-fish-capsicum (sample cost about $5.80 a serve, above the $4.00 Cook limit) and beef-taco-roll (13 ingredient rows; only olive oil, tomato paste and taco seasoning are minor seasonings, so at most 3 can be uncounted and 10 rows would be counted, above the limit of 9). Both were re-checked on 2026-11-25 and still break those limits.",
     "Soak-and-boil dried bean recipes (including dried chickpeas, haricot and kidney beans) are not shipped: no official boiling or soaking source was read. Canned beans, chickpeas and split lentils are used instead.",
     "Raw seafood and raw fish recipes are not shipped; only fully cooked or tinned fish (tinned tuna and salmon) is used. No official source for cooking fish at home was recorded for the recipes.",
     "NSW Food Authority \"Food risk and you: what to eat with a weakened immune system\" (PDF, https://www.foodauthority.nsw.gov.au/media/8789) downloaded but its text could not be extracted (embedded fonts), so it was not read and the pregnancy and immune-system line stays omitted.",
