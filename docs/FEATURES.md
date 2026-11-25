@@ -128,3 +128,5 @@ Status as of 28 October 2026. "Branch" says where the work lives; nothing here h
 - **Nearby tags for cultural food** (part of the cultural food spec): deferred.
 
 - **Copy diet (R9):** screens keep one-line helper text; footer shows one short line plus Photo credits and Data credits disclosures; safety, privacy and helpline lines are shortened, never removed.
+
+- **Browse cravings by type (2026-11-25):** above the popular grid on Swaps, a scrollable row of round pills ("All", Fast food, Sweet, Salty and crunchy, Hot meals, Drinks, Bakery), each with a small inline icon (`src/ui/CravingTypes.tsx`, `cravingTypeIcons.tsx`). "All" shows the popular ten; a type shows every craving of that type as round photo tiles (a round drawn icon where there is no photo) with one count ("3 cravings"), and a tile opens the swaps like a popular one. Cultural cravings show only for the person's traditions. One table, `CRAVING_TYPES` plus `CRAVING_TYPE_OF` in `packages/core/src/cravings/cravingTypes.ts`; a test fails when a craving has no type or an entry is stale, so a new craving must be given a type. State is in memory only; nothing is stored.

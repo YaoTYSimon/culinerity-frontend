@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { recipeById, type FoodItem, type Profile, type ProfiledSwap, type RecipeCredit, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
+import { CRAVING_TYPES, cravingTypeOf, recipeById, type FoodItem, type Profile, type ProfiledSwap, type RecipeCredit, cravingsForTraditions, swapService, traditions, shownForTraditions, traditionsWithFoods } from '@culinerity/core';
 import { useCatalogueStatus, useServices } from '../services/ServicesContext';
 import { hasFoodRules } from './foodCopy';
 import { SwapResults, type SwapNote, type WeekSwapInput } from './SwapResults';
 import { FIELD_EDGE } from './formParts';
 import { PillButton } from './PillButton';
 import { RoundPhoto } from './RoundPhoto';
+import { CravingTiles, CravingTypePills, type CravingTypeChoice } from './CravingTypes';
 
 type Outcome =
   | { kind: 'none' }
@@ -106,6 +107,7 @@ export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules, onCook 
   const [text, setText] = useState('');
   const [outcome, setOutcome] = useState<Outcome>({ kind: 'none' });
   const [loading, setLoading] = useState(false);
+  const [type, setType] = useState<CravingTypeChoice>('all');
   const latest = useRef(0);
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => () => { latest.current = -1; }, []);
@@ -131,6 +133,8 @@ export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules, onCook 
     ? traditions().filter((t) => food!.traditions.some((c) => c.toLowerCase() === t.id) && !withFoods.has(t.id))
     : [];
   const rulesOn = hasFoodRules(food);
+  // A type lists every craving of that type the person may see (cultural ones only for their traditions).
+  const ofType = type === 'all' ? [] : services.catalogue.allCravings().filter((c) => cravingTypeOf(c.id) === type && shownForTraditions(services.catalogue.foodInfo(c.id), food));
   // One craving per category, so a miss still gives broad ideas to try.
   const categories = popular.filter((c, i) => popular.findIndex((o) => o.category === c.category) === i);
 
@@ -205,15 +209,23 @@ export function CravingSearch({ profile, onAddToWeek, onChangeFoodRules, onCook 
   ) : (
     showGrid && (
     <section aria-labelledby="popular-h" className="grid gap-3">
-      <h2 id="popular-h" className="text-base font-semibold">Popular cravings</h2>
-      <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-5">
-        {picklist.map((c, i) => (
-          <button key={c.id} type="button" className={tile} onClick={() => pick(c)}>
-            <RoundPhoto itemId={c.id} size={120} fluid eager={i < 4} className="aspect-square w-full max-w-[140px] group-focus-visible:ring-2 group-focus-visible:ring-ink group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-bg" />
-            {c.name}
-          </button>
-        ))}
+      <CravingTypePills value={type} onChange={setType} />
+      <div className="flex items-baseline gap-2">
+        <h2 id="popular-h" className="text-base font-semibold">{type === 'all' ? 'Popular cravings' : CRAVING_TYPES.find((t) => t.id === type)?.label}</h2>
+        {type !== 'all' && <p className="text-sm text-muted">{ofType.length} {ofType.length === 1 ? 'craving' : 'cravings'}</p>}
       </div>
+      {type === 'all' ? (
+        <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-5">
+          {picklist.map((c, i) => (
+            <button key={c.id} type="button" className={tile} onClick={() => pick(c)}>
+              <RoundPhoto itemId={c.id} size={120} fluid eager={i < 4} className="aspect-square w-full max-w-[140px] group-focus-visible:ring-2 group-focus-visible:ring-ink group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-bg" />
+              {c.name}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <CravingTiles cravings={ofType} onPick={pick} />
+      )}
     </section>
     )
   );

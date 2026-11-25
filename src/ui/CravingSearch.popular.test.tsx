@@ -24,7 +24,7 @@ describe('popular craving tiles', () => {
 });
 
 describe('popular cravings and traditions', () => {
-  const names = () => screen.getAllByRole('button').map((b) => b.textContent).filter((t) => t && t !== 'Find swaps');
+  const names = () => screen.getAllByRole('button').filter((b) => !b.closest('[role=group]')).map((b) => b.textContent).filter((t) => t && t !== 'Find swaps');
   const food = (traditions: string[]) => ({ foodProfile: { traditions, rules: [], allergies: [], occasions: [], dismissed: [] } });
   const show = (profile: object) => render(<ServicesProvider services={createServices()}><CravingSearch profile={profile} onAddToWeek={() => {}} /></ServicesProvider>);
 
@@ -62,5 +62,35 @@ describe('PhotoCredits', () => {
       expect(a).toHaveAttribute('rel', 'noopener noreferrer');
       expect(a).toHaveAttribute('target', '_blank');
     }
+  });
+});
+
+describe('browse cravings by type', () => {
+  const show = () => render(<ServicesProvider services={createServices()}><CravingSearch profile={{}} onAddToWeek={() => {}} /></ServicesProvider>);
+  const tiles = () => screen.getAllByRole('button').filter((b) => !b.closest('[role=group]') && b.textContent !== 'Find swaps');
+
+  it('starts on All with the popular ten and aria-pressed pills', () => {
+    show();
+    const pills = screen.getAllByRole('button').filter((b) => b.closest('[role=group]'));
+    expect(pills.map((p) => p.textContent)).toEqual(['All', 'Fast food', 'Sweet', 'Salty and crunchy', 'Hot meals', 'Drinks', 'Bakery']);
+    expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'true');
+    expect(tiles()).toHaveLength(10);
+  });
+
+  it('shows every craving of a type with a count, then All restores the ten', () => {
+    show();
+    fireEvent.click(screen.getByRole('button', { name: 'Salty and crunchy' }));
+    expect(screen.getByRole('button', { name: 'Salty and crunchy' })).toHaveAttribute('aria-pressed', 'true');
+    expect(tiles().map((t) => t.textContent)).toEqual(expect.arrayContaining(['Nachos (takeaway)', 'Chicken nuggets', 'Hot chips']));
+    expect(screen.getByText('3 cravings')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'All' }));
+    expect(tiles()).toHaveLength(10);
+  });
+
+  it('opens the swaps from a type tile', async () => {
+    show();
+    fireEvent.click(screen.getByRole('button', { name: 'Salty and crunchy' }));
+    fireEvent.click(screen.getByRole('button', { name: /nachos/i }));
+    expect(await screen.findByRole('heading', { name: /swaps? for nachos/i })).toBeInTheDocument();
   });
 });

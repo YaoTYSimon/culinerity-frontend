@@ -6,6 +6,7 @@ export * from './domain/swaps/healthLabel';
 export * from './domain/swaps/rank';
 export * from './sources/interfaces';
 export * from './sources/mock/mockCatalogue';
+export * from './cravings/cravingTypes';
 export * from './sources/mock/mockFoodSupportSource';
 export * from './sources/mock/mockNutritionSource';
 export * from './sources/mock/mockPriceSource';

@@ -127,7 +127,7 @@ describe('ProfileMenu: signed in', () => {
     const hash = JSON.parse(localStorage.getItem(KEYS.accounts)!)[0].verifier.hash as string;
     expect(document.body.innerHTML).not.toContain(hash);
     expect(document.body.innerHTML).not.toContain('fake-pass-24');
-    expect(document.body.innerHTML).not.toMatch(/verifier|salt/i);
+    expect(document.body.innerHTML).not.toMatch(/verifier|\bsalt\b/i);
   });
 });
 

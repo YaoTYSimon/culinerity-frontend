@@ -40,7 +40,7 @@ const DRAWINGS: Record<IconKind, ReactNode> = {
   plate: <path d="M12 4a8 8 0 100 16 8 8 0 000-16zM9 10.5a2 2 0 100 .01M15 10a2.5 2.5 0 100 .01M12 15.5v.01" />,
 };
 
-const SIZE = { sm: 'size-12', lg: 'size-20' } as const;
+const SIZE = { sm: 'size-12', lg: 'size-20', fill: 'aspect-square w-full max-w-[140px]' } as const;
 
 /** A round food icon. Decorative: the recipe name is always printed beside it. */
 export function RecipeIcon({ kind, size = 'sm', className = '' }: { kind: IconKind; size?: keyof typeof SIZE; className?: string }) {
