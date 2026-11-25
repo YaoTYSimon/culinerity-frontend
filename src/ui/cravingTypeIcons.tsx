@@ -26,4 +26,6 @@ export function CravingTypeIcon({ type }: { type: CravingTypeId | 'all' }) {
 export const CRAVING_ICON: Record<string, IconKind> = {
   'chicken-nuggets': 'plate', 'fish-and-chips': 'plate', 'sausage-roll': 'plate', 'chinese-takeaway': 'rice', nachos: 'tray',
   'tacos-burritos': 'sandwich', 'anzac-biscuits': 'plate', milkshake: 'bowl', 'butter-chicken-jar-sauce': 'curry', 'lasagne-frozen': 'pasta',
+  'pad-thai': 'noodles', 'takeaway-curry': 'curry', 'creamy-pasta': 'pasta', 'bacon-and-egg-roll': 'sandwich', 'ice-cream': 'bowl', 'tim-tams': 'plate',
+  'savoury-snacks': 'tray', 'pancakes-and-donuts': 'plate', 'garlic-bread': 'sandwich',
 };

@@ -4977,6 +4977,682 @@ export const recipesData: RecipesData = {
       "basis": "Bought Anzac biscuit: oats, flour, coconut, butter or margarine, ingredients not known here"
     },
     {
+      "id": "pasta-sauce-tomato",
+      "name": "Tomato pasta sauce, bought",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008050",
+      "nutritionName": "Sauce, pasta, tomato-based, commercial, heated",
+      "per100g": {
+        "energyKj": 226,
+        "proteinG": 1.6,
+        "fibreG": 1.8,
+        "sugarG": 6.2,
+        "sodiumMg": 375
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Bought tomato pasta sauce: ingredients vary, so most flags stay unknown"
+    },
+    {
+      "id": "parmesan",
+      "name": "Parmesan, fresh",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F002479",
+      "nutritionName": "Cheese, parmesan, fresh, regular fat",
+      "per100g": {
+        "energyKj": 1565,
+        "proteinG": 32,
+        "fibreG": 0,
+        "sugarG": 0,
+        "sodiumMg": 1000
+      },
+      "vegetarian": "unknown",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "milk"
+      ],
+      "attributeSources": {
+        "vegan": "vegan-australia-pledge",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "allergensPartial": true,
+      "basis": "Parmesan: cheese (often made with animal rennet), so most flags stay unknown"
+    },
+    {
+      "id": "honey",
+      "name": "Honey",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F004380",
+      "nutritionName": "Honey",
+      "per100g": {
+        "energyKj": 1162,
+        "proteinG": 0.3,
+        "fibreG": 0,
+        "sugarG": 72.3,
+        "sodiumMg": 8
+      },
+      "vegetarian": "yes",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge"
+      },
+      "basis": "Honey: from bees, so not vegan; other flags not known here"
+    },
+    {
+      "id": "curry-simmer-sauce",
+      "name": "Curry simmer sauce, bought",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008063",
+      "nutritionName": "Sauce, simmer, curry flavoured, commercial",
+      "per100g": {
+        "energyKj": 494,
+        "proteinG": 2.1,
+        "fibreG": 2.3,
+        "sugarG": 7.1,
+        "sodiumMg": 510
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Bought curry simmer sauce: ingredients vary, so most flags stay unknown"
+    },
+    {
+      "id": "bacon-fried",
+      "name": "Bacon, fried",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F000227",
+      "nutritionName": "Bacon, middle rasher, untrimmed, baked, roasted, fried, grilled or BBQ'd, no added fat",
+      "per100g": {
+        "energyKj": 1747,
+        "proteinG": 20.6,
+        "fibreG": 0,
+        "sugarG": 0.3,
+        "sodiumMg": 1528
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "no",
+      "kosher": "no",
+      "beef": "no",
+      "pork": "yes",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "kosher": "kosher-au-basic-ingredients",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Fried bacon: pork, so not suitable for halal or kosher rules"
+    },
+    {
+      "id": "egg-fried",
+      "name": "Egg, fried",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003718",
+      "nutritionName": "Egg, chicken, whole, fried, no fat added",
+      "per100g": {
+        "energyKj": 606,
+        "proteinG": 14.3,
+        "fibreG": 0,
+        "sugarG": 0.3,
+        "sodiumMg": 170
+      },
+      "vegetarian": "yes",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "yes",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [
+        "egg"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "kosher": "kosher-au-basic-ingredients",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Chicken egg, fried with no added fat"
+    },
+    {
+      "id": "tomato-sauce",
+      "name": "Tomato sauce, bought",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008083",
+      "nutritionName": "Sauce, tomato, commercial",
+      "per100g": {
+        "energyKj": 437,
+        "proteinG": 1.3,
+        "fibreG": 1.3,
+        "sugarG": 23.7,
+        "sodiumMg": 870
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Bought tomato sauce: ingredients vary, so most flags stay unknown"
+    },
+    {
+      "id": "mayonnaise-low-fat",
+      "name": "Mayonnaise, low fat",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F005437",
+      "nutritionName": "Mayonnaise, low fat, commercial",
+      "per100g": {
+        "energyKj": 514,
+        "proteinG": 0.5,
+        "fibreG": 0,
+        "sugarG": 20.5,
+        "sodiumMg": 678
+      },
+      "vegetarian": "unknown",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "egg"
+      ],
+      "attributeSources": {
+        "vegan": "vegan-australia-pledge",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "allergensPartial": true,
+      "basis": "Bought low fat mayonnaise: made with egg, other ingredients not known here"
+    },
+    {
+      "id": "hummus",
+      "name": "Hummus, bought",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003539",
+      "nutritionName": "Dip, hummus (hommus), commercial",
+      "per100g": {
+        "energyKj": 1039,
+        "proteinG": 6.9,
+        "fibreG": 3.9,
+        "sugarG": 0.8,
+        "sodiumMg": 410
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "sesame"
+      ],
+      "attributeSources": {
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "allergensPartial": true,
+      "basis": "Bought hummus: chickpeas and tahini (sesame), other ingredients not known here"
+    },
+    {
+      "id": "mushroom-button",
+      "name": "Mushroom, button",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F005946",
+      "nutritionName": "Mushroom, common, fresh, raw",
+      "per100g": {
+        "energyKj": 114,
+        "proteinG": 2.2,
+        "fibreG": 1.4,
+        "sugarG": 0.8,
+        "sodiumMg": 7
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh button mushroom"
+    },
+    {
+      "id": "passionfruit-pulp",
+      "name": "Passionfruit pulp",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F009888",
+      "nutritionName": "Passionfruit, pulp, frozen",
+      "per100g": {
+        "energyKj": 340,
+        "proteinG": 2.9,
+        "fibreG": 11.2,
+        "sugarG": 7.1,
+        "sodiumMg": 14
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Passionfruit pulp, frozen"
+    },
+    {
+      "id": "pineapple-canned-juice",
+      "name": "Pineapple, canned in juice",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006707",
+      "nutritionName": "Pineapple, canned in pineapple juice",
+      "per100g": {
+        "energyKj": 236,
+        "proteinG": 0.5,
+        "fibreG": 0.8,
+        "sugarG": 12,
+        "sodiumMg": 5
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism"
+      },
+      "basis": "Canned pineapple in juice: fruit, other ingredients not known here"
+    },
+    {
+      "id": "flour-self-raising",
+      "name": "Self-raising flour",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F004009",
+      "nutritionName": "Flour, wheat, white, self-raising",
+      "per100g": {
+        "energyKj": 1479,
+        "proteinG": 10,
+        "fibreG": 2.2,
+        "sugarG": 1.9,
+        "sodiumMg": 740
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "yes",
+      "allergens": [
+        "wheat"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Self-raising white wheat flour"
+    },
+    {
+      "id": "flour-wholemeal-self-raising",
+      "name": "Self-raising wholemeal flour",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F004015",
+      "nutritionName": "Flour, wheat, wholemeal, self-raising",
+      "per100g": {
+        "energyKj": 1471,
+        "proteinG": 11.4,
+        "fibreG": 11.3,
+        "sugarG": 0.9,
+        "sodiumMg": 655
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "yes",
+      "allergens": [
+        "wheat"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Self-raising wholemeal wheat flour"
+    },
+    {
+      "id": "pine-nuts",
+      "name": "Pine nuts",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006112",
+      "nutritionName": "Nut, pine, raw, unsalted",
+      "per100g": {
+        "energyKj": 2925,
+        "proteinG": 13,
+        "fibreG": 5.1,
+        "sugarG": 3.4,
+        "sodiumMg": 3
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [
+        "pine-nut"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Raw unsalted pine nuts"
+    },
+    {
+      "id": "cream-pasta-sauce",
+      "name": "Cream-based pasta sauce, bought",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008036",
+      "nutritionName": "Sauce, pasta, cheese or cream-based, commercial",
+      "per100g": {
+        "energyKj": 363,
+        "proteinG": 1.4,
+        "fibreG": 0.1,
+        "sugarG": 2.7,
+        "sodiumMg": 482
+      },
+      "vegetarian": "unknown",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "milk"
+      ],
+      "attributeSources": {
+        "vegan": "vegan-australia-pledge",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "allergensPartial": true,
+      "basis": "Bought cream-based pasta sauce: dairy, other ingredients not known here"
+    },
+    {
+      "id": "doughnut-iced",
+      "name": "Doughnut, iced",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003574",
+      "nutritionName": "Doughnut, iced",
+      "per100g": {
+        "energyKj": 1517,
+        "proteinG": 6.7,
+        "fibreG": 1.7,
+        "sugarG": 22.9,
+        "sodiumMg": 414
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": [
+        "wheat"
+      ],
+      "attributeSources": {
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "allergensPartial": true,
+      "basis": "Bought iced doughnut: wheat (gluten yes), other ingredients not known here"
+    },
+    {
+      "id": "garlic-bread",
+      "name": "Garlic bread, bought",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F001600",
+      "nutritionName": "Bread, garlic, commercial, baked",
+      "per100g": {
+        "energyKj": 1442,
+        "proteinG": 8,
+        "fibreG": 3,
+        "sugarG": 3.4,
+        "sodiumMg": 580
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": [
+        "wheat"
+      ],
+      "attributeSources": {
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "allergensPartial": true,
+      "basis": "Bought garlic bread: wheat bread (gluten yes), butter or margarine not known here"
+    },
+    {
+      "id": "cheese-snack-extruded",
+      "name": "Cheese-flavoured extruded snack",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003802",
+      "nutritionName": "Extruded snack, cheese flavoured",
+      "per100g": {
+        "energyKj": 2038,
+        "proteinG": 8.8,
+        "fibreG": 3.2,
+        "sugarG": 2.5,
+        "sodiumMg": 1000
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Bought cheese-flavoured corn snack: ingredients not known here, so all flags stay unknown"
+    },
+    {
+      "id": "tim-tam-biscuit",
+      "name": "Chocolate-coated cream biscuit, bought",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F001234",
+      "nutritionName": "Biscuit, sweet, sandwich, cream filling, chocolate-coated, tim tam style",
+      "per100g": {
+        "energyKj": 2080,
+        "proteinG": 5.4,
+        "fibreG": 2.2,
+        "sugarG": 44.7,
+        "sodiumMg": 168
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": [
+        "wheat"
+      ],
+      "attributeSources": {
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "allergensPartial": true,
+      "basis": "Bought chocolate-coated cream-filled biscuit: wheat (gluten yes), other ingredients not known here"
+    },
+    {
+      "id": "noodle-soba-dry",
+      "name": "Soba noodles, dry",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006043",
+      "nutritionName": "Noodle, soba, dry",
+      "per100g": {
+        "energyKj": 1503,
+        "proteinG": 11.9,
+        "fibreG": 5.3,
+        "sugarG": 0,
+        "sodiumMg": 563
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism"
+      },
+      "basis": "Dry soba noodles: buckwheat, often with wheat, so gluten stays unknown"
+    },
+    {
+      "id": "cornflour",
+      "name": "Cornflour",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003988",
+      "nutritionName": "Flour, cornflour, from maize starch",
+      "per100g": {
+        "energyKj": 1458,
+        "proteinG": 0.4,
+        "fibreG": 0,
+        "sugarG": 0,
+        "sodiumMg": 16
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Cornflour (maize starch)"
+    },
+    {
       "id": "tuna-canned",
       "name": "Tuna, canned",
       "nutritionSourceId": "afcd-r3",

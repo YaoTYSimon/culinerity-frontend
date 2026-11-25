@@ -52,7 +52,7 @@ describe('SqliteCatalogueRepository', () => {
   });
   it('finds cravings by name or keyword, case-insensitively', async () => {
     expect((await repo.findCravings('  BIG MAC ')).map((c) => c.id)).toEqual(['burger']);
-    expect((await repo.findCravings('chocolate')).map((c) => c.id)).toEqual(['chocolate']);
+    expect((await repo.findCravings('chocolate')).map((c) => c.id)).toEqual(['chocolate', 'tim-tams']);
   });
   it('lists all cravings: the popular ten in order, then the rest in seed order', async () => {
     expect((await repo.allCravings()).map((c) => c.id)).toEqual(SEED_DATA.allCravingIds);

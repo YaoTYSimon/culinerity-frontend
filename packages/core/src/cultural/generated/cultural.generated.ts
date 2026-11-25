@@ -789,6 +789,114 @@ export const culturalData: CulturalData = {
       "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
       "accessed": "2026-11-25",
       "verification": "secondary"
+    },
+    {
+      "id": "hwq-tofu-noodle-and-vegetable-stir-fry",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Tofu, Noodle and Vegetable Stir Fry",
+      "url": "https://hw.qld.gov.au/healthy-recipes/tofu-noodle-and-vegetable-stir-fry/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-banana-bread",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Banana Bread",
+      "url": "https://hw.qld.gov.au/healthy-recipes/banana-bread/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-avocado-salsa-and-pita-chips",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Avocado Salsa and Pita Chips",
+      "url": "https://hw.qld.gov.au/healthy-recipes/avocado-salsa-and-pita-chips/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-spiced-mixed-nuts",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Spiced Mixed Nuts",
+      "url": "https://hw.qld.gov.au/healthy-recipes/spiced-mixed-nuts/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-tropical-frozen-yoghurt-bites",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Tropical Frozen Yoghurt Bites",
+      "url": "https://hw.qld.gov.au/healthy-recipes/tropical-frozen-yoghurt-bites/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-banana-and-blueberry-pikelets",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Banana and Blueberry Pikelets",
+      "url": "https://hw.qld.gov.au/healthy-recipes/banana-and-blueberry-pikelets/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-mini-omelettes",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Mini Omelettes",
+      "url": "https://hw.qld.gov.au/healthy-recipes/mini-omelettes/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-spinach-and-egg-roll-ups",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Spinach and Egg Roll Ups",
+      "url": "https://hw.qld.gov.au/healthy-recipes/spinach-and-egg-roll-ups/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-pizza-scrolls",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Pizza Scrolls",
+      "url": "https://hw.qld.gov.au/healthy-recipes/pizza-scrolls/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-pumpkin-chickpea-and-coconut-curry",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Pumpkin, Chickpea and Coconut Curry",
+      "url": "https://hw.qld.gov.au/healthy-recipes/pumpkin-chickpea-and-coconut-curry/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-creamy-vegetable-pasta",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Creamy Vegetable Pasta",
+      "url": "https://hw.qld.gov.au/healthy-recipes/creamy-vegetable-pasta/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-chicken-pesto-pasta",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Chicken Pesto Pasta",
+      "url": "https://hw.qld.gov.au/healthy-recipes/chicken-pesto-pasta/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -2170,6 +2278,176 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "tofu-noodle-veg-stir-fry",
+        "name": "Tofu, noodle and vegetable stir fry",
+        "category": "home cooking",
+        "keywords": [
+          "pad thai",
+          "tofu stir fry",
+          "noodle stir fry",
+          "soba noodles",
+          "vegetable noodles"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "pumpkin-chickpea-coconut-curry",
+        "name": "Pumpkin, chickpea and coconut curry",
+        "category": "home cooking",
+        "keywords": [
+          "curry",
+          "pumpkin curry",
+          "chickpea curry",
+          "vegetable curry",
+          "coconut curry"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "creamy-vegetable-pasta",
+        "name": "Creamy vegetable pasta",
+        "category": "home cooking",
+        "keywords": [
+          "creamy pasta",
+          "carbonara",
+          "creamy vegetable pasta",
+          "vegetable pasta",
+          "pasta bake"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-pesto-pasta",
+        "name": "Chicken pesto pasta",
+        "category": "home cooking",
+        "keywords": [
+          "pesto pasta",
+          "chicken pasta",
+          "creamy pasta",
+          "carbonara",
+          "chicken pesto"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "mini-omelettes",
+        "name": "Mini omelettes with vegetables",
+        "category": "home cooking",
+        "keywords": [
+          "bacon and egg roll",
+          "egg",
+          "omelette",
+          "breakfast",
+          "egg muffins"
+        ],
+        "unitLabel": "2 mini omelettes",
+        "kind": "alternative"
+      },
+      {
+        "id": "spinach-egg-roll-ups",
+        "name": "Spinach and egg roll ups",
+        "category": "home cooking",
+        "keywords": [
+          "bacon and egg roll",
+          "egg roll",
+          "egg wrap",
+          "roll up",
+          "hummus wrap"
+        ],
+        "unitLabel": "1 roll up",
+        "kind": "alternative"
+      },
+      {
+        "id": "tropical-frozen-yoghurt-bites",
+        "name": "Tropical frozen yoghurt bites",
+        "category": "home cooking",
+        "keywords": [
+          "ice cream",
+          "frozen yoghurt",
+          "frozen treat",
+          "banana ice cream",
+          "tropical"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "banana-bread-slice",
+        "name": "Banana bread",
+        "category": "home cooking",
+        "keywords": [
+          "tim tam",
+          "biscuit",
+          "banana bread",
+          "cake",
+          "slice"
+        ],
+        "unitLabel": "1 slice",
+        "kind": "alternative"
+      },
+      {
+        "id": "avocado-salsa-pita-chips",
+        "name": "Avocado salsa with baked pita chips",
+        "category": "home cooking",
+        "keywords": [
+          "cheezels",
+          "chips",
+          "snack",
+          "avocado dip",
+          "pita chips",
+          "salsa"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "spiced-mixed-nuts",
+        "name": "Honey and cinnamon spiced nuts",
+        "category": "home cooking",
+        "keywords": [
+          "cheezels",
+          "nuts",
+          "snack",
+          "spiced nuts",
+          "mixed nuts"
+        ],
+        "unitLabel": "1 small handful (about 24 g)",
+        "kind": "alternative"
+      },
+      {
+        "id": "banana-blueberry-pikelets",
+        "name": "Banana and blueberry pikelets",
+        "category": "home cooking",
+        "keywords": [
+          "pancakes",
+          "donut",
+          "doughnut",
+          "pikelets",
+          "pancake",
+          "breakfast"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "pizza-scrolls",
+        "name": "Pizza scrolls",
+        "category": "home cooking",
+        "keywords": [
+          "garlic bread",
+          "pizza scroll",
+          "scrolls",
+          "cheesy bread",
+          "savoury scroll"
+        ],
+        "unitLabel": "1 scroll",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -2312,6 +2590,132 @@ export const culturalData: CulturalData = {
           "malt shake"
         ],
         "unitLabel": "1 regular (about 400 ml)",
+        "kind": "craving"
+      },
+      {
+        "id": "pad-thai",
+        "name": "Pad Thai",
+        "category": "takeaway meal",
+        "keywords": [
+          "pad thai",
+          "thai noodles",
+          "pad thai takeaway",
+          "thai takeaway"
+        ],
+        "unitLabel": "1 serve (pad thai)",
+        "kind": "craving"
+      },
+      {
+        "id": "takeaway-curry",
+        "name": "Takeaway chicken curry with rice",
+        "category": "takeaway meal",
+        "keywords": [
+          "curry",
+          "chicken curry",
+          "takeaway curry",
+          "indian takeaway",
+          "curry and rice"
+        ],
+        "unitLabel": "1 serve (curry and rice)",
+        "kind": "craving"
+      },
+      {
+        "id": "creamy-pasta",
+        "name": "Creamy pasta with bacon",
+        "category": "takeaway meal",
+        "keywords": [
+          "creamy pasta",
+          "carbonara",
+          "pasta carbonara",
+          "bacon pasta",
+          "cream pasta"
+        ],
+        "unitLabel": "1 serve (pasta)",
+        "kind": "craving"
+      },
+      {
+        "id": "bacon-and-egg-roll",
+        "name": "Bacon and egg roll",
+        "category": "fast food",
+        "keywords": [
+          "bacon and egg roll",
+          "bacon and egg",
+          "egg and bacon roll",
+          "breakfast roll",
+          "brekkie roll"
+        ],
+        "unitLabel": "1 roll",
+        "kind": "craving"
+      },
+      {
+        "id": "ice-cream",
+        "name": "Ice cream",
+        "category": "dessert",
+        "keywords": [
+          "ice cream",
+          "icecream",
+          "gelato",
+          "soft serve",
+          "ice cream cup"
+        ],
+        "unitLabel": "2 scoops (about 120 g)",
+        "kind": "craving"
+      },
+      {
+        "id": "tim-tams",
+        "name": "Chocolate biscuits (Tim Tam style)",
+        "category": "packaged snack",
+        "keywords": [
+          "tim tam",
+          "tim tams",
+          "chocolate biscuit",
+          "chocolate biscuits",
+          "chocolate coated biscuit"
+        ],
+        "unitLabel": "2 biscuits (about 36 g)",
+        "kind": "craving"
+      },
+      {
+        "id": "savoury-snacks",
+        "name": "Cheese puffs (Cheezels style)",
+        "category": "packaged snack",
+        "keywords": [
+          "cheezels",
+          "cheese snacks",
+          "cheese puffs",
+          "corn snacks",
+          "savoury snacks",
+          "chips packet"
+        ],
+        "unitLabel": "1 small bag (45 g)",
+        "kind": "craving"
+      },
+      {
+        "id": "pancakes-and-donuts",
+        "name": "Doughnut",
+        "category": "bakery",
+        "keywords": [
+          "donut",
+          "donuts",
+          "doughnut",
+          "doughnuts",
+          "pancakes",
+          "iced doughnut"
+        ],
+        "unitLabel": "1 iced doughnut (70 g)",
+        "kind": "craving"
+      },
+      {
+        "id": "garlic-bread",
+        "name": "Garlic bread",
+        "category": "bakery",
+        "keywords": [
+          "garlic bread",
+          "cheesy bread",
+          "pizza bread",
+          "garlic toast"
+        ],
+        "unitLabel": "2 slices (about 60 g)",
         "kind": "craving"
       }
     ],
@@ -3309,6 +3713,198 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "tofu-noodle-veg-stir-fry",
+        "store": "Coles",
+        "pricePerServe": 4.1,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tofu-noodle-veg-stir-fry",
+        "store": "Woolworths",
+        "pricePerServe": 4.2,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pumpkin-chickpea-coconut-curry",
+        "store": "Coles",
+        "pricePerServe": 3.6,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pumpkin-chickpea-coconut-curry",
+        "store": "Woolworths",
+        "pricePerServe": 3.7,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "creamy-vegetable-pasta",
+        "store": "Coles",
+        "pricePerServe": 1.7,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "creamy-vegetable-pasta",
+        "store": "Woolworths",
+        "pricePerServe": 1.8,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-pesto-pasta",
+        "store": "Coles",
+        "pricePerServe": 4.6,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-pesto-pasta",
+        "store": "Woolworths",
+        "pricePerServe": 4.7,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "mini-omelettes",
+        "store": "Coles",
+        "pricePerServe": 1.8,
+        "unitLabel": "2 mini omelettes",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "mini-omelettes",
+        "store": "Woolworths",
+        "pricePerServe": 1.9,
+        "unitLabel": "2 mini omelettes",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spinach-egg-roll-ups",
+        "store": "Coles",
+        "pricePerServe": 1.9,
+        "unitLabel": "1 roll up",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spinach-egg-roll-ups",
+        "store": "Woolworths",
+        "pricePerServe": 2,
+        "unitLabel": "1 roll up",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tropical-frozen-yoghurt-bites",
+        "store": "Coles",
+        "pricePerServe": 1.2,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tropical-frozen-yoghurt-bites",
+        "store": "Woolworths",
+        "pricePerServe": 1.2,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "banana-bread-slice",
+        "store": "Coles",
+        "pricePerServe": 0.4,
+        "unitLabel": "1 slice",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "banana-bread-slice",
+        "store": "Woolworths",
+        "pricePerServe": 0.4,
+        "unitLabel": "1 slice",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "avocado-salsa-pita-chips",
+        "store": "Coles",
+        "pricePerServe": 1.1,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "avocado-salsa-pita-chips",
+        "store": "Woolworths",
+        "pricePerServe": 1.2,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spiced-mixed-nuts",
+        "store": "Coles",
+        "pricePerServe": 0.6,
+        "unitLabel": "1 small handful (about 24 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "spiced-mixed-nuts",
+        "store": "Woolworths",
+        "pricePerServe": 0.7,
+        "unitLabel": "1 small handful (about 24 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "banana-blueberry-pikelets",
+        "store": "Coles",
+        "pricePerServe": 0.8,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "banana-blueberry-pikelets",
+        "store": "Woolworths",
+        "pricePerServe": 0.8,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pizza-scrolls",
+        "store": "Coles",
+        "pricePerServe": 0.6,
+        "unitLabel": "1 scroll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pizza-scrolls",
+        "store": "Woolworths",
+        "pricePerServe": 0.6,
+        "unitLabel": "1 scroll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -3465,6 +4061,150 @@ export const culturalData: CulturalData = {
         "store": "Woolworths",
         "pricePerServe": 6.5,
         "unitLabel": "1 regular (about 400 ml)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pad-thai",
+        "store": "Coles",
+        "pricePerServe": 14,
+        "unitLabel": "1 serve (pad thai)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pad-thai",
+        "store": "Woolworths",
+        "pricePerServe": 14,
+        "unitLabel": "1 serve (pad thai)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "takeaway-curry",
+        "store": "Coles",
+        "pricePerServe": 14,
+        "unitLabel": "1 serve (curry and rice)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "takeaway-curry",
+        "store": "Woolworths",
+        "pricePerServe": 14,
+        "unitLabel": "1 serve (curry and rice)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "creamy-pasta",
+        "store": "Coles",
+        "pricePerServe": 14,
+        "unitLabel": "1 serve (pasta)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "creamy-pasta",
+        "store": "Woolworths",
+        "pricePerServe": 14,
+        "unitLabel": "1 serve (pasta)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "bacon-and-egg-roll",
+        "store": "Coles",
+        "pricePerServe": 7,
+        "unitLabel": "1 roll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "bacon-and-egg-roll",
+        "store": "Woolworths",
+        "pricePerServe": 7,
+        "unitLabel": "1 roll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "ice-cream",
+        "store": "Coles",
+        "pricePerServe": 5,
+        "unitLabel": "2 scoops (about 120 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "ice-cream",
+        "store": "Woolworths",
+        "pricePerServe": 5,
+        "unitLabel": "2 scoops (about 120 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tim-tams",
+        "store": "Coles",
+        "pricePerServe": 0.8,
+        "unitLabel": "2 biscuits (about 36 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tim-tams",
+        "store": "Woolworths",
+        "pricePerServe": 0.8,
+        "unitLabel": "2 biscuits (about 36 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "savoury-snacks",
+        "store": "Coles",
+        "pricePerServe": 2,
+        "unitLabel": "1 small bag (45 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "savoury-snacks",
+        "store": "Woolworths",
+        "pricePerServe": 2,
+        "unitLabel": "1 small bag (45 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pancakes-and-donuts",
+        "store": "Coles",
+        "pricePerServe": 3.5,
+        "unitLabel": "1 iced doughnut (70 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "pancakes-and-donuts",
+        "store": "Woolworths",
+        "pricePerServe": 3.5,
+        "unitLabel": "1 iced doughnut (70 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "garlic-bread",
+        "store": "Coles",
+        "pricePerServe": 2.5,
+        "unitLabel": "2 slices (about 60 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "garlic-bread",
+        "store": "Woolworths",
+        "pricePerServe": 2.5,
+        "unitLabel": "2 slices (about 60 g)",
         "observedAt": "2026-10-28",
         "isSample": true
       }
@@ -4029,6 +4769,114 @@ export const culturalData: CulturalData = {
         "sodiumModelled": false
       },
       {
+        "itemId": "tofu-noodle-veg-stir-fry",
+        "energyKj": 1712,
+        "proteinG": 23.4,
+        "fibreG": 9.4,
+        "sugarG": 10,
+        "sodiumMg": 642,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "pumpkin-chickpea-coconut-curry",
+        "energyKj": 2283,
+        "proteinG": 15.1,
+        "fibreG": 11.5,
+        "sugarG": 17.4,
+        "sodiumMg": 247,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "creamy-vegetable-pasta",
+        "energyKj": 1466,
+        "proteinG": 15.4,
+        "fibreG": 3.7,
+        "sugarG": 5.8,
+        "sodiumMg": 235,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "chicken-pesto-pasta",
+        "energyKj": 2017,
+        "proteinG": 36.7,
+        "fibreG": 6.4,
+        "sugarG": 4.1,
+        "sodiumMg": 135,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "mini-omelettes",
+        "energyKj": 626,
+        "proteinG": 13.7,
+        "fibreG": 1.4,
+        "sugarG": 2.7,
+        "sodiumMg": 163,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "spinach-egg-roll-ups",
+        "energyKj": 1212,
+        "proteinG": 13.9,
+        "fibreG": 3.9,
+        "sugarG": 4.8,
+        "sodiumMg": 524,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "tropical-frozen-yoghurt-bites",
+        "energyKj": 533,
+        "proteinG": 4.3,
+        "fibreG": 2.3,
+        "sugarG": 15.9,
+        "sodiumMg": 38,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "banana-bread-slice",
+        "energyKj": 549,
+        "proteinG": 3.3,
+        "fibreG": 2.5,
+        "sugarG": 9.7,
+        "sodiumMg": 120,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "avocado-salsa-pita-chips",
+        "energyKj": 712,
+        "proteinG": 4.8,
+        "fibreG": 4.4,
+        "sugarG": 2.1,
+        "sodiumMg": 215,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "spiced-mixed-nuts",
+        "energyKj": 557,
+        "proteinG": 4.2,
+        "fibreG": 2.4,
+        "sugarG": 2.3,
+        "sodiumMg": 0,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "banana-blueberry-pikelets",
+        "energyKj": 693,
+        "proteinG": 4.9,
+        "fibreG": 2.4,
+        "sugarG": 10.9,
+        "sodiumMg": 22,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "pizza-scrolls",
+        "energyKj": 491,
+        "proteinG": 5.8,
+        "fibreG": 2.3,
+        "sugarG": 2.9,
+        "sodiumMg": 224,
+        "sodiumModelled": false
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -4108,6 +4956,78 @@ export const culturalData: CulturalData = {
         "fibreG": 0,
         "sugarG": 55.9,
         "sodiumMg": 143
+      },
+      {
+        "itemId": "pad-thai",
+        "energyKj": 3158,
+        "proteinG": 37,
+        "fibreG": 4,
+        "sugarG": 16.7,
+        "sodiumMg": 122
+      },
+      {
+        "itemId": "takeaway-curry",
+        "energyKj": 3064,
+        "proteinG": 35.5,
+        "fibreG": 5.2,
+        "sugarG": 15.2,
+        "sodiumMg": 1120
+      },
+      {
+        "itemId": "creamy-pasta",
+        "energyKj": 2858,
+        "proteinG": 26.2,
+        "fibreG": 3.4,
+        "sugarG": 4.2,
+        "sodiumMg": 1439
+      },
+      {
+        "itemId": "bacon-and-egg-roll",
+        "energyKj": 2086,
+        "proteinG": 23.8,
+        "fibreG": 2.6,
+        "sugarG": 6.6,
+        "sodiumMg": 1178
+      },
+      {
+        "itemId": "ice-cream",
+        "energyKj": 967,
+        "proteinG": 4.4,
+        "fibreG": 0,
+        "sugarG": 22.1,
+        "sodiumMg": 58
+      },
+      {
+        "itemId": "tim-tams",
+        "energyKj": 749,
+        "proteinG": 1.9,
+        "fibreG": 0.8,
+        "sugarG": 16.1,
+        "sodiumMg": 60
+      },
+      {
+        "itemId": "savoury-snacks",
+        "energyKj": 917,
+        "proteinG": 4,
+        "fibreG": 1.4,
+        "sugarG": 1.1,
+        "sodiumMg": 450
+      },
+      {
+        "itemId": "pancakes-and-donuts",
+        "energyKj": 1062,
+        "proteinG": 4.7,
+        "fibreG": 1.2,
+        "sugarG": 16,
+        "sodiumMg": 290
+      },
+      {
+        "itemId": "garlic-bread",
+        "energyKj": 865,
+        "proteinG": 4.8,
+        "fibreG": 1.8,
+        "sugarG": 2,
+        "sodiumMg": 348
       }
     ],
     "swaps": [
@@ -4460,6 +5380,71 @@ export const culturalData: CulturalData = {
         "cravingId": "milkshake",
         "alternativeId": "strawberry-yoghurt-smoothie",
         "note": "Strawberries, milk and yoghurt blended, with no ice cream or syrup."
+      },
+      {
+        "cravingId": "pad-thai",
+        "alternativeId": "tofu-noodle-veg-stir-fry",
+        "note": "Tofu, soba noodles and plenty of vegetables stir-fried with ginger, soy and lime."
+      },
+      {
+        "cravingId": "takeaway-curry",
+        "alternativeId": "pumpkin-chickpea-coconut-curry",
+        "note": "Pumpkin and chickpeas simmered in spiced tomato and coconut milk, served on rice."
+      },
+      {
+        "cravingId": "creamy-pasta",
+        "alternativeId": "creamy-vegetable-pasta",
+        "note": "Penne in a milk and sour cream sauce with grated vegetables, made as one big batch."
+      },
+      {
+        "cravingId": "creamy-pasta",
+        "alternativeId": "chicken-pesto-pasta",
+        "note": "Penne with chicken, zucchini, spinach and a homemade basil pesto."
+      },
+      {
+        "cravingId": "bacon-and-egg-roll",
+        "alternativeId": "mini-omelettes",
+        "note": "Eggs baked in a muffin tin with capsicum, carrot and mushroom: easy to make ahead."
+      },
+      {
+        "cravingId": "bacon-and-egg-roll",
+        "alternativeId": "spinach-egg-roll-ups",
+        "note": "Boiled egg, hummus, carrot and spinach rolled up in a flatbread."
+      },
+      {
+        "cravingId": "ice-cream",
+        "alternativeId": "tropical-frozen-yoghurt-bites",
+        "note": "Banana, passionfruit, pineapple and yoghurt blended and frozen into scoopable bites."
+      },
+      {
+        "cravingId": "tim-tams",
+        "alternativeId": "carrot-date-oat-biscuit",
+        "note": "Oats, dates, grated carrot and banana baked into soft biscuits, sweetened mostly by fruit."
+      },
+      {
+        "cravingId": "tim-tams",
+        "alternativeId": "banana-bread-slice",
+        "note": "Ripe banana and dates baked into a loaf and cut into slices."
+      },
+      {
+        "cravingId": "savoury-snacks",
+        "alternativeId": "avocado-salsa-pita-chips",
+        "note": "Baked pita chips with a chunky avocado, tomato and corn salsa."
+      },
+      {
+        "cravingId": "savoury-snacks",
+        "alternativeId": "spiced-mixed-nuts",
+        "note": "Raw nuts tossed in honey and cinnamon and baked until crisp."
+      },
+      {
+        "cravingId": "pancakes-and-donuts",
+        "alternativeId": "banana-blueberry-pikelets",
+        "note": "Mashed banana and blueberries folded into a thick batter and pan-fried."
+      },
+      {
+        "cravingId": "garlic-bread",
+        "alternativeId": "pizza-scrolls",
+        "note": "A yoghurt dough rolled around tomato paste, cheese and vegetables, then sliced and baked."
       }
     ],
     "foodInfo": [
@@ -6137,6 +7122,303 @@ export const culturalData: CulturalData = {
         }
       },
       {
+        "itemId": "tofu-noodle-veg-stir-fry",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "soy",
+            "sesame"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Tofu, Noodle and Vegetable Stir Fry",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/tofu-noodle-and-vegetable-stir-fry/"
+        }
+      },
+      {
+        "itemId": "pumpkin-chickpea-coconut-curry",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "unknown",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Pumpkin, Chickpea and Coconut Curry",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/pumpkin-chickpea-and-coconut-curry/"
+        }
+      },
+      {
+        "itemId": "creamy-vegetable-pasta",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "milk",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Creamy Vegetable Pasta",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/creamy-vegetable-pasta/"
+        }
+      },
+      {
+        "itemId": "chicken-pesto-pasta",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "pine-nut",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        },
+        "recipe": {
+          "title": "Chicken Pesto Pasta",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/chicken-pesto-pasta/"
+        }
+      },
+      {
+        "itemId": "mini-omelettes",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "egg"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Mini Omelettes",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/mini-omelettes/"
+        }
+      },
+      {
+        "itemId": "spinach-egg-roll-ups",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "egg",
+            "wheat",
+            "sesame"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Spinach and Egg Roll Ups",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/spinach-and-egg-roll-ups/"
+        }
+      },
+      {
+        "itemId": "tropical-frozen-yoghurt-bites",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Tropical Frozen Yoghurt Bites",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/tropical-frozen-yoghurt-bites/"
+        }
+      },
+      {
+        "itemId": "banana-bread-slice",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "egg",
+            "milk",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Banana Bread",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/banana-bread/"
+        }
+      },
+      {
+        "itemId": "avocado-salsa-pita-chips",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Avocado Salsa and Pita Chips",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/avocado-salsa-and-pita-chips/"
+        }
+      },
+      {
+        "itemId": "spiced-mixed-nuts",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "almond"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Spiced Mixed Nuts",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/spiced-mixed-nuts/"
+        }
+      },
+      {
+        "itemId": "banana-blueberry-pikelets",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "milk",
+            "egg",
+            "wheat"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Banana and Blueberry Pikelets",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/banana-and-blueberry-pikelets/"
+        }
+      },
+      {
+        "itemId": "pizza-scrolls",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Pizza Scrolls",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/pizza-scrolls/"
+        }
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "traditions": [
           "indian-north"
@@ -6319,6 +7601,177 @@ export const culturalData: CulturalData = {
           "allergensKnown": false,
           "certifiedMeat": false
         }
+      },
+      {
+        "itemId": "pad-thai",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "egg",
+            "peanut"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "takeaway-curry",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "creamy-pasta",
+        "traditions": [],
+        "flags": {
+          "halal": "no",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "yes",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "bacon-and-egg-roll",
+        "traditions": [],
+        "flags": {
+          "halal": "no",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "yes",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "egg",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "ice-cream",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "tim-tams",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "savoury-snacks",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "pancakes-and-donuts",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "garlic-bread",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
       }
     ],
     "cravingIds": [
@@ -6331,7 +7784,16 @@ export const culturalData: CulturalData = {
       "nachos",
       "tacos-burritos",
       "anzac-biscuits",
-      "milkshake"
+      "milkshake",
+      "pad-thai",
+      "takeaway-curry",
+      "creamy-pasta",
+      "bacon-and-egg-roll",
+      "ice-cream",
+      "tim-tams",
+      "savoury-snacks",
+      "pancakes-and-donuts",
+      "garlic-bread"
     ]
   },
   "notFound": [
