@@ -3384,6 +3384,1592 @@ export const recipesData: RecipesData = {
       "basis": "Plain rice flour (rice is a naturally gluten-free grain per Coeliac Australia)"
     },
     {
+      "id": "fish-flathead",
+      "name": "Flathead fillet, raw",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003973",
+      "nutritionName": "Flathead, fillet, raw",
+      "per100g": {
+        "energyKj": 395,
+        "proteinG": 21.1,
+        "fibreG": 0,
+        "sugarG": 0,
+        "sodiumMg": 97
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [
+        "fish"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Raw white fish fillet: flathead stands in for the \"fish fillets\" a recipe names"
+    },
+    {
+      "id": "shallot",
+      "name": "Shallot",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008227",
+      "nutritionName": "Shallot, peeled, fresh, raw",
+      "per100g": {
+        "energyKj": 107,
+        "proteinG": 1.5,
+        "fibreG": 2.9,
+        "sugarG": 3.1,
+        "sodiumMg": 6
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh shallot"
+    },
+    {
+      "id": "basil",
+      "name": "Basil, fresh",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F000396",
+      "nutritionName": "Basil, green, fresh, raw",
+      "per100g": {
+        "energyKj": 94,
+        "proteinG": 2.6,
+        "fibreG": 3.3,
+        "sugarG": 0,
+        "sodiumMg": 10
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh basil leaves"
+    },
+    {
+      "id": "oregano-dried",
+      "name": "Oregano, dried",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006281",
+      "nutritionName": "Oregano, dried",
+      "per100g": {
+        "energyKj": 1096,
+        "proteinG": 9,
+        "fibreG": 42.5,
+        "sugarG": 4.1,
+        "sodiumMg": 25
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Dried oregano"
+    },
+    {
+      "id": "sweet-potato-orange",
+      "name": "Sweet potato, orange flesh",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F009035",
+      "nutritionName": "Sweet potato, orange flesh, peeled, fresh, raw",
+      "per100g": {
+        "energyKj": 273,
+        "proteinG": 1.4,
+        "fibreG": 2.6,
+        "sugarG": 5.8,
+        "sodiumMg": 6
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh orange sweet potato (kumara)"
+    },
+    {
+      "id": "pumpkin-butternut",
+      "name": "Butternut pumpkin",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F007535",
+      "nutritionName": "Pumpkin, butternut, peeled, fresh, raw",
+      "per100g": {
+        "energyKj": 189,
+        "proteinG": 2.1,
+        "fibreG": 1.8,
+        "sugarG": 5.2,
+        "sodiumMg": 1
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh butternut pumpkin"
+    },
+    {
+      "id": "walnuts",
+      "name": "Walnuts, raw unsalted",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006116",
+      "nutritionName": "Nut, walnut, raw, unsalted",
+      "per100g": {
+        "energyKj": 2904,
+        "proteinG": 14.4,
+        "fibreG": 6.4,
+        "sugarG": 2.7,
+        "sodiumMg": 3
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [
+        "walnut"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Raw unsalted walnuts"
+    },
+    {
+      "id": "puff-pastry",
+      "name": "Puff pastry, raw",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006503",
+      "nutritionName": "Pastry, puff, vegetable oil, commercial, raw",
+      "per100g": {
+        "energyKj": 1321,
+        "proteinG": 5.5,
+        "fibreG": 3.4,
+        "sugarG": 1,
+        "sodiumMg": 387
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": [
+        "wheat"
+      ],
+      "allergensPartial": true,
+      "attributeSources": {
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Bought puff pastry (vegetable oil type): wheat (gluten yes), other ingredients not known here"
+    },
+    {
+      "id": "beef-mince-lean",
+      "name": "Beef mince, lower fat, raw",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F000666",
+      "nutritionName": "Beef, mince, lower fat, raw",
+      "per100g": {
+        "energyKj": 541,
+        "proteinG": 22.9,
+        "fibreG": 0,
+        "sugarG": 0,
+        "sodiumMg": 68
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "certified-meat",
+      "kosher": "certified-meat",
+      "beef": "yes",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "kosher": "kosher-au-basic-ingredients",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Raw lower fat beef mince"
+    },
+    {
+      "id": "lentils-boiled",
+      "name": "Lentils, boiled",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F005177",
+      "nutritionName": "Lentil, dried, boiled, drained",
+      "per100g": {
+        "energyKj": 385,
+        "proteinG": 7.3,
+        "fibreG": 4.1,
+        "sugarG": 0.5,
+        "sodiumMg": 1
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Boiled lentils: stand in for canned brown lentils, which the AFCD does not list"
+    },
+    {
+      "id": "flour-wholemeal",
+      "name": "Wholemeal plain wheat flour",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F004014",
+      "nutritionName": "Flour, wheat, wholemeal, plain",
+      "per100g": {
+        "energyKj": 1371,
+        "proteinG": 11.6,
+        "fibreG": 8.8,
+        "sugarG": 2,
+        "sodiumMg": 2
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "yes",
+      "allergens": [
+        "wheat"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Wholemeal plain wheat flour"
+    },
+    {
+      "id": "brown-rice",
+      "name": "Brown rice, uncooked",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F007648",
+      "nutritionName": "Rice, brown, uncooked",
+      "per100g": {
+        "energyKj": 1452,
+        "proteinG": 7.6,
+        "fibreG": 3.5,
+        "sugarG": 1.1,
+        "sodiumMg": 2
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Brown rice, uncooked"
+    },
+    {
+      "id": "bok-choy",
+      "name": "Bok choy",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F001301",
+      "nutritionName": "Bok choy, raw",
+      "per100g": {
+        "energyKj": 79,
+        "proteinG": 2.5,
+        "fibreG": 2.4,
+        "sugarG": 0.6,
+        "sodiumMg": 57
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh bok choy"
+    },
+    {
+      "id": "sesame-oil",
+      "name": "Sesame oil",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006187",
+      "nutritionName": "Oil, sesame",
+      "per100g": {
+        "energyKj": 3700,
+        "proteinG": 0,
+        "fibreG": 0,
+        "sugarG": 0,
+        "sodiumMg": 0
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [
+        "sesame"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Sesame oil"
+    },
+    {
+      "id": "pork-mince",
+      "name": "Pork mince, untrimmed, raw",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F007057",
+      "nutritionName": "Pork, mince, untrimmed, raw",
+      "per100g": {
+        "energyKj": 748,
+        "proteinG": 20.9,
+        "fibreG": 0,
+        "sugarG": 0,
+        "sodiumMg": 58
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "no",
+      "kosher": "no",
+      "beef": "no",
+      "pork": "yes",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "kosher": "kosher-au-basic-ingredients",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Raw pork mince"
+    },
+    {
+      "id": "water-chestnut",
+      "name": "Water chestnuts, canned",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F009514",
+      "nutritionName": "Water chestnut, peeled, canned, drained",
+      "per100g": {
+        "energyKj": 218,
+        "proteinG": 0.6,
+        "fibreG": 2.7,
+        "sugarG": 5.1,
+        "sodiumMg": 10
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Bought canned water chestnuts"
+    },
+    {
+      "id": "avocado",
+      "name": "Avocado, Hass",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F000162",
+      "nutritionName": "Avocado, hass, raw",
+      "per100g": {
+        "energyKj": 653,
+        "proteinG": 1.6,
+        "fibreG": 5.9,
+        "sugarG": 0,
+        "sodiumMg": 8
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh Hass avocado"
+    },
+    {
+      "id": "beans-kidney-tinned",
+      "name": "Kidney beans, canned",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F000448",
+      "nutritionName": "Bean, red kidney, canned, drained",
+      "per100g": {
+        "energyKj": 441,
+        "proteinG": 6.6,
+        "fibreG": 6.5,
+        "sugarG": 2.4,
+        "sodiumMg": 320
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Bought canned beans: kidney beans also stand in for black beans, which the AFCD does not list"
+    },
+    {
+      "id": "cheddar-reduced-fat",
+      "name": "Cheddar, reduced fat",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F002413",
+      "nutritionName": "Cheese, cheddar, natural, reduced fat (~25%)",
+      "per100g": {
+        "energyKj": 1356,
+        "proteinG": 27.9,
+        "fibreG": 0,
+        "sugarG": 0,
+        "sodiumMg": 550
+      },
+      "vegetarian": "unknown",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "milk"
+      ],
+      "allergensPartial": true,
+      "attributeSources": {
+        "vegan": "vegan-australia-pledge",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Reduced fat cheddar: cheese, so most flags stay unknown"
+    },
+    {
+      "id": "cheddar-regular",
+      "name": "Cheddar, regular fat",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F002414",
+      "nutritionName": "Cheese, cheddar, natural, regular fat",
+      "per100g": {
+        "energyKj": 1686,
+        "proteinG": 24.6,
+        "fibreG": 0,
+        "sugarG": 0.3,
+        "sodiumMg": 686
+      },
+      "vegetarian": "unknown",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "milk"
+      ],
+      "allergensPartial": true,
+      "attributeSources": {
+        "vegan": "vegan-australia-pledge",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Regular fat cheddar: cheese, so most flags stay unknown"
+    },
+    {
+      "id": "red-onion",
+      "name": "Red onion",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F009800",
+      "nutritionName": "Onion, mature, red skinned, raw",
+      "per100g": {
+        "energyKj": 116,
+        "proteinG": 0.8,
+        "fibreG": 1.8,
+        "sugarG": 5.5,
+        "sodiumMg": 5
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh red onion"
+    },
+    {
+      "id": "taco-seasoning",
+      "name": "Taco seasoning mix",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F009072",
+      "nutritionName": "Taco seasoning mix, chilli-based",
+      "per100g": {
+        "energyKj": 1335,
+        "proteinG": 6.2,
+        "fibreG": 8.7,
+        "sugarG": 28.5,
+        "sodiumMg": 6238
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Bought taco seasoning mix: ingredients not known here, so all flags stay unknown"
+    },
+    {
+      "id": "sour-cream-light",
+      "name": "Sour cream, light",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003267",
+      "nutritionName": "Cream, sour, light (~18% fat)",
+      "per100g": {
+        "energyKj": 868,
+        "proteinG": 3.6,
+        "fibreG": 0,
+        "sugarG": 4.5,
+        "sodiumMg": 19
+      },
+      "vegetarian": "unknown",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "milk"
+      ],
+      "allergensPartial": true,
+      "attributeSources": {
+        "vegan": "vegan-australia-pledge",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Bought light sour cream: dairy, other ingredients not known here"
+    },
+    {
+      "id": "sour-cream",
+      "name": "Sour cream, regular",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003269",
+      "nutritionName": "Cream, sour, regular fat",
+      "per100g": {
+        "energyKj": 1414,
+        "proteinG": 1.9,
+        "fibreG": 0,
+        "sugarG": 2,
+        "sodiumMg": 19
+      },
+      "vegetarian": "unknown",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "milk"
+      ],
+      "allergensPartial": true,
+      "attributeSources": {
+        "vegan": "vegan-australia-pledge",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Bought sour cream: dairy, other ingredients not known here"
+    },
+    {
+      "id": "corn-chips",
+      "name": "Corn chips, plain, salted",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003198",
+      "nutritionName": "Corn chips, plain, salted",
+      "per100g": {
+        "energyKj": 2053,
+        "proteinG": 7.5,
+        "fibreG": 5.2,
+        "sugarG": 0.6,
+        "sodiumMg": 420
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Bought corn chips: ingredients not known here, so all flags stay unknown"
+    },
+    {
+      "id": "tortilla",
+      "name": "Tortilla, white wheat",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F001669",
+      "nutritionName": "Bread, tortilla, white, commercial",
+      "per100g": {
+        "energyKj": 1263,
+        "proteinG": 7.3,
+        "fibreG": 2,
+        "sugarG": 4.3,
+        "sodiumMg": 750
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": [
+        "wheat"
+      ],
+      "allergensPartial": true,
+      "attributeSources": {
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Bought wheat tortilla: wheat (gluten yes), other ingredients not known here"
+    },
+    {
+      "id": "salsa",
+      "name": "Salsa, tomato-based",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008056",
+      "nutritionName": "Sauce, salsa, tomato-based, commercial",
+      "per100g": {
+        "energyKj": 146,
+        "proteinG": 1.3,
+        "fibreG": 1.6,
+        "sugarG": 4.9,
+        "sodiumMg": 480
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Bought salsa: ingredients not known here, so all flags stay unknown"
+    },
+    {
+      "id": "tomato-paste",
+      "name": "Tomato paste",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F009208",
+      "nutritionName": "Tomato, paste, with added salt",
+      "per100g": {
+        "energyKj": 277,
+        "proteinG": 3.1,
+        "fibreG": 3.5,
+        "sugarG": 9.9,
+        "sodiumMg": 630
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Bought tomato paste"
+    },
+    {
+      "id": "corn-kernels-tinned",
+      "name": "Sweet corn kernels, canned",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003220",
+      "nutritionName": "Corn, kernels, canned in brine, drained",
+      "per100g": {
+        "energyKj": 391,
+        "proteinG": 2.9,
+        "fibreG": 2.7,
+        "sugarG": 3.5,
+        "sodiumMg": 170
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Bought canned corn kernels"
+    },
+    {
+      "id": "chicken-breast-baked",
+      "name": "Chicken breast, baked",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F002590",
+      "nutritionName": "Chicken, breast, lean flesh, baked, no added fat",
+      "per100g": {
+        "energyKj": 637,
+        "proteinG": 29,
+        "fibreG": 0,
+        "sugarG": 0,
+        "sodiumMg": 46
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "certified-meat",
+      "kosher": "certified-meat",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "kosher": "kosher-au-basic-ingredients",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Baked chicken breast, lean flesh (a roast chicken stand-in)"
+    },
+    {
+      "id": "oats-rolled",
+      "name": "Rolled oats, uncooked",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006143",
+      "nutritionName": "Oats, rolled, uncooked",
+      "per100g": {
+        "energyKj": 1564,
+        "proteinG": 12.2,
+        "fibreG": 9.5,
+        "sugarG": 1,
+        "sodiumMg": 2
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": [
+        "oats"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Rolled oats: oats may be cross-contaminated with wheat, so gluten stays unknown"
+    },
+    {
+      "id": "desiccated-coconut",
+      "name": "Coconut, desiccated",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F002987",
+      "nutritionName": "Coconut, grated & desiccated",
+      "per100g": {
+        "energyKj": 2777,
+        "proteinG": 6.9,
+        "fibreG": 15.4,
+        "sugarG": 6.6,
+        "sodiumMg": 15
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Desiccated coconut (coconut is not on the FSANZ declaration list)"
+    },
+    {
+      "id": "sugar-white",
+      "name": "Sugar, white",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008976",
+      "nutritionName": "Sugar, white, granulated or lump",
+      "per100g": {
+        "energyKj": 1600,
+        "proteinG": 0,
+        "fibreG": 0,
+        "sugarG": 100,
+        "sodiumMg": 0
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "White sugar: refining may use bone char, so vegan stays unknown"
+    },
+    {
+      "id": "sugar-brown",
+      "name": "Sugar, brown",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008969",
+      "nutritionName": "Sugar, brown",
+      "per100g": {
+        "energyKj": 1552,
+        "proteinG": 0.2,
+        "fibreG": 0,
+        "sugarG": 96.8,
+        "sodiumMg": 21
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Brown sugar: refining may use bone char, so vegan stays unknown"
+    },
+    {
+      "id": "butter",
+      "name": "Butter, salted",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F001973",
+      "nutritionName": "Butter, plain, salted",
+      "per100g": {
+        "energyKj": 3069,
+        "proteinG": 1.1,
+        "fibreG": 0,
+        "sugarG": 0.6,
+        "sodiumMg": 776
+      },
+      "vegetarian": "yes",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [
+        "milk"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Salted butter"
+    },
+    {
+      "id": "golden-syrup",
+      "name": "Golden syrup",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F009049",
+      "nutritionName": "Syrup, golden",
+      "per100g": {
+        "energyKj": 1203,
+        "proteinG": 0.2,
+        "fibreG": 0,
+        "sugarG": 74.9,
+        "sodiumMg": 130
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Golden syrup: ingredients not known here"
+    },
+    {
+      "id": "dates",
+      "name": "Dates, dried",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F003496",
+      "nutritionName": "Date, dried",
+      "per100g": {
+        "energyKj": 1212,
+        "proteinG": 2,
+        "fibreG": 9.7,
+        "sugarG": 65.9,
+        "sodiumMg": 14
+      },
+      "vegetarian": "yes",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3"
+      },
+      "basis": "Dried dates: processing aids are not known here"
+    },
+    {
+      "id": "almonds",
+      "name": "Almonds, raw unsalted",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F006081",
+      "nutritionName": "Nut, almond, with skin, raw, unsalted",
+      "per100g": {
+        "energyKj": 2386,
+        "proteinG": 19.7,
+        "fibreG": 11,
+        "sugarG": 5.2,
+        "sodiumMg": 0
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [
+        "almond"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Raw unsalted almonds"
+    },
+    {
+      "id": "cinnamon",
+      "name": "Cinnamon, ground",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F002963",
+      "nutritionName": "Cinnamon, dried, ground",
+      "per100g": {
+        "energyKj": 1004,
+        "proteinG": 4,
+        "fibreG": 53.1,
+        "sugarG": 2.2,
+        "sodiumMg": 10
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "unknown",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Ground cinnamon"
+    },
+    {
+      "id": "blueberries-frozen",
+      "name": "Blueberries, frozen",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F001289",
+      "nutritionName": "Blueberry, purchased frozen",
+      "per100g": {
+        "energyKj": 208,
+        "proteinG": 0.5,
+        "fibreG": 3,
+        "sugarG": 10.3,
+        "sodiumMg": 2
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Frozen blueberries"
+    },
+    {
+      "id": "strawberries",
+      "name": "Strawberries",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008952",
+      "nutritionName": "Strawberry, raw",
+      "per100g": {
+        "energyKj": 132,
+        "proteinG": 0.7,
+        "fibreG": 2.1,
+        "sugarG": 5.5,
+        "sodiumMg": 0
+      },
+      "vegetarian": "yes",
+      "vegan": "yes",
+      "halal": "yes",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Fresh or frozen strawberries (same AFCD values)"
+    },
+    {
+      "id": "milk-reduced-fat",
+      "name": "Milk, reduced fat",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F005614",
+      "nutritionName": "Milk, cow, fluid, reduced fat (~1%)",
+      "per100g": {
+        "energyKj": 181,
+        "proteinG": 3.3,
+        "fibreG": 0,
+        "sugarG": 4.8,
+        "sodiumMg": 36
+      },
+      "vegetarian": "yes",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "no",
+      "pork": "no",
+      "alcohol": "no",
+      "gluten": "no",
+      "allergens": [
+        "milk"
+      ],
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "beef": "afcd-r3",
+        "pork": "afcd-r3",
+        "alcohol": "afcd-r3",
+        "gluten": "coeliac-au-gluten-free-diet",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Reduced fat cow milk"
+    },
+    {
+      "id": "ice-cream",
+      "name": "Ice cream, vanilla",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F004508",
+      "nutritionName": "Ice cream, vanilla flavour, regular fat",
+      "per100g": {
+        "energyKj": 806,
+        "proteinG": 3.7,
+        "fibreG": 0,
+        "sugarG": 18.4,
+        "sodiumMg": 48
+      },
+      "vegetarian": "unknown",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": [
+        "milk"
+      ],
+      "allergensPartial": true,
+      "attributeSources": {
+        "vegan": "vegan-australia-pledge",
+        "allergens": "fsanz-allergen-labelling"
+      },
+      "basis": "Bought vanilla ice cream: dairy, other ingredients (eggs, flavours) not known here"
+    },
+    {
+      "id": "soy-sauce-reduced",
+      "name": "Soy sauce, reduced salt",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008067",
+      "nutritionName": "Sauce, soy, commercial, reduced salt",
+      "per100g": {
+        "energyKj": 209,
+        "proteinG": 6.8,
+        "fibreG": 0,
+        "sugarG": 2.2,
+        "sodiumMg": 3934
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Processed sauce: no source read for its gluten, alcohol or allergens"
+    },
+    {
+      "id": "fish-battered-takeaway",
+      "name": "Fish, battered, deep fried, takeaway",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008233",
+      "nutritionName": "Shark, battered, deep-fried, takeaway outlet",
+      "per100g": {
+        "energyKj": 1008,
+        "proteinG": 21.1,
+        "fibreG": 0.9,
+        "sugarG": 0.2,
+        "sodiumMg": 300
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "gluten": "coeliac-au-gluten-free-diet"
+      },
+      "basis": "Takeaway battered fish (the AFCD row is shark, \"flake\"): wheat batter (gluten yes), frying oil and batter beer not known here"
+    },
+    {
+      "id": "chips-takeaway",
+      "name": "Potato chips, takeaway, deep fried",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F007238",
+      "nutritionName": "Potato, chips, regular, independent takeaway outlet, deep fried, blended oil, salted",
+      "per100g": {
+        "energyKj": 997,
+        "proteinG": 3.8,
+        "fibreG": 3,
+        "sugarG": 0,
+        "sodiumMg": 180
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {},
+      "basis": "Takeaway hot chips: potato, frying oil not known here, so most flags stay unknown"
+    },
+    {
+      "id": "sausage-roll",
+      "name": "Sausage roll, commercial",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008098",
+      "nutritionName": "Sausage roll, commercial, ready to eat",
+      "per100g": {
+        "energyKj": 1190,
+        "proteinG": 9.7,
+        "fibreG": 3,
+        "sugarG": 2.8,
+        "sodiumMg": 667
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "gluten": "coeliac-au-gluten-free-diet"
+      },
+      "basis": "Bought sausage roll: meat and wheat pastry, ingredients not known here"
+    },
+    {
+      "id": "fried-rice-takeaway",
+      "name": "Fried rice with meat, egg and vegetables, takeaway",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F007666",
+      "nutritionName": "Rice, white, fried with bacon or ham, egg, prawns & vegetables",
+      "per100g": {
+        "energyKj": 827,
+        "proteinG": 5.5,
+        "fibreG": 1.2,
+        "sugarG": 1,
+        "sodiumMg": 490
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "no",
+      "kosher": "no",
+      "beef": "unknown",
+      "pork": "yes",
+      "alcohol": "unknown",
+      "gluten": "unknown",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "halal": "wikipedia-halal",
+        "kosher": "kosher-au-basic-ingredients",
+        "pork": "afcd-r3"
+      },
+      "basis": "Takeaway fried rice with bacon or ham, egg, prawns and vegetables: contains meat and shellfish, so not suitable where those are avoided"
+    },
+    {
+      "id": "spring-roll",
+      "name": "Spring roll, commercial, deep fried",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F008794",
+      "nutritionName": "Spring roll, meat & vegetable filling, commercial, deep fried",
+      "per100g": {
+        "energyKj": 1047,
+        "proteinG": 7.5,
+        "fibreG": 2.8,
+        "sugarG": 4.3,
+        "sodiumMg": 501
+      },
+      "vegetarian": "no",
+      "vegan": "no",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": "unknown",
+      "attributeSources": {
+        "vegetarian": "wikipedia-vegetarianism",
+        "vegan": "vegan-australia-pledge",
+        "gluten": "coeliac-au-gluten-free-diet"
+      },
+      "basis": "Bought deep fried spring roll: meat and vegetable filling in a wheat wrapper"
+    },
+    {
+      "id": "anzac-biscuit",
+      "name": "Anzac biscuit, commercial",
+      "nutritionSourceId": "afcd-r3",
+      "nutritionCode": "F001164",
+      "nutritionName": "Biscuit, sweet, Anzac style, commercial",
+      "per100g": {
+        "energyKj": 1940,
+        "proteinG": 5.8,
+        "fibreG": 3.8,
+        "sugarG": 32,
+        "sodiumMg": 300
+      },
+      "vegetarian": "unknown",
+      "vegan": "unknown",
+      "halal": "unknown",
+      "kosher": "unknown",
+      "beef": "unknown",
+      "pork": "unknown",
+      "alcohol": "unknown",
+      "gluten": "yes",
+      "allergens": "unknown",
+      "attributeSources": {
+        "gluten": "coeliac-au-gluten-free-diet"
+      },
+      "basis": "Bought Anzac biscuit: oats, flour, coconut, butter or margarine, ingredients not known here"
+    },
+    {
       "id": "tuna-canned",
       "name": "Tuna, canned",
       "nutritionSourceId": "afcd-r3",

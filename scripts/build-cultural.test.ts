@@ -6,7 +6,7 @@ import { buildCatalogue, buildCultural, calendarWarning, computeNutrition, deriv
 
 const data = () => JSON.parse(readFileSync(DATA_PATH, 'utf8'));
 /** A fixed date, so no test depends on when it runs. */
-const PINNED_TODAY = '2026-11-23';
+const PINNED_TODAY = '2026-11-25';
 const errorsFor = (mut: (d: any) => void, today: string = PINNED_TODAY) => {
   const d = data();
   mut(d);
@@ -42,7 +42,7 @@ describe('build-cultural', () => {
   });
   it('rejects a checked date after today in Melbourne', () => {
     expect(errorsFor((d) => (d.calendar[0].checked = '2999-01-01'))).toMatch(/checked/);
-    expect(errorsFor((d) => (d.calendar[0].checked = '2026-11-24'), '2026-11-23')).toMatch(/checked/);
+    expect(errorsFor((d) => (d.calendar[0].checked = '2026-11-26'), '2026-11-25')).toMatch(/checked/);
   });
   it('rejects a row with approx missing or not boolean', () => {
     expect(errorsFor((d) => delete d.calendar[0].approx)).toMatch(/approx/);
@@ -64,14 +64,14 @@ describe('build-cultural', () => {
   });
   it('fails freshness when the calendar ends less than 12 months after today', () => {
     expect(errorsFor(() => {}, '2028-09-20')).toMatch(/calendar needs refreshing/);
-    expect(errorsFor(() => {}, '2026-11-23')).not.toMatch(/calendar needs refreshing/);
+    expect(errorsFor(() => {}, '2026-11-25')).not.toMatch(/calendar needs refreshing/);
   });
   it('building never fails on the clock: an expired calendar is a warning, not an error', () => {
     expect(() => buildCultural(data(), '2031-01-01')).not.toThrow();
-    expect(buildCultural(data(), '2031-01-01')).toBe(buildCultural(data(), '2026-11-23'));
-    expect(calendarWarning(data(), '2026-11-23')).toBeNull();
+    expect(buildCultural(data(), '2031-01-01')).toBe(buildCultural(data(), '2026-11-25'));
+    expect(calendarWarning(data(), '2026-11-25')).toBeNull();
     expect(calendarWarning(data(), '2028-09-20')).toMatch(/less than 12 months of calendar remain.*README/s);
-    expect(calendarWarning({ ...data(), calendar: [] }, '2026-11-23')).toMatch(/less than 12 months/);
+    expect(calendarWarning({ ...data(), calendar: [] }, '2026-11-25')).toMatch(/less than 12 months/);
   });
   it('rejects a computed row that differs from the algorithm', () => {
     expect(errorsFor((d) => (d.calendar.find((r: any) => r.occasion === 'easter').start = '2027-03-27'))).toMatch(/computed/i);
@@ -390,6 +390,18 @@ describe('generated catalogue', () => {
     const ids = new Set(built().foodInfo.map((f: any) => f.itemId));
     for (const id of d.existing.alternatives) expect(ids.has(id), id).toBe(true);
     for (const f of [...d.foods, ...d.cravings]) expect(ids.has(f.id), f.id).toBe(true);
+  });
+  it('has the seven takeaway cravings, each with a recipe-credited swap and the dropped swaps absent', () => {
+    const c = built();
+    const credited = new Map(c.foodInfo.filter((f: any) => f.recipe).map((f: any) => [f.itemId, f.recipe]));
+    const expected: Record<string, number> = { 'fish-and-chips': 1, 'sausage-roll': 2, 'chinese-takeaway': 2, nachos: 1, 'tacos-burritos': 2, 'anzac-biscuits': 2, milkshake: 2, 'chicken-nuggets': 1 };
+    for (const [id, n] of Object.entries(expected)) {
+      const swaps = c.swaps.filter((s: any) => s.cravingId === id);
+      expect(swaps.length, id).toBe(n);
+      for (const s of swaps) expect(credited.has(s.alternativeId), s.alternativeId).toBe(true);
+    }
+    // Dropped because the generator's rules say they are not better: sweet potato chips, sweet potato nachos, chickpea fritters.
+    for (const id of ['sweet-potato-chips-oven', 'sweet-potato-nachos', 'chickpea-corn-zucchini-fritters']) expect(c.items.some((i: any) => i.id === id), id).toBe(false);
   });
   it('every cultural price is sample-flagged and between 0.2 and 15', () => {
     const c = built();
