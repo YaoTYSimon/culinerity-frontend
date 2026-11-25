@@ -36,6 +36,16 @@ describe('CravingSearch', () => {
     expect(link).toHaveAttribute('target', '_blank');
   });
 
+  it.each([
+    ['nachos', /recipe: cookbook:simple nachos \(wikibooks\)/i],
+    ['fish and chips', /recipe: baked fish \(health and wellbeing queensland\)/i],
+    ['milkshake', /recipe: banana and blueberry smoothie \(health and wellbeing queensland\)/i],
+  ])('finds the %s craving and credits the recipe', async (query, name) => {
+    renderSearch();
+    search(query);
+    expect(await screen.findByRole('link', { name })).toHaveAttribute('target', '_blank');
+  });
+
   it('shows only the picklist for whitespace input', () => {
     renderSearch();
     search('   ');

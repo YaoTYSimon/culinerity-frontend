@@ -681,6 +681,114 @@ export const culturalData: CulturalData = {
       "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
       "accessed": "2026-11-23",
       "verification": "secondary"
+    },
+    {
+      "id": "hwq-baked-fish",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Baked Fish",
+      "url": "https://hw.qld.gov.au/healthy-recipes/baked-fish/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-healthy-sausage-roll",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Healthy Sausage Roll",
+      "url": "https://hw.qld.gov.au/healthy-recipes/healthy-sausage-roll/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-lentil-and-sweet-potato-patties",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Lentil and Sweet Potato Patties",
+      "url": "https://hw.qld.gov.au/healthy-recipes/lentil-and-sweet-potato-patties/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-ginger-veggie-stir-fry-recipe",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Ginger Vegetable and Chicken Stir fry",
+      "url": "https://hw.qld.gov.au/healthy-recipes/ginger-veggie-stir-fry-recipe/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-san-choy-bow",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "San Choy Bow",
+      "url": "https://hw.qld.gov.au/healthy-recipes/san-choy-bow/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "wikibooks-simple-nachos",
+      "publisher": "Wikibooks",
+      "title": "Cookbook:Simple Nachos",
+      "url": "https://en.wikibooks.org/wiki/Cookbook:Simple_Nachos",
+      "licence": "Wikibooks Cookbook, Creative Commons Attribution-ShareAlike (CC BY-SA) as stated in the page footer. Only the ingredient list (facts) is used, no text is copied.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-chicken-and-avocado-soft-tacos",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Chicken and Avocado Soft Tacos",
+      "url": "https://hw.qld.gov.au/healthy-recipes/chicken-and-avocado-soft-tacos/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-taco-roll",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Taco Roll",
+      "url": "https://hw.qld.gov.au/healthy-recipes/taco-roll/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "wikibooks-anzac-biscuits-i",
+      "publisher": "Wikibooks",
+      "title": "Cookbook:Anzac Biscuits I",
+      "url": "https://en.wikibooks.org/wiki/Cookbook:Anzac_Biscuits_I",
+      "licence": "Wikibooks Cookbook, Creative Commons Attribution-ShareAlike (CC BY-SA) as stated in the page footer. Only the ingredient list (facts) is used, no text is copied.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-carrot-date-and-oat-biscuit",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Carrot, Date and Oat Biscuit",
+      "url": "https://hw.qld.gov.au/healthy-recipes/carrot-date-and-oat-biscuit/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-banana-and-blueberry-smoothie",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Banana and Blueberry Smoothie",
+      "url": "https://hw.qld.gov.au/healthy-recipes/banana-and-blueberry-smoothie/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
+    },
+    {
+      "id": "hwq-strawberry-smoothie",
+      "publisher": "Health and Wellbeing Queensland",
+      "title": "Strawberry Smoothie",
+      "url": "https://hw.qld.gov.au/healthy-recipes/strawberry-smoothie/",
+      "licence": "Health and Wellbeing Queensland, licence assumed CC BY 4.0 from qld.gov.au/legal/copyright, page not confirmed. Only the ingredient list (facts) is used; the method wording is our own.",
+      "accessed": "2026-11-25",
+      "verification": "secondary"
     }
   ],
   "traditions": [
@@ -1896,6 +2004,172 @@ export const culturalData: CulturalData = {
         "kind": "alternative"
       },
       {
+        "id": "baked-fish-capsicum",
+        "name": "Baked fish with capsicum and herbs",
+        "category": "home cooking",
+        "keywords": [
+          "baked fish",
+          "fish fillets",
+          "oven baked fish",
+          "fish and chips",
+          "fish & chips"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "beef-veg-sausage-rolls",
+        "name": "Beef and vegetable sausage rolls",
+        "category": "home cooking",
+        "keywords": [
+          "sausage roll",
+          "sausage rolls",
+          "beef sausage roll",
+          "veg sausage roll"
+        ],
+        "unitLabel": "1 roll",
+        "kind": "alternative"
+      },
+      {
+        "id": "lentil-sweet-potato-patties",
+        "name": "Lentil and sweet potato patties",
+        "category": "home cooking",
+        "keywords": [
+          "lentil patties",
+          "sweet potato patties",
+          "lentil pattie",
+          "veggie patties"
+        ],
+        "unitLabel": "2 patties",
+        "kind": "alternative"
+      },
+      {
+        "id": "ginger-chicken-veg-stir-fry",
+        "name": "Ginger vegetable and chicken stir fry with brown rice",
+        "category": "home cooking",
+        "keywords": [
+          "chinese takeaway",
+          "stir fry",
+          "chicken stir fry",
+          "ginger stir fry",
+          "chinese"
+        ],
+        "unitLabel": "1 serve",
+        "kind": "alternative"
+      },
+      {
+        "id": "san-choy-bow",
+        "name": "San choy bow (pork mince in lettuce cups)",
+        "category": "home cooking",
+        "keywords": [
+          "san choy bow",
+          "lettuce cups",
+          "pork mince lettuce",
+          "chinese takeaway",
+          "chinese"
+        ],
+        "unitLabel": "4 cups",
+        "kind": "alternative"
+      },
+      {
+        "id": "simple-beef-nachos",
+        "name": "Simple beef nachos",
+        "category": "home cooking",
+        "keywords": [
+          "nachos",
+          "simple nachos",
+          "beef nachos",
+          "corn chips"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "alternative"
+      },
+      {
+        "id": "chicken-avocado-soft-tacos",
+        "name": "Chicken and avocado soft tacos",
+        "category": "home cooking",
+        "keywords": [
+          "tacos",
+          "soft tacos",
+          "chicken tacos",
+          "chicken and avocado tacos",
+          "burrito"
+        ],
+        "unitLabel": "2 tacos",
+        "kind": "alternative"
+      },
+      {
+        "id": "beef-taco-roll",
+        "name": "Beef taco roll",
+        "category": "home cooking",
+        "keywords": [
+          "taco roll",
+          "tacos",
+          "burrito",
+          "beef tacos",
+          "mince wrap"
+        ],
+        "unitLabel": "1 roll",
+        "kind": "alternative"
+      },
+      {
+        "id": "anzac-biscuits-home",
+        "name": "Home-baked Anzac biscuits",
+        "category": "home cooking",
+        "keywords": [
+          "anzac",
+          "anzac biscuits",
+          "anzac biscuit",
+          "biscuits",
+          "cookies"
+        ],
+        "unitLabel": "1 biscuit",
+        "kind": "alternative"
+      },
+      {
+        "id": "carrot-date-oat-biscuit",
+        "name": "Carrot, date and oat biscuit",
+        "category": "home cooking",
+        "keywords": [
+          "anzac",
+          "carrot biscuit",
+          "date oat biscuit",
+          "oat biscuit",
+          "biscuits",
+          "cookies"
+        ],
+        "unitLabel": "1 biscuit",
+        "kind": "alternative"
+      },
+      {
+        "id": "banana-blueberry-smoothie",
+        "name": "Banana and blueberry yoghurt smoothie",
+        "category": "home cooking",
+        "keywords": [
+          "smoothie",
+          "milkshake",
+          "banana smoothie",
+          "blueberry smoothie",
+          "shake"
+        ],
+        "unitLabel": "1 glass",
+        "kind": "alternative"
+      },
+      {
+        "id": "strawberry-yoghurt-smoothie",
+        "name": "Strawberry and yoghurt smoothie",
+        "category": "home cooking",
+        "keywords": [
+          "smoothie",
+          "milkshake",
+          "strawberry smoothie",
+          "strawberry shake",
+          "shake"
+        ],
+        "unitLabel": "1 glass",
+        "kind": "alternative"
+      },
+      {
         "id": "butter-chicken-jar-sauce",
         "name": "Butter chicken with rice (jar sauce)",
         "category": "packaged meal",
@@ -1933,6 +2207,111 @@ export const culturalData: CulturalData = {
           "chicken bites"
         ],
         "unitLabel": "6 nuggets",
+        "kind": "craving"
+      },
+      {
+        "id": "fish-and-chips",
+        "name": "Fish and chips",
+        "category": "fast food",
+        "keywords": [
+          "fish and chips",
+          "fish & chips",
+          "fish n chips",
+          "fish and chip",
+          "flake and chips",
+          "battered fish",
+          "fish chips"
+        ],
+        "unitLabel": "1 serve (fish and chips)",
+        "kind": "craving"
+      },
+      {
+        "id": "sausage-roll",
+        "name": "Sausage roll",
+        "category": "fast food",
+        "keywords": [
+          "sausage roll",
+          "sausage rolls",
+          "bakery sausage roll",
+          "party pie",
+          "meat roll"
+        ],
+        "unitLabel": "1 sausage roll (150 g)",
+        "kind": "craving"
+      },
+      {
+        "id": "chinese-takeaway",
+        "name": "Chinese-style takeaway (fried rice and spring rolls)",
+        "category": "fast food",
+        "keywords": [
+          "chinese takeaway",
+          "chinese food",
+          "chinese",
+          "fried rice",
+          "spring rolls",
+          "takeaway chinese",
+          "chinese takeout"
+        ],
+        "unitLabel": "1 meal",
+        "kind": "craving"
+      },
+      {
+        "id": "nachos",
+        "name": "Nachos (takeaway)",
+        "category": "fast food",
+        "keywords": [
+          "nachos",
+          "nacho",
+          "loaded nachos",
+          "cheesy nachos",
+          "corn chips"
+        ],
+        "unitLabel": "1 plate",
+        "kind": "craving"
+      },
+      {
+        "id": "tacos-burritos",
+        "name": "Beef burrito or tacos (takeaway)",
+        "category": "fast food",
+        "keywords": [
+          "tacos",
+          "taco",
+          "burrito",
+          "burritos",
+          "burrito bowl",
+          "mexican",
+          "tacos and burritos"
+        ],
+        "unitLabel": "1 burrito",
+        "kind": "craving"
+      },
+      {
+        "id": "anzac-biscuits",
+        "name": "Anzac biscuits (bought)",
+        "category": "fast food",
+        "keywords": [
+          "anzac",
+          "anzac biscuits",
+          "anzac biscuit",
+          "biscuits",
+          "cookies"
+        ],
+        "unitLabel": "2 biscuits (40 g)",
+        "kind": "craving"
+      },
+      {
+        "id": "milkshake",
+        "name": "Milkshake (takeaway)",
+        "category": "fast food",
+        "keywords": [
+          "milkshake",
+          "milk shake",
+          "thick shake",
+          "thickshake",
+          "shake",
+          "malt shake"
+        ],
+        "unitLabel": "1 regular (about 400 ml)",
         "kind": "craving"
       }
     ],
@@ -2738,6 +3117,198 @@ export const culturalData: CulturalData = {
         "isSample": true
       },
       {
+        "itemId": "baked-fish-capsicum",
+        "store": "Coles",
+        "pricePerServe": 6,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "baked-fish-capsicum",
+        "store": "Woolworths",
+        "pricePerServe": 6.2,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "beef-veg-sausage-rolls",
+        "store": "Coles",
+        "pricePerServe": 2,
+        "unitLabel": "1 roll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "beef-veg-sausage-rolls",
+        "store": "Woolworths",
+        "pricePerServe": 2.1,
+        "unitLabel": "1 roll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "lentil-sweet-potato-patties",
+        "store": "Coles",
+        "pricePerServe": 1.4,
+        "unitLabel": "2 patties",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "lentil-sweet-potato-patties",
+        "store": "Woolworths",
+        "pricePerServe": 1.5,
+        "unitLabel": "2 patties",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "ginger-chicken-veg-stir-fry",
+        "store": "Coles",
+        "pricePerServe": 3.2,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "ginger-chicken-veg-stir-fry",
+        "store": "Woolworths",
+        "pricePerServe": 3.3,
+        "unitLabel": "1 serve",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "san-choy-bow",
+        "store": "Coles",
+        "pricePerServe": 3.6,
+        "unitLabel": "4 cups",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "san-choy-bow",
+        "store": "Woolworths",
+        "pricePerServe": 3.7,
+        "unitLabel": "4 cups",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "simple-beef-nachos",
+        "store": "Coles",
+        "pricePerServe": 3.6,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "simple-beef-nachos",
+        "store": "Woolworths",
+        "pricePerServe": 3.7,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-avocado-soft-tacos",
+        "store": "Coles",
+        "pricePerServe": 3,
+        "unitLabel": "2 tacos",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chicken-avocado-soft-tacos",
+        "store": "Woolworths",
+        "pricePerServe": 3.1,
+        "unitLabel": "2 tacos",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "beef-taco-roll",
+        "store": "Coles",
+        "pricePerServe": 2.8,
+        "unitLabel": "1 roll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "beef-taco-roll",
+        "store": "Woolworths",
+        "pricePerServe": 2.9,
+        "unitLabel": "1 roll",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "anzac-biscuits-home",
+        "store": "Coles",
+        "pricePerServe": 0.2,
+        "unitLabel": "1 biscuit",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "anzac-biscuits-home",
+        "store": "Woolworths",
+        "pricePerServe": 0.2,
+        "unitLabel": "1 biscuit",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "carrot-date-oat-biscuit",
+        "store": "Coles",
+        "pricePerServe": 0.4,
+        "unitLabel": "1 biscuit",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "carrot-date-oat-biscuit",
+        "store": "Woolworths",
+        "pricePerServe": 0.4,
+        "unitLabel": "1 biscuit",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "banana-blueberry-smoothie",
+        "store": "Coles",
+        "pricePerServe": 1.2,
+        "unitLabel": "1 glass",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "banana-blueberry-smoothie",
+        "store": "Woolworths",
+        "pricePerServe": 1.3,
+        "unitLabel": "1 glass",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "strawberry-yoghurt-smoothie",
+        "store": "Coles",
+        "pricePerServe": 1.1,
+        "unitLabel": "1 glass",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "strawberry-yoghurt-smoothie",
+        "store": "Woolworths",
+        "pricePerServe": 1.1,
+        "unitLabel": "1 glass",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "store": "Coles",
         "pricePerServe": 3.4,
@@ -2782,6 +3353,118 @@ export const culturalData: CulturalData = {
         "store": "Woolworths",
         "pricePerServe": 5.5,
         "unitLabel": "6 nuggets",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "fish-and-chips",
+        "store": "Coles",
+        "pricePerServe": 14,
+        "unitLabel": "1 serve (fish and chips)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "fish-and-chips",
+        "store": "Woolworths",
+        "pricePerServe": 14,
+        "unitLabel": "1 serve (fish and chips)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "sausage-roll",
+        "store": "Coles",
+        "pricePerServe": 5,
+        "unitLabel": "1 sausage roll (150 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "sausage-roll",
+        "store": "Woolworths",
+        "pricePerServe": 5,
+        "unitLabel": "1 sausage roll (150 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chinese-takeaway",
+        "store": "Coles",
+        "pricePerServe": 14,
+        "unitLabel": "1 meal",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "chinese-takeaway",
+        "store": "Woolworths",
+        "pricePerServe": 14,
+        "unitLabel": "1 meal",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "nachos",
+        "store": "Coles",
+        "pricePerServe": 14,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "nachos",
+        "store": "Woolworths",
+        "pricePerServe": 14,
+        "unitLabel": "1 plate",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tacos-burritos",
+        "store": "Coles",
+        "pricePerServe": 12,
+        "unitLabel": "1 burrito",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "tacos-burritos",
+        "store": "Woolworths",
+        "pricePerServe": 12,
+        "unitLabel": "1 burrito",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "anzac-biscuits",
+        "store": "Coles",
+        "pricePerServe": 1.8,
+        "unitLabel": "2 biscuits (40 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "anzac-biscuits",
+        "store": "Woolworths",
+        "pricePerServe": 1.8,
+        "unitLabel": "2 biscuits (40 g)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "milkshake",
+        "store": "Coles",
+        "pricePerServe": 6.5,
+        "unitLabel": "1 regular (about 400 ml)",
+        "observedAt": "2026-10-28",
+        "isSample": true
+      },
+      {
+        "itemId": "milkshake",
+        "store": "Woolworths",
+        "pricePerServe": 6.5,
+        "unitLabel": "1 regular (about 400 ml)",
         "observedAt": "2026-10-28",
         "isSample": true
       }
@@ -3238,6 +3921,114 @@ export const culturalData: CulturalData = {
         "sodiumModelled": false
       },
       {
+        "itemId": "baked-fish-capsicum",
+        "energyKj": 1075,
+        "proteinG": 36.1,
+        "fibreG": 1.6,
+        "sugarG": 2.1,
+        "sodiumMg": 164,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "beef-veg-sausage-rolls",
+        "energyKj": 1043,
+        "proteinG": 15.5,
+        "fibreG": 3,
+        "sugarG": 3.7,
+        "sodiumMg": 183,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "lentil-sweet-potato-patties",
+        "energyKj": 409,
+        "proteinG": 4.4,
+        "fibreG": 3.5,
+        "sugarG": 2.8,
+        "sodiumMg": 12,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "ginger-chicken-veg-stir-fry",
+        "energyKj": 1843,
+        "proteinG": 30.2,
+        "fibreG": 7.7,
+        "sugarG": 4.8,
+        "sodiumMg": 763,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "san-choy-bow",
+        "energyKj": 1102,
+        "proteinG": 23.2,
+        "fibreG": 4.3,
+        "sugarG": 7.5,
+        "sodiumMg": 336,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "simple-beef-nachos",
+        "energyKj": 1814,
+        "proteinG": 30.4,
+        "fibreG": 3.4,
+        "sugarG": 3,
+        "sodiumMg": 418,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "chicken-avocado-soft-tacos",
+        "energyKj": 1919,
+        "proteinG": 32.2,
+        "fibreG": 5.9,
+        "sugarG": 5.1,
+        "sodiumMg": 655,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "beef-taco-roll",
+        "energyKj": 1621,
+        "proteinG": 25.3,
+        "fibreG": 4.4,
+        "sugarG": 5.9,
+        "sodiumMg": 813,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "anzac-biscuits-home",
+        "energyKj": 797,
+        "proteinG": 2.2,
+        "fibreG": 1.4,
+        "sugarG": 11.1,
+        "sodiumMg": 75,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "carrot-date-oat-biscuit",
+        "energyKj": 523,
+        "proteinG": 2.9,
+        "fibreG": 2.6,
+        "sugarG": 8.3,
+        "sodiumMg": 13,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "banana-blueberry-smoothie",
+        "energyKj": 496,
+        "proteinG": 5.7,
+        "fibreG": 1.9,
+        "sugarG": 13.9,
+        "sodiumMg": 58,
+        "sodiumModelled": false
+      },
+      {
+        "itemId": "strawberry-yoghurt-smoothie",
+        "energyKj": 397,
+        "proteinG": 5.7,
+        "fibreG": 1.6,
+        "sugarG": 10.1,
+        "sodiumMg": 57,
+        "sodiumModelled": false
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "energyKj": 2149,
         "proteinG": 36.1,
@@ -3261,6 +4052,62 @@ export const culturalData: CulturalData = {
         "sugarG": 0.3,
         "sodiumMg": 60,
         "sodiumModelled": false
+      },
+      {
+        "itemId": "fish-and-chips",
+        "energyKj": 3506,
+        "proteinG": 39.3,
+        "fibreG": 7.4,
+        "sugarG": 0.3,
+        "sodiumMg": 810
+      },
+      {
+        "itemId": "sausage-roll",
+        "energyKj": 1785,
+        "proteinG": 14.6,
+        "fibreG": 4.5,
+        "sugarG": 4.2,
+        "sodiumMg": 1001
+      },
+      {
+        "itemId": "chinese-takeaway",
+        "energyKj": 3737,
+        "proteinG": 25.5,
+        "fibreG": 7,
+        "sugarG": 8.2,
+        "sodiumMg": 2071
+      },
+      {
+        "itemId": "nachos",
+        "energyKj": 3567,
+        "proteinG": 36.3,
+        "fibreG": 5.5,
+        "sugarG": 3.7,
+        "sodiumMg": 1014
+      },
+      {
+        "itemId": "tacos-burritos",
+        "energyKj": 3400,
+        "proteinG": 45.7,
+        "fibreG": 6.4,
+        "sugarG": 7.6,
+        "sodiumMg": 1332
+      },
+      {
+        "itemId": "anzac-biscuits",
+        "energyKj": 776,
+        "proteinG": 2.3,
+        "fibreG": 1.5,
+        "sugarG": 12.8,
+        "sodiumMg": 120
+      },
+      {
+        "itemId": "milkshake",
+        "energyKj": 1855,
+        "proteinG": 12.9,
+        "fibreG": 0,
+        "sugarG": 55.9,
+        "sodiumMg": 143
       }
     ],
     "swaps": [
@@ -3553,6 +4400,66 @@ export const culturalData: CulturalData = {
         "cravingId": "chicken-nuggets",
         "alternativeId": "chicken-veg-nuggets",
         "note": "Chicken mince and grated veg shaped into nuggets, with a yoghurt and parsley dip."
+      },
+      {
+        "cravingId": "fish-and-chips",
+        "alternativeId": "baked-fish-capsicum",
+        "note": "Fish fillets baked in the oven with capsicum, garlic and herbs: no batter, no deep fryer."
+      },
+      {
+        "cravingId": "sausage-roll",
+        "alternativeId": "beef-veg-sausage-rolls",
+        "note": "Beef mince and grated veg baked in puff pastry, made as a batch for the freezer."
+      },
+      {
+        "cravingId": "sausage-roll",
+        "alternativeId": "lentil-sweet-potato-patties",
+        "note": "Lentil and mashed sweet potato patties pan-fried or baked, with spinach through them."
+      },
+      {
+        "cravingId": "chinese-takeaway",
+        "alternativeId": "ginger-chicken-veg-stir-fry",
+        "note": "Chicken, bok choy, broccoli and carrot stir-fried with ginger and soy, served on brown rice."
+      },
+      {
+        "cravingId": "chinese-takeaway",
+        "alternativeId": "san-choy-bow",
+        "note": "Pork mince and water chestnuts spooned into lettuce cups, ready in about 20 minutes."
+      },
+      {
+        "cravingId": "nachos",
+        "alternativeId": "simple-beef-nachos",
+        "note": "Beef mince cooked with tinned tomato and taco seasoning over corn chips, in a smaller serve."
+      },
+      {
+        "cravingId": "tacos-burritos",
+        "alternativeId": "chicken-avocado-soft-tacos",
+        "note": "Soft tortillas filled with shredded chicken, beans, avocado, salad and a little cheese."
+      },
+      {
+        "cravingId": "tacos-burritos",
+        "alternativeId": "beef-taco-roll",
+        "note": "A tortilla rolled around beef mince, beans, corn, spinach and avocado, baked until crisp."
+      },
+      {
+        "cravingId": "anzac-biscuits",
+        "alternativeId": "anzac-biscuits-home",
+        "note": "Oats, flour, coconut and golden syrup baked at home in one big batch."
+      },
+      {
+        "cravingId": "anzac-biscuits",
+        "alternativeId": "carrot-date-oat-biscuit",
+        "note": "Oats, dates, grated carrot and banana baked into soft biscuits, sweetened mostly by fruit."
+      },
+      {
+        "cravingId": "milkshake",
+        "alternativeId": "banana-blueberry-smoothie",
+        "note": "Banana, frozen blueberries, yoghurt and milk blended in a minute."
+      },
+      {
+        "cravingId": "milkshake",
+        "alternativeId": "strawberry-yoghurt-smoothie",
+        "note": "Strawberries, milk and yoghurt blended, with no ice cream or syrup."
       }
     ],
     "foodInfo": [
@@ -4934,6 +5841,302 @@ export const culturalData: CulturalData = {
         }
       },
       {
+        "itemId": "baked-fish-capsicum",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "unknown",
+          "allergens": [
+            "fish"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Baked Fish",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/baked-fish/"
+        }
+      },
+      {
+        "itemId": "beef-veg-sausage-rolls",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "walnut",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        },
+        "recipe": {
+          "title": "Healthy Sausage Roll",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/healthy-sausage-roll/"
+        }
+      },
+      {
+        "itemId": "lentil-sweet-potato-patties",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "unknown",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Lentil and Sweet Potato Patties",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/lentil-and-sweet-potato-patties/"
+        }
+      },
+      {
+        "itemId": "ginger-chicken-veg-stir-fry",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "sesame"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        },
+        "recipe": {
+          "title": "Ginger Vegetable and Chicken Stir fry",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/ginger-veggie-stir-fry-recipe/"
+        }
+      },
+      {
+        "itemId": "san-choy-bow",
+        "traditions": [],
+        "flags": {
+          "halal": "no",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "yes",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "sesame"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "San Choy Bow",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/san-choy-bow/"
+        }
+      },
+      {
+        "itemId": "simple-beef-nachos",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        },
+        "recipe": {
+          "title": "Cookbook:Simple Nachos",
+          "publisher": "Wikibooks",
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Simple_Nachos"
+        }
+      },
+      {
+        "itemId": "chicken-avocado-soft-tacos",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        },
+        "recipe": {
+          "title": "Chicken and Avocado Soft Tacos",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/chicken-and-avocado-soft-tacos/"
+        }
+      },
+      {
+        "itemId": "beef-taco-roll",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "milk",
+            "wheat"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        },
+        "recipe": {
+          "title": "Taco Roll",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/taco-roll/"
+        }
+      },
+      {
+        "itemId": "anzac-biscuits-home",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "oats",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Cookbook:Anzac Biscuits I",
+          "publisher": "Wikibooks",
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Anzac_Biscuits_I"
+        }
+      },
+      {
+        "itemId": "carrot-date-oat-biscuit",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "yes",
+          "allergens": [
+            "oats",
+            "wheat",
+            "egg",
+            "almond"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Carrot, Date and Oat Biscuit",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/carrot-date-and-oat-biscuit/"
+        }
+      },
+      {
+        "itemId": "banana-blueberry-smoothie",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Banana and Blueberry Smoothie",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/banana-and-blueberry-smoothie/"
+        }
+      },
+      {
+        "itemId": "strawberry-yoghurt-smoothie",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "yes",
+          "vegan": "no",
+          "beef": "no",
+          "pork": "no",
+          "alcohol": "no",
+          "gluten": "no",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": true,
+          "certifiedMeat": false
+        },
+        "recipe": {
+          "title": "Strawberry Smoothie",
+          "publisher": "Health and Wellbeing Queensland",
+          "url": "https://hw.qld.gov.au/healthy-recipes/strawberry-smoothie/"
+        }
+      },
+      {
         "itemId": "butter-chicken-jar-sauce",
         "traditions": [
           "indian-north"
@@ -4990,12 +6193,145 @@ export const culturalData: CulturalData = {
           "allergensKnown": true,
           "certifiedMeat": true
         }
+      },
+      {
+        "itemId": "fish-and-chips",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "sausage-roll",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "chinese-takeaway",
+        "traditions": [],
+        "flags": {
+          "halal": "no",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "yes",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "nachos",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "tacos-burritos",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "no",
+          "vegetarian": "no",
+          "vegan": "no",
+          "beef": "yes",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [
+            "wheat",
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": true
+        }
+      },
+      {
+        "itemId": "anzac-biscuits",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "unknown",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "yes",
+          "allergens": [],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
+      },
+      {
+        "itemId": "milkshake",
+        "traditions": [],
+        "flags": {
+          "halal": "unknown",
+          "kosher": "unknown",
+          "vegetarian": "unknown",
+          "vegan": "no",
+          "beef": "unknown",
+          "pork": "unknown",
+          "alcohol": "unknown",
+          "gluten": "unknown",
+          "allergens": [
+            "milk"
+          ],
+          "allergensKnown": false,
+          "certifiedMeat": false
+        }
       }
     ],
     "cravingIds": [
       "butter-chicken-jar-sauce",
       "lasagne-frozen",
-      "chicken-nuggets"
+      "chicken-nuggets",
+      "fish-and-chips",
+      "sausage-roll",
+      "chinese-takeaway",
+      "nachos",
+      "tacos-burritos",
+      "anzac-biscuits",
+      "milkshake"
     ]
   },
   "notFound": [
