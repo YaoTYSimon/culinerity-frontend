@@ -1,4 +1,5 @@
 import type { Nutrition } from '../domain/types';
+import type { EquipmentId } from './equipment';
 import type { FoodInfo, IngredientAttr, SourceRecord } from '../food/types';
 
 export interface RecipeIngredient {
@@ -17,6 +18,8 @@ export interface Recipe {
   traditions: string[];
   serves: number;
   minutes: number;
+  /** The kitchen equipment the method needs (can be empty), in the order of the equipment table. */
+  needs: EquipmentId[];
   /** 2 to 9 counted rows (optional rows are counted). */
   ingredients: RecipeIngredient[];
   /** Shown as text only; never counted, never missing. */

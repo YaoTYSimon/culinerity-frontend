@@ -12,7 +12,7 @@ export const flags = (o: Partial<RuleFlags> = {}): RuleFlags => ({
 export function recipe(id: string, ingredients: Array<string | RecipeIngredient>, o: Partial<Recipe> = {}, flagOverride: Partial<RuleFlags> = {}): Recipe {
   const info: FoodInfo = { itemId: id, traditions: [], flags: flags(flagOverride) };
   return {
-    id, name: id, blurb: 'b', traditions: [], serves: 2, minutes: 20,
+    id, name: id, blurb: 'b', traditions: [], serves: 2, minutes: 20, needs: [],
     ingredients: ingredients.map((i) => (typeof i === 'string' ? { ingredient: i, grams: 100 } : i)),
     seasonings: [], steps: ['a', 'b'], safety: [], basis: 'x',
     nutrition: { perServe: { energyKj: 0, proteinG: 0, fibreG: 0, sugarG: 0, sodiumMg: 0 }, sodiumModelled: false },

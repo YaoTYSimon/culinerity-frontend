@@ -1,3 +1,5 @@
+import type { EquipmentId } from '../recipes/equipment';
+
 export type DateKind = 'use-by' | 'best-before' | 'cooked' | 'opened';
 
 export const DATE_KINDS: readonly DateKind[] = ['use-by', 'best-before', 'cooked', 'opened'];
@@ -22,6 +24,8 @@ export interface PantryState {
   /** Ingredient ids the person says they always have. */
   staples: string[];
   serves: number;
+  /** Kitchen equipment the person has. Empty or absent means not said yet: nothing is filtered. */
+  equipment?: EquipmentId[];
 }
 
 export interface ShoppingEntry {

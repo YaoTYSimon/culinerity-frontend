@@ -177,7 +177,7 @@ describe('ordering', () => {
 
 describe('edges', () => {
   it('empty inputs return empty', () => {
-    expect(run([], pantry([]))).toEqual({ matches: [], hidden: 0, setAside: [] });
+    expect(run([], pantry([]))).toEqual({ matches: [], blocked: [], hidden: 0, setAside: [] });
     expect(run([recipe('r', ['a'])], pantry([])).matches[0].tier).toBe('one');
     expect(run([recipe('r', ['a', 'b', 'c', 'd'])], pantry([])).matches).toEqual([]);
   });
@@ -205,5 +205,35 @@ describe('costs', () => {
     // a 100g*10/kg = 100c, b 100g*4/kg = 40c; 140c / 2 serves = 70c
     expect(recipeCostPerServeCents(recipe('r', ['a', 'b']), prices)).toBe(70);
     expect(recipeCostPerServeCents(recipe('r', ['a', 'nope']), prices)).toBeNull();
+  });
+});
+
+describe('equipment', () => {
+  const bake = recipe('bake', ['a', 'b'], { needs: ['oven'] });
+  const fry = recipe('fry', ['a', 'b'], { needs: ['stove'] });
+  const cold = recipe('cold', ['a', 'b'], { needs: [] });
+  const items = [item('a'), item('b')];
+  it('offers everything when no equipment is chosen', () => {
+    const res = run([bake, fry, cold], pantry(items));
+    expect(res.matches.map((m) => m.recipeId).sort()).toEqual(['bake', 'cold', 'fry']);
+    expect(res.blocked).toEqual([]);
+    expect(run([bake], pantry(items, { equipment: [] })).blocked).toEqual([]);
+  });
+  it('moves recipes needing missing equipment to blocked, with what they lack', () => {
+    const res = run([bake, fry, cold], pantry(items, { equipment: ['stove'] }));
+    expect(res.matches.map((m) => m.recipeId).sort()).toEqual(['cold', 'fry']);
+    expect(res.blocked.map((m) => [m.recipeId, m.lacks, m.tier])).toEqual([['bake', ['oven'], 'now']]);
+    expect(res.matches.every((m) => m.lacks.length === 0)).toBe(true);
+  });
+  it('does not suggest additions from blocked recipes', () => {
+    const one = recipe('one', ['a', 'b'], { needs: ['oven'] });
+    const res = run([one], pantry([item('a')], { equipment: ['stove'] }));
+    expect(res.matches).toEqual([]);
+    expect(suggestAdditions(res.matches)).toEqual([]);
+    expect(res.blocked).toHaveLength(1);
+  });
+  it('lists several lacks in table order', () => {
+    const both = recipe('both', ['a', 'b'], { needs: ['stove', 'oven'] });
+    expect(run([both], pantry(items, { equipment: ['blender'] })).blocked[0].lacks).toEqual(['stove', 'oven']);
   });
 });

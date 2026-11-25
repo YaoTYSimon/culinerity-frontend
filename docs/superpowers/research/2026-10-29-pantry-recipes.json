@@ -1250,6 +1250,7 @@
    "traditions": [],
    "serves": 1,
    "minutes": 10,
+   "needs": ["stove", "toaster"],
    "ingredients": [
     {
      "ingredient": "egg",
@@ -1290,6 +1291,7 @@
    "traditions": [],
    "serves": 2,
    "minutes": 25,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "rice",
@@ -1336,6 +1338,7 @@
    "traditions": [],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "pasta-dry",
@@ -1385,6 +1388,7 @@
    "traditions": [],
    "serves": 3,
    "minutes": 35,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "lentil-red",
@@ -1429,6 +1433,7 @@
    "traditions": [],
    "serves": 2,
    "minutes": 10,
+   "needs": ["stove", "toaster"],
    "ingredients": [
     {
      "ingredient": "baked-beans",
@@ -1463,6 +1468,7 @@
    "traditions": [],
    "serves": 2,
    "minutes": 10,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "rolled-oats",
@@ -1497,6 +1503,7 @@
    "traditions": [],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "chickpeas-canned",
@@ -1544,6 +1551,7 @@
    "traditions": [],
    "serves": 2,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "potato",
@@ -1583,6 +1591,7 @@
    "traditions": [],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "corn-canned",
@@ -1628,6 +1637,7 @@
    "traditions": [],
    "serves": 3,
    "minutes": 35,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "salmon-canned",
@@ -1672,6 +1682,7 @@
    "traditions": [],
    "serves": 3,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "rice",
@@ -1725,6 +1736,7 @@
    "traditions": [],
    "serves": 2,
    "minutes": 10,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "bread-white",
@@ -1760,6 +1772,7 @@
    ],
    "serves": 2,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "chickpeas-canned",
@@ -1821,6 +1834,7 @@
    ],
    "serves": 3,
    "minutes": 35,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "potato",
@@ -1878,6 +1892,7 @@
    ],
    "serves": 2,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "lentil-red",
@@ -1931,6 +1946,7 @@
    ],
    "serves": 3,
    "minutes": 40,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "chicken-thigh",
@@ -1994,6 +2010,7 @@
    ],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "cabbage-white",
@@ -2041,6 +2058,7 @@
    ],
    "serves": 2,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "rice",
@@ -2099,6 +2117,7 @@
    ],
    "serves": 2,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "egg",
@@ -2161,6 +2180,7 @@
    ],
    "serves": 3,
    "minutes": 35,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "potato",
@@ -2218,6 +2238,7 @@
    ],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "egg",
@@ -2265,6 +2286,7 @@
    ],
    "serves": 2,
    "minutes": 25,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "tofu-firm",
@@ -2315,6 +2337,7 @@
    ],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "rice-noodles-boiled",
@@ -2366,6 +2389,7 @@
    ],
    "serves": 2,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "chicken-breast",
@@ -2419,6 +2443,7 @@
    ],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "pasta-dry",
@@ -2466,6 +2491,7 @@
    ],
    "serves": 3,
    "minutes": 40,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "carrot",
@@ -2524,6 +2550,7 @@
    ],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "spaghetti",
@@ -2570,6 +2597,7 @@
    ],
    "serves": 2,
    "minutes": 45,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "beef-mince",
@@ -2627,6 +2655,7 @@
    ],
    "serves": 2,
    "minutes": 10,
+   "needs": [],
    "ingredients": [
     {
      "ingredient": "cucumber",
@@ -2673,6 +2702,7 @@
    ],
    "serves": 3,
    "minutes": 35,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "rice",
@@ -2719,6 +2749,7 @@
    ],
    "serves": 3,
    "minutes": 45,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "lentil-green",
@@ -2768,6 +2799,7 @@
    ],
    "serves": 3,
    "minutes": 60,
+   "needs": ["stove", "oven"],
    "ingredients": [
     {
      "ingredient": "chicken-drumstick",
@@ -2816,6 +2848,7 @@
    ],
    "serves": 2,
    "minutes": 10,
+   "needs": ["stove", "blender"],
    "ingredients": [
     {
      "ingredient": "chickpeas-canned",
@@ -2863,6 +2896,7 @@
    ],
    "serves": 3,
    "minutes": 45,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "lentil-green",
@@ -2909,6 +2943,7 @@
    ],
    "serves": 2,
    "minutes": 15,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "pita-bread",
@@ -2964,6 +2999,7 @@
    ],
    "serves": 2,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "lamb-mince",
@@ -3021,6 +3057,7 @@
    ],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "rice-noodles-boiled",
@@ -3073,6 +3110,7 @@
    ],
    "serves": 2,
    "minutes": 35,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "chicken-breast",
@@ -3130,6 +3168,7 @@
    ],
    "serves": 2,
    "minutes": 25,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "tofu-firm",
@@ -3180,6 +3219,7 @@
    ],
    "serves": 3,
    "minutes": 45,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "chicken-thigh",
@@ -3229,6 +3269,7 @@
    ],
    "serves": 2,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "eggplant",
@@ -3276,6 +3317,7 @@
    ],
    "serves": 2,
    "minutes": 25,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "cabbage-white",
@@ -3331,6 +3373,7 @@
    ],
    "serves": 2,
    "minutes": 20,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "egg",
@@ -3380,6 +3423,7 @@
    ],
    "serves": 3,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "bulgur",
@@ -3425,6 +3469,7 @@
    ],
    "serves": 3,
    "minutes": 45,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "eggplant",
@@ -3474,6 +3519,7 @@
    ],
    "serves": 3,
    "minutes": 30,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "lentil-red",
@@ -3523,6 +3569,7 @@
    ],
    "serves": 2,
    "minutes": 25,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "green-beans",
@@ -3572,6 +3619,7 @@
    ],
    "serves": 3,
    "minutes": 35,
+   "needs": ["stove"],
    "ingredients": [
     {
      "ingredient": "pumpkin",
@@ -3618,6 +3666,7 @@
    "id": "chicken-veg-nuggets",
    "serves": 5,
    "minutes": 35,
+   "needs": ["stove"],
    "blurb": "Chicken and vegetable nuggets, fried until golden, with a garlicky yoghurt dip.",
    "drop": [],
    "seasonings": [
@@ -3641,6 +3690,7 @@
    "id": "beef-veg-sausage-rolls",
    "serves": 4,
    "minutes": 50,
+   "needs": ["stove", "oven"],
    "blurb": "Beef mince and grated vegetables rolled in puff pastry and baked.",
    "drop": [],
    "seasonings": [
@@ -3663,6 +3713,7 @@
    "id": "lentil-sweet-potato-patties",
    "serves": 6,
    "minutes": 40,
+   "needs": ["stove"],
    "blurb": "Mashed sweet potato, lentils and spinach pan-fried into soft patties.",
    "drop": [],
    "seasonings": [
@@ -3684,6 +3735,7 @@
    "id": "ginger-chicken-veg-stir-fry",
    "serves": 4,
    "minutes": 35,
+   "needs": ["stove"],
    "blurb": "Chicken, bok choy, broccoli and carrot stir-fried with ginger, on brown rice.",
    "drop": [
     "chilli-ground",
@@ -3713,6 +3765,7 @@
    "id": "san-choy-bow",
    "serves": 5,
    "minutes": 30,
+   "needs": ["stove"],
    "blurb": "Pork mince and chopped vegetables spooned into crisp lettuce cups.",
    "drop": [
     "coriander-fresh",
@@ -3740,6 +3793,7 @@
    "id": "simple-beef-nachos",
    "serves": 4,
    "minutes": 25,
+   "needs": ["stove", "oven"],
    "blurb": "Spiced beef and tomato over corn chips, warmed in the oven, with sour cream.",
    "drop": [],
    "seasonings": [
@@ -3762,6 +3816,7 @@
    "id": "chicken-avocado-soft-tacos",
    "serves": 4,
    "minutes": 20,
+   "needs": ["stove"],
    "blurb": "Soft tortillas filled with shredded chicken, beans, salad and avocado.",
    "drop": [
     "red-onion"
@@ -3783,6 +3838,7 @@
    "id": "anzac-biscuits-home",
    "serves": 6,
    "minutes": 30,
+   "needs": ["stove", "oven"],
    "blurb": "Chewy oat and coconut biscuits sweetened with golden syrup. Six biscuits.",
    "drop": [],
    "seasonings": [],
@@ -3799,6 +3855,7 @@
    "id": "carrot-date-oat-biscuit",
    "serves": 6,
    "minutes": 30,
+   "needs": ["stove", "oven"],
    "blurb": "Soft biscuits of oats, dates, carrot and banana. Six biscuits.",
    "drop": [
     "cinnamon"
@@ -3818,6 +3875,7 @@
    "id": "banana-blueberry-smoothie",
    "serves": 4,
    "minutes": 5,
+   "needs": ["blender"],
    "blurb": "A thick banana, blueberry and yoghurt smoothie made with milk.",
    "drop": [],
    "seasonings": [],
@@ -3834,6 +3892,7 @@
    "id": "strawberry-yoghurt-smoothie",
    "serves": 4,
    "minutes": 5,
+   "needs": ["blender"],
    "blurb": "Strawberries, yoghurt and milk blended into a quick pink smoothie.",
    "drop": [],
    "seasonings": [],

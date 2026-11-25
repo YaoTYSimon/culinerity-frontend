@@ -13,6 +13,7 @@ export const MIN_RECIPES = 40;
 export const MIN_TRADITIONS = 10;
 export const MAX_COST_PER_SERVE = 4;
 const SAFETY_TAGS = ['rice', 'pasta', 'leftovers'];
+const EQUIPMENT_IDS = ['stove', 'oven', 'microwave', 'kettle', 'toaster', 'rice-cooker', 'slow-cooker', 'air-fryer', 'blender']; // keep in step with packages/core/src/recipes/equipment.ts (a test compares them)
 const SEASONINGS = ['salt', 'pepper'];
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const FIGURE_IN_STEP = /°\s*C|º\s*C|\b\d+\s*(minutes?|mins?)\b/i;
@@ -63,7 +64,7 @@ export function expandSwapRecipes(d, cultural) {
     const drop = new Set(s.drop ?? []);
     for (const id of drop) if (!food.recipe.some((r) => r.ingredient === id)) errs.push(`swap recipe ${s.id}: drops ${id}, which is not in the swap food`);
     recipes.push({
-      id: s.id, name: food.name, blurb: s.blurb, traditions: [], serves: s.serves, minutes: s.minutes,
+      id: s.id, name: food.name, blurb: s.blurb, traditions: [], serves: s.serves, minutes: s.minutes, needs: s.needs,
       ingredients: food.recipe.filter((r) => !drop.has(r.ingredient)).map((r) => ({ ingredient: r.ingredient, grams: roundGrams(r.grams * s.serves) })),
       uncounted: [...drop], seasonings: [...s.seasonings], steps: [...s.steps], safety: [...s.safety],
       basis: `Author's own simple recipe method, written by us. Ingredient weights are the swap food's per-serve weights times ${s.serves} serves and nutrition per serve is the swap food's, computed from every ingredient it lists (raw or dry unless the food-table row says boiled or canned), including any not counted here; cooking changes are not modelled. Salt, pepper and uncounted extras are to taste, so sodium is not modelled.`,
@@ -156,6 +157,11 @@ export function validateRecipes(d, cultural, today = melbourneToday()) {
     for (const t of r.traditions ?? []) if (!traditionIds.has(t)) errs.push(`${tag}: tradition ${t} does not exist`);
     for (const t of r.traditions ?? []) perTradition.set(t, (perTradition.get(t) ?? 0) + 1);
     for (const s of r.seasonings ?? []) if (!SEASONINGS.includes(s)) errs.push(`${tag}: seasoning ${s} must be salt or pepper`);
+    if (!Array.isArray(r.needs)) errs.push(`${tag}: needs must be a list of equipment ids (empty when none)`);
+    else {
+      for (const n of r.needs) if (!EQUIPMENT_IDS.includes(n)) errs.push(`${tag}: equipment ${n} is unknown`);
+      if (new Set(r.needs).size !== r.needs.length) errs.push(`${tag}: equipment listed twice`);
+    }
     for (const s of r.safety ?? []) if (!SAFETY_TAGS.includes(s)) errs.push(`${tag}: safety tag ${s} is unknown`);
     const rows = r.ingredients ?? [];
     if (rows.length < 2 || rows.length > 9) errs.push(`${tag}: needs 2 to 9 counted ingredients`);
@@ -242,7 +248,7 @@ export function buildRecipes(d, cultural, today = melbourneToday()) {
     const perServe = computeNutrition({ recipe: r.nutritionRows ?? r.ingredients.map((i) => ({ ingredient: i.ingredient, grams: i.grams / r.serves })) }, table);
     const flags = deriveFlags((r.nutritionRows ?? r.ingredients).map((i) => i.ingredient), lookup);
     return {
-      id: r.id, name: r.name, blurb: r.blurb, traditions: [...r.traditions], serves: r.serves, minutes: r.minutes,
+      id: r.id, name: r.name, blurb: r.blurb, traditions: [...r.traditions], serves: r.serves, minutes: r.minutes, needs: [...r.needs],
       ingredients: r.ingredients.map((i) => ({ ingredient: i.ingredient, grams: i.grams, ...(i.optional ? { optional: true } : {}) })),
       seasonings: [...r.seasonings], ...(r.uncounted?.length ? { uncounted: [...r.uncounted] } : {}), steps: [...r.steps], safety: [...r.safety], basis: r.basis,
       ...(r.credit ? { credit: r.credit } : {}),
