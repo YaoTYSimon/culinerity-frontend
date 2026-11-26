@@ -56,10 +56,10 @@ describe('PHOTO_CREDITS', () => {
     expect(PHOTO_CREDITS.map((c) => c.itemId).sort()).toEqual([...PHOTO_IDS].sort());
     for (const c of PHOTO_CREDITS) {
       expect(c.title, c.itemId).toBeTruthy();
-      expect(c.licence, c.itemId).toBe('CC0');
+      expect(['CC0', 'Pixabay Content Licence'], c.itemId).toContain(c.licence);
       expect(c.creator, c.itemId).toBeTruthy();
       expect(c.licenceUrl, c.itemId).toMatch(/^https:\/\//);
-      expect(c.sourceUrl, c.itemId).toMatch(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+      expect(c.sourceUrl, c.itemId).toMatch(c.licence === 'CC0' ? /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/ : /^https:\/\/pixabay\.com\/photos\//);
     }
   });
 });
