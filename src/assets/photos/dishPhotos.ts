@@ -8,7 +8,7 @@ export const DISH_PHOTO: Record<string, string> = {
   // Cravings
   'butter-chicken-jar-sauce': 'curry-rice', 'lasagne-frozen': 'spaghetti-bolognese', 'chicken-nuggets': 'fried-chicken', 
   'chinese-takeaway': 'fried-rice', 'tacos-burritos': 'tacos', 'anzac-biscuits': 'biscuits',
-  'pad-thai': 'stir-fry', 'takeaway-curry': 'curry-rice', 'creamy-pasta': 'pasta-creamy', 'bacon-and-egg-roll': 'eggs-on-toast',
+  'pad-thai': 'stir-fry', 'takeaway-curry': 'curry-rice', 'creamy-pasta': 'pasta-creamy', 'bacon-and-egg-roll': 'bacon-egg-roll',
   'tim-tams': 'biscuits', 'savoury-snacks': 'mixed-nuts', 'pancakes-and-donuts': 'doughnut', 
   // Swap foods
   'smash-burger': 'burger', 'chicken-salad-roll': 'salad', 'oven-wedges': 'hot-chips', 'roast-chickpeas': 'mixed-nuts', 'homemade-milk-tea': 'bubble-tea',
