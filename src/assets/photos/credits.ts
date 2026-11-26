@@ -58,4 +58,5 @@ export const PHOTO_CREDITS: PhotoCredit[] = [
   { itemId: "spring-rolls", title: "egg roll, spring roll, avocado (Pixabay 2680478)", creator: "kbmars", licence: "Pixabay Content Licence", licenceUrl: "https://pixabay.com/service/license-summary/", sourceUrl: "https://pixabay.com/photos/egg-roll-spring-roll-avocado-roll-2680478/" },
   { itemId: "stir-fry", title: "meal, food, tofu (Pixabay 5921491)", creator: "sontung57", licence: "Pixabay Content Licence", licenceUrl: "https://pixabay.com/service/license-summary/", sourceUrl: "https://pixabay.com/photos/meal-food-tofu-rice-dish-cooked-5921491/" },
   { itemId: "tacos", title: "tacos, mexico, food (Pixabay 8176774)", creator: "rinrecipes", licence: "Pixabay Content Licence", licenceUrl: "https://pixabay.com/service/license-summary/", sourceUrl: "https://pixabay.com/photos/tacos-mexico-food-tortilla-8176774/" },
+  { itemId: "bacon-egg-roll", title: "food, roll, breakfast (Pixabay 2794599)", creator: "AlbanyColley", licence: "Pixabay Content Licence", licenceUrl: "https://pixabay.com/service/license-summary/", sourceUrl: "https://pixabay.com/photos/food-roll-breakfast-bacon-eggs-2794599/" },
 ];
